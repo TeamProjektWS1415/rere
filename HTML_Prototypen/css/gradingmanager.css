@@ -62,6 +62,10 @@ body {
 * Kapitel 2
   ==================================================================*/
   
-  .highlight{
+.highlight{
   background-color: #5bc0de;
-  }
+}
+
+.navbarposition h4{
+	padding-top: 6px;
+}
