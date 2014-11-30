@@ -29,13 +29,33 @@ $(document).ready(function () {
         responsive: true
     });
 
-    // search funktion
+
 
     // delete button reaktion
     $('.delete').click(function () {
         if (confirm("Wirklich loeschen?") === true) {
             // Hier kommt dann der aufruf zum löschen
         }
+    });
+
+    // search funktion
+    // colors the searched MatrikelNR
+    $("#suche").on("keyup", function () {
+        var value = $(this).val();
+        $("table tr").each(function (index) {
+            if (index !== 0) {
+                $row = $(this);
+                var id = $row.find("td:first").text();
+                if (id.indexOf(value) !== 0) {
+                    // Remove color
+                    $row.removeClass("highlight");
+                }
+                else {
+                    // Set the color
+                    $row.addClass("highlight");
+                }
+            }
+        });
     });
 
 });
