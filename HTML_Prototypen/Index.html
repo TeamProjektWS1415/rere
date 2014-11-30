@@ -19,35 +19,53 @@
     <body>
         <div class="container-fluid wrapper">
             <div class="row">
-                <div class="col-md-12">
+                <div class="col-md-4">
                     <h1>Index</h1>
                 </div>
 
-                <div class="col-md-12">
+                <div class="col-md-8">
+				<br>
                     <nav class="navbar navbar-default" role="navigation">
                         <div class="container-fluid">
                             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                                 <ul class="nav navbar-nav">
-                                    <li class="active" data-toggle="tooltip" data-placement="bottom" title="Zeigt alle Noten an"><a href="#" >Alle anzeigen</a></li>
-                                    <li><a href="#" data-toggle="tooltip" data-placement="bottom" title="Zeigt nur eingetragene Noten an">Nur eingetragene Prüfungen</a></li>
-                                    <li><a href="#" data-toggle="tooltip" data-placement="bottom" title="Zeigt noch zu erledigende an">Nur ohne Prüfungen</a></li>
-                                </ul>
-                                <form class="navbar-form navbar-left" role="search">
-                                    <div class="form-group">
-                                        <div class="input-group">
-                                            <div class="input-group-addon"><span class="glyphicon glyphicon-search" aria-hidden="true" ></span></div>
-                                            <input type="text" id="suche" class="form-control" data-toggle="tooltip" data-placement="bottom" title="Nach MatrikelNr suchen" placeholder="Matrikel Nummer">
-                                        </div>
-                                    </div>
-                                </form>
-                                <ul class="nav navbar-nav navbar-right">
-                                    <li><a href="#" data-toggle="tooltip" data-placement="bottom" title="Exportiert das Fach mit allen Noten">Fach exportieren</a></li>
+                                    <li><a href="#" data-toggle="tooltip" data-placement="bottom" title="Legt einen neuen Prüfling an">Prüflinge anlegen</a></li>
+                                    <li><a href="#" data-toggle="tooltip" data-placement="bottom" title="Importieren von Prüflingen">Import Prüflinge</a></li>
+									<li class="dropdown">
+									  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Export<span class="caret"></span></a>
+									  <ul class="dropdown-menu" role="menu">
+										<li><a href="#">Prüflinge</a></li>
+										<li><a href="#">Module und Fächer</a></li>
+									  </ul>
+									</li>
+									<li class="dropdown">
+									  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Intervall einstellen<span class="caret"></span></a>
+									  <ul class="dropdown-menu" role="menu">
+										<li><a href="#">Studienhalbjahr</a></li>
+										<li><a href="#">Schuljahr</a></li>
+									  </ul>
+									</li>
                                 </ul>
                             </div>
                         </div>
                     </nav>
                 </div>
             </div>
+			<div class="row">
+				<div class="col-md-4">
+					<nav class="navbar navbar-default" role="navigation">
+                        <div class="container-fluid">
+                            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                                <ul class="nav navbar-nav">
+                                    <li><a href="#" data-toggle="tooltip" data-placement="bottom" title="Zu SS14"><span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span></a></li>
+                                    <li><p><h4>WS14/15</h4></p></li>
+									<li><a href="#" data-toggle="tooltip" data-placement="bottom" title="Zu SS15"><span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span></a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </nav>
+				</div>
+			</div>
 
             <div class="row">
                 
