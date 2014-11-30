@@ -29,8 +29,6 @@ $(document).ready(function () {
         responsive: true
     });
 
-
-
     // delete button reaktion
     $('.delete').click(function () {
         if (confirm("Wirklich loeschen?") === true) {
@@ -56,6 +54,12 @@ $(document).ready(function () {
                 }
             }
         });
+    });
+
+    // Text wird durch Textfeld ersetzt
+    $("td").click(function () {
+        $(this).find("input").removeClass("hidden");
+        $(this).find(".value").addClass("hidden");
     });
 
 });
