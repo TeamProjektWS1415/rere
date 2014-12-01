@@ -66,6 +66,17 @@ body {
   background-color: #5bc0de;
 }
 
+/*Klassen fuer Index*/
+
 .navbarposition h4{
 	padding-top: 6px;
+}
+
+.modulloeschenbutton{
+	position: relative;
+	float: right;
+}
+
+.panel-title{
+	padding-bottom: 15px;
 }
