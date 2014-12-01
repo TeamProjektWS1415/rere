@@ -80,3 +80,7 @@ body {
 .panel-title{
 	padding-bottom: 15px;
 }
+
+.panel-body ul{
+	padding-left: 15px;
+}

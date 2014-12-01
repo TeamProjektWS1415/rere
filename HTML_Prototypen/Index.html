@@ -30,7 +30,7 @@
 						<div class="collapse navbar-collapse"
 							id="bs-example-navbar-collapse-1">
 							<ul class="nav navbar-nav">
-								<li><a href="#" data-toggle="tooltip"
+								<li><a href="PrueflingAnlegen.html" data-toggle="tooltip"
 									data-placement="bottom" title="Legt einen neuen Prüfling an">Prüflinge
 										anlegen</a></li>
 								<li><a href="#" data-toggle="tooltip"
@@ -79,61 +79,96 @@
 		</div>
 		<div class="row">
 			<div class="col-md-12">
-					<div class="panel-group" id="accordion"
-				role="tablist" aria-multiselectable="true">
-				<div class="panel panel-default">
-					<div class="panel-heading" role="tab" id="überschriftEins">
-						<h3 class="panel-title">
-							<a data-toggle="collapse" data-parent="#accordion"
-								href="#collapseEins" aria-expanded="true"
-								aria-controls="collapseEins">Softwaretechnik</a>
-								<button type="submit" class="btn btn-default modulloeschenbutton" >Löschen</button>
-						</h3>
-					</div>
-					<div id="collapseEins" class="panel-collapse collapse in"
-						role="tabpanel" aria-labelledby="überschriftEins">
-						<div class="panel-body">
+				<div class="panel-group" id="accordion" role="tablist"
+					aria-multiselectable="true">
+					<div class="panel panel-default">
+						<div class="panel-heading" role="tab" id="überschriftEins">
+							<h3 class="panel-title">
+								<a data-toggle="collapse" data-parent="#accordion"
+									href="#collapseEins" aria-expanded="true"
+									aria-controls="collapseEins">Softwaretechnik</a>
+								<a class="btn btn-default modulloeschenbutton"
+									data-toggle="tooltip" data-placement="bottom"
+									title="Dieses Modul und die zugeordneten Fächer löschen">Löschen</a>
+							</h3>
+						</div>
+						<div id="collapseEins" class="panel-collapse collapse in"
+							role="tabpanel" aria-labelledby="überschriftEins">
+							<div class="panel-body">
 								<ul>
-									<li><span class="col-md-3">Softwaretechnik 1</span>
-										<span class="col-md-8"><a href="Notenverwaltung.html">Noten eintragen/anzeigen</a> | <a href="#">Prüflinge zuweisen</a> | 
-										<a class="delete" href="#">
-											<span class="glyphicon glyphicon-remove" aria-hidden="true" data-toggle="tooltip" data-placement="bottom" title="Eintrag löschen"></span>
-										</a></span>
-									</li>
-									<li><span class="col-md-3">Softwarequalitätssicherung</span>
-										<span class="col-md-8"><a href="Notenverwaltung.html">Noten eintragen/anzeigen</a> | <a href="#">Prüflinge zuweisen</a> | 
-										<a class="delete" href="#">
-											<span class="glyphicon glyphicon-remove" aria-hidden="true" data-toggle="tooltip" data-placement="bottom" title="Eintrag löschen"></span>
-										</a></span>
-									</li>
+									<li><span class="col-md-3">Softwaretechnik 1</span> <span
+										class="col-md-8"><a href="Notenverwaltung.html">Noten
+												eintragen/anzeigen</a> | <a href="#">Prüflinge zuweisen</a> | <a
+											class="delete" href="#"><span
+												class="glyphicon glyphicon-remove" aria-hidden="true"
+												data-toggle="tooltip" data-placement="bottom"
+												title="Dieses Fach samt eingetragener Noten löschen"></span> </a></span></li>
+									<li><span class="col-md-3">Softwaretechnik 2</span> <span
+										class="col-md-8"><a href="Notenverwaltung.html">Noten
+												eintragen/anzeigen</a> | <a href="#">Prüflinge zuweisen</a> | <a
+											class="delete" href="#"> <span
+												class="glyphicon glyphicon-remove" aria-hidden="true"
+												data-toggle="tooltip" data-placement="bottom"
+												title="Dieses Fach samt eingetragener Noten löschen"></span>
+										</a></span></li>
 								</ul>
+								<a class="btn btn-default"
+									data-toggle="tooltip" data-placement="bottom"
+									title="Ein Fach zu diesem Modul hinzufügen" href="ModulFachHinzufuegen.html">Fach
+									hinzufügen</a>
 							</div>
+						</div>
 					</div>
-				</div>
 
 
-				<div class="panel panel-default">
-					<div class="panel-heading" role="tab" id="überschriftZwei">
-						<h4 class="panel-title">
-							<a class="collapsed" data-toggle="collapse"
-								data-parent="#accordion" href="#collapseZwei"
-								aria-expanded="false"aria-controls"collapseZwei"> Modul 2 </a>
-						</h4>
-					</div>
-					<div id="collapseZwei" class="panel-collapse collapse"
-						role="tabpanel" aria-labelledby="überschriftZwei">
-						<div class="panel-body">
-							<div class="col-md-4">
-								<h3>Fach 1</h3>
+					<div class="panel panel-default">
+						<div class="panel-heading" role="tab" id="überschriftZwei">
+							<h3 class="panel-title">
+								<a class="collapsed" data-toggle="collapse"
+									data-parent="#accordion" href="#collapseZwei"
+									aria-expanded="false"aria-controls"collapseZwei">Mathematik
+									für Wirtschaftsinformatiker</a>
+								<a class="btn btn-default modulloeschenbutton"
+									data-toggle="tooltip" data-placement="bottom"
+									title="Dieses Modul und die zugeordneten Fächer löschen">Löschen</a>
+							</h3>
+						</div>
+						<div id="collapseZwei" class="panel-collapse collapse"
+							role="tabpanel" aria-labelledby="überschriftZwei">
+							<div class="panel-body">
+								<ul>
+									<li><span class="col-md-3">Mathematik für
+											Wirtschaftsinformatiker 1</span> <span class="col-md-8"><a
+											href="Notenverwaltung.html">Noten eintragen/anzeigen</a> | <a
+											href="#">Prüflinge zuweisen</a> | <a class="delete" href="#"><span
+												class="glyphicon glyphicon-remove" aria-hidden="true"
+												data-toggle="tooltip" data-placement="bottom"
+												title="Dieses Fach samt eingetragener Noten löschen"></span> </a></span></li>
+									<li><span class="col-md-3">Mathematik für
+											Wirtschaftsinformatiker 2</span> <span class="col-md-8"><a
+											href="Notenverwaltung.html">Noten eintragen/anzeigen</a> | <a
+											href="#">Prüflinge zuweisen</a> | <a class="delete" href="#">
+												<span class="glyphicon glyphicon-remove" aria-hidden="true"
+												data-toggle="tooltip" data-placement="bottom"
+												title="Dieses Fach samt eingetragener Noten löschen"></span>
+										</a></span></li>
+								</ul>
+								<a class="btn btn-default"
+									data-toggle="tooltip" data-placement="bottom"
+									title="Ein Fach zu diesem Modul hinzufügen" href="ModulFachHinzufuegen.html">Fach
+									hinzufügen</a>
 							</div>
 						</div>
 					</div>
 				</div>
 			</div>
 		</div>
+		<div>
+			<a class="btn btn-default" data-toggle="tooltip"
+				data-placement="bottom" title="Ein neues Modul hinzufügen" href="ModulFachHinzufuegen.html">Modul
+				hinzufügen</a>
+		</div>
 	</div>
-
-	<div class="row"></div>
 	</div>
 </body>
 </html>
