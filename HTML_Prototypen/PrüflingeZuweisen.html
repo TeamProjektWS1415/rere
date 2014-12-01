@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="de">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Prüfling zuweisen</title>
+
+        <script src="js/jquery-2.1.1.min.js" type="text/javascript"></script>
+        <script src="js/bootstrap.min.js" type="text/javascript"></script>
+        <script src="js/jquery.tablesorter.min.js" type="text/javascript"></script>
+        <!-- Chart JS -->
+        <script src="js/Chart.min.js" type="text/javascript"></script>
+        <link href="css/gradingmanager.css" rel="stylesheet" type="text/css"/>
+        <!-- Bootstrap -->
+        <link href="css/bootstrap.min.css" rel="stylesheet">
+
+    </head>
+    <body>
+        <div class="container-fluid wrapper">
+            <div class="row">
+                <div class="col-md-12">
+                    <h1>Prüflinge zuweisen</h1>
+                </div>
+                <div class="col-md-12">
+                    <h4><strong>Fach</strong> aus <strong>Modul</strong> in <strong>Semester</strong></h4>
+                </div>
+
+                <div class="col-md-12">
+                    <nav class="navbar navbar-default" role="navigation">
+                        <div class="container-fluid">
+                            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                                <form class="navbar-form navbar-left" role="search">
+                                    <div class="form-group">
+                                        <div class="input-group">
+                                            <div class="input-group-addon"><span class="glyphicon glyphicon-search" aria-hidden="true" ></span></div>
+                                            <input type="text" id="suche" class="form-control" data-toggle="tooltip" data-placement="bottom" title="Nach MatrikelNr suchen" placeholder="Matrikel Nummer">
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </nav>
+                </div>
+             <div class="col-md-12">
+                    <h4>Bereits zugewiesen:</h4>
+                </div>
+
+            <div class="row">
+                <div class="col-md-7">
+                    <div class="table-responsive table-hover">
+                        <table id="grades" class="table">
+                            <thead>
+                                <tr>
+                                    <th>MatrikelNr</th>
+                                    <th>Vorname</th>
+                                    <th>Nachname</th>
+                                    <th>Eintrag löschen</th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><span class="value">123456</span><input type="text" class="form-control hidden" value="123456"/></td>
+                                    <td><span class="value">Max</span><input type="text" class="form-control hidden" value="Max"/></td>
+                                    <td><span class="value">Mustermann</span><input type="text" class="form-control hidden" value="Mustermann"/></td>
+                                    <td><a class="delete" href="#"><span class="glyphicon glyphicon-remove" aria-hidden="true" data-toggle="tooltip" data-placement="bottom" title="Eintrag löschen"></span></a></td>
+                                </tr>
+                                <tr>
+                                    <td><span class="value">7894646</span><input type="text" class="form-control hidden" value="7894646"/></td>
+                                    <td><span class="value">Maximiliane</span><input type="text" class="form-control hidden" value="Maximiliane"/></td>
+                                    <td><span class="value">Mustermann</span><input type="text" class="form-control hidden" value="Mustermann"/></td>
+                                    <td><a class="delete" href="#"><span class="glyphicon glyphicon-remove" aria-hidden="true" data-toggle="tooltip" data-placement="bottom" title="Eintrag löschen"></span></a></td>
+                                </tr>
+                                <tr>
+                                    <td><span class="value">22222222</span><input type="text" class="form-control hidden" value="22222222"/></td>
+                                    <td><span class="value">Anton</span><input type="text" class="form-control hidden" value="Anton"/></td>
+                                    <td><span class="value">aus tirol</span><input type="text" class="form-control hidden" value="aus tirol"/></td>
+                                    <td><a class="delete" href="#"><span class="glyphicon glyphicon-remove" aria-hidden="true" data-toggle="tooltip" data-placement="bottom" title="Eintrag löschen"></span></a></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
