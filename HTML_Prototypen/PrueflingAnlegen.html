@@ -6,7 +6,7 @@ and open the template in the editor.
 -->
 <html>
     <head>
-       <meta charset="utf-8">
+        <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>Prüfling anlegen</title>
 
@@ -19,6 +19,65 @@ and open the template in the editor.
         <link href="css/bootstrap.min.css" rel="stylesheet">
     </head>
     <body>
-        <div>TODO write content</div>
+        <div class="container-fluid wrapper">
+            <div class="row">
+                <div class="col-md-12">
+                    <h1>Prüfling anlegen</h1>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-7">
+                    <form class="form-horizontal" role="form">
+
+                        <!--Eingabefeld für Name-->       
+                        <div class="form-group">
+                            <p></p>
+                            <label for="eingabefeldName" class="col-sm-2 control-label">Name *</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" id="eingabefeldName" data-toggle="tooltip" data-placement="bottom" title="Name hier eingeben" required placeholder="Name">
+                            </div>
+                        </div>
+
+                        <!--Eingabefeld für Vorname-->       
+                        <div class="form-group">
+                            <label for="eingabefeldVorname" class="col-sm-2 control-label">Vorname *</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" id="eingabefeldVorname" data-toggle="tooltip" data-placement="bottom" title="Vorname hier eingeben" required placeholder="Vorname"  >
+                            </div>
+                        </div>
+
+                        <!--Eingabefeld für Matrikel-Nr-->       
+                        <div class="form-group">
+                            <label for="eingabefeldMatrikel-Nr" class="col-sm-2 control-label">Matrikel-Nr. *</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" id="eingabefeldMatrikel-Nr" data-toggle="tooltip" data-placement="bottom" placeholder="Matrikel-nr" required title="Matrikel-Nr hier eingeben">
+                            </div>
+                        </div>
+
+                        <!--Eingabefeld für E-Mail-->       
+                        <div class="form-group">
+                            <label for="eingabefeldEmail" class="col-sm-2 control-label">E-Mail *</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" id="eingabefeldE-Mail" data-toggle="tooltip" data-placement="bottom" placeholder="E-Mail" required title="E-Mail hier eingeben">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="row">
+                                <div class="col-sm-2"></div>
+                                <div class="col-sm-5">
+                                    <button type="submit" class="btn btn-primary btn-lg btn-block speichernundzurueck">Speichern & Zurück</button>
+                                </div>
+                                <div class="col-sm-5">
+                                    <button type="submit" class="btn btn-primary btn-lg btn-block speichernundnaechster">Speichern & Nächster</button>
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </form>
+                </div>
+            </div>
+        </div>
     </body>
 </html>
