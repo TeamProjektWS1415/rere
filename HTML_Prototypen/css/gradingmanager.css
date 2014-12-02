@@ -77,10 +77,19 @@ body {
     float: right;
 }
 
+.modulloeschenbutton:after{
+    clear: both;
+}
+
 .panel-title{
     padding-bottom: 15px;
 }
 
 .panel-body ul{
     padding-left: 15px;
+    padding-bottom: 50px;
+}
+
+.panel-body ul li{
+    list-style-type: none;
 }

@@ -16,5 +16,4 @@ $(document).ready(function () {
             // Hier kommt dann der aufruf zum löschen
         }
     });
-
 });
