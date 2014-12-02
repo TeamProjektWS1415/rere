@@ -61,26 +61,26 @@ body {
 /*==================================================================
 * Kapitel 2
   ==================================================================*/
-  
+
 .highlight{
-  background-color: #5bc0de;
+    background-color: #5bc0de;
 }
 
 /*Klassen fuer Index*/
 
-.navbarposition h4{
-	padding-top: 6px;
+.navbarposition{
+    padding-top: 6px;
 }
 
 .modulloeschenbutton{
-	position: relative;
-	float: right;
+    position: relative;
+    float: right;
 }
 
 .panel-title{
-	padding-bottom: 15px;
+    padding-bottom: 15px;
 }
 
 .panel-body ul{
-	padding-left: 15px;
+    padding-left: 15px;
 }
