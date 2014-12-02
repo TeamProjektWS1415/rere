@@ -1,12 +1,9 @@
 $(document).ready(function () {
 
-    // Make table sortable
+// Make table sortable
     $("#grades").tablesorter();
-
     // tooltips
     $('[data-toggle="tooltip"]').tooltip();
-
-
     var data = {
         labels: ["1", "1,3", "1,7", "2", "2,3", "2,7", "3", "3,3", "3,7", "4", "5"],
         datasets: [
@@ -22,14 +19,23 @@ $(document).ready(function () {
             }
         ]
     };
-
     // Chart
     var ctx = document.getElementById("gradeChart").getContext("2d");
     window.myLine = new Chart(ctx).Line(data, {
         responsive: true
     });
-
-	
-
+    // Table Marking
+    // colors the Students mark
+    var value = "1,3";
+    $("table tr").each(function (index) {
+        if (index !== 0) {
+            $row = $(this);
+            var id = $row.find("td:first").text();
+            if (id.indexOf(value) === 0) {
+                // Set the color
+                $row.addClass("highlightGreen");
+            }
+        }
+    });
 });
 

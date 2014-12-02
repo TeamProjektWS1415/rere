@@ -65,7 +65,9 @@ body {
 .highlight{
     background-color: #5bc0de;
 }
-
+.greenfont{
+    color: #a3d950;
+}
 /*Klassen fuer Index*/
 
 .navbarposition{
@@ -92,4 +94,8 @@ body {
 
 .panel-body ul li{
     list-style-type: none;
+}
+
+.highlightGreen{
+    background-color: #a3d950;
 }

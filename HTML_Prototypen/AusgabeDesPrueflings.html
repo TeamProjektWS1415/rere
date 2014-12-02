@@ -24,25 +24,32 @@
                 <div class="col-md-12">
                     <h1>Prüfungsleistungen anzeigen</h1>
                 </div>
-				<div class="col-md-8">
-	                <div class="col-md-4">
-	                    <td><select class="form-control" data-toggle="tooltip" data-placement="bottom" title="Auswahl ihrer Prüfung"> 
-							<option>WS10/11Sote/Sote1</option>
-							<option>SS11/Sote/Sote2</option>
-							<option>SS12/SWAR/SWAR</option>
-						</select>
-	                </div>
-					<div class="row">		
-					</div>
-					<div class="col-md-8">		
-					<canvas id="gradeChart" width="400" height="400"></canvas>
-					<h1>Ihre Note: 2,3</h1>
-					
-					<textarea rows="4" cols="100" class="form-control" id="comment">Tolle Klausur und so</textarea> 
-					</div>
-				</div>
-				<div class="col-md-3">
-					<div class="table-responsive table-hover">
+            </div>
+            <div class="row">
+                <div class="col-md-3">
+                    <select class="form-control" data-toggle="tooltip" data-placement="bottom" title="Auswahl ihrer Prüfung">
+                        <option>WS10/11Sote/Sote1</option>
+                        <option>SS11/Sote/Sote2</option>
+                        <option>SS12/SWAR/SWAR</option>
+                    </select>
+                    <br>
+                </div>
+                <div class="col-md-9"></div>
+            </div>
+            <div class="row">
+                <div class="col-md-8">
+                    <div class="col-md-12">
+                        <canvas id="gradeChart" width="400" height="150"></canvas>
+
+                    </div>
+                    <div class="col-md-12">
+                        <h1><span class="greenfont">Ihre Note: 1,3</span></h1>
+                    </div>
+                    <textarea rows="4" cols="100" class="form-control" id="comment">Tolle Klausur und so</textarea>
+                </div>
+
+                <div class="col-md-3">
+                    <div class="table-responsive table-hover">
                         <table id="grades" class="table">
                             <thead>
                                 <tr>
@@ -51,70 +58,69 @@
                                 </tr>
                             </thead>
                             <tbody>
-								<tr>
-                                    <td><span class="value">1,0</span><input type="text" class="form-control hidden" value="1,0"/></td>
-                                    <td><span class="value" >2</span><input type="text" class="form-control hidden" class="anzahlNoten" value="2"/></td>
+                                <tr>
+                                    <td><span class="value">1,0</span></td>
+                                    <td><span class="value">2</span></td>
                                 </tr>
                                 <tr>
-                                    <td><span class="value">1,3</span><input type="text" class="form-control hidden" value="1,3"/></td>
-                                    <td><span class="value">3</span><input type="text" class="form-control hidden" value="3"/></td>
+                                    <td><span class="value">1,3</span></td>
+                                    <td><span class="value">3</span></td>
                                 </tr>
-								<tr>
-                                    <td><span class="value">1,7</span><input type="text" class="form-control hidden" value="1,7"/></td>
-                                    <td><span class="value">1</span><input type="text" class="form-control hidden" value="1"/></td>
+                                <tr>
+                                    <td><span class="value">1,7</span></td>
+                                    <td><span class="value">1</span></td>
                                 </tr>
-								<tr>
-                                    <td><span class="value">2,0</span><input type="text" class="form-control hidden" value="2,0"/></td>
-                                    <td><span class="value">4</span><input type="text" class="form-control hidden" value="4"/></td>
+                                <tr>
+                                    <td><span class="value">2,0</span></td>
+                                    <td><span class="value">4</span></td>
                                 </tr>
-								<tr>
-                                    <td><span class="value">2,3</span><input type="text" class="form-control hidden" value="2,3"/></td>
-                                    <td><span class="value">3</span><input type="text" class="form-control hidden" value="3"/></td>
+                                <tr>
+                                    <td><span class="value">2,3</span></td>
+                                    <td><span class="value">3</span></td>
                                 </tr>
-								<tr>
-                                    <td><span class="value">2,7</span><input type="text" class="form-control hidden" value="2,7"/></td>
-                                    <td><span class="value">5</span><input type="text" class="form-control hidden" value="5"/></td>
+                                <tr>
+                                    <td><span class="value">2,7</span></td>
+                                    <td><span class="value">5</span></td>
                                 </tr>
-								<tr>
-                                    <td><span class="value">3,0</span><input type="text" class="form-control hidden" value="3,0"/></td>
-                                    <td><span class="value">2</span><input type="text" class="form-control hidden" value="2"/></td>
+                                <tr>
+                                    <td><span class="value">3,0</span></td>
+                                    <td><span class="value">2</span></td>
                                 </tr>
-								<tr>
-                                    <td><span class="value">3,3</span><input type="text" class="form-control hidden" value="3,3"/></td>
-                                    <td><span class="value">2</span><input type="text" class="form-control hidden" value="2"/></td>
+                                <tr>
+                                    <td><span class="value">3,3</span></td>
+                                    <td><span class="value">2</span></td>
                                 </tr>
-								<tr>
-                                    <td><span class="value">3,7</span><input type="text" class="form-control hidden" value="3,7"/></td>
-                                    <td><span class="value">3</span><input type="text" class="form-control hidden" value="3"/></td>
+                                <tr>
+                                    <td><span class="value">3,7</span></td>
+                                    <td><span class="value">3</span></td>
                                 </tr>
-								<tr>
-                                    <td><span class="value">4,0</span><input type="text" class="form-control hidden" value="4,0"/></td>
-                                    <td><span class="value">0</span><input type="text" class="form-control hidden" value="0"/></td>
+                                <tr>
+                                    <td><span class="value">4,0</span></td>
+                                    <td><span class="value">0</span></td>
                                 </tr>
-								<tr>
-                                    <td><span class="value">5,0</span><input type="text" class="form-control hidden" value="5,0"/></td>
-                                    <td><span class="value">2</span><input type="text" class="form-control hidden" value="2"/></td>
+                                <tr>
+                                    <td><span class="value">5,0</span></td>
+                                    <td><span class="value">2</span></td>
                                 </tr>
-								
                             </tbody>
                         </table>
                     </div>
-					</br>
-					<div class="table-responsive table-hover">
-						<table class="table">
-							<tbody>
-								<tr>
-									<td>Anzahl der Prüflinge:</td><td id="AnzahlDerPrueflinge">27</td>
-								</tr>	
-								<tr>
-									<td>Durchschnitt</td><td>2,6</td>
-								</tr>
-							</tbody>
-						</table>
-					</div>
-				</div>
-				<div class="col-md-1">
-				</div>	
+                    <br>
+                    <div class="table-responsive table-hover">
+                        <table class="table">
+                            <tbody>
+                                <tr>
+                                    <td>Anzahl der Prüflinge:</td><td id="AnzahlDerPrueflinge">27</td>
+                                </tr>
+                                <tr>
+                                    <td>Durchschnitt</td><td>2,6</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="col-md-1">
+                </div>
             </div>
         </div>
     </body>
