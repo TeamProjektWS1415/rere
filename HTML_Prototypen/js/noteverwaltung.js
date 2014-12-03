@@ -44,7 +44,7 @@ $(document).ready(function () {
             if (index !== 0) {
                 $row = $(this);
                 var id = $row.find("td:first").text();
-                if (id.indexOf(value) !== 0) {
+                if (id.indexOf(value) !== 0 || value === "") {
                     // Remove color
                     $row.removeClass("highlight");
                 }
