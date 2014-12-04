@@ -87,7 +87,9 @@
                                             <option>5.0</option>
                                         </select></td>
                                     <td><textarea class="form-control" rows="1" placeholder="Kommentar" data-toggle="tooltip" data-placement="bottom" title="Kommentar zur Note">Super Note</textarea></td>
-                                    <td><a class="delete" href="#"><span class="glyphicon glyphicon-remove" aria-hidden="true" data-toggle="tooltip" data-placement="bottom" title="Löscht diesen Datensatz"></span></a></td>
+                                    <td>
+                                        <a href="#" class="delete"><span class="glyphicon glyphicon-remove" aria-hidden="true" data-toggle="tooltip" data-placement="bottom" title="Löscht diesen Datensatz"></span></a>
+                                        <a class="delete" href="#"></a></td>
                                 </tr>
                                 <tr>
                                     <td><span class="value">7894646</span><input type="text" class="form-control hidden" value="7894646"/></td>
@@ -180,5 +182,25 @@
                 </div>
             </div>
         </div>
+
+        <!--- Delete Confirm -->
+        <div class="modal fade" id="deletepopup" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                        <h4 class="modal-title" id="myModalLabel">Löschen</h4>
+                    </div>
+                    <div class="modal-body">
+                        <span class="deletebody"></span>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary">Zustimmen</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
     </body>
 </html>

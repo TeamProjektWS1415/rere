@@ -31,9 +31,9 @@ $(document).ready(function () {
 
     // delete button reaktion
     $('.delete').click(function () {
-        if (confirm("Wirklich loeschen?") === true) {
-            // Hier kommt dann der aufruf zum löschen
-        }
+        var matrikelnr = $(this).parent("td").parent().first("td").find("span").first().text();
+        $(".deletebody").text("Wollen Sie den Pruefling mit Matrikelnummer " + matrikelnr + " wirklich aus diesem Fach loeschen?");
+        $('#deletepopup').modal();
     });
 
     // search funktion
