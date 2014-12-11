@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="de">
+
+
+
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Modul / Fach hinzufügen</title>
+
+        <script src="js/jquery-2.1.1.min.js" type="text/javascript"></script>
+        <script src="js/bootstrap.min.js" type="text/javascript"></script>
+        <script src="js/ModulFachHinzufuegen.js" type="text/javascript"></script>
+
+        <link href="css/gradingmanager.css" rel="stylesheet" type="text/css"/>
+        <!-- Bootstrap -->
+        <link href="css/bootstrap.min.css" rel="stylesheet">
+    </head>
+
+
+
+    <body>
+        <div class="container-fluid wrapper">
+            <div class="row">
+			<div name="breadcrumb" class="col-md-12">
+					<ol class="breadcrumb">
+					    <li><a href="Index.html">Index</a></li>
+					    <li class="active">Modul/Fach hinzufügen</li>
+						</ol>
+				</div>
+                <div class="col-md-12">
+                    <h1>Modul / Fach hinzufügen</h1>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-7">
+                    <form class="form-horizontal" role="form">
+
+                        <!--Eingabefeld für Modul-->
+                        <div class="form-group">
+                            <p></p>
+                            <label for="eingabefeldModul" class="col-sm-2 control-label">Modul *</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" id="eingabefeldModul" data-toggle="tooltip" data-placement="bottom" title="Modulname hier eingeben" required placeholder="Modul">
+                            </div>
+                        </div>
+
+                        <!--Eingabefeld für ModulNr-->
+                        <div class="form-group">
+                            <label for="eingabefeldModulnummer" class="col-sm-2 control-label">Modulnummer *</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" id="eingabefeldModulnummer" data-toggle="tooltip" data-placement="bottom" placeholder="Modulnummer" required title="Modulnummer hier eingeben">
+                            </div>
+                        </div>
+
+                        <!--Eingabefeld für Fach-->
+                        <div class="form-group">
+                            <label for="eingabefeldFach" class="col-sm-2 control-label">Fach *</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" id="eingabefeldFach" data-toggle="tooltip" data-placement="bottom" placeholder="Fach" required title="Fachname hier eingeben">
+                            </div>
+                        </div>
+
+                        <!--Eingabefeld für FachNr-->
+                        <div class="form-group">
+                            <label for="eingabefeldFachnummer" class="col-sm-2 control-label">Fachnummer *</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" id="eingabefeldFachnummer" data-toggle="tooltip" data-placement="bottom" placeholder="Fachnummer" required title="Fachnummer hier eingeben">
+                            </div>
+                        </div>
+
+                        <!--Eingabefeld für Professor-->
+                        <div class="form-group">
+                            <label for="eingabefeldProfessor" class="col-sm-2 control-label">Professor *</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" id="eingabefeldProfessor" data-toggle="tooltip" data-placement="bottom" placeholder="Professor" required title="Für das Fach zuständiger Professor">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="col-sm-offset-2 col-sm-12">
+                                <!--Radiobutton für Benotet 15 Pkt. System-->
+                                <div class="radio">
+                                    <label>
+                                        <input type="radio" name="optionsfeldRadio" checked id="benotet15" data-toggle="tooltip" value="option1" title="Modul nach 15 Punkte System benotet - System default !">
+                                        Benotet (15 Pkt. System)
+                                    </label>
+                                </div>
+                                <!--Radiobutton für unbenotet-->
+                                <div class="radio">
+                                    <label>
+                                        <input type="radio" name="optionsfeldRadio" id="unbenotet" data-toggle="tooltip" value="option2" title="Modul unbenotet">
+                                        Unbenotet
+                                    </label>
+                                </div>
+                                <!--Radiobutton für Benotet Schulnoten-->
+                                <div class="radio">
+                                    <label>
+                                        <input type="radio" name="optionsfeldRadio" id="benotetschulnoten" data-toggle="tooltip" value="option3" title="Modul nach Schulnotensystem benotet">
+                                        Benotet (Schulnoten)
+                                    </label>
+                                    <p> </p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-sm-offset-2 col-sm-12">
+                            <p><strong>Die mit *) gekennzeichnete Felder sind Pflichtfelder</strong></p>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="col-sm-8">
+                            </div>
+                            <div class="col-sm-4">
+                                <button type="submit" class="btn btn-primary btn-lg btn-block speichern">Daten speichern</button>
+                            </div>
+                        </div>
+
+                    </form>
+
+                    <div class="col-md-5">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
