@@ -31,8 +31,10 @@ Result Repository
 		2014
 
 	:Author:
+		Felix Hohlwegler, Sarah Kieninger
 
 	:Email:
+		info@felix-hohlwegler.de, sarah.kieninger@gmail.com
 
 	:License:
 		This document is published under the Open Content License

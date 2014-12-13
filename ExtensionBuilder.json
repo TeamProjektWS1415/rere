@@ -1,16 +1,12 @@
 {
-    "modules": [
-
-    ],
+    "modules": [],
     "properties": {
-        "backendModules": [
-
-        ],
+        "backendModules": [],
         "description": "",
         "emConf": {
             "category": "plugin",
             "custom_category": "",
-            "dependsOn": "typo3 => 6.2\n",
+            "dependsOn": "typo3 => 6.2\nfluid => 6.0\nextbase => 6.0\n",
             "disableLocalization": false,
             "disableVersioning": false,
             "sourceLanguage": "en",
@@ -20,20 +16,27 @@
         },
         "extensionKey": "rere",
         "name": "Result Repository",
-        "originalExtensionKey": "",
+        "originalExtensionKey": "rere",
         "persons": [
-
+            {
+                "company": "TeamProjekt",
+                "email": "info@felix-hohlwegler.de",
+                "name": "Felix Hohlwegler",
+                "role": "Developer"
+            },
+            {
+                "company": "",
+                "email": "sarah.kieninger@gmail.com",
+                "name": "Sarah Kieninger",
+                "role": "Developer"
+            }
         ],
-        "plugins": [
-
-        ],
+        "plugins": [],
         "vendorName": "ReRe"
     },
-    "wires": [
-
-    ],
+    "wires": [],
     "log": {
-        "last_modified": "2014-12-11 05:01",
+        "last_modified": "2014-12-14 12:31",
         "extension_builder_version": "6.2.0",
         "be_user": " (1)"
     }
