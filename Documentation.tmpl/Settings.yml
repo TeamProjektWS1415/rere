@@ -20,7 +20,7 @@ conf.py:
   - - Index
     - rere.tex
     - Result Repository
-    - Felix Hohlwegler, Sarah Kieninger
+    - Felix Hohlwegler, Sarah Kieninger, Tim Wacker, Nejat Balta, Tobias Brockner, Nicolas Tedjadharma
     - manual
   latex_elements:
     papersize: a4paper

@@ -19,15 +19,39 @@
         "originalExtensionKey": "rere",
         "persons": [
             {
-                "company": "TeamProjekt",
+                "company": "TeamProjektWS14\/15",
                 "email": "info@felix-hohlwegler.de",
                 "name": "Felix Hohlwegler",
                 "role": "Developer"
             },
             {
-                "company": "",
+                "company": "TeamProjektWS14\/15",
                 "email": "sarah.kieninger@gmail.com",
                 "name": "Sarah Kieninger",
+                "role": "Developer"
+            },
+            {
+                "company": "TeamProjektWS14\/15",
+                "email": "",
+                "name": "Tim Wacker",
+                "role": "Developer"
+            },
+            {
+                "company": "TeamProjektWS14\/15",
+                "email": "",
+                "name": "Nejat Balta",
+                "role": "Developer"
+            },
+            {
+                "company": "TeamProjektWS14\/15",
+                "email": "",
+                "name": "Tobias Brockner",
+                "role": "Developer"
+            },
+            {
+                "company": "TeamProjektWS14\/15",
+                "email": "",
+                "name": "Nicolas Tedjadharma",
                 "role": "Developer"
             }
         ],
@@ -36,7 +60,7 @@
     },
     "wires": [],
     "log": {
-        "last_modified": "2014-12-14 12:31",
+        "last_modified": "2014-12-14 12:36",
         "extension_builder_version": "6.2.0",
         "be_user": " (1)"
     }
