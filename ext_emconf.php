@@ -12,7 +12,7 @@
 
 $EM_CONF[$_EXTKEY] = array(
 	'title' => 'Result Repository',
-	'description' => '',
+	'description' => 'Notenverwaltungs Extension für Typo3',
 	'category' => 'plugin',
 	'author' => 'Felix Hohlwegler, Sarah Kieninger, Tim Wacker, Nejat Balta, Tobias Brockner, Nicolas Tedjadharma',
 	'author_email' => 'info@felix-hohlwegler.de, sarah.kieninger@gmail.com',

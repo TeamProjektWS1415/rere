@@ -23,6 +23,7 @@ Result Repository
 		en
 
 	:Description:
+		Notenverwaltungs Extension für Typo3
 
 	:Keywords:
 		comma,separated,list,of,keywords

@@ -1,8 +1,59 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <xliff version="1.0">
-	<file source-language="en" datatype="plaintext" original="messages" date="2014-12-14T00:36:10Z" product-name="rere">
+	<file source-language="en" datatype="plaintext" original="messages" date="2014-12-14T00:47:02Z" product-name="rere">
 		<header/>
 		<body>
+			<trans-unit id="tx_rere_domain_model_note">
+				<source>Note</source>
+			</trans-unit>
+			<trans-unit id="tx_rere_domain_model_note.notenr">
+				<source>Notenr</source>
+			</trans-unit>
+			<trans-unit id="tx_rere_domain_model_note.wert">
+				<source>Wert</source>
+			</trans-unit>
+			<trans-unit id="tx_rere_domain_model_note.kommentar">
+				<source>Kommentar</source>
+			</trans-unit>
+			<trans-unit id="tx_rere_domain_model_fach">
+				<source>Fach</source>
+			</trans-unit>
+			<trans-unit id="tx_rere_domain_model_fach.fachnr">
+				<source>Fachnr</source>
+			</trans-unit>
+			<trans-unit id="tx_rere_domain_model_fach.fachname">
+				<source>Fachname</source>
+			</trans-unit>
+			<trans-unit id="tx_rere_domain_model_fach.pruefer">
+				<source>Pruefer</source>
+			</trans-unit>
+			<trans-unit id="tx_rere_domain_model_fach.notenschema">
+				<source>Notenschema</source>
+			</trans-unit>
+			<trans-unit id="tx_rere_domain_model_modul">
+				<source>Modul</source>
+			</trans-unit>
+			<trans-unit id="tx_rere_domain_model_modul.modulnr">
+				<source>Modulnr</source>
+			</trans-unit>
+			<trans-unit id="tx_rere_domain_model_modul.modulname">
+				<source>Modulname</source>
+			</trans-unit>
+			<trans-unit id="tx_rere_domain_model_modul.gueltigkeitszeitraum">
+				<source>Gueltigkeitszeitraum</source>
+			</trans-unit>
+			<trans-unit id="tx_rere_domain_model_pruefling">
+				<source>Pruefling</source>
+			</trans-unit>
+			<trans-unit id="tx_rere_domain_model_pruefling.matrikelnr">
+				<source>Matrikelnr</source>
+			</trans-unit>
+			<trans-unit id="tx_rere_domain_model_pruefling.prueflingvorname">
+				<source>Prueflingvorname</source>
+			</trans-unit>
+			<trans-unit id="tx_rere_domain_model_pruefling.prueflingname">
+				<source>Prueflingname</source>
+			</trans-unit>
 		</body>
 	</file>
 </xliff>
