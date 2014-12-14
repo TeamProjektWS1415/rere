@@ -103,7 +103,7 @@ $GLOBALS['TCA']['tx_rere_domain_model_pruefling'] = array(
 			'config' => array(
 				'type' => 'input',
 				'size' => 30,
-				'eval' => 'trim'
+				'eval' => 'trim,required'
 			),
 		),
 		'vorname' => array(
@@ -112,7 +112,7 @@ $GLOBALS['TCA']['tx_rere_domain_model_pruefling'] = array(
 			'config' => array(
 				'type' => 'input',
 				'size' => 30,
-				'eval' => 'trim'
+				'eval' => 'trim,required'
 			),
 		),
 		'nachname' => array(
@@ -121,7 +121,7 @@ $GLOBALS['TCA']['tx_rere_domain_model_pruefling'] = array(
 			'config' => array(
 				'type' => 'input',
 				'size' => 30,
-				'eval' => 'trim'
+				'eval' => 'trim,required'
 			),
 		),
 		

@@ -126,4 +126,52 @@ class NoteTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
 			$this->subject
 		);
 	}
+
+	/**
+	 * @test
+	 */
+	public function getFachnrReturnsInitialValueForFach() {
+		$this->assertEquals(
+			NULL,
+			$this->subject->getFachnr()
+		);
+	}
+
+	/**
+	 * @test
+	 */
+	public function setFachnrForFachSetsFachnr() {
+		$fachnrFixture = new \ReRe\Rere\Domain\Model\Fach();
+		$this->subject->setFachnr($fachnrFixture);
+
+		$this->assertAttributeEquals(
+			$fachnrFixture,
+			'fachnr',
+			$this->subject
+		);
+	}
+
+	/**
+	 * @test
+	 */
+	public function getMatrikelnrReturnsInitialValueForPruefling() {
+		$this->assertEquals(
+			NULL,
+			$this->subject->getMatrikelnr()
+		);
+	}
+
+	/**
+	 * @test
+	 */
+	public function setMatrikelnrForPrueflingSetsMatrikelnr() {
+		$matrikelnrFixture = new \ReRe\Rere\Domain\Model\Pruefling();
+		$this->subject->setMatrikelnr($matrikelnrFixture);
+
+		$this->assertAttributeEquals(
+			$matrikelnrFixture,
+			'matrikelnr',
+			$this->subject
+		);
+	}
 }

@@ -6,10 +6,10 @@ if (!defined ('TYPO3_MODE')) {
 $GLOBALS['TCA']['tx_rere_domain_model_fach'] = array(
 	'ctrl' => $GLOBALS['TCA']['tx_rere_domain_model_fach']['ctrl'],
 	'interface' => array(
-		'showRecordFieldList' => 'sys_language_uid, l10n_parent, l10n_diffsource, hidden, fachnr, fachname, pruefer, notenschema',
+		'showRecordFieldList' => 'sys_language_uid, l10n_parent, l10n_diffsource, hidden, fachnr, fachname, pruefer, notenschema, modulnr',
 	),
 	'types' => array(
-		'1' => array('showitem' => 'sys_language_uid;;;;1-1-1, l10n_parent, l10n_diffsource, hidden;;1, fachnr, fachname, pruefer, notenschema, --div--;LLL:EXT:cms/locallang_ttc.xlf:tabs.access, starttime, endtime'),
+		'1' => array('showitem' => 'sys_language_uid;;;;1-1-1, l10n_parent, l10n_diffsource, hidden;;1, fachnr, fachname, pruefer, notenschema, modulnr, --div--;LLL:EXT:cms/locallang_ttc.xlf:tabs.access, starttime, endtime'),
 	),
 	'palettes' => array(
 		'1' => array('showitem' => ''),
@@ -103,7 +103,7 @@ $GLOBALS['TCA']['tx_rere_domain_model_fach'] = array(
 			'config' => array(
 				'type' => 'input',
 				'size' => 30,
-				'eval' => 'trim'
+				'eval' => 'trim,required'
 			),
 		),
 		'fachname' => array(
@@ -112,7 +112,7 @@ $GLOBALS['TCA']['tx_rere_domain_model_fach'] = array(
 			'config' => array(
 				'type' => 'input',
 				'size' => 30,
-				'eval' => 'trim'
+				'eval' => 'trim,required'
 			),
 		),
 		'pruefer' => array(
@@ -121,7 +121,7 @@ $GLOBALS['TCA']['tx_rere_domain_model_fach'] = array(
 			'config' => array(
 				'type' => 'input',
 				'size' => 30,
-				'eval' => 'trim'
+				'eval' => 'trim,required'
 			),
 		),
 		'notenschema' => array(
@@ -130,7 +130,24 @@ $GLOBALS['TCA']['tx_rere_domain_model_fach'] = array(
 			'config' => array(
 				'type' => 'input',
 				'size' => 30,
-				'eval' => 'trim'
+				'eval' => 'trim,required'
+			),
+		),
+		'modulnr' => array(
+			'exclude' => 1,
+			'label' => 'LLL:EXT:rere/Resources/Private/Language/locallang_db.xlf:tx_rere_domain_model_fach.modulnr',
+			'config' => array(
+				'type' => 'inline',
+				'foreign_table' => 'tx_rere_domain_model_modul',
+				'minitems' => 0,
+				'maxitems' => 1,
+				'appearance' => array(
+					'collapseAll' => 0,
+					'levelLinksPosition' => 'top',
+					'showSynchronizationLink' => 1,
+					'showPossibleLocalizationRecords' => 1,
+					'showAllLocalizationLink' => 1
+				),
 			),
 		),
 		

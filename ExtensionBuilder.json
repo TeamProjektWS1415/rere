@@ -3,8 +3,8 @@
         {
             "config": {
                 "position": [
-                    661,
-                    237
+                    692,
+                    309
                 ]
             },
             "name": "New Model Object",
@@ -38,7 +38,7 @@
                             "maxItems": "1",
                             "propertyDescription": "",
                             "propertyIsExcludeField": true,
-                            "propertyIsRequired": false,
+                            "propertyIsRequired": true,
                             "propertyName": "notenr",
                             "propertyType": "Integer",
                             "uid": "7919724699"
@@ -48,7 +48,7 @@
                             "maxItems": "1",
                             "propertyDescription": "",
                             "propertyIsExcludeField": true,
-                            "propertyIsRequired": false,
+                            "propertyIsRequired": true,
                             "propertyName": "wert",
                             "propertyType": "String",
                             "uid": "28962025742"
@@ -58,7 +58,7 @@
                             "maxItems": "1",
                             "propertyDescription": "",
                             "propertyIsExcludeField": true,
-                            "propertyIsRequired": false,
+                            "propertyIsRequired": true,
                             "propertyName": "kommentar",
                             "propertyType": "String",
                             "uid": "96281446867"
@@ -66,15 +66,36 @@
                     ]
                 },
                 "relationGroup": {
-                    "relations": []
+                    "relations": [
+                        {
+                            "foreignRelationClass": "",
+                            "lazyLoading": false,
+                            "propertyIsExcludeField": true,
+                            "relationDescription": "",
+                            "relationName": "fachnr",
+                            "relationType": "zeroToOne",
+                            "relationWire": "[wired]",
+                            "uid": "816290811170"
+                        },
+                        {
+                            "foreignRelationClass": "",
+                            "lazyLoading": false,
+                            "propertyIsExcludeField": true,
+                            "relationDescription": "",
+                            "relationName": "matrikelnr",
+                            "relationType": "zeroToOne",
+                            "relationWire": "[wired]",
+                            "uid": "824219016853"
+                        }
+                    ]
                 }
             }
         },
         {
             "config": {
                 "position": [
-                    383,
-                    239
+                    404,
+                    275
                 ]
             },
             "name": "New Model Object",
@@ -108,7 +129,7 @@
                             "maxItems": "1",
                             "propertyDescription": "",
                             "propertyIsExcludeField": true,
-                            "propertyIsRequired": false,
+                            "propertyIsRequired": true,
                             "propertyName": "fachnr",
                             "propertyType": "String",
                             "uid": "106322263367"
@@ -118,7 +139,7 @@
                             "maxItems": "1",
                             "propertyDescription": "",
                             "propertyIsExcludeField": true,
-                            "propertyIsRequired": false,
+                            "propertyIsRequired": true,
                             "propertyName": "fachname",
                             "propertyType": "String",
                             "uid": "965741332551"
@@ -128,7 +149,7 @@
                             "maxItems": "1",
                             "propertyDescription": "",
                             "propertyIsExcludeField": true,
-                            "propertyIsRequired": false,
+                            "propertyIsRequired": true,
                             "propertyName": "pruefer",
                             "propertyType": "String",
                             "uid": "432254771475"
@@ -138,7 +159,7 @@
                             "maxItems": "1",
                             "propertyDescription": "",
                             "propertyIsExcludeField": true,
-                            "propertyIsRequired": false,
+                            "propertyIsRequired": true,
                             "propertyName": "notenschema",
                             "propertyType": "String",
                             "uid": "428620376593"
@@ -146,15 +167,26 @@
                     ]
                 },
                 "relationGroup": {
-                    "relations": []
+                    "relations": [
+                        {
+                            "foreignRelationClass": "",
+                            "lazyLoading": false,
+                            "propertyIsExcludeField": true,
+                            "relationDescription": "",
+                            "relationName": "modulnr",
+                            "relationType": "zeroToOne",
+                            "relationWire": "[wired]",
+                            "uid": "667289147746"
+                        }
+                    ]
                 }
             }
         },
         {
             "config": {
                 "position": [
-                    104,
-                    239
+                    52,
+                    342
                 ]
             },
             "name": "New Model Object",
@@ -188,7 +220,7 @@
                             "maxItems": "1",
                             "propertyDescription": "",
                             "propertyIsExcludeField": true,
-                            "propertyIsRequired": false,
+                            "propertyIsRequired": true,
                             "propertyName": "modulnr",
                             "propertyType": "String",
                             "uid": "608926900509"
@@ -198,7 +230,7 @@
                             "maxItems": "1",
                             "propertyDescription": "",
                             "propertyIsExcludeField": true,
-                            "propertyIsRequired": false,
+                            "propertyIsRequired": true,
                             "propertyName": "modulname",
                             "propertyType": "String",
                             "uid": "178426093758"
@@ -208,7 +240,7 @@
                             "maxItems": "1",
                             "propertyDescription": "",
                             "propertyIsExcludeField": true,
-                            "propertyIsRequired": false,
+                            "propertyIsRequired": true,
                             "propertyName": "gueltigkeitszeitraum",
                             "propertyType": "NativeDate",
                             "uid": "659211542979"
@@ -223,8 +255,8 @@
         {
             "config": {
                 "position": [
-                    405,
-                    37
+                    926,
+                    29
                 ]
             },
             "name": "New Model Object",
@@ -258,7 +290,7 @@
                             "maxItems": "1",
                             "propertyDescription": "",
                             "propertyIsExcludeField": true,
-                            "propertyIsRequired": false,
+                            "propertyIsRequired": true,
                             "propertyName": "matrikelnr",
                             "propertyType": "String",
                             "uid": "722206030347"
@@ -268,7 +300,7 @@
                             "maxItems": "1",
                             "propertyDescription": "",
                             "propertyIsExcludeField": true,
-                            "propertyIsRequired": false,
+                            "propertyIsRequired": true,
                             "propertyName": "vorname",
                             "propertyType": "String",
                             "uid": "303857143190"
@@ -278,7 +310,7 @@
                             "maxItems": "1",
                             "propertyDescription": "",
                             "propertyIsExcludeField": true,
-                            "propertyIsRequired": false,
+                            "propertyIsRequired": true,
                             "propertyName": "nachname",
                             "propertyType": "String",
                             "uid": "1407736698325"
@@ -292,7 +324,18 @@
         }
     ],
     "properties": {
-        "backendModules": [],
+        "backendModules": [
+            {
+                "actions": {
+                    "controllerActionCombinations": ""
+                },
+                "description": "Notenverwaltung",
+                "key": "Notenverwaltung",
+                "mainModule": "user",
+                "name": "Notenverwaltung",
+                "tabLabel": "Notenverwaltung"
+            }
+        ],
         "description": "Notenverwaltungs Extension f\u00fcr Typo3",
         "emConf": {
             "category": "plugin",
@@ -346,12 +389,59 @@
                 "role": "Developer"
             }
         ],
-        "plugins": [],
+        "plugins": [
+            {
+                "actions": {
+                    "controllerActionCombinations": "",
+                    "noncacheableActions": "",
+                    "switchableActions": ""
+                },
+                "key": "notenuebersicht",
+                "name": "Noten\u00fcbersicht"
+            }
+        ],
         "vendorName": "ReRe"
     },
-    "wires": [],
+    "wires": [
+        {
+            "src": {
+                "moduleId": 1,
+                "terminal": "relationWire_0",
+                "uid": "667289147746"
+            },
+            "tgt": {
+                "moduleId": 2,
+                "terminal": "SOURCES",
+                "uid": "503418084056"
+            }
+        },
+        {
+            "src": {
+                "moduleId": 0,
+                "terminal": "relationWire_0",
+                "uid": "816290811170"
+            },
+            "tgt": {
+                "moduleId": 1,
+                "terminal": "SOURCES",
+                "uid": "303844844765"
+            }
+        },
+        {
+            "src": {
+                "moduleId": 0,
+                "terminal": "relationWire_1",
+                "uid": "824219016853"
+            },
+            "tgt": {
+                "moduleId": 3,
+                "terminal": "SOURCES",
+                "uid": "873096791788"
+            }
+        }
+    ],
     "log": {
-        "last_modified": "2014-12-14 12:46",
+        "last_modified": "2014-12-15 12:02",
         "extension_builder_version": "6.2.0",
         "be_user": " (1)"
     }

@@ -103,7 +103,7 @@ $GLOBALS['TCA']['tx_rere_domain_model_modul'] = array(
 			'config' => array(
 				'type' => 'input',
 				'size' => 30,
-				'eval' => 'trim'
+				'eval' => 'trim,required'
 			),
 		),
 		'modulname' => array(
@@ -112,7 +112,7 @@ $GLOBALS['TCA']['tx_rere_domain_model_modul'] = array(
 			'config' => array(
 				'type' => 'input',
 				'size' => 30,
-				'eval' => 'trim'
+				'eval' => 'trim,required'
 			),
 		),
 		'gueltigkeitszeitraum' => array(
@@ -122,7 +122,7 @@ $GLOBALS['TCA']['tx_rere_domain_model_modul'] = array(
 				'dbType' => 'date',
 				'type' => 'input',
 				'size' => 7,
-				'eval' => 'date',
+				'eval' => 'date,required',
 				'checkbox' => 0,
 				'default' => '0000-00-00'
 			),

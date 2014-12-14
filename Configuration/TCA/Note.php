@@ -6,10 +6,10 @@ if (!defined ('TYPO3_MODE')) {
 $GLOBALS['TCA']['tx_rere_domain_model_note'] = array(
 	'ctrl' => $GLOBALS['TCA']['tx_rere_domain_model_note']['ctrl'],
 	'interface' => array(
-		'showRecordFieldList' => 'sys_language_uid, l10n_parent, l10n_diffsource, hidden, notenr, wert, kommentar',
+		'showRecordFieldList' => 'sys_language_uid, l10n_parent, l10n_diffsource, hidden, notenr, wert, kommentar, fachnr, matrikelnr',
 	),
 	'types' => array(
-		'1' => array('showitem' => 'sys_language_uid;;;;1-1-1, l10n_parent, l10n_diffsource, hidden;;1, notenr, wert, kommentar, --div--;LLL:EXT:cms/locallang_ttc.xlf:tabs.access, starttime, endtime'),
+		'1' => array('showitem' => 'sys_language_uid;;;;1-1-1, l10n_parent, l10n_diffsource, hidden;;1, notenr, wert, kommentar, fachnr, matrikelnr, --div--;LLL:EXT:cms/locallang_ttc.xlf:tabs.access, starttime, endtime'),
 	),
 	'palettes' => array(
 		'1' => array('showitem' => ''),
@@ -103,7 +103,7 @@ $GLOBALS['TCA']['tx_rere_domain_model_note'] = array(
 			'config' => array(
 				'type' => 'input',
 				'size' => 4,
-				'eval' => 'int'
+				'eval' => 'int,required'
 			)
 		),
 		'wert' => array(
@@ -112,7 +112,7 @@ $GLOBALS['TCA']['tx_rere_domain_model_note'] = array(
 			'config' => array(
 				'type' => 'input',
 				'size' => 30,
-				'eval' => 'trim'
+				'eval' => 'trim,required'
 			),
 		),
 		'kommentar' => array(
@@ -121,7 +121,41 @@ $GLOBALS['TCA']['tx_rere_domain_model_note'] = array(
 			'config' => array(
 				'type' => 'input',
 				'size' => 30,
-				'eval' => 'trim'
+				'eval' => 'trim,required'
+			),
+		),
+		'fachnr' => array(
+			'exclude' => 1,
+			'label' => 'LLL:EXT:rere/Resources/Private/Language/locallang_db.xlf:tx_rere_domain_model_note.fachnr',
+			'config' => array(
+				'type' => 'inline',
+				'foreign_table' => 'tx_rere_domain_model_fach',
+				'minitems' => 0,
+				'maxitems' => 1,
+				'appearance' => array(
+					'collapseAll' => 0,
+					'levelLinksPosition' => 'top',
+					'showSynchronizationLink' => 1,
+					'showPossibleLocalizationRecords' => 1,
+					'showAllLocalizationLink' => 1
+				),
+			),
+		),
+		'matrikelnr' => array(
+			'exclude' => 1,
+			'label' => 'LLL:EXT:rere/Resources/Private/Language/locallang_db.xlf:tx_rere_domain_model_note.matrikelnr',
+			'config' => array(
+				'type' => 'inline',
+				'foreign_table' => 'tx_rere_domain_model_pruefling',
+				'minitems' => 0,
+				'maxitems' => 1,
+				'appearance' => array(
+					'collapseAll' => 0,
+					'levelLinksPosition' => 'top',
+					'showSynchronizationLink' => 1,
+					'showPossibleLocalizationRecords' => 1,
+					'showAllLocalizationLink' => 1
+				),
 			),
 		),
 		

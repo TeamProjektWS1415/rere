@@ -3,6 +3,34 @@ if (!defined('TYPO3_MODE')) {
 	die('Access denied.');
 }
 
+\TYPO3\CMS\Extbase\Utility\ExtensionUtility::registerPlugin(
+	$_EXTKEY,
+	'Notenuebersicht',
+	'Notenübersicht'
+);
+
+if (TYPO3_MODE === 'BE') {
+
+	/**
+	 * Registers a Backend Module
+	 */
+	\TYPO3\CMS\Extbase\Utility\ExtensionUtility::registerModule(
+		'ReRe.' . $_EXTKEY,
+		'user',	 // Make module a submodule of 'user'
+		'notenverwaltung',	// Submodule key
+		'',						// Position
+		array(
+			'Note' => 'list, show, new, create, edit, update, delete','Fach' => 'list, show, new, create, edit, update, delete','Modul' => 'list, show, new, create, edit, update, delete','Pruefling' => 'list, show, new, create, edit, update, delete',
+		),
+		array(
+			'access' => 'user,group',
+			'icon'   => 'EXT:' . $_EXTKEY . '/ext_icon.gif',
+			'labels' => 'LLL:EXT:' . $_EXTKEY . '/Resources/Private/Language/locallang_notenverwaltung.xlf',
+		)
+	);
+
+}
+
 \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addStaticFile($_EXTKEY, 'Configuration/TypoScript', 'Result Repository');
 
 \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addLLrefForTCAdescr('tx_rere_domain_model_note', 'EXT:rere/Resources/Private/Language/locallang_csh_tx_rere_domain_model_note.xlf');
@@ -28,7 +56,7 @@ $GLOBALS['TCA']['tx_rere_domain_model_note'] = array(
 			'starttime' => 'starttime',
 			'endtime' => 'endtime',
 		),
-		'searchFields' => 'notenr,wert,kommentar,',
+		'searchFields' => 'notenr,wert,kommentar,fachnr,matrikelnr,',
 		'dynamicConfigFile' => \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extPath($_EXTKEY) . 'Configuration/TCA/Note.php',
 		'iconfile' => \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extRelPath($_EXTKEY) . 'Resources/Public/Icons/tx_rere_domain_model_note.gif'
 	),
@@ -57,7 +85,7 @@ $GLOBALS['TCA']['tx_rere_domain_model_fach'] = array(
 			'starttime' => 'starttime',
 			'endtime' => 'endtime',
 		),
-		'searchFields' => 'fachnr,fachname,pruefer,notenschema,',
+		'searchFields' => 'fachnr,fachname,pruefer,notenschema,modulnr,',
 		'dynamicConfigFile' => \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extPath($_EXTKEY) . 'Configuration/TCA/Fach.php',
 		'iconfile' => \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extRelPath($_EXTKEY) . 'Resources/Public/Icons/tx_rere_domain_model_fach.gif'
 	),

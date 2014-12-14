@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <xliff version="1.0">
-	<file source-language="en" datatype="plaintext" original="messages" date="2014-12-14T12:46:57Z" product-name="rere">
+	<file source-language="en" datatype="plaintext" original="messages" date="2014-12-15T00:02:25Z" product-name="rere">
 		<header/>
 		<body>
 			<trans-unit id="notenr.description">
@@ -11,6 +11,12 @@
 			</trans-unit>
 			<trans-unit id="kommentar.description">
 				<source>kommentar</source>
+			</trans-unit>
+			<trans-unit id="fachnr.description">
+				<source>fachnr</source>
+			</trans-unit>
+			<trans-unit id="matrikelnr.description">
+				<source>matrikelnr</source>
 			</trans-unit>
 		</body>
 	</file>

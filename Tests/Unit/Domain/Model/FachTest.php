@@ -149,4 +149,28 @@ class FachTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
 			$this->subject
 		);
 	}
+
+	/**
+	 * @test
+	 */
+	public function getModulnrReturnsInitialValueForModul() {
+		$this->assertEquals(
+			NULL,
+			$this->subject->getModulnr()
+		);
+	}
+
+	/**
+	 * @test
+	 */
+	public function setModulnrForModulSetsModulnr() {
+		$modulnrFixture = new \ReRe\Rere\Domain\Model\Modul();
+		$this->subject->setModulnr($modulnrFixture);
+
+		$this->assertAttributeEquals(
+			$modulnrFixture,
+			'modulnr',
+			$this->subject
+		);
+	}
 }

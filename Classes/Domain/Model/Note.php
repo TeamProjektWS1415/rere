@@ -41,6 +41,7 @@ class Note extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 	 * notenr
 	 * 
 	 * @var integer
+	 * @validate NotEmpty
 	 */
 	protected $notenr = 0;
 
@@ -48,6 +49,7 @@ class Note extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 	 * wert
 	 * 
 	 * @var string
+	 * @validate NotEmpty
 	 */
 	protected $wert = '';
 
@@ -55,8 +57,23 @@ class Note extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 	 * kommentar
 	 * 
 	 * @var string
+	 * @validate NotEmpty
 	 */
 	protected $kommentar = '';
+
+	/**
+	 * fachnr
+	 * 
+	 * @var \ReRe\Rere\Domain\Model\Fach
+	 */
+	protected $fachnr = NULL;
+
+	/**
+	 * matrikelnr
+	 * 
+	 * @var \ReRe\Rere\Domain\Model\Pruefling
+	 */
+	protected $matrikelnr = NULL;
 
 	/**
 	 * Returns the notenr
@@ -113,6 +130,44 @@ class Note extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 	 */
 	public function setKommentar($kommentar) {
 		$this->kommentar = $kommentar;
+	}
+
+	/**
+	 * Returns the fachnr
+	 * 
+	 * @return \ReRe\Rere\Domain\Model\Fach $fachnr
+	 */
+	public function getFachnr() {
+		return $this->fachnr;
+	}
+
+	/**
+	 * Sets the fachnr
+	 * 
+	 * @param \ReRe\Rere\Domain\Model\Fach $fachnr
+	 * @return void
+	 */
+	public function setFachnr(\ReRe\Rere\Domain\Model\Fach $fachnr) {
+		$this->fachnr = $fachnr;
+	}
+
+	/**
+	 * Returns the matrikelnr
+	 * 
+	 * @return \ReRe\Rere\Domain\Model\Pruefling $matrikelnr
+	 */
+	public function getMatrikelnr() {
+		return $this->matrikelnr;
+	}
+
+	/**
+	 * Sets the matrikelnr
+	 * 
+	 * @param \ReRe\Rere\Domain\Model\Pruefling $matrikelnr
+	 * @return void
+	 */
+	public function setMatrikelnr(\ReRe\Rere\Domain\Model\Pruefling $matrikelnr) {
+		$this->matrikelnr = $matrikelnr;
 	}
 
 }

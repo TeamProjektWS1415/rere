@@ -41,6 +41,7 @@ class Fach extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 	 * fachnr
 	 * 
 	 * @var string
+	 * @validate NotEmpty
 	 */
 	protected $fachnr = '';
 
@@ -48,6 +49,7 @@ class Fach extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 	 * fachname
 	 * 
 	 * @var string
+	 * @validate NotEmpty
 	 */
 	protected $fachname = '';
 
@@ -55,6 +57,7 @@ class Fach extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 	 * pruefer
 	 * 
 	 * @var string
+	 * @validate NotEmpty
 	 */
 	protected $pruefer = '';
 
@@ -62,8 +65,16 @@ class Fach extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 	 * notenschema
 	 * 
 	 * @var string
+	 * @validate NotEmpty
 	 */
 	protected $notenschema = '';
+
+	/**
+	 * modulnr
+	 * 
+	 * @var \ReRe\Rere\Domain\Model\Modul
+	 */
+	protected $modulnr = NULL;
 
 	/**
 	 * Returns the fachnr
@@ -139,6 +150,25 @@ class Fach extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 	 */
 	public function setNotenschema($notenschema) {
 		$this->notenschema = $notenschema;
+	}
+
+	/**
+	 * Returns the modulnr
+	 * 
+	 * @return \ReRe\Rere\Domain\Model\Modul $modulnr
+	 */
+	public function getModulnr() {
+		return $this->modulnr;
+	}
+
+	/**
+	 * Sets the modulnr
+	 * 
+	 * @param \ReRe\Rere\Domain\Model\Modul $modulnr
+	 * @return void
+	 */
+	public function setModulnr(\ReRe\Rere\Domain\Model\Modul $modulnr) {
+		$this->modulnr = $modulnr;
 	}
 
 }

@@ -41,6 +41,7 @@ class Pruefling extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 	 * matrikelnr
 	 * 
 	 * @var string
+	 * @validate NotEmpty
 	 */
 	protected $matrikelnr = '';
 
@@ -48,6 +49,7 @@ class Pruefling extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 	 * vorname
 	 * 
 	 * @var string
+	 * @validate NotEmpty
 	 */
 	protected $vorname = '';
 
@@ -55,6 +57,7 @@ class Pruefling extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 	 * nachname
 	 * 
 	 * @var string
+	 * @validate NotEmpty
 	 */
 	protected $nachname = '';
 

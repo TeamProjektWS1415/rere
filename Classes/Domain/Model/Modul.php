@@ -41,6 +41,7 @@ class Modul extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 	 * modulnr
 	 * 
 	 * @var string
+	 * @validate NotEmpty
 	 */
 	protected $modulnr = '';
 
@@ -48,6 +49,7 @@ class Modul extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 	 * modulname
 	 * 
 	 * @var string
+	 * @validate NotEmpty
 	 */
 	protected $modulname = '';
 
@@ -55,6 +57,7 @@ class Modul extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 	 * gueltigkeitszeitraum
 	 * 
 	 * @var \DateTime
+	 * @validate NotEmpty
 	 */
 	protected $gueltigkeitszeitraum = NULL;
 
