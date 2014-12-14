@@ -73,8 +73,8 @@
         {
             "config": {
                 "position": [
-                    302,
-                    312
+                    319,
+                    190
                 ]
             },
             "name": "New Model Object",
@@ -153,8 +153,8 @@
         {
             "config": {
                 "position": [
-                    44,
-                    317
+                    36,
+                    246
                 ]
             },
             "name": "New Model Object",
@@ -223,8 +223,8 @@
         {
             "config": {
                 "position": [
-                    286,
-                    54
+                    176,
+                    23
                 ]
             },
             "name": "New Model Object",
@@ -252,47 +252,58 @@
                     "uid": "873096791788"
                 },
                 "propertyGroup": {
-                    "properties": []
-                },
-                "relationGroup": {
-                    "relations": [
+                    "properties": [
                         {
-                            "foreignRelationClass": "",
-                            "lazyLoading": false,
+                            "allowedFileTypes": "",
+                            "maxItems": "1",
+                            "propertyDescription": "",
                             "propertyIsExcludeField": true,
-                            "relationDescription": "",
-                            "relationName": "matrikelnr",
-                            "relationType": "zeroToOne",
-                            "relationWire": "",
-                            "uid": "745518540425"
+                            "propertyIsRequired": false,
+                            "propertyName": "matrikelnr",
+                            "propertyType": "String",
+                            "uid": "722206030347"
                         },
                         {
-                            "foreignRelationClass": "",
-                            "lazyLoading": false,
+                            "allowedFileTypes": "",
+                            "maxItems": "1",
+                            "propertyDescription": "",
                             "propertyIsExcludeField": true,
-                            "relationDescription": "",
-                            "relationName": "prueflingvorname",
-                            "relationType": "zeroToOne",
-                            "relationWire": "",
-                            "uid": "770453222023"
+                            "propertyIsRequired": false,
+                            "propertyName": "vorname",
+                            "propertyType": "String",
+                            "uid": "303857143190"
                         },
                         {
-                            "foreignRelationClass": "",
-                            "lazyLoading": false,
+                            "allowedFileTypes": "",
+                            "maxItems": "1",
+                            "propertyDescription": "",
                             "propertyIsExcludeField": true,
-                            "relationDescription": "",
-                            "relationName": "prueflingname",
-                            "relationType": "zeroToOne",
-                            "relationWire": "",
-                            "uid": "1250513475537"
+                            "propertyIsRequired": false,
+                            "propertyName": "nachname",
+                            "propertyType": "String",
+                            "uid": "1407736698325"
                         }
                     ]
+                },
+                "relationGroup": {
+                    "relations": []
                 }
             }
         }
     ],
     "properties": {
-        "backendModules": [],
+        "backendModules": [
+            {
+                "actions": {
+                    "controllerActionCombinations": ""
+                },
+                "description": "",
+                "key": "notenverwaltung",
+                "mainModule": "web",
+                "name": "Notenverwaltung",
+                "tabLabel": "Notenverwaltung"
+            }
+        ],
         "description": "Notenverwaltungs Extension f\u00fcr Typo3",
         "emConf": {
             "category": "plugin",
@@ -303,7 +314,7 @@
             "sourceLanguage": "en",
             "state": "alpha",
             "targetVersion": "6.2",
-            "version": ""
+            "version": "0.1"
         },
         "extensionKey": "rere",
         "name": "Result Repository",
@@ -351,7 +362,7 @@
     },
     "wires": [],
     "log": {
-        "last_modified": "2014-12-14 12:47",
+        "last_modified": "2014-12-14 12:41",
         "extension_builder_version": "6.2.0",
         "be_user": " (1)"
     }

@@ -6,10 +6,10 @@ if (!defined ('TYPO3_MODE')) {
 $GLOBALS['TCA']['tx_rere_domain_model_pruefling'] = array(
 	'ctrl' => $GLOBALS['TCA']['tx_rere_domain_model_pruefling']['ctrl'],
 	'interface' => array(
-		'showRecordFieldList' => 'sys_language_uid, l10n_parent, l10n_diffsource, hidden, matrikelnr, prueflingvorname, prueflingname',
+		'showRecordFieldList' => 'sys_language_uid, l10n_parent, l10n_diffsource, hidden, matrikelnr, vorname, nachname',
 	),
 	'types' => array(
-		'1' => array('showitem' => 'sys_language_uid;;;;1-1-1, l10n_parent, l10n_diffsource, hidden;;1, matrikelnr, prueflingvorname, prueflingname, --div--;LLL:EXT:cms/locallang_ttc.xlf:tabs.access, starttime, endtime'),
+		'1' => array('showitem' => 'sys_language_uid;;;;1-1-1, l10n_parent, l10n_diffsource, hidden;;1, matrikelnr, vorname, nachname, --div--;LLL:EXT:cms/locallang_ttc.xlf:tabs.access, starttime, endtime'),
 	),
 	'palettes' => array(
 		'1' => array('showitem' => ''),
@@ -101,51 +101,27 @@ $GLOBALS['TCA']['tx_rere_domain_model_pruefling'] = array(
 			'exclude' => 1,
 			'label' => 'LLL:EXT:rere/Resources/Private/Language/locallang_db.xlf:tx_rere_domain_model_pruefling.matrikelnr',
 			'config' => array(
-				'type' => 'inline',
-				'foreign_table' => '',
-				'minitems' => 0,
-				'maxitems' => 1,
-				'appearance' => array(
-					'collapseAll' => 0,
-					'levelLinksPosition' => 'top',
-					'showSynchronizationLink' => 1,
-					'showPossibleLocalizationRecords' => 1,
-					'showAllLocalizationLink' => 1
-				),
+				'type' => 'input',
+				'size' => 30,
+				'eval' => 'trim'
 			),
 		),
-		'prueflingvorname' => array(
+		'vorname' => array(
 			'exclude' => 1,
-			'label' => 'LLL:EXT:rere/Resources/Private/Language/locallang_db.xlf:tx_rere_domain_model_pruefling.prueflingvorname',
+			'label' => 'LLL:EXT:rere/Resources/Private/Language/locallang_db.xlf:tx_rere_domain_model_pruefling.vorname',
 			'config' => array(
-				'type' => 'inline',
-				'foreign_table' => '',
-				'minitems' => 0,
-				'maxitems' => 1,
-				'appearance' => array(
-					'collapseAll' => 0,
-					'levelLinksPosition' => 'top',
-					'showSynchronizationLink' => 1,
-					'showPossibleLocalizationRecords' => 1,
-					'showAllLocalizationLink' => 1
-				),
+				'type' => 'input',
+				'size' => 30,
+				'eval' => 'trim'
 			),
 		),
-		'prueflingname' => array(
+		'nachname' => array(
 			'exclude' => 1,
-			'label' => 'LLL:EXT:rere/Resources/Private/Language/locallang_db.xlf:tx_rere_domain_model_pruefling.prueflingname',
+			'label' => 'LLL:EXT:rere/Resources/Private/Language/locallang_db.xlf:tx_rere_domain_model_pruefling.nachname',
 			'config' => array(
-				'type' => 'inline',
-				'foreign_table' => '',
-				'minitems' => 0,
-				'maxitems' => 1,
-				'appearance' => array(
-					'collapseAll' => 0,
-					'levelLinksPosition' => 'top',
-					'showSynchronizationLink' => 1,
-					'showPossibleLocalizationRecords' => 1,
-					'showAllLocalizationLink' => 1
-				),
+				'type' => 'input',
+				'size' => 30,
+				'eval' => 'trim'
 			),
 		),
 		

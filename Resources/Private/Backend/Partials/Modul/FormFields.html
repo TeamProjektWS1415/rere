@@ -1,0 +1,13 @@
+
+<label for="modulnr">
+	<f:translate key="tx_rere_domain_model_modul.modulnr" />
+</label><br />
+	<f:form.textfield property="modulnr" /><br />
+<label for="modulname">
+	<f:translate key="tx_rere_domain_model_modul.modulname" />
+</label><br />
+	<f:form.textfield property="modulname" /><br />
+<label for="gueltigkeitszeitraum">
+	<f:translate key="tx_rere_domain_model_modul.gueltigkeitszeitraum" />
+</label><br />
+	<f:form.textfield property="gueltigkeitszeitraum"  value="{modul.gueltigkeitszeitraum->f:format.date()}" /><br />

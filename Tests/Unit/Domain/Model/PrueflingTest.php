@@ -61,30 +61,69 @@ class PrueflingTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
 	/**
 	 * @test
 	 */
-	public function getMatrikelnrReturnsInitialValueFor() {	}
+	public function getMatrikelnrReturnsInitialValueForString() {
+		$this->assertSame(
+			'',
+			$this->subject->getMatrikelnr()
+		);
+	}
 
 	/**
 	 * @test
 	 */
-	public function setMatrikelnrForSetsMatrikelnr() {	}
+	public function setMatrikelnrForStringSetsMatrikelnr() {
+		$this->subject->setMatrikelnr('Conceived at T3CON10');
+
+		$this->assertAttributeEquals(
+			'Conceived at T3CON10',
+			'matrikelnr',
+			$this->subject
+		);
+	}
 
 	/**
 	 * @test
 	 */
-	public function getPrueflingvornameReturnsInitialValueFor() {	}
+	public function getVornameReturnsInitialValueForString() {
+		$this->assertSame(
+			'',
+			$this->subject->getVorname()
+		);
+	}
 
 	/**
 	 * @test
 	 */
-	public function setPrueflingvornameForSetsPrueflingvorname() {	}
+	public function setVornameForStringSetsVorname() {
+		$this->subject->setVorname('Conceived at T3CON10');
+
+		$this->assertAttributeEquals(
+			'Conceived at T3CON10',
+			'vorname',
+			$this->subject
+		);
+	}
 
 	/**
 	 * @test
 	 */
-	public function getPrueflingnameReturnsInitialValueFor() {	}
+	public function getNachnameReturnsInitialValueForString() {
+		$this->assertSame(
+			'',
+			$this->subject->getNachname()
+		);
+	}
 
 	/**
 	 * @test
 	 */
-	public function setPrueflingnameForSetsPrueflingname() {	}
+	public function setNachnameForStringSetsNachname() {
+		$this->subject->setNachname('Conceived at T3CON10');
+
+		$this->assertAttributeEquals(
+			'Conceived at T3CON10',
+			'nachname',
+			$this->subject
+		);
+	}
 }

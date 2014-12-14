@@ -40,28 +40,28 @@ class Pruefling extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 	/**
 	 * matrikelnr
 	 * 
-	 * @var
+	 * @var string
 	 */
-	protected $matrikelnr = NULL;
+	protected $matrikelnr = '';
 
 	/**
-	 * prueflingvorname
+	 * vorname
 	 * 
-	 * @var
+	 * @var string
 	 */
-	protected $prueflingvorname = NULL;
+	protected $vorname = '';
 
 	/**
-	 * prueflingname
+	 * nachname
 	 * 
-	 * @var
+	 * @var string
 	 */
-	protected $prueflingname = NULL;
+	protected $nachname = '';
 
 	/**
 	 * Returns the matrikelnr
 	 * 
-	 * @return  $matrikelnr
+	 * @return string $matrikelnr
 	 */
 	public function getMatrikelnr() {
 		return $this->matrikelnr;
@@ -78,41 +78,41 @@ class Pruefling extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 	}
 
 	/**
-	 * Returns the prueflingvorname
+	 * Returns the vorname
 	 * 
-	 * @return  $prueflingvorname
+	 * @return string $vorname
 	 */
-	public function getPrueflingvorname() {
-		return $this->prueflingvorname;
+	public function getVorname() {
+		return $this->vorname;
 	}
 
 	/**
-	 * Sets the prueflingvorname
+	 * Sets the vorname
 	 * 
-	 * @param string $prueflingvorname
+	 * @param string $vorname
 	 * @return void
 	 */
-	public function setPrueflingvorname($prueflingvorname) {
-		$this->prueflingvorname = $prueflingvorname;
+	public function setVorname($vorname) {
+		$this->vorname = $vorname;
 	}
 
 	/**
-	 * Returns the prueflingname
+	 * Returns the nachname
 	 * 
-	 * @return  $prueflingname
+	 * @return string $nachname
 	 */
-	public function getPrueflingname() {
-		return $this->prueflingname;
+	public function getNachname() {
+		return $this->nachname;
 	}
 
 	/**
-	 * Sets the prueflingname
+	 * Sets the nachname
 	 * 
-	 * @param string $prueflingname
+	 * @param string $nachname
 	 * @return void
 	 */
-	public function setPrueflingname($prueflingname) {
-		$this->prueflingname = $prueflingname;
+	public function setNachname($nachname) {
+		$this->nachname = $nachname;
 	}
 
 }
