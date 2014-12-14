@@ -3,8 +3,8 @@
         {
             "config": {
                 "position": [
-                    608,
-                    232
+                    661,
+                    237
                 ]
             },
             "name": "New Model Object",
@@ -73,8 +73,8 @@
         {
             "config": {
                 "position": [
-                    319,
-                    190
+                    383,
+                    239
                 ]
             },
             "name": "New Model Object",
@@ -153,8 +153,8 @@
         {
             "config": {
                 "position": [
-                    36,
-                    246
+                    104,
+                    239
                 ]
             },
             "name": "New Model Object",
@@ -223,8 +223,8 @@
         {
             "config": {
                 "position": [
-                    176,
-                    23
+                    405,
+                    37
                 ]
             },
             "name": "New Model Object",
@@ -292,18 +292,7 @@
         }
     ],
     "properties": {
-        "backendModules": [
-            {
-                "actions": {
-                    "controllerActionCombinations": ""
-                },
-                "description": "",
-                "key": "notenverwaltung",
-                "mainModule": "web",
-                "name": "Notenverwaltung",
-                "tabLabel": "Notenverwaltung"
-            }
-        ],
+        "backendModules": [],
         "description": "Notenverwaltungs Extension f\u00fcr Typo3",
         "emConf": {
             "category": "plugin",
@@ -362,7 +351,7 @@
     },
     "wires": [],
     "log": {
-        "last_modified": "2014-12-14 12:41",
+        "last_modified": "2014-12-14 12:46",
         "extension_builder_version": "6.2.0",
         "be_user": " (1)"
     }

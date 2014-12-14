@@ -3,28 +3,6 @@ if (!defined('TYPO3_MODE')) {
 	die('Access denied.');
 }
 
-if (TYPO3_MODE === 'BE') {
-
-	/**
-	 * Registers a Backend Module
-	 */
-	\TYPO3\CMS\Extbase\Utility\ExtensionUtility::registerModule(
-		'ReRe.' . $_EXTKEY,
-		'web',	 // Make module a submodule of 'web'
-		'notenverwaltung',	// Submodule key
-		'',						// Position
-		array(
-			'Note' => 'list, show, new, create, edit, update, delete','Fach' => 'list, show, new, create, edit, update, delete','Modul' => 'list, show, new, create, edit, update, delete','Pruefling' => 'list, show, new, create, edit, update, delete',
-		),
-		array(
-			'access' => 'user,group',
-			'icon'   => 'EXT:' . $_EXTKEY . '/ext_icon.gif',
-			'labels' => 'LLL:EXT:' . $_EXTKEY . '/Resources/Private/Language/locallang_notenverwaltung.xlf',
-		)
-	);
-
-}
-
 \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addStaticFile($_EXTKEY, 'Configuration/TypoScript', 'Result Repository');
 
 \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addLLrefForTCAdescr('tx_rere_domain_model_note', 'EXT:rere/Resources/Private/Language/locallang_csh_tx_rere_domain_model_note.xlf');
