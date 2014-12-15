@@ -49,9 +49,10 @@ overwriteSettings:
     #TypoScript: keep
 
   Resources:
-    Private:
+    Private: keep
       #Language: merge
       #Templates: keep
+    Public: keep
 
   ext_icon.gif: keep
 
