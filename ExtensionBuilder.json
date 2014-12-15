@@ -332,8 +332,8 @@
                 "description": "Notenverwaltung",
                 "key": "Notenverwaltung",
                 "mainModule": "user",
-                "name": "Notenverwaltung",
-                "tabLabel": "Notenverwaltung"
+                "name": "Result Repository",
+                "tabLabel": "Result Repository"
             }
         ],
         "description": "Notenverwaltungs Extension f\u00fcr Typo3",
@@ -441,7 +441,7 @@
         }
     ],
     "log": {
-        "last_modified": "2014-12-15 09:21",
+        "last_modified": "2014-12-15 10:21",
         "extension_builder_version": "6.2.0",
         "be_user": " (1)"
     }
