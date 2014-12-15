@@ -1,13 +1,18 @@
 
-<f:be.container
-    addJsFile="{f:uri.resource(path:'js/jquery-2.1.1.min.js')}"
-    addJsFile="{f:uri.resource(path:'js/bootstrap.min.js')}"
-    addJsFile="{f:uri.resource(path:'js/jquery.tablesorter.min.js')}"
-    addJsFile="{f:uri.resource(path:'js/Chart.min.js')}"
-    addJsFile="{f:uri.resource(path:'js/noteverwaltung.js')}"
-    addCssFile="{f:uri.resource(path:'css/gradingmanager.css')}"
-    addCssFile="{f:uri.resource(path:'css/bootstrap.min.css')}"
-    >
+<f:be.container>
+    <f:render/>
+    <script src="{f:uri.resource(path:'js/jquery-2.1.1.min.js')}" type="text/javascript"></script>
+    <script src="{f:uri.resource(path:'js/bootstrap.min.js')}" type="text/javascript"></script>
+    <script src="{f:uri.resource(path:'js/jquery.tablesorter.min.js')}" type="text/javascript"></script>
+    <!-- Chart JS -->
+    <script src="{f:uri.resource(path:'js/Chart.min.js')}" type="text/javascript"></script>
+    <link href="{f:uri.resource(path:'css/gradingmanager.css')}" rel="stylesheet" type="text/css"/>
+    <!-- Bootstrap -->
+    <link href="{f:uri.resource(path:'css/bootstrap.min.css')}" rel="stylesheet">
+
+    <!-- JS for Noteverwaltung.html -->
+    <script src="{f:uri.resource(path:'js/noteverwaltung.js')}" type="text/javascript"></script>
+
     <div class="typo3-fullDoc">
         <div id="typo3-docheader">
             <div class="typo3-docheader-functions">
