@@ -27,8 +27,6 @@ figure, figcaption, footer, header, hgroup,
 menu, nav, output, ruby, section, summary,
 time, mark, audio, video
 input, submit{
-    margin: 0;
-    padding: 0;
     border: 0;
     font-size: 100%;
     font: inherit;
@@ -36,8 +34,6 @@ input, submit{
 }
 
 body {
-    margin: 0;
-    padding: 0;
     text-align: left;
     background-color: #fff;
     font-size: 12px;
@@ -51,7 +47,7 @@ body {
 * Kapitel 1: Body Calibrierung
   ==================================================================*/
 #wrapper{
-    width: 90%;
+    width: 100%;
     margin: auto;
 }
 .clear{
