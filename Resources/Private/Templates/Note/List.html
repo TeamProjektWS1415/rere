@@ -1,181 +1,41 @@
 
-<f:layout name="rere" />
+<f:layout name="Default" />
 
+This Template is responsible for creating a table of domain objects.
 
-<f:section name="content">
+If you modify this template, do not forget to change the overwrite settings
+in /Configuration/ExtensionBuilder/settings.yaml:
+  Resources:
+    Private:
+      Templates:
+        List.html: keep
 
-    <f:flashMessages />
+Otherwise your changes will be overwritten the next time you save the extension in the extension builder
 
-    <div class="container-fluid wrapper">
-        <div class="row">
-            <div name="breadcrumb" class="col-md-12">
-                <ol class="breadcrumb">
-                    <li><a href="Index.html">Index</a></li>
-                    <li class="active">Notenverwaltung</li>
-                </ol>
-            </div>
-            <div class="col-md-12">
-                <h1>Notenverwaltung</h1>
-            </div>
-            <div class="col-md-12">
-                <h4><strong>Fach</strong> aus <strong>Modul</strong> in <strong>Semester</strong></h4>
-            </div>
-            <div class="col-md-12">
-                <nav class="navbar navbar-default" role="navigation">
-                    <div class="container-fluid">
-                        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                            <ul class="nav navbar-nav">
-                                <li class="active" data-toggle="tooltip" data-placement="bottom" title="Zeigt alle Noten an"><a href="#" >Alle anzeigen</a></li>
-                                <li><a href="#" data-toggle="tooltip" data-placement="bottom" title="Zeigt nur eingetragene Noten an">Nur eingetragene Prüfungen</a></li>
-                                <li><a href="#" data-toggle="tooltip" data-placement="bottom" title="Zeigt noch zu erledigende an">Nur ohne Prüfungen</a></li>
-                            </ul>
-                            <form class="navbar-form navbar-left" role="search">
-                                <div class="form-group">
-                                    <div class="input-group">
-                                        <div class="input-group-addon"><span class="glyphicon glyphicon-search" aria-hidden="true" ></span></div>
-                                        <input type="text" id="suche" class="form-control" data-toggle="tooltip" data-placement="bottom" title="Nach MatrikelNr suchen" placeholder="Matrikel Nummer">
-                                    </div>
-                                </div>
-                            </form>
-                            <ul class="nav navbar-nav navbar-right">
-                                <li><a href="#" data-toggle="tooltip" data-placement="bottom" title="Importiert Prüflinge in dies Fach">Fach importeren</a></li>
-                                <li><a href="#" data-toggle="tooltip" data-placement="bottom" title="Exportiert das Fach mit allen Noten">Fach exportieren</a></li>
-                            </ul>
-                        </div>
-                    </div>
-                </nav>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-7">
-                <div class="table-responsive table-hover">
-                    <table id="grades" class="table tx_rere">
-                        <thead>
-                            <tr>
-                                <th>MatrikelNr</th>
-                                <th>Name</th>
-                                <th>Vorname</th>
-                                <th>Note</th>
-                                <th>Kommentar</th>
-                                <th></th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                        <f:for each="{notes}" as="note">
-                            <tr>
-                                <td><span class="value">123456</span><input type="text" class="form-control hidden" value="123456"/></td>
-                                <td><span class="value">Max</span><input type="text" class="form-control hidden" value="Max"/></td>
-                                <td><span class="value">Mustermann</span><input type="text" class="form-control hidden" value="Mustermann"/></td>
-                                <td><select class="form-control" data-toggle="tooltip" data-placement="bottom" title="Bitte eine Note auswählen">
-                                        <option>Bitte Wählen</option>
-                                        <option selected="selected">1.0</option>
-                                        <option>1.3</option>
-                                        <option>1.7</option>
-                                        <option>2.0</option>
-                                        <option>2.3</option>
-                                        <option>2.7</option>
-                                        <option>3.0</option>
-                                        <option>3.3</option>
-                                        <option>3.7</option>
-                                        <option>4.0</option>
-                                        <option>5.0</option>
-                                    </select></td>
-                                <td><textarea class="form-control" rows="1" placeholder="Kommentar" data-toggle="tooltip" data-placement="bottom" title="Kommentar zur Note">{note.kommentar}</textarea></td>
-                                <td>
-                                    <a href="#" class="delete" onclick="delentry(123456, '');"><span class="glyphicon glyphicon-remove" aria-hidden="true" data-toggle="tooltip" data-placement="bottom" title="Löscht diesen Datensatz"></span></a>
-                                    <a class="delete" href="#"></a></td>
-                            </tr>
-                        </f:for>
-                        <tr>
-                            <td><input type="text" class="form-control" data-toggle="tooltip" data-placement="bottom" title="Nach MatrikelNr suchen" placeholder="Matrikel Nr."></td>
-                            <td><input type="text" class="form-control" data-toggle="tooltip" data-placement="bottom" title="Vorname eingeben" placeholder="Vorname"></td>
-                            <td><input type="text" class="form-control" data-toggle="tooltip" data-placement="bottom" title="Nachname eingeben" placeholder="Nachname"></td>
-                            <td><select class="form-control" data-toggle="tooltip" data-placement="bottom" title="Bitte eine Note auswählen">
-                                    <option>Bitte Wählen</option>
-                                    <option>1.0</option>
-                                    <option>1.3</option>
-                                    <option>1.7</option>
-                                    <option>2.0</option>
-                                    <option>2.3</option>
-                                    <option>2.7</option>
-                                    <option>3.0</option>
-                                    <option>3.3</option>
-                                    <option>3.7</option>
-                                    <option>4.0</option>
-                                    <option>5.0</option>
-                                </select></td>
-                            <td><textarea class="form-control" rows="1" placeholder="Kommentar" data-toggle="tooltip" data-placement="bottom" title="Kommentar zur Note"></textarea></td>
-                            <td><a class="save" href="#"><span class="glyphicon glyphicon-plus" aria-hidden="true" data-toggle="tooltip" data-placement="bottom" title="Eintrag speichern"></span></a></td>
-                        </tr>
+<f:section name="main">
+<h1>Listing for Note</h1>
 
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-            <div class="col-md-4">
-                <canvas id="gradeChart" width="400" height="400"></canvas>
-                <div class="table-responsive table-hover">
-                    <br>
-                    <table class="table">
-                        <tbody>
-                            <tr>
-                                <td>Angemeldete Prüflinge</td>
-                                <td>3</td>
-                            </tr>
-                            <tr>
-                                <td>Eingetragene Noten</td>
-                                <td>2</td>
-                            </tr>
-                            <tr>
-                                <td>Notendurchschnitt</td>
-                                <td>1,85</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-        </div>
-    </div>
+<f:flashMessages renderMode="div" />
 
-    <!--- Popup Confirm -->
-    <div class="modal fade" id="popup" tabindex="-1" role="dialog" aria-labelledby="popuplabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-                    <h4 class="modal-title" id="popupTitle"></h4>
-                </div>
-                <div class="modal-body">
-                    <span class="popuptext"></span>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                    <span class="delbutton"></span>
-                </div>
-            </div>
-        </div>
-    </div>
+<table  class="tx_rere" >
+	<tr>
+		<th><f:translate key="tx_rere_domain_model_note.notenr" /></th>
+		<th><f:translate key="tx_rere_domain_model_note.wert" /></th>
+		<th><f:translate key="tx_rere_domain_model_note.kommentar" /></th>
+		<th> </th>
+		<th> </th>
+	</tr>
 
+	<f:for each="{notes}" as="note">
+		<tr>
+			<td><f:link.action action="show" arguments="{note : note}"> {note.notenr}</f:link.action></td>
+			<td><f:link.action action="show" arguments="{note : note}"> {note.wert}</f:link.action></td>
+			<td><f:link.action action="show" arguments="{note : note}"> {note.kommentar}</f:link.action></td>
+			<td><f:link.action action="edit" arguments="{note : note}">Edit</f:link.action></td>
+			<td><f:link.action action="delete" arguments="{note : note}">Delete</f:link.action></td>
+		</tr>
+	</f:for>
+</table>
 
-    <table  class="tx_rere" >
-        <tr>
-            <th><f:translate key="tx_rere_domain_model_note.notenr" /></th>
-        <th><f:translate key="tx_rere_domain_model_note.wert" /></th>
-        <th><f:translate key="tx_rere_domain_model_note.kommentar" /></th>
-        <th> </th>
-        <th> </th>
-        </tr>
-
-        <f:for each="{notes}" as="note">
-            <tr>
-                <td><f:link.action action="show" arguments="{note : note}"> {note.notenr}</f:link.action></td>
-            <td><f:link.action action="show" arguments="{note : note}"> {note.wert}</f:link.action></td>
-            <td><f:link.action action="show" arguments="{note : note}"> {note.kommentar}</f:link.action></td>
-            <td><f:link.action action="edit" arguments="{note : note}">Edit</f:link.action></td>
-            <td><f:link.action action="delete" arguments="{note : note}">Delete</f:link.action></td>
-            </tr>
-        </f:for>
-    </table>
-
-    <f:link.action action="new">New Note</f:link.action>
+<f:link.action action="new">New Note</f:link.action>
 </f:section>
