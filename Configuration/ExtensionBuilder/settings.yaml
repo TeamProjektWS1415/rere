@@ -49,11 +49,10 @@ overwriteSettings:
     #TypoScript: keep
 
   Resources:
-    Private: keep
+    Private:
       #Language: merge
       #Templates: keep
-    Public: keep
-
+	  
   ext_icon.gif: keep
 
 #  ext_localconf.php: merge
