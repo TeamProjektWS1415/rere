@@ -1,7 +1,6 @@
 <?php
 namespace ReRe\Rere\Domain\Model;
 
-
 /***************************************************************
  *
  *  Copyright notice

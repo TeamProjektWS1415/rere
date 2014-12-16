@@ -1,7 +1,6 @@
 <?php
 namespace ReRe\Rere\Domain\Repository;
 
-
 /***************************************************************
  *
  *  Copyright notice
