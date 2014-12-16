@@ -12,12 +12,12 @@ in /Configuration/ExtensionBuilder/settings.yaml:
 
 Otherwise your changes will be overwritten the next time you save the extension in the extension builder
 
-<f:section name="content">
+<f:section name="main">
 <h1>Edit Pruefling</h1>
 
-<f:flashMessages />
+<f:flashMessages renderMode="div" />
 
-<f:render partial="FormErrors" />
+<f:render partial="FormErrors" arguments="{object:Pruefling}" />
 
 <f:form action="update" name="pruefling" object="{pruefling}" >
 <f:render partial="Pruefling/FormFields" arguments="{pruefling:pruefling}" />

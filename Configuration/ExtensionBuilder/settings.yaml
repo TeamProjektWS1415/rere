@@ -48,12 +48,8 @@ overwriteSettings:
     #TCA: merge
     #TypoScript: keep
 
-  Resources:
-    Private: keep
-      #Language: merge
-      #Templates: keep
-	Public: keep
-	  
+  Resources: keep
+
   ext_icon.gif: keep
 
 #  ext_localconf.php: merge
