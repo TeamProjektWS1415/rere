@@ -12,11 +12,11 @@ in /Configuration/ExtensionBuilder/settings.yaml:
 
 Otherwise your changes will be overwritten the next time you save the extension in the extension builder
 
-<f:section name="main">
+<f:section name="content">
 <h1>Single View for Modul</h1>
 
-<f:flashMessages renderMode="div" />
+<f:flashMessages />
 <f:render partial="Modul/Properties" arguments="{modul:modul}" />
 <f:link.action action="list">Back to list</f:link.action><br />
-<f:link.action action="new">New Modul</f:link.action>
+<f:link.action action="create">New Modul</f:link.action>
 </f:section>

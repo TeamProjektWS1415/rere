@@ -12,15 +12,15 @@ in /Configuration/ExtensionBuilder/settings.yaml:
 
 Otherwise your changes will be overwritten the next time you save the extension in the extension builder
 
-<f:section name="content">
-<h1>Edit Modul</h1>
+<f:section name="main">
+<h1>Edit Note</h1>
 
-<f:flashMessages />
+<f:flashMessages renderMode="div" />
 
-<f:render partial="FormErrors" />
+<f:render partial="FormErrors" arguments="{object:Note}" />
 
-<f:form action="update" name="modul" object="{modul}" >
-<f:render partial="Modul/FormFields" arguments="{modul:modul}" />
+<f:form action="update" name="note" object="{note}" >
+<f:render partial="Note/FormFields" arguments="{note:note}" />
 	<f:form.submit value="Save" />
 </f:form>
 </f:section>
