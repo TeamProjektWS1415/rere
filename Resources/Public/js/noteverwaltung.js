@@ -1,9 +1,12 @@
-$(document).ready(function () {
+$.noConflict();
+$(document).ready(function ($) {
 
 // Make table sortable
     $("#grades").tablesorter();
     // tooltips
-    $('[data-toggle="tooltip"]').tooltip();
+    $('[data-toggle="tooltip"]').tooltip('show');
+
+
     var data = {
         labels: ["1", "1,3", "1,7", "2", "2,3", "2,7", "3", "3,3", "3,7", "4", "5"],
         datasets: [
@@ -24,6 +27,7 @@ $(document).ready(function () {
     window.myLine = new Chart(ctx).Line(data, {
         responsive: true
     });
+
     // delete button reaktion
     function delentry(matrikelnr, url) {
         $("#popupTitle").text("Loeschen");
