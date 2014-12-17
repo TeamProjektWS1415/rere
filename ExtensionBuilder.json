@@ -206,7 +206,7 @@
                     "addStarttimeEndtimeFields": true,
                     "aggregateRoot": true,
                     "categorizable": false,
-                    "description": "",
+                    "description": "s",
                     "mapToTable": "",
                     "parentClass": "",
                     "sorting": false,
@@ -441,7 +441,7 @@
         }
     ],
     "log": {
-        "last_modified": "2014-12-16 11:36",
+        "last_modified": "2014-12-17 11:18",
         "extension_builder_version": "6.2.0",
         "be_user": " (1)"
     }

@@ -1,11 +1,8 @@
-$.noConflict();
-$(document).ready(function ($) {
-
+$(document).ready(function () {
 // Make table sortable
     $("#grades").tablesorter();
     // tooltips
-    $('[data-toggle="tooltip"]').tooltip('show');
-
+    $('[data-toggle="tooltip"]').tooltip();
 
     var data = {
         labels: ["1", "1,3", "1,7", "2", "2,3", "2,7", "3", "3,3", "3,7", "4", "5"],
@@ -27,14 +24,6 @@ $(document).ready(function ($) {
     window.myLine = new Chart(ctx).Line(data, {
         responsive: true
     });
-
-    // delete button reaktion
-    function delentry(matrikelnr, url) {
-        $("#popupTitle").text("Loeschen");
-        $(".popuptext").text("Wollen Sie den Pruefling mit Matrikelnummer " + matrikelnr + " wirklich aus diesem Fach loeschen?");
-        $(".delbutton").text(url);
-        $('#popup').modal();
-    }
 
     // search funktion
     // colors the searched MatrikelNR
@@ -61,3 +50,13 @@ $(document).ready(function ($) {
         $(this).find(".value").addClass("hidden");
     });
 });
+
+
+// delete button reaktion
+function delentry(matrikelnr, url) {
+    alert("BLUBB");
+    $("#popupTitle").text("Loeschen");
+    $(".popuptext").text("Wollen Sie den Pruefling mit Matrikelnummer " + matrikelnr + " wirklich aus diesem Fach loeschen?");
+    $(".delbutton").text(url);
+    $('#popup').modal();
+}
