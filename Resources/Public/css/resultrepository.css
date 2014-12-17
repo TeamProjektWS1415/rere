@@ -95,3 +95,7 @@ body {
 .highlightGreen{
     background-color: #a3d950;
 }
+
+.typo3-docheader-buttons{
+    height: 23px;
+}
