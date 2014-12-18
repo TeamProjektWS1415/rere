@@ -20,7 +20,7 @@ if (TYPO3_MODE === 'BE') {
 		'notenverwaltung',	// Submodule key
 		'',						// Position
 		array(
-			'Note' => 'list, show, new, create, edit, update, delete','Fach' => 'list, show, new, create, edit, update, delete','Modul' => 'list, show, new, create, edit, update, delete','Pruefling' => 'list, show, new, create, edit, update, delete',
+			'Modul' => 'list, show, new, create, edit, update, delete','Fach' => 'list, show, new, create, edit, update, delete','Note' => 'list, show, new, create, edit, update, delete','Pruefling' => 'list, show, new, create, edit, update, delete',
 		),
 		array(
 			'access' => 'user,group',

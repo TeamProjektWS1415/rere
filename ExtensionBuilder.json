@@ -185,8 +185,8 @@
         {
             "config": {
                 "position": [
-                    52,
-                    342
+                    53,
+                    249
                 ]
             },
             "name": "New Model Object",
@@ -206,7 +206,7 @@
                     "addStarttimeEndtimeFields": true,
                     "aggregateRoot": true,
                     "categorizable": false,
-                    "description": "s",
+                    "description": "sssssssss",
                     "mapToTable": "",
                     "parentClass": "",
                     "sorting": false,
@@ -441,7 +441,7 @@
         }
     ],
     "log": {
-        "last_modified": "2014-12-17 11:18",
+        "last_modified": "2014-12-18 02:13",
         "extension_builder_version": "6.2.0",
         "be_user": " (1)"
     }
