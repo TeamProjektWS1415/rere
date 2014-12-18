@@ -53,10 +53,9 @@ $(document).ready(function () {
 
 
 // delete button reaktion
-function delentry(matrikelnr, url) {
-    alert("BLUBB");
+function delentry(matrikelnr, note) {
     $("#popupTitle").text("Loeschen");
     $(".popuptext").text("Wollen Sie den Pruefling mit Matrikelnummer " + matrikelnr + " wirklich aus diesem Fach loeschen?");
-    $(".delbutton").text(url);
+    $(".delbutton").setAttribute("arguments", note);
     $('#popup').modal();
 }

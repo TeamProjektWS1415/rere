@@ -82,8 +82,7 @@
                                     </select></td>
                                 <td><textarea class="form-control" rows="1" placeholder="Kommentar" data-toggle="tooltip" data-placement="bottom" title="Kommentar zur Note">{note.kommentar}</textarea></td>
                                 <td>
-                                    <a href="#" class="delete" onclick="delentry(123456, '');"><span class="glyphicon glyphicon-remove" aria-hidden="true" data-toggle="tooltip" data-placement="bottom" title="Löscht diesen Datensatz"></span></a>
-                                    <a class="delete" href="#"></a></td>
+                                    <a href="#" class="delete" onclick="delentry(123456, {note: note});"><span class="glyphicon glyphicon-remove" aria-hidden="true" data-toggle="tooltip" data-placement="bottom" title="Löscht diesen Datensatz"></span></a></td>
                             </tr>
                         </f:for>
                         <tr>
@@ -150,7 +149,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                    <span class="delbutton"></span>
+                    <f:link.action class="delbutton" class="btn btn-default" action="delete" >Delete</f:link.action>
                 </div>
             </div>
         </div>
