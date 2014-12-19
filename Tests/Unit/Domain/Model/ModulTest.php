@@ -107,9 +107,9 @@ class ModulTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
 	/**
 	 * @test
 	 */
-	public function getGueltigkeitszeitraumReturnsInitialValueForDateTime() {
-		$this->assertEquals(
-			NULL,
+	public function getGueltigkeitszeitraumReturnsInitialValueForString() {
+		$this->assertSame(
+			'',
 			$this->subject->getGueltigkeitszeitraum()
 		);
 	}
@@ -117,12 +117,11 @@ class ModulTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
 	/**
 	 * @test
 	 */
-	public function setGueltigkeitszeitraumForDateTimeSetsGueltigkeitszeitraum() {
-		$dateTimeFixture = new \DateTime();
-		$this->subject->setGueltigkeitszeitraum($dateTimeFixture);
+	public function setGueltigkeitszeitraumForStringSetsGueltigkeitszeitraum() {
+		$this->subject->setGueltigkeitszeitraum('Conceived at T3CON10');
 
 		$this->assertAttributeEquals(
-			$dateTimeFixture,
+			'Conceived at T3CON10',
 			'gueltigkeitszeitraum',
 			$this->subject
 		);

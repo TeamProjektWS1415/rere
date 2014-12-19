@@ -119,12 +119,9 @@ $GLOBALS['TCA']['tx_rere_domain_model_modul'] = array(
 			'exclude' => 1,
 			'label' => 'LLL:EXT:rere/Resources/Private/Language/locallang_db.xlf:tx_rere_domain_model_modul.gueltigkeitszeitraum',
 			'config' => array(
-				'dbType' => 'date',
 				'type' => 'input',
-				'size' => 7,
-				'eval' => 'date,required',
-				'checkbox' => 0,
-				'default' => '0000-00-00'
+				'size' => 30,
+				'eval' => 'trim,required'
 			),
 		),
 		

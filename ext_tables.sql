@@ -94,7 +94,7 @@ CREATE TABLE tx_rere_domain_model_modul (
 
 	modulnr varchar(255) DEFAULT '' NOT NULL,
 	modulname varchar(255) DEFAULT '' NOT NULL,
-	gueltigkeitszeitraum date DEFAULT '0000-00-00',
+	gueltigkeitszeitraum varchar(255) DEFAULT '' NOT NULL,
 
 	tstamp int(11) unsigned DEFAULT '0' NOT NULL,
 	crdate int(11) unsigned DEFAULT '0' NOT NULL,

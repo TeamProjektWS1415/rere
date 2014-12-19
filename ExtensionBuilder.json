@@ -185,8 +185,8 @@
         {
             "config": {
                 "position": [
-                    53,
-                    249
+                    63,
+                    212
                 ]
             },
             "name": "New Model Object",
@@ -242,7 +242,7 @@
                             "propertyIsExcludeField": true,
                             "propertyIsRequired": true,
                             "propertyName": "gueltigkeitszeitraum",
-                            "propertyType": "NativeDate",
+                            "propertyType": "String",
                             "uid": "659211542979"
                         }
                     ]
@@ -441,7 +441,7 @@
         }
     ],
     "log": {
-        "last_modified": "2014-12-18 02:13",
+        "last_modified": "2014-12-19 11:49",
         "extension_builder_version": "6.2.0",
         "be_user": " (1)"
     }

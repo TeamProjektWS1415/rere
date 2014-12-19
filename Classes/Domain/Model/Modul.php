@@ -55,7 +55,7 @@ class Modul extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 	/**
 	 * gueltigkeitszeitraum
 	 * 
-	 * @var \DateTime
+	 * @var string
 	 * @validate NotEmpty
 	 */
 	protected $gueltigkeitszeitraum = NULL;
@@ -101,7 +101,7 @@ class Modul extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 	/**
 	 * Returns the gueltigkeitszeitraum
 	 * 
-	 * @return \DateTime $gueltigkeitszeitraum
+	 * @return string gueltigkeitszeitraum
 	 */
 	public function getGueltigkeitszeitraum() {
 		return $this->gueltigkeitszeitraum;
@@ -111,7 +111,7 @@ class Modul extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 	 * Sets the gueltigkeitszeitraum
 	 * 
 	 * @param \DateTime $gueltigkeitszeitraum
-	 * @return void
+	 * @return string gueltigkeitszeitraum
 	 */
 	public function setGueltigkeitszeitraum(\DateTime $gueltigkeitszeitraum) {
 		$this->gueltigkeitszeitraum = $gueltigkeitszeitraum;
