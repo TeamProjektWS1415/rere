@@ -1,7 +1,8 @@
 <?php
+
 namespace ReRe\Rere\Controller;
 
-/***************************************************************
+/* * *************************************************************
  *
  *  Copyright notice
  *
@@ -29,97 +30,99 @@ namespace ReRe\Rere\Controller;
  *  GNU General Public License for more details.
  *
  *  This copyright notice MUST APPEAR in all copies of the script!
- ***************************************************************/
+ * ************************************************************* */
 
 /**
  * NoteController
  */
 class NoteController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController {
 
-	/**
-	 * noteRepository
-	 * 
-	 * @var \ReRe\Rere\Domain\Repository\NoteRepository
-	 * @inject
-	 */
-	protected $noteRepository = NULL;
+    /**
+     * noteRepository
+     *
+     * @var \ReRe\Rere\Domain\Repository\NoteRepository
+     * @inject
+     */
+    protected $noteRepository = NULL;
 
-	/**
-	 * action list
-	 * 
-	 * @return void
-	 */
-	public function listAction() {
-		$notes = $this->noteRepository->findAll();
-		$this->view->assign('notes', $notes);
-	}
+    /**
+     * action list
+     *
+     * @return void
+     */
+    public function listAction() {
 
-	/**
-	 * action show
-	 * 
-	 * @param \ReRe\Rere\Domain\Model\Note $note
-	 * @return void
-	 */
-	public function showAction(\ReRe\Rere\Domain\Model\Note $note) {
-		$this->view->assign('note', $note);
-	}
+        $notes = $this->noteRepository->findAll();
+        $this->view->assign('options', $this->NoteArrays->getMarks());
+        $this->view->assign('notes', $notes);
+    }
 
-	/**
-	 * action new
-	 * 
-	 * @param \ReRe\Rere\Domain\Model\Note $newNote
-	 * @ignorevalidation $newNote
-	 * @return void
-	 */
-	public function newAction(\ReRe\Rere\Domain\Model\Note $newNote = NULL) {
-		$this->view->assign('newNote', $newNote);
-	}
+    /**
+     * action show
+     *
+     * @param \ReRe\Rere\Domain\Model\Note $note
+     * @return void
+     */
+    public function showAction(\ReRe\Rere\Domain\Model\Note $note) {
+        $this->view->assign('note', $note);
+    }
 
-	/**
-	 * action create
-	 * 
-	 * @param \ReRe\Rere\Domain\Model\Note $newNote
-	 * @return void
-	 */
-	public function createAction(\ReRe\Rere\Domain\Model\Note $newNote) {
-		$this->addFlashMessage('The object was created. Please be aware that this action is publicly accessible unless you implement an access check. See <a href="http://wiki.typo3.org/T3Doc/Extension_Builder/Using_the_Extension_Builder#1._Model_the_domain" target="_blank">Wiki</a>', '', \TYPO3\CMS\Core\Messaging\AbstractMessage::ERROR);
-		$this->noteRepository->add($newNote);
-		$this->redirect('list');
-	}
+    /**
+     * action new
+     *
+     * @param \ReRe\Rere\Domain\Model\Note $newNote
+     * @ignorevalidation $newNote
+     * @return void
+     */
+    public function newAction(\ReRe\Rere\Domain\Model\Note $newNote = NULL) {
+        $this->view->assign('newNote', $newNote);
+    }
 
-	/**
-	 * action edit
-	 * 
-	 * @param \ReRe\Rere\Domain\Model\Note $note
-	 * @ignorevalidation $note
-	 * @return void
-	 */
-	public function editAction(\ReRe\Rere\Domain\Model\Note $note) {
-		$this->view->assign('note', $note);
-	}
+    /**
+     * action create
+     *
+     * @param \ReRe\Rere\Domain\Model\Note $newNote
+     * @return void
+     */
+    public function createAction(\ReRe\Rere\Domain\Model\Note $newNote) {
+        $this->addFlashMessage('The object was created. Please be aware that this action is publicly accessible unless you implement an access check. See <a href="http://wiki.typo3.org/T3Doc/Extension_Builder/Using_the_Extension_Builder#1._Model_the_domain" target="_blank">Wiki</a>', '', \TYPO3\CMS\Core\Messaging\AbstractMessage::ERROR);
+        $this->noteRepository->add($newNote);
+        $this->redirect('list');
+    }
 
-	/**
-	 * action update
-	 * 
-	 * @param \ReRe\Rere\Domain\Model\Note $note
-	 * @return void
-	 */
-	public function updateAction(\ReRe\Rere\Domain\Model\Note $note) {
-		$this->addFlashMessage('The object was updated. Please be aware that this action is publicly accessible unless you implement an access check. See <a href="http://wiki.typo3.org/T3Doc/Extension_Builder/Using_the_Extension_Builder#1._Model_the_domain" target="_blank">Wiki</a>', '', \TYPO3\CMS\Core\Messaging\AbstractMessage::ERROR);
-		$this->noteRepository->update($note);
-		$this->redirect('list');
-	}
+    /**
+     * action edit
+     *
+     * @param \ReRe\Rere\Domain\Model\Note $note
+     * @ignorevalidation $note
+     * @return void
+     */
+    public function editAction(\ReRe\Rere\Domain\Model\Note $note) {
+        $this->view->assign('note', $note);
+    }
 
-	/**
-	 * action delete
-	 * 
-	 * @param \ReRe\Rere\Domain\Model\Note $note
-	 * @return void
-	 */
-	public function deleteAction(\ReRe\Rere\Domain\Model\Note $note) {
-		$this->addFlashMessage('The object was deleted. Please be aware that this action is publicly accessible unless you implement an access check. See <a href="http://wiki.typo3.org/T3Doc/Extension_Builder/Using_the_Extension_Builder#1._Model_the_domain" target="_blank">Wiki</a>', '', \TYPO3\CMS\Core\Messaging\AbstractMessage::ERROR);
-		$this->noteRepository->remove($note);
-		$this->redirect('list');
-	}
+    /**
+     * action update
+     *
+     * @param \ReRe\Rere\Domain\Model\Note $note
+     * @return void
+     */
+    public function updateAction(\ReRe\Rere\Domain\Model\Note $note) {
+        $this->addFlashMessage('The object was updated. Please be aware that this action is publicly accessible unless you implement an access check. See <a href="http://wiki.typo3.org/T3Doc/Extension_Builder/Using_the_Extension_Builder#1._Model_the_domain" target="_blank">Wiki</a>', '', \TYPO3\CMS\Core\Messaging\AbstractMessage::ERROR);
+        $this->noteRepository->update($note);
+        $this->redirect('list');
+    }
+
+    /**
+     * action delete
+     *
+     * @param \ReRe\Rere\Domain\Model\Note $note
+     * @return void
+     */
+    public function deleteAction(\ReRe\Rere\Domain\Model\Note $note) {
+        $this->addFlashMessage('The object was deleted. Please be aware that this action is publicly accessible unless you implement an access check. See <a href="http://wiki.typo3.org/T3Doc/Extension_Builder/Using_the_Extension_Builder#1._Model_the_domain" target="_blank">Wiki</a>', '', \TYPO3\CMS\Core\Messaging\AbstractMessage::ERROR);
+        $this->noteRepository->remove($note);
+        $this->redirect('list');
+    }
 
 }

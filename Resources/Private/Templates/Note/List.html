@@ -56,10 +56,10 @@
                                 <th>MatrikelNr</th>
                                 <th>Name</th>
                                 <th>Vorname</th>
-                                <th>Note</th>
-                                <th>Kommentar</th>
-                                <th></th>
-                            </tr>
+                                <th><f:translate key="tx_rere_domain_model_note.wert" /></th>
+                        <th><f:translate key="tx_rere_domain_model_note.kommentar" /></th>
+                        <th></th>
+                        </tr>
                         </thead>
                         <tbody>
                         <f:for each="{notes}" as="note">
@@ -88,27 +88,14 @@
                             </tr>
                         </f:for>
                         <tr>
-                        <form id="newNote" method="post" onSubmit="return false">
+                        <f:form action="create" name="newNote" object="{newNote}">
                             <td><input type="text" class="form-control" data-toggle="tooltip" data-placement="bottom" title="Nach MatrikelNr suchen" placeholder="Matrikel Nr."></td>
                             <td><input type="text" class="form-control" data-toggle="tooltip" data-placement="bottom" title="Vorname eingeben" placeholder="Vorname"></td>
                             <td><input type="text" class="form-control" data-toggle="tooltip" data-placement="bottom" title="Nachname eingeben" placeholder="Nachname"></td>
-                            <td><select class="form-control" data-toggle="tooltip" data-placement="bottom" title="Bitte eine Note auswählen">
-                                    <option>Bitte Wählen</option>
-                                    <option>1.0</option>
-                                    <option>1.3</option>
-                                    <option>1.7</option>
-                                    <option>2.0</option>
-                                    <option>2.3</option>
-                                    <option>2.7</option>
-                                    <option>3.0</option>
-                                    <option>3.3</option>
-                                    <option>3.7</option>
-                                    <option>4.0</option>
-                                    <option>5.0</option>
-                                </select></td>
-                            <td><textarea class="form-control" rows="1" placeholder="Kommentar" data-toggle="tooltip" data-placement="bottom" title="Kommentar zur Note"></textarea></td>
-                            <td><a class="save" href="#"><span class="glyphicon glyphicon-plus" aria-hidden="true" data-toggle="tooltip" data-placement="bottom" title="Eintrag speichern"></span></a></td>
-                        </form>
+                            <td><f:form.textfield property="notenr" /><f:form.select property="wert" options="{options}" class="form-control" title="Bitte eine Note auswählen"/></td>
+                            <td><f:form.textarea property="kommentar" class="form-control" rows="1" placeholder="Kommentar" title="Kommentar zur Note" /></td>
+                            <td><button type='submit'><span class='glyphicon glyphicon-plus' aria-hidden='true' data-toggle='tooltip' data-placement='bottom' title='Eintrag speichern'></span></button></td>
+                        </f:form>
                         </tr>
 
                         </tbody>
@@ -158,27 +145,5 @@
             </div>
         </div>
     </div>
-
-
-    <table  class="tx_rere" >
-        <tr>
-            <th><f:translate key="tx_rere_domain_model_note.notenr" /></th>
-        <th><f:translate key="tx_rere_domain_model_note.wert" /></th>
-        <th><f:translate key="tx_rere_domain_model_note.kommentar" /></th>
-        <th> </th>
-        <th> </th>
-        </tr>
-
-        <f:for each="{notes}" as="note">
-            <tr>
-                <td><f:link.action action="show" arguments="{note : note}"> {note.notenr}</f:link.action></td>
-            <td><f:link.action action="show" arguments="{note : note}"> {note.wert}</f:link.action></td>
-            <td><f:link.action action="show" arguments="{note : note}"> {note.kommentar}</f:link.action></td>
-            <td><f:link.action action="edit" arguments="{note : note}">Edit</f:link.action></td>
-            <td><f:link.action action="delete" arguments="{note : note}">Delete</f:link.action></td>
-            </tr>
-        </f:for>
-    </table>
-
     <f:link.action action="new">New Note</f:link.action>
 </f:section>
