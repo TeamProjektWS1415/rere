@@ -55,9 +55,10 @@ class NoteController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController 
         // Instanz der Array Klasse.
         $notesList = new \ReRe\Rere\Services\NestedDirectory\NoteArrays();
 
+        // Ausgabe aller eingetragener noten
         $notes = $this->noteRepository->findAll();
+        // Übergibt die Notenlisten
         $this->view->assign('options', $notesList->getMarks());
-        $this->view->assign('notenwert', $notesList->getMarks());
         $this->view->assign('notes', $notes);
     }
 
