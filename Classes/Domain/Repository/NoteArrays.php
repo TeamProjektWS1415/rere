@@ -15,6 +15,10 @@ error_reporting(E_ALL);
  */
 class NoteArrays {
 
+    public function __construct() {
+        
+    }
+
     protected $marks = array(
         '1.0' => '1.0',
         '1.3' => '1.3',
