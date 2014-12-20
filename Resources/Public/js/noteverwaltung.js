@@ -71,10 +71,11 @@ $(document).ready(function () {
 });
 
 
-// delete button reaktion
-function delentry(matrikelnr, note) {
+// Löschfunktion einer Note, es wird ein Popup aufgerufen,
+// hier muss dann bestätigt werden dass die Note wirklich gelöscht werden soll.
+function delentry(matrikelnr, link) {
     $("#popupTitle").text("Loeschen");
     $(".popuptext").text("Wollen Sie den Pruefling mit Matrikelnummer " + matrikelnr + " wirklich aus diesem Fach loeschen?");
-    $(".delbutton").setAttribute("arguments", note);
+    $("#delbuttonmodal").attr("href", link);
     $('#popup').modal();
 }
