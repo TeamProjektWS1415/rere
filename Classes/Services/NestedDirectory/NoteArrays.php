@@ -16,6 +16,7 @@ class NoteArrays {
      * @var type array
      */
     protected $marks = array(
+        '' => 'Bitte wählen',
         '1.0' => '1.0',
         '1.3' => '1.3',
         '1.7' => '1.7',
@@ -34,6 +35,7 @@ class NoteArrays {
      * @var type
      */
     protected $schoolMarks = array(
+        '' => 'Bitte wählen',
         '1.0' => '1.0',
         '1.5' => '1.5',
         '2.0' => '2.0',
@@ -52,6 +54,7 @@ class NoteArrays {
      * @var type
      */
     protected $unbenotetMarks = array(
+        '' => 'Bitte wählen',
         'be' => 'be',
         'N' => 'N'
     );
