@@ -23,20 +23,22 @@
             <div class="col-md-12">
                 <nav class="navbar navbar-default" role="navigation">
                     <div class="container-fluid">
-                        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                        <div class="collapse navbar-collapse" id="navi">
                             <ul class="nav navbar-nav">
                                 <li class="active" data-toggle="tooltip" data-placement="bottom" title="Zeigt alle Noten an"><a href="#" >Alle anzeigen</a></li>
                                 <li><a href="#" data-toggle="tooltip" data-placement="bottom" title="Zeigt nur eingetragene Noten an">Nur eingetragene Prüfungen</a></li>
                                 <li><a href="#" data-toggle="tooltip" data-placement="bottom" title="Zeigt noch zu erledigende an">Nur ohne Prüfungen</a></li>
                             </ul>
-                            <form class="navbar-form navbar-left" role="search">
-                                <div class="form-group">
-                                    <div class="input-group">
-                                        <div class="input-group-addon"><span class="glyphicon glyphicon-search" aria-hidden="true" ></span></div>
-                                        <input type="text" id="suche" class="form-control" rel="tooltip" data-toggle="tooltip" data-placement="bottom" title="Nach MatrikelNr suchen" placeholder="Matrikel Nummer">
-                                    </div>
-                                </div>
-                            </form>
+                            <ul class="nav navbar-nav">
+                                <li>
+                                    <form class="navbar-form navbar-left" role="search">
+                                        <div class="form-group input-group">
+                                            <div class="input-group-addon"><span class="glyphicon glyphicon-search" aria-hidden="true" ></span></div>
+                                            <input type="text" id="suche" class="form-control" rel="tooltip" data-toggle="tooltip" data-placement="bottom" title="Nach MatrikelNr suchen" placeholder="Matrikel Nummer">
+                                        </div>
+                                    </form>
+                                <li>
+                            </ul>
                             <ul class="nav navbar-nav navbar-right">
                                 <li><a href="#" data-toggle="tooltip" data-placement="bottom" title="Importiert Prüflinge in dies Fach">Fach importeren</a></li>
                                 <li><a href="#" data-toggle="tooltip" data-placement="bottom" title="Exportiert das Fach mit allen Noten">Fach exportieren</a></li>

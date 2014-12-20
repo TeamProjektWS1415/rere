@@ -99,3 +99,7 @@ body {
 .typo3-docheader-buttons{
     height: 23px;
 }
+
+#typo3-docbody form{
+    margin-bottom: 0;
+}
