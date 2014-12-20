@@ -57,6 +57,7 @@ class NoteController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController 
 
         $notes = $this->noteRepository->findAll();
         $this->view->assign('options', $notesList->getMarks());
+        $this->view->assign('notenwert', $notesList->getMarks());
         $this->view->assign('notes', $notes);
     }
 
