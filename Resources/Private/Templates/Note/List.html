@@ -1,7 +1,6 @@
 
 <f:layout name="rere" />
 
-
 <f:section name="content">
 
     <f:flashMessages />
@@ -88,6 +87,7 @@
                             </tr>
                         </f:for>
                         <tr>
+                        <form id="newNote" method="post" onSubmit="return false">
                             <td><input type="text" class="form-control" data-toggle="tooltip" data-placement="bottom" title="Nach MatrikelNr suchen" placeholder="Matrikel Nr."></td>
                             <td><input type="text" class="form-control" data-toggle="tooltip" data-placement="bottom" title="Vorname eingeben" placeholder="Vorname"></td>
                             <td><input type="text" class="form-control" data-toggle="tooltip" data-placement="bottom" title="Nachname eingeben" placeholder="Nachname"></td>
@@ -107,6 +107,7 @@
                                 </select></td>
                             <td><textarea class="form-control" rows="1" placeholder="Kommentar" data-toggle="tooltip" data-placement="bottom" title="Kommentar zur Note"></textarea></td>
                             <td><a class="save" href="#"><span class="glyphicon glyphicon-plus" aria-hidden="true" data-toggle="tooltip" data-placement="bottom" title="Eintrag speichern"></span></a></td>
+                        </form>
                         </tr>
 
                         </tbody>

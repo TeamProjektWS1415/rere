@@ -25,6 +25,25 @@ $(document).ready(function () {
         responsive: true
     });
 
+
+
+    // Ajax Call für neue Note
+    $(".save").click(function () {
+        alert("Speichert die Note");
+        $(".err").hide();
+
+        var kommentar = $("#kommentar").val();
+
+        // Post aufruf
+        $.post("index.php?eID=script",
+                {kommentar: "wuhu", werr: "1.0", notennr: "50"},
+        function (data) {
+        });
+
+    });
+
+
+
     // search funktion
     // colors the searched MatrikelNR
     $("#suche").on("keyup", function () {

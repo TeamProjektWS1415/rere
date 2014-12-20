@@ -22,3 +22,5 @@ if (!defined('TYPO3_MODE')) {
 		
 	)
 );
+
+$TYPO3_CONF_VARS['FE']['eID_include']['script'] = 'EXT:Classes/NoteController.php';
