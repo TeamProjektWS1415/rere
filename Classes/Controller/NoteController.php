@@ -52,6 +52,7 @@ class NoteController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController 
      */
     public function listAction() {
 
+        // Instanz der Array Klasse.
         $notesList = new \ReRe\Rere\Services\NestedDirectory\NoteArrays();
 
         $notes = $this->noteRepository->findAll();
