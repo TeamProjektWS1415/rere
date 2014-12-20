@@ -1,24 +1,20 @@
 <?php
 
-error_reporting(E_ALL);
-
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+namespace ReRe\Rere\Services\NestedDirectory;
 
 /**
  * Description of NoteArrays
+ *
+ * Speichert Die Verschiedenen NotenSysteme für die Notenauswahl bei der Notenvergabe.
  *
  * @author Felix
  */
 class NoteArrays {
 
-    public function __construct() {
-        
-    }
-
+    /**
+     * Array für XYZ Notensystem.
+     * @var type array
+     */
     protected $marks = array(
         '1.0' => '1.0',
         '1.3' => '1.3',
@@ -32,6 +28,11 @@ class NoteArrays {
         '4.0' => '4.0',
         '5.0' => '5.0'
     );
+
+    /**
+     * Array für XYZ NotenSystem.
+     * @var type
+     */
     protected $schoolMarks = array(
         '1.0' => '1.0',
         '1.5' => '1.5',
@@ -44,6 +45,15 @@ class NoteArrays {
         '5.0' => '5.0',
         '5.5' => '5.5',
         '6.0' => '6.0'
+    );
+
+    /**
+     * Array für Unbenotete Leistungen.
+     * @var type
+     */
+    protected $unbenotetMarks = array(
+        'be' => 'be',
+        'N' => 'N'
     );
 
     /**
@@ -69,10 +79,7 @@ class NoteArrays {
      * @return array
      */
     public function getUnbenotetMarks() {
-        return array(
-            'be' => 'be',
-            'N' => 'N'
-        );
+        return $this->unbenotetMarks;
     }
 
 }

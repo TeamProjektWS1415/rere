@@ -52,8 +52,10 @@ class NoteController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController 
      */
     public function listAction() {
 
+        $notesList = new \ReRe\Rere\Services\NestedDirectory\NoteArrays();
+
         $notes = $this->noteRepository->findAll();
-        $this->view->assign('options', $this->NoteArrays->getMarks());
+        $this->view->assign('options', $notesList->getMarks());
         $this->view->assign('notes', $notes);
     }
 
