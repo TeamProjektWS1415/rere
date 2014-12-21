@@ -66,7 +66,7 @@
 
                             <script type="text/javascript">
 
-                                var array = [{chartarray}];
+                                var array = {f:format.htmlentitiesDecode(value:chartarray)};
 
                                 $(document).ready(function () {
                                     genchart(array);
