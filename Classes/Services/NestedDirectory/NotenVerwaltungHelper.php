@@ -56,4 +56,14 @@ class NotenVerwaltungHelper {
         return $sum / $count;
     }
 
+    public function checkIfWertisSet($notenliste) {
+        $count = 0;
+        foreach ($notenliste as $result) {
+            if ($result->getWert() != "") {
+                $count++;
+            }
+        }
+        return $count;
+    }
+
 }
