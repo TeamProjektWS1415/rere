@@ -52,14 +52,19 @@ class NoteController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController 
      */
     public function listAction() {
 
-        // Instanz der Array Klasse.
-        $notesList = new \ReRe\Rere\Services\NestedDirectory\NoteArrays();
-
         // Ausgabe aller eingetragener noten
         $notes = $this->noteRepository->findAll();
+
+
+        // Instanz der Array Klasse.
+        $notesList = new \ReRe\Rere\Services\NestedDirectory\NoteSchemaArrays();
+        $helper = new \ReRe\Rere\Services\NestedDirectory\NotenVerwaltungHelper();
+
+
         // Übergibt die Notenlisten
         $this->view->assign('options', $notesList->getMarks());
         $this->view->assign('notes', $notes);
+        $this->view->assign('chartarray', $helper->genArray($notes));
     }
 
     /**

@@ -9,7 +9,7 @@ namespace ReRe\Rere\Services\NestedDirectory;
  *
  * @author Felix
  */
-class NoteArrays {
+class NoteSchemaArrays {
 
     /**
      * Array für XYZ Notensystem.
