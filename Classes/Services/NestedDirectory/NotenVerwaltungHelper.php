@@ -13,17 +13,17 @@ class NotenVerwaltungHelper {
      * Array für die Anzahl der Note um diese dann im Chart auszugeben
      * @var type
      */
-    protected $resultArray = array("1.0" => 0,
-        "1.3" => 0,
-        "1.7" => 0,
-        "2.0" => 0,
-        "2.3" => 0,
-        "2.7" => 0,
-        "3.0" => 0,
-        "3.3" => 0,
-        "3.7" => 0,
-        "4.0" => 0,
-        "5.0" => 0
+    protected $resultArray = array('1.0' => 0,
+        '1.3' => 0,
+        '1.7' => 0,
+        '2.0' => 0,
+        '2.3' => 0,
+        '2.7' => 0,
+        '3.0' => 0,
+        '3.3' => 0,
+        '3.7' => 0,
+        '4.0' => 0,
+        '5.0' => 0
     );
 
     /**
@@ -37,8 +37,10 @@ class NotenVerwaltungHelper {
             $resultArray[$wert] = $resultArray[$wert] + 1;
         }
 
+        $json = json_encode($resultArray);
+        var_dump($json);
         // Wandelt das Array in ein Json Array und gibt dieses zurück.
-        return json_encode($resultArray, JSON_UNESCAPED_UNICODE);
+        return json_encode($resultArray);
     }
 
     /**

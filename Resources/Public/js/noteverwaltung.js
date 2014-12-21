@@ -80,6 +80,7 @@ function genchart(array) {
     // Chart
     var ctx = document.getElementById("gradeChart").getContext("2d");
     window.myLine = new Chart(ctx).Line(data, {
-        responsive: true
+        responsive: true,
+        scaleBeginAtZero: true
     });
 }
