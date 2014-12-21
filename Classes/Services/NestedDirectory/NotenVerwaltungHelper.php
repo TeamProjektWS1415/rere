@@ -38,7 +38,7 @@ class NotenVerwaltungHelper {
         }
 
         // Wandelt das Array in ein Json Array und gibt dieses zurück.
-        return json_encode($resultArray);
+        return json_encode($resultArray, JSON_UNESCAPED_UNICODE);
     }
 
 }
