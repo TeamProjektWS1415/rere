@@ -71,7 +71,7 @@
                                 <td><f:form.select property="{note.wert}" options="{options}" value="{note.wert}" class="form-control" title="Bitte eine Note auswählen"/></td>
                                 <td><textarea class="form-control" rows="1" placeholder="Kommentar" data-toggle="tooltip" data-placement="bottom" title="Kommentar zur Note">{note.kommentar}</textarea></td>
                                 <td>
-                                <f:link.action class="delete" action="delete" onclick="delentry(123456, $(this).attr('href'));
+                                <f:link.action class="delete" action="delete" onclick="delentry('Wollen Sie den Pruefling mit Matrikelnummer 12345 wirklich aus diesem Fach loeschen?', $(this).attr('href'));
                                         return false;" arguments="{note : note}"><span class="glyphicon glyphicon-remove" aria-hidden="true" data-toggle="tooltip" data-placement="bottom" title="Löscht diesen Datensatz"></span></f:link.action>
                                 </tr>
                             </f:form>

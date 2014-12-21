@@ -2,113 +2,115 @@
 <f:layout name="Rere" />
 
 <f:section name="content">
-	<div class="container-fluid wrapper">
-            <div class="row">
-				<div name="breadcrumb" class="col-md-12">
-					<ol class="breadcrumb">
-					    <li class="active">Result Repository</li>
-						</ol>
-				</div>
-                <div class="col-md-4">
-                    <h1>Result Repository</h1>
-                </div>
+    <div class="container-fluid wrapper">
+        <div class="row">
+            <div name="breadcrumb" class="col-md-12">
+                <ol class="breadcrumb">
+                    <li class="active">Result Repository</li>
+                </ol>
+            </div>
+            <div class="col-md-4">
+                <h1>Result Repository</h1>
+            </div>
 
-                <div class="col-md-8">
-                    <br>
-                    <nav class="navbar navbar-default" role="navigation">
-                        <div class="container-fluid">
-                            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                                <ul class="nav navbar-nav">
-                                    <li><a href="PrueflingAnlegen.html" data-toggle="tooltip"
-                                           data-placement="bottom" title="Legt einen neuen Prüfling an">Prüflinge
-                                            anlegen</a></li>
-                                    <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" >Import <span class="caret"></span></a>
-                                        <ul class="dropdown-menu" role="menu">
-                                            <li><a href="#">Import Prüflinge</a></li>
-                                            <li><a href="#">Import Back-Up</a></li>
-                                        </ul></li>
-                                    <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button">Export <span class="caret"></span></a>
-                                        <ul class="dropdown-menu" role="menu">
-                                            <li><a href="#">Prüflinge</a></li>
-                                            <li><a href="#">Module und Fächer</a></li>
-                                        </ul></li>
-                                    <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button">Intervall einstellen<span class="caret"></span>
-                                        </a>
-                                        <ul class="dropdown-menu" role="menu">
-                                            <li><a href="#">Studienhalbjahr</a></li>
-                                            <li><a href="#">Schuljahr</a></li>
-                                        </ul></li>
-                                </ul>
-                            </div>
+            <div class="col-md-8">
+                <br>
+                <nav class="navbar navbar-default" role="navigation">
+                    <div class="container-fluid">
+                        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                            <ul class="nav navbar-nav">
+                                <li><a href="PrueflingAnlegen.html" data-toggle="tooltip"
+                                       data-placement="bottom" title="Legt einen neuen Prüfling an">Prüflinge
+                                        anlegen</a></li>
+                                <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" >Import <span class="caret"></span></a>
+                                    <ul class="dropdown-menu" role="menu">
+                                        <li><a href="#">Import Prüflinge</a></li>
+                                        <li><a href="#">Import Back-Up</a></li>
+                                    </ul></li>
+                                <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button">Export <span class="caret"></span></a>
+                                    <ul class="dropdown-menu" role="menu">
+                                        <li><a href="#">Prüflinge</a></li>
+                                        <li><a href="#">Module und Fächer</a></li>
+                                    </ul></li>
+                                <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button">Intervall einstellen<span class="caret"></span>
+                                    </a>
+                                    <ul class="dropdown-menu" role="menu">
+                                        <li><a href="#">Studienhalbjahr</a></li>
+                                        <li><a href="#">Schuljahr</a></li>
+                                    </ul></li>
+                            </ul>
                         </div>
-                    </nav>
-                </div>
+                    </div>
+                </nav>
             </div>
-            <div class="row">
-                <div class="col-md-3">
-                    <nav class="navbar navbar-default" role="navigation">
-                        <div class="container-fluid">
-                            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-2">
-                                <ul class="nav navbar-nav">
-                                    <li><a href="#" data-toggle="tooltip" data-placement="bottom" title="Zu SS14"><span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span></a></li>
-                                    <li><h4 class="navbarposition">WS14/15</h4></li>
-                                    <li><a href="#" data-toggle="tooltip" data-placement="bottom" title="Zu SS15"><span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span></a></li>
-                                </ul>
-                            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-3">
+                <nav class="navbar navbar-default" role="navigation">
+                    <div class="container-fluid">
+                        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-2">
+                            <ul class="nav navbar-nav">
+                                <li><a href="#" data-toggle="tooltip" data-placement="bottom" title="Zu SS14"><span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span></a></li>
+                                <li><h4 class="navbarposition">WS14/15</h4></li>
+                                <li><a href="#" data-toggle="tooltip" data-placement="bottom" title="Zu SS15"><span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span></a></li>
+                            </ul>
                         </div>
-                    </nav>
-                </div>
+                    </div>
+                </nav>
             </div>
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="panel-group tx_rere" id="accordion" role="tablist">
-					<f:for each="{moduls}" as="modul">
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="panel-group tx_rere" id="accordion" role="tablist">
+                    <f:for each="{moduls}" as="modul">
                         <div class="panel panel-default">
                             <div class="panel-heading" role="tab" id="überschriftEins">
                                 <h3 class="panel-title">
                                     <a data-toggle="collapse" data-parent="#accordion" href="#collapseEins" aria-expanded="true" aria-controls="collapseEins">{modul.modulname}</a>
-                                    <a class="btn btn-default modulloeschenbutton" data-toggle="tooltip" data-placement="bottom" title="Dieses Modul und die zugeordneten Fächer löschen">Löschen</a>
+                                    <a class="btn btn-default modulloeschenbutton" onclick="delentry('Wollen Sie das Modul mit allen zugehoerenden Faechern und Noten wirklich loeschen?', $(this).attr('href'));
+                                            return false;" data-toggle="tooltip" data-placement="bottom" title="Dieses Modul und die zugeordneten Fächer löschen">Löschen</a>
                                 </h3>
                             </div>
                             <div id="collapseEins" class="panel-collapse collapse in" role="tabpanel">
                                 <div class="panel-body">
                                     <ul>
-                                        <li><span class="col-md-4">Softwaretechnik 1</span> <span class="col-md-7"><a href="Notenverwaltung.html">Noten eintragen/anzeigen</a> | <a href="PrueflingeZuweisen.html">Prüflinge zuweisen</a> | <a class="deletefach" href="#"><span class="glyphicon glyphicon-remove" aria-hidden="true" data-toggle="tooltip" data-placement="bottom" title="Dieses Fach samt eingetragener Noten löschen"></span> </a></span></li>
+                                        <li><span class="col-md-4">Softwaretechnik 1</span> <span class="col-md-7"><a href="Notenverwaltung.html">Noten eintragen/anzeigen</a> | <a href="PrueflingeZuweisen.html">Prüflinge zuweisen</a> | <a class="deletefach" href="#" onclick="delentry('Wollen Sie das Fach mit allen zugehoerenden Noten wirklich loeschen?', $(this).attr('href'));
+                                                return false;"><span class="glyphicon glyphicon-remove" aria-hidden="true" data-toggle="tooltip" data-placement="bottom" title="Dieses Fach samt eingetragener Noten löschen"></span> </a></span></li>
                                         <li><span class="col-md-4">Softwaretechnik 2</span> <span class="col-md-7"><a href="Notenverwaltung.html">Noten eintragen/anzeigen</a> | <a href="PrueflingeZuweisen.html">Prüflinge zuweisen</a> | <a class="deletefach" href="#"> <span class="glyphicon glyphicon-remove" aria-hidden="true" data-toggle="tooltip" data-placement="bottom" title="Dieses Fach samt eingetragener Noten löschen"></span> </a></span></li>
                                     </ul>
                                     <a class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Ein Fach zu diesem Modul hinzufügen" href="ModulFachHinzufuegen.html">Fach hinzufügen</a>
                                 </div>
                             </div>
                         </div>
-						</f:for>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-12">
-                    <a class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Ein neues Modul hinzufügen" href="ModulFachHinzufuegen.html">Modul hinzufügen</a>
+                    </f:for>
                 </div>
             </div>
         </div>
+        <div class="row">
+            <div class="col-md-12">
+                <a class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Ein neues Modul hinzufügen" href="ModulFachHinzufuegen.html">Modul hinzufügen</a>
+            </div>
+        </div>
+    </div>
 
-        <!--- Popup Confirm -->
-        <div class="modal fade" id="popup" tabindex="-1" role="dialog" aria-labelledby="popuplabel" aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-                        <h4 class="modal-title" id="popupTitle"></h4>
-                    </div>
-                    <div class="modal-body">
-                        <span class="popuptext"></span>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-primary">Zustimmen</button>
-                    </div>
+    <!--- Popup Confirm -->
+    <div class="modal fade" id="popup" tabindex="-1" role="dialog" aria-labelledby="popuplabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                    <h4 class="modal-title" id="popupTitle"></h4>
+                </div>
+                <div class="modal-body">
+                    <span class="popuptext"></span>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Zustimmen</button>
                 </div>
             </div>
         </div>
+    </div>
 
     <h1>Listing for Modul</h1>
 
