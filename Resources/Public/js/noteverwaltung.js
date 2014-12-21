@@ -45,12 +45,25 @@ $(document).ready(function () {
     });
 });
 
+/**
+ * Generiert das chart.
+ * @param {type} array
+ * @returns {undefined}
+ */
 function genchart(array) {
-    alert(array);
-    values = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
 
+    var labels = [];
+    var results = [];
+
+    // Itteriert durch das vom controller gesendete Array und erzeugt dynamisch werte für das Label des Chars und der Werte
+    for (r in array) {
+        labels.push(r);
+        results.push(array[r]);
+    }
+
+    // Chart Data configs.
     var data = {
-        labels: ["1", "1,3", "1,7", "2", "2,3", "2,7", "3", "3,3", "3,7", "4", "5"],
+        labels: labels,
         datasets: [
             {
                 label: "Noten",
@@ -60,7 +73,7 @@ function genchart(array) {
                 pointStrokeColor: "#fff",
                 pointHighlightFill: "#fff",
                 pointHighlightStroke: "rgba(220,220,220,1)",
-                data: values
+                data: results
             }
         ]
     };

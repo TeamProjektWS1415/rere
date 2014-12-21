@@ -63,16 +63,6 @@
                         </thead>
                         <tbody>
                         <f:for each="{notes}" as="note">
-
-                            <script type="text/javascript">
-
-                                var array = {f:format.htmlentitiesDecode(value:chartarray)};
-
-                                $(document).ready(function () {
-                                    genchart(array);
-                                });
-                            </script>
-
                             <tr>
                             <f:form name="updateNote">
                                 <td><span class="value">123456</span><input type="text" class="form-control hidden" value="123456"/></td>
@@ -86,6 +76,16 @@
                                 </tr>
                             </f:form>
                         </f:for>
+
+                        <script type="text/javascript">
+
+                            var array = {f:format.htmlentitiesDecode(value:chartarray)};
+
+                            $(document).ready(function () {
+                                genchart(array);
+                            });
+                        </script>
+
                         <tr>
                         <f:form action="create" name="newNote" object="{newNote}">
                             <td><input type="text" class="form-control" data-toggle="tooltip" data-placement="bottom" title="Nach MatrikelNr suchen" placeholder="Matrikel Nr."></td>

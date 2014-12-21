@@ -56,6 +56,11 @@ class NotenVerwaltungHelper {
         return $sum / $count;
     }
 
+    /**
+     * Funktion zum Prüfen ob für einen Wert bereits eine Note gesetzt wurde
+     * @param type $notenliste
+     * @return int Anzahl der gesetzten
+     */
     public function checkIfWertisSet($notenliste) {
         $count = 0;
         foreach ($notenliste as $result) {
