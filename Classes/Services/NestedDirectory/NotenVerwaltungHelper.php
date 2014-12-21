@@ -41,4 +41,19 @@ class NotenVerwaltungHelper {
         return json_encode($resultArray, JSON_UNESCAPED_UNICODE);
     }
 
+    /**
+     * Berechnet den Durchschnitt der Klausur / Prüfung / etc.
+     * @param type $notenliste
+     * @return type int
+     */
+    public function calculateAverage($notenliste) {
+        $sum = 0;
+        $count = 0;
+        foreach ($notenliste as $result) {
+            $sum += $result->getWert();
+            $count++;
+        }
+        return $sum / $count;
+    }
+
 }

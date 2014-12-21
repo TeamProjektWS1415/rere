@@ -65,6 +65,7 @@ class NoteController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController 
         $this->view->assign('options', $notesList->getMarks());
         $this->view->assign('notes', $notes);
         $this->view->assign('chartarray', $helper->genArray($notes));
+        $this->view->assign('avg', $helper->calculateAverage($notes));
     }
 
     /**
