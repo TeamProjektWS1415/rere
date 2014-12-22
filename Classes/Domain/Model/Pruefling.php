@@ -1,7 +1,8 @@
 <?php
+
 namespace ReRe\Rere\Domain\Model;
 
-/***************************************************************
+/* * *************************************************************
  *
  *  Copyright notice
  *
@@ -29,92 +30,118 @@ namespace ReRe\Rere\Domain\Model;
  *  GNU General Public License for more details.
  *
  *  This copyright notice MUST APPEAR in all copies of the script!
- ***************************************************************/
+ * ************************************************************* */
 
 /**
  * Pruefling
  */
 class Pruefling extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 
-	/**
-	 * matrikelnr
-	 * 
-	 * @var string
-	 * @validate NotEmpty
-	 */
-	protected $matrikelnr = '';
+    /**
+     * matrikelnr
+     *
+     * @var string
+     * @validate NotEmpty
+     */
+    protected $matrikelnr = '';
 
-	/**
-	 * vorname
-	 * 
-	 * @var string
-	 * @validate NotEmpty
-	 */
-	protected $vorname = '';
+    /**
+     * vorname
+     *
+     * @var string
+     * @validate NotEmpty
+     */
+    protected $vorname = '';
 
-	/**
-	 * nachname
-	 * 
-	 * @var string
-	 * @validate NotEmpty
-	 */
-	protected $nachname = '';
+    /**
+     * nachname
+     *
+     * @var string
+     * @validate NotEmpty
+     */
+    protected $nachname = '';
 
-	/**
-	 * Returns the matrikelnr
-	 * 
-	 * @return string $matrikelnr
-	 */
-	public function getMatrikelnr() {
-		return $this->matrikelnr;
-	}
+    /**
+     * typo3FEUser
+     *
+     * @var \TYPO3\CMS\Extbase\Domain\Model\FrontendUser
+     */
+    protected $typo3FEUser = NULL;
 
-	/**
-	 * Sets the matrikelnr
-	 * 
-	 * @param string $matrikelnr
-	 * @return void
-	 */
-	public function setMatrikelnr($matrikelnr) {
-		$this->matrikelnr = $matrikelnr;
-	}
+    /**
+     * Returns the matrikelnr
+     *
+     * @return string $matrikelnr
+     */
+    public function getMatrikelnr() {
+        return $this->matrikelnr;
+    }
 
-	/**
-	 * Returns the vorname
-	 * 
-	 * @return string $vorname
-	 */
-	public function getVorname() {
-		return $this->vorname;
-	}
+    /**
+     * Sets the matrikelnr
+     *
+     * @param string $matrikelnr
+     * @return void
+     */
+    public function setMatrikelnr($matrikelnr) {
+        $this->matrikelnr = $matrikelnr;
+    }
 
-	/**
-	 * Sets the vorname
-	 * 
-	 * @param string $vorname
-	 * @return void
-	 */
-	public function setVorname($vorname) {
-		$this->vorname = $vorname;
-	}
+    /**
+     * Returns the vorname
+     *
+     * @return string $vorname
+     */
+    public function getVorname() {
+        return $this->vorname;
+    }
 
-	/**
-	 * Returns the nachname
-	 * 
-	 * @return string $nachname
-	 */
-	public function getNachname() {
-		return $this->nachname;
-	}
+    /**
+     * Sets the vorname
+     *
+     * @param string $vorname
+     * @return void
+     */
+    public function setVorname($vorname) {
+        $this->vorname = $vorname;
+    }
 
-	/**
-	 * Sets the nachname
-	 * 
-	 * @param string $nachname
-	 * @return void
-	 */
-	public function setNachname($nachname) {
-		$this->nachname = $nachname;
-	}
+    /**
+     * Returns the nachname
+     *
+     * @return string $nachname
+     */
+    public function getNachname() {
+        return $this->nachname;
+    }
+
+    /**
+     * Sets the nachname
+     *
+     * @param string $nachname
+     * @return void
+     */
+    public function setNachname($nachname) {
+        $this->nachname = $nachname;
+    }
+
+    /**
+     * Returns the typo3FEUser
+     *
+     * @return \TYPO3\CMS\Extbase\Domain\Model\FrontendUser typo3FEUser
+     */
+    public function getTypo3FEUser() {
+        return $this->typo3FEUser;
+    }
+
+    /**
+     * Sets the typo3FEUser
+     *
+     * @param string $typo3FEUser
+     * @return \TYPO3\CMS\Extbase\Domain\Model\FrontendUser typo3FEUser
+     */
+    public function setTypo3FEUser($typo3FEUser) {
+        $this->typo3FEUser = $typo3FEUser;
+    }
 
 }

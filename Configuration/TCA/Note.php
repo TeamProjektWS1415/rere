@@ -109,7 +109,7 @@ $GLOBALS['TCA']['tx_rere_domain_model_note'] = array(
             'config' => array(
                 'type' => 'input',
                 'size' => 30,
-                'eval' => 'trim,required'
+                'eval' => 'trim'
             ),
         ),
         'fachnr' => array(
@@ -136,14 +136,7 @@ $GLOBALS['TCA']['tx_rere_domain_model_note'] = array(
                 'type' => 'inline',
                 'foreign_table' => 'tx_rere_domain_model_pruefling',
                 'minitems' => 0,
-                'maxitems' => 1,
-                'appearance' => array(
-                    'collapseAll' => 0,
-                    'levelLinksPosition' => 'top',
-                    'showSynchronizationLink' => 1,
-                    'showPossibleLocalizationRecords' => 1,
-                    'showAllLocalizationLink' => 1
-                ),
+                'maxitems' => 1
             ),
         ),
     ),
