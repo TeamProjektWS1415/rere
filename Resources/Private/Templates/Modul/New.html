@@ -31,8 +31,7 @@
                         <div class="form-group">
                             <label for="eingabefeldModul" class="col-sm-3 control-label"><f:translate key="tx_rere_domain_model_modul.modulname" /> <span class="required">*</span></label>
                             <div class="col-sm-9">
-                                <!--OHNE data-toggle="tooltip" data-placement="bottom"-->
-                                <f:form.textfield property="modulname" class="form-control" id="eingabefeldModul" placeholder="Modulname" title="Modulname hier eingeben"/>
+                                <f:form.textfield property="modulname" class="form-control gettooltip" id="eingabefeldModul" placeholder="Modulname" title="Modulname hier eingeben"/>
                                 <br>
                             </div>
                         </div>
@@ -41,8 +40,7 @@
                         <div class="form-group">
                             <label for="eingabefeldModulnummer" class="col-sm-3 control-label"><f:translate key="tx_rere_domain_model_modul.modulnr" /> <span class="required">*</span></label>
                             <div class="col-sm-9">
-                                <!--OHNE data-toggle="tooltip" data-placement="bottom"-->
-                                <f:form.textfield property="modulnr" class="form-control" id="eingabefeldModulnummer" placeholder="Modulnummer" title="Modulnummer hier eingeben"/>
+                                <f:form.textfield property="modulnr" class="form-control gettooltip" id="eingabefeldModulnummer" placeholder="Modulnummer" title="Modulnummer hier eingeben"/>
                                 <br>
                             </div>
                         </div>
@@ -50,8 +48,7 @@
                         <div class="form-group">
                             <label for="gueltigkeitszeitraum" class="col-sm-3 control-label"><f:translate key="tx_rere_domain_model_modul.gueltigkeitszeitraum" /> <span class="required">*</span></label>
                             <div class="col-sm-9">
-                                <!--OHNE data-toggle="tooltip" data-placement="bottom"-->
-                                <f:form.textfield property="gueltigkeitszeitraum"  value="{modul.gueltigkeitszeitraum->f:format.date()}" class="form-control" id="gueltigkeitszeitraum" placeholder="Gültigkeitszeitraum" title="Gültigkeitszeitraum eingeben"/>
+                                <f:form.textfield property="gueltigkeitszeitraum"  value="{modul.gueltigkeitszeitraum->f:format.date()}" class="form-control gettooltip" id="gueltigkeitszeitraum" placeholder="Gültigkeitszeitraum" title="Gültigkeitszeitraum eingeben"/>
                                 <br>
                             </div>
                         </div>
@@ -60,8 +57,7 @@
                         <div class="form-group">
                             <label for="eingabefeldFach" class="col-sm-3 control-label">Fach *</label>
                             <div class="col-sm-9">
-                                <!--OHNE data-toggle="tooltip" data-placement="bottom"-->
-                                <input type="text" class="form-control" id="eingabefeldFach" placeholder="Fach" required title="Fachname hier eingeben">
+                                <input type="text" class="form-control gettooltip" id="eingabefeldFach" placeholder="Fach" required title="Fachname hier eingeben">
                                 <br>
                             </div>
                         </div>
@@ -70,8 +66,7 @@
                         <div class="form-group">
                             <label for="eingabefeldFachnummer" class="col-sm-3 control-label">Fachnummer *</label>
                             <div class="col-sm-9">
-                                <!--OHNE data-toggle="tooltip" data-placement="bottom"-->
-                                <input type="text" class="form-control" id="eingabefeldFachnummer" placeholder="Fachnummer" required title="Fachnummer hier eingeben">
+                                <input type="text" class="form-control gettooltip" id="eingabefeldFachnummer" placeholder="Fachnummer" required title="Fachnummer hier eingeben">
                                 <br>
                             </div>
                         </div>
@@ -79,63 +74,54 @@
                         <!--Eingabefeld für Professor-->
                         <div class="form-group">
                             <label for="eingabefeldProfessor" class="col-sm-3 control-label">Professor *</label>
-                            <div class="col-sm-9">
-                                <!--OHNE data-toggle="tooltip" data-placement="bottom"-->
-                                <input type="text" class="form-control" id="eingabefeldProfessor" placeholder="Professor" required title="Für das Fach zuständiger Professor">
-                                <br>
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <div class="col-sm-offset-3">
-                                <!--Radiobutton für Benotet 15 Pkt. System-->
-                                <div class="col-sm-12">
-                                    <label>
-                                        <!--OHNE data-toggle="tooltip" data-placement="bottom"-->
-                                        <input type="radio" name="optionsfeldRadio" checked id="benotet15" value="option1" title="Modul nach 15 Punkte System benotet - System default !">
-                                        Benotet (15 Pkt. System)
-                                    </label>
-                                </div>
-                                <!--Radiobutton für unbenotet-->
-                                <div class="col-sm-12">
-                                    <label>
-                                        <!--OHNE data-toggle="tooltip" data-placement="bottom"-->
-                                        <input type="radio" name="optionsfeldRadio" id="unbenotet" value="option2" title="Modul unbenotet">
-                                        Unbenotet
-                                    </label>
-                                </div>
-                                <!--Radiobutton für Benotet Schulnoten-->
-                                <div class="col-sm-12">
-                                    <label>
-                                        <!--OHNE data-toggle="tooltip" data-placement="bottom"-->
-                                        <input type="radio" name="optionsfeldRadio" id="benotetschulnoten" value="option3" title="Modul nach Schulnotensystem benotet">
-                                        Benotet (Schulnoten)
-                                    </label>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="col-sm-offset-3 col-sm-12">
+                            <input type="text" class="form-control gettooltip" id="eingabefeldProfessor" placeholder="Professor" required title="Für das Fach zuständiger Professor">
                             <br>
-                            <strong>Die mit *) gekennzeichnete Felder sind Pflichtfelder</strong>
                         </div>
+                </div>
 
-                        <div class="form-group">
-                            <div class="col-sm-8">
-                            </div>
-                            <div class="col-sm-4">
-                                <br>
-                                <button type="submit" class="btn btn-primary btn-lg btn-block">Daten speichern</button>
-                            </div>
+                <div class="form-group">
+                    <div class="col-sm-offset-3">
+                        <!--Radiobutton für Benotet 15 Pkt. System-->
+                        <div class="col-sm-12">
+                            <label>
+                                <input type="radio" class="gettooltip" name="optionsfeldRadio" checked id="benotet15" value="option1" title="Modul nach 15 Punkte System benotet - System default !">
+                                Benotet (15 Pkt. System)
+                            </label>
                         </div>
-
-                    </form>
-
-                    <div class="col-md-5">
+                        <!--Radiobutton für unbenotet-->
+                        <div class="col-sm-12">
+                            <label>
+                                <input type="radio" name="optionsfeldRadio" class="gettooltip" id="unbenotet" value="option2" title="Modul unbenotet">
+                                Unbenotet
+                            </label>
+                        </div>
+                        <!--Radiobutton für Benotet Schulnoten-->
+                        <div class="col-sm-12">
+                            <label>
+                                <input type="radio" name="optionsfeldRadio" class="gettooltip" id="benotetschulnoten" value="option3" title="Modul nach Schulnotensystem benotet">
+                                Benotet (Schulnoten)
+                            </label>
+                        </div>
                     </div>
                 </div>
+
+                <div class="col-sm-offset-3 col-sm-12">
+                    <br>
+                    <strong>Die mit *) gekennzeichnete Felder sind Pflichtfelder</strong>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-sm-8">
+                    </div>
+                    <div class="col-sm-4">
+                        <br>
+                        <button type="submit" class="btn btn-primary btn-lg btn-block">Daten speichern</button>
+                    </div>
+                </div>
+
+                <div class="col-md-5">
+                </div>
             </div>
-            ´
         </f:form>
     </div>
 </f:section>
