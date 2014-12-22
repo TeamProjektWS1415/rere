@@ -64,12 +64,12 @@
                         <div class="panel panel-default">
                             <div class="panel-heading" role="tab" id="überschriftEins">
                                 <h3 class="panel-title">
-                                    <a data-toggle="collapse" data-parent="#accordion" href="#collapseEins" aria-expanded="true" aria-controls="collapseEins">{modul.modulname}</a>
+                                    <a data-toggle="collapse" data-parent="#accordion" href="#{modul.modulnr}" aria-expanded="true" aria-controls="collapseEins">{modul.modulname}</a>
                                     <f:link.action class="delete btn btn-default modulloeschenbutton" action="delete" onclick="delentry('Wollen Sie das Modul mit allen zugehoerenden Faechern und Noten wirklich loeschen?', $(this).attr('href'));
                                             return false;" arguments="{modul : modul}" title="Dieses Modul und die zugeordneten Fächer löschen">Löschen</f:link.action>
                                 </h3>
                             </div>
-                            <div id="collapseEins" class="panel-collapse collapse in" role="tabpanel">
+                            <div id="{modul.modulnr}" class="panel-collapse collapse in" role="tabpanel">
                                 <div class="panel-body">
                                     <ul>
                                         <li><span class="col-md-4">Softwaretechnik 1</span> <span class="col-md-7"><a href="Notenverwaltung.html">Noten eintragen/anzeigen</a> | <a href="PrueflingeZuweisen.html">Prüflinge zuweisen</a> | <a class="deletefach" href="#" onclick="delentry('Wollen Sie das Fach mit allen zugehoerenden Noten wirklich loeschen?', $(this).attr('href'));
