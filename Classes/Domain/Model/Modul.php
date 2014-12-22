@@ -1,7 +1,8 @@
 <?php
+
 namespace ReRe\Rere\Domain\Model;
 
-/***************************************************************
+/* * *************************************************************
  *
  *  Copyright notice
  *
@@ -29,92 +30,92 @@ namespace ReRe\Rere\Domain\Model;
  *  GNU General Public License for more details.
  *
  *  This copyright notice MUST APPEAR in all copies of the script!
- ***************************************************************/
+ * ************************************************************* */
 
 /**
  * Modul
  */
 class Modul extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 
-	/**
-	 * modulnr
-	 * 
-	 * @var string
-	 * @validate NotEmpty
-	 */
-	protected $modulnr = '';
+    /**
+     * modulnr
+     *
+     * @var string
+     * @validate NotEmpty
+     */
+    protected $modulnr = '';
 
-	/**
-	 * modulname
-	 * 
-	 * @var string
-	 * @validate NotEmpty
-	 */
-	protected $modulname = '';
+    /**
+     * modulname
+     *
+     * @var string
+     * @validate NotEmpty
+     */
+    protected $modulname = '';
 
-	/**
-	 * gueltigkeitszeitraum
-	 * 
-	 * @var string
-	 * @validate NotEmpty
-	 */
-	protected $gueltigkeitszeitraum = NULL;
+    /**
+     * gueltigkeitszeitraum
+     *
+     * @var string
+     * @validate NotEmpty
+     */
+    protected $gueltigkeitszeitraum = NULL;
 
-	/**
-	 * Returns the modulnr
-	 * 
-	 * @return string $modulnr
-	 */
-	public function getModulnr() {
-		return $this->modulnr;
-	}
+    /**
+     * Returns the modulnr
+     *
+     * @return string $modulnr
+     */
+    public function getModulnr() {
+        return $this->modulnr;
+    }
 
-	/**
-	 * Sets the modulnr
-	 * 
-	 * @param string $modulnr
-	 * @return void
-	 */
-	public function setModulnr($modulnr) {
-		$this->modulnr = $modulnr;
-	}
+    /**
+     * Sets the modulnr
+     *
+     * @param string $modulnr
+     * @return void
+     */
+    public function setModulnr($modulnr) {
+        $this->modulnr = $modulnr;
+    }
 
-	/**
-	 * Returns the modulname
-	 * 
-	 * @return string $modulname
-	 */
-	public function getModulname() {
-		return $this->modulname;
-	}
+    /**
+     * Returns the modulname
+     *
+     * @return string $modulname
+     */
+    public function getModulname() {
+        return $this->modulname;
+    }
 
-	/**
-	 * Sets the modulname
-	 * 
-	 * @param string $modulname
-	 * @return void
-	 */
-	public function setModulname($modulname) {
-		$this->modulname = $modulname;
-	}
+    /**
+     * Sets the modulname
+     *
+     * @param string $modulname
+     * @return void
+     */
+    public function setModulname($modulname) {
+        $this->modulname = $modulname;
+    }
 
-	/**
-	 * Returns the gueltigkeitszeitraum
-	 * 
-	 * @return string gueltigkeitszeitraum
-	 */
-	public function getGueltigkeitszeitraum() {
-		return $this->gueltigkeitszeitraum;
-	}
+    /**
+     * Returns the gueltigkeitszeitraum
+     *
+     * @return string gueltigkeitszeitraum
+     */
+    public function getGueltigkeitszeitraum() {
+        return $this->gueltigkeitszeitraum;
+    }
 
-	/**
-	 * Sets the gueltigkeitszeitraum
-	 * 
-	 * @param \DateTime $gueltigkeitszeitraum
-	 * @return string gueltigkeitszeitraum
-	 */
-	public function setGueltigkeitszeitraum(\DateTime $gueltigkeitszeitraum) {
-		$this->gueltigkeitszeitraum = $gueltigkeitszeitraum;
-	}
+    /**
+     * Sets the gueltigkeitszeitraum
+     *
+     * @param \DateTime $gueltigkeitszeitraum
+     * @return string gueltigkeitszeitraum
+     */
+    public function setGueltigkeitszeitraum($gueltigkeitszeitraum) {
+        $this->gueltigkeitszeitraum = $gueltigkeitszeitraum;
+    }
 
 }
