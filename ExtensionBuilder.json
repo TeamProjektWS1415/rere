@@ -39,16 +39,6 @@
                             "propertyDescription": "",
                             "propertyIsExcludeField": true,
                             "propertyIsRequired": true,
-                            "propertyName": "notenr",
-                            "propertyType": "Integer",
-                            "uid": "7919724699"
-                        },
-                        {
-                            "allowedFileTypes": "",
-                            "maxItems": "1",
-                            "propertyDescription": "",
-                            "propertyIsExcludeField": true,
-                            "propertyIsRequired": true,
                             "propertyName": "wert",
                             "propertyType": "String",
                             "uid": "28962025742"

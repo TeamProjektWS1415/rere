@@ -50,7 +50,7 @@ $GLOBALS['TCA']['tx_rere_domain_model_note'] = array(
             'starttime' => 'starttime',
             'endtime' => 'endtime',
         ),
-        'searchFields' => 'notenr,wert,kommentar,fachnr,matrikelnr,',
+        'searchFields' => 'wert,kommentar,fachnr,matrikelnr,',
         'dynamicConfigFile' => \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extPath($_EXTKEY) . 'Configuration/TCA/Note.php',
         'iconfile' => \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extRelPath($_EXTKEY) . 'Resources/Public/Icons/tx_rere_domain_model_note.gif'
     ),

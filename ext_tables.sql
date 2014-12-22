@@ -1,16 +1,16 @@
 #
-# Table structure for table 'tx_rere_domain_model_note'
+# Table structure for table 'tx_rere_domain_model_modul'
 #
-CREATE TABLE tx_rere_domain_model_note (
+CREATE TABLE tx_rere_domain_model_modul (
 
 	uid int(11) NOT NULL auto_increment,
 	pid int(11) DEFAULT '0' NOT NULL,
 
-	notenr int(11) DEFAULT '0' NOT NULL,
-	wert varchar(255) DEFAULT '' NOT NULL,
-	kommentar varchar(255) DEFAULT '' NOT NULL,
-	fachnr int(11) unsigned DEFAULT '0',
-	matrikelnr int(11) unsigned DEFAULT '0',
+	fach int(11) unsigned DEFAULT '0' NOT NULL,
+
+	modulnr varchar(255) DEFAULT '' NOT NULL,
+	modulname varchar(255) DEFAULT '' NOT NULL,
+	gueltigkeitszeitraum varchar(255) DEFAULT '' NOT NULL,
 
 	tstamp int(11) unsigned DEFAULT '0' NOT NULL,
 	crdate int(11) unsigned DEFAULT '0' NOT NULL,
@@ -49,11 +49,14 @@ CREATE TABLE tx_rere_domain_model_fach (
 	uid int(11) NOT NULL auto_increment,
 	pid int(11) DEFAULT '0' NOT NULL,
 
+	note int(11) unsigned DEFAULT '0' NOT NULL,
+
 	fachnr varchar(255) DEFAULT '' NOT NULL,
 	fachname varchar(255) DEFAULT '' NOT NULL,
 	pruefer varchar(255) DEFAULT '' NOT NULL,
 	notenschema varchar(255) DEFAULT '' NOT NULL,
-	modulnr int(11) unsigned DEFAULT '0',
+	modulnr int(11) unsigned DEFAULT '0' NOT NULL,
+	matrikelnr int(11) unsigned DEFAULT '0' NOT NULL,
 
 	tstamp int(11) unsigned DEFAULT '0' NOT NULL,
 	crdate int(11) unsigned DEFAULT '0' NOT NULL,
@@ -85,16 +88,17 @@ CREATE TABLE tx_rere_domain_model_fach (
 );
 
 #
-# Table structure for table 'tx_rere_domain_model_modul'
+# Table structure for table 'tx_rere_domain_model_note'
 #
-CREATE TABLE tx_rere_domain_model_modul (
+CREATE TABLE tx_rere_domain_model_note (
 
 	uid int(11) NOT NULL auto_increment,
 	pid int(11) DEFAULT '0' NOT NULL,
 
-	modulnr varchar(255) DEFAULT '' NOT NULL,
-	modulname varchar(255) DEFAULT '' NOT NULL,
-	gueltigkeitszeitraum varchar(255) DEFAULT '' NOT NULL,
+	wert varchar(255) DEFAULT '' NOT NULL,
+	kommentar varchar(255) DEFAULT '' NOT NULL,
+	fachnr int(11) unsigned DEFAULT '0' NOT NULL,
+	matrikelnr int(11) unsigned DEFAULT '0',
 
 	tstamp int(11) unsigned DEFAULT '0' NOT NULL,
 	crdate int(11) unsigned DEFAULT '0' NOT NULL,
@@ -136,6 +140,7 @@ CREATE TABLE tx_rere_domain_model_pruefling (
 	matrikelnr varchar(255) DEFAULT '' NOT NULL,
 	vorname varchar(255) DEFAULT '' NOT NULL,
 	nachname varchar(255) DEFAULT '' NOT NULL,
+	typo3_f_e_user int(11) unsigned DEFAULT '0',
 
 	tstamp int(11) unsigned DEFAULT '0' NOT NULL,
 	crdate int(11) unsigned DEFAULT '0' NOT NULL,
@@ -163,5 +168,36 @@ CREATE TABLE tx_rere_domain_model_pruefling (
 	KEY parent (pid),
 	KEY t3ver_oid (t3ver_oid,t3ver_wsid),
  KEY language (l10n_parent,sys_language_uid)
+
+);
+
+#
+# Table structure for table 'tx_rere_domain_model_modul'
+#
+CREATE TABLE tx_rere_domain_model_modul (
+
+	fach  int(11) unsigned DEFAULT '0' NOT NULL,
+
+);
+
+#
+# Table structure for table 'tx_rere_fach_pruefling_mm'
+#
+CREATE TABLE tx_rere_fach_pruefling_mm (
+	uid_local int(11) unsigned DEFAULT '0' NOT NULL,
+	uid_foreign int(11) unsigned DEFAULT '0' NOT NULL,
+	sorting int(11) unsigned DEFAULT '0' NOT NULL,
+	sorting_foreign int(11) unsigned DEFAULT '0' NOT NULL,
+
+	KEY uid_local (uid_local),
+	KEY uid_foreign (uid_foreign)
+);
+
+#
+# Table structure for table 'tx_rere_domain_model_fach'
+#
+CREATE TABLE tx_rere_domain_model_fach (
+
+	note  int(11) unsigned DEFAULT '0' NOT NULL,
 
 );
