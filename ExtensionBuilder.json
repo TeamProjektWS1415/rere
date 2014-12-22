@@ -3,8 +3,8 @@
         {
             "config": {
                 "position": [
-                    692,
-                    309
+                    42,
+                    53
                 ]
             },
             "name": "New Model Object",
@@ -17,7 +17,7 @@
                     "_default4_delete": true,
                     "customActions": []
                 },
-                "name": "Note",
+                "name": "Modul",
                 "objectsettings": {
                     "addDeletedField": true,
                     "addHiddenField": true,
@@ -29,7 +29,7 @@
                     "parentClass": "",
                     "sorting": false,
                     "type": "Entity",
-                    "uid": "421513028011"
+                    "uid": "1020496433717"
                 },
                 "propertyGroup": {
                     "properties": [
@@ -38,10 +38,10 @@
                             "maxItems": "1",
                             "propertyDescription": "",
                             "propertyIsExcludeField": true,
-                            "propertyIsRequired": true,
-                            "propertyName": "wert",
+                            "propertyIsRequired": false,
+                            "propertyName": "modulnr",
                             "propertyType": "String",
-                            "uid": "28962025742"
+                            "uid": "468709707194"
                         },
                         {
                             "allowedFileTypes": "",
@@ -49,43 +49,32 @@
                             "propertyDescription": "",
                             "propertyIsExcludeField": true,
                             "propertyIsRequired": true,
-                            "propertyName": "kommentar",
+                            "propertyName": "modulname",
                             "propertyType": "String",
-                            "uid": "96281446867"
+                            "uid": "54863894702"
+                        },
+                        {
+                            "allowedFileTypes": "",
+                            "maxItems": "1",
+                            "propertyDescription": "",
+                            "propertyIsExcludeField": true,
+                            "propertyIsRequired": false,
+                            "propertyName": "gueltigkeitszeitraum",
+                            "propertyType": "String",
+                            "uid": "500836521140"
                         }
                     ]
                 },
                 "relationGroup": {
-                    "relations": [
-                        {
-                            "foreignRelationClass": "",
-                            "lazyLoading": false,
-                            "propertyIsExcludeField": true,
-                            "relationDescription": "",
-                            "relationName": "fachnr",
-                            "relationType": "zeroToOne",
-                            "relationWire": "[wired]",
-                            "uid": "816290811170"
-                        },
-                        {
-                            "foreignRelationClass": "",
-                            "lazyLoading": false,
-                            "propertyIsExcludeField": true,
-                            "relationDescription": "",
-                            "relationName": "matrikelnr",
-                            "relationType": "zeroToOne",
-                            "relationWire": "[wired]",
-                            "uid": "824219016853"
-                        }
-                    ]
+                    "relations": []
                 }
             }
         },
         {
             "config": {
                 "position": [
-                    404,
-                    275
+                    449,
+                    2
                 ]
             },
             "name": "New Model Object",
@@ -110,7 +99,7 @@
                     "parentClass": "",
                     "sorting": false,
                     "type": "Entity",
-                    "uid": "303844844765"
+                    "uid": "920830541060"
                 },
                 "propertyGroup": {
                     "properties": [
@@ -119,10 +108,10 @@
                             "maxItems": "1",
                             "propertyDescription": "",
                             "propertyIsExcludeField": true,
-                            "propertyIsRequired": true,
+                            "propertyIsRequired": false,
                             "propertyName": "fachnr",
                             "propertyType": "String",
-                            "uid": "106322263367"
+                            "uid": "1192466533461"
                         },
                         {
                             "allowedFileTypes": "",
@@ -132,17 +121,17 @@
                             "propertyIsRequired": true,
                             "propertyName": "fachname",
                             "propertyType": "String",
-                            "uid": "965741332551"
+                            "uid": "1111113014355"
                         },
                         {
                             "allowedFileTypes": "",
                             "maxItems": "1",
                             "propertyDescription": "",
                             "propertyIsExcludeField": true,
-                            "propertyIsRequired": true,
+                            "propertyIsRequired": false,
                             "propertyName": "pruefer",
                             "propertyType": "String",
-                            "uid": "432254771475"
+                            "uid": "578078022455"
                         },
                         {
                             "allowedFileTypes": "",
@@ -152,7 +141,7 @@
                             "propertyIsRequired": true,
                             "propertyName": "notenschema",
                             "propertyType": "String",
-                            "uid": "428620376593"
+                            "uid": "201831704179"
                         }
                     ]
                 },
@@ -164,9 +153,19 @@
                             "propertyIsExcludeField": true,
                             "relationDescription": "",
                             "relationName": "modulnr",
-                            "relationType": "zeroToOne",
+                            "relationType": "zeroToMany",
                             "relationWire": "[wired]",
-                            "uid": "667289147746"
+                            "uid": "120608392263"
+                        },
+                        {
+                            "foreignRelationClass": "",
+                            "lazyLoading": false,
+                            "propertyIsExcludeField": true,
+                            "relationDescription": "",
+                            "relationName": "matrikelnr",
+                            "relationType": "manyToMany",
+                            "relationWire": "[wired]",
+                            "uid": "644556802985"
                         }
                     ]
                 }
@@ -175,8 +174,8 @@
         {
             "config": {
                 "position": [
-                    63,
-                    212
+                    225,
+                    215
                 ]
             },
             "name": "New Model Object",
@@ -189,19 +188,19 @@
                     "_default4_delete": true,
                     "customActions": []
                 },
-                "name": "Modul",
+                "name": "Note",
                 "objectsettings": {
                     "addDeletedField": true,
                     "addHiddenField": true,
                     "addStarttimeEndtimeFields": true,
                     "aggregateRoot": true,
                     "categorizable": false,
-                    "description": "sssssssss",
+                    "description": "",
                     "mapToTable": "",
                     "parentClass": "",
                     "sorting": false,
                     "type": "Entity",
-                    "uid": "503418084056"
+                    "uid": "1390345533776"
                 },
                 "propertyGroup": {
                     "properties": [
@@ -211,42 +210,53 @@
                             "propertyDescription": "",
                             "propertyIsExcludeField": true,
                             "propertyIsRequired": true,
-                            "propertyName": "modulnr",
+                            "propertyName": "wert",
                             "propertyType": "String",
-                            "uid": "608926900509"
+                            "uid": "28556523550"
                         },
                         {
                             "allowedFileTypes": "",
                             "maxItems": "1",
                             "propertyDescription": "",
                             "propertyIsExcludeField": true,
-                            "propertyIsRequired": true,
-                            "propertyName": "modulname",
+                            "propertyIsRequired": false,
+                            "propertyName": "kommentar",
                             "propertyType": "String",
-                            "uid": "178426093758"
-                        },
-                        {
-                            "allowedFileTypes": "",
-                            "maxItems": "1",
-                            "propertyDescription": "",
-                            "propertyIsExcludeField": true,
-                            "propertyIsRequired": true,
-                            "propertyName": "gueltigkeitszeitraum",
-                            "propertyType": "String",
-                            "uid": "659211542979"
+                            "uid": "1062725688772"
                         }
                     ]
                 },
                 "relationGroup": {
-                    "relations": []
+                    "relations": [
+                        {
+                            "foreignRelationClass": "",
+                            "lazyLoading": false,
+                            "propertyIsExcludeField": true,
+                            "relationDescription": "",
+                            "relationName": "fachnr",
+                            "relationType": "zeroToMany",
+                            "relationWire": "[wired]",
+                            "uid": "385049550528"
+                        },
+                        {
+                            "foreignRelationClass": "",
+                            "lazyLoading": false,
+                            "propertyIsExcludeField": true,
+                            "relationDescription": "",
+                            "relationName": "matrikelnr",
+                            "relationType": "manyToOne",
+                            "relationWire": "[wired]",
+                            "uid": "1201649485865"
+                        }
+                    ]
                 }
             }
         },
         {
             "config": {
                 "position": [
-                    646,
-                    64
+                    1072,
+                    167
                 ]
             },
             "name": "New Model Object",
@@ -271,7 +281,7 @@
                     "parentClass": "",
                     "sorting": false,
                     "type": "Entity",
-                    "uid": "873096791788"
+                    "uid": "15919821871"
                 },
                 "propertyGroup": {
                     "properties": [
@@ -283,7 +293,7 @@
                             "propertyIsRequired": true,
                             "propertyName": "matrikelnr",
                             "propertyType": "String",
-                            "uid": "722206030347"
+                            "uid": "1326941568459"
                         },
                         {
                             "allowedFileTypes": "",
@@ -293,7 +303,7 @@
                             "propertyIsRequired": true,
                             "propertyName": "vorname",
                             "propertyType": "String",
-                            "uid": "303857143190"
+                            "uid": "366482411678"
                         },
                         {
                             "allowedFileTypes": "",
@@ -303,12 +313,23 @@
                             "propertyIsRequired": true,
                             "propertyName": "nachname",
                             "propertyType": "String",
-                            "uid": "1407736698325"
+                            "uid": "1130751738113"
                         }
                     ]
                 },
                 "relationGroup": {
-                    "relations": []
+                    "relations": [
+                        {
+                            "foreignRelationClass": "\\TYPO3\\CMS\\Extbase\\Domain\\Model\\FrontendUser",
+                            "lazyLoading": false,
+                            "propertyIsExcludeField": true,
+                            "relationDescription": "",
+                            "relationName": "typo3FEUser",
+                            "relationType": "zeroToOne",
+                            "relationWire": "",
+                            "uid": "884334932828"
+                        }
+                    ]
                 }
             }
         }
@@ -319,119 +340,84 @@
                 "actions": {
                     "controllerActionCombinations": ""
                 },
-                "description": "Notenverwaltung",
-                "key": "Notenverwaltung",
+                "description": "rere",
+                "key": "rere",
                 "mainModule": "user",
-                "name": "Result Repository",
-                "tabLabel": "Result Repository"
+                "name": "rere",
+                "tabLabel": "rere"
             }
         ],
-        "description": "Notenverwaltungs Extension f\u00fcr Typo3",
+        "description": "adasd",
         "emConf": {
             "category": "plugin",
             "custom_category": "",
-            "dependsOn": "typo3 => 6.2\nfluid => 6.0\nextbase => 6.0\n",
+            "dependsOn": "typo3 => 6.2\n",
             "disableLocalization": false,
             "disableVersioning": false,
             "sourceLanguage": "en",
             "state": "alpha",
             "targetVersion": "6.2",
-            "version": "0.1"
+            "version": ""
         },
         "extensionKey": "rere",
-        "name": "Result Repository",
+        "name": "rere",
         "originalExtensionKey": "rere",
-        "persons": [
-            {
-                "company": "TeamProjektWS14\/15",
-                "email": "info@felix-hohlwegler.de",
-                "name": "Felix Hohlwegler",
-                "role": "Developer"
-            },
-            {
-                "company": "TeamProjektWS14\/15",
-                "email": "sarah.kieninger@gmail.com",
-                "name": "Sarah Kieninger",
-                "role": "Developer"
-            },
-            {
-                "company": "TeamProjektWS14\/15",
-                "email": "",
-                "name": "Tim Wacker",
-                "role": "Developer"
-            },
-            {
-                "company": "TeamProjektWS14\/15",
-                "email": "",
-                "name": "Nejat Balta",
-                "role": "Developer"
-            },
-            {
-                "company": "TeamProjektWS14\/15",
-                "email": "",
-                "name": "Tobias Brockner",
-                "role": "Developer"
-            },
-            {
-                "company": "TeamProjektWS14\/15",
-                "email": "",
-                "name": "Nicolas Tedjadharma",
-                "role": "Developer"
-            }
-        ],
-        "plugins": [
-            {
-                "actions": {
-                    "controllerActionCombinations": "",
-                    "noncacheableActions": "",
-                    "switchableActions": ""
-                },
-                "key": "notenuebersicht",
-                "name": "Noten\u00fcbersicht"
-            }
-        ],
-        "vendorName": "ReRe"
+        "persons": [],
+        "plugins": [],
+        "vendorName": "Kaka"
     },
     "wires": [
         {
             "src": {
                 "moduleId": 1,
                 "terminal": "relationWire_0",
-                "uid": "667289147746"
+                "uid": "120608392263"
             },
             "tgt": {
-                "moduleId": 2,
+                "moduleId": 0,
                 "terminal": "SOURCES",
-                "uid": "503418084056"
+                "uid": "1020496433717"
             }
         },
         {
             "src": {
-                "moduleId": 0,
+                "moduleId": 2,
                 "terminal": "relationWire_0",
-                "uid": "816290811170"
+                "uid": "385049550528"
             },
             "tgt": {
                 "moduleId": 1,
                 "terminal": "SOURCES",
-                "uid": "303844844765"
+                "uid": "920830541060"
             }
         },
         {
             "src": {
-                "moduleId": 0,
+                "moduleId": 2,
                 "terminal": "relationWire_1",
-                "uid": "824219016853"
+                "uid": "1201649485865"
             },
             "tgt": {
                 "moduleId": 3,
                 "terminal": "SOURCES",
-                "uid": "873096791788"
+                "uid": "15919821871"
+            }
+        },
+        {
+            "src": {
+                "moduleId": 1,
+                "terminal": "relationWire_1",
+                "uid": "644556802985"
+            },
+            "tgt": {
+                "moduleId": 3,
+                "terminal": "SOURCES",
+                "uid": "15919821871"
             }
         }
     ],
     "log": {
-        "last_modified": "2014-12-19 11:49",
+        "last_modified": "2014-12-22 11:01",
         "extension_builder_version": "6.2.0",
         "be_user": " (1)"
     }
