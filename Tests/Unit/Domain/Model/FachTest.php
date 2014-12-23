@@ -5,12 +5,7 @@ namespace ReRe\Rere\Tests\Unit\Domain\Model;
 /***************************************************************
  *  Copyright notice
  *
- *  (c) 2014 Felix Hohlwegler <info@felix-hohlwegler.de>, TeamProjektWS14/15
- *           Sarah Kieninger <sarah.kieninger@gmail.com>, TeamProjektWS14/15
- *           Tim Wacker, TeamProjektWS14/15
- *           Nejat Balta, TeamProjektWS14/15
- *           Tobias Brockner, TeamProjektWS14/15
- *           Nicolas Tedjadharma, TeamProjektWS14/15
+ *  (c) 2014 
  *
  *  All rights reserved
  *
@@ -37,12 +32,6 @@ namespace ReRe\Rere\Tests\Unit\Domain\Model;
  * @copyright Copyright belongs to the respective authors
  * @license http://www.gnu.org/licenses/gpl.html GNU General Public License, version 3 or later
  *
- * @author Felix Hohlwegler <info@felix-hohlwegler.de>
- * @author Sarah Kieninger <sarah.kieninger@gmail.com>
- * @author Tim Wacker 
- * @author Nejat Balta 
- * @author Tobias Brockner 
- * @author Nicolas Tedjadharma 
  */
 class FachTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
 	/**
@@ -154,8 +143,9 @@ class FachTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
 	 * @test
 	 */
 	public function getModulnrReturnsInitialValueForModul() {
+		$newObjectStorage = new \TYPO3\CMS\Extbase\Persistence\ObjectStorage();
 		$this->assertEquals(
-			NULL,
+			$newObjectStorage,
 			$this->subject->getModulnr()
 		);
 	}
@@ -163,14 +153,93 @@ class FachTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
 	/**
 	 * @test
 	 */
-	public function setModulnrForModulSetsModulnr() {
-		$modulnrFixture = new \ReRe\Rere\Domain\Model\Modul();
-		$this->subject->setModulnr($modulnrFixture);
+	public function setModulnrForObjectStorageContainingModulSetsModulnr() {
+		$modulnr = new \ReRe\Rere\Domain\Model\Modul();
+		$objectStorageHoldingExactlyOneModulnr = new \TYPO3\CMS\Extbase\Persistence\ObjectStorage();
+		$objectStorageHoldingExactlyOneModulnr->attach($modulnr);
+		$this->subject->setModulnr($objectStorageHoldingExactlyOneModulnr);
 
 		$this->assertAttributeEquals(
-			$modulnrFixture,
+			$objectStorageHoldingExactlyOneModulnr,
 			'modulnr',
 			$this->subject
 		);
+	}
+
+	/**
+	 * @test
+	 */
+	public function addModulnrToObjectStorageHoldingModulnr() {
+		$modulnr = new \ReRe\Rere\Domain\Model\Modul();
+		$modulnrObjectStorageMock = $this->getMock('TYPO3\\CMS\\Extbase\\Persistence\\ObjectStorage', array('attach'), array(), '', FALSE);
+		$modulnrObjectStorageMock->expects($this->once())->method('attach')->with($this->equalTo($modulnr));
+		$this->inject($this->subject, 'modulnr', $modulnrObjectStorageMock);
+
+		$this->subject->addModulnr($modulnr);
+	}
+
+	/**
+	 * @test
+	 */
+	public function removeModulnrFromObjectStorageHoldingModulnr() {
+		$modulnr = new \ReRe\Rere\Domain\Model\Modul();
+		$modulnrObjectStorageMock = $this->getMock('TYPO3\\CMS\\Extbase\\Persistence\\ObjectStorage', array('detach'), array(), '', FALSE);
+		$modulnrObjectStorageMock->expects($this->once())->method('detach')->with($this->equalTo($modulnr));
+		$this->inject($this->subject, 'modulnr', $modulnrObjectStorageMock);
+
+		$this->subject->removeModulnr($modulnr);
+
+	}
+
+	/**
+	 * @test
+	 */
+	public function getMatrikelnrReturnsInitialValueForPruefling() {
+		$newObjectStorage = new \TYPO3\CMS\Extbase\Persistence\ObjectStorage();
+		$this->assertEquals(
+			$newObjectStorage,
+			$this->subject->getMatrikelnr()
+		);
+	}
+
+	/**
+	 * @test
+	 */
+	public function setMatrikelnrForObjectStorageContainingPrueflingSetsMatrikelnr() {
+		$matrikelnr = new \ReRe\Rere\Domain\Model\Pruefling();
+		$objectStorageHoldingExactlyOneMatrikelnr = new \TYPO3\CMS\Extbase\Persistence\ObjectStorage();
+		$objectStorageHoldingExactlyOneMatrikelnr->attach($matrikelnr);
+		$this->subject->setMatrikelnr($objectStorageHoldingExactlyOneMatrikelnr);
+
+		$this->assertAttributeEquals(
+			$objectStorageHoldingExactlyOneMatrikelnr,
+			'matrikelnr',
+			$this->subject
+		);
+	}
+
+	/**
+	 * @test
+	 */
+	public function addMatrikelnrToObjectStorageHoldingMatrikelnr() {
+		$matrikelnr = new \ReRe\Rere\Domain\Model\Pruefling();
+		$matrikelnrObjectStorageMock = $this->getMock('TYPO3\\CMS\\Extbase\\Persistence\\ObjectStorage', array('attach'), array(), '', FALSE);
+		$matrikelnrObjectStorageMock->expects($this->once())->method('attach')->with($this->equalTo($matrikelnr));
+		$this->inject($this->subject, 'matrikelnr', $matrikelnrObjectStorageMock);
+
+		$this->subject->addMatrikelnr($matrikelnr);
+	}
+
+	/**
+	 * @test
+	 */
+	public function removeMatrikelnrFromObjectStorageHoldingMatrikelnr() {
+		$matrikelnr = new \ReRe\Rere\Domain\Model\Pruefling();
+		$matrikelnrObjectStorageMock = $this->getMock('TYPO3\\CMS\\Extbase\\Persistence\\ObjectStorage', array('detach'), array(), '', FALSE);
+		$matrikelnrObjectStorageMock->expects($this->once())->method('detach')->with($this->equalTo($matrikelnr));
+		$this->inject($this->subject, 'matrikelnr', $matrikelnrObjectStorageMock);
+
+		$this->subject->removeMatrikelnr($matrikelnr);
+
 	}
 }

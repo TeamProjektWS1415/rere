@@ -8,7 +8,7 @@
 .. _start:
 
 =============================================================
-Result Repository
+Result Repositry
 =============================================================
 
 .. only:: html
@@ -23,7 +23,7 @@ Result Repository
 		en
 
 	:Description:
-		Notenverwaltungs Extension für Typo3
+		adasd
 
 	:Keywords:
 		comma,separated,list,of,keywords
@@ -32,10 +32,8 @@ Result Repository
 		2014
 
 	:Author:
-		Felix Hohlwegler, Sarah Kieninger, Tim Wacker, Nejat Balta, Tobias Brockner, Nicolas Tedjadharma
 
 	:Email:
-		info@felix-hohlwegler.de, sarah.kieninger@gmail.com, , , , 
 
 	:License:
 		This document is published under the Open Content License

@@ -340,11 +340,11 @@
                 "actions": {
                     "controllerActionCombinations": ""
                 },
-                "description": "rere",
-                "key": "rere",
+                "description": "Result Repositry",
+                "key": "rerebackend",
                 "mainModule": "user",
-                "name": "rere",
-                "tabLabel": "rere"
+                "name": "Result Repositry",
+                "tabLabel": "Result Repositry"
             }
         ],
         "description": "adasd",
@@ -360,11 +360,11 @@
             "version": ""
         },
         "extensionKey": "rere",
-        "name": "rere",
+        "name": "Result Repositry",
         "originalExtensionKey": "rere",
         "persons": [],
         "plugins": [],
-        "vendorName": "Kaka"
+        "vendorName": "ReRe"
     },
     "wires": [
         {
@@ -417,7 +417,7 @@
         }
     ],
     "log": {
-        "last_modified": "2014-12-22 11:01",
+        "last_modified": "2014-12-23 06:52",
         "extension_builder_version": "6.2.0",
         "be_user": " (1)"
     }

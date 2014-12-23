@@ -71,9 +71,16 @@ class Fach extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 	/**
 	 * modulnr
 	 * 
-	 * @var \ReRe\Rere\Domain\Model\Modul
+	 * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\ReRe\Rere\Domain\Model\Modul>
 	 */
 	protected $modulnr = NULL;
+
+	/**
+	 * matrikelnr
+	 * 
+	 * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\ReRe\Rere\Domain\Model\Pruefling>
+	 */
+	protected $matrikelnr = NULL;
 
 	/**
 	 * Returns the fachnr
@@ -152,9 +159,30 @@ class Fach extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 	}
 
 	/**
+	 * __construct
+	 */
+	public function __construct() {
+		//Do not remove the next line: It would break the functionality
+		$this->initStorageObjects();
+	}
+
+	/**
+	 * Initializes all ObjectStorage properties
+	 * Do not modify this method!
+	 * It will be rewritten on each save in the extension builder
+	 * You may modify the constructor of this class instead
+	 * 
+	 * @return void
+	 */
+	protected function initStorageObjects() {
+		$this->modulnr = new \TYPO3\CMS\Extbase\Persistence\ObjectStorage();
+		$this->matrikelnr = new \TYPO3\CMS\Extbase\Persistence\ObjectStorage();
+	}
+
+	/**
 	 * Returns the modulnr
 	 * 
-	 * @return \ReRe\Rere\Domain\Model\Modul $modulnr
+	 * @return \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\ReRe\Rere\Domain\Model\Modul> modulnr
 	 */
 	public function getModulnr() {
 		return $this->modulnr;
@@ -163,8 +191,8 @@ class Fach extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 	/**
 	 * Sets the modulnr
 	 * 
-	 * @param \ReRe\Rere\Domain\Model\Modul $modulnr
-	 * @return void
+	 * @param \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\ReRe\Rere\Domain\Model\Modul> $modulnr
+	 * @return \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\ReRe\Rere\Domain\Model\Modul> modulnr
 	 */
 	public function setModulnr(\ReRe\Rere\Domain\Model\Modul $modulnr) {
 		$this->modulnr = $modulnr;

@@ -1,5 +1,4 @@
 <?php
-
 namespace ReRe\Rere\Controller;
 
 /* * *************************************************************
@@ -37,106 +36,106 @@ namespace ReRe\Rere\Controller;
  */
 class FachController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController {
 
-    /**
-     * fachRepository
-     *
-     * @var \ReRe\Rere\Domain\Repository\FachRepository
-     * @inject
-     */
-    protected $fachRepository = NULL;
+	/**
+	 * fachRepository
+	 * 
+	 * @var \ReRe\Rere\Domain\Repository\FachRepository
+	 * @inject
+	 */
+	protected $fachRepository = NULL;
 
-    /**
-     * action list
-     *
-     * @return void
-     */
-    public function listAction() {
-        $faches = $this->fachRepository->findAll();
-        $this->view->assign('faches', $faches);
-    }
+	/**
+	 * @var \TYPO3\CMS\Extbase\Persistence\Generic\Mapper\DataMapper
+	 * @inject
+	 */
+	protected $dataMapper = NULL;
 
-    /**
-     * @var \TYPO3\CMS\Extbase\Persistence\Generic\Mapper\DataMapper
-     * @inject
-     */
-    protected $dataMapper;
+	/**
+	 * action list
+	 * 
+	 * @return void
+	 */
+	public function listAction() {
+		$faches = $this->fachRepository->findAll();
+		$this->view->assign('faches', $faches);
+	}
 
-    /**
-     * @param int $uid
-     * @return type
-     */
-    public function listFaecherFromModul(int $uid) {
-        $query = $this->createQuery();
-        $query->in('modulnr', $uid);
-        return $this->dataMapper->map(`\\ReRe\\Rere\\Domain\\Model\\Fach}`, $query->execute());
-    }
+	/**
+	 * @param int $uid
+	 * @return type
+	 */
+	public function listFaecherFromModul(int $uid) {
+		$query = $this->createQuery();
+		$query->in('modulnr', $uid);
+		return $this->dataMapper->map(`\\ReRe\\Rere\\Domain\\Model\\Fach}`, $query->execute());
+	}
 
-    /**
-     * action show
-     *
-     * @param \ReRe\Rere\Domain\Model\Fach $fach
-     * @return void
-     */
-    public function showAction(\ReRe\Rere\Domain\Model\Fach $fach) {
-        $this->view->assign('fach', $fach);
-    }
+	/**
+	 * action show
+	 * 
+	 * @param \ReRe\Rere\Domain\Model\Fach $fach
+	 * @return void
+	 */
+	public function showAction(\ReRe\Rere\Domain\Model\Fach $fach) {
+		$this->view->assign('fach', $fach);
+	}
 
-    /**
-     * action new
-     *
-     * @param \ReRe\Rere\Domain\Model\Fach $newFach
-     * @ignorevalidation $newFach
-     * @return void
-     */
-    public function newAction(\ReRe\Rere\Domain\Model\Fach $newFach = NULL) {
-        $this->view->assign('newFach', $newFach);
-    }
+	/**
+	 * action new
+	 * 
+	 * @param \ReRe\Rere\Domain\Model\Fach $newFach
+	 * @ignorevalidation $newFach
+	 * @return void
+	 */
+	public function newAction(\ReRe\Rere\Domain\Model\Fach $newFach = NULL) {
+		$this->view->assign('newFach', $newFach);
+	}
 
-    /**
-     * action create
-     *
-     * @param \ReRe\Rere\Domain\Model\Fach $newFach
-     * @return void
-     */
-    public function createAction(\ReRe\Rere\Domain\Model\Fach $newFach) {
-        $this->addFlashMessage('The object was created. Please be aware that this action is publicly accessible unless you implement an access check. See <a href="http://wiki.typo3.org/T3Doc/Extension_Builder/Using_the_Extension_Builder#1._Model_the_domain" target="_blank">Wiki</a>', '', \TYPO3\CMS\Core\Messaging\AbstractMessage::ERROR);
-        $this->fachRepository->add($newFach);
-        $this->redirect('list');
-    }
+	/**
+	 * action create
+	 * 
+	 * @param \ReRe\Rere\Domain\Model\Fach $newFach
+	 * @return void
+	 */
+	public function createAction(\ReRe\Rere\Domain\Model\Fach $newFach) {
+		$this->addFlashMessage('The object was created. Please be aware that this action is publicly accessible unless you implement an access check. See <a href="http://wiki.typo3.org/T3Doc/Extension_Builder/Using_the_Extension_Builder#1._Model_the_domain" target="_blank">Wiki</a>', '', \TYPO3\CMS\Core\Messaging\AbstractMessage::ERROR);
+		$this->fachRepository->add($newFach);
+		$this->redirect('list');
+	}
 
-    /**
-     * action edit
-     *
-     * @param \ReRe\Rere\Domain\Model\Fach $fach
-     * @ignorevalidation $fach
-     * @return void
-     */
-    public function editAction(\ReRe\Rere\Domain\Model\Fach $fach) {
-        $this->view->assign('fach', $fach);
-    }
+	/**
+	 * action edit
+	 * 
+	 * @param \ReRe\Rere\Domain\Model\Fach $fach
+	 * @ignorevalidation $fach
+	 * @return void
+	 */
+	public function editAction(\ReRe\Rere\Domain\Model\Fach $fach) {
+		$this->view->assign('fach', $fach);
+	}
 
-    /**
-     * action update
-     *
-     * @param \ReRe\Rere\Domain\Model\Fach $fach
-     * @return void
-     */
-    public function updateAction(\ReRe\Rere\Domain\Model\Fach $fach) {
-        $this->addFlashMessage('The object was updated. Please be aware that this action is publicly accessible unless you implement an access check. See <a href="http://wiki.typo3.org/T3Doc/Extension_Builder/Using_the_Extension_Builder#1._Model_the_domain" target="_blank">Wiki</a>', '', \TYPO3\CMS\Core\Messaging\AbstractMessage::ERROR);
-        $this->fachRepository->update($fach);
-        $this->redirect('list');
-    }
+	/**
+	 * action update
+	 * 
+	 * @param \ReRe\Rere\Domain\Model\Fach $fach
+	 * @return void
+	 */
+	public function updateAction(\ReRe\Rere\Domain\Model\Fach $fach) {
+		$this->addFlashMessage('The object was updated. Please be aware that this action is publicly accessible unless you implement an access check. See <a href="http://wiki.typo3.org/T3Doc/Extension_Builder/Using_the_Extension_Builder#1._Model_the_domain" target="_blank">Wiki</a>', '', \TYPO3\CMS\Core\Messaging\AbstractMessage::ERROR);
+		$this->fachRepository->update($fach);
+		$this->redirect('list');
+	}
 
-    /**
-     * action delete
-     *
-     * @param \ReRe\Rere\Domain\Model\Fach $fach
-     * @return void
-     */
-    public function deleteAction(\ReRe\Rere\Domain\Model\Fach $fach) {
-        $this->addFlashMessage('The object was deleted. Please be aware that this action is publicly accessible unless you implement an access check. See <a href="http://wiki.typo3.org/T3Doc/Extension_Builder/Using_the_Extension_Builder#1._Model_the_domain" target="_blank">Wiki</a>', '', \TYPO3\CMS\Core\Messaging\AbstractMessage::ERROR);
-        $this->fachRepository->remove($fach);
-        $this->redirect('list');
-    }
+	/**
+	 * action delete
+	 * 
+	 * @param \ReRe\Rere\Domain\Model\Fach $fach
+	 * @return void
+	 */
+	public function deleteAction(\ReRe\Rere\Domain\Model\Fach $fach) {
+		$this->addFlashMessage('The object was deleted. Please be aware that this action is publicly accessible unless you implement an access check. See <a href="http://wiki.typo3.org/T3Doc/Extension_Builder/Using_the_Extension_Builder#1._Model_the_domain" target="_blank">Wiki</a>', '', \TYPO3\CMS\Core\Messaging\AbstractMessage::ERROR);
+		$this->fachRepository->remove($fach);
+		$this->redirect('list');
+	}
 
 }

@@ -1,5 +1,4 @@
 <?php
-
 namespace ReRe\Rere\Controller;
 
 /* * *************************************************************
@@ -142,3 +141,4 @@ class ModulController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
     }
 
 }
+

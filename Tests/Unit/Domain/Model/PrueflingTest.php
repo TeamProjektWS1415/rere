@@ -5,12 +5,7 @@ namespace ReRe\Rere\Tests\Unit\Domain\Model;
 /***************************************************************
  *  Copyright notice
  *
- *  (c) 2014 Felix Hohlwegler <info@felix-hohlwegler.de>, TeamProjektWS14/15
- *           Sarah Kieninger <sarah.kieninger@gmail.com>, TeamProjektWS14/15
- *           Tim Wacker, TeamProjektWS14/15
- *           Nejat Balta, TeamProjektWS14/15
- *           Tobias Brockner, TeamProjektWS14/15
- *           Nicolas Tedjadharma, TeamProjektWS14/15
+ *  (c) 2014 
  *
  *  All rights reserved
  *
@@ -37,12 +32,6 @@ namespace ReRe\Rere\Tests\Unit\Domain\Model;
  * @copyright Copyright belongs to the respective authors
  * @license http://www.gnu.org/licenses/gpl.html GNU General Public License, version 3 or later
  *
- * @author Felix Hohlwegler <info@felix-hohlwegler.de>
- * @author Sarah Kieninger <sarah.kieninger@gmail.com>
- * @author Tim Wacker 
- * @author Nejat Balta 
- * @author Tobias Brockner 
- * @author Nicolas Tedjadharma 
  */
 class PrueflingTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
 	/**
@@ -126,4 +115,14 @@ class PrueflingTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
 			$this->subject
 		);
 	}
+
+	/**
+	 * @test
+	 */
+	public function getTypo3FEUserReturnsInitialValueForFrontendUser() {	}
+
+	/**
+	 * @test
+	 */
+	public function setTypo3FEUserForFrontendUserSetsTypo3FEUser() {	}
 }

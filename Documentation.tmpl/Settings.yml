@@ -9,9 +9,9 @@
 ---
 conf.py:
   copyright: 2014
-  project: Result Repository
-  version: 0.1
-  release: 0.1
+  project: Result Repositry
+  version: 
+  release: 
   intersphinx_mapping:
     t3tsref:
     - http://docs.typo3.org/typo3cms/TyposcriptReference/
@@ -19,8 +19,8 @@ conf.py:
   latex_documents:
   - - Index
     - rere.tex
-    - Result Repository
-    - Felix Hohlwegler, Sarah Kieninger, Tim Wacker, Nejat Balta, Tobias Brockner, Nicolas Tedjadharma
+    - Result Repositry
+    - 
     - manual
   latex_elements:
     papersize: a4paper
