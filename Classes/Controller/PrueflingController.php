@@ -1,5 +1,5 @@
 <?php
-namespace Rere\Rere\Controller;
+namespace ReRe\Rere\Controller;
 
 /* * *************************************************************
  *

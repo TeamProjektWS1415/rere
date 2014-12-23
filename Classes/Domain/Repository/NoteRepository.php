@@ -1,5 +1,5 @@
 <?php
-namespace Rere\Rere\Domain\Repository;
+namespace ReRe\Rere\Domain\Repository;
 
 /***************************************************************
  *

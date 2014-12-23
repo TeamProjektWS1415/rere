@@ -1,6 +1,6 @@
 <?php
 
-namespace Rere\Rere\Tests\Unit\Domain\Model;
+namespace ReRe\Rere\Tests\Unit\Domain\Model;
 
 /***************************************************************
  *  Copyright notice
@@ -27,7 +27,7 @@ namespace Rere\Rere\Tests\Unit\Domain\Model;
  ***************************************************************/
 
 /**
- * Test case for class \Rere\Rere\Domain\Model\Note.
+ * Test case for class \ReRe\Rere\Domain\Model\Note.
  *
  * @copyright Copyright belongs to the respective authors
  * @license http://www.gnu.org/licenses/gpl.html GNU General Public License, version 3 or later
@@ -35,12 +35,12 @@ namespace Rere\Rere\Tests\Unit\Domain\Model;
  */
 class NoteTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
 	/**
-	 * @var \Rere\Rere\Domain\Model\Note
+	 * @var \ReRe\Rere\Domain\Model\Note
 	 */
 	protected $subject = NULL;
 
 	protected function setUp() {
-		$this->subject = new \Rere\Rere\Domain\Model\Note();
+		$this->subject = new \ReRe\Rere\Domain\Model\Note();
 	}
 
 	protected function tearDown() {
@@ -108,7 +108,7 @@ class NoteTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
 	 * @test
 	 */
 	public function setFachnrForObjectStorageContainingFachSetsFachnr() {
-		$fachnr = new \Rere\Rere\Domain\Model\Fach();
+		$fachnr = new \ReRe\Rere\Domain\Model\Fach();
 		$objectStorageHoldingExactlyOneFachnr = new \TYPO3\CMS\Extbase\Persistence\ObjectStorage();
 		$objectStorageHoldingExactlyOneFachnr->attach($fachnr);
 		$this->subject->setFachnr($objectStorageHoldingExactlyOneFachnr);
@@ -124,7 +124,7 @@ class NoteTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
 	 * @test
 	 */
 	public function addFachnrToObjectStorageHoldingFachnr() {
-		$fachnr = new \Rere\Rere\Domain\Model\Fach();
+		$fachnr = new \ReRe\Rere\Domain\Model\Fach();
 		$fachnrObjectStorageMock = $this->getMock('TYPO3\\CMS\\Extbase\\Persistence\\ObjectStorage', array('attach'), array(), '', FALSE);
 		$fachnrObjectStorageMock->expects($this->once())->method('attach')->with($this->equalTo($fachnr));
 		$this->inject($this->subject, 'fachnr', $fachnrObjectStorageMock);
@@ -136,7 +136,7 @@ class NoteTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
 	 * @test
 	 */
 	public function removeFachnrFromObjectStorageHoldingFachnr() {
-		$fachnr = new \Rere\Rere\Domain\Model\Fach();
+		$fachnr = new \ReRe\Rere\Domain\Model\Fach();
 		$fachnrObjectStorageMock = $this->getMock('TYPO3\\CMS\\Extbase\\Persistence\\ObjectStorage', array('detach'), array(), '', FALSE);
 		$fachnrObjectStorageMock->expects($this->once())->method('detach')->with($this->equalTo($fachnr));
 		$this->inject($this->subject, 'fachnr', $fachnrObjectStorageMock);
@@ -159,7 +159,7 @@ class NoteTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
 	 * @test
 	 */
 	public function setMatrikelnrForPrueflingSetsMatrikelnr() {
-		$matrikelnrFixture = new \Rere\Rere\Domain\Model\Pruefling();
+		$matrikelnrFixture = new \ReRe\Rere\Domain\Model\Pruefling();
 		$this->subject->setMatrikelnr($matrikelnrFixture);
 
 		$this->assertAttributeEquals(

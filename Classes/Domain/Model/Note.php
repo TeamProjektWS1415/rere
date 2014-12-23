@@ -1,5 +1,5 @@
 <?php
-namespace Rere\Rere\Domain\Model;
+namespace ReRe\Rere\Domain\Model;
 
 /* * *************************************************************
  *
@@ -55,14 +55,14 @@ class Note extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 	/**
 	 * fachnr
 	 * 
-	 * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\Rere\Rere\Domain\Model\Fach>
+	 * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\ReRe\Rere\Domain\Model\Fach>
 	 */
 	protected $fachnr = NULL;
 
 	/**
 	 * matrikelnr
 	 * 
-	 * @var \Rere\Rere\Domain\Model\Pruefling
+	 * @var \ReRe\Rere\Domain\Model\Pruefling
 	 */
 	protected $matrikelnr = NULL;
 
@@ -105,44 +105,6 @@ class Note extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 	}
 
 	/**
-	 * Returns the fachnr
-	 * 
-	 * @return \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\Rere\Rere\Domain\Model\Fach> fachnr
-	 */
-	public function getFachnr() {
-		return $this->fachnr;
-	}
-
-	/**
-	 * Sets the fachnr
-	 * 
-	 * @param \ReRe\Rere\Domain\Model\Fach $fachnr
-	 * @return \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\Rere\Rere\Domain\Model\Fach> fachnr
-	 */
-	public function setFachnr(\ReRe\Rere\Domain\Model\Fach $fachnr) {
-		$this->fachnr = $fachnr;
-	}
-
-	/**
-	 * Returns the matrikelnr
-	 * 
-	 * @return \Rere\Rere\Domain\Model\Pruefling matrikelnr
-	 */
-	public function getMatrikelnr() {
-		return $this->matrikelnr;
-	}
-
-	/**
-	 * Sets the matrikelnr
-	 * 
-	 * @param \ReRe\Rere\Domain\Model\Pruefling $matrikelnr
-	 * @return \Rere\Rere\Domain\Model\Pruefling matrikelnr
-	 */
-	public function setMatrikelnr(\ReRe\Rere\Domain\Model\Pruefling $matrikelnr) {
-		$this->matrikelnr = $matrikelnr;
-	}
-
-	/**
 	 * __construct
 	 */
 	public function __construct() {
@@ -160,6 +122,44 @@ class Note extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 	 */
 	protected function initStorageObjects() {
 		$this->fachnr = new \TYPO3\CMS\Extbase\Persistence\ObjectStorage();
+	}
+
+	/**
+	 * Returns the fachnr
+	 * 
+	 * @return \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\ReRe\Rere\Domain\Model\Fach> fachnr
+	 */
+	public function getFachnr() {
+		return $this->fachnr;
+	}
+
+	/**
+	 * Sets the fachnr
+	 * 
+	 * @param \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\ReRe\Rere\Domain\Model\Fach> $fachnr
+	 * @return \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\ReRe\Rere\Domain\Model\Fach> fachnr
+	 */
+	public function setFachnr(\ReRe\Rere\Domain\Model\Fach $fachnr) {
+		$this->fachnr = $fachnr;
+	}
+
+	/**
+	 * Returns the matrikelnr
+	 * 
+	 * @return \ReRe\Rere\Domain\Model\Pruefling matrikelnr
+	 */
+	public function getMatrikelnr() {
+		return $this->matrikelnr;
+	}
+
+	/**
+	 * Sets the matrikelnr
+	 * 
+	 * @param \ReRe\Rere\Domain\Model\Pruefling $matrikelnr
+	 * @return \ReRe\Rere\Domain\Model\Pruefling matrikelnr
+	 */
+	public function setMatrikelnr(\ReRe\Rere\Domain\Model\Pruefling $matrikelnr) {
+		$this->matrikelnr = $matrikelnr;
 	}
 
 }

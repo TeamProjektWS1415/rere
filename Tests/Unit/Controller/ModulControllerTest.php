@@ -1,5 +1,5 @@
 <?php
-namespace Rere\Rere\Tests\Unit\Controller;
+namespace ReRe\Rere\Tests\Unit\Controller;
 /***************************************************************
  *  Copyright notice
  *
@@ -24,18 +24,18 @@ namespace Rere\Rere\Tests\Unit\Controller;
  ***************************************************************/
 
 /**
- * Test case for class Rere\Rere\Controller\ModulController.
+ * Test case for class ReRe\Rere\Controller\ModulController.
  *
  */
 class ModulControllerTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
 
 	/**
-	 * @var \Rere\Rere\Controller\ModulController
+	 * @var \ReRe\Rere\Controller\ModulController
 	 */
 	protected $subject = NULL;
 
 	protected function setUp() {
-		$this->subject = $this->getMock('Rere\\Rere\\Controller\\ModulController', array('redirect', 'forward', 'addFlashMessage'), array(), '', FALSE);
+		$this->subject = $this->getMock('ReRe\\Rere\\Controller\\ModulController', array('redirect', 'forward', 'addFlashMessage'), array(), '', FALSE);
 	}
 
 	protected function tearDown() {
@@ -49,7 +49,7 @@ class ModulControllerTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
 
 		$allModuls = $this->getMock('TYPO3\\CMS\\Extbase\\Persistence\\ObjectStorage', array(), array(), '', FALSE);
 
-		$modulRepository = $this->getMock('Rere\\Rere\\Domain\\Repository\\ModulRepository', array('findAll'), array(), '', FALSE);
+		$modulRepository = $this->getMock('ReRe\\Rere\\Domain\\Repository\\ModulRepository', array('findAll'), array(), '', FALSE);
 		$modulRepository->expects($this->once())->method('findAll')->will($this->returnValue($allModuls));
 		$this->inject($this->subject, 'modulRepository', $modulRepository);
 
@@ -64,7 +64,7 @@ class ModulControllerTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
 	 * @test
 	 */
 	public function showActionAssignsTheGivenModulToView() {
-		$modul = new \Rere\Rere\Domain\Model\Modul();
+		$modul = new \ReRe\Rere\Domain\Model\Modul();
 
 		$view = $this->getMock('TYPO3\\CMS\\Extbase\\Mvc\\View\\ViewInterface');
 		$this->inject($this->subject, 'view', $view);
@@ -77,7 +77,7 @@ class ModulControllerTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
 	 * @test
 	 */
 	public function newActionAssignsTheGivenModulToView() {
-		$modul = new \Rere\Rere\Domain\Model\Modul();
+		$modul = new \ReRe\Rere\Domain\Model\Modul();
 
 		$view = $this->getMock('TYPO3\\CMS\\Extbase\\Mvc\\View\\ViewInterface');
 		$view->expects($this->once())->method('assign')->with('newModul', $modul);
@@ -90,9 +90,9 @@ class ModulControllerTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
 	 * @test
 	 */
 	public function createActionAddsTheGivenModulToModulRepository() {
-		$modul = new \Rere\Rere\Domain\Model\Modul();
+		$modul = new \ReRe\Rere\Domain\Model\Modul();
 
-		$modulRepository = $this->getMock('Rere\\Rere\\Domain\\Repository\\ModulRepository', array('add'), array(), '', FALSE);
+		$modulRepository = $this->getMock('ReRe\\Rere\\Domain\\Repository\\ModulRepository', array('add'), array(), '', FALSE);
 		$modulRepository->expects($this->once())->method('add')->with($modul);
 		$this->inject($this->subject, 'modulRepository', $modulRepository);
 
@@ -103,7 +103,7 @@ class ModulControllerTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
 	 * @test
 	 */
 	public function editActionAssignsTheGivenModulToView() {
-		$modul = new \Rere\Rere\Domain\Model\Modul();
+		$modul = new \ReRe\Rere\Domain\Model\Modul();
 
 		$view = $this->getMock('TYPO3\\CMS\\Extbase\\Mvc\\View\\ViewInterface');
 		$this->inject($this->subject, 'view', $view);
@@ -116,9 +116,9 @@ class ModulControllerTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
 	 * @test
 	 */
 	public function updateActionUpdatesTheGivenModulInModulRepository() {
-		$modul = new \Rere\Rere\Domain\Model\Modul();
+		$modul = new \ReRe\Rere\Domain\Model\Modul();
 
-		$modulRepository = $this->getMock('Rere\\Rere\\Domain\\Repository\\ModulRepository', array('update'), array(), '', FALSE);
+		$modulRepository = $this->getMock('ReRe\\Rere\\Domain\\Repository\\ModulRepository', array('update'), array(), '', FALSE);
 		$modulRepository->expects($this->once())->method('update')->with($modul);
 		$this->inject($this->subject, 'modulRepository', $modulRepository);
 
@@ -129,9 +129,9 @@ class ModulControllerTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
 	 * @test
 	 */
 	public function deleteActionRemovesTheGivenModulFromModulRepository() {
-		$modul = new \Rere\Rere\Domain\Model\Modul();
+		$modul = new \ReRe\Rere\Domain\Model\Modul();
 
-		$modulRepository = $this->getMock('Rere\\Rere\\Domain\\Repository\\ModulRepository', array('remove'), array(), '', FALSE);
+		$modulRepository = $this->getMock('ReRe\\Rere\\Domain\\Repository\\ModulRepository', array('remove'), array(), '', FALSE);
 		$modulRepository->expects($this->once())->method('remove')->with($modul);
 		$this->inject($this->subject, 'modulRepository', $modulRepository);
 

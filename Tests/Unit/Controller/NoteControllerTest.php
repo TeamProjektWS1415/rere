@@ -1,5 +1,5 @@
 <?php
-namespace Rere\Rere\Tests\Unit\Controller;
+namespace ReRe\Rere\Tests\Unit\Controller;
 /***************************************************************
  *  Copyright notice
  *
@@ -24,18 +24,18 @@ namespace Rere\Rere\Tests\Unit\Controller;
  ***************************************************************/
 
 /**
- * Test case for class Rere\Rere\Controller\NoteController.
+ * Test case for class ReRe\Rere\Controller\NoteController.
  *
  */
 class NoteControllerTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
 
 	/**
-	 * @var \Rere\Rere\Controller\NoteController
+	 * @var \ReRe\Rere\Controller\NoteController
 	 */
 	protected $subject = NULL;
 
 	protected function setUp() {
-		$this->subject = $this->getMock('Rere\\Rere\\Controller\\NoteController', array('redirect', 'forward', 'addFlashMessage'), array(), '', FALSE);
+		$this->subject = $this->getMock('ReRe\\Rere\\Controller\\NoteController', array('redirect', 'forward', 'addFlashMessage'), array(), '', FALSE);
 	}
 
 	protected function tearDown() {
@@ -49,7 +49,7 @@ class NoteControllerTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
 
 		$allNotes = $this->getMock('TYPO3\\CMS\\Extbase\\Persistence\\ObjectStorage', array(), array(), '', FALSE);
 
-		$noteRepository = $this->getMock('Rere\\Rere\\Domain\\Repository\\NoteRepository', array('findAll'), array(), '', FALSE);
+		$noteRepository = $this->getMock('ReRe\\Rere\\Domain\\Repository\\NoteRepository', array('findAll'), array(), '', FALSE);
 		$noteRepository->expects($this->once())->method('findAll')->will($this->returnValue($allNotes));
 		$this->inject($this->subject, 'noteRepository', $noteRepository);
 
@@ -64,7 +64,7 @@ class NoteControllerTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
 	 * @test
 	 */
 	public function showActionAssignsTheGivenNoteToView() {
-		$note = new \Rere\Rere\Domain\Model\Note();
+		$note = new \ReRe\Rere\Domain\Model\Note();
 
 		$view = $this->getMock('TYPO3\\CMS\\Extbase\\Mvc\\View\\ViewInterface');
 		$this->inject($this->subject, 'view', $view);
@@ -77,7 +77,7 @@ class NoteControllerTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
 	 * @test
 	 */
 	public function newActionAssignsTheGivenNoteToView() {
-		$note = new \Rere\Rere\Domain\Model\Note();
+		$note = new \ReRe\Rere\Domain\Model\Note();
 
 		$view = $this->getMock('TYPO3\\CMS\\Extbase\\Mvc\\View\\ViewInterface');
 		$view->expects($this->once())->method('assign')->with('newNote', $note);
@@ -90,9 +90,9 @@ class NoteControllerTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
 	 * @test
 	 */
 	public function createActionAddsTheGivenNoteToNoteRepository() {
-		$note = new \Rere\Rere\Domain\Model\Note();
+		$note = new \ReRe\Rere\Domain\Model\Note();
 
-		$noteRepository = $this->getMock('Rere\\Rere\\Domain\\Repository\\NoteRepository', array('add'), array(), '', FALSE);
+		$noteRepository = $this->getMock('ReRe\\Rere\\Domain\\Repository\\NoteRepository', array('add'), array(), '', FALSE);
 		$noteRepository->expects($this->once())->method('add')->with($note);
 		$this->inject($this->subject, 'noteRepository', $noteRepository);
 
@@ -103,7 +103,7 @@ class NoteControllerTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
 	 * @test
 	 */
 	public function editActionAssignsTheGivenNoteToView() {
-		$note = new \Rere\Rere\Domain\Model\Note();
+		$note = new \ReRe\Rere\Domain\Model\Note();
 
 		$view = $this->getMock('TYPO3\\CMS\\Extbase\\Mvc\\View\\ViewInterface');
 		$this->inject($this->subject, 'view', $view);
@@ -116,9 +116,9 @@ class NoteControllerTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
 	 * @test
 	 */
 	public function updateActionUpdatesTheGivenNoteInNoteRepository() {
-		$note = new \Rere\Rere\Domain\Model\Note();
+		$note = new \ReRe\Rere\Domain\Model\Note();
 
-		$noteRepository = $this->getMock('Rere\\Rere\\Domain\\Repository\\NoteRepository', array('update'), array(), '', FALSE);
+		$noteRepository = $this->getMock('ReRe\\Rere\\Domain\\Repository\\NoteRepository', array('update'), array(), '', FALSE);
 		$noteRepository->expects($this->once())->method('update')->with($note);
 		$this->inject($this->subject, 'noteRepository', $noteRepository);
 
@@ -129,9 +129,9 @@ class NoteControllerTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
 	 * @test
 	 */
 	public function deleteActionRemovesTheGivenNoteFromNoteRepository() {
-		$note = new \Rere\Rere\Domain\Model\Note();
+		$note = new \ReRe\Rere\Domain\Model\Note();
 
-		$noteRepository = $this->getMock('Rere\\Rere\\Domain\\Repository\\NoteRepository', array('remove'), array(), '', FALSE);
+		$noteRepository = $this->getMock('ReRe\\Rere\\Domain\\Repository\\NoteRepository', array('remove'), array(), '', FALSE);
 		$noteRepository->expects($this->once())->method('remove')->with($note);
 		$this->inject($this->subject, 'noteRepository', $noteRepository);
 

@@ -1,6 +1,6 @@
 <?php
 
-namespace Rere\Rere\Tests\Unit\Domain\Model;
+namespace ReRe\Rere\Tests\Unit\Domain\Model;
 
 /***************************************************************
  *  Copyright notice
@@ -27,7 +27,7 @@ namespace Rere\Rere\Tests\Unit\Domain\Model;
  ***************************************************************/
 
 /**
- * Test case for class \Rere\Rere\Domain\Model\Pruefling.
+ * Test case for class \ReRe\Rere\Domain\Model\Pruefling.
  *
  * @copyright Copyright belongs to the respective authors
  * @license http://www.gnu.org/licenses/gpl.html GNU General Public License, version 3 or later
@@ -35,12 +35,12 @@ namespace Rere\Rere\Tests\Unit\Domain\Model;
  */
 class PrueflingTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
 	/**
-	 * @var \Rere\Rere\Domain\Model\Pruefling
+	 * @var \ReRe\Rere\Domain\Model\Pruefling
 	 */
 	protected $subject = NULL;
 
 	protected function setUp() {
-		$this->subject = new \Rere\Rere\Domain\Model\Pruefling();
+		$this->subject = new \ReRe\Rere\Domain\Model\Pruefling();
 	}
 
 	protected function tearDown() {

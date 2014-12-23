@@ -1,6 +1,6 @@
 <?php
 
-namespace Rere\Rere\Tests\Unit\Domain\Model;
+namespace ReRe\Rere\Tests\Unit\Domain\Model;
 
 /***************************************************************
  *  Copyright notice
@@ -27,7 +27,7 @@ namespace Rere\Rere\Tests\Unit\Domain\Model;
  ***************************************************************/
 
 /**
- * Test case for class \Rere\Rere\Domain\Model\Modul.
+ * Test case for class \ReRe\Rere\Domain\Model\Modul.
  *
  * @copyright Copyright belongs to the respective authors
  * @license http://www.gnu.org/licenses/gpl.html GNU General Public License, version 3 or later
@@ -35,12 +35,12 @@ namespace Rere\Rere\Tests\Unit\Domain\Model;
  */
 class ModulTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
 	/**
-	 * @var \Rere\Rere\Domain\Model\Modul
+	 * @var \ReRe\Rere\Domain\Model\Modul
 	 */
 	protected $subject = NULL;
 
 	protected function setUp() {
-		$this->subject = new \Rere\Rere\Domain\Model\Modul();
+		$this->subject = new \ReRe\Rere\Domain\Model\Modul();
 	}
 
 	protected function tearDown() {

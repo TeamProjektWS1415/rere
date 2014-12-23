@@ -1,6 +1,6 @@
 <?php
 
-namespace Rere\Rere\Tests\Unit\Domain\Model;
+namespace ReRe\Rere\Tests\Unit\Domain\Model;
 
 /***************************************************************
  *  Copyright notice
@@ -27,7 +27,7 @@ namespace Rere\Rere\Tests\Unit\Domain\Model;
  ***************************************************************/
 
 /**
- * Test case for class \Rere\Rere\Domain\Model\Fach.
+ * Test case for class \ReRe\Rere\Domain\Model\Fach.
  *
  * @copyright Copyright belongs to the respective authors
  * @license http://www.gnu.org/licenses/gpl.html GNU General Public License, version 3 or later
@@ -35,12 +35,12 @@ namespace Rere\Rere\Tests\Unit\Domain\Model;
  */
 class FachTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
 	/**
-	 * @var \Rere\Rere\Domain\Model\Fach
+	 * @var \ReRe\Rere\Domain\Model\Fach
 	 */
 	protected $subject = NULL;
 
 	protected function setUp() {
-		$this->subject = new \Rere\Rere\Domain\Model\Fach();
+		$this->subject = new \ReRe\Rere\Domain\Model\Fach();
 	}
 
 	protected function tearDown() {
@@ -154,7 +154,7 @@ class FachTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
 	 * @test
 	 */
 	public function setModulnrForObjectStorageContainingModulSetsModulnr() {
-		$modulnr = new \Rere\Rere\Domain\Model\Modul();
+		$modulnr = new \ReRe\Rere\Domain\Model\Modul();
 		$objectStorageHoldingExactlyOneModulnr = new \TYPO3\CMS\Extbase\Persistence\ObjectStorage();
 		$objectStorageHoldingExactlyOneModulnr->attach($modulnr);
 		$this->subject->setModulnr($objectStorageHoldingExactlyOneModulnr);
@@ -170,7 +170,7 @@ class FachTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
 	 * @test
 	 */
 	public function addModulnrToObjectStorageHoldingModulnr() {
-		$modulnr = new \Rere\Rere\Domain\Model\Modul();
+		$modulnr = new \ReRe\Rere\Domain\Model\Modul();
 		$modulnrObjectStorageMock = $this->getMock('TYPO3\\CMS\\Extbase\\Persistence\\ObjectStorage', array('attach'), array(), '', FALSE);
 		$modulnrObjectStorageMock->expects($this->once())->method('attach')->with($this->equalTo($modulnr));
 		$this->inject($this->subject, 'modulnr', $modulnrObjectStorageMock);
@@ -182,7 +182,7 @@ class FachTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
 	 * @test
 	 */
 	public function removeModulnrFromObjectStorageHoldingModulnr() {
-		$modulnr = new \Rere\Rere\Domain\Model\Modul();
+		$modulnr = new \ReRe\Rere\Domain\Model\Modul();
 		$modulnrObjectStorageMock = $this->getMock('TYPO3\\CMS\\Extbase\\Persistence\\ObjectStorage', array('detach'), array(), '', FALSE);
 		$modulnrObjectStorageMock->expects($this->once())->method('detach')->with($this->equalTo($modulnr));
 		$this->inject($this->subject, 'modulnr', $modulnrObjectStorageMock);
@@ -206,7 +206,7 @@ class FachTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
 	 * @test
 	 */
 	public function setMatrikelnrForObjectStorageContainingPrueflingSetsMatrikelnr() {
-		$matrikelnr = new \Rere\Rere\Domain\Model\Pruefling();
+		$matrikelnr = new \ReRe\Rere\Domain\Model\Pruefling();
 		$objectStorageHoldingExactlyOneMatrikelnr = new \TYPO3\CMS\Extbase\Persistence\ObjectStorage();
 		$objectStorageHoldingExactlyOneMatrikelnr->attach($matrikelnr);
 		$this->subject->setMatrikelnr($objectStorageHoldingExactlyOneMatrikelnr);
@@ -222,7 +222,7 @@ class FachTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
 	 * @test
 	 */
 	public function addMatrikelnrToObjectStorageHoldingMatrikelnr() {
-		$matrikelnr = new \Rere\Rere\Domain\Model\Pruefling();
+		$matrikelnr = new \ReRe\Rere\Domain\Model\Pruefling();
 		$matrikelnrObjectStorageMock = $this->getMock('TYPO3\\CMS\\Extbase\\Persistence\\ObjectStorage', array('attach'), array(), '', FALSE);
 		$matrikelnrObjectStorageMock->expects($this->once())->method('attach')->with($this->equalTo($matrikelnr));
 		$this->inject($this->subject, 'matrikelnr', $matrikelnrObjectStorageMock);
@@ -234,7 +234,7 @@ class FachTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
 	 * @test
 	 */
 	public function removeMatrikelnrFromObjectStorageHoldingMatrikelnr() {
-		$matrikelnr = new \Rere\Rere\Domain\Model\Pruefling();
+		$matrikelnr = new \ReRe\Rere\Domain\Model\Pruefling();
 		$matrikelnrObjectStorageMock = $this->getMock('TYPO3\\CMS\\Extbase\\Persistence\\ObjectStorage', array('detach'), array(), '', FALSE);
 		$matrikelnrObjectStorageMock->expects($this->once())->method('detach')->with($this->equalTo($matrikelnr));
 		$this->inject($this->subject, 'matrikelnr', $matrikelnrObjectStorageMock);

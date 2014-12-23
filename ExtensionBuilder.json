@@ -364,7 +364,7 @@
         "originalExtensionKey": "rere",
         "persons": [],
         "plugins": [],
-        "vendorName": "Rere"
+        "vendorName": "ReRe"
     },
     "wires": [
         {
@@ -417,7 +417,7 @@
         }
     ],
     "log": {
-        "last_modified": "2014-12-23 06:23",
+        "last_modified": "2014-12-23 06:27",
         "extension_builder_version": "6.2.0",
         "be_user": " (1)"
     }

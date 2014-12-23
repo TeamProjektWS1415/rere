@@ -1,5 +1,5 @@
 <?php
-namespace Rere\Rere\Domain\Model;
+namespace ReRe\Rere\Domain\Model;
 
 /***************************************************************
  *
@@ -71,14 +71,14 @@ class Fach extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 	/**
 	 * modulnr
 	 * 
-	 * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\Rere\Rere\Domain\Model\Modul>
+	 * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\ReRe\Rere\Domain\Model\Modul>
 	 */
 	protected $modulnr = NULL;
 
 	/**
 	 * matrikelnr
 	 * 
-	 * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\Rere\Rere\Domain\Model\Pruefling>
+	 * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\ReRe\Rere\Domain\Model\Pruefling>
 	 */
 	protected $matrikelnr = NULL;
 
@@ -159,25 +159,6 @@ class Fach extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 	}
 
 	/**
-	 * Returns the modulnr
-	 * 
-	 * @return \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\Rere\Rere\Domain\Model\Modul> modulnr
-	 */
-	public function getModulnr() {
-		return $this->modulnr;
-	}
-
-	/**
-	 * Sets the modulnr
-	 * 
-	 * @param \ReRe\Rere\Domain\Model\Modul $modulnr
-	 * @return \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\Rere\Rere\Domain\Model\Modul> modulnr
-	 */
-	public function setModulnr(\ReRe\Rere\Domain\Model\Modul $modulnr) {
-		$this->modulnr = $modulnr;
-	}
-
-	/**
 	 * __construct
 	 */
 	public function __construct() {
@@ -196,6 +177,25 @@ class Fach extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 	protected function initStorageObjects() {
 		$this->modulnr = new \TYPO3\CMS\Extbase\Persistence\ObjectStorage();
 		$this->matrikelnr = new \TYPO3\CMS\Extbase\Persistence\ObjectStorage();
+	}
+
+	/**
+	 * Returns the modulnr
+	 * 
+	 * @return \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\ReRe\Rere\Domain\Model\Modul> modulnr
+	 */
+	public function getModulnr() {
+		return $this->modulnr;
+	}
+
+	/**
+	 * Sets the modulnr
+	 * 
+	 * @param \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\ReRe\Rere\Domain\Model\Modul> $modulnr
+	 * @return \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\ReRe\Rere\Domain\Model\Modul> modulnr
+	 */
+	public function setModulnr(\ReRe\Rere\Domain\Model\Modul $modulnr) {
+		$this->modulnr = $modulnr;
 	}
 
 }
