@@ -61,10 +61,10 @@
             <div class="col-md-12">
                 <div class="panel-group tx_rere" id="accordion" role="tablist">
                     <f:for each="{moduls}" as="modul">
-                        <div class="panel panel-default">
-                            <div class="panel-heading" role="tab" id="überschriftEins">
+                        <div class="panel panel-default" role="tablist">
+                            <div class="panel-heading" role="tab" id="{modul.name}">
                                 <h3 class="panel-title">
-                                    <a data-toggle="collapse" data-parent="#accordion" href="#{modul.modulnr}" aria-expanded="false" aria-controls="collapseEins">{modul.modulname}</a>
+                                    <a data-toggle="collapse" data-parent="#accordion" href="#{modul.modulnr}" aria-expanded="false" aria-controls="collapse{modul.name}">{modul.modulname}</a>
                                     <f:link.action class="delete btn btn-default modulloeschenbutton" action="delete" onclick="delentry('Wollen Sie das Modul mit allen zugehoerenden Faechern und Noten wirklich löschen?', $(this).attr('href'));
                                             return false;" arguments="{modul : modul}" title="Dieses Modul und die zugeordneten Fächer löschen">Löschen</f:link.action>
                                 </h3>
@@ -74,19 +74,20 @@
                                     <ul>
                                         <f:for each="{fachs}" as="fach">
                                             <li><span class="col-md-4">{fach.fachname}</span> <span class="col-md-7">
-                                                    <f:link.action controller="Note" class="gettooltip" action="list" title="Noten eintragen oder anzeigen">Noten eintragen/anzeigen</f:link.action> | 
+                                                    <f:link.action controller="Note" class="gettooltip" action="list" title="Noten eintragen oder anzeigen">Noten eintragen/anzeigen</f:link.action> |
                                                     <f:link.action controller="Pruefling" class="gettooltip" action="list" title="Prüflinge zu diesem Fach zuweisen">Prüflinge zuweisen</f:link.action> |
-                                                    <f:link.action class="delete" action="delete" onclick="delentry('Wollen Sie das Fach mit allen zugehörenden Noten wirklich löschen?', 
-                                                                $(this).attr('href')); return false;" arguments="{fach : fach}" title="Fach und die eingetragenen Noten löschen">
-                                                        <span class="gettooltip glyphicon glyphicon-remove" aria-hidden="true">       
+                                                    <f:link.action class="delete" action="delete" onclick="delentry('Wollen Sie das Fach mit allen zugehörenden Noten wirklich löschen?',
+                                                                    $(this).attr('href'));
+                                                            return false;" arguments="{fach : fach}" title="Fach und die eingetragenen Noten löschen">
+                                                        <span class="gettooltip glyphicon glyphicon-remove" aria-hidden="true">
                                                         </span>
                                                     </f:link.action>
-                                                    </a></span>
+                                                </span>
                                             </li>
                                         </f:for>
                                     </ul>
                                     <!-- controller und action ?? wie, dass zu modul zugeordnet? -->
-                                    <f:link.action controller="Modul" class="gettooltip btn btn-default" action="new" title="Ein Fach zu diesem Modul hinzufügen">Fach hinzufügen</f:link.action>
+                                    <f:link.action controller="Modul" class="gettooltip btn btn-default" arguments="{modul:modul}" action="newFach" title="Ein Fach zu diesem Modul hinzufügen">Fach hinzufügen</f:link.action>
                                 </div>
                             </div>
                         </div>
