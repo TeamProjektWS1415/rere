@@ -5,18 +5,9 @@ $(document).ready(function () {
     $('[data-toggle="tooltip"]').tooltip();
 
     // Ajax Call für neue Note
-    $(".save").click(function () {
-        alert("Speichert die Note");
-        $(".err").hide();
-
-        var kommentar = $("#kommentar").val();
-
-        // Post aufruf
-        $.post("index.php?eID=script",
-                {kommentar: "wuhu", werr: "1.0", notennr: "50"},
-        function (data) {
-        });
-
+    $(".kommentar").focusout(function () {
+        var uid = $(this).parent('td').parent('tr').find('.noteuid').val();
+        $('#editnote' + uid).submit();
     });
 
     // search funktion
@@ -80,6 +71,7 @@ function genchart(array) {
     // Chart
     var ctx = document.getElementById("gradeChart").getContext("2d");
     window.myLine = new Chart(ctx).Line(data, {
-        responsive: true
+        responsive: true,
+        scaleBeginAtZero: true
     });
 }

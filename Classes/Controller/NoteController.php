@@ -60,7 +60,6 @@ class NoteController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController 
         $notesList = new \ReRe\Rere\Services\NestedDirectory\NoteSchemaArrays();
         $helper = new \ReRe\Rere\Services\NestedDirectory\NotenVerwaltungHelper();
 
-
         // Übergibt die Notenlisten
         $this->view->assign('options', $notesList->getMarks());
         $this->view->assign('notes', $notes);

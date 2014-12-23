@@ -17,33 +17,33 @@
                 <h1>Prüfling zuweisen</h1>
             </div>
             <div class="col-md-12">
-                    <h4><strong>Fach</strong> aus <strong>Modul</strong> in <strong>Semester</strong></h4>
-                    <p> Geben Sie eine MatrikelNr oder einen Namen ein um nach einem Prüfling zu suchen.</p>
-                    <p> Weisen Sie den Prüfling dann mit Enter dem Fach zu. Alternativ können Sie eine UserGroup hinzufügen. </p>
+                <h4><strong>Fach</strong> aus <strong>Modul</strong> in <strong>Semester</strong></h4>
+                <p> Geben Sie eine MatrikelNr oder einen Namen ein um nach einem Prüfling zu suchen.</p>
+                <p> Weisen Sie den Prüfling dann mit Enter dem Fach zu. Alternativ können Sie eine UserGroup hinzufügen. </p>
             </div>
             <div class="col-md-12">
-                    <nav class="navbar navbar-default" role="navigation">
-                        <div class="container-fluid">
-                            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                                <form class="navbar-form navbar-left" role="search">
-                                    <div class="form-group">
-                                        <div class="input-group">
-                                            <div class="input-group-addon"><span class="glyphicon glyphicon-search" aria-hidden="true" ></span></div>
-                                            <input type="text" id="suche" class="form-control" data-toggle="tooltip" data-placement="bottom" title="Nach MatrikelNr suchen" placeholder="Matrikel Nummer">
-                                        </div>
-                                        <div class="input-group">
-                                         <div class="input-group-addon"><span class="glyphicon glyphicon-search" aria-hidden="true" ></span></div>
+                <nav class="navbar navbar-default" role="navigation">
+                    <div class="container-fluid">
+                        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                            <form class="navbar-form navbar-left" role="search">
+                                <div class="form-group">
+                                    <div class="input-group">
+                                        <div class="input-group-addon"><span class="glyphicon glyphicon-search" aria-hidden="true" ></span></div>
+                                        <input type="text" id="suche" class="form-control" data-toggle="tooltip" data-placement="bottom" title="Nach MatrikelNr suchen" placeholder="Matrikel Nummer">
+                                    </div>
+                                    <div class="input-group">
+                                        <div class="input-group-addon"><span class="glyphicon glyphicon-search" aria-hidden="true" ></span></div>
                                         <select class="form-control" data-toggle="tooltip" data-placement="bottom" title="UserGroup auswählen">
                                             <option>Bitte UserGroup ausWählen</option>
                                             <option>User Group 1</option>
                                             <option>User Group 2</option>
                                             <option>User Group anlegen</option>
                                         </select>
-                                        </div>
                                     </div>
-                            </div>
+                                </div>
                         </div>
-                    </nav>
+                    </div>
+                </nav>
             </div>
             <div class="col-md-12">
                 <h4>Bereits zugewiesen:</h4>
@@ -59,16 +59,16 @@
                                 <th>Vorname</th>
                                 <th>Nachname</th>
                                 <th>Eintrag löschen</th>
-                        <th></th>
-                        </tr>
+                                <th></th>
+                            </tr>
                         </thead>
                         <tbody>
-                        <f:for each="{notes}" as="note">
+                        <f:for each="{prueflings}" as="pruefling">
                             <tr>
                             <f:form name="updatePruefling">
-                                <td><span class="value">123456</span><input type="text" class="form-control hidden" value="123456"/></td>
-                                <td><span class="value">Max</span><input type="text" class="form-control hidden" value="Max"/></td>
-                                <td><span class="value">Mustermann</span><input type="text" class="form-control hidden" value="Mustermann"/></td>
+                                <td><span class="value">{pruefling.matrikelnr}</span><input type="text" class="form-control hidden" value="123456"/></td>
+                                <td><span class="value">{pruefling.vorname}</span><input type="text" class="form-control hidden" value="Max"/></td>
+                                <td><span class="value">{pruefling.nachname}</span><input type="text" class="form-control hidden" value="Mustermann"/></td>
                                 <td>
                                 <f:link.action class="delete" action="delete" onclick="delentry(123456, $(this).attr('href'));
                                         return false;" arguments="{note : note}"><span class="glyphicon glyphicon-remove" aria-hidden="true" data-toggle="tooltip" data-placement="bottom" title="Löscht diesen Datensatz"></span></f:link.action>
@@ -83,22 +83,7 @@
         </div>
     </div>
 
-    <!--- Popup Confirm -->
-    <div class="modal fade" id="popup" tabindex="-1" role="dialog" aria-labelledby="popuplabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-                    <h4 class="modal-title" id="popupTitle"></h4>
-                </div>
-                <div class="modal-body">
-                    <span class="popuptext"></span>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                    <a href="" id="delbuttonmodal" class="btn btn-default" >Delete</a>
-                </div>
-            </div>
-        </div>
-    </div>
+    <!-- Lädt den Code für den Bestätigungs Dialog-->
+    <f:render partial="LoeschenDialog" />
+
 </f:section>
