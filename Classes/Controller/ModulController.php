@@ -60,7 +60,9 @@ class ModulController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
      */
     public function listAction() {
         $moduls = $this->modulRepository->findAll();
+        $fachs = $this->fachRepository->findAll();
         $this->view->assign('moduls', $moduls);
+        $this->view->assign('fachs', $fachs);
     }
 
     /**
@@ -85,16 +87,6 @@ class ModulController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
     }
 
     /**
-     * action new
-     *
-     * @param \ReRe\Rere\Domain\Model\Modul $newModul
-     * @return void
-     */
-    public function newFachAction(\ReRe\Rere\Domain\Model\Modul $newModul) {
-        $this->view->assign('newModul', $newModul);
-    }
-
-    /**
      * action create
      *
      * @param \ReRe\Rere\Domain\Model\Modul $newModul
@@ -108,6 +100,7 @@ class ModulController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
         $fachHelper->setFachname($this->request->getArgument('fachname'));
         $fachHelper->setFachnr($this->request->getArgument('fachnummer'));
         $fachHelper->setPruefer($this->request->getArgument('pruefer'));
+
         $fachHelper->setNotenschema('Schule');
         $fachHelper->setModulnr($newModul);
         $this->fachRepository->add($fachHelper);
