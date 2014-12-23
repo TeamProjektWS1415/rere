@@ -1,15 +1,9 @@
 <?php
-namespace ReRe\Rere\Tests\Unit\Controller;
+namespace Rere\Rere\Tests\Unit\Controller;
 /***************************************************************
  *  Copyright notice
  *
- *  (c) 2014 Felix Hohlwegler <info@felix-hohlwegler.de>, TeamProjektWS14/15
- *  			Sarah Kieninger <sarah.kieninger@gmail.com>, TeamProjektWS14/15
- *  			Tim Wacker , TeamProjektWS14/15
- *  			Nejat Balta , TeamProjektWS14/15
- *  			Tobias Brockner , TeamProjektWS14/15
- *  			Nicolas Tedjadharma , TeamProjektWS14/15
- *  			
+ *  (c) 2014 
  *  All rights reserved
  *
  *  This script is part of the TYPO3 project. The TYPO3 project is
@@ -30,24 +24,18 @@ namespace ReRe\Rere\Tests\Unit\Controller;
  ***************************************************************/
 
 /**
- * Test case for class ReRe\Rere\Controller\PrueflingController.
+ * Test case for class Rere\Rere\Controller\PrueflingController.
  *
- * @author Felix Hohlwegler <info@felix-hohlwegler.de>
- * @author Sarah Kieninger <sarah.kieninger@gmail.com>
- * @author Tim Wacker 
- * @author Nejat Balta 
- * @author Tobias Brockner 
- * @author Nicolas Tedjadharma 
  */
 class PrueflingControllerTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
 
 	/**
-	 * @var \ReRe\Rere\Controller\PrueflingController
+	 * @var \Rere\Rere\Controller\PrueflingController
 	 */
 	protected $subject = NULL;
 
 	protected function setUp() {
-		$this->subject = $this->getMock('ReRe\\Rere\\Controller\\PrueflingController', array('redirect', 'forward', 'addFlashMessage'), array(), '', FALSE);
+		$this->subject = $this->getMock('Rere\\Rere\\Controller\\PrueflingController', array('redirect', 'forward', 'addFlashMessage'), array(), '', FALSE);
 	}
 
 	protected function tearDown() {
@@ -61,7 +49,7 @@ class PrueflingControllerTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
 
 		$allPrueflings = $this->getMock('TYPO3\\CMS\\Extbase\\Persistence\\ObjectStorage', array(), array(), '', FALSE);
 
-		$prueflingRepository = $this->getMock('ReRe\\Rere\\Domain\\Repository\\PrueflingRepository', array('findAll'), array(), '', FALSE);
+		$prueflingRepository = $this->getMock('Rere\\Rere\\Domain\\Repository\\PrueflingRepository', array('findAll'), array(), '', FALSE);
 		$prueflingRepository->expects($this->once())->method('findAll')->will($this->returnValue($allPrueflings));
 		$this->inject($this->subject, 'prueflingRepository', $prueflingRepository);
 
@@ -76,7 +64,7 @@ class PrueflingControllerTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
 	 * @test
 	 */
 	public function showActionAssignsTheGivenPrueflingToView() {
-		$pruefling = new \ReRe\Rere\Domain\Model\Pruefling();
+		$pruefling = new \Rere\Rere\Domain\Model\Pruefling();
 
 		$view = $this->getMock('TYPO3\\CMS\\Extbase\\Mvc\\View\\ViewInterface');
 		$this->inject($this->subject, 'view', $view);
@@ -89,7 +77,7 @@ class PrueflingControllerTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
 	 * @test
 	 */
 	public function newActionAssignsTheGivenPrueflingToView() {
-		$pruefling = new \ReRe\Rere\Domain\Model\Pruefling();
+		$pruefling = new \Rere\Rere\Domain\Model\Pruefling();
 
 		$view = $this->getMock('TYPO3\\CMS\\Extbase\\Mvc\\View\\ViewInterface');
 		$view->expects($this->once())->method('assign')->with('newPruefling', $pruefling);
@@ -102,9 +90,9 @@ class PrueflingControllerTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
 	 * @test
 	 */
 	public function createActionAddsTheGivenPrueflingToPrueflingRepository() {
-		$pruefling = new \ReRe\Rere\Domain\Model\Pruefling();
+		$pruefling = new \Rere\Rere\Domain\Model\Pruefling();
 
-		$prueflingRepository = $this->getMock('ReRe\\Rere\\Domain\\Repository\\PrueflingRepository', array('add'), array(), '', FALSE);
+		$prueflingRepository = $this->getMock('Rere\\Rere\\Domain\\Repository\\PrueflingRepository', array('add'), array(), '', FALSE);
 		$prueflingRepository->expects($this->once())->method('add')->with($pruefling);
 		$this->inject($this->subject, 'prueflingRepository', $prueflingRepository);
 
@@ -115,7 +103,7 @@ class PrueflingControllerTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
 	 * @test
 	 */
 	public function editActionAssignsTheGivenPrueflingToView() {
-		$pruefling = new \ReRe\Rere\Domain\Model\Pruefling();
+		$pruefling = new \Rere\Rere\Domain\Model\Pruefling();
 
 		$view = $this->getMock('TYPO3\\CMS\\Extbase\\Mvc\\View\\ViewInterface');
 		$this->inject($this->subject, 'view', $view);
@@ -128,9 +116,9 @@ class PrueflingControllerTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
 	 * @test
 	 */
 	public function updateActionUpdatesTheGivenPrueflingInPrueflingRepository() {
-		$pruefling = new \ReRe\Rere\Domain\Model\Pruefling();
+		$pruefling = new \Rere\Rere\Domain\Model\Pruefling();
 
-		$prueflingRepository = $this->getMock('ReRe\\Rere\\Domain\\Repository\\PrueflingRepository', array('update'), array(), '', FALSE);
+		$prueflingRepository = $this->getMock('Rere\\Rere\\Domain\\Repository\\PrueflingRepository', array('update'), array(), '', FALSE);
 		$prueflingRepository->expects($this->once())->method('update')->with($pruefling);
 		$this->inject($this->subject, 'prueflingRepository', $prueflingRepository);
 
@@ -141,9 +129,9 @@ class PrueflingControllerTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
 	 * @test
 	 */
 	public function deleteActionRemovesTheGivenPrueflingFromPrueflingRepository() {
-		$pruefling = new \ReRe\Rere\Domain\Model\Pruefling();
+		$pruefling = new \Rere\Rere\Domain\Model\Pruefling();
 
-		$prueflingRepository = $this->getMock('ReRe\\Rere\\Domain\\Repository\\PrueflingRepository', array('remove'), array(), '', FALSE);
+		$prueflingRepository = $this->getMock('Rere\\Rere\\Domain\\Repository\\PrueflingRepository', array('remove'), array(), '', FALSE);
 		$prueflingRepository->expects($this->once())->method('remove')->with($pruefling);
 		$this->inject($this->subject, 'prueflingRepository', $prueflingRepository);
 

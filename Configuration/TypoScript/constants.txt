@@ -1,19 +1,4 @@
 
-plugin.tx_rere {
-	view {
-		# cat=plugin.tx_rere/file; type=string; label=Path to template root (FE)
-		templateRootPath = EXT:rere/Resources/Private/Templates/
-		# cat=plugin.tx_rere/file; type=string; label=Path to template partials (FE)
-		partialRootPath = EXT:rere/Resources/Private/Partials/
-		# cat=plugin.tx_rere/file; type=string; label=Path to template layouts (FE)
-		layoutRootPath = EXT:rere/Resources/Private/Layouts/
-	}
-	persistence {
-		# cat=plugin.tx_rere//a; type=string; label=Default storage PID
-		storagePid =
-	}
-}
-
 module.tx_rere {
 	view {
 		# cat=module.tx_rere/file; type=string; label=Path to template root (BE)

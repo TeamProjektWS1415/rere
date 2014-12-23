@@ -181,9 +181,9 @@ CREATE TABLE tx_rere_domain_model_modul (
 );
 
 #
-# Table structure for table 'tx_rere_fach_pruefling_mm'
+# Table structure for table 'tx_kaka_fach_pruefling_mm'
 #
-CREATE TABLE tx_rere_fach_pruefling_mm (
+CREATE TABLE tx_kaka_fach_pruefling_mm (
 	uid_local int(11) unsigned DEFAULT '0' NOT NULL,
 	uid_foreign int(11) unsigned DEFAULT '0' NOT NULL,
 	sorting int(11) unsigned DEFAULT '0' NOT NULL,

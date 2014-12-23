@@ -1,15 +1,9 @@
 <?php
-namespace ReRe\Rere\Tests\Unit\Controller;
+namespace Rere\Rere\Tests\Unit\Controller;
 /***************************************************************
  *  Copyright notice
  *
- *  (c) 2014 Felix Hohlwegler <info@felix-hohlwegler.de>, TeamProjektWS14/15
- *  			Sarah Kieninger <sarah.kieninger@gmail.com>, TeamProjektWS14/15
- *  			Tim Wacker , TeamProjektWS14/15
- *  			Nejat Balta , TeamProjektWS14/15
- *  			Tobias Brockner , TeamProjektWS14/15
- *  			Nicolas Tedjadharma , TeamProjektWS14/15
- *  			
+ *  (c) 2014 
  *  All rights reserved
  *
  *  This script is part of the TYPO3 project. The TYPO3 project is
@@ -30,24 +24,18 @@ namespace ReRe\Rere\Tests\Unit\Controller;
  ***************************************************************/
 
 /**
- * Test case for class ReRe\Rere\Controller\FachController.
+ * Test case for class Rere\Rere\Controller\FachController.
  *
- * @author Felix Hohlwegler <info@felix-hohlwegler.de>
- * @author Sarah Kieninger <sarah.kieninger@gmail.com>
- * @author Tim Wacker 
- * @author Nejat Balta 
- * @author Tobias Brockner 
- * @author Nicolas Tedjadharma 
  */
 class FachControllerTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
 
 	/**
-	 * @var \ReRe\Rere\Controller\FachController
+	 * @var \Rere\Rere\Controller\FachController
 	 */
 	protected $subject = NULL;
 
 	protected function setUp() {
-		$this->subject = $this->getMock('ReRe\\Rere\\Controller\\FachController', array('redirect', 'forward', 'addFlashMessage'), array(), '', FALSE);
+		$this->subject = $this->getMock('Rere\\Rere\\Controller\\FachController', array('redirect', 'forward', 'addFlashMessage'), array(), '', FALSE);
 	}
 
 	protected function tearDown() {
@@ -61,7 +49,7 @@ class FachControllerTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
 
 		$allFaches = $this->getMock('TYPO3\\CMS\\Extbase\\Persistence\\ObjectStorage', array(), array(), '', FALSE);
 
-		$fachRepository = $this->getMock('ReRe\\Rere\\Domain\\Repository\\FachRepository', array('findAll'), array(), '', FALSE);
+		$fachRepository = $this->getMock('Rere\\Rere\\Domain\\Repository\\FachRepository', array('findAll'), array(), '', FALSE);
 		$fachRepository->expects($this->once())->method('findAll')->will($this->returnValue($allFaches));
 		$this->inject($this->subject, 'fachRepository', $fachRepository);
 
@@ -76,7 +64,7 @@ class FachControllerTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
 	 * @test
 	 */
 	public function showActionAssignsTheGivenFachToView() {
-		$fach = new \ReRe\Rere\Domain\Model\Fach();
+		$fach = new \Rere\Rere\Domain\Model\Fach();
 
 		$view = $this->getMock('TYPO3\\CMS\\Extbase\\Mvc\\View\\ViewInterface');
 		$this->inject($this->subject, 'view', $view);
@@ -89,7 +77,7 @@ class FachControllerTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
 	 * @test
 	 */
 	public function newActionAssignsTheGivenFachToView() {
-		$fach = new \ReRe\Rere\Domain\Model\Fach();
+		$fach = new \Rere\Rere\Domain\Model\Fach();
 
 		$view = $this->getMock('TYPO3\\CMS\\Extbase\\Mvc\\View\\ViewInterface');
 		$view->expects($this->once())->method('assign')->with('newFach', $fach);
@@ -102,9 +90,9 @@ class FachControllerTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
 	 * @test
 	 */
 	public function createActionAddsTheGivenFachToFachRepository() {
-		$fach = new \ReRe\Rere\Domain\Model\Fach();
+		$fach = new \Rere\Rere\Domain\Model\Fach();
 
-		$fachRepository = $this->getMock('ReRe\\Rere\\Domain\\Repository\\FachRepository', array('add'), array(), '', FALSE);
+		$fachRepository = $this->getMock('Rere\\Rere\\Domain\\Repository\\FachRepository', array('add'), array(), '', FALSE);
 		$fachRepository->expects($this->once())->method('add')->with($fach);
 		$this->inject($this->subject, 'fachRepository', $fachRepository);
 
@@ -115,7 +103,7 @@ class FachControllerTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
 	 * @test
 	 */
 	public function editActionAssignsTheGivenFachToView() {
-		$fach = new \ReRe\Rere\Domain\Model\Fach();
+		$fach = new \Rere\Rere\Domain\Model\Fach();
 
 		$view = $this->getMock('TYPO3\\CMS\\Extbase\\Mvc\\View\\ViewInterface');
 		$this->inject($this->subject, 'view', $view);
@@ -128,9 +116,9 @@ class FachControllerTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
 	 * @test
 	 */
 	public function updateActionUpdatesTheGivenFachInFachRepository() {
-		$fach = new \ReRe\Rere\Domain\Model\Fach();
+		$fach = new \Rere\Rere\Domain\Model\Fach();
 
-		$fachRepository = $this->getMock('ReRe\\Rere\\Domain\\Repository\\FachRepository', array('update'), array(), '', FALSE);
+		$fachRepository = $this->getMock('Rere\\Rere\\Domain\\Repository\\FachRepository', array('update'), array(), '', FALSE);
 		$fachRepository->expects($this->once())->method('update')->with($fach);
 		$this->inject($this->subject, 'fachRepository', $fachRepository);
 
@@ -141,9 +129,9 @@ class FachControllerTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
 	 * @test
 	 */
 	public function deleteActionRemovesTheGivenFachFromFachRepository() {
-		$fach = new \ReRe\Rere\Domain\Model\Fach();
+		$fach = new \Rere\Rere\Domain\Model\Fach();
 
-		$fachRepository = $this->getMock('ReRe\\Rere\\Domain\\Repository\\FachRepository', array('remove'), array(), '', FALSE);
+		$fachRepository = $this->getMock('Rere\\Rere\\Domain\\Repository\\FachRepository', array('remove'), array(), '', FALSE);
 		$fachRepository->expects($this->once())->method('remove')->with($fach);
 		$this->inject($this->subject, 'fachRepository', $fachRepository);
 

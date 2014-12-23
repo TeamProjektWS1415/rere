@@ -1,16 +1,11 @@
 <?php
 
-namespace ReRe\Rere\Tests\Unit\Domain\Model;
+namespace Rere\Rere\Tests\Unit\Domain\Model;
 
 /***************************************************************
  *  Copyright notice
  *
- *  (c) 2014 Felix Hohlwegler <info@felix-hohlwegler.de>, TeamProjektWS14/15
- *           Sarah Kieninger <sarah.kieninger@gmail.com>, TeamProjektWS14/15
- *           Tim Wacker, TeamProjektWS14/15
- *           Nejat Balta, TeamProjektWS14/15
- *           Tobias Brockner, TeamProjektWS14/15
- *           Nicolas Tedjadharma, TeamProjektWS14/15
+ *  (c) 2014 
  *
  *  All rights reserved
  *
@@ -32,53 +27,24 @@ namespace ReRe\Rere\Tests\Unit\Domain\Model;
  ***************************************************************/
 
 /**
- * Test case for class \ReRe\Rere\Domain\Model\Note.
+ * Test case for class \Rere\Rere\Domain\Model\Note.
  *
  * @copyright Copyright belongs to the respective authors
  * @license http://www.gnu.org/licenses/gpl.html GNU General Public License, version 3 or later
  *
- * @author Felix Hohlwegler <info@felix-hohlwegler.de>
- * @author Sarah Kieninger <sarah.kieninger@gmail.com>
- * @author Tim Wacker 
- * @author Nejat Balta 
- * @author Tobias Brockner 
- * @author Nicolas Tedjadharma 
  */
 class NoteTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
 	/**
-	 * @var \ReRe\Rere\Domain\Model\Note
+	 * @var \Rere\Rere\Domain\Model\Note
 	 */
 	protected $subject = NULL;
 
 	protected function setUp() {
-		$this->subject = new \ReRe\Rere\Domain\Model\Note();
+		$this->subject = new \Rere\Rere\Domain\Model\Note();
 	}
 
 	protected function tearDown() {
 		unset($this->subject);
-	}
-
-	/**
-	 * @test
-	 */
-	public function getNotenrReturnsInitialValueForInteger() {
-		$this->assertSame(
-			0,
-			$this->subject->getNotenr()
-		);
-	}
-
-	/**
-	 * @test
-	 */
-	public function setNotenrForIntegerSetsNotenr() {
-		$this->subject->setNotenr(12);
-
-		$this->assertAttributeEquals(
-			12,
-			'notenr',
-			$this->subject
-		);
 	}
 
 	/**
@@ -131,8 +97,9 @@ class NoteTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
 	 * @test
 	 */
 	public function getFachnrReturnsInitialValueForFach() {
+		$newObjectStorage = new \TYPO3\CMS\Extbase\Persistence\ObjectStorage();
 		$this->assertEquals(
-			NULL,
+			$newObjectStorage,
 			$this->subject->getFachnr()
 		);
 	}
@@ -140,15 +107,42 @@ class NoteTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
 	/**
 	 * @test
 	 */
-	public function setFachnrForFachSetsFachnr() {
-		$fachnrFixture = new \ReRe\Rere\Domain\Model\Fach();
-		$this->subject->setFachnr($fachnrFixture);
+	public function setFachnrForObjectStorageContainingFachSetsFachnr() {
+		$fachnr = new \Rere\Rere\Domain\Model\Fach();
+		$objectStorageHoldingExactlyOneFachnr = new \TYPO3\CMS\Extbase\Persistence\ObjectStorage();
+		$objectStorageHoldingExactlyOneFachnr->attach($fachnr);
+		$this->subject->setFachnr($objectStorageHoldingExactlyOneFachnr);
 
 		$this->assertAttributeEquals(
-			$fachnrFixture,
+			$objectStorageHoldingExactlyOneFachnr,
 			'fachnr',
 			$this->subject
 		);
+	}
+
+	/**
+	 * @test
+	 */
+	public function addFachnrToObjectStorageHoldingFachnr() {
+		$fachnr = new \Rere\Rere\Domain\Model\Fach();
+		$fachnrObjectStorageMock = $this->getMock('TYPO3\\CMS\\Extbase\\Persistence\\ObjectStorage', array('attach'), array(), '', FALSE);
+		$fachnrObjectStorageMock->expects($this->once())->method('attach')->with($this->equalTo($fachnr));
+		$this->inject($this->subject, 'fachnr', $fachnrObjectStorageMock);
+
+		$this->subject->addFachnr($fachnr);
+	}
+
+	/**
+	 * @test
+	 */
+	public function removeFachnrFromObjectStorageHoldingFachnr() {
+		$fachnr = new \Rere\Rere\Domain\Model\Fach();
+		$fachnrObjectStorageMock = $this->getMock('TYPO3\\CMS\\Extbase\\Persistence\\ObjectStorage', array('detach'), array(), '', FALSE);
+		$fachnrObjectStorageMock->expects($this->once())->method('detach')->with($this->equalTo($fachnr));
+		$this->inject($this->subject, 'fachnr', $fachnrObjectStorageMock);
+
+		$this->subject->removeFachnr($fachnr);
+
 	}
 
 	/**
@@ -165,7 +159,7 @@ class NoteTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
 	 * @test
 	 */
 	public function setMatrikelnrForPrueflingSetsMatrikelnr() {
-		$matrikelnrFixture = new \ReRe\Rere\Domain\Model\Pruefling();
+		$matrikelnrFixture = new \Rere\Rere\Domain\Model\Pruefling();
 		$this->subject->setMatrikelnr($matrikelnrFixture);
 
 		$this->assertAttributeEquals(
