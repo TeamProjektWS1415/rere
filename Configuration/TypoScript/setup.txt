@@ -14,6 +14,14 @@ plugin.tx_rere {
 	}
 }
 
+config.tx_extbase.persistence.classes {
+	Vendor\MyExtension\Domain\Model\Page {
+		mapping {
+			tx_rere_domain_model_fach = tx_rere_domain_model_modul
+		}
+	}
+}
+
 plugin.tx_rere._CSS_DEFAULT_STYLE (
 	textarea.f3-form-error {
 		background-color:#FF9F9F;

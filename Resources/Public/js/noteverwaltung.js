@@ -5,7 +5,7 @@ $(document).ready(function () {
     $('[data-toggle="tooltip"]').tooltip();
 
     // Ajax Call für neue Note
-    $(".kommentar").focusout(function () {
+    $(".sendNote").focusout(function () {
         var uid = $(this).parent('td').parent('tr').find('.noteuid').val();
         $('#editnote' + uid).submit();
     });

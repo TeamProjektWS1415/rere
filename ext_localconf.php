@@ -9,13 +9,13 @@ if (!defined('TYPO3_MODE')) {
     'Modul' => 'list, show, new, create, edit, update, delete',
     'Note' => 'list, show, new, create, edit, update, delete',
     'Fach' => 'list, show, new, create, edit, update, delete',
-    'Pruefling' => 'list, show, new, create, edit, update, delete',
+    'Pruefling' => 'list, show, new, create, createAndNext, edit, update, delete',
         ),
         // non-cacheable actions
         array(
     'Modul' => 'create, update, delete',
     'Note' => 'create, update, delete',
     'Fach' => 'create, update, delete',
-    'Pruefling' => 'create, update, delete',
+    'Pruefling' => 'create, createAndNext, update, delete',
         )
 );
