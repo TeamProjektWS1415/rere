@@ -9,7 +9,7 @@
 ---
 conf.py:
   copyright: 2014
-  project: rere
+  project: Result Repositry
   version: 
   release: 
   intersphinx_mapping:
@@ -19,7 +19,7 @@ conf.py:
   latex_documents:
   - - Index
     - rere.tex
-    - rere
+    - Result Repositry
     - 
     - manual
   latex_elements:

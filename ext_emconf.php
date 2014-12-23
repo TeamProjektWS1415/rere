@@ -11,7 +11,7 @@
  ***************************************************************/
 
 $EM_CONF[$_EXTKEY] = array(
-	'title' => 'rere',
+	'title' => 'Result Repositry',
 	'description' => 'adasd',
 	'category' => 'plugin',
 	'author' => '',

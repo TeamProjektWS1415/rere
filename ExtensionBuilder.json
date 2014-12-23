@@ -343,7 +343,7 @@
                 "description": "rere",
                 "key": "rere",
                 "mainModule": "user",
-                "name": "rere",
+                "name": "Result Repositry",
                 "tabLabel": "rere"
             }
         ],
@@ -360,7 +360,7 @@
             "version": ""
         },
         "extensionKey": "rere",
-        "name": "rere",
+        "name": "Result Repositry",
         "originalExtensionKey": "rere",
         "persons": [],
         "plugins": [],
@@ -417,7 +417,7 @@
         }
     ],
     "log": {
-        "last_modified": "2014-12-23 05:52",
+        "last_modified": "2014-12-23 06:15",
         "extension_builder_version": "6.2.0",
         "be_user": " (1)"
     }
