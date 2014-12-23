@@ -11,7 +11,7 @@ if (TYPO3_MODE === 'BE') {
 	\TYPO3\CMS\Extbase\Utility\ExtensionUtility::registerModule(
 		'ReRe.' . $_EXTKEY,
 		'user',	 // Make module a submodule of 'user'
-		'rere',	// Submodule key
+		'rerebackend',	// Submodule key
 		'',						// Position
 		array(
 			'Modul' => 'list, show, new, create, edit, update, delete','Fach' => 'list, show, new, create, edit, update, delete','Note' => 'list, show, new, create, edit, update, delete','Pruefling' => 'list, show, new, create, edit, update, delete',
@@ -19,7 +19,7 @@ if (TYPO3_MODE === 'BE') {
 		array(
 			'access' => 'user,group',
 			'icon'   => 'EXT:' . $_EXTKEY . '/ext_icon.gif',
-			'labels' => 'LLL:EXT:' . $_EXTKEY . '/Resources/Private/Language/locallang_rere.xlf',
+			'labels' => 'LLL:EXT:' . $_EXTKEY . '/Resources/Private/Language/locallang_rerebackend.xlf',
 		)
 	);
 

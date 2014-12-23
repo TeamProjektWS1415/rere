@@ -340,8 +340,8 @@
                 "actions": {
                     "controllerActionCombinations": ""
                 },
-                "description": "rere",
-                "key": "rere",
+                "description": "Result Repositry",
+                "key": "rerebackend",
                 "mainModule": "user",
                 "name": "Result Repositry",
                 "tabLabel": "Result Repositry"
@@ -417,7 +417,7 @@
         }
     ],
     "log": {
-        "last_modified": "2014-12-23 06:27",
+        "last_modified": "2014-12-23 06:52",
         "extension_builder_version": "6.2.0",
         "be_user": " (1)"
     }
