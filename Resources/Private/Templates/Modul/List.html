@@ -72,9 +72,13 @@
                             <div id="collapseEins" class="panel-collapse collapse in" role="tabpanel">
                                 <div class="panel-body">
                                     <ul>
-                                        <li><span class="col-md-4">Softwaretechnik 1</span> <span class="col-md-7"><a href="Notenverwaltung.html">Noten eintragen/anzeigen</a> | <a href="PrueflingeZuweisen.html">Prüflinge zuweisen</a> | <a class="deletefach" href="#" onclick="delentry('Wollen Sie das Fach mit allen zugehoerenden Noten wirklich loeschen?', $(this).attr('href'));
-                                                return false;"><span class="glyphicon glyphicon-remove" aria-hidden="true" data-toggle="tooltip" data-placement="bottom" title="Dieses Fach samt eingetragener Noten löschen"></span> </a></span></li>
-                                        <li><span class="col-md-4">Softwaretechnik 2</span> <span class="col-md-7"><a href="Notenverwaltung.html">Noten eintragen/anzeigen</a> | <a href="PrueflingeZuweisen.html">Prüflinge zuweisen</a> | <a class="deletefach" href="#"> <span class="glyphicon glyphicon-remove" aria-hidden="true" data-toggle="tooltip" data-placement="bottom" title="Dieses Fach samt eingetragener Noten löschen"></span> </a></span></li>
+                                        <li><span class="col-md-4">Softwaretechnik 1</span> <span class="col-md-7">
+                                                <f:link.action controller="Note" class="gettooltip" action="list" title="Noten eintragen oder anzeigen">Noten eintragen/anzeigen</f:link.action> | 
+                                                <a href="PrueflingeZuweisen.html">Prüflinge zuweisen</a> | 
+                                                <a class="deletefach" href="#" onclick="delentry('Wollen Sie das Fach mit allen zugehoerenden Noten wirklich loeschen?', $(this).attr('href')); return false;">
+                                                <span class="glyphicon glyphicon-remove" aria-hidden="true" data-toggle="tooltip" data-placement="bottom" title="Dieses Fach samt eingetragener Noten löschen"></span> 
+                                                </a></span>
+                                        </li>
                                     </ul>
                                     <a class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Ein Fach zu diesem Modul hinzufügen" href="ModulFachHinzufuegen.html">Fach hinzufügen</a>
                                 </div>
