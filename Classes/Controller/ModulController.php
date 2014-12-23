@@ -60,9 +60,9 @@ class ModulController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
      */
     public function listAction() {
         $moduls = $this->modulRepository->findAll();
-        //$fachs = $this->fachRepository->findAll();
+        $fachs = $this->fachRepository->findAll();
         $this->view->assign('moduls', $moduls);
-        //$this->view->assign('fachs', $fachs);
+        $this->view->assign('fachs', $fachs);
     }
 
     /**
@@ -96,20 +96,13 @@ class ModulController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
         $this->addFlashMessage('The object was created. Please be aware that this action is publicly accessible unless you implement an access check. See <a href="http://wiki.typo3.org/T3Doc/Extension_Builder/Using_the_Extension_Builder#1._Model_the_domain" target="_blank">Wiki</a>', '', \TYPO3\CMS\Core\Messaging\AbstractMessage::ERROR);
         //vardump($this->request->getArgument('fachname'));
         $this->modulRepository->add($newModul);
-
         $fachHelper = new \ReRe\Rere\Domain\Model\Fach();
-
-
         $fachHelper->setFachname($this->request->getArgument('fachname'));
-
         $fachHelper->setFachnr($this->request->getArgument('fachnummer'));
         $fachHelper->setPruefer($this->request->getArgument('pruefer'));
         $fachHelper->setNotenschema("Schule");
         $fachHelper->setModulnr($newModul);
-
         $this->fachRepository->add($fachHelper);
-
-
         $this->redirect('list');
     }
 
