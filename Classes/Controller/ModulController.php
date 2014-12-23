@@ -60,7 +60,9 @@ class ModulController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
      */
     public function listAction() {
         $moduls = $this->modulRepository->findAll();
+        //$fachs = $this->fachRepository->findAll();
         $this->view->assign('moduls', $moduls);
+        //$this->view->assign('fachs', $fachs);
     }
 
     /**
