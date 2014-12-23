@@ -344,7 +344,7 @@
                 "key": "rere",
                 "mainModule": "user",
                 "name": "Result Repositry",
-                "tabLabel": "rere"
+                "tabLabel": "Result Repositry"
             }
         ],
         "description": "adasd",
@@ -417,7 +417,7 @@
         }
     ],
     "log": {
-        "last_modified": "2014-12-23 06:15",
+        "last_modified": "2014-12-23 06:23",
         "extension_builder_version": "6.2.0",
         "be_user": " (1)"
     }
