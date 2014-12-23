@@ -100,8 +100,7 @@ class ModulController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
         $fachHelper->setFachname($this->request->getArgument('fachname'));
         $fachHelper->setFachnr($this->request->getArgument('fachnummer'));
         $fachHelper->setPruefer($this->request->getArgument('pruefer'));
-
-        $fachHelper->setNotenschema('Schule');
+        $fachHelper->setNotenschema($this->request->getArgument('notenschema'));
         $fachHelper->setModulnr($newModul);
         $this->fachRepository->add($fachHelper);
         $this->redirect('list');
