@@ -116,7 +116,14 @@ class PrueflingController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionContro
     public function createAction(\ReRe\Rere\Domain\Model\Pruefling $newPruefling) {
         $this->addFlashMessage('The object was created. Please be aware that this action is publicly accessible unless you implement an access check. See <a href="http://wiki.typo3.org/T3Doc/Extension_Builder/Using_the_Extension_Builder#1._Model_the_domain" target="_blank">Wiki</a>', '', \TYPO3\CMS\Core\Messaging\AbstractMessage::ERROR);
         $this->prueflingRepository->add($newPruefling);
-        $this->redirect('list');
+
+        $action = $this->request->getArgument('createAndNext');
+
+        if ($action != null) {
+            $this->redirect('list');
+        } else {
+            $this->redirect('list', 'Modul');
+        }
     }
 
     /**
