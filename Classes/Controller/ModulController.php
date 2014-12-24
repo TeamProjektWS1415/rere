@@ -94,14 +94,18 @@ class ModulController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
      */
     public function createAction(\ReRe\Rere\Domain\Model\Modul $newModul) {
         $this->addFlashMessage('The object was created. Please be aware that this action is publicly accessible unless you implement an access check. See <a href="http://wiki.typo3.org/T3Doc/Extension_Builder/Using_the_Extension_Builder#1._Model_the_domain" target="_blank">Wiki</a>', '', \TYPO3\CMS\Core\Messaging\AbstractMessage::ERROR);
-        //vardump($this->request->getArgument('fachname'));
         $this->modulRepository->add($newModul);
+        // Erzeugt ein Leeres Fach
         $fachHelper = new \ReRe\Rere\Domain\Model\Fach();
+
+        // Fach Werte setzen
         $fachHelper->setFachname($this->request->getArgument('fachname'));
         $fachHelper->setFachnr($this->request->getArgument('fachnummer'));
         $fachHelper->setPruefer($this->request->getArgument('pruefer'));
         $fachHelper->setNotenschema($this->request->getArgument('notenschema'));
+        // Fach einem Modul zuordnen
         $fachHelper->setModulnr($newModul);
+        // Fach speichern
         $this->fachRepository->add($fachHelper);
         $this->redirect('list');
     }

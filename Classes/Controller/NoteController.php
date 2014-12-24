@@ -46,11 +46,46 @@ class NoteController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController 
     protected $noteRepository = NULL;
 
     /**
+     * prueflingRepository
+     *
+     * @var \ReRe\Rere\Domain\Repository\PrueflingRepository
+     * @inject
+     */
+    protected $prueflingRepository = NULL;
+
+    /**
+     * modulRepository
+     *
+     * @var \ReRe\Rere\Domain\Repository\ModulRepository
+     * @inject
+     */
+    protected $modulRepository = NULL;
+
+    /**
+     * fachRepository
+     *
+     * @var \ReRe\Rere\Domain\Repository\FachRepository
+     * @inject
+     */
+    protected $fachRepository = NULL;
+
+    /**
      * action list
      *
      * @return void
      */
     public function listAction() {
+        // Liest die FachUid Aus
+        $fachUID = $this->request->getArgument('fach');
+        // Holt FachObjekt
+        $fach = $this->fachRepository->findByUid($fachUID);
+
+        // Liest die ModulUid aus
+        $modulUid = $this->request->getArgument('modul');
+        // Holt Modul Objekt
+        $modul = $this->modulRepository->findByUid($modulUid);
+
+
         // Ausgabe aller eingetragener noten
         $notes = $this->noteRepository->findAll();
         // Instanz der Array Klasse.
@@ -62,6 +97,11 @@ class NoteController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController 
         $this->view->assign('chartarray', $helper->genArray($notes));
         $this->view->assign('avg', $helper->calculateAverage($notes));
         $this->view->assign('eingetragen', $helper->checkIfWertisSet($notes));
+
+        // Ausgabe des Fachnamens und des Modulnamens
+        $this->view->assign('fach', $fach->getFachname());
+        $this->view->assign('modul', $modul->getModulname());
+        $this->view->assign('semester', $modul->getGueltigkeitszeitraum());
     }
 
     /**

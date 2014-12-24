@@ -46,13 +46,44 @@ class PrueflingController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionContro
     protected $prueflingRepository = NULL;
 
     /**
+     * modulRepository
+     *
+     * @var \ReRe\Rere\Domain\Repository\ModulRepository
+     * @inject
+     */
+    protected $modulRepository = NULL;
+
+    /**
+     * fachRepository
+     *
+     * @var \ReRe\Rere\Domain\Repository\FachRepository
+     * @inject
+     */
+    protected $fachRepository = NULL;
+
+    /**
      * action list
      *
      * @return void
      */
     public function listAction() {
+        // Liest die FachUid Aus
+        $fachUID = $this->request->getArgument('fach');
+        // Holt FachObjekt
+        $fach = $this->fachRepository->findByUid($fachUID);
+
+        // Liest die ModulUid aus
+        $modulUid = $this->request->getArgument('modul');
+        // Holt Modul Objekt
+        $modul = $this->modulRepository->findByUid($modulUid);
+
         $prueflings = $this->prueflingRepository->findAll();
         $this->view->assign('prueflings', $prueflings);
+
+        // Ausgabe des Fachnamens und des Modulnamens
+        $this->view->assign('fach', $fach->getFachname());
+        $this->view->assign('modul', $modul->getModulname());
+        $this->view->assign('semester', $modul->getGueltigkeitszeitraum());
     }
 
     /**
