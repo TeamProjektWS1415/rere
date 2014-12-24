@@ -22,7 +22,7 @@
 
         <f:render partial="FormErrors" />
 
-        <f:form action="create"  name="newPruefling" object="{newPruefling}">
+        <f:form action="create" controller='Pruefling'  name="newPruefling" object="{newPruefling}">
             <div class="row">
                 <div class="col-md-7">
                     <form class="form-horizontal" role="form">
@@ -72,26 +72,29 @@
 
                         <div class="form-group">
                             <div class="col-sm-offset-3">
-                                <div class="col-sm-6">
-                                    <button type="submit" class="btn btn-primary btn-lg btn-block speichernundzurueck">Speichern & Zurück</button>
+                                <div class="col-sm-12">
+                                    <label>
+                                        <f:form.radio name="speichern" value="speichernundzurueck" checked="1"/>
+                                        Speichern & zurück
+                                    </label>
                                 </div>
+                                <div class="col-sm-12">
+                                    <label>
+                                        <f:form.radio name="speichern" value="speichernundnaechster" />
+                                        Speichern & nächster
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="col-sm-offset-3">
                                 <div class="col-sm-6">
-                                    <button type="submit" onclick="setnext();
-                                            return false;" class="btn btn-primary btn-lg btn-block speichernundnaechster">Speichern & Nächster</button>
+                                    <button type="submit" class="btn btn-primary btn-lg btn-block">Anlegen</button>
                                 </div>
                             </div>
                         </div>
                     </form>
-
-                    <script type="text/javascript">
-
-                        function setnext() {
-                            alert("bad");
-                            $('form').attr("arguments", "{createAndNext:'createAndNext'}");
-                            $('form').submit();
-                        }
-
-                    </script>
 
                 </div>
             </div>
