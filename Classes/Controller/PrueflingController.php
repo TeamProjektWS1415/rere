@@ -1,4 +1,5 @@
 <?php
+
 namespace ReRe\Rere\Controller;
 
 /* * *************************************************************
@@ -36,90 +37,90 @@ namespace ReRe\Rere\Controller;
  */
 class PrueflingController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController {
 
-	/**
-	 * prueflingRepository
-	 * 
-	 * @var \ReRe\Rere\Domain\Repository\PrueflingRepository
-	 * @inject
-	 */
-	protected $prueflingRepository = NULL;
+    /**
+     * prueflingRepository
+     *
+     * @var \ReRe\Rere\Domain\Repository\PrueflingRepository
+     * @inject
+     */
+    protected $prueflingRepository = NULL;
 
-	/**
-	 * action list
-	 * 
-	 * @return void
-	 */
-	public function listAction() {
-		$prueflings = $this->prueflingRepository->findAll();
-		$this->view->assign('prueflings', $prueflings);
-	}
+    /**
+     * action list
+     *
+     * @return void
+     */
+    public function listAction() {
+        $prueflings = $this->prueflingRepository->findAll();
+        $this->view->assign('prueflings', $prueflings);
+    }
 
-	/**
-	 * action show
-	 * 
-	 * @param \ReRe\Rere\Domain\Model\Pruefling $pruefling
-	 * @return void
-	 */
-	public function showAction(\ReRe\Rere\Domain\Model\Pruefling $pruefling) {
-		$this->view->assign('pruefling', $pruefling);
-	}
+    /**
+     * action show
+     *
+     * @param \ReRe\Rere\Domain\Model\Pruefling $pruefling
+     * @return void
+     */
+    public function showAction(\ReRe\Rere\Domain\Model\Pruefling $pruefling) {
+        $this->view->assign('pruefling', $pruefling);
+    }
 
-	/**
-	 * action new
-	 * 
-	 * @param \ReRe\Rere\Domain\Model\Pruefling $newPruefling
-	 * @ignorevalidation $newPruefling
-	 * @return void
-	 */
-	public function newAction(\ReRe\Rere\Domain\Model\Pruefling $newPruefling = NULL) {
-		$this->view->assign('newPruefling', $newPruefling);
-	}
+    /**
+     * action new
+     *
+     * @param \ReRe\Rere\Domain\Model\Pruefling $newPruefling
+     * @ignorevalidation $newPruefling
+     * @return void
+     */
+    public function newAction(\ReRe\Rere\Domain\Model\Pruefling $newPruefling = NULL) {
+        $this->view->assign('newPruefling', $newPruefling);
+    }
 
-	/**
-	 * action create
-	 * 
-	 * @param \ReRe\Rere\Domain\Model\Pruefling $newPruefling
-	 * @return void
-	 */
-	public function createAction(\ReRe\Rere\Domain\Model\Pruefling $newPruefling) {
-		$this->addFlashMessage('The object was created. Please be aware that this action is publicly accessible unless you implement an access check. See <a href="http://wiki.typo3.org/T3Doc/Extension_Builder/Using_the_Extension_Builder#1._Model_the_domain" target="_blank">Wiki</a>', '', \TYPO3\CMS\Core\Messaging\AbstractMessage::ERROR);
-		$this->prueflingRepository->add($newPruefling);
-		$this->redirect('list');
-	}
+    /**
+     * action create
+     *
+     * @param \ReRe\Rere\Domain\Model\Pruefling $newPruefling
+     * @return void
+     */
+    public function createAction(\ReRe\Rere\Domain\Model\Pruefling $newPruefling) {
+        $this->addFlashMessage('The object was created. Please be aware that this action is publicly accessible unless you implement an access check. See <a href="http://wiki.typo3.org/T3Doc/Extension_Builder/Using_the_Extension_Builder#1._Model_the_domain" target="_blank">Wiki</a>', '', \TYPO3\CMS\Core\Messaging\AbstractMessage::ERROR);
+        $this->prueflingRepository->add($newPruefling);
+        $this->redirect('list');
+    }
 
-	/**
-	 * action edit
-	 * 
-	 * @param \ReRe\Rere\Domain\Model\Pruefling $pruefling
-	 * @ignorevalidation $pruefling
-	 * @return void
-	 */
-	public function editAction(\ReRe\Rere\Domain\Model\Pruefling $pruefling) {
-		$this->view->assign('pruefling', $pruefling);
-	}
+    /**
+     * action edit
+     *
+     * @param \ReRe\Rere\Domain\Model\Pruefling $pruefling
+     * @ignorevalidation $pruefling
+     * @return void
+     */
+    public function editAction(\ReRe\Rere\Domain\Model\Pruefling $pruefling) {
+        $this->view->assign('pruefling', $pruefling);
+    }
 
-	/**
-	 * action update
-	 * 
-	 * @param \ReRe\Rere\Domain\Model\Pruefling $pruefling
-	 * @return void
-	 */
-	public function updateAction(\ReRe\Rere\Domain\Model\Pruefling $pruefling) {
-		$this->addFlashMessage('The object was updated. Please be aware that this action is publicly accessible unless you implement an access check. See <a href="http://wiki.typo3.org/T3Doc/Extension_Builder/Using_the_Extension_Builder#1._Model_the_domain" target="_blank">Wiki</a>', '', \TYPO3\CMS\Core\Messaging\AbstractMessage::ERROR);
-		$this->prueflingRepository->update($pruefling);
-		$this->redirect('list');
-	}
+    /**
+     * action update
+     *
+     * @param \ReRe\Rere\Domain\Model\Pruefling $pruefling
+     * @return void
+     */
+    public function updateAction(\ReRe\Rere\Domain\Model\Pruefling $pruefling) {
+        $this->addFlashMessage('The object was updated. Please be aware that this action is publicly accessible unless you implement an access check. See <a href="http://wiki.typo3.org/T3Doc/Extension_Builder/Using_the_Extension_Builder#1._Model_the_domain" target="_blank">Wiki</a>', '', \TYPO3\CMS\Core\Messaging\AbstractMessage::ERROR);
+        $this->prueflingRepository->update($pruefling);
+        $this->redirect('list');
+    }
 
-	/**
-	 * action delete
-	 * 
-	 * @param \ReRe\Rere\Domain\Model\Pruefling $pruefling
-	 * @return void
-	 */
-	public function deleteAction(\ReRe\Rere\Domain\Model\Pruefling $pruefling) {
-		$this->addFlashMessage('The object was deleted. Please be aware that this action is publicly accessible unless you implement an access check. See <a href="http://wiki.typo3.org/T3Doc/Extension_Builder/Using_the_Extension_Builder#1._Model_the_domain" target="_blank">Wiki</a>', '', \TYPO3\CMS\Core\Messaging\AbstractMessage::ERROR);
-		$this->prueflingRepository->remove($pruefling);
-		$this->redirect('list');
-	}
+    /**
+     * action delete
+     *
+     * @param \ReRe\Rere\Domain\Model\Pruefling $pruefling
+     * @return void
+     */
+    public function deleteAction(\ReRe\Rere\Domain\Model\Pruefling $pruefling) {
+        $this->addFlashMessage('The object was deleted. Please be aware that this action is publicly accessible unless you implement an access check. See <a href="http://wiki.typo3.org/T3Doc/Extension_Builder/Using_the_Extension_Builder#1._Model_the_domain" target="_blank">Wiki</a>', '', \TYPO3\CMS\Core\Messaging\AbstractMessage::ERROR);
+        $this->prueflingRepository->remove($pruefling);
+        $this->redirect('list');
+    }
 
 }

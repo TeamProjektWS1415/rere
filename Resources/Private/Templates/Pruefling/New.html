@@ -22,7 +22,7 @@
 
         <f:render partial="FormErrors" />
 
-        <f:form action="createAndNext"  name="newPruefling" object="{newPruefling}">
+        <f:form action="create"  name="newPruefling" object="{newPruefling}">
             <div class="row">
                 <div class="col-md-7">
                     <form class="form-horizontal" role="form">
@@ -34,7 +34,7 @@
                                 <f:translate key="tx_rere_domain_model_pruefling.nachname" /> <span class="required">*</span>
                             </label>
                             <div class="col-sm-9">
-                                <f:form.textfield property="nachname" class="form-control gettooltip" id="eingabefeldName" placeholder="Name" title="Name hier eingeben"/>
+                                <f:form.textfield property="nachname" class="form-control gettooltip" id="eingabefeldName" placeholder="Name" title="Name hier eingeben" />
                                 <br>
                             </div>
                         </div>

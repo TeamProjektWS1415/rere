@@ -76,7 +76,7 @@
                                             <li><span class="col-md-4">{fach.fachname}</span> <span class="col-md-7">
                                                     <f:link.action controller="Note" class="gettooltip" action="list" title="Noten eintragen oder anzeigen">Noten eintragen/anzeigen</f:link.action> |
                                                     <f:link.action controller="Pruefling" class="gettooltip" action="list" title="Prüflinge zu diesem Fach zuweisen">Prüflinge zuweisen</f:link.action> |
-                                                    <f:link.action class="delete" action="delete" onclick="delentry('Wollen Sie das Fach mit allen zugehörenden Noten wirklich löschen?',
+                                                    <f:link.action class="delete" controller="Fach" action="delete" onclick="delentry('Wollen Sie das Fach mit allen zugehörenden Noten wirklich löschen?',
                                                                     $(this).attr('href'));
                                                             return false;" arguments="{fach : fach}" title="Fach und die eingetragenen Noten löschen">
                                                         <span class="gettooltip glyphicon glyphicon-remove" aria-hidden="true">
