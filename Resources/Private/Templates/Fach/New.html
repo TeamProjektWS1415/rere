@@ -29,7 +29,8 @@
                         <div class="form-group">
                             <label for="eingabefeldModul" class="col-sm-3 control-label"><f:translate key="tx_rere_domain_model_modul.modulname" /> <span class="required">*</span></label>
                             <div class="col-sm-9">
-                                <f:form.textfield value="{modulname}" class="form-control gettooltip" disabled="disabled" placeholder="Modulname"/>
+                                <f:form.textfield value="{modulname}" class="form-control" disabled="disabled" placeholder="Modulname"/>
+                                <f:form.hidden  value="{moduluid}" name="moduluid" class="form-control" />
                                 <br>
                             </div>
                         </div>
@@ -38,7 +39,7 @@
                         <div class="form-group">
                             <label for="eingabefeldModulnummer" class="col-sm-3 control-label"><f:translate key="tx_rere_domain_model_modul.modulnr" /> <span class="required">*</span></label>
                             <div class="col-sm-9">
-                                <f:form.textfield value="{modulnummer}" name="modulnummer" class="form-control gettooltip" disabled="disabled" placeholder="Modulnummer"/>
+                                <f:form.textfield value="{modulnummer}" name="modulnummer" class="form-control" disabled="disabled" placeholder="Modulnummer"/>
                                 <br>
                             </div>
                         </div>
@@ -46,7 +47,7 @@
                         <div class="form-group">
                             <label for="gueltigkeitszeitraum" class="col-sm-3 control-label"><f:translate key="tx_rere_domain_model_modul.gueltigkeitszeitraum" /> <span class="required">*</span></label>
                             <div class="col-sm-9">
-                                <f:form.textfield value="{gueltigkeitszeitraum}" disabled="disabled" class="form-control gettooltip" placeholder="Gültigkeitszeitraum"/>
+                                <f:form.textfield value="{gueltigkeitszeitraum}" disabled="disabled" class="form-control" placeholder="Gültigkeitszeitraum"/>
                                 <br>
                             </div>
                         </div>
