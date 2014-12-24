@@ -46,6 +46,14 @@ class FachController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController 
     protected $fachRepository = NULL;
 
     /**
+     * modulRepository
+     *
+     * @var \ReRe\Rere\Domain\Repository\ModulRepository
+     * @inject
+     */
+    protected $modulRepository = NULL;
+
+    /**
      * @var \TYPO3\CMS\Extbase\Persistence\Generic\Mapper\DataMapper
      * @inject
      */
@@ -83,13 +91,19 @@ class FachController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController 
 
     /**
      * action new
-     *
      * @param \ReRe\Rere\Domain\Model\Fach $newFach
      * @ignorevalidation $newFach
      * @return void
      */
     public function newAction(\ReRe\Rere\Domain\Model\Fach $newFach = NULL) {
+        $modulUID = $this->request->getArgument('modul');
+
+        $modul = $this->modulRepository->findByUid($modulUID);
+
         $this->view->assign('newFach', $newFach);
+        $this->view->assign('modulname', $modul->getModulname());
+        $this->view->assign('modulnummer', $modul->getModulnr());
+        $this->view->assign('gueltigkeitszeitraum', $modul->getGueltigkeitszeitraum());
     }
 
     /**
@@ -100,6 +114,11 @@ class FachController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController 
      */
     public function createAction(\ReRe\Rere\Domain\Model\Fach $newFach) {
         $this->addFlashMessage('The object was created. Please be aware that this action is publicly accessible unless you implement an access check. See <a href="http://wiki.typo3.org/T3Doc/Extension_Builder/Using_the_Extension_Builder#1._Model_the_domain" target="_blank">Wiki</a>', '', \TYPO3\CMS\Core\Messaging\AbstractMessage::ERROR);
+
+        $modulUID = $this->request->getArgument('modulnummer');
+
+        $modul = $this->modulRepository->findByUid($modulUID);
+        $newFach->setModulnr($modul);
         $this->fachRepository->add($newFach);
         $this->redirect('list');
     }
@@ -129,6 +148,7 @@ class FachController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController 
 
     /**
      * action delete
+     * Leitet nach dem Löschen auf die Result Repository Startseite um.
      *
      * @param \ReRe\Rere\Domain\Model\Fach $fach
      * @return void

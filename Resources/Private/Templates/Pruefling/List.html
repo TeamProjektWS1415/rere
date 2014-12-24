@@ -66,9 +66,9 @@
                         <f:for each="{prueflings}" as="pruefling">
                             <tr>
                             <f:form name="updatePruefling">
-                                <td><span class="value">{pruefling.matrikelnr}</span><input type="text" class="form-control hidden" value="123456"/></td>
-                                <td><span class="value">{pruefling.vorname}</span><input type="text" class="form-control hidden" value="Max"/></td>
-                                <td><span class="value">{pruefling.nachname}</span><input type="text" class="form-control hidden" value="Mustermann"/></td>
+                                <td><span class="value">{pruefling.matrikelnr}</span></td>
+                                <td><span class="value">{pruefling.vorname}</span></td>
+                                <td><span class="value">{pruefling.nachname}</span></td>
                                 <td>
                                 <f:link.action class="delete" action="delete" onclick="delentry('Möchten Sie den Pruefling mit der Matrikelnr: {pruefling.matrikelnr} wirklich löschen?', $(this).attr('href'));
                                         return false;" arguments="{pruefling : pruefling}"><span class="glyphicon glyphicon-remove" aria-hidden="true" data-toggle="tooltip" data-placement="bottom" title="Löscht diesen Datensatz"></span></f:link.action>
