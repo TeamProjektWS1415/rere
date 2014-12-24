@@ -75,6 +75,10 @@ body {
     float: right;
 }
 
+.addfachbtn{
+    margin-top: 20px;
+}
+
 .modulloeschenbutton:after{
     clear: both;
 }

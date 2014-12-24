@@ -64,7 +64,7 @@
                         <div class="panel panel-default" role="tablist">
                             <div class="panel-heading" role="tab" id="{modul.name}">
                                 <h3 class="panel-title">
-                                    <a data-toggle="collapse" data-parent="#accordion" href="#{modul.modulnr}" aria-expanded="false" aria-controls="collapse{modul.name}">{modul.modulname}</a>
+                                    <span class="panel-title-text"><a data-toggle="collapse" data-parent="#accordion" href="#{modul.modulnr}" aria-expanded="false" aria-controls="collapse{modul.name}">{modul.modulname} - ({modul.modulnr})</a></span>
                                     <f:link.action class="delete btn btn-default modulloeschenbutton" action="delete" onclick="delentry('Wollen Sie das Modul mit allen zugehoerenden Faechern und Noten wirklich löschen?', $(this).attr('href'));
                                             return false;" arguments="{modul : modul}" title="Dieses Modul und die zugeordneten Fächer löschen">Löschen</f:link.action>
                                 </h3>
@@ -87,7 +87,7 @@
                                         </f:for>
                                     </ul>
                                     <!-- controller und action ?? wie, dass zu modul zugeordnet? -->
-                                    <f:link.action controller="Modul" class="gettooltip btn btn-default" arguments="{modul:modul}" action="newFach" title="Ein Fach zu diesem Modul hinzufügen">Fach hinzufügen</f:link.action>
+                                    <f:link.action controller="Modul" class="gettooltip btn btn-default addfachbtn" arguments="{modul:modul}" action="newFach" title="Ein Fach zu diesem Modul hinzufügen">Fach hinzufügen</f:link.action>
                                 </div>
                             </div>
                         </div>
