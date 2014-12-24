@@ -64,12 +64,12 @@
                         <tbody>
                         <f:for each="{notes}" as="note">
                             <tr>
-                            <f:form action="update" name="editnote{note.uid}" id="editnote{note.uid}" arguments="{note:note}" >
-                                <td><f:form.hidden property="{note.uid}" class="noteuid" value="{note.uid}" /><span class="value">123456</span><input type="text" class="form-control hidden" value="123456"/></td>
+                            <f:form action="update" id="editnote{note.uid}" id="editnote{note.uid}" >
+                                <td><f:form.hidden name="noteuid" class="noteuid" value="{note.uid}" /><span class="value">123456</span><input type="text" class="form-control hidden" value="123456"/></td>
                                 <td><span class="value">Max</span><input type="text" class="form-control hidden" value="Max"/></td>
                                 <td><span class="value">Mustermann</span><input type="text" class="form-control hidden" value="Mustermann"/></td>
-                                <td><f:form.select property="note[wert]" options="{options}" value="{note.wert}" class="form-control gettooltip sendNote" title="Bitte eine Note auswählen"/></td>
-                                <td><textarea property="kommentar" class="form-control gettooltip sendNote" rows="1" placeholder="Kommentar" title="Kommentar zur Note">{note.kommentar}</textarea></td>
+                                <td><f:form.select name="wert" options="{options}" value="{note.wert}" class="form-control gettooltip sendNote" title="Bitte eine Note auswählen"/></td>
+                                <td><f:form.textarea name="kommentar" class="form-control gettooltip sendNote" rows="1" placeholder="Kommentar" title="Kommentar zur Note" value="{note.kommentar}"/></td>
                                 <td><f:link.action class="delete" action="delete" onclick="delentry('Wollen Sie den Pruefling mit Matrikelnummer 12345 wirklich aus diesem Fach loeschen?', $(this).attr('href'));
                                         return false;" arguments="{note : note}"><span class="glyphicon glyphicon-remove" aria-hidden="true" data-toggle="tooltip" data-placement="bottom" title="Löscht diesen Datensatz"></span></f:link.action></td>
                             </f:form>

@@ -112,11 +112,21 @@ class NoteController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController 
     /**
      * action update
      *
-     * @param \ReRe\Rere\Domain\Model\Note $note
      * @return void
      */
-    public function updateAction(\ReRe\Rere\Domain\Model\Note $note) {
-        $this->addFlashMessage($note->getWert() . 'The object was updated. Please be aware that this action is publicly accessible unless you implement an access check. See <a href="http://wiki.typo3.org/T3Doc/Extension_Builder/Using_the_Extension_Builder#1._Model_the_domain" target="_blank">Wiki</a>', '', \TYPO3\CMS\Core\Messaging\AbstractMessage::ERROR);
+    public function updateAction() {
+        $this->addFlashMessage('The object was updated. Please be aware that this action is publicly accessible unless you implement an access check. See <a href="http://wiki.typo3.org/T3Doc/Extension_Builder/Using_the_Extension_Builder#1._Model_the_domain" target="_blank">Wiki</a>', '', \TYPO3\CMS\Core\Messaging\AbstractMessage::ERROR);
+
+        // Holt die NotenUid vom Request
+        $noteuid = $this->request->getArgument('noteuid');
+        // Holt das Noten-Objekt
+        $note = $this->noteRepository->findByUid($noteuid);
+
+        // Setzt die neuen Werte für die Note
+        $note->setKommentar($this->request->getArgument('kommentar'));
+        $note->setWert($this->request->getArgument('wert'));
+
+        // Update der Note
         $this->noteRepository->update($note);
         $this->redirect('list');
     }
