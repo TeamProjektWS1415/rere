@@ -8,7 +8,34 @@ $(document).ready(function () {
     // Legt die Tooltips an.
     $(".gettooltip").attr("data-toggle", "tooltip");
     $(".gettooltip").attr("data-placement", "bottom");
+
+    // Setzen des Intervalls
+    $("#studienhalbjahr").click(function () {
+        swapIntervall();
+    });
+    $("#schuljahr").click(function () {
+        swapIntervall();
+    });
+
 });
+
+/**
+ * Setzt den haken beim Aktiven Intervall
+ * @returns {undefined}
+ */
+function swapIntervall() {
+    if ($("#studienhalbjahr span").hasClass("aciveinterval")) {
+        $("#studienhalbjahr span").removeClass("aciveinterval");
+        $("#studienhalbjahr span").addClass("inactiveinterval");
+        $("#schuljahr span").removeClass("inactiveinterval");
+        $("#schuljahr span").addClass("aciveinterval");
+    } else {
+        $("#schuljahr span").removeClass("aciveinterval");
+        $("#schuljahr span").addClass("inactiveinterval");
+        $("#studienhalbjahr span").removeClass("inactiveinterval");
+        $("#studienhalbjahr span").addClass("aciveinterval");
+    }
+}
 
 
 // Löschfunktion eines Elements, es wird ein Popup aufgerufen,
