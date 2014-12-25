@@ -111,3 +111,10 @@ body {
 #typo3-docbody form{
     margin-bottom: 0;
 }
+
+.acivetype{
+    color: #a3d950;
+}
+.inactivetype{
+    color: #fff;
+}
