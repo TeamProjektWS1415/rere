@@ -22,20 +22,20 @@
                                 <li><f:link.action controller="Pruefling" class="gettooltip" action="new" title="Legt einen neuen Prüfling an">Prüflinge anlegen</f:link.action></li>
                                 <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" >Import <span class="caret"></span></a>
                                     <ul class="dropdown-menu" role="menu">
-                                        <li><a href="#">Import Prüflinge</a></li>
-                                        <li><a href="#">Import Back-Up</a></li>
-                                    </ul></li>
-                                <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button">Export <span class="caret"></span></a>
-                                    <ul class="dropdown-menu" role="menu">
-                                        <li><a href="#">Prüflinge</a></li>
-                                        <li><a href="#">Module und Fächer</a></li>
-                                    </ul></li>
-                                <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button">Intervall einstellen<span class="caret"></span>
-                                    </a>
-                                    <ul class="dropdown-menu" role="menu">
-                                        <li><a href="#">Studienhalbjahr</a></li>
-                                        <li><a href="#">Schuljahr</a></li>
-                                    </ul></li>
+                                        <li><f:link.action controller="Import" action="new" arguments="{type:'prueflinge'}" >Import Prüflinge</f:link.action></li>
+                                <li><f:link.action controller="Import" action="new" arguments="{type:'backup'}" >Import Back-Up</f:link.action></li>
+                            </ul></li>
+                            <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button">Export <span class="caret"></span></a>
+                                <ul class="dropdown-menu" role="menu">
+                                    <li><f:link.action controller="Export" action="exportPrueflinge" >Prüflinge</f:link.action></li>
+                            <li><f:link.action controller="Export" action="exportModuleUndFaeche" >Module und Fächer</f:link.action></li>
+                            </ul></li>
+                            <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button">Intervall einstellen<span class="caret"></span>
+                                </a>
+                                <ul class="dropdown-menu" role="menu">
+                                    <li><a href="#">Studienhalbjahr</a></li>
+                                    <li><a href="#">Schuljahr</a></li>
+                                </ul></li>
                             </ul>
                         </div>
                     </div>

@@ -1,0 +1,48 @@
+<f:layout name="rere" />
+
+<f:section name="content">
+
+    <f:flashMessages />
+    <div class="container-fluid wrapper">
+        <div class="row">
+            <div name="breadcrumb" class="col-md-12">
+                <ol class="breadcrumb">
+                    <li><f:link.action controller="Modul" action="list">Result Repository</f:link.action></li>
+                    <li class="active">{title}</li>
+                </ol>
+            </div>
+            <div class="col-md-12">
+                <h1>{title}</h1>
+                <br>
+            </div>
+        </div>
+
+        <f:form action="importPrueflinge" class="form-horizontal" >
+
+            <div class="row">
+                <div class="col-md-7">
+
+                    <div class="form-group">
+                        <label for="import" class="col-sm-3 control-label">{lable}</label>
+                        <div class="col-sm-9">
+                            <f:form.upload name="import" id="import" class="form-control"/>
+                            <br>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-sm-8">
+                        </div>
+                        <div class="col-sm-4">
+                            <br>
+                            <button type="submit" class="btn btn-primary btn-lg btn-block">Daten speichern</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-5">
+                </div>
+            </div>
+        </f:form>
+    </div>
+</f:section>
