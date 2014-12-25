@@ -25,4 +25,11 @@ class ExportController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControlle
         $this->redirect('list', 'Modul');
     }
 
+    /**
+     * Exportiert alle Noten eines Faches.
+     */
+    public function exportFachAction() {
+        $this->redirect('list', 'Note');
+    }
+
 }

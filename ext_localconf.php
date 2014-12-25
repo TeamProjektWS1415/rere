@@ -10,7 +10,7 @@ if (!defined('TYPO3_MODE')) {
     'Note' => 'list, show, new, create, edit, update, delete',
     'Fach' => 'list, show, new, create, edit, update, delete',
     'Pruefling' => 'list, show, new, create, edit, update, delete',
-    'Export' => 'exportPrueflinge, exportModuleUndFaecher',
+    'Export' => 'exportPrueflinge, exportModuleUndFaecher, exportFach',
     'Import' => 'new, importPrueflinge, importBackUp',
         ),
         // non-cacheable actions
@@ -19,7 +19,7 @@ if (!defined('TYPO3_MODE')) {
     'Note' => 'create, update, delete',
     'Fach' => 'create, update, delete',
     'Pruefling' => 'create, createAndNext, update, delete',
-    'Export' => 'exportPrueflinge, exportModuleUndFaecher',
+    'Export' => 'exportPrueflinge, exportModuleUndFaecher, exportFach',
     'Import' => 'new, importPrueflinge, importBackUp',
         )
 );

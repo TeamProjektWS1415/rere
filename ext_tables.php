@@ -14,7 +14,7 @@ if (TYPO3_MODE === 'BE') {
             'rerebackend', // Submodule key
             '', // Position
             array(
-        'Modul' => 'list, show, new, newFach, create, edit, update, delete', 'Fach' => 'list, show, new, create, edit, update, delete', 'Note' => 'list, show, new, create, edit, update, delete', 'Pruefling' => 'list, show, new, create, edit, update, delete', 'Export' => 'exportPrueflinge, exportModuleUndFaecher', 'Import' => 'new, importPrueflinge, importBackUp',
+        'Modul' => 'list, show, new, newFach, create, edit, update, delete', 'Fach' => 'list, show, new, create, edit, update, delete', 'Note' => 'list, show, new, create, edit, update, delete', 'Pruefling' => 'list, show, new, create, edit, update, delete', 'Export' => 'exportPrueflinge, exportModuleUndFaecher, exportFach', 'Import' => 'new, importPrueflinge, importBackUp',
             ), array(
         'access' => 'user,group',
         'icon' => 'EXT:' . $_EXTKEY . '/ext_icon.gif',

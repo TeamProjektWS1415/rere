@@ -22,9 +22,12 @@ class ImportController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControlle
         if ($type == "prueflinge") {
             $this->view->assign('title', 'Import Prüflinge');
             $this->view->assign('lable', 'XML-Datei mit Prüflingen');
-        } else {
+        } elseif ($type == "backup") {
             $this->view->assign('title', 'Import Backup');
             $this->view->assign('lable', 'SQL-Backup');
+        } elseif ($type == "fach") {
+            $this->view->assign('title', 'Import Fach');
+            $this->view->assign('lable', 'Fach Import');
         }
     }
 
