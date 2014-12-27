@@ -4,17 +4,21 @@ if (!defined('TYPO3_MODE')) {
     die('Access denied.');
 }
 
+define("DEFACTIONS", "list, show, new, create, edit, update, delete");
+
 if (TYPO3_MODE === 'BE') {
 
     /**
      * Registers a Backend Module
      */
     \TYPO3\CMS\Extbase\Utility\ExtensionUtility::registerModule(
-            'ReRe.' . $_EXTKEY, 'user', // Make module a submodule of 'user'
-            'rerebackend', // Submodule key
-            '', // Position
-            array(
-        'Modul' => 'list, show, new, create, edit, update, delete', 'Fach' => 'list, show, new, create, edit, update, delete', 'Note' => 'list, show, new, create, edit, update, delete', 'Pruefling' => 'list, show, new, create, edit, update, delete', 'Export' => 'exportPrueflinge, exportModuleUndFaecher, exportFach', 'Import' => 'new, importPrueflinge, importBackUp',
+            // Make module a submodule of 'user'
+            'ReRe.' . $_EXTKEY, 'user',
+            // Submodule key
+            'rerebackend',
+            // Position
+            '', array(
+        'Modul' => DEFACTIONS, 'Fach' => DEFACTIONS, 'Note' => DEFACTIONS, 'Pruefling' => DEFACTIONS, 'Export' => 'exportPrueflinge, exportModuleUndFaecher, exportFach', 'Import' => 'new, importPrueflinge, importBackUp',
             ), array(
         'access' => 'user,group',
         'icon' => 'EXT:' . $_EXTKEY . '/ext_icon.gif',
