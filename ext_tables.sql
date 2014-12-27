@@ -6,11 +6,10 @@ CREATE TABLE tx_rere_domain_model_modul (
 	uid int(11) NOT NULL auto_increment,
 	pid int(11) DEFAULT '0' NOT NULL,
 
-	fach int(11) unsigned DEFAULT '0' NOT NULL,
-
 	modulnr varchar(255) DEFAULT '' NOT NULL,
 	modulname varchar(255) DEFAULT '' NOT NULL,
 	gueltigkeitszeitraum varchar(255) DEFAULT '' NOT NULL,
+	fach int(11) unsigned DEFAULT '0' NOT NULL,
 
 	tstamp int(11) unsigned DEFAULT '0' NOT NULL,
 	crdate int(11) unsigned DEFAULT '0' NOT NULL,
@@ -49,13 +48,14 @@ CREATE TABLE tx_rere_domain_model_fach (
 	uid int(11) NOT NULL auto_increment,
 	pid int(11) DEFAULT '0' NOT NULL,
 
+	modul int(11) unsigned DEFAULT '0' NOT NULL,
 	note int(11) unsigned DEFAULT '0' NOT NULL,
 
 	fachnr varchar(255) DEFAULT '' NOT NULL,
 	fachname varchar(255) DEFAULT '' NOT NULL,
 	pruefer varchar(255) DEFAULT '' NOT NULL,
 	notenschema varchar(255) DEFAULT '' NOT NULL,
-	modulnr int(11) unsigned DEFAULT '0' NOT NULL,
+	modulnr varchar(255) DEFAULT '' NOT NULL,
 	matrikelnr int(11) unsigned DEFAULT '0' NOT NULL,
 
 	tstamp int(11) unsigned DEFAULT '0' NOT NULL,
@@ -172,11 +172,11 @@ CREATE TABLE tx_rere_domain_model_pruefling (
 );
 
 #
-# Table structure for table 'tx_rere_domain_model_modul'
+# Table structure for table 'tx_rere_domain_model_fach'
 #
-CREATE TABLE tx_rere_domain_model_modul (
+CREATE TABLE tx_rere_domain_model_fach (
 
-	fach  int(11) unsigned DEFAULT '0' NOT NULL,
+	modul  int(11) unsigned DEFAULT '0' NOT NULL,
 
 );
 

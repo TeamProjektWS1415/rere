@@ -115,4 +115,56 @@ class ModulTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
 			$this->subject
 		);
 	}
+
+	/**
+	 * @test
+	 */
+	public function getFachReturnsInitialValueForFach() {
+		$newObjectStorage = new \TYPO3\CMS\Extbase\Persistence\ObjectStorage();
+		$this->assertEquals(
+			$newObjectStorage,
+			$this->subject->getFach()
+		);
+	}
+
+	/**
+	 * @test
+	 */
+	public function setFachForObjectStorageContainingFachSetsFach() {
+		$fach = new \ReRe\Rere\Domain\Model\Fach();
+		$objectStorageHoldingExactlyOneFach = new \TYPO3\CMS\Extbase\Persistence\ObjectStorage();
+		$objectStorageHoldingExactlyOneFach->attach($fach);
+		$this->subject->setFach($objectStorageHoldingExactlyOneFach);
+
+		$this->assertAttributeEquals(
+			$objectStorageHoldingExactlyOneFach,
+			'fach',
+			$this->subject
+		);
+	}
+
+	/**
+	 * @test
+	 */
+	public function addFachToObjectStorageHoldingFach() {
+		$fach = new \ReRe\Rere\Domain\Model\Fach();
+		$fachObjectStorageMock = $this->getMock('TYPO3\\CMS\\Extbase\\Persistence\\ObjectStorage', array('attach'), array(), '', FALSE);
+		$fachObjectStorageMock->expects($this->once())->method('attach')->with($this->equalTo($fach));
+		$this->inject($this->subject, 'fach', $fachObjectStorageMock);
+
+		$this->subject->addFach($fach);
+	}
+
+	/**
+	 * @test
+	 */
+	public function removeFachFromObjectStorageHoldingFach() {
+		$fach = new \ReRe\Rere\Domain\Model\Fach();
+		$fachObjectStorageMock = $this->getMock('TYPO3\\CMS\\Extbase\\Persistence\\ObjectStorage', array('detach'), array(), '', FALSE);
+		$fachObjectStorageMock->expects($this->once())->method('detach')->with($this->equalTo($fach));
+		$this->inject($this->subject, 'fach', $fachObjectStorageMock);
+
+		$this->subject->removeFach($fach);
+
+	}
 }

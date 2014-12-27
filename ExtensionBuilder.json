@@ -3,8 +3,8 @@
         {
             "config": {
                 "position": [
-                    42,
-                    53
+                    141,
+                    218
                 ]
             },
             "name": "New Model Object",
@@ -66,15 +66,26 @@
                     ]
                 },
                 "relationGroup": {
-                    "relations": []
+                    "relations": [
+                        {
+                            "foreignRelationClass": "",
+                            "lazyLoading": false,
+                            "propertyIsExcludeField": true,
+                            "relationDescription": "",
+                            "relationName": "fach",
+                            "relationType": "zeroToMany",
+                            "relationWire": "[wired]",
+                            "uid": "644526054423"
+                        }
+                    ]
                 }
             }
         },
         {
             "config": {
                 "position": [
-                    449,
-                    2
+                    454,
+                    70
                 ]
             },
             "name": "New Model Object",
@@ -142,21 +153,21 @@
                             "propertyName": "notenschema",
                             "propertyType": "String",
                             "uid": "201831704179"
+                        },
+                        {
+                            "allowedFileTypes": "",
+                            "maxItems": "1",
+                            "propertyDescription": "",
+                            "propertyIsExcludeField": true,
+                            "propertyIsRequired": true,
+                            "propertyName": "modulnr",
+                            "propertyType": "String",
+                            "uid": "1291710647520"
                         }
                     ]
                 },
                 "relationGroup": {
                     "relations": [
-                        {
-                            "foreignRelationClass": "",
-                            "lazyLoading": false,
-                            "propertyIsExcludeField": true,
-                            "relationDescription": "",
-                            "relationName": "modulnr",
-                            "relationType": "zeroToMany",
-                            "relationWire": "[wired]",
-                            "uid": "120608392263"
-                        },
                         {
                             "foreignRelationClass": "",
                             "lazyLoading": false,
@@ -174,8 +185,8 @@
         {
             "config": {
                 "position": [
-                    225,
-                    215
+                    876,
+                    388
                 ]
             },
             "name": "New Model Object",
@@ -369,18 +380,6 @@
     "wires": [
         {
             "src": {
-                "moduleId": 1,
-                "terminal": "relationWire_0",
-                "uid": "120608392263"
-            },
-            "tgt": {
-                "moduleId": 0,
-                "terminal": "SOURCES",
-                "uid": "1020496433717"
-            }
-        },
-        {
-            "src": {
                 "moduleId": 2,
                 "terminal": "relationWire_0",
                 "uid": "385049550528"
@@ -406,7 +405,7 @@
         {
             "src": {
                 "moduleId": 1,
-                "terminal": "relationWire_1",
+                "terminal": "relationWire_0",
                 "uid": "644556802985"
             },
             "tgt": {
@@ -414,10 +413,22 @@
                 "terminal": "SOURCES",
                 "uid": "15919821871"
             }
+        },
+        {
+            "src": {
+                "moduleId": 0,
+                "terminal": "relationWire_0",
+                "uid": "644526054423"
+            },
+            "tgt": {
+                "moduleId": 1,
+                "terminal": "SOURCES",
+                "uid": "920830541060"
+            }
         }
     ],
     "log": {
-        "last_modified": "2014-12-23 06:52",
+        "last_modified": "2014-12-25 11:47",
         "extension_builder_version": "6.2.0",
         "be_user": " (1)"
     }

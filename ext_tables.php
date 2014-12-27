@@ -14,7 +14,7 @@ if (TYPO3_MODE === 'BE') {
             'rerebackend', // Submodule key
             '', // Position
             array(
-        'Modul' => 'list, show, new, newFach, create, edit, update, delete', 'Fach' => 'list, show, new, create, edit, update, delete', 'Note' => 'list, show, new, create, edit, update, delete', 'Pruefling' => 'list, show, new, create, edit, update, delete', 'Export' => 'exportPrueflinge, exportModuleUndFaecher, exportFach', 'Import' => 'new, importPrueflinge, importBackUp',
+        'Modul' => 'list, show, new, create, edit, update, delete', 'Fach' => 'list, show, new, create, edit, update, delete', 'Note' => 'list, show, new, create, edit, update, delete', 'Pruefling' => 'list, show, new, create, edit, update, delete', 'Export' => 'exportPrueflinge, exportModuleUndFaecher, exportFach', 'Import' => 'new, importPrueflinge, importBackUp',
             ), array(
         'access' => 'user,group',
         'icon' => 'EXT:' . $_EXTKEY . '/ext_icon.gif',
@@ -46,7 +46,7 @@ $GLOBALS['TCA']['tx_rere_domain_model_modul'] = array(
             'starttime' => 'starttime',
             'endtime' => 'endtime',
         ),
-        'searchFields' => 'modulnr,modulname,gueltigkeitszeitraum,',
+        'searchFields' => 'modulnr,modulname,gueltigkeitszeitraum,fach,',
         'dynamicConfigFile' => \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extPath($_EXTKEY) . 'Configuration/TCA/Modul.php',
         'iconfile' => \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extRelPath($_EXTKEY) . 'Resources/Public/Icons/tx_rere_domain_model_modul.gif'
     ),

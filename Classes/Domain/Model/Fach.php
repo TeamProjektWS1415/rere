@@ -1,7 +1,8 @@
 <?php
+
 namespace ReRe\Rere\Domain\Model;
 
-/***************************************************************
+/* * *************************************************************
  *
  *  Copyright notice
  *
@@ -29,173 +30,173 @@ namespace ReRe\Rere\Domain\Model;
  *  GNU General Public License for more details.
  *
  *  This copyright notice MUST APPEAR in all copies of the script!
- ***************************************************************/
+ * ************************************************************* */
 
 /**
  * Fach
  */
 class Fach extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 
-	/**
-	 * fachnr
-	 * 
-	 * @var string
-	 * @validate NotEmpty
-	 */
-	protected $fachnr = '';
+    /**
+     * fachnr
+     *
+     * @var string
+     * @validate NotEmpty
+     */
+    protected $fachnr = '';
 
-	/**
-	 * fachname
-	 * 
-	 * @var string
-	 * @validate NotEmpty
-	 */
-	protected $fachname = '';
+    /**
+     * fachname
+     *
+     * @var string
+     * @validate NotEmpty
+     */
+    protected $fachname = '';
 
-	/**
-	 * pruefer
-	 * 
-	 * @var string
-	 * @validate NotEmpty
-	 */
-	protected $pruefer = '';
+    /**
+     * pruefer
+     *
+     * @var string
+     * @validate NotEmpty
+     */
+    protected $pruefer = '';
 
-	/**
-	 * notenschema
-	 * 
-	 * @var string
-	 * @validate NotEmpty
-	 */
-	protected $notenschema = '';
+    /**
+     * notenschema
+     *
+     * @var string
+     * @validate NotEmpty
+     */
+    protected $notenschema = '';
 
-	/**
-	 * modulnr
-	 * 
-	 * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\ReRe\Rere\Domain\Model\Modul>
-	 */
-	protected $modulnr = NULL;
+    /**
+     * matrikelnr
+     *
+     * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\ReRe\Rere\Domain\Model\Pruefling>
+     */
+    protected $matrikelnr = NULL;
 
-	/**
-	 * matrikelnr
-	 * 
-	 * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\ReRe\Rere\Domain\Model\Pruefling>
-	 */
-	protected $matrikelnr = NULL;
+    /**
+     * modulnr
+     *
+     * @var string
+     * @validate NotEmpty
+     */
+    protected $modulnr = '';
 
-	/**
-	 * Returns the fachnr
-	 * 
-	 * @return string $fachnr
-	 */
-	public function getFachnr() {
-		return $this->fachnr;
-	}
+    /**
+     * Returns the fachnr
+     *
+     * @return string $fachnr
+     */
+    public function getFachnr() {
+        return $this->fachnr;
+    }
 
-	/**
-	 * Sets the fachnr
-	 * 
-	 * @param string $fachnr
-	 * @return void
-	 */
-	public function setFachnr($fachnr) {
-		$this->fachnr = $fachnr;
-	}
+    /**
+     * Sets the fachnr
+     *
+     * @param string $fachnr
+     * @return void
+     */
+    public function setFachnr($fachnr) {
+        $this->fachnr = $fachnr;
+    }
 
-	/**
-	 * Returns the fachname
-	 * 
-	 * @return string $fachname
-	 */
-	public function getFachname() {
-		return $this->fachname;
-	}
+    /**
+     * Returns the fachname
+     *
+     * @return string $fachname
+     */
+    public function getFachname() {
+        return $this->fachname;
+    }
 
-	/**
-	 * Sets the fachname
-	 * 
-	 * @param string $fachname
-	 * @return void
-	 */
-	public function setFachname($fachname) {
-		$this->fachname = $fachname;
-	}
+    /**
+     * Sets the fachname
+     *
+     * @param string $fachname
+     * @return void
+     */
+    public function setFachname($fachname) {
+        $this->fachname = $fachname;
+    }
 
-	/**
-	 * Returns the pruefer
-	 * 
-	 * @return string $pruefer
-	 */
-	public function getPruefer() {
-		return $this->pruefer;
-	}
+    /**
+     * Returns the pruefer
+     *
+     * @return string $pruefer
+     */
+    public function getPruefer() {
+        return $this->pruefer;
+    }
 
-	/**
-	 * Sets the pruefer
-	 * 
-	 * @param string $pruefer
-	 * @return void
-	 */
-	public function setPruefer($pruefer) {
-		$this->pruefer = $pruefer;
-	}
+    /**
+     * Sets the pruefer
+     *
+     * @param string $pruefer
+     * @return void
+     */
+    public function setPruefer($pruefer) {
+        $this->pruefer = $pruefer;
+    }
 
-	/**
-	 * Returns the notenschema
-	 * 
-	 * @return string $notenschema
-	 */
-	public function getNotenschema() {
-		return $this->notenschema;
-	}
+    /**
+     * Returns the notenschema
+     *
+     * @return string $notenschema
+     */
+    public function getNotenschema() {
+        return $this->notenschema;
+    }
 
-	/**
-	 * Sets the notenschema
-	 * 
-	 * @param string $notenschema
-	 * @return void
-	 */
-	public function setNotenschema($notenschema) {
-		$this->notenschema = $notenschema;
-	}
+    /**
+     * Sets the notenschema
+     *
+     * @param string $notenschema
+     * @return void
+     */
+    public function setNotenschema($notenschema) {
+        $this->notenschema = $notenschema;
+    }
 
-	/**
-	 * __construct
-	 */
-	public function __construct() {
-		//Do not remove the next line: It would break the functionality
-		$this->initStorageObjects();
-	}
+    /**
+     * __construct
+     */
+    public function __construct() {
+        //Do not remove the next line: It would break the functionality
+        $this->initStorageObjects();
+    }
 
-	/**
-	 * Initializes all ObjectStorage properties
-	 * Do not modify this method!
-	 * It will be rewritten on each save in the extension builder
-	 * You may modify the constructor of this class instead
-	 * 
-	 * @return void
-	 */
-	protected function initStorageObjects() {
-		$this->modulnr = new \TYPO3\CMS\Extbase\Persistence\ObjectStorage();
-		$this->matrikelnr = new \TYPO3\CMS\Extbase\Persistence\ObjectStorage();
-	}
+    /**
+     * Initializes all ObjectStorage properties
+     * Do not modify this method!
+     * It will be rewritten on each save in the extension builder
+     * You may modify the constructor of this class instead
+     *
+     * @return void
+     */
+    protected function initStorageObjects() {
+        $this->matrikelnr = new \TYPO3\CMS\Extbase\Persistence\ObjectStorage();
+    }
 
-	/**
-	 * Returns the modulnr
-	 * 
-	 * @return \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\ReRe\Rere\Domain\Model\Modul> modulnr
-	 */
-	public function getModulnr() {
-		return $this->modulnr;
-	}
+    /**
+     * Returns the modulnr
+     *
+     * @return string $modulnr
+     */
+    public function getModulnr() {
+        return $this->modulnr;
+    }
 
-	/**
-	 * Sets the modulnr
-	 * 
-	 * @param \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\ReRe\Rere\Domain\Model\Modul> $modulnr
-	 * @return \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\ReRe\Rere\Domain\Model\Modul> modulnr
-	 */
-	public function setModulnr(\ReRe\Rere\Domain\Model\Modul $modulnr) {
-		$this->modulnr = $modulnr;
-	}
+    /**
+     * Sets the modulnr
+     *
+     * @param string $modulnr
+     * @return void
+     */
+    public function setModulnr($modulnr) {
+        $this->modulnr = $modulnr;
+    }
 
 }

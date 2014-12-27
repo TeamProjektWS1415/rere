@@ -54,15 +54,20 @@ class ModulController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
     protected $fachRepository = NULL;
 
     /**
+     * @var \TYPO3\CMS\Extbase\Object\ObjectManagerInterface
+     * @inject
+     */
+    protected $objectManager;
+
+    /**
      * action list
      *
      * @return void
      */
     public function listAction() {
         $moduls = $this->modulRepository->findAll();
-        $fachs = $this->fachRepository->findAll();
         $this->view->assign('moduls', $moduls);
-        $this->view->assign('fachs', $fachs);
+        return $this->view->render();
     }
 
     /**
@@ -98,15 +103,23 @@ class ModulController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
         // Erzeugt ein Leeres Fach
         $fachHelper = new \ReRe\Rere\Domain\Model\Fach();
 
+
+        $fach = $this->objectManager->create('\ReRe\Rere\Domain\Model\Fach');
+
+
         // Fach Werte setzen
-        $fachHelper->setFachname($this->request->getArgument('fachname'));
-        $fachHelper->setFachnr($this->request->getArgument('fachnummer'));
-        $fachHelper->setPruefer($this->request->getArgument('pruefer'));
-        $fachHelper->setNotenschema($this->request->getArgument('notenschema'));
+        $fach->setFachname($this->request->getArgument('fachname'));
+        $fach->setFachnr($this->request->getArgument('fachnummer'));
+        $fach->setPruefer($this->request->getArgument('pruefer'));
+        $fach->setNotenschema($this->request->getArgument('notenschema'));
         // Fach einem Modul zuordnen
-        $fachHelper->setModulnr($newModul);
+        $fach->setModulnr($newModul->getUid());
+        //$request = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance("\ReRe\Rere\Domain\Model\Fach");
+        //\TYPO3\CMS\Extbase\Utility\DebuggerUtility::var_dump($newModul);
         // Fach speichern
-        $this->fachRepository->add($fachHelper);
+        $this->fachRepository->add($fach);
+
+        $newModul->setFach($fach);
         $this->redirect('list');
     }
 

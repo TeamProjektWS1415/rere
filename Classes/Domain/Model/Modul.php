@@ -61,6 +61,14 @@ class Modul extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 	protected $gueltigkeitszeitraum = NULL;
 
 	/**
+	 * fach
+	 * 
+	 * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\ReRe\Rere\Domain\Model\Fach>
+	 * @cascade remove
+	 */
+	protected $fach = NULL;
+
+	/**
 	 * Returns the modulnr
 	 * 
 	 * @return string $modulnr
@@ -115,6 +123,65 @@ class Modul extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 	 */
 	public function setGueltigkeitszeitraum($gueltigkeitszeitraum) {
 		$this->gueltigkeitszeitraum = $gueltigkeitszeitraum;
+	}
+
+	/**
+	 * __construct
+	 */
+	public function __construct() {
+		//Do not remove the next line: It would break the functionality
+		$this->initStorageObjects();
+	}
+
+	/**
+	 * Initializes all ObjectStorage properties
+	 * Do not modify this method!
+	 * It will be rewritten on each save in the extension builder
+	 * You may modify the constructor of this class instead
+	 * 
+	 * @return void
+	 */
+	protected function initStorageObjects() {
+		$this->fach = new \TYPO3\CMS\Extbase\Persistence\ObjectStorage();
+	}
+
+	/**
+	 * Adds a Fach
+	 * 
+	 * @param \ReRe\Rere\Domain\Model\Fach $fach
+	 * @return void
+	 */
+	public function addFach(\ReRe\Rere\Domain\Model\Fach $fach) {
+		$this->fach->attach($fach);
+	}
+
+	/**
+	 * Removes a Fach
+	 * 
+	 * @param \ReRe\Rere\Domain\Model\Fach $fachToRemove The Fach to be removed
+	 * @return void
+	 */
+	public function removeFach(\ReRe\Rere\Domain\Model\Fach $fachToRemove) {
+		$this->fach->detach($fachToRemove);
+	}
+
+	/**
+	 * Returns the fach
+	 * 
+	 * @return \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\ReRe\Rere\Domain\Model\Fach> $fach
+	 */
+	public function getFach() {
+		return $this->fach;
+	}
+
+	/**
+	 * Sets the fach
+	 * 
+	 * @param \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\ReRe\Rere\Domain\Model\Fach> $fach
+	 * @return void
+	 */
+	public function setFach(\TYPO3\CMS\Extbase\Persistence\ObjectStorage $fach) {
+		$this->fach = $fach;
 	}
 
 }

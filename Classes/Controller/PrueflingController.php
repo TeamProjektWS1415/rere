@@ -62,6 +62,14 @@ class PrueflingController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionContro
     protected $fachRepository = NULL;
 
     /**
+     * FrontendUserRepositoryRepository
+     *
+     * @var \Typo3\CMS\Extbase\Domain\Repository\FrontendUserRepository
+     * @inject
+     */
+    protected $FrontendUserRepository = NULL;
+
+    /**
      * action list
      *
      * @return void
@@ -115,10 +123,25 @@ class PrueflingController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionContro
         $this->prueflingRepository->add($newPruefling);
         $typ = $this->request->getArgument('speichern');
 
-        // Neuen TYPO3 FE_User anlegen
+        // Instanzen der Helper Functions
         $passfunctions = new \ReRe\Rere\Services\NestedDirectory\PasswordFunctions();
-        $pass = $passfunctions->genpassword();
-        $newPruefling->setNachname($pass);
+        $userfunctions = new \ReRe\Rere\Services\NestedDirectory\UserFunctions();
+
+        // Instanz eines neuen Users
+        $newUser = new \Typo3\CMS\Extbase\Domain\Model\FrontendUser();
+
+
+        // Neuen TYPO3 FE_User anlegen
+        $newUser->setUsername($userfunctions->genuserName($newPruefling->getVorname(), $newPruefling->getNachname()));
+        $newUser->setPassword($passfunctions->genpassword());
+        $newUser->setName($newPruefling->getNachname());
+        $newUser->setFirstName($newPruefling->getVorname());
+        $newUser->setLastName($newPruefling->getNachname());
+        $newUser->setEmail($this->request->getArgument('email'));
+
+        $this->FrontendUserRepository->add($newUser);
+
+        //$newPruefling->setNachname($pass);
 
         if ($typ == 'speichernundzurueck') {
             $this->redirect('list', 'Modul');

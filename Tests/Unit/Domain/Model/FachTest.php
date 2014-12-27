@@ -142,10 +142,9 @@ class FachTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
 	/**
 	 * @test
 	 */
-	public function getModulnrReturnsInitialValueForModul() {
-		$newObjectStorage = new \TYPO3\CMS\Extbase\Persistence\ObjectStorage();
-		$this->assertEquals(
-			$newObjectStorage,
+	public function getModulnrReturnsInitialValueForString() {
+		$this->assertSame(
+			'',
 			$this->subject->getModulnr()
 		);
 	}
@@ -153,42 +152,14 @@ class FachTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
 	/**
 	 * @test
 	 */
-	public function setModulnrForObjectStorageContainingModulSetsModulnr() {
-		$modulnr = new \ReRe\Rere\Domain\Model\Modul();
-		$objectStorageHoldingExactlyOneModulnr = new \TYPO3\CMS\Extbase\Persistence\ObjectStorage();
-		$objectStorageHoldingExactlyOneModulnr->attach($modulnr);
-		$this->subject->setModulnr($objectStorageHoldingExactlyOneModulnr);
+	public function setModulnrForStringSetsModulnr() {
+		$this->subject->setModulnr('Conceived at T3CON10');
 
 		$this->assertAttributeEquals(
-			$objectStorageHoldingExactlyOneModulnr,
+			'Conceived at T3CON10',
 			'modulnr',
 			$this->subject
 		);
-	}
-
-	/**
-	 * @test
-	 */
-	public function addModulnrToObjectStorageHoldingModulnr() {
-		$modulnr = new \ReRe\Rere\Domain\Model\Modul();
-		$modulnrObjectStorageMock = $this->getMock('TYPO3\\CMS\\Extbase\\Persistence\\ObjectStorage', array('attach'), array(), '', FALSE);
-		$modulnrObjectStorageMock->expects($this->once())->method('attach')->with($this->equalTo($modulnr));
-		$this->inject($this->subject, 'modulnr', $modulnrObjectStorageMock);
-
-		$this->subject->addModulnr($modulnr);
-	}
-
-	/**
-	 * @test
-	 */
-	public function removeModulnrFromObjectStorageHoldingModulnr() {
-		$modulnr = new \ReRe\Rere\Domain\Model\Modul();
-		$modulnrObjectStorageMock = $this->getMock('TYPO3\\CMS\\Extbase\\Persistence\\ObjectStorage', array('detach'), array(), '', FALSE);
-		$modulnrObjectStorageMock->expects($this->once())->method('detach')->with($this->equalTo($modulnr));
-		$this->inject($this->subject, 'modulnr', $modulnrObjectStorageMock);
-
-		$this->subject->removeModulnr($modulnr);
-
 	}
 
 	/**

@@ -137,19 +137,10 @@ $GLOBALS['TCA']['tx_rere_domain_model_fach'] = array(
 			'exclude' => 1,
 			'label' => 'LLL:EXT:rere/Resources/Private/Language/locallang_db.xlf:tx_rere_domain_model_fach.modulnr',
 			'config' => array(
-				'type' => 'inline',
-				'foreign_table' => 'tx_rere_domain_model_modul',
-				'foreign_field' => 'fach',
-				'maxitems'      => 9999,
-				'appearance' => array(
-					'collapseAll' => 0,
-					'levelLinksPosition' => 'top',
-					'showSynchronizationLink' => 1,
-					'showPossibleLocalizationRecords' => 1,
-					'showAllLocalizationLink' => 1
-				),
+				'type' => 'input',
+				'size' => 30,
+				'eval' => 'trim,required'
 			),
-
 		),
 		'matrikelnr' => array(
 			'exclude' => 1,
@@ -188,6 +179,11 @@ $GLOBALS['TCA']['tx_rere_domain_model_fach'] = array(
 			),
 		),
 		
+		'modul' => array(
+			'config' => array(
+				'type' => 'passthrough',
+			),
+		),
 		'note' => array(
 			'config' => array(
 				'type' => 'passthrough',
