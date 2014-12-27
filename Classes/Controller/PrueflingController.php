@@ -139,7 +139,10 @@ class PrueflingController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionContro
         $newUser->setLastName($newPruefling->getNachname());
         $newUser->setEmail($this->request->getArgument('email'));
 
+
         $this->FrontendUserRepository->add($newUser);
+
+        $newPruefling->setTypo3FEUser($newUser);
 
         //$newPruefling->setNachname($pass);
 
