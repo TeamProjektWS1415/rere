@@ -5,3 +5,5 @@ build.xml
 run.bat
 .sonar
 /.sonar
+sonar-project.properties
+.sonar-project.properties
