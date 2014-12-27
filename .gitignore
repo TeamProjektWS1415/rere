@@ -2,3 +2,6 @@ nbproject
 /nbproject/*
 /nbproject
 build.xml
+run.bat
+.sonar
+/.sonar
