@@ -149,7 +149,7 @@ class PrueflingController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionContro
 
         $newPruefling->setTypo3FEUser($newUser);
 
-        $mailerg = $mailfunctions->newUserMail($newUser->getEmail(), $newUser->getUsername, $newPruefling->getNachname(), $newPruefling->getVorname(), $randomPW);
+        $mailerg = $mailfunctions->newUserMail($newUser->getEmail(), $newUser->getUsername(), $newPruefling->getNachname(), $newPruefling->getVorname(), $randomPW);
         $this->addFlashMessage($mailerg);
 
         if ($typ == 'speichernundzurueck') {
