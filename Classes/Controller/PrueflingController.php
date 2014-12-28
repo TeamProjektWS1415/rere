@@ -62,12 +62,20 @@ class PrueflingController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionContro
     protected $fachRepository = NULL;
 
     /**
-     * FrontendUserRepositoryRepository
+     * FrontendUserRepository
      *
      * @var \Typo3\CMS\Extbase\Domain\Repository\FrontendUserRepository
      * @inject
      */
     protected $FrontendUserRepository = NULL;
+
+    /**
+     * FrontendUserGroupRepository
+     *
+     * @var \Typo3\CMS\Extbase\Domain\Repository\FrontendUserGroupRepository
+     * @inject
+     */
+    protected $FrontendUserGroupRepository = NULL;
 
     /**
      * action list
@@ -84,7 +92,9 @@ class PrueflingController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionContro
         // Holt Modul Objekt
         $modul = $this->modulRepository->findByUid($modulUid);
         $prueflings = $this->prueflingRepository->findAll();
+        $feUserGroups = $this->FrontendUserGroupRepository->findAll();
         $this->view->assign('prueflings', $prueflings);
+        $this->view->assign('feusergroups', $feUserGroups);
         // Ausgabe des Fachnamens und des Modulnamens
         $this->view->assign('fach', $fach->getFachname());
         $this->view->assign('modul', $modul->getModulname());
@@ -131,7 +141,6 @@ class PrueflingController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionContro
         // Instanz eines neuen Users
         $newUser = new \Typo3\CMS\Extbase\Domain\Model\FrontendUser();
 
-
         // Neuen TYPO3 FE_User anlegen
         $newUser->setUsername($userfunctions->genuserName($newPruefling->getVorname(), $newPruefling->getNachname()));
 
@@ -146,12 +155,10 @@ class PrueflingController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionContro
         $newUser->setEmail($this->request->getArgument('email'));
 
         $this->FrontendUserRepository->add($newUser);
-
         $newPruefling->setTypo3FEUser($newUser);
 
         $mailerg = $mailfunctions->newUserMail($newUser->getEmail(), $newUser->getUsername(), $newPruefling->getNachname(), $newPruefling->getVorname(), $randomPW);
         $this->addFlashMessage($mailerg);
-
         if ($typ == 'speichernundzurueck') {
             $this->redirect('list', 'Modul');
         } else {

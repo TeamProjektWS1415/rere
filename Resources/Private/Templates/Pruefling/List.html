@@ -5,6 +5,17 @@
 
     <f:flashMessages />
 
+    <script type="text/javascript">
+
+        // Holt alle Prüflinge Werte für das Chart
+        var array = {f:format.htmlentitiesDecode(value:chartarray)};
+
+        // Generiert das Chart
+        $(document).ready(function () {
+
+        });
+    </script>
+
     <div class="container-fluid wrapper">
         <div class="row">
             <div name="breadcrumb" class="col-md-12">
@@ -34,10 +45,10 @@
                                     <div class="input-group">
                                         <div class="input-group-addon"><span class="glyphicon glyphicon-search" aria-hidden="true" ></span></div>
                                         <select class="form-control" data-toggle="tooltip" data-placement="bottom" title="UserGroup auswählen">
-                                            <option>Bitte UserGroup ausWählen</option>
-                                            <option>User Group 1</option>
-                                            <option>User Group 2</option>
-                                            <option>User Group anlegen</option>
+                                            <f:debug>{feusergroups}</f:debug>
+                                            <f:for each="{feusergroups}" as="group">
+                                                <option>{group.title}</option>
+                                            </f:for>
                                         </select>
                                     </div>
                                 </div>
@@ -63,7 +74,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                        <f:for each="{prueflings}" as="pruefling">
+                        <f:for each="{fach.prueflings}" as="pruefling">
                             <tr>
                             <f:form name="updatePruefling">
                                 <td><span class="value">{pruefling.matrikelnr}</span></td>
