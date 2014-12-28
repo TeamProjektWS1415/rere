@@ -112,7 +112,6 @@ class ModulController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
         // Fach einem Modul zuordnen
         $fach->setModulnr($newModul->getUid());
 
-        //\TYPO3\CMS\Extbase\Utility\DebuggerUtility::var_dump($newModul);
         // Fach speichern
         $this->fachRepository->add($fach);
 
