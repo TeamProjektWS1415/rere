@@ -11,6 +11,10 @@ namespace ReRe\Rere\Controller;
  */
 class ImportController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController {
 
+    const TITLE = 'title';
+    const LABLE = 'lable';
+    const IMPORT = "import";
+
     /**
      * View Rendering für Import
      */
@@ -20,14 +24,14 @@ class ImportController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControlle
 
         // Prüfung um welchen Import Typ es sich handelt.
         if ($type == "prueflinge") {
-            $this->view->assign('title', 'Import Prüflinge');
-            $this->view->assign('lable', 'XML-Datei mit Prüflingen');
+            $this->view->assign(self::TITLE, 'Import Prüflinge');
+            $this->view->assign(self::LABLE, 'XML-Datei mit Prüflingen');
         } elseif ($type == "backup") {
-            $this->view->assign('title', 'Import Backup');
-            $this->view->assign('lable', 'SQL-Backup');
+            $this->view->assign(self::TITLE, 'Import Backup');
+            $this->view->assign(self::LABLE, 'SQL-Backup');
         } else {
-            $this->view->assign('title', 'Import Fach');
-            $this->view->assign('lable', 'Fach Import');
+            $this->view->assign(self::TITLE, 'Import Fach');
+            $this->view->assign(self::LABLE, 'Fach Import');
         }
     }
 
@@ -35,14 +39,14 @@ class ImportController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControlle
      * @return void
      */
     public function importPrueflingeAction() {
-        $this->redirect('import');
+        $this->redirect(self::IMPORT);
     }
 
     /**
      * @return void
      */
     public function importBackupAction() {
-        $this->redirect('import');
+        $this->redirect(self::IMPORT);
     }
 
 }
