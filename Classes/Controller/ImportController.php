@@ -25,7 +25,7 @@ class ImportController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControlle
         } elseif ($type == "backup") {
             $this->view->assign('title', 'Import Backup');
             $this->view->assign('lable', 'SQL-Backup');
-        } elseif ($type == "fach") {
+        } else {
             $this->view->assign('title', 'Import Fach');
             $this->view->assign('lable', 'Fach Import');
         }

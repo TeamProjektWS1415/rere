@@ -133,18 +133,20 @@ class PrueflingController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionContro
 
         // Neuen TYPO3 FE_User anlegen
         $newUser->setUsername($userfunctions->genuserName($newPruefling->getVorname(), $newPruefling->getNachname()));
-        $newUser->setPassword($passfunctions->genpassword());
+
+        // Passwort generierung -> Random und dann -> Salt
+        $randomPW = $passfunctions->genpassword();
+        $saltedPW = $passfunctions->hashPassword($randomPW);
+
+        $newUser->setPassword($saltedPW);
         $newUser->setName($newPruefling->getNachname());
         $newUser->setFirstName($newPruefling->getVorname());
         $newUser->setLastName($newPruefling->getNachname());
         $newUser->setEmail($this->request->getArgument('email'));
 
-
         $this->FrontendUserRepository->add($newUser);
 
         $newPruefling->setTypo3FEUser($newUser);
-
-        //$newPruefling->setNachname($pass);
 
         if ($typ == 'speichernundzurueck') {
             $this->redirect('list', 'Modul');

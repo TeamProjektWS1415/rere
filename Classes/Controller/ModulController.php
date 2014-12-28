@@ -103,9 +103,7 @@ class ModulController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
         // Erzeugt ein Leeres Fach
         $fachHelper = new \ReRe\Rere\Domain\Model\Fach();
 
-
         $fach = $this->objectManager->create('\ReRe\Rere\Domain\Model\Fach');
-
 
         // Fach Werte setzen
         $fach->setFachname($this->request->getArgument('fachname'));
@@ -114,7 +112,7 @@ class ModulController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
         $fach->setNotenschema($this->request->getArgument('notenschema'));
         // Fach einem Modul zuordnen
         $fach->setModulnr($newModul->getUid());
-        //$request = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance("\ReRe\Rere\Domain\Model\Fach");
+
         //\TYPO3\CMS\Extbase\Utility\DebuggerUtility::var_dump($newModul);
         // Fach speichern
         $this->fachRepository->add($fach);

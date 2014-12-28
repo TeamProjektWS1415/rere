@@ -149,11 +149,11 @@ class Modul extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
     /**
      * Adds a Fach
      *
-     * @param \ReRe\Rere\Domain\Model\Fach $fach
+     * @param \ReRe\Rere\Domain\Model\Fach $newFach
      * @return void
      */
-    public function addFach(\ReRe\Rere\Domain\Model\Fach $fach) {
-        $this->fach->attach($fach);
+    public function addFach(\ReRe\Rere\Domain\Model\Fach $newFach) {
+        $this->fach->attach($newFach);
     }
 
     /**
