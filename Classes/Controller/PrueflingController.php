@@ -126,6 +126,7 @@ class PrueflingController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionContro
         // Instanzen der Helper Functions
         $passfunctions = new \ReRe\Rere\Services\NestedDirectory\PasswordFunctions();
         $userfunctions = new \ReRe\Rere\Services\NestedDirectory\UserFunctions();
+        $mailfunctions = new \ReRe\Rere\Services\NestedDirectory\ReReMailer();
 
         // Instanz eines neuen Users
         $newUser = new \Typo3\CMS\Extbase\Domain\Model\FrontendUser();
@@ -147,6 +148,8 @@ class PrueflingController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionContro
         $this->FrontendUserRepository->add($newUser);
 
         $newPruefling->setTypo3FEUser($newUser);
+
+        $mailfunctions->newUserMail($newUser->getEmail(), $newUser->getUsername, $newPruefling->getNachname(), $newPruefling->getVorname(), $randomPW);
 
         if ($typ == 'speichernundzurueck') {
             $this->redirect('list', 'Modul');

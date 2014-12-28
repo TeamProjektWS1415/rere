@@ -117,7 +117,7 @@ class ModulController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
         // Fach speichern
         $this->fachRepository->add($fach);
 
-        $newModul->setFach($fach);
+        $newModul->addFach($fach);
         $this->redirect('list');
     }
 
