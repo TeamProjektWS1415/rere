@@ -18,6 +18,11 @@ class ReReMailer {
                 ->setTo(array($empfänger => $name))
                 ->setBody($body);
         $message->send();
+        if ($message->isSent()) {
+            return 'Mail erfolgreich versandt';
+        } else {
+            return 'Die Mail wurde nicht versandt.';
+        }
     }
 
 }

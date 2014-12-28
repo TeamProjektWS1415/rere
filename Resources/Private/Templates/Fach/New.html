@@ -54,7 +54,7 @@
                     <div class="form-group">
                         <label for="eingabefeldFach" class="col-sm-3 control-label">Fach *</label>
                         <div class="col-sm-9">
-                            <f:form.textfield property="fachname" name="fachname" class="form-control gettooltip" placeholder="Fach" title="Fachname hier eingeben"/>
+                            <f:form.textfield name="fachname" class="form-control gettooltip" placeholder="Fach" title="Fachname hier eingeben"/>
                             <br>
                         </div>
                     </div>
@@ -63,7 +63,7 @@
                     <div class="form-group">
                         <label for="eingabefeldFachnummer" class="col-sm-3 control-label">Fachnummer *</label>
                         <div class="col-sm-9">
-                            <f:form.textfield property="fachnr" name="fachnummer" class="form-control gettooltip" placeholder="Fachnummer" title="Fachnummer hier eingeben"/>
+                            <f:form.textfield name="fachnummer" class="form-control gettooltip" placeholder="Fachnummer" title="Fachnummer hier eingeben"/>
                             <br>
                         </div>
                     </div>
@@ -72,7 +72,7 @@
                     <div class="form-group">
                         <label for="eingabefeldProfessor" class="col-sm-3 control-label">Professor *</label>
                         <div class="col-sm-9">
-                            <f:form.textfield property="pruefer" name="pruefer" class="form-control gettooltip" placeholder="Professor" title="Für das Fach verantwortlicher Professor"/>
+                            <f:form.textfield name="pruefer" class="form-control gettooltip" placeholder="Professor" title="Für das Fach verantwortlicher Professor"/>
                             <br>
                         </div>
                     </div>
@@ -82,21 +82,21 @@
                             <!--Radiobutton für Benotet 15 Pkt. System-->
                             <div class="col-sm-12">
                                 <label>
-                                    <f:form.radio class="gettooltip" property="notenschema" name="notenschema" value="benotet15" checked="1" title="Modul nach 15 Punkte System benotet - System default !"/>
+                                    <f:form.radio class="gettooltip" name="notenschema" value="benotet15" checked="1" title="Modul nach 15 Punkte System benotet - System default !"/>
                                     Benotet (15 Pkt. System)
                                 </label>
                             </div>
                             <!--Radiobutton für unbenotet-->
                             <div class="col-sm-12">
                                 <label>
-                                    <f:form.radio class="gettooltip" property="notenschema" name="notenschema" value="unbenotet" title="Modul unbenotet"/>
+                                    <f:form.radio class="gettooltip" name="notenschema" value="unbenotet" title="Modul unbenotet"/>
                                     Unbenotet
                                 </label>
                             </div>
                             <!--Radiobutton für Benotet Schulnoten-->
                             <div class="col-sm-12">
                                 <label>
-                                    <f:form.radio class="gettooltip" property="notenschema" name="notenschema" value="benotetschulnoten" title="Modul nach Schulnotensystem benotet"/>
+                                    <f:form.radio class="gettooltip" name="notenschema" value="benotetschulnoten" title="Modul nach Schulnotensystem benotet"/>
                                     Benotet (Schulnoten)
                                 </label>
                             </div>
