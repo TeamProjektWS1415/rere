@@ -93,7 +93,19 @@ class PrueflingController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionContro
         $modul = $this->modulRepository->findByUid($modulUid);
         $prueflings = $this->prueflingRepository->findAll();
         $feUserGroups = $this->FrontendUserGroupRepository->findAll();
-        $this->view->assign('prueflings', $prueflings);
+
+        $prueflingsarray = array();
+
+        foreach ($prueflings as $pruefling) {
+            array_push($prueflingsarray, $pruefling->getMatrikelnr());
+        }
+
+
+        $prueflingsarrayJson = json_encode($prueflingsarray);
+
+
+
+        $this->view->assign('prueflings', $prueflingsarrayJson);
         $this->view->assign('feusergroups', $feUserGroups);
         // Ausgabe des Fachnamens und des Modulnamens
         $this->view->assign('fach', $fach->getFachname());

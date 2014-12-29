@@ -4,6 +4,7 @@ if (!defined('TYPO3_MODE')) {
     die('Access denied.');
 }
 
+// Konstanten definition für default actions
 define("DEFACTIONS", "list, show, new, create, edit, update, delete");
 
 if (TYPO3_MODE === 'BE') {
@@ -18,7 +19,7 @@ if (TYPO3_MODE === 'BE') {
             'rerebackend',
             // Position
             '', array(
-        'Modul' => DEFACTIONS, 'Fach' => DEFACTIONS, 'Note' => DEFACTIONS, 'Pruefling' => DEFACTIONS, 'Export' => 'exportPrueflinge, exportModuleUndFaecher, exportFach', 'Import' => 'new, importPrueflinge, importBackUp',
+        'Modul' => DEFACTIONS, 'Fach' => DEFACTIONS, 'Note' => DEFACTIONS, 'Pruefling' => DEFACTIONS, 'Export' => 'exportPrueflinge, exportModuleUndFaecher, exportFach', 'Import' => 'new, importPrueflinge, importBackUp', 'Ajax' => 'searchPruefling',
             ), array(
         'access' => 'user,group',
         'icon' => 'EXT:' . $_EXTKEY . '/ext_icon.gif',
@@ -136,3 +137,4 @@ $GLOBALS['TCA']['tx_rere_domain_model_pruefling'] = array(
         'iconfile' => \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extRelPath($_EXTKEY) . 'Resources/Public/Icons/tx_rere_domain_model_pruefling.gif'
     ),
 );
+

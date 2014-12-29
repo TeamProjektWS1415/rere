@@ -5,16 +5,8 @@
 
     <f:flashMessages />
 
-    <script type="text/javascript">
 
-        // Holt alle Prüflinge Werte für das Chart
-        var array = {f:format.htmlentitiesDecode(value:chartarray)};
 
-        // Generiert das Chart
-        $(document).ready(function () {
-
-        });
-    </script>
 
     <div class="container-fluid wrapper">
         <div class="row">
@@ -40,15 +32,11 @@
                                 <div class="form-group">
                                     <div class="input-group">
                                         <div class="input-group-addon"><span class="glyphicon glyphicon-search" aria-hidden="true" ></span></div>
-                                        <input type="text" id="suche" class="form-control" data-toggle="tooltip" data-placement="bottom" title="Nach MatrikelNr suchen" placeholder="Matrikel Nummer">
+                                        <input type="text" id="suchematrikel" class="form-control" data-toggle="tooltip" data-placement="bottom" title="Nach MatrikelNr suchen" placeholder="Matrikel Nummer">
                                     </div>
                                     <div class="input-group">
                                         <div class="input-group-addon"><span class="glyphicon glyphicon-search" aria-hidden="true" ></span></div>
                                         <select class="form-control" data-toggle="tooltip" data-placement="bottom" title="UserGroup auswählen">
-                                            <f:debug>{feusergroups}</f:debug>
-                                            <f:for each="{feusergroups}" as="group">
-                                                <option>{group.title}</option>
-                                            </f:for>
                                         </select>
                                     </div>
                                 </div>
@@ -74,26 +62,30 @@
                             </tr>
                         </thead>
                         <tbody>
-                        <f:for each="{fach.prueflings}" as="pruefling">
+
                             <tr>
-                            <f:form name="updatePruefling">
+
                                 <td><span class="value">{pruefling.matrikelnr}</span></td>
                                 <td><span class="value">{pruefling.vorname}</span></td>
                                 <td><span class="value">{pruefling.nachname}</span></td>
                                 <td>
-                                <f:link.action class="delete" action="delete" onclick="delentry('Möchten Sie den Pruefling mit der Matrikelnr: {pruefling.matrikelnr} wirklich löschen?', $(this).attr('href'));
-                                        return false;" arguments="{pruefling : pruefling}"><span class="glyphicon glyphicon-remove" aria-hidden="true" data-toggle="tooltip" data-placement="bottom" title="Löscht diesen Datensatz"></span></f:link.action>
-                                </td>
-                                </tr>
-                            </f:form>
-                        </f:for>
+                        <f:link.action class="delete" action="delete" onclick="delentry('Möchten Sie den Pruefling mit der Matrikelnr: {pruefling.matrikelnr} wirklich löschen?', $(this).attr('href'));
+                                return false;" arguments="{pruefling : pruefling}"><span class="glyphicon glyphicon-remove" aria-hidden="true" data-toggle="tooltip" data-placement="bottom" title="Löscht diesen Datensatz"></span></f:link.action>
+                        </td>
+                        </tr>
                         </tbody>
                     </table>
+
+
+                    <script type="text/javascript">
+                        // Holt alle Prüflinge in ein Json array um zu suchen
+                        var arrayPrueflinge = {f:format.htmlentitiesDecode(value:prueflings)};
+                    </script>
+
                 </div>
             </div>
         </div>
     </div>
-
     <!-- Lädt den Code für den Bestätigungs Dialog-->
     <f:render partial="LoeschenDialog" />
 

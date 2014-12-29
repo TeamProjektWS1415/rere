@@ -12,6 +12,7 @@ if (!defined('TYPO3_MODE')) {
     'Pruefling' => 'list, show, new, create, edit, update, delete',
     'Export' => 'exportPrueflinge, exportModuleUndFaecher, exportFach',
     'Import' => 'new, importPrueflinge, importBackUp',
+    'Ajax' => 'searchPruefling',
         ),
         // non-cacheable actions
         array(
@@ -21,5 +22,6 @@ if (!defined('TYPO3_MODE')) {
     'Pruefling' => 'create, createAndNext, update, delete',
     'Export' => 'exportPrueflinge, exportModuleUndFaecher, exportFach',
     'Import' => 'new, importPrueflinge, importBackUp',
+    'Ajax' => 'searchPruefling',
         )
 );
