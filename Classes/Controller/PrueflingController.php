@@ -37,6 +37,9 @@ namespace ReRe\Rere\Controller;
  */
 class PrueflingController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController {
 
+    const MODUL = "modul";
+    const FACH = "fach";
+
     /**
      * prueflingRepository
      *
@@ -84,11 +87,11 @@ class PrueflingController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionContro
      */
     public function listAction() {
         // Liest die FachUid Aus
-        $fachUID = $this->request->getArgument('fach');
+        $fachUID = $this->request->getArgument(self::FACH);
         // Holt FachObjekt
         $fach = $this->fachRepository->findByUid($fachUID);
         // Liest die ModulUid aus
-        $modulUid = $this->request->getArgument('modul');
+        $modulUid = $this->request->getArgument(self::MODUL);
         // Holt Modul Objekt
         $modul = $this->modulRepository->findByUid($modulUid);
         $prueflings = $this->prueflingRepository->findAll();
@@ -105,8 +108,8 @@ class PrueflingController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionContro
         $this->view->assign('prueflings', $prueflingsarrayJson);
         $this->view->assign('feusergroups', $feUserGroups);
         // Ausgabe des Fachnamens und des Modulnamens
-        $this->view->assign('fach', $fach);
-        $this->view->assign('modul', $modul);
+        $this->view->assign(self::FACH, $fach);
+        $this->view->assign(self::MODUL, $modul);
         $this->view->assign('semester', $modul);
     }
 
@@ -216,13 +219,13 @@ class PrueflingController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionContro
     public function setPrueflingAction() {
 
         // Holt FachObjekt
-        if ($this->request->hasArgument('fach')) {
-            $fachUID = $this->request->getArgument('fach');
+        if ($this->request->hasArgument(self::FACH)) {
+            $fachUID = $this->request->getArgument(self::FACH);
             $fach = $this->fachRepository->findByUid($fachUID);
         }
         // Holt Modul Objekt
-        if ($this->request->hasArgument('modul')) {
-            $modulUid = $this->request->getArgument('modul');
+        if ($this->request->hasArgument(MODUL)) {
+            $modulUid = $this->request->getArgument(self::MODUL);
             $modul = $this->modulRepository->findByUid($modulUid);
         }
         // Holt den Prüfling
@@ -235,7 +238,7 @@ class PrueflingController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionContro
         $fach->setMatrikelnr($pruefling->getUid());
 
         // Weiterleitung auf die selbe Seite.
-        $this->redirect('list', 'Pruefling', Null, array('fach' => $fach, 'modul' => $modul));
+        $this->redirect('list', 'Pruefling', Null, array(self::FACH => $fach, self::MODUL => $modul));
     }
 
 }

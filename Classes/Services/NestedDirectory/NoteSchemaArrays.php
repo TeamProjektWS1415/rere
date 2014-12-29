@@ -11,12 +11,14 @@ namespace ReRe\Rere\Services\NestedDirectory;
  */
 class NoteSchemaArrays {
 
+    const BITTE = "Bitte wählen";
+
     /**
      * Array für XYZ Notensystem.
      * @var type array
      */
     protected $marks = array(
-        '' => 'Bitte wählen',
+        '' => self::BITTE,
         '1.0' => '1.0',
         '1.3' => '1.3',
         '1.7' => '1.7',
@@ -35,7 +37,7 @@ class NoteSchemaArrays {
      * @var type
      */
     protected $schoolMarks = array(
-        '' => 'Bitte wählen',
+        '' => self::BITTE,
         '1.0' => '1.0',
         '1.5' => '1.5',
         '2.0' => '2.0',
@@ -54,7 +56,7 @@ class NoteSchemaArrays {
      * @var type
      */
     protected $unbenotetMarks = array(
-        '' => 'Bitte wählen',
+        '' => self::BITTE,
         'be' => 'be',
         'N' => 'N'
     );

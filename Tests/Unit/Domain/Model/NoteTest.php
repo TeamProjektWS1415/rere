@@ -2,10 +2,10 @@
 
 namespace ReRe\Rere\Tests\Unit\Domain\Model;
 
-/***************************************************************
+/* * *************************************************************
  *  Copyright notice
  *
- *  (c) 2014 
+ *  (c) 2014
  *
  *  All rights reserved
  *
@@ -24,7 +24,7 @@ namespace ReRe\Rere\Tests\Unit\Domain\Model;
  *  GNU General Public License for more details.
  *
  *  This copyright notice MUST APPEAR in all copies of the script!
- ***************************************************************/
+ * ************************************************************* */
 
 /**
  * Test case for class \ReRe\Rere\Domain\Model\Note.
@@ -34,138 +34,127 @@ namespace ReRe\Rere\Tests\Unit\Domain\Model;
  *
  */
 class NoteTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
-	/**
-	 * @var \ReRe\Rere\Domain\Model\Note
-	 */
-	protected $subject = NULL;
 
-	protected function setUp() {
-		$this->subject = new \ReRe\Rere\Domain\Model\Note();
-	}
+    /**
+     * @var \ReRe\Rere\Domain\Model\Note
+     */
+    protected $subject = NULL;
 
-	protected function tearDown() {
-		unset($this->subject);
-	}
+    protected function setUp() {
+        $this->subject = new \ReRe\Rere\Domain\Model\Note();
+    }
 
-	/**
-	 * @test
-	 */
-	public function getWertReturnsInitialValueForString() {
-		$this->assertSame(
-			'',
-			$this->subject->getWert()
-		);
-	}
+    protected function tearDown() {
+        unset($this->subject);
+    }
 
-	/**
-	 * @test
-	 */
-	public function setWertForStringSetsWert() {
-		$this->subject->setWert('Conceived at T3CON10');
+    /**
+     * @test
+     */
+    public function getWertReturnsInitialValueForString() {
+        $this->assertSame(
+                '', $this->subject->getWert()
+        );
+    }
 
-		$this->assertAttributeEquals(
-			'Conceived at T3CON10',
-			'wert',
-			$this->subject
-		);
-	}
+    /**
+     * @test
+     */
+    public function setWertForStringSetsWert() {
+        $this->subject->setWert('Conceived at T3CON10');
 
-	/**
-	 * @test
-	 */
-	public function getKommentarReturnsInitialValueForString() {
-		$this->assertSame(
-			'',
-			$this->subject->getKommentar()
-		);
-	}
+        $this->assertAttributeEquals(
+                'Conceived at T3CON10', 'wert', $this->subject
+        );
+    }
 
-	/**
-	 * @test
-	 */
-	public function setKommentarForStringSetsKommentar() {
-		$this->subject->setKommentar('Conceived at T3CON10');
+    /**
+     * @test
+     */
+    public function getKommentarReturnsInitialValueForString() {
+        $this->assertSame(
+                '', $this->subject->getKommentar()
+        );
+    }
 
-		$this->assertAttributeEquals(
-			'Conceived at T3CON10',
-			'kommentar',
-			$this->subject
-		);
-	}
+    /**
+     * @test
+     */
+    public function setKommentarForStringSetsKommentar() {
+        $this->subject->setKommentar('Conceived at T3CON10');
 
-	/**
-	 * @test
-	 */
-	public function getFachnrReturnsInitialValueForFach() {
-		$newObjectStorage = new \TYPO3\CMS\Extbase\Persistence\ObjectStorage();
-		$this->assertEquals(
-			$newObjectStorage,
-			$this->subject->getFachnr()
-		);
-	}
+        $this->assertAttributeEquals(
+                'Conceived at T3CON10', 'kommentar', $this->subject
+        );
+    }
 
-	/**
-	 * @test
-	 */
-	public function setFachnrForObjectStorageContainingFachSetsFachnr() {
-		$fachnr = new \ReRe\Rere\Domain\Model\Fach();
-		$objectStorageHoldingExactlyOneFachnr = new \TYPO3\CMS\Extbase\Persistence\ObjectStorage();
-		$objectStorageHoldingExactlyOneFachnr->attach($fachnr);
-		$this->subject->setFachnr($objectStorageHoldingExactlyOneFachnr);
+    /**
+     * @test
+     */
+    public function getFachnrReturnsInitialValueForFach() {
+        $newObjectStorage = new \TYPO3\CMS\Extbase\Persistence\ObjectStorage();
+        $this->assertEquals(
+                $newObjectStorage, $this->subject->getFachnr()
+        );
+    }
 
-		$this->assertAttributeEquals(
-			$objectStorageHoldingExactlyOneFachnr,
-			'fachnr',
-			$this->subject
-		);
-	}
+    /**
+     * @test
+     */
+    public function setFachnrForObjectStorageContainingFachSetsFachnr() {
+        $fachnr = new \ReRe\Rere\Domain\Model\Fach();
+        $objectStorageHoldingExactlyOneFachnr = new \TYPO3\CMS\Extbase\Persistence\ObjectStorage();
+        $objectStorageHoldingExactlyOneFachnr->attach($fachnr);
+        $this->subject->setFachnr($objectStorageHoldingExactlyOneFachnr);
 
-	/**
-	 * @test
-	 */
-	public function addFachnrToObjectStorageHoldingFachnr() {
-		$fachnr = new \ReRe\Rere\Domain\Model\Fach();
-		$fachnrObjectStorageMock = $this->getMock('TYPO3\\CMS\\Extbase\\Persistence\\ObjectStorage', array('attach'), array(), '', FALSE);
-		$fachnrObjectStorageMock->expects($this->once())->method('attach')->with($this->equalTo($fachnr));
-		$this->inject($this->subject, 'fachnr', $fachnrObjectStorageMock);
+        $this->assertAttributeEquals(
+                $objectStorageHoldingExactlyOneFachnr, 'fachnr', $this->subject
+        );
+    }
 
-		$this->subject->addFachnr($fachnr);
-	}
+    /**
+     * @test
+     */
+    public function addFachnrToObjectStorageHoldingFachnr() {
+        $fachnr = new \ReRe\Rere\Domain\Model\Fach();
+        $fachnrObjectStorageMock = $this->getMock('TYPO3\\CMS\\Extbase\\Persistence\\ObjectStorage', array('attach'), array(), '', FALSE);
+        $fachnrObjectStorageMock->expects($this->once())->method('attach')->with($this->equalTo($fachnr));
+        $this->inject($this->subject, 'fachnr', $fachnrObjectStorageMock);
 
-	/**
-	 * @test
-	 */
-	public function removeFachnrFromObjectStorageHoldingFachnr() {
-		$fachnr = new \ReRe\Rere\Domain\Model\Fach();
-		$fachnrObjectStorageMock = $this->getMock('TYPO3\\CMS\\Extbase\\Persistence\\ObjectStorage', array('detach'), array(), '', FALSE);
-		$fachnrObjectStorageMock->expects($this->once())->method('detach')->with($this->equalTo($fachnr));
-		$this->inject($this->subject, 'fachnr', $fachnrObjectStorageMock);
+        $this->subject->addFachnr($fachnr);
+    }
 
-		$this->subject->removeFachnr($fachnr);
+    /**
+     * @test
+     */
+    public function removeFachnrFromObjectStorageHoldingFachnr() {
+        $fachnr = new \ReRe\Rere\Domain\Model\Fach();
+        $fachnrObjectStorageMock = $this->getMock('TYPO3\\CMS\\Extbase\\Persistence\\ObjectStorage', array('detach'), array(), '', FALSE);
+        $fachnrObjectStorageMock->expects($this->once())->method('detach')->with($this->equalTo($fachnr));
+        $this->inject($this->subject, 'fachnr', $fachnrObjectStorageMock);
 
-	}
+        $this->subject->removeFachnr($fachnr);
+    }
 
-	/**
-	 * @test
-	 */
-	public function getMatrikelnrReturnsInitialValueForPruefling() {
-		$this->assertEquals(
-			NULL,
-			$this->subject->getMatrikelnr()
-		);
-	}
+    /**
+     * @test
+     */
+    public function getMatrikelnrReturnsInitialValueForPruefling() {
+        $this->assertEquals(
+                NULL, $this->subject->getMatrikelnr()
+        );
+    }
 
-	/**
-	 * @test
-	 */
-	public function setMatrikelnrForPrueflingSetsMatrikelnr() {
-		$matrikelnrFixture = new \ReRe\Rere\Domain\Model\Pruefling();
-		$this->subject->setMatrikelnr($matrikelnrFixture);
+    /**
+     * @test
+     */
+    public function setMatrikelnrForPrueflingSetsMatrikelnr() {
+        $matrikelnrFixture = new \ReRe\Rere\Domain\Model\Pruefling();
+        $this->subject->setMatrikelnr($matrikelnrFixture);
 
-		$this->assertAttributeEquals(
-			$matrikelnrFixture,
-			'matrikelnr',
-			$this->subject
-		);
-	}
+        $this->assertAttributeEquals(
+                $matrikelnrFixture, 'matrikelnr', $this->subject
+        );
+    }
+
 }

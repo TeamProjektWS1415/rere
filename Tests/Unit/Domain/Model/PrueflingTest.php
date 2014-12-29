@@ -2,10 +2,10 @@
 
 namespace ReRe\Rere\Tests\Unit\Domain\Model;
 
-/***************************************************************
+/* * *************************************************************
  *  Copyright notice
  *
- *  (c) 2014 
+ *  (c) 2014
  *
  *  All rights reserved
  *
@@ -24,7 +24,7 @@ namespace ReRe\Rere\Tests\Unit\Domain\Model;
  *  GNU General Public License for more details.
  *
  *  This copyright notice MUST APPEAR in all copies of the script!
- ***************************************************************/
+ * ************************************************************* */
 
 /**
  * Test case for class \ReRe\Rere\Domain\Model\Pruefling.
@@ -34,95 +34,92 @@ namespace ReRe\Rere\Tests\Unit\Domain\Model;
  *
  */
 class PrueflingTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
-	/**
-	 * @var \ReRe\Rere\Domain\Model\Pruefling
-	 */
-	protected $subject = NULL;
 
-	protected function setUp() {
-		$this->subject = new \ReRe\Rere\Domain\Model\Pruefling();
-	}
+    /**
+     * @var \ReRe\Rere\Domain\Model\Pruefling
+     */
+    protected $subject = NULL;
 
-	protected function tearDown() {
-		unset($this->subject);
-	}
+    protected function setUp() {
+        $this->subject = new \ReRe\Rere\Domain\Model\Pruefling();
+    }
 
-	/**
-	 * @test
-	 */
-	public function getMatrikelnrReturnsInitialValueForString() {
-		$this->assertSame(
-			'',
-			$this->subject->getMatrikelnr()
-		);
-	}
+    protected function tearDown() {
+        unset($this->subject);
+    }
 
-	/**
-	 * @test
-	 */
-	public function setMatrikelnrForStringSetsMatrikelnr() {
-		$this->subject->setMatrikelnr('Conceived at T3CON10');
+    /**
+     * @test
+     */
+    public function getMatrikelnrReturnsInitialValueForString() {
+        $this->assertSame(
+                '', $this->subject->getMatrikelnr()
+        );
+    }
 
-		$this->assertAttributeEquals(
-			'Conceived at T3CON10',
-			'matrikelnr',
-			$this->subject
-		);
-	}
+    /**
+     * @test
+     */
+    public function setMatrikelnrForStringSetsMatrikelnr() {
+        $this->subject->setMatrikelnr('Conceived at T3CON10');
 
-	/**
-	 * @test
-	 */
-	public function getVornameReturnsInitialValueForString() {
-		$this->assertSame(
-			'',
-			$this->subject->getVorname()
-		);
-	}
+        $this->assertAttributeEquals(
+                'Conceived at T3CON10', 'matrikelnr', $this->subject
+        );
+    }
 
-	/**
-	 * @test
-	 */
-	public function setVornameForStringSetsVorname() {
-		$this->subject->setVorname('Conceived at T3CON10');
+    /**
+     * @test
+     */
+    public function getVornameReturnsInitialValueForString() {
+        $this->assertSame(
+                '', $this->subject->getVorname()
+        );
+    }
 
-		$this->assertAttributeEquals(
-			'Conceived at T3CON10',
-			'vorname',
-			$this->subject
-		);
-	}
+    /**
+     * @test
+     */
+    public function setVornameForStringSetsVorname() {
+        $this->subject->setVorname('Conceived at T3CON10');
 
-	/**
-	 * @test
-	 */
-	public function getNachnameReturnsInitialValueForString() {
-		$this->assertSame(
-			'',
-			$this->subject->getNachname()
-		);
-	}
+        $this->assertAttributeEquals(
+                'Conceived at T3CON10', 'vorname', $this->subject
+        );
+    }
 
-	/**
-	 * @test
-	 */
-	public function setNachnameForStringSetsNachname() {
-		$this->subject->setNachname('Conceived at T3CON10');
+    /**
+     * @test
+     */
+    public function getNachnameReturnsInitialValueForString() {
+        $this->assertSame(
+                '', $this->subject->getNachname()
+        );
+    }
 
-		$this->assertAttributeEquals(
-			'Conceived at T3CON10',
-			'nachname',
-			$this->subject
-		);
-	}
+    /**
+     * @test
+     */
+    public function setNachnameForStringSetsNachname() {
+        $this->subject->setNachname('Conceived at T3CON10');
 
-	/**
-	 * @test
-	 */
-	public function getTypo3FEUserReturnsInitialValueForFrontendUser() {	}
+        $this->assertAttributeEquals(
+                'Conceived at T3CON10', 'nachname', $this->subject
+        );
+    }
 
-	/**
-	 * @test
-	 */
-	public function setTypo3FEUserForFrontendUserSetsTypo3FEUser() {	}
+    /**
+     * @test
+     */
+    public function getTypo3FEUserReturnsInitialValueForFrontendUser() {
+
+    }
+
+    /**
+     * @test
+     */
+    public function setTypo3FEUserForFrontendUserSetsTypo3FEUser() {
+
+    }
+
 }
