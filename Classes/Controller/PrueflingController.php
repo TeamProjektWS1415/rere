@@ -97,20 +97,17 @@ class PrueflingController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionContro
         $prueflingsarray = array();
 
         foreach ($prueflings as $pruefling) {
-            array_push($prueflingsarray, $pruefling->getMatrikelnr());
+            array_push($prueflingsarray, $pruefling->getMatrikelnr(), $pruefling->getUid());
         }
 
-
         $prueflingsarrayJson = json_encode($prueflingsarray);
-
-
 
         $this->view->assign('prueflings', $prueflingsarrayJson);
         $this->view->assign('feusergroups', $feUserGroups);
         // Ausgabe des Fachnamens und des Modulnamens
-        $this->view->assign('fach', $fach->getFachname());
-        $this->view->assign('modul', $modul->getModulname());
-        $this->view->assign('semester', $modul->getGueltigkeitszeitraum());
+        $this->view->assign('fach', $fach);
+        $this->view->assign('modul', $modul);
+        $this->view->assign('semester', $modul);
     }
 
     /**
@@ -211,6 +208,32 @@ class PrueflingController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionContro
         $this->addFlashMessage('The object was deleted. Please be aware that this action is publicly accessible unless you implement an access check. See <a href="http://wiki.typo3.org/T3Doc/Extension_Builder/Using_the_Extension_Builder#1._Model_the_domain" target="_blank">Wiki</a>', '', \TYPO3\CMS\Core\Messaging\AbstractMessage::ERROR);
         $this->prueflingRepository->remove($pruefling);
         $this->redirect('list');
+    }
+
+    public function setPrueflingAction() {
+
+        // Holt FachObjekt
+        if ($this->request->hasArgument('fach')) {
+            $fachUID = $this->request->getArgument('fach');
+            $fach = $this->fachRepository->findByUid($fachUID);
+        }
+
+
+
+        // Holt Modul Objekt
+        if ($this->request->hasArgument('modul')) {
+            $modulUid = $this->request->getArgument('modul');
+            $modul = $this->modulRepository->findByUid($modulUid);
+        }
+
+        // Holt den Prüfling
+        if ($this->request->hasArgument('matrikelnr')) {
+            $matrikelnr = $this->request->getArgument('matrikelnr');
+            $pruefling = $this->prueflingRepository->findOneByMatrikelnr($matrikelnr);
+        }
+
+        // Bezieung setzen
+        $fach->setMatrikelnr($pruefling->getUid());
     }
 
 }

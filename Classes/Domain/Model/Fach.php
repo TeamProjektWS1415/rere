@@ -199,4 +199,12 @@ class Fach extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
         $this->modulnr = $modulnr;
     }
 
+    function getMatrikelnr() {
+        return $this->matrikelnr;
+    }
+
+    function setMatrikelnr($matrikelnr) {
+        $this->matrikelnr = $matrikelnr;
+    }
+
 }
