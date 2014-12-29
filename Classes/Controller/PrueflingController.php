@@ -37,8 +37,8 @@ namespace ReRe\Rere\Controller;
  */
 class PrueflingController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController {
 
-    const MODUL = "modul";
-    const FACH = "fach";
+    const MODUL = 'modul';
+    const FACH = 'fach';
 
     /**
      * prueflingRepository
@@ -96,15 +96,11 @@ class PrueflingController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionContro
         $modul = $this->modulRepository->findByUid($modulUid);
         $prueflings = $this->prueflingRepository->findAll();
         $feUserGroups = $this->FrontendUserGroupRepository->findAll();
-
         $prueflingsarray = array();
-
         foreach ($prueflings as $pruefling) {
             array_push($prueflingsarray, $pruefling->getMatrikelnr(), $pruefling->getUid());
         }
-
         $prueflingsarrayJson = json_encode($prueflingsarray);
-
         $this->view->assign('prueflings', $prueflingsarrayJson);
         $this->view->assign('feusergroups', $feUserGroups);
         // Ausgabe des Fachnamens und des Modulnamens
@@ -144,31 +140,24 @@ class PrueflingController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionContro
         $this->addFlashMessage('The object was created. Please be aware that this action is publicly accessible unless you implement an access check. See <a href="http://wiki.typo3.org/T3Doc/Extension_Builder/Using_the_Extension_Builder#1._Model_the_domain" target="_blank">Wiki</a>', '', \TYPO3\CMS\Core\Messaging\AbstractMessage::ERROR);
         $this->prueflingRepository->add($newPruefling);
         $typ = $this->request->getArgument('speichern');
-
         // Instanzen der Helper Functions
         $passfunctions = new \ReRe\Rere\Services\NestedDirectory\PasswordFunctions();
         $userfunctions = new \ReRe\Rere\Services\NestedDirectory\UserFunctions();
         $mailfunctions = new \ReRe\Rere\Services\NestedDirectory\ReReMailer();
-
         // Instanz eines neuen Users
         $newUser = new \Typo3\CMS\Extbase\Domain\Model\FrontendUser();
-
         // Neuen TYPO3 FE_User anlegen
         $newUser->setUsername($userfunctions->genuserName($newPruefling->getVorname(), $newPruefling->getNachname()));
-
         // Passwort generierung -> Random und dann -> Salt
         $randomPW = $passfunctions->genpassword();
         $saltedPW = $passfunctions->hashPassword($randomPW);
-
         $newUser->setPassword($saltedPW);
         $newUser->setName($newPruefling->getNachname());
         $newUser->setFirstName($newPruefling->getVorname());
         $newUser->setLastName($newPruefling->getNachname());
         $newUser->setEmail($this->request->getArgument('email'));
-
         $this->FrontendUserRepository->add($newUser);
         $newPruefling->setTypo3FEUser($newUser);
-
         $mailerg = $mailfunctions->newUserMail($newUser->getEmail(), $newUser->getUsername(), $newPruefling->getNachname(), $newPruefling->getVorname(), $randomPW);
         $this->addFlashMessage($mailerg);
         if ($typ == 'speichernundzurueck') {
@@ -217,7 +206,6 @@ class PrueflingController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionContro
      * Weißt einen Prüfling einem Fach zu.
      */
     public function setPrueflingAction() {
-
         // Holt FachObjekt
         if ($this->request->hasArgument(self::FACH)) {
             $fachUID = $this->request->getArgument(self::FACH);
@@ -233,10 +221,8 @@ class PrueflingController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionContro
             $matrikelnr = $this->request->getArgument('matrikelnr');
             $pruefling = $this->prueflingRepository->findOneByMatrikelnr($matrikelnr);
         }
-
         // Bezieung setzen
         $fach->addMatrikelnr($pruefling->getUid());
-
         // Weiterleitung auf die selbe Seite.
         $this->redirect('list', 'Pruefling', Null, array(self::FACH => $fach, self::MODUL => $modul));
     }

@@ -54,10 +54,18 @@ class ModulController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
     protected $fachRepository = NULL;
 
     /**
+     * intervalRepository
+     *
+     * @var \ReRe\Rere\Domain\Repository\IntervalRepository
+     * @inject
+     */
+    protected $intervalRepository = NULL;
+
+    /**
      * @var \TYPO3\CMS\Extbase\Object\ObjectManagerInterface
      * @inject
      */
-    protected $objectManager;
+    protected $objectManager = NULL;
 
     /**
      * action list
@@ -66,7 +74,25 @@ class ModulController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
      */
     public function listAction() {
         $moduls = $this->modulRepository->findAll();
-        $this->view->assign('moduls', $moduls);
+        $interval = $this->intervalRepository->findAll();
+        $filteredmoduls = array();
+
+        // Aktuelles Intervall holen.
+        foreach ($interval as $intervaliterate) {
+            $akteullesintervall = $intervaliterate->getaktuell();
+        }
+
+        // Alle Module des Aktuellen Intervalls holen
+        foreach ($moduls as $modul) {
+            if ($modul->getGueltigkeitszeitraum() == $akteullesintervall) {
+                array_push($filteredmoduls, $modul);
+            }
+        }
+
+        // Ausgabe
+        $this->view->assign('aktuellinterval', $akteullesintervall);
+        $this->view->assign('moduls', $filteredmoduls);
+
         return $this->view->render();
     }
 
@@ -101,9 +127,7 @@ class ModulController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
         $this->addFlashMessage('The object was created. Please be aware that this action is publicly accessible unless you implement an access check. See <a href="http://wiki.typo3.org/T3Doc/Extension_Builder/Using_the_Extension_Builder#1._Model_the_domain" target="_blank">Wiki</a>', '', \TYPO3\CMS\Core\Messaging\AbstractMessage::ERROR);
         $this->modulRepository->add($newModul);
         // Erzeugt ein Leeres Fach
-
-        $fach = $this->objectManager->create('\ReRe\Rere\Domain\Model\Fach');
-
+        $fach = $this->objectManager->create('\\ReRe\\Rere\\Domain\\Model\\Fach');
         // Fach Werte setzen
         $fach->setFachname($this->request->getArgument('fachname'));
         $fach->setFachnr($this->request->getArgument('fachnummer'));
@@ -111,10 +135,8 @@ class ModulController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
         $fach->setNotenschema($this->request->getArgument('notenschema'));
         // Fach einem Modul zuordnen
         $fach->setModulnr($newModul->getUid());
-
         // Fach speichern
         $this->fachRepository->add($fach);
-
         $newModul->addFach($fach);
         $this->redirect('list');
     }

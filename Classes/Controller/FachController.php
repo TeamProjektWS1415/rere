@@ -63,7 +63,7 @@ class FachController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController 
      * @var \TYPO3\CMS\Extbase\Object\ObjectManagerInterface
      * @inject
      */
-    protected $objectManager;
+    protected $objectManager = NULL;
 
     /**
      * action list
@@ -125,9 +125,7 @@ class FachController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController 
         // Holt die Modulnummer vom Request
         $modulUID = $this->request->getArgument('moduluid');
         $modul = $this->modulRepository->findByUid($modulUID);
-
-        $fach = $this->objectManager->create('\ReRe\Rere\Domain\Model\Fach');
-
+        $fach = $this->objectManager->create('\\ReRe\\Rere\\Domain\\Model\\Fach');
         // Fach Werte setzen
         $fach->setFachname($this->request->getArgument('fachname'));
         $fach->setFachnr($this->request->getArgument('fachnummer'));
@@ -137,7 +135,6 @@ class FachController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController 
         $fach->setModulnr($modul->getUid());
         $this->fachRepository->add($fach);
         $modul->addFach($fach);
-
         $this->redirect('list', 'Modul');
     }
 

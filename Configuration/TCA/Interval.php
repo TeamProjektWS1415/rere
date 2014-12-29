@@ -4,13 +4,13 @@ if (!defined('TYPO3_MODE')) {
     die('Access denied.');
 }
 
-$GLOBALS['TCA']['tx_rere_domain_model_note'] = array(
-    'ctrl' => $GLOBALS['TCA']['tx_rere_domain_model_note']['ctrl'],
+$GLOBALS['TCA']['tx_rere_domain_model_interval'] = array(
+    'ctrl' => $GLOBALS['TCA']['tx_rere_domain_model_interval']['ctrl'],
     'interface' => array(
-        'showRecordFieldList' => 'sys_language_uid, l10n_parent, l10n_diffsource, hidden, wert, kommentar, fachnr, matrikelnr',
+        'showRecordFieldList' => 'sys_language_uid, l10n_parent, l10n_diffsource, hidden, type, aktuell',
     ),
     'types' => array(
-        '1' => array('showitem' => 'sys_language_uid;;;;1-1-1, l10n_parent, l10n_diffsource, hidden;;1, wert, kommentar, fachnr, matrikelnr, --div--;LLL:EXT:cms/locallang_ttc.xlf:tabs.access, starttime, endtime'),
+        '1' => array('showitem' => 'sys_language_uid;;;;1-1-1, l10n_parent, l10n_diffsource, hidden;;1, type, aktuell, --div--;LLL:EXT:cms/locallang_ttc.xlf:tabs.access, starttime, endtime'),
     ),
     'palettes' => array(
         '1' => array('showitem' => ''),
@@ -38,8 +38,8 @@ $GLOBALS['TCA']['tx_rere_domain_model_note'] = array(
                 'items' => array(
                     array('', 0),
                 ),
-                'foreign_table' => 'tx_rere_domain_model_note',
-                'foreign_table_where' => 'AND tx_rere_domain_model_note.pid=###CURRENT_PID### AND tx_rere_domain_model_note.sys_language_uid IN (-1,0)',
+                'foreign_table' => 'tx_rere_domain_model_interval',
+                'foreign_table_where' => 'AND tx_rere_domain_model_interval.pid=###CURRENT_PID### AND tx_rere_domain_model_interval.sys_language_uid IN (-1,0)',
             ),
         ),
         'l10n_diffsource' => array(
@@ -94,49 +94,22 @@ $GLOBALS['TCA']['tx_rere_domain_model_note'] = array(
                 ),
             ),
         ),
-        'wert' => array(
+        'type' => array(
             'exclude' => 1,
-            'label' => 'LLL:EXT:rere/Resources/Private/Language/locallang_db.xlf:tx_rere_domain_model_note.wert',
+            'label' => 'LLL:EXT:rere/Resources/Private/Language/locallang_db.xlf:tx_rere_domain_model_interval.type',
             'config' => array(
                 'type' => 'input',
                 'size' => 30,
                 'eval' => 'trim,required'
             ),
         ),
-        'kommentar' => array(
+        'aktuell' => array(
             'exclude' => 1,
-            'label' => 'LLL:EXT:rere/Resources/Private/Language/locallang_db.xlf:tx_rere_domain_model_note.kommentar',
+            'label' => 'LLL:EXT:rere/Resources/Private/Language/locallang_db.xlf:tx_rere_domain_model_interval.aktuell',
             'config' => array(
                 'type' => 'input',
                 'size' => 30,
-                'eval' => 'trim'
-            ),
-        ),
-        'fachnr' => array(
-            'exclude' => 1,
-            'label' => 'LLL:EXT:rere/Resources/Private/Language/locallang_db.xlf:tx_rere_domain_model_note.fachnr',
-            'config' => array(
-                'type' => 'inline',
-                'foreign_table' => 'tx_rere_domain_model_fach',
-                'foreign_field' => 'note',
-                'maxitems' => 9999,
-                'appearance' => array(
-                    'collapseAll' => 0,
-                    'levelLinksPosition' => 'top',
-                    'showSynchronizationLink' => 1,
-                    'showPossibleLocalizationRecords' => 1,
-                    'showAllLocalizationLink' => 1
-                ),
-            ),
-        ),
-        'matrikelnr' => array(
-            'exclude' => 1,
-            'label' => 'LLL:EXT:rere/Resources/Private/Language/locallang_db.xlf:tx_rere_domain_model_note.matrikelnr',
-            'config' => array(
-                'type' => 'select',
-                'foreign_table' => 'tx_rere_domain_model_pruefling',
-                'minitems' => 0,
-                'maxitems' => 1,
+                'eval' => 'trim,required'
             ),
         ),
     ),

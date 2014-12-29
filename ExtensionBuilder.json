@@ -3,8 +3,8 @@
         {
             "config": {
                 "position": [
-                    141,
-                    218
+                    371,
+                    300
                 ]
             },
             "name": "New Model Object",
@@ -343,6 +343,66 @@
                     ]
                 }
             }
+        },
+        {
+            "config": {
+                "position": [
+                    38,
+                    152
+                ]
+            },
+            "name": "New Model Object",
+            "value": {
+                "actionGroup": {
+                    "_default0_list": false,
+                    "_default1_show": false,
+                    "_default2_new_create": true,
+                    "_default3_edit_update": true,
+                    "_default4_delete": false,
+                    "customActions": []
+                },
+                "name": "Interval",
+                "objectsettings": {
+                    "addDeletedField": true,
+                    "addHiddenField": true,
+                    "addStarttimeEndtimeFields": true,
+                    "aggregateRoot": true,
+                    "categorizable": false,
+                    "description": "",
+                    "mapToTable": "",
+                    "parentClass": "",
+                    "sorting": false,
+                    "type": "Entity",
+                    "uid": "740182242485"
+                },
+                "propertyGroup": {
+                    "properties": [
+                        {
+                            "allowedFileTypes": "",
+                            "maxItems": "1",
+                            "propertyDescription": "",
+                            "propertyIsExcludeField": true,
+                            "propertyIsRequired": true,
+                            "propertyName": "type",
+                            "propertyType": "String",
+                            "uid": "906942861895"
+                        },
+                        {
+                            "allowedFileTypes": "",
+                            "maxItems": "1",
+                            "propertyDescription": "",
+                            "propertyIsExcludeField": true,
+                            "propertyIsRequired": true,
+                            "propertyName": "aktuell",
+                            "propertyType": "String",
+                            "uid": "66968355010"
+                        }
+                    ]
+                },
+                "relationGroup": {
+                    "relations": []
+                }
+            }
         }
     ],
     "properties": {
@@ -358,11 +418,11 @@
                 "tabLabel": "Result Repositry"
             }
         ],
-        "description": "adasd",
+        "description": "Notenverwaltungs Extension f\u00fcr Typo3",
         "emConf": {
             "category": "plugin",
             "custom_category": "",
-            "dependsOn": "typo3 => 6.2\n",
+            "dependsOn": "typo3 => 6.2\nfluid => 6.0\nextbase => 6.0\n",
             "disableLocalization": false,
             "disableVersioning": false,
             "sourceLanguage": "en",
@@ -373,7 +433,44 @@
         "extensionKey": "rere",
         "name": "Result Repositry",
         "originalExtensionKey": "rere",
-        "persons": [],
+        "persons": [
+            {
+                "company": "TeamProjektWS14\/15",
+                "email": "info@felix-hohlwegler.de",
+                "name": "Felix Hohlwegler",
+                "role": "Developer"
+            },
+            {
+                "company": "TeamProjektWS14\/15",
+                "email": "sarah.kieninger@gmail.com",
+                "name": "Sarah Kieninger",
+                "role": "Developer"
+            },
+            {
+                "company": "TeamProjektWS14\/15",
+                "email": "",
+                "name": "Tim Wacker",
+                "role": "Developer"
+            },
+            {
+                "company": "TeamProjektWS14\/15",
+                "email": "",
+                "name": "Nejat Balta",
+                "role": "Developer"
+            },
+            {
+                "company": "TeamProjektWS14\/15",
+                "email": "",
+                "name": "Tobias Brockner",
+                "role": "Developer"
+            },
+            {
+                "company": "TeamProjektWS14\/15",
+                "email": "",
+                "name": "Nicolas Tedjadharma",
+                "role": "Developer"
+            }
+        ],
         "plugins": [],
         "vendorName": "ReRe"
     },
@@ -428,7 +525,7 @@
         }
     ],
     "log": {
-        "last_modified": "2014-12-25 11:47",
+        "last_modified": "2014-12-29 11:30",
         "extension_builder_version": "6.2.0",
         "be_user": " (1)"
     }

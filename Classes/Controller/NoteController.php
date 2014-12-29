@@ -130,7 +130,7 @@ class NoteController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController 
         $this->noteRepository->add($newNote);
         $fach = $this->fachRepository->findByUid($this->request->getArgument(self::FACH));
         $modul = $this->modulRepository->findByUid($this->request->getArgument(self::MODUL));
-        $this->redirect('list', "Note", Null, array(self::FACH => $fach, self::MODUL => $modul));
+        $this->redirect('list', 'Note', Null, array(self::FACH => $fach, self::MODUL => $modul));
     }
 
     /**
@@ -163,7 +163,7 @@ class NoteController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController 
         $this->noteRepository->update($note);
         $fach = $this->fachRepository->findByUid($this->request->getArgument(self::FACH));
         $modul = $this->modulRepository->findByUid($this->request->getArgument(self::MODUL));
-        $this->redirect('list', "Note", Null, array(self::FACH => $fach, self::MODUL => $modul));
+        $this->redirect('list', 'Note', Null, array(self::FACH => $fach, self::MODUL => $modul));
     }
 
     /**
@@ -177,7 +177,7 @@ class NoteController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController 
         $this->noteRepository->remove($note);
         $fach = $this->fachRepository->findByUid($this->request->getArgument(self::FACH));
         $modul = $this->modulRepository->findByUid($this->request->getArgument(self::MODUL));
-        $this->redirect('list', "Note", Null, array(self::FACH => $fach, self::MODUL => $modul));
+        $this->redirect('list', 'Note', Null, array(self::FACH => $fach, self::MODUL => $modul));
     }
 
 }

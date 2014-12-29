@@ -4,11 +4,8 @@ if (!defined('TYPO3_MODE')) {
     die('Access denied.');
 }
 
-define("MODEL", "tx_rere_domain_model_fach");
-define("EXCLUDE", "exclude");
-
-$GLOBALS['TCA'][MODEL] = array(
-    'ctrl' => $GLOBALS['TCA'][MODEL]['ctrl'],
+$GLOBALS['TCA']['tx_rere_domain_model_fach'] = array(
+    'ctrl' => $GLOBALS['TCA']['tx_rere_domain_model_fach']['ctrl'],
     'interface' => array(
         'showRecordFieldList' => 'sys_language_uid, l10n_parent, l10n_diffsource, hidden, fachnr, fachname, pruefer, notenschema, modulnr, matrikelnr',
     ),
@@ -20,7 +17,7 @@ $GLOBALS['TCA'][MODEL] = array(
     ),
     'columns' => array(
         'sys_language_uid' => array(
-            EXCLUDE => 1,
+            'exclude' => 1,
             'label' => 'LLL:EXT:lang/locallang_general.xlf:LGL.language',
             'config' => array(
                 'type' => 'select',
@@ -34,14 +31,14 @@ $GLOBALS['TCA'][MODEL] = array(
         ),
         'l10n_parent' => array(
             'displayCond' => 'FIELD:sys_language_uid:>:0',
-            EXCLUDE => 1,
+            'exclude' => 1,
             'label' => 'LLL:EXT:lang/locallang_general.xlf:LGL.l18n_parent',
             'config' => array(
                 'type' => 'select',
                 'items' => array(
                     array('', 0),
                 ),
-                'foreign_table' => MODEL,
+                'foreign_table' => 'tx_rere_domain_model_fach',
                 'foreign_table_where' => 'AND tx_rere_domain_model_fach.pid=###CURRENT_PID### AND tx_rere_domain_model_fach.sys_language_uid IN (-1,0)',
             ),
         ),
@@ -59,14 +56,14 @@ $GLOBALS['TCA'][MODEL] = array(
             )
         ),
         'hidden' => array(
-            EXCLUDE => 1,
+            'exclude' => 1,
             'label' => 'LLL:EXT:lang/locallang_general.xlf:LGL.hidden',
             'config' => array(
                 'type' => 'check',
             ),
         ),
         'starttime' => array(
-            EXCLUDE => 1,
+            'exclude' => 1,
             'l10n_mode' => 'mergeIfNotBlank',
             'label' => 'LLL:EXT:lang/locallang_general.xlf:LGL.starttime',
             'config' => array(
@@ -82,7 +79,7 @@ $GLOBALS['TCA'][MODEL] = array(
             ),
         ),
         'endtime' => array(
-            EXCLUDE => 1,
+            'exclude' => 1,
             'l10n_mode' => 'mergeIfNotBlank',
             'label' => 'LLL:EXT:lang/locallang_general.xlf:LGL.endtime',
             'config' => array(
@@ -98,7 +95,7 @@ $GLOBALS['TCA'][MODEL] = array(
             ),
         ),
         'fachnr' => array(
-            EXCLUDE => 1,
+            'exclude' => 1,
             'label' => 'LLL:EXT:rere/Resources/Private/Language/locallang_db.xlf:tx_rere_domain_model_fach.fachnr',
             'config' => array(
                 'type' => 'input',
@@ -107,7 +104,7 @@ $GLOBALS['TCA'][MODEL] = array(
             ),
         ),
         'fachname' => array(
-            EXCLUDE => 1,
+            'exclude' => 1,
             'label' => 'LLL:EXT:rere/Resources/Private/Language/locallang_db.xlf:tx_rere_domain_model_fach.fachname',
             'config' => array(
                 'type' => 'input',
@@ -116,7 +113,7 @@ $GLOBALS['TCA'][MODEL] = array(
             ),
         ),
         'pruefer' => array(
-            EXCLUDE => 1,
+            'exclude' => 1,
             'label' => 'LLL:EXT:rere/Resources/Private/Language/locallang_db.xlf:tx_rere_domain_model_fach.pruefer',
             'config' => array(
                 'type' => 'input',
@@ -125,7 +122,7 @@ $GLOBALS['TCA'][MODEL] = array(
             ),
         ),
         'notenschema' => array(
-            EXCLUDE => 1,
+            'exclude' => 1,
             'label' => 'LLL:EXT:rere/Resources/Private/Language/locallang_db.xlf:tx_rere_domain_model_fach.notenschema',
             'config' => array(
                 'type' => 'input',
@@ -134,7 +131,7 @@ $GLOBALS['TCA'][MODEL] = array(
             ),
         ),
         'modulnr' => array(
-            EXCLUDE => 1,
+            'exclude' => 1,
             'label' => 'LLL:EXT:rere/Resources/Private/Language/locallang_db.xlf:tx_rere_domain_model_fach.modulnr',
             'config' => array(
                 'type' => 'input',
@@ -143,7 +140,7 @@ $GLOBALS['TCA'][MODEL] = array(
             ),
         ),
         'matrikelnr' => array(
-            EXCLUDE => 1,
+            'exclude' => 1,
             'label' => 'LLL:EXT:rere/Resources/Private/Language/locallang_db.xlf:tx_rere_domain_model_fach.matrikelnr',
             'config' => array(
                 'type' => 'select',
