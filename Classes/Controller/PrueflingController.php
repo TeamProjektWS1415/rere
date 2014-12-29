@@ -217,15 +217,11 @@ class PrueflingController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionContro
             $fachUID = $this->request->getArgument('fach');
             $fach = $this->fachRepository->findByUid($fachUID);
         }
-
-
-
         // Holt Modul Objekt
         if ($this->request->hasArgument('modul')) {
             $modulUid = $this->request->getArgument('modul');
             $modul = $this->modulRepository->findByUid($modulUid);
         }
-
         // Holt den Prüfling
         if ($this->request->hasArgument('matrikelnr')) {
             $matrikelnr = $this->request->getArgument('matrikelnr');
@@ -234,6 +230,8 @@ class PrueflingController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionContro
 
         // Bezieung setzen
         $fach->setMatrikelnr($pruefling->getUid());
+
+        $this->redirect('list', 'Pruefling', Null, array('fach' => $fach, 'modul' => $modul));
     }
 
 }
