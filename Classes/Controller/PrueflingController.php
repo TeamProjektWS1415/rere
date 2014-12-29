@@ -210,6 +210,9 @@ class PrueflingController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionContro
         $this->redirect('list');
     }
 
+    /**
+     * Weißt einen Prüfling einem Fach zu.
+     */
     public function setPrueflingAction() {
 
         // Holt FachObjekt
