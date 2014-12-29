@@ -31,12 +31,16 @@
                             <form class="navbar-form navbar-left" role="search">
                                 <div class="form-group">
                                     <div class="input-group">
-                                        <div class="input-group-addon"><span class="glyphicon glyphicon-search" aria-hidden="true" ></span></div>
+                                        <div class="input-group-addon"><span class="glyphicon glyphicon-search" id="searchicon"  aria-hidden="true" ></span></div>
                                         <input type="text" id="suchematrikel" class="form-control" data-toggle="tooltip" data-placement="bottom" title="Nach MatrikelNr suchen" placeholder="Matrikel Nummer">
                                     </div>
                                     <div class="input-group">
                                         <div class="input-group-addon"><span class="glyphicon glyphicon-search" aria-hidden="true" ></span></div>
                                         <select class="form-control" data-toggle="tooltip" data-placement="bottom" title="UserGroup auswählen">
+                                            <option>Bitte wählen</option>
+                                            <f:for each="{feusergroups}" as="group">
+                                                <option>{group.title}</option>
+                                            </f:for>
                                         </select>
                                     </div>
                                 </div>

@@ -22,8 +22,13 @@ $(document).ready(function () {
     $("#suchematrikel").keyup(function () {
         for (x in arrayPrueflinge) {
             if (arrayPrueflinge[x] === $("#suchematrikel").val()) {
-                alert("Gerunden");
+                //alert("Gerunden");
+                $("#searchicon").removeClass("notfound");
+                $("#searchicon").addClass("found");
                 break;
+            } else {
+                $("#searchicon").removeClass("found");
+                $("#searchicon").addClass("notfound");
             }
         }
     });

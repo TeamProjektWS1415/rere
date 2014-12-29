@@ -118,3 +118,11 @@ body {
 .inactiveinterval{
     color: #fff;
 }
+
+.found{
+    color: #a3d950;
+}
+
+.notfound{
+    color: red;
+}
