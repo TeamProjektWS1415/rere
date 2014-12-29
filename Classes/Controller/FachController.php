@@ -76,16 +76,6 @@ class FachController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController 
     }
 
     /**
-     * @param int $uid
-     * @return type
-     */
-    public function listFaecherFromModul(int $uid) {
-        $query = $this->createQuery();
-        $query->in('modulnr', $uid);
-        return $this->dataMapper->map(`\\ReRe\\Rere\\Domain\\Model\\Fach}`, $query->execute());
-    }
-
-    /**
      * action show
      *
      * @param \ReRe\Rere\Domain\Model\Fach $fach
@@ -104,7 +94,9 @@ class FachController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController 
      */
     public function newAction(\ReRe\Rere\Domain\Model\Fach $newFach = NULL) {
         // Holt die übergebene Modulnummer
-        $modulUID = $this->request->getArgument('modul');
+        if ($this->request->hasArgument('modul')) {
+            $modulUID = $this->request->getArgument('modul');
+        }
         // Holt das Modul-Objekt aus dem Repository
         $modul = $this->modulRepository->findByUid($modulUID);
         // Ausgabe in der View
@@ -123,7 +115,9 @@ class FachController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController 
     public function createAction() {
         $this->addFlashMessage('The object was created. Please be aware that this action is publicly accessible unless you implement an access check. See <a href="http://wiki.typo3.org/T3Doc/Extension_Builder/Using_the_Extension_Builder#1._Model_the_domain" target="_blank">Wiki</a>', '', \TYPO3\CMS\Core\Messaging\AbstractMessage::ERROR);
         // Holt die Modulnummer vom Request
-        $modulUID = $this->request->getArgument('moduluid');
+        if ($this->request->hasArgument('moduluid')) {
+            $modulUID = $this->request->getArgument('moduluid');
+        }
         $modul = $this->modulRepository->findByUid($modulUID);
         $fach = $this->objectManager->create('\\ReRe\\Rere\\Domain\\Model\\Fach');
         // Fach Werte setzen

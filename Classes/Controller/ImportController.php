@@ -19,19 +19,20 @@ class ImportController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControlle
      * View Rendering für Import
      */
     public function newAction() {
+        if ($this->request->hasArgument('type')) {
+            $type = $this->request->getArgument('type');
 
-        $type = $this->request->getArgument('type');
-
-        // Prüfung um welchen Import Typ es sich handelt.
-        if ($type == "prueflinge") {
-            $this->view->assign(self::TITLE, 'Import Prüflinge');
-            $this->view->assign(self::LABLE, 'XML-Datei mit Prüflingen');
-        } elseif ($type == "backup") {
-            $this->view->assign(self::TITLE, 'Import Backup');
-            $this->view->assign(self::LABLE, 'SQL-Backup');
-        } else {
-            $this->view->assign(self::TITLE, 'Import Fach');
-            $this->view->assign(self::LABLE, 'Fach Import');
+            // Prüfung um welchen Import Typ es sich handelt.
+            if ($type == "prueflinge") {
+                $this->view->assign(self::TITLE, 'Import Prüflinge');
+                $this->view->assign(self::LABLE, 'XML-Datei mit Prüflingen');
+            } elseif ($type == "backup") {
+                $this->view->assign(self::TITLE, 'Import Backup');
+                $this->view->assign(self::LABLE, 'SQL-Backup');
+            } else {
+                $this->view->assign(self::TITLE, 'Import Fach');
+                $this->view->assign(self::LABLE, 'Fach Import');
+            }
         }
     }
 

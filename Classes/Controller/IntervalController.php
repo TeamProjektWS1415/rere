@@ -54,13 +54,28 @@ class IntervalController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControl
     /**
      * action update
      *
-     * @param \ReRe\Rere\Domain\Model\Interval $interval
      * @return void
      */
-    public function updateAction(\ReRe\Rere\Domain\Model\Interval $interval) {
+    public function updateAction() {
         $this->addFlashMessage('The object was updated. Please be aware that this action is publicly accessible unless you implement an access check. See <a href="http://wiki.typo3.org/T3Doc/Extension_Builder/Using_the_Extension_Builder#1._Model_the_domain" target="_blank">Wiki</a>', '', \TYPO3\CMS\Core\Messaging\AbstractMessage::ERROR);
-        $this->intervalRepository->update($interval);
-        $this->redirect('list');
+
+        $intervals = $this->intervalRepository->findall();
+
+        var_dump($this->request->hasArgument('nextInterval'));
+
+        if ($this->request->hasArgument('nextInterval')) {
+            // Aktuelles Intervall holen.
+            foreach ($intervals as $intervaliterate) {
+                $interval = $intervaliterate;
+            }
+
+            var_dump($interval);
+            $interval->setType("Pups");
+            $this->intervalRepository->update($interval);
+        }
+
+
+        //$this->redirect('list');
     }
 
     /**
