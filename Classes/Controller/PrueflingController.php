@@ -235,7 +235,7 @@ class PrueflingController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionContro
         }
 
         // Bezieung setzen
-        $fach->setMatrikelnr($pruefling->getUid());
+        $fach->addMatrikelnr($pruefling->getUid());
 
         // Weiterleitung auf die selbe Seite.
         $this->redirect('list', 'Pruefling', Null, array(self::FACH => $fach, self::MODUL => $modul));
