@@ -19,7 +19,7 @@ if (TYPO3_MODE === 'BE') {
             'rerebackend',
             // Position
             '', array(
-        'Modul' => DEFACTIONS, 'Fach' => DEFACTIONS, 'Note' => DEFACTIONS, 'Pruefling' => DEFACTIONS . ', setPruefling', 'Export' => 'exportPrueflinge, exportModuleUndFaecher, exportFach', 'Import' => 'new, importPrueflinge, importBackUp', 'Ajax' => 'searchPruefling', 'Interval' => 'new, create, edit, update',
+        'Modul' => DEFACTIONS, 'Fach' => DEFACTIONS, 'Note' => DEFACTIONS, 'Pruefling' => DEFACTIONS . ', setPruefling', 'Export' => 'exportPrueflinge, exportModuleUndFaecher, exportFach', 'Import' => 'new, importPrueflinge, importBackUp', 'Ajax' => 'searchPruefling', 'Intervall' => 'new, create, edit, update',
             ), array(
         'access' => 'user,group',
         'icon' => 'EXT:' . $_EXTKEY . '/ext_icon.gif',
@@ -138,11 +138,11 @@ $GLOBALS['TCA']['tx_rere_domain_model_pruefling'] = array(
     ),
 );
 
-\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addLLrefForTCAdescr('tx_rere_domain_model_interval', 'EXT:rere/Resources/Private/Language/locallang_csh_tx_rere_domain_model_interval.xlf');
-\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::allowTableOnStandardPages('tx_rere_domain_model_interval');
-$GLOBALS['TCA']['tx_rere_domain_model_interval'] = array(
+\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addLLrefForTCAdescr('tx_rere_domain_model_intervall', 'EXT:rere/Resources/Private/Language/locallang_csh_tx_rere_domain_model_intervall.xlf');
+\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::allowTableOnStandardPages('tx_rere_domain_model_intervall');
+$GLOBALS['TCA']['tx_rere_domain_model_intervall'] = array(
     'ctrl' => array(
-        'title' => 'LLL:EXT:rere/Resources/Private/Language/locallang_db.xlf:tx_rere_domain_model_interval',
+        'title' => 'LLL:EXT:rere/Resources/Private/Language/locallang_db.xlf:tx_rere_domain_model_intervall',
         'label' => 'type',
         'tstamp' => 'tstamp',
         'crdate' => 'crdate',
@@ -160,7 +160,7 @@ $GLOBALS['TCA']['tx_rere_domain_model_interval'] = array(
             'endtime' => 'endtime',
         ),
         'searchFields' => 'type,aktuell,',
-        'dynamicConfigFile' => \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extPath($_EXTKEY) . 'Configuration/TCA/Interval.php',
-        'iconfile' => \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extRelPath($_EXTKEY) . 'Resources/Public/Icons/tx_rere_domain_model_interval.gif'
+        'dynamicConfigFile' => \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extPath($_EXTKEY) . 'Configuration/TCA/Intervall.php',
+        'iconfile' => \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extRelPath($_EXTKEY) . 'Resources/Public/Icons/tx_rere_domain_model_intervall.gif'
     ),
 );

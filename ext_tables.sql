@@ -174,7 +174,7 @@ CREATE TABLE tx_rere_domain_model_pruefling (
 #
 # Table structure for table 'tx_rere_domain_model_interval'
 #
-CREATE TABLE tx_rere_domain_model_interval (
+CREATE TABLE tx_rere_domain_model_intervall (
 
 	uid int(11) NOT NULL auto_increment,
 	pid int(11) DEFAULT '0' NOT NULL,
@@ -213,7 +213,7 @@ CREATE TABLE tx_rere_domain_model_interval (
 #
 # Insert für start einstellungen
 #
-INSERT INTO tx_rere_domain_model_interval (type,aktuell) VALUES ('studienhalbjahr','WS14/15');
+INSERT INTO tx_rere_domain_model_intervall (type,aktuell) VALUES ('studienhalbjahr','WS14/15');
 
 #
 # Table structure for table 'tx_rere_domain_model_fach'

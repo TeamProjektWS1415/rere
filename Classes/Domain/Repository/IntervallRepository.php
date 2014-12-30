@@ -28,8 +28,8 @@ namespace ReRe\Rere\Domain\Repository;
  * ************************************************************* */
 
 /**
- * The repository for Intervals
+ * The repository for Intervalls
  */
-class IntervalRepository extends \TYPO3\CMS\Extbase\Persistence\Repository {
+class IntervallRepository extends \TYPO3\CMS\Extbase\Persistence\Repository {
 
 }

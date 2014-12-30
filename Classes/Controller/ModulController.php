@@ -54,12 +54,12 @@ class ModulController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
     protected $fachRepository = NULL;
 
     /**
-     * intervalRepository
+     * intervallRepository
      *
-     * @var \ReRe\Rere\Domain\Repository\IntervalRepository
+     * @var \ReRe\Rere\Domain\Repository\IntervallRepository
      * @inject
      */
-    protected $intervalRepository = NULL;
+    protected $intervallRepository = NULL;
 
     /**
      * @var \TYPO3\CMS\Extbase\Object\ObjectManagerInterface
@@ -74,12 +74,12 @@ class ModulController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
      */
     public function listAction() {
         $moduls = $this->modulRepository->findAll();
-        $interval = $this->intervalRepository->findAll();
+        $intervall = $this->intervallRepository->findAll();
         $filteredmoduls = array();
 
         // Aktuelles Intervall holen.
-        foreach ($interval as $intervaliterate) {
-            $akteullesintervall = $intervaliterate->getaktuell();
+        foreach ($intervall as $intervaliterate) {
+            $akteullesintervall = $intervaliterate->getAktuell();
         }
 
         // Alle Module des Aktuellen Intervalls holen
@@ -90,7 +90,7 @@ class ModulController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
         }
 
         // Ausgabe
-        $this->view->assign('aktuellinterval', $akteullesintervall);
+        $this->view->assign('aktuellintervall', $akteullesintervall);
         $this->view->assign('moduls', $filteredmoduls);
 
         return $this->view->render();

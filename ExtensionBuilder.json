@@ -361,7 +361,7 @@
                     "_default4_delete": false,
                     "customActions": []
                 },
-                "name": "Interval",
+                "name": "Intervall",
                 "objectsettings": {
                     "addDeletedField": true,
                     "addHiddenField": true,

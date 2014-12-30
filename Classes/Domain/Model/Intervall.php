@@ -30,7 +30,7 @@ namespace ReRe\Rere\Domain\Model;
 /**
  * Interval
  */
-class Interval extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
+class Intervall extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 
     /**
      * type

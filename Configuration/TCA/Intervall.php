@@ -4,8 +4,8 @@ if (!defined('TYPO3_MODE')) {
     die('Access denied.');
 }
 
-$GLOBALS['TCA']['tx_rere_domain_model_interval'] = array(
-    'ctrl' => $GLOBALS['TCA']['tx_rere_domain_model_interval']['ctrl'],
+$GLOBALS['TCA']['tx_rere_domain_model_intervall'] = array(
+    'ctrl' => $GLOBALS['TCA']['tx_rere_domain_model_intervall']['ctrl'],
     'interface' => array(
         'showRecordFieldList' => 'sys_language_uid, l10n_parent, l10n_diffsource, hidden, type, aktuell',
     ),
@@ -38,8 +38,8 @@ $GLOBALS['TCA']['tx_rere_domain_model_interval'] = array(
                 'items' => array(
                     array('', 0),
                 ),
-                'foreign_table' => 'tx_rere_domain_model_interval',
-                'foreign_table_where' => 'AND tx_rere_domain_model_interval.pid=###CURRENT_PID### AND tx_rere_domain_model_interval.sys_language_uid IN (-1,0)',
+                'foreign_table' => 'tx_rere_domain_model_intervall',
+                'foreign_table_where' => 'AND tx_rere_domain_model_intervall.pid=###CURRENT_PID### AND tx_rere_domain_model_intervall.sys_language_uid IN (-1,0)',
             ),
         ),
         'l10n_diffsource' => array(
@@ -96,7 +96,7 @@ $GLOBALS['TCA']['tx_rere_domain_model_interval'] = array(
         ),
         'type' => array(
             'exclude' => 1,
-            'label' => 'LLL:EXT:rere/Resources/Private/Language/locallang_db.xlf:tx_rere_domain_model_interval.type',
+            'label' => 'LLL:EXT:rere/Resources/Private/Language/locallang_db.xlf:tx_rere_domain_model_intervall.type',
             'config' => array(
                 'type' => 'input',
                 'size' => 30,
@@ -105,7 +105,7 @@ $GLOBALS['TCA']['tx_rere_domain_model_interval'] = array(
         ),
         'aktuell' => array(
             'exclude' => 1,
-            'label' => 'LLL:EXT:rere/Resources/Private/Language/locallang_db.xlf:tx_rere_domain_model_interval.aktuell',
+            'label' => 'LLL:EXT:rere/Resources/Private/Language/locallang_db.xlf:tx_rere_domain_model_intervall.aktuell',
             'config' => array(
                 'type' => 'input',
                 'size' => 30,
