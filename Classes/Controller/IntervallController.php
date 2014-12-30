@@ -65,14 +65,17 @@ class IntervallController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionContro
         // nächstes Intervall
         if ($this->request->hasArgument('nextIntervall')) {
             $intervall->setAktuell($intervalLogic->nextIntervall($intervall->getAktuell()));
-            $this->intervallRepository->update($intervall);
         }
 
         if ($this->request->hasArgument('prevIntervall')) {
             $intervall->setAktuell($intervalLogic->prevIntervall($intervall->getAktuell()));
-            $this->intervallRepository->update($intervall);
         }
 
+        if ($this->request->hasArgument('type')) {
+            $intervall->setType($this->request->getArgument('type'));
+        }
+
+        $this->intervallRepository->update($intervall);
 
         $this->redirect('list', 'Modul');
     }

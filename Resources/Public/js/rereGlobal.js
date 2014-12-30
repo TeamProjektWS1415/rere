@@ -11,14 +11,6 @@ $(document).ready(function () {
     $(".gettooltip").attr("data-toggle", "tooltip");
     $(".gettooltip").attr("data-placement", "bottom");
 
-    // Setzen des Intervalls
-    $("#studienhalbjahr").click(function () {
-        swapIntervall();
-    });
-    $("#schuljahr").click(function () {
-        swapIntervall();
-    });
-
     $("#suchematrikel").keyup(function () {
         for (x in arrayPrueflinge) {
             if (arrayPrueflinge[x] === $("#suchematrikel").val()) {
@@ -33,26 +25,7 @@ $(document).ready(function () {
         }
     });
 
-
 });
-
-/**
- * Setzt den haken beim Aktiven Intervall
- * @returns {undefined}
- */
-function swapIntervall() {
-    if ($("#studienhalbjahr span").hasClass("aciveinterval")) {
-        $("#studienhalbjahr span").removeClass("aciveinterval");
-        $("#studienhalbjahr span").addClass("inactiveinterval");
-        $("#schuljahr span").removeClass("inactiveinterval");
-        $("#schuljahr span").addClass("aciveinterval");
-    } else {
-        $("#schuljahr span").removeClass("aciveinterval");
-        $("#schuljahr span").addClass("inactiveinterval");
-        $("#studienhalbjahr span").removeClass("inactiveinterval");
-        $("#studienhalbjahr span").addClass("aciveinterval");
-    }
-}
 
 // Löschfunktion eines Elements, es wird ein Popup aufgerufen,
 // hier muss dann bestätigt werden dass dieses wirklich gelöscht werden soll.

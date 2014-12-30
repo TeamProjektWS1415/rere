@@ -15,6 +15,11 @@ namespace ReRe\Rere\Services\NestedDirectory;
  */
 class IntervallLogic {
 
+    /**
+     * Ein Studien Intervall nach vorne
+     * @param type $aktuellesIntervall
+     * @return string
+     */
     public function nextIntervall($aktuellesIntervall) {
         $sem = substr($aktuellesIntervall, 0, 2);
         $jahr = intval(substr($aktuellesIntervall, 2, 4));
@@ -32,6 +37,11 @@ class IntervallLogic {
         return $ret;
     }
 
+    /**
+     * Ein Studienintervall zurück.
+     * @param type $aktuellesIntervall
+     * @return string
+     */
     public function prevIntervall($aktuellesIntervall) {
         $sem = substr($aktuellesIntervall, 0, 2);
         $jahr = intval(substr($aktuellesIntervall, 2, 4));

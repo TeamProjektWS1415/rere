@@ -34,9 +34,9 @@
                             </li>
                             <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button">Intervall einstellen<span class="caret"></span></a>
                                 <ul class="dropdown-menu" role="menu">
-                                    <li><a id="studienhalbjahr">Studienhalbjahr <span class="glyphicon glyphicon-ok-circle aciveinterval" aria-hidden="true"></span></a></li>
-                                    <li><a id="schuljahr">Schuljahr <span class="glyphicon glyphicon-ok-circle inactiveinterval" aria-hidden="true"></span></a></li>
-                                </ul>
+                                    <li><f:link.action action="update" id="studienhalbjahr" controller="Intervall" arguments="{type:'studienhalbjahr'}" >Studienhalbjahr <span class="glyphicon glyphicon-ok-circle" aria-hidden="true"></span></f:link.action></li>
+                            <li><f:link.action action="update" id="schuljahr" controller="Intervall" arguments="{type:'schuljahr'}" >Schuljahr <span class="glyphicon glyphicon-ok-circle" aria-hidden="true"></span></f:link.action></li>
+                            </ul>
                             </li>
                             <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button">Hilfe<span class="caret"></span></a>
                                 <ul class="dropdown-menu" role="menu">
@@ -50,6 +50,23 @@
                 </nav>
             </div>
         </div>
+
+
+        <f:if condition="{intervallType}=='studienhalbjahr'" >
+            <f:then>
+                <script>
+                    $("#studienhalbjahr span").addClass("aciveinterval");
+                    $("#schuljahr span").addClass("inactiveinterval");
+                </script>
+            </f:then>
+            <f:else >
+                <script>
+                    $("#schuljahr span").addClass("aciveinterval");
+                    $("#studienhalbjahr span").addClass("inactiveinterval");
+                </script>
+            </f:else>
+        </f:if>
+
 
         <div class="row">
             <div class="col-md-3">
