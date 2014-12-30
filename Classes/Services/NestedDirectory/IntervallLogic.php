@@ -20,7 +20,7 @@ class IntervallLogic {
      * @param type $aktuellesIntervall
      * @return string
      */
-    public function nextIntervall($aktuellesIntervall) {
+    public function nextStudiIntervall($aktuellesIntervall) {
         $sem = substr($aktuellesIntervall, 0, 2);
         $jahr = intval(substr($aktuellesIntervall, 2, 4));
 
@@ -42,7 +42,7 @@ class IntervallLogic {
      * @param type $aktuellesIntervall
      * @return string
      */
-    public function prevIntervall($aktuellesIntervall) {
+    public function prevStudiIntervall($aktuellesIntervall) {
         $sem = substr($aktuellesIntervall, 0, 2);
         $jahr = intval(substr($aktuellesIntervall, 2, 4));
 
@@ -56,6 +56,34 @@ class IntervallLogic {
             $jahr--;
         }
         $ret = $sem . $jahr;
+        return $ret;
+    }
+
+    /**
+     * Ein Schuljahr intervall weiter.
+     * @param type $aktuellesIntervall
+     * @return string
+     */
+    public function nextSchulIntervall($aktuellesIntervall) {
+        $jahr = intval(substr($aktuellesIntervall, 9, 11));
+        $jahr++;
+        $ret = "Schuljahr" . $jahr;
+        $jahr++;
+        $ret = $ret . "/" . $jahr++;
+        return $ret;
+    }
+
+    /**
+     * Ein Schuljahr intervall zurück.
+     * @param type $aktuellesIntervall
+     * @return string
+     */
+    public function prevSchulIntervall($aktuellesIntervall) {
+        $jahr = intval(substr($aktuellesIntervall, 9, 11));
+        $jahr--;
+        $ret = "Schuljahr" . $jahr;
+        $jahr++;
+        $ret = $ret . "/" . $jahr--;
         return $ret;
     }
 

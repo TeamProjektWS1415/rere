@@ -61,14 +61,24 @@ class IntervallController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionContro
         $intervalLogic = new \ReRe\Rere\Services\NestedDirectory\IntervallLogic();
 
         $intervall = $this->intervallRepository->findByUid(1);
+        $aktuelltype = $intervall->getType();
 
         // nächstes Intervall
         if ($this->request->hasArgument('nextIntervall')) {
-            $intervall->setAktuell($intervalLogic->nextIntervall($intervall->getAktuell()));
+            if ($aktuelltype == "studienhalbjahr") {
+                $intervall->setAktuell($intervalLogic->nextStudiIntervall($intervall->getAktuell()));
+            } else {
+                $intervall->setAktuell($intervalLogic->nextSchulIntervall($intervall->getAktuell()));
+            }
         }
 
+        // Vorheriges
         if ($this->request->hasArgument('prevIntervall')) {
-            $intervall->setAktuell($intervalLogic->prevIntervall($intervall->getAktuell()));
+            if ($aktuelltype == "studienhalbjahr") {
+                $intervall->setAktuell($intervalLogic->prevStudiIntervall($intervall->getAktuell()));
+            } else {
+                $intervall->setAktuell($intervalLogic->prevSchulIntervall($intervall->getAktuell()));
+            }
         }
 
         if ($this->request->hasArgument('type')) {
