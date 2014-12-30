@@ -59,7 +59,8 @@
                             <ul class="nav navbar-nav">
                                 <li><a href="#" data-toggle="tooltip" data-placement="bottom" title="Zu SS14"><span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span></a></li>
                                 <li><h4 class="navbarposition">{aktuellinterval}</h4></li>
-                                <li><a href="#" data-toggle="tooltip" id="nextintervall" data-placement="bottom" title="Zu SS15"><span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span></a></li>
+                                <li>
+                                <f:link.action action="update" controller="Interval" class="gettooltip" arguments="{nextInterval:nextInterval}"  title="Zum nächsten Intervall"><span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span></f:link.action></li>
                             </ul>
                         </div>
                     </div>
@@ -117,18 +118,5 @@
 
     <!-- Lädt den Code für den Bestätigungs Dialog-->
     <f:render partial="LoeschenDialog" />
-
-    <script type="text/javascript">
-        $(document).ready(function () {
-            var MY_AJAX_ACTION_URL = '<f:uri.action action="update" controller="Interval" />';
-            $("#nextintervall").click(function () {
-                jQuery.ajax({
-                    type: 'POST',
-                    url: MY_AJAX_ACTION_URL,
-                    data: "nextInterval"
-                });
-            });
-        });
-    </script>
 
 </f:section>
