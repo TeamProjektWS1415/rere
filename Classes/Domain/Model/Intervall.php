@@ -28,7 +28,7 @@ namespace ReRe\Rere\Domain\Model;
  * ************************************************************* */
 
 /**
- * Interval
+ * Intervall
  */
 class Intervall extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 

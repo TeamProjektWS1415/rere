@@ -57,10 +57,11 @@
                     <div class="container-fluid">
                         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-2">
                             <ul class="nav navbar-nav">
-                                <li><a href="#" data-toggle="tooltip" data-placement="bottom" title="Zu SS14"><span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span></a></li>
+                                <li>
+                                <f:link.action action="update" controller="Intervall" class="gettooltip" arguments="{prevIntervall:'prevIntervall'}"  title="Zum vorherigen Intervall"><span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span></f:link.action></li>
                                 <li><h4 class="navbarposition">{aktuellintervall}</h4></li>
                                 <li>
-                                <f:link.action action="update" controller="Interval" class="gettooltip" arguments="{nextInterval:nextInterval}"  title="Zum nächsten Intervall"><span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span></f:link.action></li>
+                                <f:link.action action="update" controller="Intervall" class="gettooltip" arguments="{nextIntervall:'nextIntervall'}"  title="Zum nächsten Intervall"><span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span></f:link.action></li>
                             </ul>
                         </div>
                     </div>

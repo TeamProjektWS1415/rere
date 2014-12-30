@@ -210,10 +210,7 @@ CREATE TABLE tx_rere_domain_model_intervall (
  KEY language (l10n_parent,sys_language_uid)
 
 );
-#
-# Insert für start einstellungen
-#
-INSERT INTO tx_rere_domain_model_intervall (type,aktuell) VALUES ('studienhalbjahr','WS14/15');
+
 
 #
 # Table structure for table 'tx_rere_domain_model_fach'

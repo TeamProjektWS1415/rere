@@ -27,13 +27,13 @@ namespace ReRe\Rere\Tests\Unit\Domain\Model;
  * ************************************************************* */
 
 /**
- * Test case for class \ReRe\Rere\Domain\Model\Interval.
+ * Test case for class \ReRe\Rere\Domain\Model\Intervall.
  *
  * @copyright Copyright belongs to the respective authors
  * @license http://www.gnu.org/licenses/gpl.html GNU General Public License, version 3 or later
  *
  */
-class IntervalTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
+class IntervallTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
 
     /**
      * @var \ReRe\Rere\Domain\Model\Interval
@@ -41,7 +41,7 @@ class IntervalTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
     protected $subject = NULL;
 
     protected function setUp() {
-        $this->subject = new \ReRe\Rere\Domain\Model\Interval();
+        $this->subject = new \ReRe\Rere\Domain\Model\Intervall();
     }
 
     protected function tearDown() {

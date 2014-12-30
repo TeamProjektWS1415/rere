@@ -30,7 +30,7 @@ namespace ReRe\Rere\Controller;
 /**
  * IntervallController
  */
-class IntervalllController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController {
+class IntervallController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController {
 
     /**
      * intervallRepository
@@ -53,21 +53,26 @@ class IntervalllController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionContr
 
     /**
      * action update
-     *
      * @return void
      */
     public function updateAction() {
         $this->addFlashMessage('The object was updated. Please be aware that this action is publicly accessible unless you implement an access check. See <a href="http://wiki.typo3.org/T3Doc/Extension_Builder/Using_the_Extension_Builder#1._Model_the_domain" target="_blank">Wiki</a>', '', \TYPO3\CMS\Core\Messaging\AbstractMessage::ERROR);
 
+        $intervalLogic = new \ReRe\Rere\Services\NestedDirectory\IntervallLogic();
+
         $intervall = $this->intervallRepository->findByUid(1);
 
+        // nächstes Intervall
         if ($this->request->hasArgument('nextIntervall')) {
-
-            var_dump($intervall);
-            $intervall->setType("Pups");
-            $intervall->setAktuellintervall("Pups");
+            $intervall->setAktuell($intervalLogic->nextIntervall($intervall->getAktuell()));
             $this->intervallRepository->update($intervall);
         }
+
+        if ($this->request->hasArgument('prevIntervall')) {
+            $intervall->setAktuell($intervalLogic->prevIntervall($intervall->getAktuell()));
+            $this->intervallRepository->update($intervall);
+        }
+
 
         $this->redirect('list', 'Modul');
     }
@@ -80,6 +85,7 @@ class IntervalllController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionContr
      * @return void
      */
     public function newAction(\ReRe\Rere\Domain\Model\Intervall $newIntervall = NULL) {
+        var_dump($this->request->hasArgument('nextIntervall'));
         $this->view->assign('newIntervall', $newIntervall);
     }
 
