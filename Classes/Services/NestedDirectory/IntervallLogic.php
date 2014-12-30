@@ -87,4 +87,19 @@ class IntervallLogic {
         return $ret;
     }
 
+    /**
+     * Handelt das Umschalten zwischen Schuljahr und Studienhalbjahr.
+     * @param type $type
+     * @return string
+     */
+    public function genAktuellesIntervall($type) {
+        if ($type == "studienhalbjahr") {
+            $aktuell = "SS" . substr(date("Y"), 2, 4);
+        } else {
+            $date = intval(substr(date("Y"), 2, 4));
+            $aktuell = "Schuljahr" . $date . "/" . ++$date;
+        }
+        return $aktuell;
+    }
+
 }

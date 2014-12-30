@@ -59,34 +59,34 @@ class IntervallController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionContro
         $this->addFlashMessage('The object was updated. Please be aware that this action is publicly accessible unless you implement an access check. See <a href="http://wiki.typo3.org/T3Doc/Extension_Builder/Using_the_Extension_Builder#1._Model_the_domain" target="_blank">Wiki</a>', '', \TYPO3\CMS\Core\Messaging\AbstractMessage::ERROR);
 
         $intervalLogic = new \ReRe\Rere\Services\NestedDirectory\IntervallLogic();
-
         $intervall = $this->intervallRepository->findByUid(1);
-        $aktuelltype = $intervall->getType();
 
         // nächstes Intervall
         if ($this->request->hasArgument('nextIntervall')) {
-            if ($aktuelltype == "studienhalbjahr") {
-                $intervall->setAktuell($intervalLogic->nextStudiIntervall($intervall->getAktuell()));
+            if ($intervall->getType() == "studienhalbjahr") {
+                $aktuell = $intervalLogic->nextStudiIntervall($intervall->getAktuell());
             } else {
-                $intervall->setAktuell($intervalLogic->nextSchulIntervall($intervall->getAktuell()));
+                $aktuell = $intervalLogic->nextSchulIntervall($intervall->getAktuell());
             }
         }
 
         // Vorheriges
         if ($this->request->hasArgument('prevIntervall')) {
-            if ($aktuelltype == "studienhalbjahr") {
-                $intervall->setAktuell($intervalLogic->prevStudiIntervall($intervall->getAktuell()));
+            if ($intervall->getType() == "studienhalbjahr") {
+                $aktuell = $intervalLogic->prevStudiIntervall($intervall->getAktuell());
             } else {
-                $intervall->setAktuell($intervalLogic->prevSchulIntervall($intervall->getAktuell()));
+                $aktuell = $intervalLogic->prevSchulIntervall($intervall->getAktuell());
             }
         }
 
+        // Typ setzen
         if ($this->request->hasArgument('type')) {
-            $intervall->setType($this->request->getArgument('type'));
+            $type = $this->request->getArgument('type');
+            $aktuell = $intervalLogic->genAktuellesIntervall($type);
+            $intervall->setType($type);
         }
-
+        $intervall->setAktuell($aktuell);
         $this->intervallRepository->update($intervall);
-
         $this->redirect('list', 'Modul');
     }
 
