@@ -70,19 +70,19 @@ class Fach extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
     protected $notenschema = '';
 
     /**
+     * matrikelnr
+     *
+     * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\ReRe\Rere\Domain\Model\Pruefling>
+     */
+    protected $matrikelnr = NULL;
+
+    /**
      * modulnr
      *
      * @var string
      * @validate NotEmpty
      */
     protected $modulnr = '';
-
-    /**
-     * matrikelnr
-     *
-     * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\ReRe\Rere\Domain\Model\Pruefling>
-     */
-    protected $matrikelnr = NULL;
 
     /**
      * Returns the fachnr
@@ -199,14 +199,11 @@ class Fach extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
         $this->modulnr = $modulnr;
     }
 
-    public function getMatrikelnr() {
+    function getMatrikelnr() {
         return $this->matrikelnr;
     }
 
-    /**
-     * @param $matrikelnr
-     */
-    public function setMatrikelnr($matrikelnr) {
+    function setMatrikelnr($matrikelnr) {
         $this->matrikelnr = $matrikelnr;
     }
 
