@@ -53,7 +53,6 @@ class IntervallLogic {
             $jahr = $jahr . "/" . $tempjahr;
         } else {
             $sem = "SS";
-            $jahr--;
         }
         $ret = $sem . $jahr;
         return $ret;
