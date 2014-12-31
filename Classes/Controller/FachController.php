@@ -113,7 +113,7 @@ class FachController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController 
      * @return void
      */
     public function createAction() {
-        //$this->addFlashMessage('The object was created. Please be aware that this action is publicly accessible unless you implement an access check. See <a href="http://wiki.typo3.org/T3Doc/Extension_Builder/Using_the_Extension_Builder#1._Model_the_domain" target="_blank">Wiki</a>', '', \TYPO3\CMS\Core\Messaging\AbstractMessage::ERROR);
+        $this->addFlashMessage('The object was created. Please be aware that this action is publicly accessible unless you implement an access check. See <a href="http://wiki.typo3.org/T3Doc/Extension_Builder/Using_the_Extension_Builder#1._Model_the_domain" target="_blank">Wiki</a>', '', \TYPO3\CMS\Core\Messaging\AbstractMessage::ERROR);
         // Holt die Modulnummer vom Request
         $modulUID = $this->request->getArgument('moduluid');
 
@@ -127,9 +127,6 @@ class FachController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController 
         $fach->setNotenschema($this->request->getArgument('notenschema'));
         // Fach einem Modul zuordnen
         $fach->setModulnr($modul->getUid());
-
-        $this->addFlashMessage($this->request->getArgument('moduluid') . " " . $modul->getUid() . " " . $fach->getModulnr(), '', \TYPO3\CMS\Core\Messaging\AbstractMessage::ERROR);
-
         $this->fachRepository->add($fach);
         $modul->addFach($fach);
         $this->redirect('list', 'Modul');
