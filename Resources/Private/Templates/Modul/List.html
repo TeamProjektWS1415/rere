@@ -119,7 +119,7 @@
                                         </f:for>
                                     </ul>
                                     <!-- controller und action ?? wie, dass zu modul zugeordnet? -->
-                                    <f:link.action controller="Fach" class="gettooltip btn btn-default addfachbtn" arguments="{modul:modul}" action="new" title="Ein Fach zu diesem Modul hinzufügen">Fach hinzufügen</f:link.action>
+                                    <f:link.action controller="Fach" class="gettooltip btn btn-default addfachbtn" arguments="{modul:modul,gueltigkeitszeitraum:aktuellintervall}" action="new" title="Ein Fach zu diesem Modul hinzufügen">Fach hinzufügen</f:link.action>
                                 </div>
                             </div>
                         </div>
@@ -129,7 +129,7 @@
         </div>
         <div class="row">
             <div class="col-md-12">
-                <f:link.action controller="Modul" class="gettooltip btn btn-default" action="new" title="Legt ein neues Modul an">Modul anlegen</f:link.action>
+                <f:link.action controller="Modul" class="gettooltip btn btn-default" action="new" arguments='{gueltigkeitszeitraum:aktuellintervall}' title="Legt ein neues Modul an">Modul anlegen</f:link.action>
             </div>
         </div>
     </div>

@@ -117,6 +117,7 @@ class ModulController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
      */
     public function newAction(\ReRe\Rere\Domain\Model\Modul $newModul = NULL) {
         $this->view->assign('newModul', $newModul);
+        $this->view->assign('gueltigkeitszeitraum', $this->request->getArgument('gueltigkeitszeitraum'));
     }
 
     /**

@@ -45,7 +45,7 @@
                     <div class="form-group">
                         <label for="gueltigkeitszeitraum" class="col-sm-3 control-label"><f:translate key="tx_rere_domain_model_modul.gueltigkeitszeitraum" /> <span class="required">*</span></label>
                         <div class="col-sm-9">
-                            <f:form.textfield property="gueltigkeitszeitraum" value="{modul.gueltigkeitszeitraum}" class="form-control gettooltip" id="gueltigkeitszeitraum" placeholder="Gültigkeitszeitraum" title="Gültigkeitszeitraum eingeben"/>
+                            <f:form.textfield property="gueltigkeitszeitraum" value="{gueltigkeitszeitraum}" class="form-control gettooltip" id="gueltigkeitszeitraum" placeholder="Gültigkeitszeitraum" title="Gültigkeitszeitraum eingeben"/>
                             <br>
                         </div>
                     </div>
@@ -79,25 +79,32 @@
 
                     <div class="form-group">
                         <div class="col-sm-offset-3">
+                            <!--Radiobutton für Benotet Hochschulsystem-->
+                            <div class="col-sm-12">
+                                <label>
+                                    <f:form.radio class="gettooltip" name="notenschema" value="hochschulsystem" checked="1"  title="Fach nach Hochschulnoten benotet"/>
+                                    Benotet (Hochschul-System)
+                                </label>
+                            </div>
                             <!--Radiobutton für Benotet 15 Pkt. System-->
                             <div class="col-sm-12">
                                 <label>
-                                    <f:form.radio class="gettooltip" name="notenschema" value="benotet15" checked="1" title="Modul nach 15 Punkte System benotet - System default !"/>
-                                    Benotet (15 Pkt. System)
+                                    <f:form.radio class="gettooltip" name="notenschema" value="15pktsystem" title="Fach nach 15-Punkte-System benotet"/>
+                                    Benotet (15-Punkte-System)
                                 </label>
                             </div>
                             <!--Radiobutton für unbenotet-->
                             <div class="col-sm-12">
                                 <label>
-                                    <f:form.radio class="gettooltip" name="notenschema" value="unbenotet" title="Modul unbenotet"/>
-                                    Unbenotet
+                                    <f:form.radio class="gettooltip" name="notenschema" value="unbenotet" title="Fach unbenotet"/>
+                                    Unbenotet (Scheine)
                                 </label>
                             </div>
                             <!--Radiobutton für Benotet Schulnoten-->
                             <div class="col-sm-12">
                                 <label>
-                                    <f:form.radio class="gettooltip" name="notenschema" value="benotetschulnoten" title="Modul nach Schulnotensystem benotet"/>
-                                    Benotet (Schulnoten)
+                                    <f:form.radio class="gettooltip" name="notenschema" value="schulsystem" title="Fach nach Schul-System benotet"/>
+                                    Benotet (Schul-System)
                                 </label>
                             </div>
                         </div>

@@ -79,48 +79,54 @@
 
                     <div class="form-group">
                         <div class="col-sm-offset-3">
+                            <!--Radiobutton für Benotet Hochschulsystem-->
+                            <div class="col-sm-12">
+                                <label>
+                                    <f:form.radio class="gettooltip" name="notenschema" value="hochschulsystem" checked="1"  title="Fach nach Hochschulnoten benotet"/>
+                                    Benotet (Hochschul-System)
+                                </label>
+                            </div>
                             <!--Radiobutton für Benotet 15 Pkt. System-->
                             <div class="col-sm-12">
                                 <label>
-                                    <f:form.radio class="gettooltip" name="notenschema" value="benotet15" checked="1" title="Modul nach 15 Punkte System benotet - System default !"/>
-                                    Benotet (15 Pkt. System)
+                                    <f:form.radio class="gettooltip" name="notenschema" value="15pktsystem" title="Fach nach 15-Punkte-System benotet"/>
+                                    Benotet (15-Punkte-System)
                                 </label>
                             </div>
                             <!--Radiobutton für unbenotet-->
                             <div class="col-sm-12">
                                 <label>
-                                    <f:form.radio class="gettooltip" name="notenschema" value="unbenotet" title="Modul unbenotet"/>
-                                    Unbenotet
+                                    <f:form.radio class="gettooltip" name="notenschema" value="unbenotet" title="Fach unbenotet"/>
+                                    Unbenotet (Scheine)
                                 </label>
                             </div>
                             <!--Radiobutton für Benotet Schulnoten-->
                             <div class="col-sm-12">
                                 <label>
-                                    <f:form.radio class="gettooltip" name="notenschema" value="benotetschulnoten" title="Modul nach Schulnotensystem benotet"/>
-                                    Benotet (Schulnoten)
+                                    <f:form.radio class="gettooltip" name="notenschema" value="schulsystem" title="Fach nach Schul-System benotet"/>
+                                    Benotet (Schul-System)
                                 </label>
+                            </div>
+                        </div>
+
+                        <div class="col-sm-offset-3 col-sm-12">
+                            <br>
+                            <strong>Die mit * gekennzeichnete Felder sind Pflichtfelder</strong>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="col-sm-8">
+                            </div>
+                            <div class="col-sm-4">
+                                <br>
+                                <button type="submit" class="btn btn-primary btn-lg btn-block">Daten speichern</button>
                             </div>
                         </div>
                     </div>
 
-                    <div class="col-sm-offset-3 col-sm-12">
-                        <br>
-                        <strong>Die mit * gekennzeichnete Felder sind Pflichtfelder</strong>
-                    </div>
-
-                    <div class="form-group">
-                        <div class="col-sm-8">
-                        </div>
-                        <div class="col-sm-4">
-                            <br>
-                            <button type="submit" class="btn btn-primary btn-lg btn-block">Daten speichern</button>
-                        </div>
+                    <div class="col-md-4">
                     </div>
                 </div>
-
-                <div class="col-md-4">
-                </div>
-            </div>
         </f:form>
     </div>
 </f:section>
