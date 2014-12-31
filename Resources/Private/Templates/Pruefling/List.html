@@ -28,12 +28,11 @@
                 <nav class="navbar navbar-default" role="navigation">
                     <div class="container-fluid">
                         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                            <f:form action="setPruefling" class="navbar-form navbar-left">
+                            <f:form action="setPruefling" class="navbar-form navbar-left" arguments="{modul:modul.uid}">
                                 <div class="form-group">
                                     <div class="input-group">
                                         <div class="input-group-addon"><span class="glyphicon glyphicon-search" id="searchicon"  aria-hidden="true" ></span></div>
                                         <f:form.textfield type="hidden" name="fach" id="fach" value="{fach.uid}" class="form-control" />
-                                        <f:form.textfield  type="hidden" name="modul" id="modul" value="{modul.uid}" class="form-control" />
                                         <f:form.textfield  type="hidden" name="prueflingUID" id="prueflingUID" value="" class="form-control" />
                                         <f:form.textfield  type="text" name="matrikelnr" id="suchematrikel" class="form-control gettooltip" title="Nach MatrikelNr suchen" placeholder="Matrikel Nummer"/>
                                     </div>

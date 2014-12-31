@@ -199,11 +199,42 @@ class Fach extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
         $this->modulnr = $modulnr;
     }
 
-    function getMatrikelnr() {
+    /**
+     * Adds a Pruefling
+     *
+     * @param \ReRe\Rere\Domain\Model\Pruefling $matrikelnr
+     * @return void
+     */
+    public function addMatrikelnr(\ReRe\Rere\Domain\Model\Pruefling $matrikelnr) {
+        $this->matrikelnr->attach($matrikelnr);
+    }
+
+    /**
+     * Removes a Pruefling
+     *
+     * @param \ReRe\Rere\Domain\Model\Pruefling $matrikelnrToRemove The Pruefling to be removed
+     * @return void
+     */
+    public function removeMatrikelnr(\ReRe\Rere\Domain\Model\Pruefling $matrikelnrToRemove) {
+        $this->matrikelnr->detach($matrikelnrToRemove);
+    }
+
+    /**
+     * Returns the matrikelnr
+     *
+     * @return \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\ReRe\Rere2\Domain\Model\Pruefling> $matrikelnr
+     */
+    public function getMatrikelnr() {
         return $this->matrikelnr;
     }
 
-    function setMatrikelnr($matrikelnr) {
+    /**
+     * Sets the matrikelnr
+     *
+     * @param \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\ReRe\Rere2\Domain\Model\Pruefling> $matrikelnr
+     * @return void
+     */
+    public function setMatrikelnr(\TYPO3\CMS\Extbase\Persistence\ObjectStorage $matrikelnr) {
         $this->matrikelnr = $matrikelnr;
     }
 

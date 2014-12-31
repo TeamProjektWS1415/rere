@@ -212,7 +212,7 @@ class PrueflingController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionContro
             $fach = $this->fachRepository->findByUid($fachUID);
         }
         // Holt Modul Objekt
-        if ($this->request->hasArgument(MODUL)) {
+        if ($this->request->hasArgument(self::MODUL)) {
             $modulUid = $this->request->getArgument(self::MODUL);
             $modul = $this->modulRepository->findByUid($modulUid);
         }
@@ -222,7 +222,9 @@ class PrueflingController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionContro
             $pruefling = $this->prueflingRepository->findOneByMatrikelnr($matrikelnr);
         }
         // Bezieung setzen
-        $fach->addMatrikelnr($pruefling->getUid());
+        $fach->addMatrikelnr($pruefling);
+        $this->fachRepository->add($fach);
+
         // Weiterleitung auf die selbe Seite.
         $this->redirect('list', 'Pruefling', Null, array(self::FACH => $fach, self::MODUL => $modul));
     }
