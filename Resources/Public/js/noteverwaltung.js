@@ -37,27 +37,33 @@ $(document).ready(function () {
 
     // Blendet alle wieder ein
     $("#alle").click(function () {
-        $(".notenwert").each(function () {
-            $(this).parent("td").parent("tr").fadeIn();
-        });
+        showAll();
+        removeAcive();
+        $("#alle").addClass("active");
     });
 
     // Blendet nur die bereits eingetragenen ein
     $("#eingetragene").click(function () {
+        showAll();
         $(".notenwert").each(function () {
             if ($(this).val() === '0') {
                 $(this).parent("td").parent("tr").fadeOut();
             }
         });
+        removeAcive();
+        $("#eingetragene").addClass("active");
     });
 
     // Zeigt nur die die noch einzutragen sind
     $("#nichteingetragene").click(function () {
+        showAll();
         $(".notenwert").each(function () {
             if ($(this).val() !== '0') {
                 $(this).parent("td").parent("tr").fadeOut();
             }
         });
+        removeAcive();
+        $("#nichteingetragene").addClass("active");
     });
 
 });
@@ -99,5 +105,21 @@ function genchart(array) {
     window.myLine = new Chart(ctx).Line(data, {
         responsive: true,
         scaleBeginAtZero: true
+    });
+}
+
+/**
+ * Entfernt bei allen Menüelementen die active class
+ * @returns {undefined}
+ */
+function removeAcive() {
+    $("#alle").removeClass("active");
+    $("#nichteingetragene").removeClass("active");
+    $("#eingetragene").removeClass("active");
+}
+
+function showAll() {
+    $(".notenwert").each(function () {
+        $(this).parent("td").parent("tr").fadeIn();
     });
 }
