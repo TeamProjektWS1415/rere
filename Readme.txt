@@ -56,7 +56,7 @@ http://wiki.typo3.org/TYPO3_Installation_Basics
 Das PlugIn „Result Repository“ ist ein TYPO3 PlugIn, das über 
 „Extension Manager“ in TYPO3 Backend Seite herunterzuladen ist.
 Nachdem Sie TYPO3 installiert haben:
-‚
+
 1. Gehen Sie zum „Admin Tools“ (befindet sich in der linken Spalte)
 2. Clicken Sie „Extension Manager“
 3. Wählen Sie „Get Extensions“ von dem Option Button aus
