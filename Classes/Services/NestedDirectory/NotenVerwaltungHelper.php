@@ -34,7 +34,9 @@ class NotenVerwaltungHelper {
 
         foreach ($notenliste as $object) {
             $wert = $object->getWert();
-            $resultArray[$wert] = $resultArray[$wert] + 1;
+            if ($wert != 0) {
+                $resultArray[$wert] = $resultArray[$wert] + 1;
+            }
         }
 
         // Wandelt das Array in ein Json Array und gibt dieses zurück.
