@@ -5,9 +5,6 @@
 
     <f:flashMessages />
 
-
-
-
     <div class="container-fluid wrapper">
         <div class="row">
             <div name="breadcrumb" class="col-md-12">
@@ -49,6 +46,8 @@
                                     </div>
                                 </div>
                             </f:form>
+                            <ul class="nav navbar-nav navbar-right">
+                                <li><f:link.action controller="Pruefling" action="new" class="gettooltip" title="Neuen Prüfling anlegen" >Neuen Prüfling anlegen</f:link.action></li>                                </ul>
                         </div>
                     </div>
                 </nav>
@@ -84,13 +83,10 @@
                         </f:for>
                         </tbody>
                     </table>
-
-
                     <script type="text/javascript">
                         // Holt alle Prüflinge in ein Json array um zu suchen
                         var arrayPrueflinge = {f:format.htmlentitiesDecode(value:prueflings)};
                     </script>
-
                 </div>
             </div>
         </div>
