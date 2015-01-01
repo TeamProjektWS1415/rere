@@ -81,6 +81,14 @@ class PrueflingController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionContro
     protected $FrontendUserGroupRepository = NULL;
 
     /**
+     * noteRepository
+     *
+     * @var \ReRe\Rere\Domain\Repository\NoteRepository
+     * @inject
+     */
+    protected $noteRepository = NULL;
+
+    /**
      * action list
      *
      * @return void

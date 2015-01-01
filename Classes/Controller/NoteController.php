@@ -93,6 +93,7 @@ class NoteController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController 
         $this->view->assign('chartarray', $helper->genArray($notes));
         $this->view->assign('avg', $helper->calculateAverage($notes));
         $this->view->assign('eingetragen', $helper->checkIfWertisSet($notes));
+
         // Ausgabe des Fachnamens und des Modulnamens
         $this->view->assign(self::FACH, $fach);
         $this->view->assign(self::MODUL, $modul);
