@@ -70,20 +70,24 @@ Nachdem Sie TYPO3 installiert haben:
 -------------------------------------------------------------------------------
 Rechtlicher Hinweis
 
-Extensions sind Modifikationen des originalen Source Code und deshalb steht 
-noch unter GNU General Public License version 2. Dies bedeutet dass Sie erlaubt 
-sind, die Extensions zu verkaufen solange Sie die Lizenzbedingungen nicht ändern. 
-Ihre Kunden sind ebenfalls erlaubt, alles mit den Extensions zu machen 
-(Hochladen zu der TER ist inklusiv), solange Ihre Kunden die Lizenzbedingungen 
-nicht verletzen.
+Result Repository
+Copyright (C) 2015  
 
-Bitte immer daran denken, dass TYPO3 eine GPL Software ist 
-und in der gleichen Zeit Sie TYPO3 erweitern, Ihre Extensions sind legal 
-durch GPL geschützt. Dies zwingt Sie nicht Ihre Extensions zu teilen, 
-aber sie muss Sie inspirieren dass Sie so tun und rechtmäßig sind Sie nicht 
-in der Lage, Leute zu verhindern, die Ihre Extensions Code besitzen, sie zu 
-benutzen und weiter zu entwickeln. Das TYPO3 Extension API ist entwickelt um 
-Ihre Arbeit leichter zu teilen sowie um die Arbeit anderer Leute einfacher zu 
-nutzen. Bitte sich daran erinnern dass TYPO3 eine Open Source Software ist und 
-wir verlassen uns auf einander in der Gemeinde, sie weiter zu entwickeln. 
-(übersetzt von http://typo3.org/typo3-cms/overview/licenses/)
+Teamprojekt HTWG Konstanz WS14/15 (Felix Hohlwegler, Sarah Kieniger, 
+Tim Wacker, Tobias Brockner, Nejat Balta, Nicolas Tedjadharma)
+
+Dieses Programm ist freie Software. Sie können es unter den Bedingungen der 
+GNU General Public License, wie von der Free Software Foundation veröffentlicht, 
+weitergeben und/oder modifizieren, entweder gemäß Version 2 der Lizenz oder 
+(nach Ihrer Option) jeder späteren Version.
+
+Die Veröffentlichung dieses Programms erfolgt in der Hoffnung, daß es Ihnen von 
+Nutzen sein wird, aber OHNE IRGENDEINE GARANTIE, sogar ohne die implizite 
+Garantie der MARKTREIFE oder der VERWENDBARKEIT FÜR EINEN BESTIMMTEN ZWECK. 
+Details finden Sie in der GNU General Public License.
+
+Sie sollten ein Exemplar der GNU General Public License zusammen mit diesem 
+Programm erhalten haben. Falls nicht, schreiben Sie an die Free 
+Software Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110, USA.
+
+
