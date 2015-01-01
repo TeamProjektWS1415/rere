@@ -28,12 +28,10 @@
                 <nav class="navbar navbar-default" role="navigation">
                     <div class="container-fluid">
                         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                            <f:form action="setPruefling" class="navbar-form navbar-left" arguments="{modul:modul.uid}">
+                            <f:form action="setPruefling" class="navbar-form navbar-left" arguments="{fach:fach.uid,modul:modul.uid}">
                                 <div class="form-group">
                                     <div class="input-group">
                                         <div class="input-group-addon"><span class="glyphicon glyphicon-search" id="searchicon"  aria-hidden="true" ></span></div>
-                                        <f:form.textfield type="hidden" name="fach" id="fach" value="{fach.uid}" class="form-control" />
-                                        <f:form.textfield  type="hidden" name="prueflingUID" id="prueflingUID" value="" class="form-control" />
                                         <f:form.textfield  type="text" name="matrikelnr" id="suchematrikel" class="form-control gettooltip" title="Nach MatrikelNr suchen" placeholder="Matrikel Nummer"/>
                                     </div>
                                 </div>
@@ -79,8 +77,8 @@
                                 <td><span class="value">{pruefling.vorname}</span></td>
                                 <td><span class="value">{pruefling.nachname}</span></td>
                                 <td>
-                            <f:link.action class="delete" action="delete" onclick="delentry('Möchten Sie den Pruefling mit der Matrikelnr: {pruefling.matrikelnr} wirklich löschen?', $(this).attr('href'));
-                                    return false;" arguments="{pruefling : pruefling}"><span class="glyphicon glyphicon-remove" aria-hidden="true" data-toggle="tooltip" data-placement="bottom" title="Löscht diesen Datensatz"></span></f:link.action>
+                            <f:link.action class="delete" action="setPruefling" onclick="delentry('Möchten Sie den Pruefling mit der Matrikelnr: {pruefling.matrikelnr} wirklich löschen?', $(this).attr('href'));
+                                    return false;" arguments="{fach:fach.uid,modul:modul.uid,matrikelnr : pruefling.matrikelnr,remove:'remove'}"><span class="glyphicon glyphicon-remove" aria-hidden="true" data-toggle="tooltip" data-placement="bottom" title="Löscht diesen Datensatz"></span></f:link.action>
                             </td>
                             </tr>
                         </f:for>
