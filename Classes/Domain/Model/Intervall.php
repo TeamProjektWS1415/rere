@@ -1,5 +1,4 @@
 <?php
-
 namespace ReRe\Rere\Domain\Model;
 
 /* * *************************************************************
@@ -32,58 +31,58 @@ namespace ReRe\Rere\Domain\Model;
  */
 class Intervall extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 
-    /**
-     * type
-     *
-     * @var string
-     * @validate NotEmpty
-     */
-    protected $type = '';
+	/**
+	 * type
+	 * 
+	 * @var string
+	 * @validate NotEmpty
+	 */
+	protected $type = '';
 
-    /**
-     * aktuell
-     *
-     * @var string
-     * @validate NotEmpty
-     */
-    protected $aktuell = '';
+	/**
+	 * aktuell
+	 * 
+	 * @var string
+	 * @validate NotEmpty
+	 */
+	protected $aktuell = '';
 
-    /**
-     * Returns the type
-     *
-     * @return string $type
-     */
-    public function getType() {
-        return $this->type;
-    }
+	/**
+	 * Returns the type
+	 * 
+	 * @return string $type
+	 */
+	public function getType() {
+		return $this->type;
+	}
 
-    /**
-     * Sets the type
-     *
-     * @param string $type
-     * @return void
-     */
-    public function setType($type) {
-        $this->type = $type;
-    }
+	/**
+	 * Sets the type
+	 * 
+	 * @param string $type
+	 * @return void
+	 */
+	public function setType($type) {
+		$this->type = $type;
+	}
 
-    /**
-     * Returns the aktuell
-     *
-     * @return string $aktuell
-     */
-    public function getAktuell() {
-        return $this->aktuell;
-    }
+	/**
+	 * Returns the aktuell
+	 * 
+	 * @return string $aktuell
+	 */
+	public function getAktuell() {
+		return $this->aktuell;
+	}
 
-    /**
-     * Sets the aktuell
-     *
-     * @param string $aktuell
-     * @return void
-     */
-    public function setAktuell($aktuell) {
-        $this->aktuell = $aktuell;
-    }
+	/**
+	 * Sets the aktuell
+	 * 
+	 * @param string $aktuell
+	 * @return void
+	 */
+	public function setAktuell($aktuell) {
+		$this->aktuell = $aktuell;
+	}
 
 }

@@ -1,5 +1,4 @@
 <?php
-
 namespace ReRe\Rere\Domain\Repository;
 
 /* * *************************************************************
@@ -37,4 +36,5 @@ namespace ReRe\Rere\Domain\Repository;
  */
 class PrueflingRepository extends \TYPO3\CMS\Extbase\Persistence\Repository {
 
+	
 }

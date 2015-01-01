@@ -8,7 +8,7 @@
 
 ---
 conf.py:
-  copyright: 2014
+  copyright: 2015
   project: Result Repositry
   version: 
   release: 
@@ -20,7 +20,7 @@ conf.py:
   - - Index
     - rere.tex
     - Result Repositry
-    - 
+    - Felix Hohlwegler, Sarah Kieninger, Tim Wacker, Nejat Balta, Tobias Brockner, Nicolas Tedjadharma
     - manual
   latex_elements:
     papersize: a4paper

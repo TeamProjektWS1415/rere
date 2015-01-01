@@ -4,22 +4,17 @@ if (!defined('TYPO3_MODE')) {
     die('Access denied.');
 }
 
-// Konstanten definition für default actions
-define("DEFACTIONS", "list, show, new, create, edit, update, delete");
-
 if (TYPO3_MODE === 'BE') {
 
     /**
      * Registers a Backend Module
      */
     \TYPO3\CMS\Extbase\Utility\ExtensionUtility::registerModule(
-            // Make module a submodule of 'user'
-            'ReRe.' . $_EXTKEY, 'user',
-            // Submodule key
-            'rerebackend',
-            // Position
-            '', array(
-        'Modul' => DEFACTIONS, 'Fach' => DEFACTIONS, 'Note' => DEFACTIONS, 'Pruefling' => DEFACTIONS . ', setPruefling', 'Export' => 'exportPrueflinge, exportModuleUndFaecher, exportFach', 'Import' => 'new, importPrueflinge, importBackUp', 'Ajax' => 'searchPruefling', 'Intervall' => 'new, create, edit, update',
+            'ReRe.' . $_EXTKEY, 'user', // Make module a submodule of 'user'
+            'rerebackend', // Submodule key
+            '', // Position
+            array(
+        'Modul' => 'list, show, new, create, edit, update, delete', 'Fach' => 'list, show, new, create, edit, update, delete', 'Note' => 'list, show, new, create, edit, update, delete', 'Pruefling' => 'setPruefling, list, show, new, create, edit, update, delete', 'Intervall' => 'new, create, edit, update',
             ), array(
         'access' => 'user,group',
         'icon' => 'EXT:' . $_EXTKEY . '/ext_icon.gif',
@@ -78,7 +73,7 @@ $GLOBALS['TCA']['tx_rere_domain_model_fach'] = array(
             'starttime' => 'starttime',
             'endtime' => 'endtime',
         ),
-        'searchFields' => 'fachnr,fachname,pruefer,notenschema,modulnr,matrikelnr,',
+        'searchFields' => 'fachnr,fachname,pruefer,notenschema,modulnr,matrikelnr,note,',
         'dynamicConfigFile' => \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extPath($_EXTKEY) . 'Configuration/TCA/Fach.php',
         'iconfile' => \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extRelPath($_EXTKEY) . 'Resources/Public/Icons/tx_rere_domain_model_fach.gif'
     ),
@@ -105,7 +100,7 @@ $GLOBALS['TCA']['tx_rere_domain_model_note'] = array(
             'starttime' => 'starttime',
             'endtime' => 'endtime',
         ),
-        'searchFields' => 'wert,kommentar,fachnr,matrikelnr,',
+        'searchFields' => 'wert,kommentar,fach,pruefling,',
         'dynamicConfigFile' => \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extPath($_EXTKEY) . 'Configuration/TCA/Note.php',
         'iconfile' => \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extRelPath($_EXTKEY) . 'Resources/Public/Icons/tx_rere_domain_model_note.gif'
     ),
@@ -132,7 +127,7 @@ $GLOBALS['TCA']['tx_rere_domain_model_pruefling'] = array(
             'starttime' => 'starttime',
             'endtime' => 'endtime',
         ),
-        'searchFields' => 'matrikelnr,vorname,nachname,typo3_f_e_user,',
+        'searchFields' => 'matrikelnr,vorname,nachname,typo3_f_e_user,note,',
         'dynamicConfigFile' => \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extPath($_EXTKEY) . 'Configuration/TCA/Pruefling.php',
         'iconfile' => \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extRelPath($_EXTKEY) . 'Resources/Public/Icons/tx_rere_domain_model_pruefling.gif'
     ),

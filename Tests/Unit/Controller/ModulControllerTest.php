@@ -1,11 +1,15 @@
 <?php
-
 namespace ReRe\Rere\Tests\Unit\Controller;
-
-/* * *************************************************************
+/***************************************************************
  *  Copyright notice
  *
- *  (c) 2014
+ *  (c) 2015 Felix Hohlwegler <info@felix-hohlwegler.de>, TeamProjektWS14/15
+ *  			Sarah Kieninger <sarah.kieninger@gmail.com>, TeamProjektWS14/15
+ *  			Tim Wacker , TeamProjektWS14/15
+ *  			Nejat Balta , TeamProjektWS14/15
+ *  			Tobias Brockner , TeamProjektWS14/15
+ *  			Nicolas Tedjadharma , TeamProjektWS14/15
+ *  			
  *  All rights reserved
  *
  *  This script is part of the TYPO3 project. The TYPO3 project is
@@ -23,121 +27,126 @@ namespace ReRe\Rere\Tests\Unit\Controller;
  *  GNU General Public License for more details.
  *
  *  This copyright notice MUST APPEAR in all copies of the script!
- * ************************************************************* */
+ ***************************************************************/
 
 /**
  * Test case for class ReRe\Rere\Controller\ModulController.
  *
+ * @author Felix Hohlwegler <info@felix-hohlwegler.de>
+ * @author Sarah Kieninger <sarah.kieninger@gmail.com>
+ * @author Tim Wacker 
+ * @author Nejat Balta 
+ * @author Tobias Brockner 
+ * @author Nicolas Tedjadharma 
  */
 class ModulControllerTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
 
-    /**
-     * @var \ReRe\Rere\Controller\ModulController
-     */
-    protected $subject = NULL;
+	/**
+	 * @var \ReRe\Rere\Controller\ModulController
+	 */
+	protected $subject = NULL;
 
-    protected function setUp() {
-        $this->subject = $this->getMock('ReRe\\Rere\\Controller\\ModulController', array('redirect', 'forward', 'addFlashMessage'), array(), '', FALSE);
-    }
+	protected function setUp() {
+		$this->subject = $this->getMock('ReRe\\Rere\\Controller\\ModulController', array('redirect', 'forward', 'addFlashMessage'), array(), '', FALSE);
+	}
 
-    protected function tearDown() {
-        unset($this->subject);
-    }
+	protected function tearDown() {
+		unset($this->subject);
+	}
 
-    /**
-     * @test
-     */
-    public function listActionFetchesAllModulsFromRepositoryAndAssignsThemToView() {
+	/**
+	 * @test
+	 */
+	public function listActionFetchesAllModulsFromRepositoryAndAssignsThemToView() {
 
-        $allModuls = $this->getMock('TYPO3\\CMS\\Extbase\\Persistence\\ObjectStorage', array(), array(), '', FALSE);
+		$allModuls = $this->getMock('TYPO3\\CMS\\Extbase\\Persistence\\ObjectStorage', array(), array(), '', FALSE);
 
-        $modulRepository = $this->getMock('ReRe\\Rere\\Domain\\Repository\\ModulRepository', array('findAll'), array(), '', FALSE);
-        $modulRepository->expects($this->once())->method('findAll')->will($this->returnValue($allModuls));
-        $this->inject($this->subject, 'modulRepository', $modulRepository);
+		$modulRepository = $this->getMock('ReRe\\Rere\\Domain\\Repository\\ModulRepository', array('findAll'), array(), '', FALSE);
+		$modulRepository->expects($this->once())->method('findAll')->will($this->returnValue($allModuls));
+		$this->inject($this->subject, 'modulRepository', $modulRepository);
 
-        $view = $this->getMock('TYPO3\\CMS\\Extbase\\Mvc\\View\\ViewInterface');
-        $view->expects($this->once())->method('assign')->with('moduls', $allModuls);
-        $this->inject($this->subject, 'view', $view);
+		$view = $this->getMock('TYPO3\\CMS\\Extbase\\Mvc\\View\\ViewInterface');
+		$view->expects($this->once())->method('assign')->with('moduls', $allModuls);
+		$this->inject($this->subject, 'view', $view);
 
-        $this->subject->listAction();
-    }
+		$this->subject->listAction();
+	}
 
-    /**
-     * @test
-     */
-    public function showActionAssignsTheGivenModulToView() {
-        $modul = new \ReRe\Rere\Domain\Model\Modul();
+	/**
+	 * @test
+	 */
+	public function showActionAssignsTheGivenModulToView() {
+		$modul = new \ReRe\Rere\Domain\Model\Modul();
 
-        $view = $this->getMock('TYPO3\\CMS\\Extbase\\Mvc\\View\\ViewInterface');
-        $this->inject($this->subject, 'view', $view);
-        $view->expects($this->once())->method('assign')->with('modul', $modul);
+		$view = $this->getMock('TYPO3\\CMS\\Extbase\\Mvc\\View\\ViewInterface');
+		$this->inject($this->subject, 'view', $view);
+		$view->expects($this->once())->method('assign')->with('modul', $modul);
 
-        $this->subject->showAction($modul);
-    }
+		$this->subject->showAction($modul);
+	}
 
-    /**
-     * @test
-     */
-    public function newActionAssignsTheGivenModulToView() {
-        $modul = new \ReRe\Rere\Domain\Model\Modul();
+	/**
+	 * @test
+	 */
+	public function newActionAssignsTheGivenModulToView() {
+		$modul = new \ReRe\Rere\Domain\Model\Modul();
 
-        $view = $this->getMock('TYPO3\\CMS\\Extbase\\Mvc\\View\\ViewInterface');
-        $view->expects($this->once())->method('assign')->with('newModul', $modul);
-        $this->inject($this->subject, 'view', $view);
+		$view = $this->getMock('TYPO3\\CMS\\Extbase\\Mvc\\View\\ViewInterface');
+		$view->expects($this->once())->method('assign')->with('newModul', $modul);
+		$this->inject($this->subject, 'view', $view);
 
-        $this->subject->newAction($modul);
-    }
+		$this->subject->newAction($modul);
+	}
 
-    /**
-     * @test
-     */
-    public function createActionAddsTheGivenModulToModulRepository() {
-        $modul = new \ReRe\Rere\Domain\Model\Modul();
+	/**
+	 * @test
+	 */
+	public function createActionAddsTheGivenModulToModulRepository() {
+		$modul = new \ReRe\Rere\Domain\Model\Modul();
 
-        $modulRepository = $this->getMock('ReRe\\Rere\\Domain\\Repository\\ModulRepository', array('add'), array(), '', FALSE);
-        $modulRepository->expects($this->once())->method('add')->with($modul);
-        $this->inject($this->subject, 'modulRepository', $modulRepository);
+		$modulRepository = $this->getMock('ReRe\\Rere\\Domain\\Repository\\ModulRepository', array('add'), array(), '', FALSE);
+		$modulRepository->expects($this->once())->method('add')->with($modul);
+		$this->inject($this->subject, 'modulRepository', $modulRepository);
 
-        $this->subject->createAction($modul);
-    }
+		$this->subject->createAction($modul);
+	}
 
-    /**
-     * @test
-     */
-    public function editActionAssignsTheGivenModulToView() {
-        $modul = new \ReRe\Rere\Domain\Model\Modul();
+	/**
+	 * @test
+	 */
+	public function editActionAssignsTheGivenModulToView() {
+		$modul = new \ReRe\Rere\Domain\Model\Modul();
 
-        $view = $this->getMock('TYPO3\\CMS\\Extbase\\Mvc\\View\\ViewInterface');
-        $this->inject($this->subject, 'view', $view);
-        $view->expects($this->once())->method('assign')->with('modul', $modul);
+		$view = $this->getMock('TYPO3\\CMS\\Extbase\\Mvc\\View\\ViewInterface');
+		$this->inject($this->subject, 'view', $view);
+		$view->expects($this->once())->method('assign')->with('modul', $modul);
 
-        $this->subject->editAction($modul);
-    }
+		$this->subject->editAction($modul);
+	}
 
-    /**
-     * @test
-     */
-    public function updateActionUpdatesTheGivenModulInModulRepository() {
-        $modul = new \ReRe\Rere\Domain\Model\Modul();
+	/**
+	 * @test
+	 */
+	public function updateActionUpdatesTheGivenModulInModulRepository() {
+		$modul = new \ReRe\Rere\Domain\Model\Modul();
 
-        $modulRepository = $this->getMock('ReRe\\Rere\\Domain\\Repository\\ModulRepository', array('update'), array(), '', FALSE);
-        $modulRepository->expects($this->once())->method('update')->with($modul);
-        $this->inject($this->subject, 'modulRepository', $modulRepository);
+		$modulRepository = $this->getMock('ReRe\\Rere\\Domain\\Repository\\ModulRepository', array('update'), array(), '', FALSE);
+		$modulRepository->expects($this->once())->method('update')->with($modul);
+		$this->inject($this->subject, 'modulRepository', $modulRepository);
 
-        $this->subject->updateAction($modul);
-    }
+		$this->subject->updateAction($modul);
+	}
 
-    /**
-     * @test
-     */
-    public function deleteActionRemovesTheGivenModulFromModulRepository() {
-        $modul = new \ReRe\Rere\Domain\Model\Modul();
+	/**
+	 * @test
+	 */
+	public function deleteActionRemovesTheGivenModulFromModulRepository() {
+		$modul = new \ReRe\Rere\Domain\Model\Modul();
 
-        $modulRepository = $this->getMock('ReRe\\Rere\\Domain\\Repository\\ModulRepository', array('remove'), array(), '', FALSE);
-        $modulRepository->expects($this->once())->method('remove')->with($modul);
-        $this->inject($this->subject, 'modulRepository', $modulRepository);
+		$modulRepository = $this->getMock('ReRe\\Rere\\Domain\\Repository\\ModulRepository', array('remove'), array(), '', FALSE);
+		$modulRepository->expects($this->once())->method('remove')->with($modul);
+		$this->inject($this->subject, 'modulRepository', $modulRepository);
 
-        $this->subject->deleteAction($modul);
-    }
-
+		$this->subject->deleteAction($modul);
+	}
 }

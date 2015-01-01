@@ -1,11 +1,15 @@
 <?php
-
 namespace ReRe\Rere\Tests\Unit\Controller;
-
-/* * *************************************************************
+/***************************************************************
  *  Copyright notice
  *
- *  (c) 2014
+ *  (c) 2015 Felix Hohlwegler <info@felix-hohlwegler.de>, TeamProjektWS14/15
+ *  			Sarah Kieninger <sarah.kieninger@gmail.com>, TeamProjektWS14/15
+ *  			Tim Wacker , TeamProjektWS14/15
+ *  			Nejat Balta , TeamProjektWS14/15
+ *  			Tobias Brockner , TeamProjektWS14/15
+ *  			Nicolas Tedjadharma , TeamProjektWS14/15
+ *  			
  *  All rights reserved
  *
  *  This script is part of the TYPO3 project. The TYPO3 project is
@@ -23,77 +27,82 @@ namespace ReRe\Rere\Tests\Unit\Controller;
  *  GNU General Public License for more details.
  *
  *  This copyright notice MUST APPEAR in all copies of the script!
- * ************************************************************* */
+ ***************************************************************/
 
 /**
  * Test case for class ReRe\Rere\Controller\IntervallController.
  *
+ * @author Felix Hohlwegler <info@felix-hohlwegler.de>
+ * @author Sarah Kieninger <sarah.kieninger@gmail.com>
+ * @author Tim Wacker 
+ * @author Nejat Balta 
+ * @author Tobias Brockner 
+ * @author Nicolas Tedjadharma 
  */
 class IntervallControllerTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
 
-    /**
-     * @var \ReRe\Rere\Controller\IntervallController
-     */
-    protected $subject = NULL;
+	/**
+	 * @var \ReRe\Rere\Controller\IntervallController
+	 */
+	protected $subject = NULL;
 
-    protected function setUp() {
-        $this->subject = $this->getMock('ReRe\\Rere\\Controller\\IntervallController', array('redirect', 'forward', 'addFlashMessage'), array(), '', FALSE);
-    }
+	protected function setUp() {
+		$this->subject = $this->getMock('ReRe\\Rere\\Controller\\IntervallController', array('redirect', 'forward', 'addFlashMessage'), array(), '', FALSE);
+	}
 
-    protected function tearDown() {
-        unset($this->subject);
-    }
+	protected function tearDown() {
+		unset($this->subject);
+	}
 
-    /**
-     * @test
-     */
-    public function newActionAssignsTheGivenIntervallToView() {
-        $interval = new \ReRe\Rere\Domain\Model\Intervall();
+	/**
+	 * @test
+	 */
+	public function newActionAssignsTheGivenIntervallToView() {
+		$intervall = new \ReRe\Rere\Domain\Model\Intervall();
 
-        $view = $this->getMock('TYPO3\\CMS\\Extbase\\Mvc\\View\\ViewInterface');
-        $view->expects($this->once())->method('assign')->with('newIntervall', $interval);
-        $this->inject($this->subject, 'view', $view);
+		$view = $this->getMock('TYPO3\\CMS\\Extbase\\Mvc\\View\\ViewInterface');
+		$view->expects($this->once())->method('assign')->with('newIntervall', $intervall);
+		$this->inject($this->subject, 'view', $view);
 
-        $this->subject->newAction($interval);
-    }
+		$this->subject->newAction($intervall);
+	}
 
-    /**
-     * @test
-     */
-    public function createActionAddsTheGivenIntervallToIntervallRepository() {
-        $interval = new \ReRe\Rere\Domain\Model\Intervall();
+	/**
+	 * @test
+	 */
+	public function createActionAddsTheGivenIntervallToIntervallRepository() {
+		$intervall = new \ReRe\Rere\Domain\Model\Intervall();
 
-        $intervallRepository = $this->getMock('ReRe\\Rere\\Domain\\Repository\\IntervallRepository', array('add'), array(), '', FALSE);
-        $intervallRepository->expects($this->once())->method('add')->with($intervall);
-        $this->inject($this->subject, 'intervallRepository', $intervallRepository);
+		$intervallRepository = $this->getMock('ReRe\\Rere\\Domain\\Repository\\IntervallRepository', array('add'), array(), '', FALSE);
+		$intervallRepository->expects($this->once())->method('add')->with($intervall);
+		$this->inject($this->subject, 'intervallRepository', $intervallRepository);
 
-        $this->subject->createAction($interval);
-    }
+		$this->subject->createAction($intervall);
+	}
 
-    /**
-     * @test
-     */
-    public function editActionAssignsTheGivenIntervallToView() {
-        $interval = new \ReRe\Rere\Domain\Model\Intervall();
+	/**
+	 * @test
+	 */
+	public function editActionAssignsTheGivenIntervallToView() {
+		$intervall = new \ReRe\Rere\Domain\Model\Intervall();
 
-        $view = $this->getMock('TYPO3\\CMS\\Extbase\\Mvc\\View\\ViewInterface');
-        $this->inject($this->subject, 'view', $view);
-        $view->expects($this->once())->method('assign')->with('intervall', $interval);
+		$view = $this->getMock('TYPO3\\CMS\\Extbase\\Mvc\\View\\ViewInterface');
+		$this->inject($this->subject, 'view', $view);
+		$view->expects($this->once())->method('assign')->with('intervall', $intervall);
 
-        $this->subject->editAction($interval);
-    }
+		$this->subject->editAction($intervall);
+	}
 
-    /**
-     * @test
-     */
-    public function updateActionUpdatesTheGivenIntervallInIntervallRepository() {
-        $intervall = new \ReRe\Rere\Domain\Model\Intervall();
+	/**
+	 * @test
+	 */
+	public function updateActionUpdatesTheGivenIntervallInIntervallRepository() {
+		$intervall = new \ReRe\Rere\Domain\Model\Intervall();
 
-        $intervallRepository = $this->getMock('ReRe\\Rere\\Domain\\Repository\\IntervallRepository', array('update'), array(), '', FALSE);
-        $intervallRepository->expects($this->once())->method('update')->with($intervall);
-        $this->inject($this->subject, 'intervallRepository', $intervallRepository);
+		$intervallRepository = $this->getMock('ReRe\\Rere\\Domain\\Repository\\IntervallRepository', array('update'), array(), '', FALSE);
+		$intervallRepository->expects($this->once())->method('update')->with($intervall);
+		$this->inject($this->subject, 'intervallRepository', $intervallRepository);
 
-        $this->subject->updateAction($intervall);
-    }
-
+		$this->subject->updateAction($intervall);
+	}
 }

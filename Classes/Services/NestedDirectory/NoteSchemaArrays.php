@@ -18,7 +18,7 @@ class NoteSchemaArrays {
      * @var type array
      */
     protected $marks = array(
-        '' => self::BITTE,
+        '0' => self::BITTE,
         '1.0' => '1.0',
         '1.3' => '1.3',
         '1.7' => '1.7',
@@ -37,7 +37,7 @@ class NoteSchemaArrays {
      * @var type
      */
     protected $schoolMarks = array(
-        '' => self::BITTE,
+        '0' => self::BITTE,
         '1.0' => '1.0',
         '1.1' => '1.1',
         '1.2' => '1.2',
@@ -96,7 +96,7 @@ class NoteSchemaArrays {
      * @var type
      */
     protected $unbenotetMarks = array(
-        '' => self::BITTE,
+        '0' => self::BITTE,
         'be' => 'be',
         'N' => 'N'
     );
@@ -106,7 +106,7 @@ class NoteSchemaArrays {
      * @var type
      */
     protected $fifteenMarks = array(
-        '' => self::BITTE,
+        '0' => self::BITTE,
         '0' => '0',
         '1' => '1',
         '2' => '2',

@@ -76,25 +76,21 @@ class ModulController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
         $moduls = $this->modulRepository->findAll();
         $intervall = $this->intervallRepository->findAll();
         $filteredmoduls = array();
-
         // Aktuelles Intervall holen.
         foreach ($intervall as $intervalliterate) {
             $akteullesintervall = $intervalliterate->getAktuell();
             $intervallType = $intervalliterate->getType();
         }
-
         // Alle Module des Aktuellen Intervalls holen
         foreach ($moduls as $modul) {
             if ($modul->getGueltigkeitszeitraum() == $akteullesintervall) {
                 array_push($filteredmoduls, $modul);
             }
         }
-
         // Ausgabe
         $this->view->assign('aktuellintervall', $akteullesintervall);
         $this->view->assign('intervallType', $intervallType);
         $this->view->assign('moduls', $filteredmoduls);
-
         return $this->view->render();
     }
 

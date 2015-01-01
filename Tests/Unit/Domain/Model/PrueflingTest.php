@@ -2,10 +2,15 @@
 
 namespace ReRe\Rere\Tests\Unit\Domain\Model;
 
-/* * *************************************************************
+/***************************************************************
  *  Copyright notice
  *
- *  (c) 2014
+ *  (c) 2015 Felix Hohlwegler <info@felix-hohlwegler.de>, TeamProjektWS14/15
+ *           Sarah Kieninger <sarah.kieninger@gmail.com>, TeamProjektWS14/15
+ *           Tim Wacker, TeamProjektWS14/15
+ *           Nejat Balta, TeamProjektWS14/15
+ *           Tobias Brockner, TeamProjektWS14/15
+ *           Nicolas Tedjadharma, TeamProjektWS14/15
  *
  *  All rights reserved
  *
@@ -24,7 +29,7 @@ namespace ReRe\Rere\Tests\Unit\Domain\Model;
  *  GNU General Public License for more details.
  *
  *  This copyright notice MUST APPEAR in all copies of the script!
- * ************************************************************* */
+ ***************************************************************/
 
 /**
  * Test case for class \ReRe\Rere\Domain\Model\Pruefling.
@@ -32,94 +37,155 @@ namespace ReRe\Rere\Tests\Unit\Domain\Model;
  * @copyright Copyright belongs to the respective authors
  * @license http://www.gnu.org/licenses/gpl.html GNU General Public License, version 3 or later
  *
+ * @author Felix Hohlwegler <info@felix-hohlwegler.de>
+ * @author Sarah Kieninger <sarah.kieninger@gmail.com>
+ * @author Tim Wacker 
+ * @author Nejat Balta 
+ * @author Tobias Brockner 
+ * @author Nicolas Tedjadharma 
  */
 class PrueflingTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
+	/**
+	 * @var \ReRe\Rere\Domain\Model\Pruefling
+	 */
+	protected $subject = NULL;
 
-    /**
-     * @var \ReRe\Rere\Domain\Model\Pruefling
-     */
-    protected $subject = NULL;
+	protected function setUp() {
+		$this->subject = new \ReRe\Rere\Domain\Model\Pruefling();
+	}
 
-    protected function setUp() {
-        $this->subject = new \ReRe\Rere\Domain\Model\Pruefling();
-    }
+	protected function tearDown() {
+		unset($this->subject);
+	}
 
-    protected function tearDown() {
-        unset($this->subject);
-    }
+	/**
+	 * @test
+	 */
+	public function getMatrikelnrReturnsInitialValueForString() {
+		$this->assertSame(
+			'',
+			$this->subject->getMatrikelnr()
+		);
+	}
 
-    /**
-     * @test
-     */
-    public function getMatrikelnrReturnsInitialValueForString() {
-        $this->assertSame(
-                '', $this->subject->getMatrikelnr()
-        );
-    }
+	/**
+	 * @test
+	 */
+	public function setMatrikelnrForStringSetsMatrikelnr() {
+		$this->subject->setMatrikelnr('Conceived at T3CON10');
 
-    /**
-     * @test
-     */
-    public function setMatrikelnrForStringSetsMatrikelnr() {
-        $this->subject->setMatrikelnr('Conceived at T3CON10');
+		$this->assertAttributeEquals(
+			'Conceived at T3CON10',
+			'matrikelnr',
+			$this->subject
+		);
+	}
 
-        $this->assertAttributeEquals(
-                'Conceived at T3CON10', 'matrikelnr', $this->subject
-        );
-    }
+	/**
+	 * @test
+	 */
+	public function getVornameReturnsInitialValueForString() {
+		$this->assertSame(
+			'',
+			$this->subject->getVorname()
+		);
+	}
 
-    /**
-     * @test
-     */
-    public function getVornameReturnsInitialValueForString() {
-        $this->assertSame(
-                '', $this->subject->getVorname()
-        );
-    }
+	/**
+	 * @test
+	 */
+	public function setVornameForStringSetsVorname() {
+		$this->subject->setVorname('Conceived at T3CON10');
 
-    /**
-     * @test
-     */
-    public function setVornameForStringSetsVorname() {
-        $this->subject->setVorname('Conceived at T3CON10');
+		$this->assertAttributeEquals(
+			'Conceived at T3CON10',
+			'vorname',
+			$this->subject
+		);
+	}
 
-        $this->assertAttributeEquals(
-                'Conceived at T3CON10', 'vorname', $this->subject
-        );
-    }
+	/**
+	 * @test
+	 */
+	public function getNachnameReturnsInitialValueForString() {
+		$this->assertSame(
+			'',
+			$this->subject->getNachname()
+		);
+	}
 
-    /**
-     * @test
-     */
-    public function getNachnameReturnsInitialValueForString() {
-        $this->assertSame(
-                '', $this->subject->getNachname()
-        );
-    }
+	/**
+	 * @test
+	 */
+	public function setNachnameForStringSetsNachname() {
+		$this->subject->setNachname('Conceived at T3CON10');
 
-    /**
-     * @test
-     */
-    public function setNachnameForStringSetsNachname() {
-        $this->subject->setNachname('Conceived at T3CON10');
+		$this->assertAttributeEquals(
+			'Conceived at T3CON10',
+			'nachname',
+			$this->subject
+		);
+	}
 
-        $this->assertAttributeEquals(
-                'Conceived at T3CON10', 'nachname', $this->subject
-        );
-    }
+	/**
+	 * @test
+	 */
+	public function getTypo3FEUserReturnsInitialValueForFrontendUser() {	}
 
-    /**
-     * @test
-     */
-    public function getTypo3FEUserReturnsInitialValueForFrontendUser() {
+	/**
+	 * @test
+	 */
+	public function setTypo3FEUserForFrontendUserSetsTypo3FEUser() {	}
 
-    }
+	/**
+	 * @test
+	 */
+	public function getNoteReturnsInitialValueForNote() {
+		$newObjectStorage = new \TYPO3\CMS\Extbase\Persistence\ObjectStorage();
+		$this->assertEquals(
+			$newObjectStorage,
+			$this->subject->getNote()
+		);
+	}
 
-    /**
-     * @test
-     */
-    public function setTypo3FEUserForFrontendUserSetsTypo3FEUser() {
+	/**
+	 * @test
+	 */
+	public function setNoteForObjectStorageContainingNoteSetsNote() {
+		$note = new \ReRe\Rere\Domain\Model\Note();
+		$objectStorageHoldingExactlyOneNote = new \TYPO3\CMS\Extbase\Persistence\ObjectStorage();
+		$objectStorageHoldingExactlyOneNote->attach($note);
+		$this->subject->setNote($objectStorageHoldingExactlyOneNote);
 
-    }
+		$this->assertAttributeEquals(
+			$objectStorageHoldingExactlyOneNote,
+			'note',
+			$this->subject
+		);
+	}
 
+	/**
+	 * @test
+	 */
+	public function addNoteToObjectStorageHoldingNote() {
+		$note = new \ReRe\Rere\Domain\Model\Note();
+		$noteObjectStorageMock = $this->getMock('TYPO3\\CMS\\Extbase\\Persistence\\ObjectStorage', array('attach'), array(), '', FALSE);
+		$noteObjectStorageMock->expects($this->once())->method('attach')->with($this->equalTo($note));
+		$this->inject($this->subject, 'note', $noteObjectStorageMock);
+
+		$this->subject->addNote($note);
+	}
+
+	/**
+	 * @test
+	 */
+	public function removeNoteFromObjectStorageHoldingNote() {
+		$note = new \ReRe\Rere\Domain\Model\Note();
+		$noteObjectStorageMock = $this->getMock('TYPO3\\CMS\\Extbase\\Persistence\\ObjectStorage', array('detach'), array(), '', FALSE);
+		$noteObjectStorageMock->expects($this->once())->method('detach')->with($this->equalTo($note));
+		$this->inject($this->subject, 'note', $noteObjectStorageMock);
+
+		$this->subject->removeNote($note);
+
+	}
 }

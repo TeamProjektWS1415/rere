@@ -48,8 +48,7 @@ CREATE TABLE tx_rere_domain_model_fach (
 	uid int(11) NOT NULL auto_increment,
 	pid int(11) DEFAULT '0' NOT NULL,
 
-        modul int(11) unsigned DEFAULT '0' NOT NULL,
-	note int(11) unsigned DEFAULT '0' NOT NULL,
+	modul int(11) unsigned DEFAULT '0' NOT NULL,
 
 	fachnr varchar(255) DEFAULT '' NOT NULL,
 	fachname varchar(255) DEFAULT '' NOT NULL,
@@ -57,6 +56,7 @@ CREATE TABLE tx_rere_domain_model_fach (
 	notenschema varchar(255) DEFAULT '' NOT NULL,
 	modulnr varchar(255) DEFAULT '' NOT NULL,
 	matrikelnr int(11) unsigned DEFAULT '0' NOT NULL,
+	note int(11) unsigned DEFAULT '0' NOT NULL,
 
 	tstamp int(11) unsigned DEFAULT '0' NOT NULL,
 	crdate int(11) unsigned DEFAULT '0' NOT NULL,
@@ -95,10 +95,13 @@ CREATE TABLE tx_rere_domain_model_note (
 	uid int(11) NOT NULL auto_increment,
 	pid int(11) DEFAULT '0' NOT NULL,
 
+	fach int(11) unsigned DEFAULT '0' NOT NULL,
+	pruefling int(11) unsigned DEFAULT '0' NOT NULL,
+
 	wert varchar(255) DEFAULT '' NOT NULL,
 	kommentar varchar(255) DEFAULT '' NOT NULL,
-	fachnr int(11) unsigned DEFAULT '0' NOT NULL,
-	matrikelnr int(11) unsigned DEFAULT '0',
+	fach varchar(255) DEFAULT '' NOT NULL,
+	pruefling varchar(255) DEFAULT '' NOT NULL,
 
 	tstamp int(11) unsigned DEFAULT '0' NOT NULL,
 	crdate int(11) unsigned DEFAULT '0' NOT NULL,
@@ -141,6 +144,7 @@ CREATE TABLE tx_rere_domain_model_pruefling (
 	vorname varchar(255) DEFAULT '' NOT NULL,
 	nachname varchar(255) DEFAULT '' NOT NULL,
 	typo3_f_e_user int(11) unsigned DEFAULT '0',
+	note int(11) unsigned DEFAULT '0' NOT NULL,
 
 	tstamp int(11) unsigned DEFAULT '0' NOT NULL,
 	crdate int(11) unsigned DEFAULT '0' NOT NULL,
@@ -172,7 +176,7 @@ CREATE TABLE tx_rere_domain_model_pruefling (
 );
 
 #
-# Table structure for table 'tx_rere_domain_model_interval'
+# Table structure for table 'tx_rere_domain_model_intervall'
 #
 CREATE TABLE tx_rere_domain_model_intervall (
 
@@ -211,13 +215,21 @@ CREATE TABLE tx_rere_domain_model_intervall (
 
 );
 
-
 #
 # Table structure for table 'tx_rere_domain_model_fach'
 #
 CREATE TABLE tx_rere_domain_model_fach (
 
 	modul  int(11) unsigned DEFAULT '0' NOT NULL,
+
+);
+
+#
+# Table structure for table 'tx_rere_domain_model_note'
+#
+CREATE TABLE tx_rere_domain_model_note (
+
+	fach  int(11) unsigned DEFAULT '0' NOT NULL,
 
 );
 
@@ -235,10 +247,10 @@ CREATE TABLE tx_rere_fach_pruefling_mm (
 );
 
 #
-# Table structure for table 'tx_rere_domain_model_fach'
+# Table structure for table 'tx_rere_domain_model_note'
 #
-CREATE TABLE tx_rere_domain_model_fach (
+CREATE TABLE tx_rere_domain_model_note (
 
-	note  int(11) unsigned DEFAULT '0' NOT NULL,
+	pruefling  int(11) unsigned DEFAULT '0' NOT NULL,
 
 );

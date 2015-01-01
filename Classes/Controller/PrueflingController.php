@@ -40,16 +40,9 @@ class PrueflingController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionContro
     const MODUL = 'modul';
     const FACH = 'fach';
 
-    private $passfunctions;
-    private $userfunctions;
-    private $mailfunctions;
-
-    public function __construct() {
-        // Instanzen der Helper Functions
-        $this->passfunctions = new \ReRe\Rere\Services\NestedDirectory\PasswordFunctions();
-        $this->userfunctions = new \ReRe\Rere\Services\NestedDirectory\UserFunctions();
-        $this->mailfunctions = new \ReRe\Rere\Services\NestedDirectory\ReReMailer();
-    }
+    private $passfunctions = NULL;
+    private $userfunctions = NULL;
+    private $mailfunctions = NULL;
 
     /**
      * prueflingRepository
@@ -98,6 +91,13 @@ class PrueflingController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionContro
      * @inject
      */
     protected $noteRepository = NULL;
+
+    public function __construct() {
+        // Instanzen der Helper Functions
+        $this->passfunctions = new \ReRe\Rere\Services\NestedDirectory\PasswordFunctions();
+        $this->userfunctions = new \ReRe\Rere\Services\NestedDirectory\UserFunctions();
+        $this->mailfunctions = new \ReRe\Rere\Services\NestedDirectory\ReReMailer();
+    }
 
     /**
      * action list
@@ -235,7 +235,6 @@ class PrueflingController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionContro
             $matrikelnr = $this->request->getArgument('matrikelnr');
             $pruefling = $this->prueflingRepository->findOneByMatrikelnr($matrikelnr);
         }
-
         if ($pruefling == NULL) {
             $this->addFlashMessage('Wählen Sie einen existierenden Prüfling (Grüne Lupe)', '', \TYPO3\CMS\Core\Messaging\AbstractMessage::ERROR);
         } else {
@@ -244,15 +243,16 @@ class PrueflingController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionContro
                 // Bezieung setzen
                 $fach->removeMatrikelnr($pruefling);
             } else {
-
                 $note = $this->objectManager->create('\\ReRe\\Rere\\Domain\\Model\\Note');
-
+                $note->setWert(0);
+                $this->noteRepository->add($note);
                 // Bezieung setzen
                 $fach->addMatrikelnr($pruefling);
+                $fach->addNote($note);
+                $pruefling->addNote($note);
             }
             $this->fachRepository->add($fach);
         }
-
         // Weiterleitung auf die selbe Seite.
         $this->redirect('list', 'Pruefling', Null, array(self::FACH => $fach, self::MODUL => $modul));
     }
