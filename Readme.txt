@@ -38,7 +38,7 @@ System minimal requirements
 
 Intel Pentium 4 2,4 GHz
 RAM 256 Mb
-100 MB freier Speicherplatz
+1 GB freier Speicherplatz
 Video RAM 32 Mb
 Internet
 -------------------------------------------------------------------------------
