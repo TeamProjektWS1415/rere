@@ -42,13 +42,21 @@ RAM 256 Mb
 Video RAM 32 Mb
 Internet
 -------------------------------------------------------------------------------
-Installationsanleitung
+Typo3 system requirements & Installationsanleitung
 
--noch zu bearbeiten-
+Um Typo3 benutzen zu können, benötigen Sie folgende Komponenten:
+Typo3 (http://typo3.org/download/)
+Webserver (Apache ist empfohlen:  http://httpd.apache.org/)
+PHP (http://php.net/downloads.php)
+MySQL (http://dev.mysql.com/downloads/mysql/)
+
+Für die Typo3 Installation, gehen Sie in den Link unten 
+http://wiki.typo3.org/TYPO3_Installation_Basics
+
+
 -------------------------------------------------------------------------------
 Rechtlicher Hinweis
 
-Nutzung auf eigene Gefahr huehuehue :)
+Extensions sind Modifikationen des originalen Source Code und deshalb steht noch unter GNU General Public License version 2. Dies bedeutet dass Sie erlaubt sind, die Extensions zu verkaufen solange Sie die Lizenzbedingungen nicht ändern. Ihre Kunden sind ebenfalls erlaubt, alles mit den Extensions zu machen (Hochladen zu der TER ist inklusiv), solange Ihre Kunden die Lizenzbedingungen nicht verletzen.
 
--hier kommt noch was-
--hier muss noch bearbeitet werden-
+Bitte immer daran denken, dass TYPO3 eine GPL Software ist und in der gleichen Zeit Sie TYPO3 erweitern, Ihre Extensions sind legal durch GPL geschützt. Dies zwingt Sie nicht Ihre Extensions zu teilen, aber sie muss Sie inspirieren dass Sie so tun und rechtmäßig sind Sie nicht in der Lage, Leute zu verhindern, die Ihre Extensions Code besitzen, sie zu benutzen und weiter zu entwickeln. Das TYPO3 Extension API ist entwickelt um Ihre Arbeit leichter zu teilen sowie um die Arbeit anderer Leute einfacher zu nutzen. Bitte sich daran erinnern dass TYPO3 eine Open Source Software ist und wir verlassen uns auf einander in der Gemeinde, sie weiter zu entwickeln. (übersetzt von http://typo3.org/typo3-cms/overview/licenses/)
