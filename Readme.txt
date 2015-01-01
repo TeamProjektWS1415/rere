@@ -90,4 +90,4 @@ Sie sollten ein Exemplar der GNU General Public License zusammen mit diesem
 Programm erhalten haben. Falls nicht, schreiben Sie an die Free 
 Software Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110, USA.
 
-
+GNU General Public License version 2: http://www.gnu.de/documents/gpl-2.0.de.html
