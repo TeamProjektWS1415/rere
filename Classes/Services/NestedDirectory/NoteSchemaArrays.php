@@ -17,7 +17,7 @@ class NoteSchemaArrays {
      * Array für XYZ Notensystem.
      * @var type array
      */
-    protected $marks = array(
+    protected $hochschulmarks = array(
         '0' => self::BITTE,
         '1.0' => '1.0',
         '1.3' => '1.3',
@@ -131,32 +131,18 @@ class NoteSchemaArrays {
      *
      * @return array
      */
-    public function getMarks() {
-        return $this->marks;
-    }
+    public function getMarkArray($schema) {
+        if ($schema == "hochschulsystem") {
+            $array = $this->hochschulmarks;
+        } elseif ($schema == "15pktsystem") {
+            $array = $this->fifteenMarks;
+        } elseif ($schema == "schulsystem") {
+            $array = $this->schoolMarks;
+        } else {
+            $array = $this->unbenotetMarks;
+        }
 
-    /**
-     * Schools Marks array.
-     * @return array
-     */
-    public function getSchoolMarks() {
-        return $this->schoolMarks;
-    }
-
-    /**
-     * Array für unbenotete.
-     * @return array
-     */
-    public function getUnbenotetMarks() {
-        return $this->unbenotetMarks;
-    }
-
-    /**
-     * Gibt das 15 Punkte System zurück.
-     * @return type array
-     */
-    public function getFifteenMarks() {
-        return $this->fifteenMarks;
+        return $array;
     }
 
 }

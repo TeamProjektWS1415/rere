@@ -122,11 +122,7 @@ class PrueflingController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionContro
         $prueflingsarrayJson = json_encode($prueflingsarray);
 
         $this->view->assignMultiple(array(
-            'prueflings' => $prueflingsarrayJson,
-            'feusergroups' => $feUserGroups,
-            self::FACH => $fach,
-            self::MODUL => $modul,
-            'semester' => $modul));
+            'prueflings' => $prueflingsarrayJson, 'feusergroups' => $feUserGroups, self::FACH => $fach, self::MODUL => $modul, 'semester' => $modul));
     }
 
     /**

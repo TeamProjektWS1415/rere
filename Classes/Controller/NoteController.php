@@ -106,15 +106,9 @@ class NoteController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController 
         // Ausgabe aller eingetragener noten
         $notes = $this->noteRepository->findAll();
 
-        // Übergibt die Notenlisten
-        $this->view->assign('options', $this->notesList->getMarks());
-        $this->view->assign('notes', $notes);
-        $this->view->assign('chartarray', $this->helper->genArray($notes));
-        $this->view->assign('avg', $this->helper->calculateAverage($notes));
-        $this->view->assign('eingetragen', $this->helper->checkIfWertisSet($notes));
-        // Ausgabe des Fachnamens und des Modulnamens
-        $this->view->assign(self::FACH, $fach);
-        $this->view->assign(self::MODUL, $modul);
+        $options = $this->noteList->getMarkArray($fach->getNotenschema());
+
+        $this->view->assignMultiple(array(self::FACH => $fach, self::MODUL => $modul, 'options' => $options, 'notes' => $notes, 'eingetragen' => $this->helper->checkIfWertisSet($notes), 'chartarray' => $this->helper->genArray($notes), 'avg' => $this->helper->calculateAverage($notes)));
     }
 
     /**
