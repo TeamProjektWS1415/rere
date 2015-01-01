@@ -1,4 +1,5 @@
 <?php
+
 namespace ReRe\Rere\Controller;
 
 /* * *************************************************************
@@ -31,83 +32,82 @@ namespace ReRe\Rere\Controller;
  */
 class IntervallController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController {
 
-	/**
-	 * intervallRepository
-	 * 
-	 * @var \ReRe\Rere\Domain\Repository\IntervallRepository
-	 * @inject
-	 */
-	protected $intervallRepository = NULL;
+    /**
+     * intervallRepository
+     *
+     * @var \ReRe\Rere\Domain\Repository\IntervallRepository
+     * @inject
+     */
+    protected $intervallRepository = NULL;
 
-	/**
-	 * action edit
-	 * 
-	 * @param \ReRe\Rere\Domain\Model\Intervall $intervall
-	 * @ignorevalidation $intervall
-	 * @return void
-	 */
-	public function editAction(\ReRe\Rere\Domain\Model\Intervall $intervall) {
-		$this->view->assign('intervall', $intervall);
-	}
+    /**
+     * action edit
+     *
+     * @param \ReRe\Rere\Domain\Model\Intervall $intervall
+     * @ignorevalidation $intervall
+     * @return void
+     */
+    public function editAction(\ReRe\Rere\Domain\Model\Intervall $intervall) {
+        $this->view->assign('intervall', $intervall);
+    }
 
-	/**
-	 * action update
-	 * 
-	 * @return void
-	 */
-	public function updateAction() {
-		$this->addFlashMessage('The object was updated. Please be aware that this action is publicly accessible unless you implement an access check. See <a href="http://wiki.typo3.org/T3Doc/Extension_Builder/Using_the_Extension_Builder#1._Model_the_domain" target="_blank">Wiki</a>', '', \TYPO3\CMS\Core\Messaging\AbstractMessage::ERROR);
-		$intervalLogic = new \ReRe\Rere\Services\NestedDirectory\IntervallLogic();
-		$intervall = $this->intervallRepository->findByUid(1);
-		// nächstes Intervall
-		if ($this->request->hasArgument('nextIntervall')) {
-			if ($intervall->getType() == 'studienhalbjahr') {
-				$aktuell = $intervalLogic->nextStudiIntervall($intervall->getAktuell());
-			} else {
-				$aktuell = $intervalLogic->nextSchulIntervall($intervall->getAktuell());
-			}
-		}
-		// Vorheriges
-		if ($this->request->hasArgument('prevIntervall')) {
-			if ($intervall->getType() == 'studienhalbjahr') {
-				$aktuell = $intervalLogic->prevStudiIntervall($intervall->getAktuell());
-			} else {
-				$aktuell = $intervalLogic->prevSchulIntervall($intervall->getAktuell());
-			}
-		}
-		// Typ setzen
-		if ($this->request->hasArgument('type')) {
-			$type = $this->request->getArgument('type');
-			$aktuell = $intervalLogic->genAktuellesIntervall($type);
-			$intervall->setType($type);
-		}
-		$intervall->setAktuell($aktuell);
-		$this->intervallRepository->update($intervall);
-		$this->redirect('list', 'Modul');
-	}
+    /**
+     * action update
+     *
+     * @return void
+     */
+    public function updateAction() {
+        $this->addFlashMessage('The object was updated. Please be aware that this action is publicly accessible unless you implement an access check. See <a href="http://wiki.typo3.org/T3Doc/Extension_Builder/Using_the_Extension_Builder#1._Model_the_domain" target="_blank">Wiki</a>', '', \TYPO3\CMS\Core\Messaging\AbstractMessage::ERROR);
+        $intervalLogic = new \ReRe\Rere\Services\NestedDirectory\IntervallLogic();
+        $intervall = $this->intervallRepository->findByUid(1);
+        // nächstes Intervall
+        if ($this->request->hasArgument('nextIntervall')) {
+            if ($intervall->getType() == 'studienhalbjahr') {
+                $aktuell = $intervalLogic->nextStudiIntervall($intervall->getAktuell());
+            } else {
+                $aktuell = $intervalLogic->nextSchulIntervall($intervall->getAktuell());
+            }
+        }
+        // Vorheriges
+        if ($this->request->hasArgument('prevIntervall')) {
+            if ($intervall->getType() == 'studienhalbjahr') {
+                $aktuell = $intervalLogic->prevStudiIntervall($intervall->getAktuell());
+            } else {
+                $aktuell = $intervalLogic->prevSchulIntervall($intervall->getAktuell());
+            }
+        }
+        // Typ setzen
+        if ($this->request->hasArgument('type')) {
+            $type = $this->request->getArgument('type');
+            $aktuell = $intervalLogic->genAktuellesIntervall($type);
+            $intervall->setType($type);
+        }
+        $intervall->setAktuell($aktuell);
+        $this->intervallRepository->update($intervall);
+        $this->redirect('list', 'Modul');
+    }
 
-	/**
-	 * action new
-	 * 
-	 * @param \ReRe\Rere\Domain\Model\Intervall $newIntervall
-	 * @ignorevalidation $newIntervall
-	 * @return void
-	 */
-	public function newAction(\ReRe\Rere\Domain\Model\Intervall $newIntervall = NULL) {
-		var_dump($this->request->hasArgument('nextIntervall'));
-		$this->view->assign('newIntervall', $newIntervall);
-	}
+    /**
+     * action new
+     *
+     * @param \ReRe\Rere\Domain\Model\Intervall $newIntervall
+     * @ignorevalidation $newIntervall
+     * @return void
+     */
+    public function newAction(\ReRe\Rere\Domain\Model\Intervall $newIntervall = NULL) {
+        $this->view->assign('newIntervall', $newIntervall);
+    }
 
-	/**
-	 * action create
-	 * 
-	 * @param \ReRe\Rere\Domain\Model\Intervall $newIntervall
-	 * @return void
-	 */
-	public function createAction(\ReRe\Rere\Domain\Model\Intervall $newIntervall) {
-		$this->addFlashMessage('The object was created. Please be aware that this action is publicly accessible unless you implement an access check. See <a href="http://wiki.typo3.org/T3Doc/Extension_Builder/Using_the_Extension_Builder#1._Model_the_domain" target="_blank">Wiki</a>', '', \TYPO3\CMS\Core\Messaging\AbstractMessage::ERROR);
-		$this->intervallRepository->add($newIntervall);
-		$this->redirect('list');
-	}
+    /**
+     * action create
+     *
+     * @param \ReRe\Rere\Domain\Model\Intervall $newIntervall
+     * @return void
+     */
+    public function createAction(\ReRe\Rere\Domain\Model\Intervall $newIntervall) {
+        $this->addFlashMessage('The object was created. Please be aware that this action is publicly accessible unless you implement an access check. See <a href="http://wiki.typo3.org/T3Doc/Extension_Builder/Using_the_Extension_Builder#1._Model_the_domain" target="_blank">Wiki</a>', '', \TYPO3\CMS\Core\Messaging\AbstractMessage::ERROR);
+        $this->intervallRepository->add($newIntervall);
+        $this->redirect('list');
+    }
 
 }

@@ -88,9 +88,10 @@ class ModulController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
             }
         }
         // Ausgabe
-        $this->view->assign('aktuellintervall', $akteullesintervall);
-        $this->view->assign('intervallType', $intervallType);
-        $this->view->assign('moduls', $filteredmoduls);
+        $this->view->assignMultiple(array(
+            'aktuellintervall' => $akteullesintervall,
+            'intervallType' => $intervallType,
+            'moduls' => $filteredmoduls));
         return $this->view->render();
     }
 

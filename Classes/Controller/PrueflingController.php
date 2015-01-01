@@ -120,12 +120,13 @@ class PrueflingController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionContro
             array_push($prueflingsarray, $pruefling->getMatrikelnr(), $pruefling->getUid());
         }
         $prueflingsarrayJson = json_encode($prueflingsarray);
-        $this->view->assign('prueflings', $prueflingsarrayJson);
-        $this->view->assign('feusergroups', $feUserGroups);
-        // Ausgabe des Fachnamens und des Modulnamens
-        $this->view->assign(self::FACH, $fach);
-        $this->view->assign(self::MODUL, $modul);
-        $this->view->assign('semester', $modul);
+
+        $this->view->assignMultiple(array(
+            'prueflings' => $prueflingsarrayJson,
+            'feusergroups' => $feUserGroups,
+            self::FACH => $fach,
+            self::MODUL => $modul,
+            'semester' => $modul));
     }
 
     /**

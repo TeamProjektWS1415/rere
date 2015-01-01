@@ -100,11 +100,8 @@ class FachController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController 
         // Holt das Modul-Objekt aus dem Repository
         $modul = $this->modulRepository->findByUid($modulUID);
         // Ausgabe in der View
-        $this->view->assign('newFach', $newFach);
-        $this->view->assign('modulname', $modul->getModulname());
-        $this->view->assign('modulnummer', $modul->getModulnr());
-        $this->view->assign('gueltigkeitszeitraum', $modul->getGueltigkeitszeitraum());
-        $this->view->assign('moduluid', $modul->getUid());
+        $this->view->assignMultiple(array(
+            'newFach' => $newFach, 'moduluid' => $modul->getUid(), 'modulname' => $modul->getModulname(), 'modulnummer' => $modul->getModulnr(), 'gueltigkeitszeitraum' => $modul->getGueltigkeitszeitraum()));
     }
 
     /**
