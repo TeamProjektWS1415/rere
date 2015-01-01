@@ -203,7 +203,7 @@ class PrueflingController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionContro
     }
 
     /**
-     * Weißt einen Prüfling einem Fach zu.
+     * Weißt einen Prüfling einem Fach zu. Oder löst die Zuweisung wieder.
      */
     public function setPrueflingAction() {
         // Holt FachObjekt
@@ -221,8 +221,15 @@ class PrueflingController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionContro
             $matrikelnr = $this->request->getArgument('matrikelnr');
             $pruefling = $this->prueflingRepository->findOneByMatrikelnr($matrikelnr);
         }
-        // Bezieung setzen
-        $fach->addMatrikelnr($pruefling);
+
+        // Prüfling einem Fach zuweisen oder entfernen
+        if ($this->request->hasArgument('remove')) {
+            // Bezieung setzen
+            $fach->removeMatrikelnr($pruefling);
+        } else {
+            // Bezieung setzen
+            $fach->addMatrikelnr($pruefling);
+        }
         $this->fachRepository->add($fach);
 
         // Weiterleitung auf die selbe Seite.
