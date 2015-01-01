@@ -71,7 +71,7 @@ class NotenVerwaltungHelper {
     public function checkIfWertisSet($notenliste) {
         $count = 0;
         foreach ($notenliste as $result) {
-            if ($result->getWert() != "") {
+            if ($result->getWert() != 0) {
                 $count++;
             }
         }

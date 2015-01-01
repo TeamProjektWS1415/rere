@@ -106,9 +106,16 @@ class NoteController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController 
         // Ausgabe aller eingetragener noten
         $notes = $this->noteRepository->findAll();
 
+        $correctnotes = array();
+        foreach ($notes as $note) {
+            if ($note->getFach() == $fach->getUid()) {
+                array_push($correctnotes, $note);
+            }
+        }
+
         $options = $this->noteList->getMarkArray($fach->getNotenschema());
 
-        $this->view->assignMultiple(array(self::FACH => $fach, self::MODUL => $modul, 'options' => $options, 'notes' => $notes, 'eingetragen' => $this->helper->checkIfWertisSet($notes), 'chartarray' => $this->helper->genArray($notes), 'avg' => $this->helper->calculateAverage($notes)));
+        $this->view->assignMultiple(array(self::FACH => $fach, self::MODUL => $modul, 'options' => $options, 'notes' => $correctnotes, 'eingetragen' => $this->helper->checkIfWertisSet($correctnotes), 'chartarray' => $this->helper->genArray($correctnotes), 'avg' => $this->helper->calculateAverage($correctnotes)));
     }
 
     /**

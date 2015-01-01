@@ -62,13 +62,13 @@
                         </tr>
                         </thead>
                         <tbody>
-                        <f:for each="{fach.matrikelnr}" as="pruefling">
+                        <f:for each="{notes}" as="note">
                             <tr>
-                            <f:form action="update" id="editnote{pruefling.note.uid}" id="editnote{pruefling.note.uid}" >
+                            <f:form action="update" id="editnote{note.uid}" id="editnote{note.uid}" >
                                 <td><f:form.hidden name="noteuid" class="noteuid" value="{note.uid}" /><span class="value">{pruefling.matrikelnr}</span><input type="text" class="form-control hidden" value="{pruefling.matrikelnr}"/></td>
-                                <td><span class="value">{pruefling.vorname}</span><input type="text" class="form-control hidden" value="Max"/></td>
-                                <td><span class="value">{pruefling.nachname}</span><input type="text" class="form-control hidden" value="Mustermann"/></td>
-                                <td><f:form.select name="wert" options="{options}" value="{pruefling.note.wert}" class="form-control gettooltip sendNote" title="Bitte eine Note auswählen"/></td>
+                                <td><span class="value">{note.pruefling}</span><input type="text" class="form-control hidden" /></td>
+                                <td><span class="value">{pruefling.nachname}</span><input type="text" class="form-control hidden" /></td>
+                                <td><f:form.select name="wert" options="{options}" value="{note.wert}" class="form-control gettooltip sendNote" title="Bitte eine Note auswählen"/></td>
                                 <td>
                                 <f:form.textfield type="hidden" name="fach" id="fach" value="{fach.uid}" />
                                 <f:form.textfield  type="hidden" name="modul" id="modul" value="{modul.uid}" />
