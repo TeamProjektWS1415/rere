@@ -34,6 +34,32 @@ $(document).ready(function () {
         $(this).find("input").removeClass("hidden");
         $(this).find(".value").addClass("hidden");
     });
+
+    // Blendet alle wieder ein
+    $("#alle").click(function () {
+        $(".notenwert").each(function () {
+            $(this).parent("td").parent("tr").fadeIn();
+        });
+    });
+
+    // Blendet nur die bereits eingetragenen ein
+    $("#eingetragene").click(function () {
+        $(".notenwert").each(function () {
+            if ($(this).val() === '0') {
+                $(this).parent("td").parent("tr").fadeOut();
+            }
+        });
+    });
+
+    // Zeigt nur die die noch einzutragen sind
+    $("#nichteingetragene").click(function () {
+        $(".notenwert").each(function () {
+            if ($(this).val() !== '0') {
+                $(this).parent("td").parent("tr").fadeOut();
+            }
+        });
+    });
+
 });
 
 /**

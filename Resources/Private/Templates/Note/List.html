@@ -24,9 +24,9 @@
                     <div class="container-fluid">
                         <div class="collapse navbar-collapse" id="navi">
                             <ul class="nav navbar-nav">
-                                <li class="active" data-toggle="tooltip" data-placement="bottom" title="Zeigt alle Noten an"><a href="#" >alle anzeigen</a></li>
-                                <li><a href="#" data-toggle="tooltip" data-placement="bottom" title="Zeigt nur eingetragene Noten an">eingetragene anzeigen</a></li>
-                                <li><a href="#" data-toggle="tooltip" data-placement="bottom" title="Zeigt noch zu erledigende an">nicht eigetragene anzeigen</a></li>
+                                <li class="active" id="alle" data-toggle="tooltip" data-placement="bottom" title="Zeigt alle Noten an"><a href="#" >alle anzeigen</a></li>
+                                <li><a href="#" id="eingetragene" data-toggle="tooltip" data-placement="bottom" title="Zeigt nur eingetragene Noten an">eingetragene anzeigen</a></li>
+                                <li><a href="#" id='nichteingetragene' data-toggle="tooltip" data-placement="bottom" title="Zeigt noch zu erledigende an">nicht eigetragene anzeigen</a></li>
                             </ul>
                             <ul class="nav navbar-nav">
                                 <li>
@@ -68,7 +68,7 @@
                                 <td><f:form.hidden name="noteuid" class="noteuid" value="{note.uid}" /><span class="value">{pruefling.matrikelnr}</span><input type="text" class="form-control hidden" value="{pruefling.matrikelnr}"/></td>
                                 <td><span class="value">{note.pruefling}</span><input type="text" class="form-control hidden" /></td>
                                 <td><span class="value">{pruefling.nachname}</span><input type="text" class="form-control hidden" /></td>
-                                <td><f:form.select name="wert" options="{options}" value="{note.wert}" class="form-control gettooltip sendNote" title="Bitte eine Note auswählen"/></td>
+                                <td><f:form.select name="wert" options="{options}" value="{note.wert}" class="form-control gettooltip sendNote notenwert" title="Bitte eine Note auswählen"/></td>
                                 <td>
                                 <f:form.textfield type="hidden" name="fach" id="fach" value="{fach.uid}" />
                                 <f:form.textfield  type="hidden" name="modul" id="modul" value="{modul.uid}" />
