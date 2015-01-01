@@ -24,9 +24,9 @@
                     <div class="container-fluid">
                         <div class="collapse navbar-collapse" id="navi">
                             <ul class="nav navbar-nav">
-                                <li class="active" data-toggle="tooltip" data-placement="bottom" title="Zeigt alle Noten an"><a href="#" >Alle anzeigen</a></li>
-                                <li><a href="#" data-toggle="tooltip" data-placement="bottom" title="Zeigt nur eingetragene Noten an">Nur eingetragene Prüfungen</a></li>
-                                <li><a href="#" data-toggle="tooltip" data-placement="bottom" title="Zeigt noch zu erledigende an">Nur ohne Prüfungen</a></li>
+                                <li class="active" data-toggle="tooltip" data-placement="bottom" title="Zeigt alle Noten an"><a href="#" >alle anzeigen</a></li>
+                                <li><a href="#" data-toggle="tooltip" data-placement="bottom" title="Zeigt nur eingetragene Noten an">eingetragene anzeigen</a></li>
+                                <li><a href="#" data-toggle="tooltip" data-placement="bottom" title="Zeigt noch zu erledigende an">nicht eigetragene anzeigen</a></li>
                             </ul>
                             <ul class="nav navbar-nav">
                                 <li>
@@ -62,12 +62,12 @@
                         </tr>
                         </thead>
                         <tbody>
-                        <f:for each="{notes}" as="note">
+                        <f:for each="{fach.matrikelnr}" as="pruefling">
                             <tr>
                             <f:form action="update" id="editnote{note.uid}" id="editnote{note.uid}" >
-                                <td><f:form.hidden name="noteuid" class="noteuid" value="{note.uid}" /><span class="value">123456</span><input type="text" class="form-control hidden" value="123456"/></td>
-                                <td><span class="value">Max</span><input type="text" class="form-control hidden" value="Max"/></td>
-                                <td><span class="value">Mustermann</span><input type="text" class="form-control hidden" value="Mustermann"/></td>
+                                <td><f:form.hidden name="noteuid" class="noteuid" value="{note.uid}" /><span class="value">{pruefling.matrikelnr}</span><input type="text" class="form-control hidden" value="{pruefling.matrikelnr}"/></td>
+                                <td><span class="value">{pruefling.vorname}</span><input type="text" class="form-control hidden" value="Max"/></td>
+                                <td><span class="value">{pruefling.nachname}</span><input type="text" class="form-control hidden" value="Mustermann"/></td>
                                 <td><f:form.select name="wert" options="{options}" value="{note.wert}" class="form-control gettooltip sendNote" title="Bitte eine Note auswählen"/></td>
                                 <td>
                                 <f:form.textfield type="hidden" name="fach" id="fach" value="{fach.uid}" />
@@ -91,6 +91,7 @@
                         </script>
 
                         <tr>
+                            <!--
                         <f:form action="create" name="newNote" object="{newNote}">
                             <td><input type="text" class="form-control" data-toggle="tooltip" data-placement="bottom" title="Nach MatrikelNr suchen" placeholder="Matrikel Nr."></td>
                             <td><input type="text" class="form-control" data-toggle="tooltip" data-placement="bottom" title="Vorname eingeben" placeholder="Vorname"></td>
@@ -102,9 +103,9 @@
                             <f:form.textarea property="kommentar" class="form-control gettooltip" rows="1" placeholder="Kommentar" title="Kommentar zur Note" /></td>
                             <td><button type='submit'><span class='glyphicon glyphicon-plus' aria-hidden='true' data-toggle='tooltip' data-placement='bottom' title='Eintrag speichern'></span></button></td>
                         </f:form>
-                        </tr>
+                        </tr>-->
 
-                        </tbody>
+                            </tbody>
                     </table>
                 </div>
             </div>

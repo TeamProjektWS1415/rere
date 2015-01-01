@@ -222,15 +222,19 @@ class PrueflingController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionContro
             $pruefling = $this->prueflingRepository->findOneByMatrikelnr($matrikelnr);
         }
 
-        // Prüfling einem Fach zuweisen oder entfernen
-        if ($this->request->hasArgument('remove')) {
-            // Bezieung setzen
-            $fach->removeMatrikelnr($pruefling);
+        if ($pruefling == NULL) {
+            $this->addFlashMessage('Wählen Sie einen existierenden Prüfling (Grüne Lupe)', '', \TYPO3\CMS\Core\Messaging\AbstractMessage::ERROR);
         } else {
-            // Bezieung setzen
-            $fach->addMatrikelnr($pruefling);
+            // Prüfling einem Fach zuweisen oder entfernen
+            if ($this->request->hasArgument('remove')) {
+                // Bezieung setzen
+                $fach->removeMatrikelnr($pruefling);
+            } else {
+                // Bezieung setzen
+                $fach->addMatrikelnr($pruefling);
+            }
+            $this->fachRepository->add($fach);
         }
-        $this->fachRepository->add($fach);
 
         // Weiterleitung auf die selbe Seite.
         $this->redirect('list', 'Pruefling', Null, array(self::FACH => $fach, self::MODUL => $modul));

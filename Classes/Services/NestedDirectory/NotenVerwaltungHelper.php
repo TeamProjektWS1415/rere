@@ -53,7 +53,14 @@ class NotenVerwaltungHelper {
             $sum += $result->getWert();
             $count++;
         }
-        return $sum / $count;
+
+        if ($sum != 0) {
+            $erg = $sum / $count;
+        } else {
+            $erg = 0;
+        }
+
+        return $erg;
     }
 
     /**
