@@ -101,6 +101,7 @@ class NoteController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController 
     public function listAction() {
         // Holt FachObjekt
         $fach = $this->fachRepository->findByUid($this->request->getArgument(self::FACH));
+        $angemeldete;
         // Holt Modul Objekt
         $modul = $this->modulRepository->findByUid($this->request->getArgument(self::MODUL));
         // Ausgabe aller eingetragener noten
@@ -110,12 +111,13 @@ class NoteController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController 
         foreach ($notes as $note) {
             if ($note->getFach() == $fach->getUid()) {
                 array_push($correctnotes, $note);
+                $angemeldete++;
             }
         }
 
         $options = $this->noteList->getMarkArray($fach->getNotenschema());
 
-        $this->view->assignMultiple(array(self::FACH => $fach, self::MODUL => $modul, 'options' => $options, 'notes' => $correctnotes, 'eingetragen' => $this->helper->checkIfWertisSet($correctnotes), 'chartarray' => $this->helper->genArray($correctnotes), 'avg' => $this->helper->calculateAverage($correctnotes)));
+        $this->view->assignMultiple(array(self::FACH => $fach, self::MODUL => $modul, 'options' => $options, 'notes' => $correctnotes, 'eingetragen' => $this->helper->checkIfWertisSet($correctnotes), 'chartarray' => $this->helper->genArray($correctnotes), 'avg' => $this->helper->calculateAverage($correctnotes), 'angemeldete' => $angemeldete));
     }
 
     /**
