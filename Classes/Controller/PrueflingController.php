@@ -147,13 +147,9 @@ class PrueflingController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionContro
         $name = "";
         $vorname = "";
         $email = "";
-        if ($this->request->hasArgument("name")) {
+        if ($this->request->hasArgument("name") && $this->request->hasArgument("vorname") && $this->request->hasArgument("email")) {
             $name = $this->request->getArgument("name");
-        }
-        if ($this->request->hasArgument("vorname")) {
             $vorname = $this->request->getArgument("vorname");
-        }
-        if ($this->request->hasArgument("email")) {
             $email = $this->request->getArgument("email");
         }
 
@@ -237,21 +233,13 @@ class PrueflingController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionContro
      * Weißt einen Prüfling einem Fach zu. Oder löst die Zuweisung wieder.
      */
     public function setPrueflingAction() {
-        // Holt FachObjekt
-        if ($this->request->hasArgument(self::FACH)) {
-            $fachUID = $this->request->getArgument(self::FACH);
-            $fach = $this->fachRepository->findByUid($fachUID);
+        // Holt FachObjekt / Holt Modul Objekt / Holt den Prüfling
+        if ($this->request->hasArgument(self::FACH) && $this->request->hasArgument(self::MODUL) && $this->request->hasArgument('matrikelnr')) {
+            $fach = $this->fachRepository->findByUid($this->request->getArgument(self::FACH));
+            $modul = $this->modulRepository->findByUid($this->request->getArgument(self::MODUL));
+            $pruefling = $this->prueflingRepository->findOneByMatrikelnr($this->request->getArgument('matrikelnr'));
         }
-        // Holt Modul Objekt
-        if ($this->request->hasArgument(self::MODUL)) {
-            $modulUid = $this->request->getArgument(self::MODUL);
-            $modul = $this->modulRepository->findByUid($modulUid);
-        }
-        // Holt den Prüfling
-        if ($this->request->hasArgument('matrikelnr')) {
-            $matrikelnr = $this->request->getArgument('matrikelnr');
-            $pruefling = $this->prueflingRepository->findOneByMatrikelnr($matrikelnr);
-        }
+
         if ($pruefling == NULL) {
             $this->addFlashMessage('Wählen Sie einen existierenden Prüfling (Grüne Lupe)', '', \TYPO3\CMS\Core\Messaging\AbstractMessage::ERROR);
         } else {
