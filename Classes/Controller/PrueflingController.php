@@ -143,7 +143,21 @@ class PrueflingController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionContro
      * @return void
      */
     public function newAction(\ReRe\Rere\Domain\Model\Pruefling $newPruefling = NULL) {
-        $this->view->assign('newPruefling', $newPruefling);
+        $name = "";
+        $vorname = "";
+        $email = "";
+        if ($this->request->hasArgument("name")) {
+            $name = $this->request->getArgument("name");
+        }
+        if ($this->request->hasArgument("vorname")) {
+            $vorname = $this->request->getArgument("vorname");
+        }
+        if ($this->request->hasArgument("email")) {
+            $email = $this->request->getArgument("email");
+        }
+
+        $this->view->assignMultiple(array(
+            'newPruefling' => $newPruefling, 'name' => $name, 'vorname' => $vorname, 'email' => $email));
     }
 
     /**
@@ -153,28 +167,33 @@ class PrueflingController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionContro
      * @return void
      */
     public function createAction(\ReRe\Rere\Domain\Model\Pruefling $newPruefling) {
-        $this->addFlashMessage('The object was created. Please be aware that this action is publicly accessible unless you implement an access check. See <a href="http://wiki.typo3.org/T3Doc/Extension_Builder/Using_the_Extension_Builder#1._Model_the_domain" target="_blank">Wiki</a>', '', \TYPO3\CMS\Core\Messaging\AbstractMessage::ERROR);
-        $this->prueflingRepository->add($newPruefling);
-        // Instanz eines neuen Users
-        $newUser = new \Typo3\CMS\Extbase\Domain\Model\FrontendUser();
-        // Neuen TYPO3 FE_User anlegen
-        $newUser->setUsername($this->userfunctions->genuserName($newPruefling->getVorname(), $newPruefling->getNachname()));
-        // Passwort generierung -> Random und dann -> Salt
-        $randomPW = $this->passfunctions->genpassword();
-        $saltedPW = $this->passfunctions->hashPassword($randomPW);
-        $newUser->setPassword($saltedPW);
-        $newUser->setName($newPruefling->getNachname());
-        $newUser->setFirstName($newPruefling->getVorname());
-        $newUser->setLastName($newPruefling->getNachname());
-        $newUser->setEmail($this->request->getArgument('email'));
-        $this->FrontendUserRepository->add($newUser);
-        $newPruefling->setTypo3FEUser($newUser);
-        $mailerg = $this->mailfunctions->newUserMail($newUser->getEmail(), $newUser->getUsername(), $newPruefling->getNachname(), $newPruefling->getVorname(), $randomPW);
-        $this->addFlashMessage($mailerg);
-        if ($this->request->getArgument('speichern') == 'speichernundzurueck') {
-            $this->redirect('list', 'Modul');
+        // Prüft ob diese MatrikelNr bereits vorhanden ist, Prüfling wird nur angelegt wenn die Matrikel NR noch nicht verwendet wird!
+        if ($this->prueflingRepository->findBymatrikelnr($newPruefling->getMatrikelnr())->toArray() == Null) {
+            $this->prueflingRepository->add($newPruefling);
+            // Instanz eines neuen Users
+            $newFEUser = new \Typo3\CMS\Extbase\Domain\Model\FrontendUser();
+            // Neuen TYPO3 FE_User anlegen
+            $newFEUser->setUsername($this->userfunctions->genuserName($newPruefling->getVorname(), $newPruefling->getNachname()));
+            // Passwort generierung -> Random und dann -> Salt
+            $randomPW = $this->passfunctions->genpassword();
+            $saltedPW = $this->passfunctions->hashPassword($randomPW);
+            $newFEUser->setPassword($saltedPW);
+            $newFEUser->setName($newPruefling->getNachname());
+            $newFEUser->setFirstName($newPruefling->getVorname());
+            $newFEUser->setLastName($newPruefling->getNachname());
+            $newFEUser->setEmail($this->request->getArgument('email'));
+            $this->FrontendUserRepository->add($newFEUser);
+            $newPruefling->setTypo3FEUser($newFEUser);
+            $mailerg = $this->mailfunctions->newUserMail($newFEUser->getEmail(), $newFEUser->getUsername(), $newPruefling->getNachname(), $newPruefling->getVorname(), $randomPW);
+            $this->addFlashMessage($mailerg);
+            if ($this->request->getArgument('speichern') == 'speichernundzurueck') {
+                $this->redirect('list', 'Modul');
+            } else {
+                $this->redirect('new');
+            }
         } else {
-            $this->redirect('new');
+            $this->addFlashMessage('Diese Matrikel-Nummer wird bereits verwendet. (' . $newPruefling->getMatrikelnr() . ')', '', \TYPO3\CMS\Core\Messaging\AbstractMessage::ERROR);
+            $this->redirect('new', 'Pruefling', Null, array('name' => $newPruefling->getNachname(), 'vorname' => $newPruefling->getVorname(), 'email' => $this->request->getArgument('email')));
         }
     }
 

@@ -33,7 +33,7 @@
                             <f:translate key="tx_rere_domain_model_pruefling.nachname" /> <span class="required">*</span>
                         </label>
                         <div class="col-sm-9">
-                            <f:form.textfield property="nachname" class="form-control gettooltip" id="eingabefeldName" placeholder="Name" title="Name hier eingeben" />
+                            <f:form.textfield property="nachname" class="form-control gettooltip" id="eingabefeldName" placeholder="Name" title="Name hier eingeben" value="{name}"/>
                             <br>
                         </div>
                     </div>
@@ -44,7 +44,7 @@
                             <f:translate key="tx_rere_domain_model_pruefling.vorname" /> <span class="required">*</span>
                         </label>
                         <div class="col-sm-9">
-                            <f:form.textfield property="vorname"  class="form-control gettooltip" id="eingabefeldVorname" placeholder="Vorname" title="Vorname hier eingeben"/>
+                            <f:form.textfield property="vorname"  class="form-control gettooltip" id="eingabefeldVorname" placeholder="Vorname" title="Vorname hier eingeben" value="{vorname}"/>
                             <br>
                         </div>
                     </div>
@@ -64,7 +64,7 @@
                     <div class="form-group">
                         <label for="eingabefeldE-Mail" class="col-sm-3 control-label">E-Mail *</label>
                         <div class="col-sm-9">
-                            <f:form.textfield name="email" type="email" class="form-control gettooltip" id="eingabefeldE-Mail" placeholder="E-Mail" title="E-Mail hier eingeben"/>
+                            <f:form.textfield name="email" type="email" class="form-control gettooltip" id="eingabefeldE-Mail" placeholder="E-Mail" title="E-Mail hier eingeben" value="{email}"/>
                             <br>
                         </div>
                     </div>
