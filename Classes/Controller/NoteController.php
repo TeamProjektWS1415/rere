@@ -101,7 +101,7 @@ class NoteController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController 
     public function listAction() {
         // Holt FachObjekt
         $fach = $this->fachRepository->findByUid($this->request->getArgument(self::FACH));
-        $angemeldete;
+        $angemeldete = 0;
         // Holt Modul Objekt
         $modul = $this->modulRepository->findByUid($this->request->getArgument(self::MODUL));
         // Ausgabe aller eingetragener noten
@@ -174,10 +174,8 @@ class NoteController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController 
      */
     public function updateAction() {
         $this->addFlashMessage('The object was updated. Please be aware that this action is publicly accessible unless you implement an access check. See <a href="http://wiki.typo3.org/T3Doc/Extension_Builder/Using_the_Extension_Builder#1._Model_the_domain" target="_blank">Wiki</a>', '', \TYPO3\CMS\Core\Messaging\AbstractMessage::ERROR);
-        // Holt die NotenUid vom Request
-        $noteuid = $this->request->getArgument('noteuid');
-        // Holt das Noten-Objekt
-        $note = $this->noteRepository->findByUid($noteuid);
+        // Holt das Noten-Objekt über die NotenUid vom Request
+        $note = $this->noteRepository->findByUid($this->request->getArgument('noteuid'));
         // Setzt die neuen Werte für die Note
         $note->setKommentar($this->request->getArgument('kommentar'));
         $note->setWert($this->request->getArgument('wert'));

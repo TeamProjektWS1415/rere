@@ -129,18 +129,13 @@ class ModulController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
         // Erzeugt ein Leeres Fach
         $fach = $this->objectManager->create('\\ReRe\\Rere\\Domain\\Model\\Fach');
         // Fach Werte setzen
-        if ($this->request->hasArgument('fachname')) {
+        if ($this->request->hasArgument('fachname') && $this->request->hasArgument('fachnummer') && $this->request->hasArgument('pruefer') && $this->request->hasArgument('notenschema')) {
             $fach->setFachname($this->request->getArgument('fachname'));
-        }
-        if ($this->request->hasArgument('fachnummer')) {
             $fach->setFachnr($this->request->getArgument('fachnummer'));
-        }
-        if ($this->request->hasArgument('pruefer')) {
             $fach->setPruefer($this->request->getArgument('pruefer'));
-        }
-        if ($this->request->hasArgument('notenschema')) {
             $fach->setNotenschema($this->request->getArgument('notenschema'));
         }
+
         // Fach einem Modul zuordnen
         $fach->setModulnr($newModul->getUid());
         // Fach speichern
