@@ -74,13 +74,24 @@ class ModulController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
      */
     public function listAction() {
         $moduls = $this->modulRepository->findAll();
-        $intervall = $this->intervallRepository->findAll();
+        $intervall = $this->intervallRepository->findByUid(1);
         $filteredmoduls = array();
-        // Aktuelles Intervall holen.
-        foreach ($intervall as $intervalliterate) {
-            $akteullesintervall = $intervalliterate->getAktuell();
-            $intervallType = $intervalliterate->getType();
+
+        // Prüfen ob die Tabelle wirklich einen wert hat! Also ob ein Intervall gesetzt wurde, wenn nicht dann create Action.
+        if ($intervall == Null) {
+            $createdIntervall = $this->objectManager->create('\\ReRe\\Rere\\Domain\\Model\\Intervall');
+            $createdIntervall->setAktuell("WS14/15");
+            $createdIntervall->setType("studienhalbjahr");
+            $this->intervallRepository->add($createdIntervall);
+            $this->redirect('list');
         }
+
+        if ($intervall != Null) {
+            // Aktuelles Intervall holen.
+            $akteullesintervall = $intervall->getAktuell();
+            $intervallType = $intervall->getType();
+        }
+
         // Alle Module des Aktuellen Intervalls holen
         foreach ($moduls as $modul) {
             if ($modul->getGueltigkeitszeitraum() == $akteullesintervall) {
