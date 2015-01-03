@@ -109,6 +109,7 @@ class PrueflingController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionContro
         $fachUID = $this->request->getArgument(self::FACH);
         // Holt FachObjekt
         $fach = $this->fachRepository->findByUid($fachUID);
+        $fachprueflinge = $fach->getMatrikelnr();
         // Liest die ModulUid aus
         $modulUid = $this->request->getArgument(self::MODUL);
         // Holt Modul Objekt
@@ -119,10 +120,15 @@ class PrueflingController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionContro
         foreach ($prueflings as $pruefling) {
             array_push($prueflingsarray, $pruefling->getMatrikelnr(), $pruefling->getUid());
         }
+        $fachprueflingsarray = array();
+        foreach ($fachprueflinge as $fachpruefling) {
+            array_push($fachprueflingsarray, $fachpruefling->getMatrikelnr(), $fachpruefling->getUid());
+        }
         $prueflingsarrayJson = json_encode($prueflingsarray);
+        $fachprueflingsarrayJson = json_encode($fachprueflingsarray);
 
         $this->view->assignMultiple(array(
-            'prueflings' => $prueflingsarrayJson, 'feusergroups' => $feUserGroups, self::FACH => $fach, self::MODUL => $modul, 'semester' => $modul));
+            'prueflings' => $prueflingsarrayJson, 'feusergroups' => $feUserGroups, self::FACH => $fach, self::MODUL => $modul, 'semester' => $modul, 'fachprueflinge' => $fachprueflingsarrayJson));
     }
 
     /**

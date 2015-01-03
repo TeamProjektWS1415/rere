@@ -25,7 +25,7 @@
                 <nav class="navbar navbar-default" role="navigation">
                     <div class="container-fluid">
                         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                            <f:form action="setPruefling" class="navbar-form navbar-left" arguments="{fach:fach.uid,modul:modul.uid}">
+                            <f:form id="setPruefling" onsubmit="return diffInput()" action="setPruefling" class="navbar-form navbar-left" arguments="{fach:fach.uid,modul:modul.uid}">
                                 <div class="form-group">
                                     <div class="input-group">
                                         <div class="input-group-addon"><span class="glyphicon glyphicon-search" id="searchicon"  aria-hidden="true" ></span></div>
@@ -86,6 +86,7 @@
                     <script type="text/javascript">
                         // Holt alle Prüflinge in ein Json array um zu suchen
                         var arrayPrueflinge = {f:format.htmlentitiesDecode(value:prueflings)};
+                                var arrayFachPrueflinge = {f:format.htmlentitiesDecode(value:fachprueflinge)};
                     </script>
                 </div>
             </div>

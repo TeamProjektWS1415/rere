@@ -4,6 +4,7 @@
  */
 
 var arrayPrueflinge;
+var arrayFachPrueflinge;
 
 $(document).ready(function () {
 
@@ -11,10 +12,10 @@ $(document).ready(function () {
     $(".gettooltip").attr("data-toggle", "tooltip");
     $(".gettooltip").attr("data-placement", "bottom");
 
+    // Prüft ob die Matrikelnummer gültig ist.
     $("#suchematrikel").keyup(function () {
         for (x in arrayPrueflinge) {
             if (arrayPrueflinge[x] === $("#suchematrikel").val()) {
-                //alert("Gerunden");
                 $("#searchicon").removeClass("notfound");
                 $("#searchicon").addClass("found");
                 break;
@@ -34,4 +35,17 @@ function delentry(text, link) {
     $(".popuptext").text(text);
     $("#delbuttonmodal").attr("href", link);
     $('#popup').modal();
+}
+
+
+// Prüft ob ein Student bereits zugewiesen wurde, falls ja, wird abgebrochen.
+function diffInput() {
+    for (z in arrayFachPrueflinge) {
+        if (arrayFachPrueflinge[z] === $("#suchematrikel").val()) {
+            alert("Dieser Student wurde dem Fach bereits zugewiesen");
+            return false;
+        }
+    }
+    alert("Prüfling wurde zugewiesen");
+    return true;
 }
