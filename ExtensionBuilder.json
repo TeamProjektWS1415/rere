@@ -430,11 +430,11 @@
                 "actions": {
                     "controllerActionCombinations": ""
                 },
-                "description": "Result Repositry",
+                "description": "Result Repository",
                 "key": "rerebackend",
                 "mainModule": "user",
-                "name": "Result Repositry",
-                "tabLabel": "Result Repositry"
+                "name": "Result Repository",
+                "tabLabel": "Result Repository"
             }
         ],
         "description": "Notenverwaltungs Extension f\u00fcr Typo3",
@@ -450,7 +450,7 @@
             "version": ""
         },
         "extensionKey": "rere",
-        "name": "Result Repositry",
+        "name": "Result Repository",
         "originalExtensionKey": "rere",
         "persons": [
             {
