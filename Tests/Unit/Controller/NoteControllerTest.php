@@ -1,8 +1,6 @@
 <?php
-
 namespace ReRe\Rere\Tests\Unit\Controller;
-
-/* * *************************************************************
+/***************************************************************
  *  Copyright notice
  *
  *  (c) 2015 Felix Hohlwegler <info@felix-hohlwegler.de>, TeamProjektWS14/15
@@ -11,7 +9,7 @@ namespace ReRe\Rere\Tests\Unit\Controller;
  *  			Nejat Balta , TeamProjektWS14/15
  *  			Tobias Brockner , TeamProjektWS14/15
  *  			Nicolas Tedjadharma , TeamProjektWS14/15
- *
+ *  			
  *  All rights reserved
  *
  *  This script is part of the TYPO3 project. The TYPO3 project is
@@ -29,125 +27,126 @@ namespace ReRe\Rere\Tests\Unit\Controller;
  *  GNU General Public License for more details.
  *
  *  This copyright notice MUST APPEAR in all copies of the script!
- * ************************************************************* */
+ ***************************************************************/
 
 /**
  * Test case for class ReRe\Rere\Controller\NoteController.
  *
  * @author Felix Hohlwegler <info@felix-hohlwegler.de>
  * @author Sarah Kieninger <sarah.kieninger@gmail.com>
- * @author Tim Wacker
- * @author Nejat Balta
- * @author Tobias Brockner
- * @author Nicolas Tedjadharma
+ * @author Tim Wacker 
+ * @author Nejat Balta 
+ * @author Tobias Brockner 
+ * @author Nicolas Tedjadharma 
  */
 class NoteControllerTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
 
-    /**
-     * @var \ReRe\Rere\Controller\NoteController
-     */
-    protected $subject = NULL;
+	/**
+	 * @var \ReRe\Rere\Controller\NoteController
+	 */
+	protected $subject = NULL;
 
-    protected function setUp() {
-        $this->subject = $this->getMock('ReRe\\Rere\\Controller\\NoteController', array('redirect', 'forward', 'addFlashMessage'), array(), '', FALSE);
-    }
+	protected function setUp() {
+		$this->subject = $this->getMock('ReRe\\Rere\\Controller\\NoteController', array('redirect', 'forward', 'addFlashMessage'), array(), '', FALSE);
+	}
 
-    protected function tearDown() {
-        unset($this->subject);
-    }
+	protected function tearDown() {
+		unset($this->subject);
+	}
 
-    /**
-     * @test
-     */
-    public function listActionFetchesAllNotesFromRepositoryAndAssignsThemToView() {
-        $allNotes = $this->getMock('TYPO3\\CMS\\Extbase\\Persistence\\ObjectStorage', array(), array(), '', FALSE);
-        $noteRepository = $this->getMock('ReRe\\Rere\\Domain\\Repository\\NoteRepository', array('findAll'), array(), '', FALSE);
-        $noteRepository->expects($this->once())->method('findAll')->will($this->returnValue($allNotes));
-        $this->inject($this->subject, 'noteRepository', $noteRepository);
+	/**
+	 * @test
+	 */
+	public function listActionFetchesAllNotesFromRepositoryAndAssignsThemToView() {
 
-        $view = $this->getMock('TYPO3\\CMS\\Extbase\\Mvc\\View\\ViewInterface');
-        $view->expects($this->once())->method('assign')->with('notes', $allNotes);
-        $this->inject($this->subject, 'view', $view);
+		$allNotes = $this->getMock('TYPO3\\CMS\\Extbase\\Persistence\\ObjectStorage', array(), array(), '', FALSE);
 
-        $this->subject->listAction();
-    }
+		$noteRepository = $this->getMock('ReRe\\Rere\\Domain\\Repository\\NoteRepository', array('findAll'), array(), '', FALSE);
+		$noteRepository->expects($this->once())->method('findAll')->will($this->returnValue($allNotes));
+		$this->inject($this->subject, 'noteRepository', $noteRepository);
 
-    /**
-     * @test
-     */
-    public function showActionAssignsTheGivenNoteToView() {
-        $note = new \ReRe\Rere\Domain\Model\Note();
+		$view = $this->getMock('TYPO3\\CMS\\Extbase\\Mvc\\View\\ViewInterface');
+		$view->expects($this->once())->method('assign')->with('notes', $allNotes);
+		$this->inject($this->subject, 'view', $view);
 
-        $view = $this->getMock('TYPO3\\CMS\\Extbase\\Mvc\\View\\ViewInterface');
-        $this->inject($this->subject, 'view', $view);
-        $view->expects($this->once())->method('assign')->with('note', $note);
+		$this->subject->listAction();
+	}
 
-        $this->subject->showAction($note);
-    }
+	/**
+	 * @test
+	 */
+	public function showActionAssignsTheGivenNoteToView() {
+		$note = new \ReRe\Rere\Domain\Model\Note();
 
-    /**
-     * @test
-     */
-    public function newActionAssignsTheGivenNoteToView() {
-        $note = new \ReRe\Rere\Domain\Model\Note();
+		$view = $this->getMock('TYPO3\\CMS\\Extbase\\Mvc\\View\\ViewInterface');
+		$this->inject($this->subject, 'view', $view);
+		$view->expects($this->once())->method('assign')->with('note', $note);
 
-        $view = $this->getMock('TYPO3\\CMS\\Extbase\\Mvc\\View\\ViewInterface');
-        $view->expects($this->once())->method('assign')->with('newNote', $note);
-        $this->inject($this->subject, 'view', $view);
+		$this->subject->showAction($note);
+	}
 
-        $this->subject->newAction($note);
-    }
+	/**
+	 * @test
+	 */
+	public function newActionAssignsTheGivenNoteToView() {
+		$note = new \ReRe\Rere\Domain\Model\Note();
 
-    /**
-     * @test
-     */
-    public function createActionAddsTheGivenNoteToNoteRepository() {
-        $note = new \ReRe\Rere\Domain\Model\Note();
+		$view = $this->getMock('TYPO3\\CMS\\Extbase\\Mvc\\View\\ViewInterface');
+		$view->expects($this->once())->method('assign')->with('newNote', $note);
+		$this->inject($this->subject, 'view', $view);
 
-        $noteRepository = $this->getMock('ReRe\\Rere\\Domain\\Repository\\NoteRepository', array('add'), array(), '', FALSE);
-        $noteRepository->expects($this->once())->method('add')->with($note);
-        $this->inject($this->subject, 'noteRepository', $noteRepository);
+		$this->subject->newAction($note);
+	}
 
-        $this->subject->createAction($note);
-    }
+	/**
+	 * @test
+	 */
+	public function createActionAddsTheGivenNoteToNoteRepository() {
+		$note = new \ReRe\Rere\Domain\Model\Note();
 
-    /**
-     * @test
-     */
-    public function editActionAssignsTheGivenNoteToView() {
-        $note = new \ReRe\Rere\Domain\Model\Note();
+		$noteRepository = $this->getMock('ReRe\\Rere\\Domain\\Repository\\NoteRepository', array('add'), array(), '', FALSE);
+		$noteRepository->expects($this->once())->method('add')->with($note);
+		$this->inject($this->subject, 'noteRepository', $noteRepository);
 
-        $view = $this->getMock('TYPO3\\CMS\\Extbase\\Mvc\\View\\ViewInterface');
-        $this->inject($this->subject, 'view', $view);
-        $view->expects($this->once())->method('assign')->with('note', $note);
+		$this->subject->createAction($note);
+	}
 
-        $this->subject->editAction($note);
-    }
+	/**
+	 * @test
+	 */
+	public function editActionAssignsTheGivenNoteToView() {
+		$note = new \ReRe\Rere\Domain\Model\Note();
 
-    /**
-     * @test
-     */
-    public function updateActionUpdatesTheGivenNoteInNoteRepository() {
-        $note = new \ReRe\Rere\Domain\Model\Note();
+		$view = $this->getMock('TYPO3\\CMS\\Extbase\\Mvc\\View\\ViewInterface');
+		$this->inject($this->subject, 'view', $view);
+		$view->expects($this->once())->method('assign')->with('note', $note);
 
-        $noteRepository = $this->getMock('ReRe\\Rere\\Domain\\Repository\\NoteRepository', array('update'), array(), '', FALSE);
-        $noteRepository->expects($this->once())->method('update')->with($note);
-        $this->inject($this->subject, 'noteRepository', $noteRepository);
+		$this->subject->editAction($note);
+	}
 
-        $this->subject->updateAction($note);
-    }
+	/**
+	 * @test
+	 */
+	public function updateActionUpdatesTheGivenNoteInNoteRepository() {
+		$note = new \ReRe\Rere\Domain\Model\Note();
 
-    /**
-     * @test
-     */
-    public function deleteActionRemovesTheGivenNoteFromNoteRepository() {
-        $note = new \ReRe\Rere\Domain\Model\Note();
+		$noteRepository = $this->getMock('ReRe\\Rere\\Domain\\Repository\\NoteRepository', array('update'), array(), '', FALSE);
+		$noteRepository->expects($this->once())->method('update')->with($note);
+		$this->inject($this->subject, 'noteRepository', $noteRepository);
 
-        $noteRepository = $this->getMock('ReRe\\Rere\\Domain\\Repository\\NoteRepository', array('remove'), array(), '', FALSE);
-        $noteRepository->expects($this->once())->method('remove')->with($note);
-        $this->inject($this->subject, 'noteRepository', $noteRepository);
+		$this->subject->updateAction($note);
+	}
 
-        $this->subject->deleteAction($note);
-    }
+	/**
+	 * @test
+	 */
+	public function deleteActionRemovesTheGivenNoteFromNoteRepository() {
+		$note = new \ReRe\Rere\Domain\Model\Note();
 
+		$noteRepository = $this->getMock('ReRe\\Rere\\Domain\\Repository\\NoteRepository', array('remove'), array(), '', FALSE);
+		$noteRepository->expects($this->once())->method('remove')->with($note);
+		$this->inject($this->subject, 'noteRepository', $noteRepository);
+
+		$this->subject->deleteAction($note);
+	}
 }

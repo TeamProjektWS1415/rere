@@ -3,8 +3,8 @@
         {
             "config": {
                 "position": [
-                    57,
-                    423
+                    366,
+                    308
                 ]
             },
             "name": "New Model Object",
@@ -84,8 +84,8 @@
         {
             "config": {
                 "position": [
-                    285,
-                    43
+                    331,
+                    33
                 ]
             },
             "name": "New Model Object",
@@ -366,8 +366,8 @@
         {
             "config": {
                 "position": [
-                    38,
-                    152
+                    774,
+                    318
                 ]
             },
             "name": "New Model Object",
@@ -490,7 +490,17 @@
                 "role": "Developer"
             }
         ],
-        "plugins": [],
+        "plugins": [
+            {
+                "actions": {
+                    "controllerActionCombinations": "",
+                    "noncacheableActions": "",
+                    "switchableActions": ""
+                },
+                "key": "rerefrontend",
+                "name": "Notenansicht"
+            }
+        ],
         "vendorName": "ReRe"
     },
     "wires": [
@@ -544,7 +554,7 @@
         }
     ],
     "log": {
-        "last_modified": "2015-01-01 04:02",
+        "last_modified": "2015-01-03 10:28",
         "extension_builder_version": "6.2.0",
         "be_user": " (1)"
     }

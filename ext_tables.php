@@ -4,6 +4,10 @@ if (!defined('TYPO3_MODE')) {
     die('Access denied.');
 }
 
+\TYPO3\CMS\Extbase\Utility\ExtensionUtility::registerPlugin(
+        $_EXTKEY, 'Rerefrontend', 'Notenansicht'
+);
+
 if (TYPO3_MODE === 'BE') {
 
     /**
@@ -14,7 +18,7 @@ if (TYPO3_MODE === 'BE') {
             'rerebackend', // Submodule key
             '', // Position
             array(
-        'Modul' => 'list, show, new, create, edit, update, delete', 'Fach' => 'list, show, new, create, edit, update, delete', 'Note' => 'list, show, new, create, edit, update, delete', 'Pruefling' => 'setPruefling, list, show, new, create, edit, update, delete', 'Intervall' => 'new, create, edit, update',
+        'Modul' => 'list, show, new, newFach, create, edit, update, delete', 'Fach' => 'list, show, new, create, edit, update, delete', 'Note' => 'list, show, new, create, edit, update, delete', 'Pruefling' => 'setPruefling, list, show, new, create, edit, update, delete', 'Intervall' => 'new, create, edit, update', 'Export' => 'exportPrueflinge, exportModuleUndFaecher, exportFach', 'Import' => 'new, importPrueflinge, importBackUp', 'Ajax' => 'searchPruefling', 'Intervall' => 'new, create, edit, update'
             ), array(
         'access' => 'user,group',
         'icon' => 'EXT:' . $_EXTKEY . '/ext_icon.gif',
@@ -23,13 +27,7 @@ if (TYPO3_MODE === 'BE') {
     );
 }
 
-\TYPO3\CMS\Extbase\Utility\ExtensionUtility::registerPlugin(
-	$_EXTKEY,
-	'Rere',
-	'rerefe'
-);
-
-\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addStaticFile($_EXTKEY, 'Configuration/TypoScript', 'Result Repositry');
+\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addStaticFile($_EXTKEY, 'Configuration/TypoScript', 'Result Repository');
 
 \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addLLrefForTCAdescr('tx_rere_domain_model_modul', 'EXT:rere/Resources/Private/Language/locallang_csh_tx_rere_domain_model_modul.xlf');
 \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::allowTableOnStandardPages('tx_rere_domain_model_modul');

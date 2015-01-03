@@ -5,11 +5,12 @@ if (!defined('TYPO3_MODE')) {
 }
 
 \TYPO3\CMS\Extbase\Utility\ExtensionUtility::configurePlugin(
-        'ReRe.' . $_EXTKEY, 'rerebackend', array(
+        'ReRe.' . $_EXTKEY, 'Rerefrontend', array(
     'Modul' => 'list, show, new, newFach, create, edit, update, delete',
-    'Note' => 'list, show, new, create, edit, update, delete',
     'Fach' => 'list, show, new, create, edit, update, delete',
+    'Note' => 'list, show, new, create, edit, update, delete',
     'Pruefling' => 'setPruefling, list, show, new, create, edit, update, delete',
+    'Intervall' => 'new, create, edit, update',
     'Export' => 'exportPrueflinge, exportModuleUndFaecher, exportFach',
     'Import' => 'new, importPrueflinge, importBackUp',
     'Ajax' => 'searchPruefling',
@@ -17,10 +18,11 @@ if (!defined('TYPO3_MODE')) {
         ),
         // non-cacheable actions
         array(
-    'Modul' => 'create, update, delete, newFach',
-    'Note' => 'create, update, delete',
-    'Fach' => 'create, update, delete',
-    'Pruefling' => 'setPruefling, create, createAndNext, update, delete',
+    'Modul' => 'list, show, new, newFach, create, edit, update, delete',
+    'Fach' => 'list, show, new, create, edit, update, delete',
+    'Note' => 'list, show, new, create, edit, update, delete',
+    'Pruefling' => 'setPruefling, list, show, new, create, edit, update, delete',
+    'Intervall' => 'new, create, edit, update',
     'Export' => 'exportPrueflinge, exportModuleUndFaecher, exportFach',
     'Import' => 'new, importPrueflinge, importBackUp',
     'Ajax' => 'searchPruefling',

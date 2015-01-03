@@ -1,5 +1,4 @@
 <?php
-
 namespace ReRe\Rere\Controller;
 
 /* * *************************************************************
@@ -37,157 +36,154 @@ namespace ReRe\Rere\Controller;
  */
 class ModulController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController {
 
-    /**
-     * modulRepository
-     *
-     * @var \ReRe\Rere\Domain\Repository\ModulRepository
-     * @inject
-     */
-    protected $modulRepository = NULL;
+	/**
+	 * modulRepository
+	 * 
+	 * @var \ReRe\Rere\Domain\Repository\ModulRepository
+	 * @inject
+	 */
+	protected $modulRepository = NULL;
 
-    /**
-     * fachRepository
-     *
-     * @var \ReRe\Rere\Domain\Repository\FachRepository
-     * @inject
-     */
-    protected $fachRepository = NULL;
+	/**
+	 * fachRepository
+	 * 
+	 * @var \ReRe\Rere\Domain\Repository\FachRepository
+	 * @inject
+	 */
+	protected $fachRepository = NULL;
 
-    /**
-     * intervallRepository
-     *
-     * @var \ReRe\Rere\Domain\Repository\IntervallRepository
-     * @inject
-     */
-    protected $intervallRepository = NULL;
+	/**
+	 * intervallRepository
+	 * 
+	 * @var \ReRe\Rere\Domain\Repository\IntervallRepository
+	 * @inject
+	 */
+	protected $intervallRepository = NULL;
 
-    /**
-     * @var \TYPO3\CMS\Extbase\Object\ObjectManagerInterface
-     * @inject
-     */
-    protected $objectManager = NULL;
+	/**
+	 * @var \TYPO3\CMS\Extbase\Object\ObjectManagerInterface
+	 * @inject
+	 */
+	protected $objectManager = NULL;
 
-    /**
-     * action list
-     *
-     * @return void
-     */
-    public function listAction() {
-        $moduls = $this->modulRepository->findAll();
-        $intervall = $this->intervallRepository->findByUid(1);
-        $filteredmoduls = array();
+	/**
+	 * action list
+	 * 
+	 * @return void
+	 */
+	public function listAction() {
+		$moduls = $this->modulRepository->findAll();
+		$intervall = $this->intervallRepository->findByUid(1);
+		$filteredmoduls = array();
+		// Prüfen ob die Tabelle wirklich einen wert hat! Also ob ein Intervall gesetzt wurde, wenn nicht dann create Action.
+		if ($intervall == Null) {
+			$createdIntervall = $this->objectManager->create('\\ReRe\\Rere\\Domain\\Model\\Intervall');
+			$createdIntervall->setAktuell('WS14/15');
+			$createdIntervall->setType('studienhalbjahr');
+			$this->intervallRepository->add($createdIntervall);
+			$this->redirect('list');
+		}
+		if ($intervall != Null) {
+			// Aktuelles Intervall holen.
+			$akteullesintervall = $intervall->getAktuell();
+			$intervallType = $intervall->getType();
+		}
+		// Alle Module des Aktuellen Intervalls holen
+		foreach ($moduls as $modul) {
+			if ($modul->getGueltigkeitszeitraum() == $akteullesintervall) {
+				array_push($filteredmoduls, $modul);
+			}
+		}
+		// Ausgabe
+		$this->view->assignMultiple(array(
+				'aktuellintervall' => $akteullesintervall,
+				'intervallType' => $intervallType,
+				'moduls' => $filteredmoduls
+			));
+		return $this->view->render();
+	}
 
-        // Prüfen ob die Tabelle wirklich einen wert hat! Also ob ein Intervall gesetzt wurde, wenn nicht dann create Action.
-        if ($intervall == Null) {
-            $createdIntervall = $this->objectManager->create('\\ReRe\\Rere\\Domain\\Model\\Intervall');
-            $createdIntervall->setAktuell("WS14/15");
-            $createdIntervall->setType("studienhalbjahr");
-            $this->intervallRepository->add($createdIntervall);
-            $this->redirect('list');
-        }
+	/**
+	 * action show
+	 * 
+	 * @param \ReRe\Rere\Domain\Model\Modul $modul
+	 * @return void
+	 */
+	public function showAction(\ReRe\Rere\Domain\Model\Modul $modul) {
+		$this->view->assign('modul', $modul);
+	}
 
-        if ($intervall != Null) {
-            // Aktuelles Intervall holen.
-            $akteullesintervall = $intervall->getAktuell();
-            $intervallType = $intervall->getType();
-        }
+	/**
+	 * action new
+	 * 
+	 * @param \ReRe\Rere\Domain\Model\Modul $newModul
+	 * @ignorevalidation $newModul
+	 * @return void
+	 */
+	public function newAction(\ReRe\Rere\Domain\Model\Modul $newModul = NULL) {
+		$this->view->assign('newModul', $newModul);
+		$this->view->assign('gueltigkeitszeitraum', $this->request->getArgument('gueltigkeitszeitraum'));
+	}
 
-        // Alle Module des Aktuellen Intervalls holen
-        foreach ($moduls as $modul) {
-            if ($modul->getGueltigkeitszeitraum() == $akteullesintervall) {
-                array_push($filteredmoduls, $modul);
-            }
-        }
-        // Ausgabe
-        $this->view->assignMultiple(array(
-            'aktuellintervall' => $akteullesintervall,
-            'intervallType' => $intervallType,
-            'moduls' => $filteredmoduls));
-        return $this->view->render();
-    }
+	/**
+	 * action create
+	 * 
+	 * @param \ReRe\Rere\Domain\Model\Modul $newModul
+	 * @return void
+	 */
+	public function createAction(\ReRe\Rere\Domain\Model\Modul $newModul) {
+		$this->addFlashMessage('The object was created. Please be aware that this action is publicly accessible unless you implement an access check. See <a href="http://wiki.typo3.org/T3Doc/Extension_Builder/Using_the_Extension_Builder#1._Model_the_domain" target="_blank">Wiki</a>', '', \TYPO3\CMS\Core\Messaging\AbstractMessage::ERROR);
+		$this->modulRepository->add($newModul);
+		// Erzeugt ein Leeres Fach
+		$fach = $this->objectManager->create('\\ReRe\\Rere\\Domain\\Model\\Fach');
+		// Fach Werte setzen
+		if ($this->request->hasArgument('fachname') && $this->request->hasArgument('fachnummer') && $this->request->hasArgument('pruefer') && $this->request->hasArgument('notenschema')) {
+			$fach->setFachname($this->request->getArgument('fachname'));
+			$fach->setFachnr($this->request->getArgument('fachnummer'));
+			$fach->setPruefer($this->request->getArgument('pruefer'));
+			$fach->setNotenschema($this->request->getArgument('notenschema'));
+		}
+		// Fach einem Modul zuordnen
+		$fach->setModulnr($newModul->getUid());
+		// Fach speichern
+		$this->fachRepository->add($fach);
+		$newModul->addFach($fach);
+		$this->redirect('list');
+	}
 
-    /**
-     * action show
-     *
-     * @param \ReRe\Rere\Domain\Model\Modul $modul
-     * @return void
-     */
-    public function showAction(\ReRe\Rere\Domain\Model\Modul $modul) {
-        $this->view->assign('modul', $modul);
-    }
+	/**
+	 * action edit
+	 * 
+	 * @param \ReRe\Rere\Domain\Model\Modul $modul
+	 * @ignorevalidation $modul
+	 * @return void
+	 */
+	public function editAction(\ReRe\Rere\Domain\Model\Modul $modul) {
+		$this->view->assign('modul', $modul);
+	}
 
-    /**
-     * action new
-     *
-     * @param \ReRe\Rere\Domain\Model\Modul $newModul
-     * @ignorevalidation $newModul
-     * @return void
-     */
-    public function newAction(\ReRe\Rere\Domain\Model\Modul $newModul = NULL) {
-        $this->view->assign('newModul', $newModul);
-        $this->view->assign('gueltigkeitszeitraum', $this->request->getArgument('gueltigkeitszeitraum'));
-    }
+	/**
+	 * action update
+	 * 
+	 * @param \ReRe\Rere\Domain\Model\Modul $modul
+	 * @return void
+	 */
+	public function updateAction(\ReRe\Rere\Domain\Model\Modul $modul) {
+		$this->addFlashMessage('The object was updated. Please be aware that this action is publicly accessible unless you implement an access check. See <a href="http://wiki.typo3.org/T3Doc/Extension_Builder/Using_the_Extension_Builder#1._Model_the_domain" target="_blank">Wiki</a>', '', \TYPO3\CMS\Core\Messaging\AbstractMessage::ERROR);
+		$this->modulRepository->update($modul);
+		$this->redirect('list');
+	}
 
-    /**
-     * action create
-     *
-     * @param \ReRe\Rere\Domain\Model\Modul $newModul
-     * @return void
-     */
-    public function createAction(\ReRe\Rere\Domain\Model\Modul $newModul) {
-        $this->addFlashMessage('The object was created. Please be aware that this action is publicly accessible unless you implement an access check. See <a href="http://wiki.typo3.org/T3Doc/Extension_Builder/Using_the_Extension_Builder#1._Model_the_domain" target="_blank">Wiki</a>', '', \TYPO3\CMS\Core\Messaging\AbstractMessage::ERROR);
-        $this->modulRepository->add($newModul);
-        // Erzeugt ein Leeres Fach
-        $fach = $this->objectManager->create('\\ReRe\\Rere\\Domain\\Model\\Fach');
-        // Fach Werte setzen
-        if ($this->request->hasArgument('fachname') && $this->request->hasArgument('fachnummer') && $this->request->hasArgument('pruefer') && $this->request->hasArgument('notenschema')) {
-            $fach->setFachname($this->request->getArgument('fachname'));
-            $fach->setFachnr($this->request->getArgument('fachnummer'));
-            $fach->setPruefer($this->request->getArgument('pruefer'));
-            $fach->setNotenschema($this->request->getArgument('notenschema'));
-        }
-
-        // Fach einem Modul zuordnen
-        $fach->setModulnr($newModul->getUid());
-        // Fach speichern
-        $this->fachRepository->add($fach);
-        $newModul->addFach($fach);
-        $this->redirect('list');
-    }
-
-    /**
-     * action edit
-     *
-     * @param \ReRe\Rere\Domain\Model\Modul $modul
-     * @ignorevalidation $modul
-     * @return void
-     */
-    public function editAction(\ReRe\Rere\Domain\Model\Modul $modul) {
-        $this->view->assign('modul', $modul);
-    }
-
-    /**
-     * action update
-     *
-     * @param \ReRe\Rere\Domain\Model\Modul $modul
-     * @return void
-     */
-    public function updateAction(\ReRe\Rere\Domain\Model\Modul $modul) {
-        $this->addFlashMessage('The object was updated. Please be aware that this action is publicly accessible unless you implement an access check. See <a href="http://wiki.typo3.org/T3Doc/Extension_Builder/Using_the_Extension_Builder#1._Model_the_domain" target="_blank">Wiki</a>', '', \TYPO3\CMS\Core\Messaging\AbstractMessage::ERROR);
-        $this->modulRepository->update($modul);
-        $this->redirect('list');
-    }
-
-    /**
-     * action delete
-     *
-     * @param \ReRe\Rere\Domain\Model\Modul $modul
-     * @return void
-     */
-    public function deleteAction(\ReRe\Rere\Domain\Model\Modul $modul) {
-        $this->addFlashMessage('The object was deleted. Please be aware that this action is publicly accessible unless you implement an access check. See <a href="http://wiki.typo3.org/T3Doc/Extension_Builder/Using_the_Extension_Builder#1._Model_the_domain" target="_blank">Wiki</a>', '', \TYPO3\CMS\Core\Messaging\AbstractMessage::ERROR);
-        $this->modulRepository->remove($modul);
-        $this->redirect('list');
-    }
+	/**
+	 * action delete
+	 * 
+	 * @param \ReRe\Rere\Domain\Model\Modul $modul
+	 * @return void
+	 */
+	public function deleteAction(\ReRe\Rere\Domain\Model\Modul $modul) {
+		$this->addFlashMessage('The object was deleted. Please be aware that this action is publicly accessible unless you implement an access check. See <a href="http://wiki.typo3.org/T3Doc/Extension_Builder/Using_the_Extension_Builder#1._Model_the_domain" target="_blank">Wiki</a>', '', \TYPO3\CMS\Core\Messaging\AbstractMessage::ERROR);
+		$this->modulRepository->remove($modul);
+		$this->redirect('list');
+	}
 
 }

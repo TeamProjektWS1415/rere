@@ -9,7 +9,7 @@
 ---
 conf.py:
   copyright: 2015
-  project: Result Repositry
+  project: Result Repository
   version: 
   release: 
   intersphinx_mapping:
@@ -19,7 +19,7 @@ conf.py:
   latex_documents:
   - - Index
     - rere.tex
-    - Result Repositry
+    - Result Repository
     - Felix Hohlwegler, Sarah Kieninger, Tim Wacker, Nejat Balta, Tobias Brockner, Nicolas Tedjadharma
     - manual
   latex_elements:
