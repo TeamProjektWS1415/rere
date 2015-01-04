@@ -32,7 +32,7 @@ namespace ReRe\Rere\Controller;
 class IntervallController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController {
 
 	/**
-	 * intervallRepository
+	 * Protected Variable intervallRepository wird mit NULL initialisiert.
 	 * 
 	 * @var \ReRe\Rere\Domain\Repository\IntervallRepository
 	 * @inject
@@ -40,7 +40,8 @@ class IntervallController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionContro
 	protected $intervallRepository = NULL;
 
 	/**
-	 * action edit
+	 * Diese Methode dient dem Editieren des Intervalls. 
+         * Sie wird in der aktuellen Version jedoch nicht verwendet.
 	 * 
 	 * @param \ReRe\Rere\Domain\Model\Intervall $intervall
 	 * @ignorevalidation $intervall
@@ -51,7 +52,8 @@ class IntervallController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionContro
 	}
 
 	/**
-	 * action update
+	 * Diese Methode setzt je nach ausgewählter Richtung das vorherige bzw. das nächste Intervall als aktuell angezeigtes Intervall.
+         * Dabei wird nach dem Typ (Studienhalbjahr oder Schulhabljahr) unterschieden.
 	 * 
 	 * @return void
 	 */
@@ -67,7 +69,7 @@ class IntervallController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionContro
 				$aktuell = $intervalLogic->nextSchulIntervall($intervall->getAktuell());
 			}
 		}
-		// Vorheriges
+		// Vorheriges Intervall
 		if ($this->request->hasArgument('prevIntervall')) {
 			if ($intervall->getType() == 'studienhalbjahr') {
 				$aktuell = $intervalLogic->prevStudiIntervall($intervall->getAktuell());
@@ -87,7 +89,7 @@ class IntervallController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionContro
 	}
 
 	/**
-	 * action new
+	 * Diese Methode zum Erzeugen eines neuen Intervalls wird momentan nicht verwendet.
 	 * 
 	 * @param \ReRe\Rere\Domain\Model\Intervall $newIntervall
 	 * @ignorevalidation $newIntervall
@@ -98,7 +100,7 @@ class IntervallController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionContro
 	}
 
 	/**
-	 * action create
+	 * Diese Methode dient dem Hinzufügen eines neuen Intervalls zum Reposotory.
 	 * 
 	 * @param \ReRe\Rere\Domain\Model\Intervall $newIntervall
 	 * @return void

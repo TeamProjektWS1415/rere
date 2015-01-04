@@ -16,7 +16,7 @@ namespace ReRe\Rere\Services\NestedDirectory;
 class IntervallLogic {
 
     /**
-     * Ein Studien Intervall nach vorne
+     * Ein Studien-Intervall nach vorne
      * @param type $aktuellesIntervall
      * @return string
      */
@@ -38,7 +38,7 @@ class IntervallLogic {
     }
 
     /**
-     * Ein Studienintervall zurück.
+     * Ein Studien-Intervall zurück.
      * @param type $aktuellesIntervall
      * @return string
      */
@@ -59,7 +59,7 @@ class IntervallLogic {
     }
 
     /**
-     * Ein Schuljahr intervall weiter.
+     * Ein Schuljahr-Intervall nach vorne.
      * @param type $aktuellesIntervall
      * @return string
      */
@@ -73,7 +73,7 @@ class IntervallLogic {
     }
 
     /**
-     * Ein Schuljahr intervall zurück.
+     * Ein Schuljahr-Intervall zurück.
      * @param type $aktuellesIntervall
      * @return string
      */

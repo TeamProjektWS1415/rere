@@ -3,7 +3,7 @@
 namespace ReRe\Rere\Services\NestedDirectory;
 
 /**
- * Description of GenChartArray
+ * Diese Klasse beinhaltet mehrere Helper-Methoden für die Generierung der Ausgabe zu den Noten (Durchschnitt, Chart etc.).
  *
  * @author Felix
  */
@@ -17,7 +17,7 @@ class NotenVerwaltungHelper {
     public function genArray($notenliste) {
 
         /**
-         * Array für die Anzahl der Note um diese dann im Chart auszugeben
+         * Array für die Anzahl der Note, um diese dann im Chart auszugeben.
          */
         $resultArray = ['1.0' => 0,
             '1.3' => 0,
@@ -39,7 +39,7 @@ class NotenVerwaltungHelper {
             }
         }
 
-        // Wandelt das Array in ein Json Array und gibt dieses zurück.
+        // Wandelt das Array in ein JSON-Array um und gibt dieses zurück.
         return json_encode($resultArray);
     }
 
@@ -66,7 +66,7 @@ class NotenVerwaltungHelper {
     }
 
     /**
-     * Funktion zum Prüfen ob für einen Wert bereits eine Note gesetzt wurde
+     * Funktion zum Prüfen ob für einen Wert bereits eine Note gesetzt wurde.
      * @param type $notenliste
      * @return int Anzahl der gesetzten
      */

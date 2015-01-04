@@ -41,21 +41,21 @@ class NoteController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController 
 	const FACH = 'fach';
 
 	/**
-	 * Klassen variable für die Notenlisten.
+	 * Private Klassenvariable für die Notenlisten wird mit NULL initialisiert.
 	 * 
 	 * @var type
 	 */
 	private $noteList = NULL;
 
 	/**
-	 * Klassen variable für die Hilfsklassen.
+	* Private Klassenvariable für die Hilfsklassen wird mit NULL initialisiert.
 	 * 
 	 * @var type
 	 */
 	private $helper = NULL;
 
 	/**
-	 * noteRepository
+	 * Protected Variable helper wird mit NULL initialisiert.
 	 * 
 	 * @var \ReRe\Rere\Domain\Repository\NoteRepository
 	 * @inject
@@ -63,7 +63,7 @@ class NoteController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController 
 	protected $noteRepository = NULL;
 
 	/**
-	 * prueflingRepository
+	 * Protected Variable prueflingRepository wird mit NULL initialisiert.
 	 * 
 	 * @var \ReRe\Rere\Domain\Repository\PrueflingRepository
 	 * @inject
@@ -71,7 +71,7 @@ class NoteController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController 
 	protected $prueflingRepository = NULL;
 
 	/**
-	 * modulRepository
+	 * Protected Variable modulRepository wird mit NULL initialisiert.
 	 * 
 	 * @var \ReRe\Rere\Domain\Repository\ModulRepository
 	 * @inject
@@ -79,7 +79,7 @@ class NoteController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController 
 	protected $modulRepository = NULL;
 
 	/**
-	 * fachRepository
+	 * Protected Variable fachRepository wird mit NULL initialisiert.
 	 * 
 	 * @var \ReRe\Rere\Domain\Repository\FachRepository
 	 * @inject
@@ -87,26 +87,25 @@ class NoteController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController 
 	protected $fachRepository = NULL;
 
 	/**
-	 * Konstruktor.
+	 * Im Konstruktor des NoteControllers wird eine Instanz der Array-Klasse und des Notenverwaltungs-Helpers erzeugt.
 	 */
 	public function __construct() {
-		// Instanz der Array Klasse.
 		$this->noteList = new \ReRe\Rere\Services\NestedDirectory\NoteSchemaArrays();
 		$this->helper = new \ReRe\Rere\Services\NestedDirectory\NotenVerwaltungHelper();
 	}
 
 	/**
-	 * action list
+	 * In dieser Methode werden alle eingetragenen Noten zu einem bestimmten Fach/Modul geholt.
 	 * 
 	 * @return void
 	 */
 	public function listAction() {
-		// Holt FachObjekt
+		// Holt Fach-Objekt
 		$fach = $this->fachRepository->findByUid($this->request->getArgument(self::FACH));
 		$angemeldete = 0;
-		// Holt Modul Objekt
+		// Holt Modul-Objekt
 		$modul = $this->modulRepository->findByUid($this->request->getArgument(self::MODUL));
-		// Ausgabe aller eingetragener noten
+		// Ausgabe aller eingetragener Noten
 		$notes = $this->noteRepository->findAll();
 		$correctnotes = array();
 		foreach ($notes as $note) {
@@ -120,7 +119,8 @@ class NoteController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController 
 	}
 
 	/**
-	 * action show
+	 * Diese Methode dient dem Editieren einer Note. 
+         * Sie wird in der aktuellen Version jedoch nicht verwendet.
 	 * 
 	 * @param \ReRe\Rere\Domain\Model\Note $note
 	 * @return void
@@ -130,7 +130,7 @@ class NoteController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController 
 	}
 
 	/**
-	 * action new
+	 * Mit dieser Methode wird eine neue Note erzeugt und mit NULL initialisiert. 
 	 * 
 	 * @param \ReRe\Rere\Domain\Model\Note $newNote
 	 * @ignorevalidation $newNote
@@ -141,7 +141,7 @@ class NoteController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController 
 	}
 
 	/**
-	 * action create
+	 * Mit dieser Methode wird die neu erzeugte Note im noteRepository gespeichert und das Fach und Modul zugewiesen.
 	 * 
 	 * @param \ReRe\Rere\Domain\Model\Note $newNote
 	 * @return void
@@ -155,19 +155,19 @@ class NoteController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController 
 	}
 
 	/**
-	 * action edit
+	 * Diese Methode dient dem Editieren einer Note. 
+         * Sie wird in der aktuellen Version jedoch so nicht verwendet.
 	 * 
 	 * @param \ReRe\Rere\Domain\Model\Note $note
 	 * @ignorevalidation $note
 	 * @return void
 	 */
 	public function editAction(\ReRe\Rere\Domain\Model\Note $note) {
-		echo 'TEST';
 		$this->view->assign('note', $note);
 	}
 
 	/**
-	 * action update
+	 * In dieser Methode wird ein Noten-Objekt mit neuen Werten belegt.
 	 * 
 	 * @return void
 	 */
@@ -186,7 +186,7 @@ class NoteController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController 
 	}
 
 	/**
-	 * action delete
+	 * Diese Methode dient dem Löschen einer Note
 	 * 
 	 * @param \ReRe\Rere\Domain\Model\Note $note
 	 * @return void

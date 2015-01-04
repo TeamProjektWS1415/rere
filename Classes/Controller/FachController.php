@@ -37,7 +37,7 @@ namespace ReRe\Rere\Controller;
 class FachController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController {
 
 	/**
-	 * fachRepository
+	 * Protected Variable fachRepository wird mit NULL initialisiert.
 	 * 
 	 * @var \ReRe\Rere\Domain\Repository\FachRepository
 	 * @inject
@@ -45,7 +45,7 @@ class FachController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController 
 	protected $fachRepository = NULL;
 
 	/**
-	 * modulRepository
+	 * Protected Variable modulRepository wird mit NULL initialisiert.
 	 * 
 	 * @var \ReRe\Rere\Domain\Repository\ModulRepository
 	 * @inject
@@ -53,19 +53,23 @@ class FachController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController 
 	protected $modulRepository = NULL;
 
 	/**
+         * Protected Variable dataMapper wird mit NULL initialisiert.
+         * 
 	 * @var \TYPO3\CMS\Extbase\Persistence\Generic\Mapper\DataMapper
 	 * @inject
 	 */
 	protected $dataMapper = NULL;
 
 	/**
+         * Protected Variable objectManager wird mit NULL initialisiert.
+         * 
 	 * @var \TYPO3\CMS\Extbase\Object\ObjectManagerInterface
 	 * @inject
 	 */
 	protected $objectManager = NULL;
 
 	/**
-	 * action list
+	 * Diese Methode übergibt alle vorhandenen Fächer als Array an die View.
 	 * 
 	 * @return void
 	 */
@@ -75,7 +79,7 @@ class FachController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController 
 	}
 
 	/**
-	 * action show
+	 * Diese Methode übergibt ein bestimmtes Fach an die View.
 	 * 
 	 * @param \ReRe\Rere\Domain\Model\Fach $fach
 	 * @return void
@@ -85,7 +89,8 @@ class FachController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController 
 	}
 
 	/**
-	 * action new
+	 * In dieser Methode wird mit der übergebenen Modulnummer das Modul aus dem Repository geholt, dem das neu erzeugte Fach (new.html) zugeordnet werden soll.
+         * Anschließend wird der View ein Array mit dem leeren Fach und den Daten des Moduls übergeben.
 	 * 
 	 * @param \ReRe\Rere\Domain\Model\Fach $newFach
 	 * @ignorevalidation $newFach
@@ -104,18 +109,19 @@ class FachController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController 
 	}
 
 	/**
-	 * action create
+	 * In dieser Methode wird dem neu erzeugten Fach (new.html) die Daten aus dem Eingabeformular zugewiesen. 
+         * Das Fach wird dem aktuellen Modul zugeordnet.
 	 * 
 	 * @return void
 	 */
 	public function createAction() {
 		$this->addFlashMessage('The object was created. Please be aware that this action is publicly accessible unless you implement an access check. See <a href="http://wiki.typo3.org/T3Doc/Extension_Builder/Using_the_Extension_Builder#1._Model_the_domain" target="_blank">Wiki</a>', '', \TYPO3\CMS\Core\Messaging\AbstractMessage::ERROR);
-		// Holt die Modulnummer vom Request und dann das Modul objekt
+		// Holt die Modulnummer vom Request und dann das Modul-Objekt
 		if ($this->request->hasArgument('moduluid')) {
 			$modul = $this->modulRepository->findByUid($this->request->getArgument('moduluid'));
 		}
 		$fach = $this->objectManager->create('\\ReRe\\Rere\\Domain\\Model\\Fach');
-		// Fach Werte setzen
+		// Fach-Werte setzen
 		$fach->setFachname($this->request->getArgument('fachname'));
 		$fach->setFachnr($this->request->getArgument('fachnummer'));
 		$fach->setPruefer($this->request->getArgument('pruefer'));
@@ -128,7 +134,8 @@ class FachController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController 
 	}
 
 	/**
-	 * action edit
+	 * Diese Methode dient dem Editieren eines Fachs. 
+         * Sie wird in der aktuellen Version jedoch nicht verwendet.
 	 * 
 	 * @param \ReRe\Rere\Domain\Model\Fach $fach
 	 * @ignorevalidation $fach
@@ -139,7 +146,8 @@ class FachController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController 
 	}
 
 	/**
-	 * action update
+	 * Mit dieser Methode wird das Fach im fachRepository auf den neusten Stand gebracht.
+         * Methode wird in der aktuellen Version nicht verwendet.
 	 * 
 	 * @param \ReRe\Rere\Domain\Model\Fach $fach
 	 * @return void
@@ -151,8 +159,8 @@ class FachController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController 
 	}
 
 	/**
-	 * action delete
-	 * Leitet nach dem Löschen auf die Result Repository Startseite um.
+	 * Mit dieser Methode wird ein Fach aus dem Repository gelöscht.
+	 * Danach wird auf die Result Repository-Startseite umgeleitet.
 	 * 
 	 * @param \ReRe\Rere\Domain\Model\Fach $fach
 	 * @return void

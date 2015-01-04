@@ -3,9 +3,7 @@
 namespace ReRe\Rere\Services\NestedDirectory;
 
 /**
- * Description of NoteArrays
- *
- * Speichert Die Verschiedenen NotenSysteme für die Notenauswahl bei der Notenvergabe.
+ *Speichert die verschiedenen Noten-Systeme für die Notenauswahl bei der Notenvergabe.
  *
  * @author Felix
  */
@@ -33,7 +31,7 @@ class NoteSchemaArrays {
     );
 
     /**
-     * Array für XYZ NotenSystem.
+     * Array für XYZ Noten-System.
      * @var type
      */
     protected $schoolMarks = array(
@@ -92,7 +90,7 @@ class NoteSchemaArrays {
     );
 
     /**
-     * Array für Unbenotete Leistungen.
+     * Array für unbenotete Leistungen.
      * @var type
      */
     protected $unbenotetMarks = array(
@@ -102,7 +100,7 @@ class NoteSchemaArrays {
     );
 
     /**
-     * Array für das 15 Punkte System
+     * Array für das 15-Punkte-System.
      * @var type
      */
     protected $fifteenMarks = array(
@@ -127,7 +125,7 @@ class NoteSchemaArrays {
 
     /**
      *
-     * Mark array.
+     * Diese Methode setzt das System entsprechend dem übergebenen Schema.
      *
      * @return array
      */

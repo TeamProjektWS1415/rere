@@ -37,7 +37,7 @@ namespace ReRe\Rere\Controller;
 class ModulController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController {
 
 	/**
-	 * modulRepository
+	 * Protected Variable modulRepository wird mit NULL initialisiert.
 	 * 
 	 * @var \ReRe\Rere\Domain\Repository\ModulRepository
 	 * @inject
@@ -45,7 +45,7 @@ class ModulController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
 	protected $modulRepository = NULL;
 
 	/**
-	 * fachRepository
+	 * Protected Variable fachRepository wird mit NULL initialisiert.
 	 * 
 	 * @var \ReRe\Rere\Domain\Repository\FachRepository
 	 * @inject
@@ -53,7 +53,7 @@ class ModulController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
 	protected $fachRepository = NULL;
 
 	/**
-	 * intervallRepository
+	 * Protected Variable intervallRepository wird mit NULL initialisiert.
 	 * 
 	 * @var \ReRe\Rere\Domain\Repository\IntervallRepository
 	 * @inject
@@ -61,13 +61,15 @@ class ModulController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
 	protected $intervallRepository = NULL;
 
 	/**
+         * Protected Variable objectManager wird mit NULL initialisiert.
+         * 
 	 * @var \TYPO3\CMS\Extbase\Object\ObjectManagerInterface
 	 * @inject
 	 */
 	protected $objectManager = NULL;
 
 	/**
-	 * action list
+	 * Mit dieser Methode werden alle Module des aktuell ausgewählten Intervalls angezeigt.
 	 * 
 	 * @return void
 	 */
@@ -75,8 +77,9 @@ class ModulController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
 		$moduls = $this->modulRepository->findAll();
 		$intervall = $this->intervallRepository->findByUid(1);
 		$filteredmoduls = array();
-		// Prüfen ob die Tabelle wirklich einen wert hat! Also ob ein Intervall gesetzt wurde, wenn nicht dann create Action.
+		// Prüfen, ob die Tabelle wirklich einen Wert hat (also ob ein Intervall gesetzt wurde).
 		if ($intervall == Null) {
+                        // wenn Intervall noch nicht gesetzt ist, wird ein Intervall-Objekt erzeugt
 			$createdIntervall = $this->objectManager->create('\\ReRe\\Rere\\Domain\\Model\\Intervall');
 			$createdIntervall->setAktuell('WS14/15');
 			$createdIntervall->setType('studienhalbjahr');
@@ -84,17 +87,17 @@ class ModulController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
 			$this->redirect('list');
 		}
 		if ($intervall != Null) {
-			// Aktuelles Intervall holen.
+			// wenn Intervall gesetzt ist, wird es geholt.
 			$akteullesintervall = $intervall->getAktuell();
 			$intervallType = $intervall->getType();
 		}
-		// Alle Module des Aktuellen Intervalls holen
+		// Alle Module des aktuellen Intervalls holen
 		foreach ($moduls as $modul) {
 			if ($modul->getGueltigkeitszeitraum() == $akteullesintervall) {
 				array_push($filteredmoduls, $modul);
 			}
 		}
-		// Ausgabe
+		// Ausgabe an View
 		$this->view->assignMultiple(array(
 				'aktuellintervall' => $akteullesintervall,
 				'intervallType' => $intervallType,
@@ -104,7 +107,7 @@ class ModulController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
 	}
 
 	/**
-	 * action show
+	 * Diese Methode zeigt ein bestimmtes Modul an.
 	 * 
 	 * @param \ReRe\Rere\Domain\Model\Modul $modul
 	 * @return void
@@ -114,7 +117,7 @@ class ModulController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
 	}
 
 	/**
-	 * action new
+	 * Mit dieser Methode wird ein neues (leeres) Modul (new.html) erzeugt und mit dem aktuellen Gültigkeitszeitraum vorbelegt.
 	 * 
 	 * @param \ReRe\Rere\Domain\Model\Modul $newModul
 	 * @ignorevalidation $newModul
@@ -126,7 +129,9 @@ class ModulController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
 	}
 
 	/**
-	 * action create
+	 * Wird aufgerufen, wenn Formular (Modul/new.html) abgeschickt wird.
+         * In dieser Methode wird ein neues Fach angelegt. 
+         * Hierbei werden die Daten aus dem Eingabeformular dem Fach zugewiesen und anschließend das Fach dem neuen Modul zugewiesen.
 	 * 
 	 * @param \ReRe\Rere\Domain\Model\Modul $newModul
 	 * @return void
@@ -134,9 +139,9 @@ class ModulController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
 	public function createAction(\ReRe\Rere\Domain\Model\Modul $newModul) {
 		$this->addFlashMessage('The object was created. Please be aware that this action is publicly accessible unless you implement an access check. See <a href="http://wiki.typo3.org/T3Doc/Extension_Builder/Using_the_Extension_Builder#1._Model_the_domain" target="_blank">Wiki</a>', '', \TYPO3\CMS\Core\Messaging\AbstractMessage::ERROR);
 		$this->modulRepository->add($newModul);
-		// Erzeugt ein Leeres Fach
+		// Erzeugt ein leeres Fach
 		$fach = $this->objectManager->create('\\ReRe\\Rere\\Domain\\Model\\Fach');
-		// Fach Werte setzen
+		// Fach-Werte setzen
 		if ($this->request->hasArgument('fachname') && $this->request->hasArgument('fachnummer') && $this->request->hasArgument('pruefer') && $this->request->hasArgument('notenschema')) {
 			$fach->setFachname($this->request->getArgument('fachname'));
 			$fach->setFachnr($this->request->getArgument('fachnummer'));
@@ -152,7 +157,8 @@ class ModulController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
 	}
 
 	/**
-	 * action edit
+	 * Diese Methode dient dem Editieren eines Moduls. 
+         * Sie wird in der aktuellen Version jedoch nicht verwendet.
 	 * 
 	 * @param \ReRe\Rere\Domain\Model\Modul $modul
 	 * @ignorevalidation $modul
@@ -163,7 +169,8 @@ class ModulController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
 	}
 
 	/**
-	 * action update
+	 * Mit dieser Methode wird das Modul im modulRepository auf den neusten Stand gebracht.
+         * Methode wird in der aktuellen Version nicht verwendet.
 	 * 
 	 * @param \ReRe\Rere\Domain\Model\Modul $modul
 	 * @return void
@@ -175,7 +182,7 @@ class ModulController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
 	}
 
 	/**
-	 * action delete
+	 * Diese Methode dient dem Löschen eines Moduls.
 	 * 
 	 * @param \ReRe\Rere\Domain\Model\Modul $modul
 	 * @return void
