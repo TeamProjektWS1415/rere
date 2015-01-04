@@ -1,15 +1,22 @@
 $(document).ready(function () {
 // Make table sortable
-    $("#grades").tablesorter();
+    $("#grades").tablesorter({
+        headers: {
+            4: {
+                sorter: false
+            },
+            5: {
+                sorter: false
+            }
+        }
+    });
     // tooltips
     $('[data-toggle="tooltip"]').tooltip();
-
     // Ajax Call für neue Note
     $(".sendNote").focusout(function () {
         var uid = $(this).parent('td').parent('tr').find('.noteuid').val();
         $('#editnote' + uid).submit();
     });
-
     // search funktion
     // colors the searched MatrikelNR
     $("#suche").on("keyup", function () {
@@ -19,11 +26,11 @@ $(document).ready(function () {
                 $row = $(this);
                 var id = $row.find("td:first").text();
                 if (id.indexOf(value) !== 0 || value === "") {
-                    // Remove color
+// Remove color
                     $row.removeClass("highlight");
                 }
                 else {
-                    // Set the color
+// Set the color
                     $row.addClass("highlight");
                 }
             }
@@ -34,14 +41,12 @@ $(document).ready(function () {
         $(this).find("input").removeClass("hidden");
         $(this).find(".value").addClass("hidden");
     });
-
     // Blendet alle wieder ein
     $("#alle").click(function () {
         showAll();
         removeAcive();
         $("#alle").addClass("active");
     });
-
     // Blendet nur die bereits eingetragenen ein
     $("#eingetragene").click(function () {
         showAll();
@@ -53,7 +58,6 @@ $(document).ready(function () {
         removeAcive();
         $("#eingetragene").addClass("active");
     });
-
     // Zeigt nur die die noch einzutragen sind
     $("#nichteingetragene").click(function () {
         showAll();
@@ -65,9 +69,7 @@ $(document).ready(function () {
         removeAcive();
         $("#nichteingetragene").addClass("active");
     });
-
 });
-
 /**
  * Generiert das chart.
  * @param {type} array
@@ -77,7 +79,6 @@ function genchart(array) {
 
     var labels = [];
     var results = [];
-
     // Itteriert durch das vom controller gesendete Array und erzeugt dynamisch werte für das Label des Chars und der Werte
     for (r in array) {
         labels.push(r);
@@ -118,6 +119,10 @@ function removeAcive() {
     $("#eingetragene").removeClass("active");
 }
 
+/**
+ * Zeigt wieder alle an
+ * @returns {undefined}
+ */
 function showAll() {
     $(".notenwert").each(function () {
         $(this).parent("td").parent("tr").fadeIn();

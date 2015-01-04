@@ -42,10 +42,14 @@ function delentry(text, link) {
 function diffInput() {
     for (z in arrayFachPrueflinge) {
         if (arrayFachPrueflinge[z] === $("#suchematrikel").val()) {
-            alert("Dieser Student wurde dem Fach bereits zugewiesen");
+            $("#infopopupTitle").text("Info");
+            $(".popuptext").text("Dieser Student wurde dem Fach bereits zugewiesen");
+            $('#infopopup').modal();
             return false;
         }
     }
-    alert("Prüfling wurde zugewiesen");
+    $("#infopopupTitle").text("Info");
+    $(".popuptext").text("Prüfling wurde zugewiesen");
+    $('#infopopup').modal();
     return true;
 }
