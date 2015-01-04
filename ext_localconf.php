@@ -24,7 +24,6 @@ if (!defined('TYPO3_MODE')) {
     'Intervall' => 'new, create, edit, update',
     'Export' => 'exportPrueflinge, exportModuleUndFaecher, exportFach',
     'Import' => 'new, importPrueflinge, importBackUp',
-    'Ajax' => 'searchPruefling',
-    'Intervall' => 'new, create, edit, update'
+    'Ajax' => 'searchPruefling'
         )
 );
