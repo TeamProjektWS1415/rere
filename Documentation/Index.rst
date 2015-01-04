@@ -15,19 +15,19 @@ Result Repositry
 .. only:: html
 
 	:Classification:
-		extension_key
+		rere
 
 	:Version:
-		|release|
+		1.0.0
 
 	:Language:
-		en
+		en/de
 
 	:Description:
-		enter description.
+		Die Extension dient in erster Linie dazu Noten zu verwalten. Es können dabei 		 Module und die zugehörigen Fächer angelegt und mit den entsprechenden 				Prüflingen belegt werden.
 
 	:Keywords:
-		comma,separated,list,keywords
+		Notenverwaltung,Result Repository
 
 	:Copyright:
 		2015
@@ -36,11 +36,11 @@ Result Repositry
 		Felix Hohlwegler, Sarah Kieninger, Tim Wacker, Nejat Balta, Tobias Brockner, Nicolas Tedjadharma
 
 	:Email:
-		author@example.com
+		info@felix-hohlwegler.de
 
 	:License:
-		This document is published under the Open Content License
-		available from http://www.opencontent.org/opl.shtml
+		Gnu/Gpl v2
+
 
 	:Rendered:
 		|today|
