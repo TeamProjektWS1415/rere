@@ -7,7 +7,7 @@
 	<title>Class ReRe\Rere\Services\NestedDirectory\NotenVerwaltungHelper | rere</title>
 
 	<script type="text/javascript" src="resources/combined.js?2780970235"></script>
-	<script type="text/javascript" src="elementlist.js?346072587"></script>
+	<script type="text/javascript" src="elementlist.js?3518151049"></script>
 	<link rel="stylesheet" type="text/css" media="all" href="resources/style.css?3505392360" />
 
 </head>
@@ -61,6 +61,7 @@
 		<div id="elements">
 			<h3>Classes</h3>
 			<ul>
+				<li><a href="class-ReRe.Rere.Services.NestedDirectory.IntervallLogic.html">IntervallLogic</a></li>
 				<li class="active"><a href="class-ReRe.Rere.Services.NestedDirectory.NotenVerwaltungHelper.html">NotenVerwaltungHelper</a></li>
 				<li><a href="class-ReRe.Rere.Services.NestedDirectory.NoteSchemaArrays.html">NoteSchemaArrays</a></li>
 				<li><a href="class-ReRe.Rere.Services.NestedDirectory.PasswordFunctions.html">PasswordFunctions</a></li>
@@ -113,7 +114,8 @@
 
 	<div class="description">
 	
-<p>Description of GenChartArray</p>
+<p>Diese Klasse beinhaltet mehrere Helper-Methoden für die Generierung der
+Ausgabe zu den Noten (Durchschnitt, Chart etc.).</p>
 
 	</div>
 
@@ -133,7 +135,7 @@
 
 				<b>Author:</b>
 				Felix<br />
-		<b>Located at</b> <a href="source-class-ReRe.Rere.Services.NestedDirectory.NotenVerwaltungHelper.html#5-74" title="Go to source code">Classes/Services/NestedDirectory/NotenVerwaltungHelper.php</a><br />
+		<b>Located at</b> <a href="source-class-ReRe.Rere.Services.NestedDirectory.NotenVerwaltungHelper.html#5-190" title="Go to source code">Classes/Services/NestedDirectory/NotenVerwaltungHelper.php</a><br />
 	</div>
 
 
@@ -151,7 +153,7 @@
 
 		<td class="name"><div>
 		<a class="anchor" href="#_genArray">#</a>
-		<code><a href="source-class-ReRe.Rere.Services.NestedDirectory.NotenVerwaltungHelper.html#12-42" title="Go to source code">genArray</a>( <span>type <var>$notenliste</var></span> )</code>
+		<code><a href="source-class-ReRe.Rere.Services.NestedDirectory.NotenVerwaltungHelper.html#114-151" title="Go to source code">genArray</a>( <span>type <var>$notenliste</var></span>, <span>type <var>$typ</var></span> )</code>
 
 		<div class="description short">
 			
@@ -171,6 +173,8 @@ Vorkommnisse hoch.</p>
 				<div class="list"><dl>
 					<dt><var>$notenliste</var></dt>
 					<dd><code>type</code><br>$notenliste</dd>
+					<dt><var>$typ</var></dt>
+					<dd><code>type</code><br>$typ Benotungstyp</dd>
 				</dl></div>
 
 				<h4>Returns</h4>
@@ -195,7 +199,7 @@ Vorkommnisse hoch.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_calculateAverage">#</a>
-		<code><a href="source-class-ReRe.Rere.Services.NestedDirectory.NotenVerwaltungHelper.html#44-57" title="Go to source code">calculateAverage</a>( <span>type <var>$notenliste</var></span> )</code>
+		<code><a href="source-class-ReRe.Rere.Services.NestedDirectory.NotenVerwaltungHelper.html#153-173" title="Go to source code">calculateAverage</a>( <span>type <var>$notenliste</var></span> )</code>
 
 		<div class="description short">
 			
@@ -237,17 +241,17 @@ Vorkommnisse hoch.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_checkIfWertisSet">#</a>
-		<code><a href="source-class-ReRe.Rere.Services.NestedDirectory.NotenVerwaltungHelper.html#59-72" title="Go to source code">checkIfWertisSet</a>( <span>type <var>$notenliste</var></span> )</code>
+		<code><a href="source-class-ReRe.Rere.Services.NestedDirectory.NotenVerwaltungHelper.html#175-188" title="Go to source code">checkIfWertisSet</a>( <span>type <var>$notenliste</var></span> )</code>
 
 		<div class="description short">
 			
-<p>Funktion zum Prüfen ob für einen Wert bereits eine Note gesetzt wurde</p>
+<p>Funktion zum Prüfen ob für einen Wert bereits eine Note gesetzt wurde.</p>
 
 		</div>
 
 		<div class="description detailed hidden">
 			
-<p>Funktion zum Prüfen ob für einen Wert bereits eine Note gesetzt wurde</p>
+<p>Funktion zum Prüfen ob für einen Wert bereits eine Note gesetzt wurde.</p>
 
 
 
@@ -281,6 +285,196 @@ Vorkommnisse hoch.</p>
 
 
 
+	<table class="summary" id="properties">
+	<caption>Properties summary</caption>
+	<tr data-order="schoolMarks" id="$schoolMarks">
+		<td class="attributes"><code>
+			protected  
+			type
+		</code></td>
+
+		<td class="name">
+				<a href="source-class-ReRe.Rere.Services.NestedDirectory.NotenVerwaltungHelper.html#12-67" title="Go to source code"><var>$schoolMarks</var></a>
+		</td>
+		<td class="value"><code><span class="php-keyword1">array</span>(
+    <span class="php-quote">'1.0'</span> =&gt; <span class="php-num">0</span>,
+    <span class="php-quote">'1.1'</span> =&gt; <span class="php-num">0</span>,
+    <span class="php-quote">'1.2'</span> =&gt; <span class="php-num">0</span>,
+    <span class="php-quote">'1.3'</span> =&gt; <span class="php-num">0</span>,
+    <span class="php-quote">'1.4'</span> =&gt; <span class="php-num">0</span>,
+    <span class="php-quote">'1.5'</span> =&gt; <span class="php-num">0</span>,
+    <span class="php-quote">'1.6'</span> =&gt; <span class="php-num">0</span>,
+    <span class="php-quote">'1.7'</span> =&gt; <span class="php-num">0</span>,
+    <span class="php-quote">'1.8'</span> =&gt; <span class="php-num">0</span>,
+    <span class="php-quote">'1.9'</span> =&gt; <span class="php-num">0</span>,
+    <span class="php-quote">'2.0'</span> =&gt; <span class="php-num">0</span>,
+    <span class="php-quote">'2.1'</span> =&gt; <span class="php-num">0</span>,
+    <span class="php-quote">'2.2'</span> =&gt; <span class="php-num">0</span>,
+    <span class="php-quote">'2.3'</span> =&gt; <span class="php-num">0</span>,
+    <span class="php-quote">'2.4'</span> =&gt; <span class="php-num">0</span>,
+    <span class="php-quote">'2.5'</span> =&gt; <span class="php-num">0</span>,
+    <span class="php-quote">'2.6'</span> =&gt; <span class="php-num">0</span>,
+    <span class="php-quote">'2.7'</span> =&gt; <span class="php-num">0</span>,
+    <span class="php-quote">'2.8'</span> =&gt; <span class="php-num">0</span>,
+    <span class="php-quote">'2.9'</span> =&gt; <span class="php-num">0</span>,
+    <span class="php-quote">'3.0'</span> =&gt; <span class="php-num">0</span>,
+    <span class="php-quote">'3.1'</span> =&gt; <span class="php-num">0</span>,
+    <span class="php-quote">'3.2'</span> =&gt; <span class="php-num">0</span>,
+    <span class="php-quote">'3.3'</span> =&gt; <span class="php-num">0</span>,
+    <span class="php-quote">'3.4'</span> =&gt; <span class="php-num">0</span>,
+    <span class="php-quote">'3.5'</span> =&gt; <span class="php-num">0</span>,
+    <span class="php-quote">'3.6'</span> =&gt; <span class="php-num">0</span>,
+    <span class="php-quote">'3.7'</span> =&gt; <span class="php-num">0</span>,
+    <span class="php-quote">'3.8'</span> =&gt; <span class="php-num">0</span>,
+    <span class="php-quote">'3.9'</span> =&gt; <span class="php-num">0</span>,
+    <span class="php-quote">'4.0'</span> =&gt; <span class="php-num">0</span>,
+    <span class="php-quote">'4.1'</span> =&gt; <span class="php-num">0</span>,
+    <span class="php-quote">'4.2'</span> =&gt; <span class="php-num">0</span>,
+    <span class="php-quote">'4.3'</span> =&gt; <span class="php-num">0</span>,
+    <span class="php-quote">'4.4'</span> =&gt; <span class="php-num">0</span>,
+    <span class="php-quote">'4.5'</span> =&gt; <span class="php-num">0</span>,
+    <span class="php-quote">'4.6'</span> =&gt; <span class="php-num">0</span>,
+    <span class="php-quote">'4.7'</span> =&gt; <span class="php-num">0</span>,
+    <span class="php-quote">'4.8'</span> =&gt; <span class="php-num">0</span>,
+    <span class="php-quote">'4.9'</span> =&gt; <span class="php-num">0</span>,
+    <span class="php-quote">'5.0'</span> =&gt; <span class="php-num">0</span>,
+    <span class="php-quote">'5.1'</span> =&gt; <span class="php-num">0</span>,
+    <span class="php-quote">'5.2'</span> =&gt; <span class="php-num">0</span>,
+    <span class="php-quote">'5.3'</span> =&gt; <span class="php-num">0</span>,
+    <span class="php-quote">'5.4'</span> =&gt; <span class="php-num">0</span>,
+    <span class="php-quote">'5.5'</span> =&gt; <span class="php-num">0</span>,
+    <span class="php-quote">'5.6'</span> =&gt; <span class="php-num">0</span>,
+    <span class="php-quote">'5.7'</span> =&gt; <span class="php-num">0</span>,
+    <span class="php-quote">'5.8'</span> =&gt; <span class="php-num">0</span>,
+    <span class="php-quote">'5.9'</span> =&gt; <span class="php-num">0</span>,
+    <span class="php-quote">'6.0'</span> =&gt; <span class="php-num">0</span>)</code></td>
+		<td class="description"><div>
+			<a href="#$schoolMarks" class="anchor">#</a>
+
+			<div class="description short">
+				
+<p>Array für XYZ NotenSystem.</p>
+
+			</div>
+
+			<div class="description detailed hidden">
+				
+<p>Array für XYZ NotenSystem.</p>
+
+
+			</div>
+		</div></td>
+	</tr>
+	<tr data-order="unbenotetMarks" id="$unbenotetMarks">
+		<td class="attributes"><code>
+			protected  
+			type
+		</code></td>
+
+		<td class="name">
+				<a href="source-class-ReRe.Rere.Services.NestedDirectory.NotenVerwaltungHelper.html#69-75" title="Go to source code"><var>$unbenotetMarks</var></a>
+		</td>
+		<td class="value"><code><span class="php-keyword1">array</span>(
+    <span class="php-quote">'be'</span> =&gt; <span class="php-num">0</span>,
+    <span class="php-quote">'N'</span> =&gt; <span class="php-num">0</span>)</code></td>
+		<td class="description"><div>
+			<a href="#$unbenotetMarks" class="anchor">#</a>
+
+			<div class="description short">
+				
+<p>Array für Unbenotete Leistungen.</p>
+
+			</div>
+
+			<div class="description detailed hidden">
+				
+<p>Array für Unbenotete Leistungen.</p>
+
+
+			</div>
+		</div></td>
+	</tr>
+	<tr data-order="fifteenMarks" id="$fifteenMarks">
+		<td class="attributes"><code>
+			protected  
+			type
+		</code></td>
+
+		<td class="name">
+				<a href="source-class-ReRe.Rere.Services.NestedDirectory.NotenVerwaltungHelper.html#77-96" title="Go to source code"><var>$fifteenMarks</var></a>
+		</td>
+		<td class="value"><code>[
+    <span class="php-quote">'1'</span> =&gt; <span class="php-num">0</span>,
+    <span class="php-quote">'2'</span> =&gt; <span class="php-num">0</span>,
+    <span class="php-quote">'3'</span> =&gt; <span class="php-num">0</span>,
+    <span class="php-quote">'4'</span> =&gt; <span class="php-num">0</span>,
+    <span class="php-quote">'5'</span> =&gt; <span class="php-num">0</span>,
+    <span class="php-quote">'6'</span> =&gt; <span class="php-num">0</span>,
+    <span class="php-quote">'7'</span> =&gt; <span class="php-num">0</span>,
+    <span class="php-quote">'8'</span> =&gt; <span class="php-num">0</span>,
+    <span class="php-quote">'9'</span> =&gt; <span class="php-num">0</span>,
+    <span class="php-quote">'10'</span> =&gt; <span class="php-num">0</span>,
+    <span class="php-quote">'11'</span> =&gt; <span class="php-num">0</span>,
+    <span class="php-quote">'12'</span> =&gt; <span class="php-num">0</span>,
+    <span class="php-quote">'13'</span> =&gt; <span class="php-num">0</span>,
+    <span class="php-quote">'14'</span> =&gt; <span class="php-num">0</span>,
+    <span class="php-quote">'15'</span> =&gt; <span class="php-num">0</span>]</code></td>
+		<td class="description"><div>
+			<a href="#$fifteenMarks" class="anchor">#</a>
+
+			<div class="description short">
+				
+<p>Array für das 15 Punkte System</p>
+
+			</div>
+
+			<div class="description detailed hidden">
+				
+<p>Array für das 15 Punkte System</p>
+
+
+			</div>
+		</div></td>
+	</tr>
+	<tr data-order="resultArray" id="$resultArray">
+		<td class="attributes"><code>
+			protected  
+			array
+		</code></td>
+
+		<td class="name">
+				<a href="source-class-ReRe.Rere.Services.NestedDirectory.NotenVerwaltungHelper.html#98-112" title="Go to source code"><var>$resultArray</var></a>
+		</td>
+		<td class="value"><code>[<span class="php-quote">'1.0'</span> =&gt; <span class="php-num">0</span>,
+    <span class="php-quote">'1.3'</span> =&gt; <span class="php-num">0</span>,
+    <span class="php-quote">'1.7'</span> =&gt; <span class="php-num">0</span>,
+    <span class="php-quote">'2.0'</span> =&gt; <span class="php-num">0</span>,
+    <span class="php-quote">'2.3'</span> =&gt; <span class="php-num">0</span>,
+    <span class="php-quote">'2.7'</span> =&gt; <span class="php-num">0</span>,
+    <span class="php-quote">'3.0'</span> =&gt; <span class="php-num">0</span>,
+    <span class="php-quote">'3.3'</span> =&gt; <span class="php-num">0</span>,
+    <span class="php-quote">'3.7'</span> =&gt; <span class="php-num">0</span>,
+    <span class="php-quote">'4.0'</span> =&gt; <span class="php-num">0</span>,
+    <span class="php-quote">'5.0'</span> =&gt; <span class="php-num">0</span>
+]</code></td>
+		<td class="description"><div>
+			<a href="#$resultArray" class="anchor">#</a>
+
+			<div class="description short">
+				
+<p>Array für die Anzahl der Note um diese dann im Chart auszugeben</p>
+
+			</div>
+
+			<div class="description detailed hidden">
+				
+<p>Array für die Anzahl der Note um diese dann im Chart auszugeben</p>
+
+
+			</div>
+		</div></td>
+	</tr>
+	</table>
 
 
 
