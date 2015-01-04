@@ -1,4 +1,5 @@
 <?php
+
 namespace ReRe\Rere\Controller;
 
 /* * *************************************************************
@@ -36,167 +37,173 @@ namespace ReRe\Rere\Controller;
  */
 class NoteController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController {
 
-	const MODUL = 'modul';
+    const MODUL = 'modul';
+    const FACH = 'fach';
 
-	const FACH = 'fach';
+    /**
+     * Private Klassenvariable für die Notenlisten wird mit NULL initialisiert.
+     *
+     * @var type
+     */
+    private $noteList = NULL;
 
-	/**
-	 * Private Klassenvariable für die Notenlisten wird mit NULL initialisiert.
-	 * 
-	 * @var type
-	 */
-	private $noteList = NULL;
+    /**
+     * Private Klassenvariable für die Hilfsklassen wird mit NULL initialisiert.
+     *
+     * @var type
+     */
+    private $helper = NULL;
 
-	/**
-	* Private Klassenvariable für die Hilfsklassen wird mit NULL initialisiert.
-	 * 
-	 * @var type
-	 */
-	private $helper = NULL;
+    /**
+     * Protected Variable helper wird mit NULL initialisiert.
+     *
+     * @var \ReRe\Rere\Domain\Repository\NoteRepository
+     * @inject
+     */
+    protected $noteRepository = NULL;
 
-	/**
-	 * Protected Variable helper wird mit NULL initialisiert.
-	 * 
-	 * @var \ReRe\Rere\Domain\Repository\NoteRepository
-	 * @inject
-	 */
-	protected $noteRepository = NULL;
+    /**
+     * Protected Variable prueflingRepository wird mit NULL initialisiert.
+     *
+     * @var \ReRe\Rere\Domain\Repository\PrueflingRepository
+     * @inject
+     */
+    protected $prueflingRepository = NULL;
 
-	/**
-	 * Protected Variable prueflingRepository wird mit NULL initialisiert.
-	 * 
-	 * @var \ReRe\Rere\Domain\Repository\PrueflingRepository
-	 * @inject
-	 */
-	protected $prueflingRepository = NULL;
+    /**
+     * Protected Variable modulRepository wird mit NULL initialisiert.
+     *
+     * @var \ReRe\Rere\Domain\Repository\ModulRepository
+     * @inject
+     */
+    protected $modulRepository = NULL;
 
-	/**
-	 * Protected Variable modulRepository wird mit NULL initialisiert.
-	 * 
-	 * @var \ReRe\Rere\Domain\Repository\ModulRepository
-	 * @inject
-	 */
-	protected $modulRepository = NULL;
+    /**
+     * Protected Variable fachRepository wird mit NULL initialisiert.
+     *
+     * @var \ReRe\Rere\Domain\Repository\FachRepository
+     * @inject
+     */
+    protected $fachRepository = NULL;
 
-	/**
-	 * Protected Variable fachRepository wird mit NULL initialisiert.
-	 * 
-	 * @var \ReRe\Rere\Domain\Repository\FachRepository
-	 * @inject
-	 */
-	protected $fachRepository = NULL;
+    /**
+     * Im Konstruktor des NoteControllers wird eine Instanz der Array-Klasse und des Notenverwaltungs-Helpers erzeugt.
+     */
+    public function __construct() {
+        $this->noteList = new \ReRe\Rere\Services\NestedDirectory\NoteSchemaArrays();
+        $this->helper = new \ReRe\Rere\Services\NestedDirectory\NotenVerwaltungHelper();
+    }
 
-	/**
-	 * Im Konstruktor des NoteControllers wird eine Instanz der Array-Klasse und des Notenverwaltungs-Helpers erzeugt.
-	 */
-	public function __construct() {
-		$this->noteList = new \ReRe\Rere\Services\NestedDirectory\NoteSchemaArrays();
-		$this->helper = new \ReRe\Rere\Services\NestedDirectory\NotenVerwaltungHelper();
-	}
+    /**
+     * In dieser Methode werden alle eingetragenen Noten zu einem bestimmten Fach/Modul geholt.
+     *
+     * @return void
+     */
+    public function listAction() {
+        // Holt FachObjekt
+        $fach = $this->fachRepository->findByUid($this->request->getArgument(self::FACH));
+        $angemeldete = 0;
+        // Holt Modul Objekt
+        $modul = $this->modulRepository->findByUid($this->request->getArgument(self::MODUL));
+        // Ausgabe aller eingetragener noten
+        $notes = $this->noteRepository->findAll();
+        $correctnotes = array();
+        $publisharray = array();
+        foreach ($notes as $note) {
+            if ($note->getFach() == $fach->getUid()) {
+                array_push($correctnotes, $note);
+                // Holt den Prüfling dem die Note zugewiesen wurde
+                $pruefling = $this->prueflingRepository->findByUid($note->getPruefling());
+                // Generiert das ausgabe Array mit Prüfling und allem
+                array_push($publisharray, array('prueflingvorname' => $pruefling->getVorname(), 'matrikelnr' => $pruefling->getMatrikelnr(), 'prueflingnachname' => $pruefling->getNachname(), 'uid' => $note->getUid(), 'wert' => $note->getWert(), 'kommentar' => $note->getKommentar()));
+                $angemeldete++;
+            }
+        }
+        // holt das passende notenschema.
+        $options = $this->noteList->getMarkArray($fach->getNotenschema());
+        $this->view->assignMultiple(array(self::FACH => $fach, self::MODUL => $modul, 'options' => $options, 'notes' => $publisharray, 'eingetragen' => $this->helper->checkIfWertisSet($correctnotes), 'chartarray' => $this->helper->genArray($correctnotes, $fach->getNotenschema()), 'avg' => $this->helper->calculateAverage($correctnotes), 'angemeldete' => $angemeldete));
+    }
 
-	/**
-	 * In dieser Methode werden alle eingetragenen Noten zu einem bestimmten Fach/Modul geholt.
-	 * 
-	 * @return void
-	 */
-	public function listAction() {
-		// Holt Fach-Objekt
-		$fach = $this->fachRepository->findByUid($this->request->getArgument(self::FACH));
-		$angemeldete = 0;
-		// Holt Modul-Objekt
-		$modul = $this->modulRepository->findByUid($this->request->getArgument(self::MODUL));
-		// Ausgabe aller eingetragener Noten
-		$notes = $this->noteRepository->findAll();
-		$correctnotes = array();
-		foreach ($notes as $note) {
-			if ($note->getFach() == $fach->getUid()) {
-				array_push($correctnotes, $note);
-				$angemeldete++;
-			}
-		}
-		$options = $this->noteList->getMarkArray($fach->getNotenschema());
-		$this->view->assignMultiple(array(self::FACH => $fach, self::MODUL => $modul, 'options' => $options, 'notes' => $correctnotes, 'eingetragen' => $this->helper->checkIfWertisSet($correctnotes), 'chartarray' => $this->helper->genArray($correctnotes), 'avg' => $this->helper->calculateAverage($correctnotes), 'angemeldete' => $angemeldete));
-	}
+    /**
+     * Diese Methode dient dem Editieren einer Note.
+     * Sie wird in der aktuellen Version jedoch nicht verwendet.
+     *
+     * @param \ReRe\Rere\Domain\Model\Note $note
+     * @return void
+     */
+    public function showAction(\ReRe\Rere\Domain\Model\Note $note) {
+        $this->view->assign('note', $note);
+    }
 
-	/**
-	 * Diese Methode dient dem Editieren einer Note. 
-         * Sie wird in der aktuellen Version jedoch nicht verwendet.
-	 * 
-	 * @param \ReRe\Rere\Domain\Model\Note $note
-	 * @return void
-	 */
-	public function showAction(\ReRe\Rere\Domain\Model\Note $note) {
-		$this->view->assign('note', $note);
-	}
+    /**
+     * Mit dieser Methode wird eine neue Note erzeugt und mit NULL initialisiert.
+     *
+     * @param \ReRe\Rere\Domain\Model\Note $newNote
+     * @ignorevalidation $newNote
+     * @return void
+     */
+    public function newAction(\ReRe\Rere\Domain\Model\Note $newNote = NULL) {
+        $this->view->assign('newNote', $newNote);
+    }
 
-	/**
-	 * Mit dieser Methode wird eine neue Note erzeugt und mit NULL initialisiert. 
-	 * 
-	 * @param \ReRe\Rere\Domain\Model\Note $newNote
-	 * @ignorevalidation $newNote
-	 * @return void
-	 */
-	public function newAction(\ReRe\Rere\Domain\Model\Note $newNote = NULL) {
-		$this->view->assign('newNote', $newNote);
-	}
+    /**
+     * Mit dieser Methode wird die neu erzeugte Note im noteRepository gespeichert und das Fach und Modul zugewiesen.
+     *
+     * @param \ReRe\Rere\Domain\Model\Note $newNote
+     * @return void
+     */
+    public function createAction(\ReRe\Rere\Domain\Model\Note $newNote) {
+        $this->addFlashMessage('The object was created. Please be aware that this action is publicly accessible unless you implement an access check. See <a href="http://wiki.typo3.org/T3Doc/Extension_Builder/Using_the_Extension_Builder#1._Model_the_domain" target="_blank">Wiki</a>', '', \TYPO3\CMS\Core\Messaging\AbstractMessage::ERROR);
+        $this->noteRepository->add($newNote);
+        $fach = $this->fachRepository->findByUid($this->request->getArgument(self::FACH));
+        $modul = $this->modulRepository->findByUid($this->request->getArgument(self::MODUL));
+        $this->redirect('list', 'Note', Null, array(self::FACH => $fach, self::MODUL => $modul));
+    }
 
-	/**
-	 * Mit dieser Methode wird die neu erzeugte Note im noteRepository gespeichert und das Fach und Modul zugewiesen.
-	 * 
-	 * @param \ReRe\Rere\Domain\Model\Note $newNote
-	 * @return void
-	 */
-	public function createAction(\ReRe\Rere\Domain\Model\Note $newNote) {
-		$this->addFlashMessage('The object was created. Please be aware that this action is publicly accessible unless you implement an access check. See <a href="http://wiki.typo3.org/T3Doc/Extension_Builder/Using_the_Extension_Builder#1._Model_the_domain" target="_blank">Wiki</a>', '', \TYPO3\CMS\Core\Messaging\AbstractMessage::ERROR);
-		$this->noteRepository->add($newNote);
-		$fach = $this->fachRepository->findByUid($this->request->getArgument(self::FACH));
-		$modul = $this->modulRepository->findByUid($this->request->getArgument(self::MODUL));
-		$this->redirect('list', 'Note', Null, array(self::FACH => $fach, self::MODUL => $modul));
-	}
+    /**
+     * Diese Methode dient dem Editieren einer Note.
+     * Sie wird in der aktuellen Version jedoch so nicht verwendet.
+     *
+     * @param \ReRe\Rere\Domain\Model\Note $note
+     * @ignorevalidation $note
+     * @return void
+     */
+    public function editAction(\ReRe\Rere\Domain\Model\Note $note) {
+        echo 'TEST';
+        $this->view->assign('note', $note);
+    }
 
-	/**
-	 * Diese Methode dient dem Editieren einer Note. 
-         * Sie wird in der aktuellen Version jedoch so nicht verwendet.
-	 * 
-	 * @param \ReRe\Rere\Domain\Model\Note $note
-	 * @ignorevalidation $note
-	 * @return void
-	 */
-	public function editAction(\ReRe\Rere\Domain\Model\Note $note) {
-		$this->view->assign('note', $note);
-	}
+    /**
+     * In dieser Methode wird ein Noten-Objekt mit neuen Werten belegt.
+     *
+     * @return void
+     */
+    public function updateAction() {
+        $this->addFlashMessage('The object was updated. Please be aware that this action is publicly accessible unless you implement an access check. See <a href="http://wiki.typo3.org/T3Doc/Extension_Builder/Using_the_Extension_Builder#1._Model_the_domain" target="_blank">Wiki</a>', '', \TYPO3\CMS\Core\Messaging\AbstractMessage::ERROR);
+        // Holt das Noten-Objekt über die NotenUid vom Request
+        $note = $this->noteRepository->findByUid($this->request->getArgument('noteuid'));
+        // Setzt die neuen Werte für die Note
+        $note->setKommentar($this->request->getArgument('kommentar'));
+        $note->setWert($this->request->getArgument('wert'));
+        // Update der Note
+        $this->noteRepository->update($note);
+        $fach = $this->fachRepository->findByUid($this->request->getArgument(self::FACH));
+        $modul = $this->modulRepository->findByUid($this->request->getArgument(self::MODUL));
+        $this->redirect('list', 'Note', Null, array(self::FACH => $fach, self::MODUL => $modul));
+    }
 
-	/**
-	 * In dieser Methode wird ein Noten-Objekt mit neuen Werten belegt.
-	 * 
-	 * @return void
-	 */
-	public function updateAction() {
-		$this->addFlashMessage('The object was updated. Please be aware that this action is publicly accessible unless you implement an access check. See <a href="http://wiki.typo3.org/T3Doc/Extension_Builder/Using_the_Extension_Builder#1._Model_the_domain" target="_blank">Wiki</a>', '', \TYPO3\CMS\Core\Messaging\AbstractMessage::ERROR);
-		// Holt das Noten-Objekt über die NotenUid vom Request
-		$note = $this->noteRepository->findByUid($this->request->getArgument('noteuid'));
-		// Setzt die neuen Werte für die Note
-		$note->setKommentar($this->request->getArgument('kommentar'));
-		$note->setWert($this->request->getArgument('wert'));
-		// Update der Note
-		$this->noteRepository->update($note);
-		$fach = $this->fachRepository->findByUid($this->request->getArgument(self::FACH));
-		$modul = $this->modulRepository->findByUid($this->request->getArgument(self::MODUL));
-		$this->redirect('list', 'Note', Null, array(self::FACH => $fach, self::MODUL => $modul));
-	}
-
-	/**
-	 * Diese Methode dient dem Löschen einer Note
-	 * 
-	 * @param \ReRe\Rere\Domain\Model\Note $note
-	 * @return void
-	 */
-	public function deleteAction(\ReRe\Rere\Domain\Model\Note $note) {
-		$this->addFlashMessage('The object was deleted. Please be aware that this action is publicly accessible unless you implement an access check. See <a href="http://wiki.typo3.org/T3Doc/Extension_Builder/Using_the_Extension_Builder#1._Model_the_domain" target="_blank">Wiki</a>', '', \TYPO3\CMS\Core\Messaging\AbstractMessage::ERROR);
-		$this->noteRepository->remove($note);
-		$fach = $this->fachRepository->findByUid($this->request->getArgument(self::FACH));
-		$modul = $this->modulRepository->findByUid($this->request->getArgument(self::MODUL));
-		$this->redirect('list', 'Note', Null, array(self::FACH => $fach, self::MODUL => $modul));
-	}
+    /**
+     * Diese Methode dient dem Löschen einer Note
+     *
+     * @param \ReRe\Rere\Domain\Model\Note $note
+     * @return void
+     */
+    public function deleteAction(\ReRe\Rere\Domain\Model\Note $note) {
+        $this->addFlashMessage('The object was deleted. Please be aware that this action is publicly accessible unless you implement an access check. See <a href="http://wiki.typo3.org/T3Doc/Extension_Builder/Using_the_Extension_Builder#1._Model_the_domain" target="_blank">Wiki</a>', '', \TYPO3\CMS\Core\Messaging\AbstractMessage::ERROR);
+        $this->noteRepository->remove($note);
+        $fach = $this->fachRepository->findByUid($this->request->getArgument(self::FACH));
+        $modul = $this->modulRepository->findByUid($this->request->getArgument(self::MODUL));
+        $this->redirect('list', 'Note', Null, array(self::FACH => $fach, self::MODUL => $modul));
+    }
 
 }

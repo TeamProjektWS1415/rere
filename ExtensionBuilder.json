@@ -447,7 +447,7 @@
             "sourceLanguage": "en",
             "state": "alpha",
             "targetVersion": "6.2",
-            "version": ""
+            "version": "1.0.0"
         },
         "extensionKey": "rere",
         "name": "Result Repository",
