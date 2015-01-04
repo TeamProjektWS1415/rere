@@ -3,9 +3,8 @@
 namespace ReRe\Rere\Controller;
 
 /**
- * Description of ImportController
- *
- * Alle Funktionen um Daten zu Importieren
+
+ * Der ImportController enthält alle Funktionen zum Importieren von Daten.
  *
  * @author Felix
  */
@@ -16,13 +15,13 @@ class ImportController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControlle
     const IMPORT = "import";
 
     /**
-     * View Rendering für Import
+     * View-Rendering für Import
      */
     public function newAction() {
         if ($this->request->hasArgument('type')) {
             $type = $this->request->getArgument('type');
 
-            // Prüfung um welchen Import Typ es sich handelt.
+            // Prüfung, um welchen Import-Typ es sich handelt.
             if ($type == "prueflinge") {
                 $this->view->assign(self::TITLE, 'Import Prüflinge');
                 $this->view->assign(self::LABLE, 'XML-Datei mit Prüflingen');

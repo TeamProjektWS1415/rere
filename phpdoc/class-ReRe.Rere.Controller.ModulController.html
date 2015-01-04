@@ -7,7 +7,7 @@
 	<title>Class ReRe\Rere\Controller\ModulController | rere</title>
 
 	<script type="text/javascript" src="resources/combined.js?2780970235"></script>
-	<script type="text/javascript" src="elementlist.js?346072587"></script>
+	<script type="text/javascript" src="elementlist.js?3518151049"></script>
 	<link rel="stylesheet" type="text/css" media="all" href="resources/style.css?3505392360" />
 
 </head>
@@ -64,6 +64,7 @@
 				<li><a href="class-ReRe.Rere.Controller.ExportController.html">ExportController</a></li>
 				<li><a href="class-ReRe.Rere.Controller.FachController.html">FachController</a></li>
 				<li><a href="class-ReRe.Rere.Controller.ImportController.html">ImportController</a></li>
+				<li><a href="class-ReRe.Rere.Controller.IntervallController.html">IntervallController</a></li>
 				<li class="active"><a href="class-ReRe.Rere.Controller.ModulController.html">ModulController</a></li>
 				<li><a href="class-ReRe.Rere.Controller.NoteController.html">NoteController</a></li>
 				<li><a href="class-ReRe.Rere.Controller.PrueflingController.html">PrueflingController</a></li>
@@ -145,7 +146,7 @@ TYPO3\CMS\Extbase\Mvc\Controller\ActionController
 		<b>Namespace:</b> <a href="namespace-ReRe.html">ReRe</a>\<a href="namespace-ReRe.Rere.html">Rere</a>\<a href="namespace-ReRe.Rere.Controller.html">Controller</a><br />
 		
 
-		<b>Located at</b> <a href="source-class-ReRe.Rere.Controller.ModulController.html#35-157" title="Go to source code">Classes/Controller/ModulController.php</a><br />
+		<b>Located at</b> <a href="source-class-ReRe.Rere.Controller.ModulController.html#34-196" title="Go to source code">Classes/Controller/ModulController.php</a><br />
 	</div>
 
 
@@ -163,17 +164,19 @@ TYPO3\CMS\Extbase\Mvc\Controller\ActionController
 
 		<td class="name"><div>
 		<a class="anchor" href="#_listAction">#</a>
-		<code><a href="source-class-ReRe.Rere.Controller.ModulController.html#62-71" title="Go to source code">listAction</a>( )</code>
+		<code><a href="source-class-ReRe.Rere.Controller.ModulController.html#71-107" title="Go to source code">listAction</a>( )</code>
 
 		<div class="description short">
 			
-<p>action list</p>
+<p>Mit dieser Methode werden alle Module des aktuell ausgewählten Intervalls
+angezeigt.</p>
 
 		</div>
 
 		<div class="description detailed hidden">
 			
-<p>action list</p>
+<p>Mit dieser Methode werden alle Module des aktuell ausgewählten Intervalls
+angezeigt.</p>
 
 
 
@@ -196,17 +199,17 @@ TYPO3\CMS\Extbase\Mvc\Controller\ActionController
 
 		<td class="name"><div>
 		<a class="anchor" href="#_showAction">#</a>
-		<code><a href="source-class-ReRe.Rere.Controller.ModulController.html#73-81" title="Go to source code">showAction</a>( <span><code><a href="class-ReRe.Rere.Domain.Model.Modul.html">ReRe\Rere\Domain\Model\Modul</a></code> <var>$modul</var></span> )</code>
+		<code><a href="source-class-ReRe.Rere.Controller.ModulController.html#109-117" title="Go to source code">showAction</a>( <span><code><a href="class-ReRe.Rere.Domain.Model.Modul.html">ReRe\Rere\Domain\Model\Modul</a></code> <var>$modul</var></span> )</code>
 
 		<div class="description short">
 			
-<p>action show</p>
+<p>Diese Methode zeigt ein bestimmtes Modul an.</p>
 
 		</div>
 
 		<div class="description detailed hidden">
 			
-<p>action show</p>
+<p>Diese Methode zeigt ein bestimmtes Modul an.</p>
 
 
 
@@ -234,17 +237,19 @@ TYPO3\CMS\Extbase\Mvc\Controller\ActionController
 
 		<td class="name"><div>
 		<a class="anchor" href="#_newAction">#</a>
-		<code><a href="source-class-ReRe.Rere.Controller.ModulController.html#83-92" title="Go to source code">newAction</a>( <span><code><a href="class-ReRe.Rere.Domain.Model.Modul.html">ReRe\Rere\Domain\Model\Modul</a></code> <var>$newModul</var> = <span class="php-keyword1">NULL</span></span> )</code>
+		<code><a href="source-class-ReRe.Rere.Controller.ModulController.html#119-129" title="Go to source code">newAction</a>( <span><code><a href="class-ReRe.Rere.Domain.Model.Modul.html">ReRe\Rere\Domain\Model\Modul</a></code> <var>$newModul</var> = <span class="php-keyword1">NULL</span></span> )</code>
 
 		<div class="description short">
 			
-<p>action new</p>
+<p>Mit dieser Methode wird ein neues (leeres) Modul (new.html) erzeugt und mit
+dem aktuellen Gültigkeitszeitraum vorbelegt.</p>
 
 		</div>
 
 		<div class="description detailed hidden">
 			
-<p>action new</p>
+<p>Mit dieser Methode wird ein neues (leeres) Modul (new.html) erzeugt und mit
+dem aktuellen Gültigkeitszeitraum vorbelegt.</p>
 
 
 
@@ -276,17 +281,23 @@ TYPO3\CMS\Extbase\Mvc\Controller\ActionController
 
 		<td class="name"><div>
 		<a class="anchor" href="#_createAction">#</a>
-		<code><a href="source-class-ReRe.Rere.Controller.ModulController.html#94-120" title="Go to source code">createAction</a>( <span><code><a href="class-ReRe.Rere.Domain.Model.Modul.html">ReRe\Rere\Domain\Model\Modul</a></code> <var>$newModul</var></span> )</code>
+		<code><a href="source-class-ReRe.Rere.Controller.ModulController.html#131-157" title="Go to source code">createAction</a>( <span><code><a href="class-ReRe.Rere.Domain.Model.Modul.html">ReRe\Rere\Domain\Model\Modul</a></code> <var>$newModul</var></span> )</code>
 
 		<div class="description short">
 			
-<p>action create</p>
+<p>Wird aufgerufen, wenn Formular (Modul/new.html) abgeschickt wird. In dieser
+Methode wird ein neues Fach angelegt. Hierbei werden die Daten aus dem
+Eingabeformular dem Fach zugewiesen und anschließend das Fach dem neuen Modul
+zugewiesen.</p>
 
 		</div>
 
 		<div class="description detailed hidden">
 			
-<p>action create</p>
+<p>Wird aufgerufen, wenn Formular (Modul/new.html) abgeschickt wird. In dieser
+Methode wird ein neues Fach angelegt. Hierbei werden die Daten aus dem
+Eingabeformular dem Fach zugewiesen und anschließend das Fach dem neuen Modul
+zugewiesen.</p>
 
 
 
@@ -314,17 +325,19 @@ TYPO3\CMS\Extbase\Mvc\Controller\ActionController
 
 		<td class="name"><div>
 		<a class="anchor" href="#_editAction">#</a>
-		<code><a href="source-class-ReRe.Rere.Controller.ModulController.html#122-131" title="Go to source code">editAction</a>( <span><code><a href="class-ReRe.Rere.Domain.Model.Modul.html">ReRe\Rere\Domain\Model\Modul</a></code> <var>$modul</var></span> )</code>
+		<code><a href="source-class-ReRe.Rere.Controller.ModulController.html#159-169" title="Go to source code">editAction</a>( <span><code><a href="class-ReRe.Rere.Domain.Model.Modul.html">ReRe\Rere\Domain\Model\Modul</a></code> <var>$modul</var></span> )</code>
 
 		<div class="description short">
 			
-<p>action edit</p>
+<p>Diese Methode dient dem Editieren eines Moduls. Sie wird in der aktuellen
+Version jedoch nicht verwendet.</p>
 
 		</div>
 
 		<div class="description detailed hidden">
 			
-<p>action edit</p>
+<p>Diese Methode dient dem Editieren eines Moduls. Sie wird in der aktuellen
+Version jedoch nicht verwendet.</p>
 
 
 
@@ -356,17 +369,19 @@ TYPO3\CMS\Extbase\Mvc\Controller\ActionController
 
 		<td class="name"><div>
 		<a class="anchor" href="#_updateAction">#</a>
-		<code><a href="source-class-ReRe.Rere.Controller.ModulController.html#133-143" title="Go to source code">updateAction</a>( <span><code><a href="class-ReRe.Rere.Domain.Model.Modul.html">ReRe\Rere\Domain\Model\Modul</a></code> <var>$modul</var></span> )</code>
+		<code><a href="source-class-ReRe.Rere.Controller.ModulController.html#171-182" title="Go to source code">updateAction</a>( <span><code><a href="class-ReRe.Rere.Domain.Model.Modul.html">ReRe\Rere\Domain\Model\Modul</a></code> <var>$modul</var></span> )</code>
 
 		<div class="description short">
 			
-<p>action update</p>
+<p>Mit dieser Methode wird das Modul im modulRepository auf den neusten Stand
+gebracht. Methode wird in der aktuellen Version nicht verwendet.</p>
 
 		</div>
 
 		<div class="description detailed hidden">
 			
-<p>action update</p>
+<p>Mit dieser Methode wird das Modul im modulRepository auf den neusten Stand
+gebracht. Methode wird in der aktuellen Version nicht verwendet.</p>
 
 
 
@@ -394,17 +409,17 @@ TYPO3\CMS\Extbase\Mvc\Controller\ActionController
 
 		<td class="name"><div>
 		<a class="anchor" href="#_deleteAction">#</a>
-		<code><a href="source-class-ReRe.Rere.Controller.ModulController.html#145-155" title="Go to source code">deleteAction</a>( <span><code><a href="class-ReRe.Rere.Domain.Model.Modul.html">ReRe\Rere\Domain\Model\Modul</a></code> <var>$modul</var></span> )</code>
+		<code><a href="source-class-ReRe.Rere.Controller.ModulController.html#184-194" title="Go to source code">deleteAction</a>( <span><code><a href="class-ReRe.Rere.Domain.Model.Modul.html">ReRe\Rere\Domain\Model\Modul</a></code> <var>$modul</var></span> )</code>
 
 		<div class="description short">
 			
-<p>action delete</p>
+<p>Diese Methode dient dem Löschen eines Moduls.</p>
 
 		</div>
 
 		<div class="description detailed hidden">
 			
-<p>action delete</p>
+<p>Diese Methode dient dem Löschen eines Moduls.</p>
 
 
 
@@ -443,7 +458,7 @@ TYPO3\CMS\Extbase\Mvc\Controller\ActionController
 		</code></td>
 
 		<td class="name">
-				<a href="source-class-ReRe.Rere.Controller.ModulController.html#40-46" title="Go to source code"><var>$modulRepository</var></a>
+				<a href="source-class-ReRe.Rere.Controller.ModulController.html#39-45" title="Go to source code"><var>$modulRepository</var></a>
 		</td>
 		<td class="value"><code><span class="php-keyword1">NULL</span></code></td>
 		<td class="description"><div>
@@ -451,13 +466,13 @@ TYPO3\CMS\Extbase\Mvc\Controller\ActionController
 
 			<div class="description short">
 				
-<p>modulRepository</p>
+<p>Protected Variable modulRepository wird mit NULL initialisiert.</p>
 
 			</div>
 
 			<div class="description detailed hidden">
 				
-<p>modulRepository</p>
+<p>Protected Variable modulRepository wird mit NULL initialisiert.</p>
 
 
 					<h4>Inject</h4>
@@ -473,7 +488,7 @@ TYPO3\CMS\Extbase\Mvc\Controller\ActionController
 		</code></td>
 
 		<td class="name">
-				<a href="source-class-ReRe.Rere.Controller.ModulController.html#48-54" title="Go to source code"><var>$fachRepository</var></a>
+				<a href="source-class-ReRe.Rere.Controller.ModulController.html#47-53" title="Go to source code"><var>$fachRepository</var></a>
 		</td>
 		<td class="value"><code><span class="php-keyword1">NULL</span></code></td>
 		<td class="description"><div>
@@ -481,13 +496,43 @@ TYPO3\CMS\Extbase\Mvc\Controller\ActionController
 
 			<div class="description short">
 				
-<p>fachRepository</p>
+<p>Protected Variable fachRepository wird mit NULL initialisiert.</p>
 
 			</div>
 
 			<div class="description detailed hidden">
 				
-<p>fachRepository</p>
+<p>Protected Variable fachRepository wird mit NULL initialisiert.</p>
+
+
+					<h4>Inject</h4>
+					<div class="list">
+					</div>
+			</div>
+		</div></td>
+	</tr>
+	<tr data-order="intervallRepository" id="$intervallRepository">
+		<td class="attributes"><code>
+			protected  
+			<code><a href="class-ReRe.Rere.Domain.Repository.IntervallRepository.html">ReRe\Rere\Domain\Repository\IntervallRepository</a></code>
+		</code></td>
+
+		<td class="name">
+				<a href="source-class-ReRe.Rere.Controller.ModulController.html#55-61" title="Go to source code"><var>$intervallRepository</var></a>
+		</td>
+		<td class="value"><code><span class="php-keyword1">NULL</span></code></td>
+		<td class="description"><div>
+			<a href="#$intervallRepository" class="anchor">#</a>
+
+			<div class="description short">
+				
+<p>Protected Variable intervallRepository wird mit NULL initialisiert.</p>
+
+			</div>
+
+			<div class="description detailed hidden">
+				
+<p>Protected Variable intervallRepository wird mit NULL initialisiert.</p>
 
 
 					<h4>Inject</h4>
@@ -503,18 +548,22 @@ TYPO3\CMS\Extbase\Mvc\Controller\ActionController
 		</code></td>
 
 		<td class="name">
-				<a href="source-class-ReRe.Rere.Controller.ModulController.html#56-60" title="Go to source code"><var>$objectManager</var></a>
+				<a href="source-class-ReRe.Rere.Controller.ModulController.html#63-69" title="Go to source code"><var>$objectManager</var></a>
 		</td>
-		<td class="value"><code></code></td>
+		<td class="value"><code><span class="php-keyword1">NULL</span></code></td>
 		<td class="description"><div>
 			<a href="#$objectManager" class="anchor">#</a>
 
 			<div class="description short">
 				
+<p>Protected Variable objectManager wird mit NULL initialisiert.</p>
+
 			</div>
 
 			<div class="description detailed hidden">
 				
+<p>Protected Variable objectManager wird mit NULL initialisiert.</p>
+
 
 					<h4>Inject</h4>
 					<div class="list">

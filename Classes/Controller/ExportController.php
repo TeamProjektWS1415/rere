@@ -3,9 +3,8 @@
 namespace ReRe\Rere\Controller;
 
 /**
- * Description of ExportController
-
- * Beinhaltet alle Funktionen für den Export von Prüflingen und Modulen und Fächern.
+ *
+ * Beinhaltet alle Funktionen für den Export von Prüflingen, Modulen und Fächern.
  *
  * @author Felix
  */

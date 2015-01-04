@@ -7,7 +7,7 @@
 	<title>Class ReRe\Rere\Controller\NoteController | rere</title>
 
 	<script type="text/javascript" src="resources/combined.js?2780970235"></script>
-	<script type="text/javascript" src="elementlist.js?346072587"></script>
+	<script type="text/javascript" src="elementlist.js?3518151049"></script>
 	<link rel="stylesheet" type="text/css" media="all" href="resources/style.css?3505392360" />
 
 </head>
@@ -64,6 +64,7 @@
 				<li><a href="class-ReRe.Rere.Controller.ExportController.html">ExportController</a></li>
 				<li><a href="class-ReRe.Rere.Controller.FachController.html">FachController</a></li>
 				<li><a href="class-ReRe.Rere.Controller.ImportController.html">ImportController</a></li>
+				<li><a href="class-ReRe.Rere.Controller.IntervallController.html">IntervallController</a></li>
 				<li><a href="class-ReRe.Rere.Controller.ModulController.html">ModulController</a></li>
 				<li class="active"><a href="class-ReRe.Rere.Controller.NoteController.html">NoteController</a></li>
 				<li><a href="class-ReRe.Rere.Controller.PrueflingController.html">PrueflingController</a></li>
@@ -145,13 +146,48 @@ TYPO3\CMS\Extbase\Mvc\Controller\ActionController
 		<b>Namespace:</b> <a href="namespace-ReRe.html">ReRe</a>\<a href="namespace-ReRe.Rere.html">Rere</a>\<a href="namespace-ReRe.Rere.Controller.html">Controller</a><br />
 		
 
-		<b>Located at</b> <a href="source-class-ReRe.Rere.Controller.NoteController.html#34-178" title="Go to source code">Classes/Controller/NoteController.php</a><br />
+		<b>Located at</b> <a href="source-class-ReRe.Rere.Controller.NoteController.html#35-209" title="Go to source code">Classes/Controller/NoteController.php</a><br />
 	</div>
 
 
 
 	<table class="summary" id="methods">
 	<caption>Methods summary</caption>
+	<tr data-order="__construct" id="___construct">
+
+		<td class="attributes"><code>
+			 public 
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#___construct">#</a>
+		<code><a href="source-class-ReRe.Rere.Controller.NoteController.html#89-95" title="Go to source code">__construct</a>( )</code>
+
+		<div class="description short">
+			
+<p>Im Konstruktor des NoteControllers wird eine Instanz der Array-Klasse und des
+Notenverwaltungs-Helpers erzeugt.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Im Konstruktor des NoteControllers wird eine Instanz der Array-Klasse und des
+Notenverwaltungs-Helpers erzeugt.</p>
+
+
+
+
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
 	<tr data-order="listAction" id="_listAction">
 
 		<td class="attributes"><code>
@@ -163,17 +199,19 @@ TYPO3\CMS\Extbase\Mvc\Controller\ActionController
 
 		<td class="name"><div>
 		<a class="anchor" href="#_listAction">#</a>
-		<code><a href="source-class-ReRe.Rere.Controller.NoteController.html#71-100" title="Go to source code">listAction</a>( )</code>
+		<code><a href="source-class-ReRe.Rere.Controller.NoteController.html#97-125" title="Go to source code">listAction</a>( )</code>
 
 		<div class="description short">
 			
-<p>action list</p>
+<p>In dieser Methode werden alle eingetragenen Noten zu einem bestimmten
+Fach/Modul geholt.</p>
 
 		</div>
 
 		<div class="description detailed hidden">
 			
-<p>action list</p>
+<p>In dieser Methode werden alle eingetragenen Noten zu einem bestimmten
+Fach/Modul geholt.</p>
 
 
 
@@ -196,17 +234,19 @@ TYPO3\CMS\Extbase\Mvc\Controller\ActionController
 
 		<td class="name"><div>
 		<a class="anchor" href="#_showAction">#</a>
-		<code><a href="source-class-ReRe.Rere.Controller.NoteController.html#102-110" title="Go to source code">showAction</a>( <span><code><a href="class-ReRe.Rere.Domain.Model.Note.html">ReRe\Rere\Domain\Model\Note</a></code> <var>$note</var></span> )</code>
+		<code><a href="source-class-ReRe.Rere.Controller.NoteController.html#127-136" title="Go to source code">showAction</a>( <span><code><a href="class-ReRe.Rere.Domain.Model.Note.html">ReRe\Rere\Domain\Model\Note</a></code> <var>$note</var></span> )</code>
 
 		<div class="description short">
 			
-<p>action show</p>
+<p>Diese Methode dient dem Editieren einer Note. Sie wird in der aktuellen
+Version jedoch nicht verwendet.</p>
 
 		</div>
 
 		<div class="description detailed hidden">
 			
-<p>action show</p>
+<p>Diese Methode dient dem Editieren einer Note. Sie wird in der aktuellen
+Version jedoch nicht verwendet.</p>
 
 
 
@@ -234,17 +274,19 @@ TYPO3\CMS\Extbase\Mvc\Controller\ActionController
 
 		<td class="name"><div>
 		<a class="anchor" href="#_newAction">#</a>
-		<code><a href="source-class-ReRe.Rere.Controller.NoteController.html#112-121" title="Go to source code">newAction</a>( <span><code><a href="class-ReRe.Rere.Domain.Model.Note.html">ReRe\Rere\Domain\Model\Note</a></code> <var>$newNote</var> = <span class="php-keyword1">NULL</span></span> )</code>
+		<code><a href="source-class-ReRe.Rere.Controller.NoteController.html#138-147" title="Go to source code">newAction</a>( <span><code><a href="class-ReRe.Rere.Domain.Model.Note.html">ReRe\Rere\Domain\Model\Note</a></code> <var>$newNote</var> = <span class="php-keyword1">NULL</span></span> )</code>
 
 		<div class="description short">
 			
-<p>action new</p>
+<p>Mit dieser Methode wird eine neue Note erzeugt und mit NULL
+initialisiert.</p>
 
 		</div>
 
 		<div class="description detailed hidden">
 			
-<p>action new</p>
+<p>Mit dieser Methode wird eine neue Note erzeugt und mit NULL
+initialisiert.</p>
 
 
 
@@ -276,17 +318,19 @@ TYPO3\CMS\Extbase\Mvc\Controller\ActionController
 
 		<td class="name"><div>
 		<a class="anchor" href="#_createAction">#</a>
-		<code><a href="source-class-ReRe.Rere.Controller.NoteController.html#123-133" title="Go to source code">createAction</a>( <span><code><a href="class-ReRe.Rere.Domain.Model.Note.html">ReRe\Rere\Domain\Model\Note</a></code> <var>$newNote</var></span> )</code>
+		<code><a href="source-class-ReRe.Rere.Controller.NoteController.html#149-161" title="Go to source code">createAction</a>( <span><code><a href="class-ReRe.Rere.Domain.Model.Note.html">ReRe\Rere\Domain\Model\Note</a></code> <var>$newNote</var></span> )</code>
 
 		<div class="description short">
 			
-<p>action create</p>
+<p>Mit dieser Methode wird die neu erzeugte Note im noteRepository gespeichert
+und das Fach und Modul zugewiesen.</p>
 
 		</div>
 
 		<div class="description detailed hidden">
 			
-<p>action create</p>
+<p>Mit dieser Methode wird die neu erzeugte Note im noteRepository gespeichert
+und das Fach und Modul zugewiesen.</p>
 
 
 
@@ -314,17 +358,19 @@ TYPO3\CMS\Extbase\Mvc\Controller\ActionController
 
 		<td class="name"><div>
 		<a class="anchor" href="#_editAction">#</a>
-		<code><a href="source-class-ReRe.Rere.Controller.NoteController.html#135-145" title="Go to source code">editAction</a>( <span><code><a href="class-ReRe.Rere.Domain.Model.Note.html">ReRe\Rere\Domain\Model\Note</a></code> <var>$note</var></span> )</code>
+		<code><a href="source-class-ReRe.Rere.Controller.NoteController.html#163-174" title="Go to source code">editAction</a>( <span><code><a href="class-ReRe.Rere.Domain.Model.Note.html">ReRe\Rere\Domain\Model\Note</a></code> <var>$note</var></span> )</code>
 
 		<div class="description short">
 			
-<p>action edit</p>
+<p>Diese Methode dient dem Editieren einer Note. Sie wird in der aktuellen
+Version jedoch so nicht verwendet.</p>
 
 		</div>
 
 		<div class="description detailed hidden">
 			
-<p>action edit</p>
+<p>Diese Methode dient dem Editieren einer Note. Sie wird in der aktuellen
+Version jedoch so nicht verwendet.</p>
 
 
 
@@ -356,17 +402,17 @@ TYPO3\CMS\Extbase\Mvc\Controller\ActionController
 
 		<td class="name"><div>
 		<a class="anchor" href="#_updateAction">#</a>
-		<code><a href="source-class-ReRe.Rere.Controller.NoteController.html#147-164" title="Go to source code">updateAction</a>( )</code>
+		<code><a href="source-class-ReRe.Rere.Controller.NoteController.html#176-193" title="Go to source code">updateAction</a>( )</code>
 
 		<div class="description short">
 			
-<p>action update</p>
+<p>In dieser Methode wird ein Noten-Objekt mit neuen Werten belegt.</p>
 
 		</div>
 
 		<div class="description detailed hidden">
 			
-<p>action update</p>
+<p>In dieser Methode wird ein Noten-Objekt mit neuen Werten belegt.</p>
 
 
 
@@ -389,17 +435,17 @@ TYPO3\CMS\Extbase\Mvc\Controller\ActionController
 
 		<td class="name"><div>
 		<a class="anchor" href="#_deleteAction">#</a>
-		<code><a href="source-class-ReRe.Rere.Controller.NoteController.html#166-176" title="Go to source code">deleteAction</a>( <span><code><a href="class-ReRe.Rere.Domain.Model.Note.html">ReRe\Rere\Domain\Model\Note</a></code> <var>$note</var></span> )</code>
+		<code><a href="source-class-ReRe.Rere.Controller.NoteController.html#195-207" title="Go to source code">deleteAction</a>( <span><code><a href="class-ReRe.Rere.Domain.Model.Note.html">ReRe\Rere\Domain\Model\Note</a></code> <var>$note</var></span> )</code>
 
 		<div class="description short">
 			
-<p>action delete</p>
+<p>Diese Methode dient dem Löschen einer Note</p>
 
 		</div>
 
 		<div class="description detailed hidden">
 			
-<p>action delete</p>
+<p>Diese Methode dient dem Löschen einer Note</p>
 
 
 
@@ -425,6 +471,49 @@ TYPO3\CMS\Extbase\Mvc\Controller\ActionController
 
 
 
+	<table class="summary" id="constants">
+	<caption>Constants summary</caption>
+	<tr data-order="MODUL" id="MODUL">
+
+		<td class="attributes"><code>string</code></td>
+		<td class="name"><code>
+				<a href="source-class-ReRe.Rere.Controller.NoteController.html#40" title="Go to source code"><b>MODUL</b></a>
+		</code></td>
+		<td class="value"><code><span class="php-quote">'modul'</span></code></td>
+		<td class="description"><div>
+			<a href="#MODUL" class="anchor">#</a>
+
+			<div class="description short">
+				
+			</div>
+
+			<div class="description detailed hidden">
+				
+
+			</div>
+		</div></td>
+	</tr>
+	<tr data-order="FACH" id="FACH">
+
+		<td class="attributes"><code>string</code></td>
+		<td class="name"><code>
+				<a href="source-class-ReRe.Rere.Controller.NoteController.html#41" title="Go to source code"><b>FACH</b></a>
+		</code></td>
+		<td class="value"><code><span class="php-quote">'fach'</span></code></td>
+		<td class="description"><div>
+			<a href="#FACH" class="anchor">#</a>
+
+			<div class="description short">
+				
+			</div>
+
+			<div class="description detailed hidden">
+				
+
+			</div>
+		</div></td>
+	</tr>
+	</table>
 
 
 
@@ -438,7 +527,7 @@ TYPO3\CMS\Extbase\Mvc\Controller\ActionController
 		</code></td>
 
 		<td class="name">
-				<a href="source-class-ReRe.Rere.Controller.NoteController.html#39-45" title="Go to source code"><var>$noteRepository</var></a>
+				<a href="source-class-ReRe.Rere.Controller.NoteController.html#57-63" title="Go to source code"><var>$noteRepository</var></a>
 		</td>
 		<td class="value"><code><span class="php-keyword1">NULL</span></code></td>
 		<td class="description"><div>
@@ -446,13 +535,13 @@ TYPO3\CMS\Extbase\Mvc\Controller\ActionController
 
 			<div class="description short">
 				
-<p>noteRepository</p>
+<p>Protected Variable helper wird mit NULL initialisiert.</p>
 
 			</div>
 
 			<div class="description detailed hidden">
 				
-<p>noteRepository</p>
+<p>Protected Variable helper wird mit NULL initialisiert.</p>
 
 
 					<h4>Inject</h4>
@@ -468,7 +557,7 @@ TYPO3\CMS\Extbase\Mvc\Controller\ActionController
 		</code></td>
 
 		<td class="name">
-				<a href="source-class-ReRe.Rere.Controller.NoteController.html#47-53" title="Go to source code"><var>$prueflingRepository</var></a>
+				<a href="source-class-ReRe.Rere.Controller.NoteController.html#65-71" title="Go to source code"><var>$prueflingRepository</var></a>
 		</td>
 		<td class="value"><code><span class="php-keyword1">NULL</span></code></td>
 		<td class="description"><div>
@@ -476,13 +565,13 @@ TYPO3\CMS\Extbase\Mvc\Controller\ActionController
 
 			<div class="description short">
 				
-<p>prueflingRepository</p>
+<p>Protected Variable prueflingRepository wird mit NULL initialisiert.</p>
 
 			</div>
 
 			<div class="description detailed hidden">
 				
-<p>prueflingRepository</p>
+<p>Protected Variable prueflingRepository wird mit NULL initialisiert.</p>
 
 
 					<h4>Inject</h4>
@@ -498,7 +587,7 @@ TYPO3\CMS\Extbase\Mvc\Controller\ActionController
 		</code></td>
 
 		<td class="name">
-				<a href="source-class-ReRe.Rere.Controller.NoteController.html#55-61" title="Go to source code"><var>$modulRepository</var></a>
+				<a href="source-class-ReRe.Rere.Controller.NoteController.html#73-79" title="Go to source code"><var>$modulRepository</var></a>
 		</td>
 		<td class="value"><code><span class="php-keyword1">NULL</span></code></td>
 		<td class="description"><div>
@@ -506,13 +595,13 @@ TYPO3\CMS\Extbase\Mvc\Controller\ActionController
 
 			<div class="description short">
 				
-<p>modulRepository</p>
+<p>Protected Variable modulRepository wird mit NULL initialisiert.</p>
 
 			</div>
 
 			<div class="description detailed hidden">
 				
-<p>modulRepository</p>
+<p>Protected Variable modulRepository wird mit NULL initialisiert.</p>
 
 
 					<h4>Inject</h4>
@@ -528,7 +617,7 @@ TYPO3\CMS\Extbase\Mvc\Controller\ActionController
 		</code></td>
 
 		<td class="name">
-				<a href="source-class-ReRe.Rere.Controller.NoteController.html#63-69" title="Go to source code"><var>$fachRepository</var></a>
+				<a href="source-class-ReRe.Rere.Controller.NoteController.html#81-87" title="Go to source code"><var>$fachRepository</var></a>
 		</td>
 		<td class="value"><code><span class="php-keyword1">NULL</span></code></td>
 		<td class="description"><div>
@@ -536,13 +625,13 @@ TYPO3\CMS\Extbase\Mvc\Controller\ActionController
 
 			<div class="description short">
 				
-<p>fachRepository</p>
+<p>Protected Variable fachRepository wird mit NULL initialisiert.</p>
 
 			</div>
 
 			<div class="description detailed hidden">
 				
-<p>fachRepository</p>
+<p>Protected Variable fachRepository wird mit NULL initialisiert.</p>
 
 
 					<h4>Inject</h4>

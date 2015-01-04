@@ -3,7 +3,7 @@
 namespace ReRe\Rere\Services\NestedDirectory;
 
 /**
- * Diese Klasse beinhaltet Mailing funktionen.
+ * Diese Klasse beinhaltet Mailing-Funktionen.
  *
  * @author Felix
  */
@@ -29,7 +29,7 @@ class ReReMailer {
                 ->setTo(array($empfaenger => $name))
                 ->setBody($body);
         $message->send();
-        // Rückmeldung im Backend ob eine Mail verschickt wurde oder nicht.
+        // Rückmeldung im Backend, ob eine E-Mail verschickt wurde oder nicht.
         if ($message->isSent()) {
             return 'Mail erfolgreich versandt';
         } else {

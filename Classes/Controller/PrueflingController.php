@@ -47,7 +47,7 @@ class PrueflingController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionContro
 	private $mailfunctions = NULL;
 
 	/**
-	 * prueflingRepository
+	 * Protected Variable prueflingRepository wird mit NULL initialisiert.
 	 * 
 	 * @var \ReRe\Rere\Domain\Repository\PrueflingRepository
 	 * @inject
@@ -55,7 +55,7 @@ class PrueflingController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionContro
 	protected $prueflingRepository = NULL;
 
 	/**
-	 * modulRepository
+	 * Protected Variable modulRepository wird mit NULL initialisiert.
 	 * 
 	 * @var \ReRe\Rere\Domain\Repository\ModulRepository
 	 * @inject
@@ -63,7 +63,7 @@ class PrueflingController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionContro
 	protected $modulRepository = NULL;
 
 	/**
-	 * fachRepository
+	 * Protected Variable fachRepository wird mit NULL initialisiert.
 	 * 
 	 * @var \ReRe\Rere\Domain\Repository\FachRepository
 	 * @inject
@@ -71,7 +71,7 @@ class PrueflingController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionContro
 	protected $fachRepository = NULL;
 
 	/**
-	 * FrontendUserRepository
+	 * Protected Variable FrontendUserRepository wird mit NULL initialisiert.
 	 * 
 	 * @var \Typo3\CMS\Extbase\Domain\Repository\FrontendUserRepository
 	 * @inject
@@ -79,7 +79,7 @@ class PrueflingController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionContro
 	protected $FrontendUserRepository = NULL;
 
 	/**
-	 * FrontendUserGroupRepository
+	 * Protected Variable FrontendUserGroupRepository wird mit NULL initialisiert.
 	 * 
 	 * @var \Typo3\CMS\Extbase\Domain\Repository\FrontendUserGroupRepository
 	 * @inject
@@ -87,45 +87,50 @@ class PrueflingController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionContro
 	protected $FrontendUserGroupRepository = NULL;
 
 	/**
-	 * noteRepository
+	 * Protected Variable noteRepository wird mit NULL initialisiert.
 	 * 
 	 * @var \ReRe\Rere\Domain\Repository\NoteRepository
 	 * @inject
 	 */
 	protected $noteRepository = NULL;
 
+        /**
+	 * Im Konstruktor des PrueflingControllers werden Instanzen der Helper-Functions erzeugt.
+	 */
 	public function __construct() {
-		// Instanzen der Helper Functions
 		$this->passfunctions = new \ReRe\Rere\Services\NestedDirectory\PasswordFunctions();
 		$this->userfunctions = new \ReRe\Rere\Services\NestedDirectory\UserFunctions();
 		$this->mailfunctions = new \ReRe\Rere\Services\NestedDirectory\ReReMailer();
 	}
 
 	/**
-	 * action list
+	 * Die List-Methode stellt die Informationen zum Rendern der Seite PrueflingZuweisen bereit. 
 	 * 
 	 * @return void
 	 */
 	public function listAction() {
-		// Liest die FachUid Aus
+		// Liest die FachUid aus
 		$fachUID = $this->request->getArgument(self::FACH);
-		// Holt FachObjekt
+		// Holt Fach-Objekt
 		$fach = $this->fachRepository->findByUid($fachUID);
 		$fachprueflinge = $fach->getMatrikelnr();
 		// Liest die ModulUid aus
 		$modulUid = $this->request->getArgument(self::MODUL);
-		// Holt Modul Objekt
+		// Holt Modul-Objekt
 		$modul = $this->modulRepository->findByUid($modulUid);
 		$prueflings = $this->prueflingRepository->findAll();
 		$feUserGroups = $this->FrontendUserGroupRepository->findAll();
+                //alle vorhandenen Prüflinge werden in Array gespeichert
 		$prueflingsarray = array();
 		foreach ($prueflings as $pruefling) {
 			array_push($prueflingsarray, $pruefling->getMatrikelnr(), $pruefling->getUid());
 		}
+                //alle bereits zu diesem Fach zugeordneten Prüflinge werden in Array gespeichert
 		$fachprueflingsarray = array();
 		foreach ($fachprueflinge as $fachpruefling) {
 			array_push($fachprueflingsarray, $fachpruefling->getMatrikelnr(), $fachpruefling->getUid());
 		}
+                //php-Arrays werden in JSON-Arrays umegewandelt
 		$prueflingsarrayJson = json_encode($prueflingsarray);
 		$fachprueflingsarrayJson = json_encode($fachprueflingsarray);
 		$this->view->assignMultiple(array(
@@ -134,7 +139,7 @@ class PrueflingController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionContro
 	}
 
 	/**
-	 * action show
+	 * Einzelner Prüfling wird angezeigt.
 	 * 
 	 * @param \ReRe\Rere\Domain\Model\Pruefling $pruefling
 	 * @return void
@@ -144,7 +149,7 @@ class PrueflingController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionContro
 	}
 
 	/**
-	 * action new
+	 * In dieser Methode wird ein neuer Prüfling erzeugt und sofern vorhanden werden die Attribute aus dem Eingabeformular übernommen.
 	 * 
 	 * @param \ReRe\Rere\Domain\Model\Pruefling $newPruefling
 	 * @ignorevalidation $newPruefling
@@ -166,20 +171,21 @@ class PrueflingController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionContro
 	}
 
 	/**
-	 * action create
+	 * In dieser Methode wird der Prüfling als tatsächlicher Frontend-User angelegt, sofern die Matrikelnummer noch nicht vergeben ist.
+         * Außerdem wird der Versand einer Bestätigungs-E-Mail an den Prüfling angestoßen.
 	 * 
 	 * @param \ReRe\Rere\Domain\Model\Pruefling $newPruefling
 	 * @return void
 	 */
 	public function createAction(\ReRe\Rere\Domain\Model\Pruefling $newPruefling) {
-		// Prüft ob diese MatrikelNr bereits vorhanden ist, Prüfling wird nur angelegt wenn die Matrikel NR noch nicht verwendet wird!
+		// Prüft, ob diese MatrikelNr bereits vorhanden ist. Prüfling wird nur angelegt, wenn die MatrikelNr noch nicht verwendet wird!
 		if ($this->prueflingRepository->findBymatrikelnr($newPruefling->getMatrikelnr())->toArray() == Null) {
 			$this->prueflingRepository->add($newPruefling);
 			// Instanz eines neuen Users
 			$newFEUser = new \Typo3\CMS\Extbase\Domain\Model\FrontendUser();
 			// Neuen TYPO3 FE_User anlegen
 			$newFEUser->setUsername($this->userfunctions->genuserName($newPruefling->getVorname(), $newPruefling->getNachname()));
-			// Passwort generierung -> Random und dann -> Salt
+			// Passwort-Generierung -> Random und dann -> Salt
 			$randomPW = $this->passfunctions->genpassword();
 			$saltedPW = $this->passfunctions->hashPassword($randomPW);
 			$newFEUser->setPassword($saltedPW);
@@ -203,7 +209,8 @@ class PrueflingController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionContro
 	}
 
 	/**
-	 * action edit
+	 * Diese Methode dient dem Editieren eines Prüflings. 
+         * Sie wird in der aktuellen Version jedoch so nicht verwendet.
 	 * 
 	 * @param \ReRe\Rere\Domain\Model\Pruefling $pruefling
 	 * @ignorevalidation $pruefling
@@ -214,7 +221,8 @@ class PrueflingController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionContro
 	}
 
 	/**
-	 * action update
+	 * Diese Methode dient dem Aktualisieren eines Prüflings. 
+         * Sie wird in der aktuellen Version jedoch so nicht verwendet.
 	 * 
 	 * @param \ReRe\Rere\Domain\Model\Pruefling $pruefling
 	 * @return void
@@ -226,7 +234,7 @@ class PrueflingController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionContro
 	}
 
 	/**
-	 * action delete
+	 * Diese Methode dient dem Löschen eines Prüflings. 
 	 * 
 	 * @param \ReRe\Rere\Domain\Model\Pruefling $pruefling
 	 * @return void
@@ -238,10 +246,10 @@ class PrueflingController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionContro
 	}
 
 	/**
-	 * Weißt einen Prüfling einem Fach zu. Oder löst die Zuweisung wieder.
+	 * Weist einen Prüfling einem Fach zu oder löst die Zuweisung wieder auf.
 	 */
 	public function setPrueflingAction() {
-		// Holt FachObjekt / Holt Modul Objekt / Holt den Prüfling
+		// Holt Fach-Objekt, Modul-Objekt und den Prüfling
 		if ($this->request->hasArgument(self::FACH) && $this->request->hasArgument(self::MODUL) && $this->request->hasArgument('matrikelnr')) {
 			$fach = $this->fachRepository->findByUid($this->request->getArgument(self::FACH));
 			$modul = $this->modulRepository->findByUid($this->request->getArgument(self::MODUL));
@@ -252,13 +260,13 @@ class PrueflingController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionContro
 		} else {
 			// Prüfling einem Fach zuweisen oder entfernen
 			if ($this->request->hasArgument('remove')) {
-				// Bezieung setzen
+				// Beziehung setzen
 				$fach->removeMatrikelnr($pruefling);
 			} else {
 				$note = $this->objectManager->create('\\ReRe\\Rere\\Domain\\Model\\Note');
 				$note->setWert(0);
 				$this->noteRepository->add($note);
-				// Bezieung setzen
+				// Beziehung setzen
 				$fach->addMatrikelnr($pruefling);
 				$fach->addNote($note);
 				$pruefling->addNote($note);

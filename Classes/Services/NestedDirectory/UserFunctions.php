@@ -3,12 +3,12 @@
 namespace ReRe\Rere\Services\NestedDirectory;
 
 /**
- * Benutzer funktionen.
+ * Diese Klasse beinhaltet Benutzer-Funktionen.
  */
 class UserFunctions {
 
     /**
-     * Generiert einen Username. Bestehend aus den ersten 4 Zeichen es vornamens + den ersten 4 zeichen des nachnamens.
+     * Generiert einen Username bestehend aus den ersten vier Zeichen des Vornamens und den ersten vier Zeichen des Nachnamens.
      * @param type $vorname String
      * @param type $nachname String
      * @return type String
