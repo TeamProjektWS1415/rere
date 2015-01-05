@@ -20,7 +20,7 @@ class ExportHelper {
 
         // Array in CSV übertragen
         foreach ($array as $fields) {
-            fputcsv($fp, $fields, ",");
+            fputcsv($fp, $fields, ";");
         }
         fseek($fp, 0);
         header('Content-Type: application/csv');
