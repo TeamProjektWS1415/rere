@@ -40,7 +40,7 @@
                             </ul>
                             <ul class="nav navbar-nav navbar-right">
                                 <li><f:link.action controller="Import" action="new" arguments="{type:'fach'}" class="gettooltip" title="Importiert Prüflinge in dies Fach" >Fach importeren</f:link.action></li>
-                                <li><f:link.action controller="Export" class="gettooltip" action="exportFach" title="Exportiert das Fach mit allen Noten" >Fach exportieren</f:link.action></li>
+                                <li><f:link.action controller="Export" class="gettooltip" action="exportFach" arguments="{modul:modul.uid,fachuid:fach.uid}" title="Exportiert das Fach mit allen Noten" >Fach exportieren</f:link.action></li>
                             </ul>
                         </div>
                     </div>

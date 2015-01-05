@@ -15,6 +15,38 @@ class ImportController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControlle
     const IMPORT = "import";
 
     /**
+     * Protected Variable helper wird mit NULL initialisiert.
+     *
+     * @var \ReRe\Rere\Domain\Repository\NoteRepository
+     * @inject
+     */
+    protected $noteRepository = NULL;
+
+    /**
+     * Protected Variable prueflingRepository wird mit NULL initialisiert.
+     *
+     * @var \ReRe\Rere\Domain\Repository\PrueflingRepository
+     * @inject
+     */
+    protected $prueflingRepository = NULL;
+
+    /**
+     * Protected Variable modulRepository wird mit NULL initialisiert.
+     *
+     * @var \ReRe\Rere\Domain\Repository\ModulRepository
+     * @inject
+     */
+    protected $modulRepository = NULL;
+
+    /**
+     * Protected Variable fachRepository wird mit NULL initialisiert.
+     *
+     * @var \ReRe\Rere\Domain\Repository\FachRepository
+     * @inject
+     */
+    protected $fachRepository = NULL;
+
+    /**
      * View-Rendering für Import
      */
     public function newAction() {
