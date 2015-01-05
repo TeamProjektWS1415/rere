@@ -5,7 +5,7 @@ if (!defined('TYPO3_MODE')) {
 }
 
 \TYPO3\CMS\Extbase\Utility\ExtensionUtility::configurePlugin(
-        'ReRe.' . $_EXTKEY, 'Rerefrontend', array(
+        'ReRe.' . $_EXTKEY, 'rerefrontend', array(
     'Modul' => 'list, show, new, newFach, create, edit, update, delete',
     'Fach' => 'list, show, new, create, edit, update, delete',
     'Note' => 'list, show, new, create, edit, update, delete',
