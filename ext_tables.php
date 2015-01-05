@@ -5,7 +5,7 @@ if (!defined('TYPO3_MODE')) {
 }
 
 \TYPO3\CMS\Extbase\Utility\ExtensionUtility::registerPlugin(
-        $_EXTKEY, 'Rerefrontend', 'Notenansicht'
+        $_EXTKEY, 'rerefrontend', 'Notenansicht'
 );
 
 if (TYPO3_MODE === 'BE') {

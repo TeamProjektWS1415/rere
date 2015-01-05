@@ -144,7 +144,8 @@ class PrueflingController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionContro
     public function showAction(\ReRe\Rere\Domain\Model\Pruefling $pruefling) {
         $prueflinsg = $this->prueflingRepository->findByUid(1);
         var_dump($prueflinsg);
-        $this->view->assign('pruefling', $prueflinsg);
+
+        $this->view->assign('pruefling', "peter");
     }
 
     /**
