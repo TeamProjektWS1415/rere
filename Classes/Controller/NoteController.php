@@ -33,7 +33,8 @@ namespace ReRe\Rere\Controller;
  * ************************************************************* */
 
 /**
- * NoteController
+ * Die Klasse NoteController verwaltet die Noten.
+ * Sie stellt Methoden zum Anlegen, Anzeigen, Editieren und Löschen von Noten bereit.
  */
 class NoteController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController {
 
@@ -100,32 +101,32 @@ class NoteController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController 
      * @return void
      */
     public function listAction() {
-        // Holt FachObjekt
+        // Holt Fach-Objekt
         $fach = $this->fachRepository->findByUid($this->request->getArgument(self::FACH));
         $angemeldete = 0;
-        // Holt Modul Objekt
+        // Holt Modul-Objekt
         $modul = $this->modulRepository->findByUid($this->request->getArgument(self::MODUL));
-        // Ausgabe aller eingetragener noten
+        // Ausgabe aller eingetragener Noten
         $notes = $this->noteRepository->findAll();
         $correctnotes = array();
         $publisharray = array();
         foreach ($notes as $note) {
             if ($note->getFach() == $fach->getUid()) {
                 array_push($correctnotes, $note);
-                // Holt den Prüfling dem die Note zugewiesen wurde
+                // Holt den Prüfling, dem die Note zugewiesen wurde
                 $pruefling = $this->prueflingRepository->findByUid($note->getPruefling());
-                // Generiert das ausgabe Array mit Prüfling und allem
+                // Generiert Ausgabe-Array mit Prüfling- und Noten-Daten
                 array_push($publisharray, array('prueflingvorname' => $pruefling->getVorname(), 'matrikelnr' => $pruefling->getMatrikelnr(), 'prueflingnachname' => $pruefling->getNachname(), 'uid' => $note->getUid(), 'wert' => $note->getWert(), 'kommentar' => $note->getKommentar()));
                 $angemeldete++;
             }
         }
-        // holt das passende notenschema.
+        // holt das passende Notenschema.
         $options = $this->noteList->getMarkArray($fach->getNotenschema());
         $this->view->assignMultiple(array(self::FACH => $fach, self::MODUL => $modul, 'options' => $options, 'notes' => $publisharray, 'eingetragen' => $this->helper->checkIfWertisSet($correctnotes), 'chartarray' => $this->helper->genArray($correctnotes, $fach->getNotenschema()), 'avg' => $this->helper->calculateAverage($correctnotes), 'angemeldete' => $angemeldete));
     }
 
     /**
-     * Diese Methode dient dem Editieren einer Note.
+     * Diese Methode dient dem Anzeigen einer einzelnen Note.
      * Sie wird in der aktuellen Version jedoch nicht verwendet.
      *
      * @param \ReRe\Rere\Domain\Model\Note $note
@@ -147,7 +148,7 @@ class NoteController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController 
     }
 
     /**
-     * Mit dieser Methode wird die neu erzeugte Note im noteRepository gespeichert und das Fach und Modul zugewiesen.
+     * Mit dieser Methode wird die neu erzeugte Note im noteRepository gespeichert und das Fach und das Modul zugewiesen.
      *
      * @param \ReRe\Rere\Domain\Model\Note $newNote
      * @return void
@@ -169,7 +170,6 @@ class NoteController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController 
      * @return void
      */
     public function editAction(\ReRe\Rere\Domain\Model\Note $note) {
-        echo 'TEST';
         $this->view->assign('note', $note);
     }
 

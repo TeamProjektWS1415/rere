@@ -33,7 +33,8 @@ namespace ReRe\Rere\Controller;
  * ************************************************************* */
 
 /**
- * FachController
+ * Die Klasse FachController verwaltet die Fächer.
+ * Sie stellt Methoden zum Anlegen und Löschen von Fächern, sowie zur Zuordnung von Fächern zu bereits bestehenden Modulen bereit.
  */
 class FachController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController {
 

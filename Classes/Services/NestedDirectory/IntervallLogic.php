@@ -9,7 +9,7 @@ namespace ReRe\Rere\Services\NestedDirectory;
  */
 
 /**
- * Description of IntervalLogic
+ * Diese Klasse enthält die Intervall-Logik. Hierbei wird zwischen Schuljahr und Studienjahr differenziert.
  *
  * @author Felix
  */

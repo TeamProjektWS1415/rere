@@ -33,7 +33,10 @@ namespace ReRe\Rere\Controller;
  * ************************************************************* */
 
 /**
- * PrueflingController
+ * Die Klasse PrueflingController verwaltet die Prüflinge.
+ * Sie stellt Methoden zum Anlegen, Ändern und Löschen von Prüflingen, der Zuweisung eines Prfülings zu einem FE-User,
+ * sowie zum Zuweisen eines Prüflings zu einem Fach bereit.
+ *
  */
 class PrueflingController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController {
 

@@ -3,7 +3,7 @@
 namespace ReRe\Rere\Services\NestedDirectory;
 
 /**
- *Speichert die verschiedenen Noten-Systeme für die Notenauswahl bei der Notenvergabe.
+ * Speichert die verschiedenen Noten-Systeme für die Notenauswahl bei der Notenvergabe.
  *
  * @author Felix
  */
