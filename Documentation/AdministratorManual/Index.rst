@@ -27,7 +27,7 @@ verschiedene Rechte zu erteilen.
 Klassen Definition
 ------------------
 
-Das PHP doc ist hier (muss noch verlinkt werden)zu finden.
+Das PHP doc ist erst nach der Installation aufrufbar. Sie findes es unter dem Menüpunkt **Hilfe**.
 
 Datenbank
 ---------
