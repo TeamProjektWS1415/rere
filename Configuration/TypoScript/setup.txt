@@ -60,21 +60,4 @@ module.tx_rere {
 		layoutRootPath = {$module.tx_rere.view.layoutRootPath}
 	}
 }
-page = PAGE
-page.10 = FLUIDTEMPLATE
-page.10 {
-file = EXT:rere/Resources/Private/Templates/Pruefling/Show.html
-layoutRootPath = EXT:rere/Resources/Private/Layouts
-}
-page.includeJS{
-	file1 = EXT:rere/Resources/Public/js/jquery-2.1.1.min.js
-	file2 = EXT:rere/Resources/Public/js/bootstrap.js
-	file3 = EXT:rere/Resources/Public/js/jquery.tablesorter.min.js
-	file4 = EXT:rere/Resources/Public/js/Chart.min.js
-	file5 = EXT:rere/Resources/Public/js/rereGlobal.js
-	file6 = EXT:rere/Resources/Public/js/notenverwaltung.js
-}
-page.includeCSS{
-	file1 = EXT:rere/Resources/Public/css/resultrepository.css
-	file2 = EXT:rere/Resources/Public/css/bootstrap.min.css
-}
+

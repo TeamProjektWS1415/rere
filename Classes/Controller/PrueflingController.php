@@ -142,13 +142,10 @@ class PrueflingController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionContro
     /**
      * Einzelner Prüfling wird angezeigt.
      *
-     * @param \ReRe\Rere\Domain\Model\Pruefling $pruefling
      */
-    public function showAction(\ReRe\Rere\Domain\Model\Pruefling $pruefling) {
-        $prueflinsg = $this->prueflingRepository->findByUid(1);
-        var_dump($prueflinsg);
-
-        $this->view->assign('pruefling', "peter");
+    public function showAction() {
+        $pruefling = $this->prueflingRepository->findByUid(1);
+        $this->view->assign('pruefling', 'peter');
     }
 
     /**
