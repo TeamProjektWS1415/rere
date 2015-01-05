@@ -7,7 +7,7 @@
 	<title>Class ReRe\Rere\Controller\ModulController | rere</title>
 
 	<script type="text/javascript" src="resources/combined.js?2780970235"></script>
-	<script type="text/javascript" src="elementlist.js?3518151049"></script>
+	<script type="text/javascript" src="elementlist.js?1049207493"></script>
 	<link rel="stylesheet" type="text/css" media="all" href="resources/style.css?3505392360" />
 
 </head>
@@ -115,7 +115,9 @@
 
 	<div class="description">
 	
-<p>ModulController</p>
+<p>Die Klasse ModulController verwaltet die Module. Sie stellt Methoden zum
+Anlegen, Anzeigen und Löschen von Modulen, sowie zur Zuordnung von Fächern zu
+Modulen bereit.</p>
 
 	</div>
 
@@ -146,7 +148,7 @@ TYPO3\CMS\Extbase\Mvc\Controller\ActionController
 		<b>Namespace:</b> <a href="namespace-ReRe.html">ReRe</a>\<a href="namespace-ReRe.Rere.html">Rere</a>\<a href="namespace-ReRe.Rere.Controller.html">Controller</a><br />
 		
 
-		<b>Located at</b> <a href="source-class-ReRe.Rere.Controller.ModulController.html#34-196" title="Go to source code">Classes/Controller/ModulController.php</a><br />
+		<b>Located at</b> <a href="source-class-ReRe.Rere.Controller.ModulController.html#35-199" title="Go to source code">Classes/Controller/ModulController.php</a><br />
 	</div>
 
 
@@ -164,7 +166,7 @@ TYPO3\CMS\Extbase\Mvc\Controller\ActionController
 
 		<td class="name"><div>
 		<a class="anchor" href="#_listAction">#</a>
-		<code><a href="source-class-ReRe.Rere.Controller.ModulController.html#71-107" title="Go to source code">listAction</a>( )</code>
+		<code><a href="source-class-ReRe.Rere.Controller.ModulController.html#73-109" title="Go to source code">listAction</a>( )</code>
 
 		<div class="description short">
 			
@@ -199,7 +201,7 @@ angezeigt.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_showAction">#</a>
-		<code><a href="source-class-ReRe.Rere.Controller.ModulController.html#109-117" title="Go to source code">showAction</a>( <span><code><a href="class-ReRe.Rere.Domain.Model.Modul.html">ReRe\Rere\Domain\Model\Modul</a></code> <var>$modul</var></span> )</code>
+		<code><a href="source-class-ReRe.Rere.Controller.ModulController.html#111-119" title="Go to source code">showAction</a>( <span><code><a href="class-ReRe.Rere.Domain.Model.Modul.html">ReRe\Rere\Domain\Model\Modul</a></code> <var>$modul</var></span> )</code>
 
 		<div class="description short">
 			
@@ -237,7 +239,7 @@ angezeigt.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_newAction">#</a>
-		<code><a href="source-class-ReRe.Rere.Controller.ModulController.html#119-129" title="Go to source code">newAction</a>( <span><code><a href="class-ReRe.Rere.Domain.Model.Modul.html">ReRe\Rere\Domain\Model\Modul</a></code> <var>$newModul</var> = <span class="php-keyword1">NULL</span></span> )</code>
+		<code><a href="source-class-ReRe.Rere.Controller.ModulController.html#121-131" title="Go to source code">newAction</a>( <span><code><a href="class-ReRe.Rere.Domain.Model.Modul.html">ReRe\Rere\Domain\Model\Modul</a></code> <var>$newModul</var> = <span class="php-keyword1">NULL</span></span> )</code>
 
 		<div class="description short">
 			
@@ -281,23 +283,21 @@ dem aktuellen Gültigkeitszeitraum vorbelegt.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_createAction">#</a>
-		<code><a href="source-class-ReRe.Rere.Controller.ModulController.html#131-157" title="Go to source code">createAction</a>( <span><code><a href="class-ReRe.Rere.Domain.Model.Modul.html">ReRe\Rere\Domain\Model\Modul</a></code> <var>$newModul</var></span> )</code>
+		<code><a href="source-class-ReRe.Rere.Controller.ModulController.html#133-160" title="Go to source code">createAction</a>( <span><code><a href="class-ReRe.Rere.Domain.Model.Modul.html">ReRe\Rere\Domain\Model\Modul</a></code> <var>$newModul</var></span> )</code>
 
 		<div class="description short">
 			
-<p>Wird aufgerufen, wenn Formular (Modul/new.html) abgeschickt wird. In dieser
-Methode wird ein neues Fach angelegt. Hierbei werden die Daten aus dem
-Eingabeformular dem Fach zugewiesen und anschließend das Fach dem neuen Modul
-zugewiesen.</p>
+<p>Wird aufgerufen, wenn Formular (Modul/new.html) abgeschickt wird.</p>
 
 		</div>
 
 		<div class="description detailed hidden">
 			
-<p>Wird aufgerufen, wenn Formular (Modul/new.html) abgeschickt wird. In dieser
-Methode wird ein neues Fach angelegt. Hierbei werden die Daten aus dem
-Eingabeformular dem Fach zugewiesen und anschließend das Fach dem neuen Modul
-zugewiesen.</p>
+<p>Wird aufgerufen, wenn Formular (Modul/new.html) abgeschickt wird.</p>
+
+<p>In dieser Methode wird ein neues Fach angelegt. Hierbei werden die Daten aus
+dem Eingabeformular dem Fach zugewiesen und anschließend das Fach dem neuen
+Modul zugewiesen.</p>
 
 
 
@@ -325,7 +325,7 @@ zugewiesen.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_editAction">#</a>
-		<code><a href="source-class-ReRe.Rere.Controller.ModulController.html#159-169" title="Go to source code">editAction</a>( <span><code><a href="class-ReRe.Rere.Domain.Model.Modul.html">ReRe\Rere\Domain\Model\Modul</a></code> <var>$modul</var></span> )</code>
+		<code><a href="source-class-ReRe.Rere.Controller.ModulController.html#162-172" title="Go to source code">editAction</a>( <span><code><a href="class-ReRe.Rere.Domain.Model.Modul.html">ReRe\Rere\Domain\Model\Modul</a></code> <var>$modul</var></span> )</code>
 
 		<div class="description short">
 			
@@ -369,7 +369,7 @@ Version jedoch nicht verwendet.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_updateAction">#</a>
-		<code><a href="source-class-ReRe.Rere.Controller.ModulController.html#171-182" title="Go to source code">updateAction</a>( <span><code><a href="class-ReRe.Rere.Domain.Model.Modul.html">ReRe\Rere\Domain\Model\Modul</a></code> <var>$modul</var></span> )</code>
+		<code><a href="source-class-ReRe.Rere.Controller.ModulController.html#174-185" title="Go to source code">updateAction</a>( <span><code><a href="class-ReRe.Rere.Domain.Model.Modul.html">ReRe\Rere\Domain\Model\Modul</a></code> <var>$modul</var></span> )</code>
 
 		<div class="description short">
 			
@@ -409,7 +409,7 @@ gebracht. Methode wird in der aktuellen Version nicht verwendet.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_deleteAction">#</a>
-		<code><a href="source-class-ReRe.Rere.Controller.ModulController.html#184-194" title="Go to source code">deleteAction</a>( <span><code><a href="class-ReRe.Rere.Domain.Model.Modul.html">ReRe\Rere\Domain\Model\Modul</a></code> <var>$modul</var></span> )</code>
+		<code><a href="source-class-ReRe.Rere.Controller.ModulController.html#187-197" title="Go to source code">deleteAction</a>( <span><code><a href="class-ReRe.Rere.Domain.Model.Modul.html">ReRe\Rere\Domain\Model\Modul</a></code> <var>$modul</var></span> )</code>
 
 		<div class="description short">
 			
@@ -458,7 +458,7 @@ gebracht. Methode wird in der aktuellen Version nicht verwendet.</p>
 		</code></td>
 
 		<td class="name">
-				<a href="source-class-ReRe.Rere.Controller.ModulController.html#39-45" title="Go to source code"><var>$modulRepository</var></a>
+				<a href="source-class-ReRe.Rere.Controller.ModulController.html#41-47" title="Go to source code"><var>$modulRepository</var></a>
 		</td>
 		<td class="value"><code><span class="php-keyword1">NULL</span></code></td>
 		<td class="description"><div>
@@ -488,7 +488,7 @@ gebracht. Methode wird in der aktuellen Version nicht verwendet.</p>
 		</code></td>
 
 		<td class="name">
-				<a href="source-class-ReRe.Rere.Controller.ModulController.html#47-53" title="Go to source code"><var>$fachRepository</var></a>
+				<a href="source-class-ReRe.Rere.Controller.ModulController.html#49-55" title="Go to source code"><var>$fachRepository</var></a>
 		</td>
 		<td class="value"><code><span class="php-keyword1">NULL</span></code></td>
 		<td class="description"><div>
@@ -518,7 +518,7 @@ gebracht. Methode wird in der aktuellen Version nicht verwendet.</p>
 		</code></td>
 
 		<td class="name">
-				<a href="source-class-ReRe.Rere.Controller.ModulController.html#55-61" title="Go to source code"><var>$intervallRepository</var></a>
+				<a href="source-class-ReRe.Rere.Controller.ModulController.html#57-63" title="Go to source code"><var>$intervallRepository</var></a>
 		</td>
 		<td class="value"><code><span class="php-keyword1">NULL</span></code></td>
 		<td class="description"><div>
@@ -548,7 +548,7 @@ gebracht. Methode wird in der aktuellen Version nicht verwendet.</p>
 		</code></td>
 
 		<td class="name">
-				<a href="source-class-ReRe.Rere.Controller.ModulController.html#63-69" title="Go to source code"><var>$objectManager</var></a>
+				<a href="source-class-ReRe.Rere.Controller.ModulController.html#65-71" title="Go to source code"><var>$objectManager</var></a>
 		</td>
 		<td class="value"><code><span class="php-keyword1">NULL</span></code></td>
 		<td class="description"><div>

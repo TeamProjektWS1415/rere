@@ -7,7 +7,7 @@
 	<title>Class ReRe\Rere\Controller\ImportController | rere</title>
 
 	<script type="text/javascript" src="resources/combined.js?2780970235"></script>
-	<script type="text/javascript" src="elementlist.js?3518151049"></script>
+	<script type="text/javascript" src="elementlist.js?1049207493"></script>
 	<link rel="stylesheet" type="text/css" media="all" href="resources/style.css?3505392360" />
 
 </head>
@@ -148,7 +148,7 @@ TYPO3\CMS\Extbase\Mvc\Controller\ActionController
 
 				<b>Author:</b>
 				Felix<br />
-		<b>Located at</b> <a href="source-class-ReRe.Rere.Controller.ImportController.html#5-52" title="Go to source code">Classes/Controller/ImportController.php</a><br />
+		<b>Located at</b> <a href="source-class-ReRe.Rere.Controller.ImportController.html#5-84" title="Go to source code">Classes/Controller/ImportController.php</a><br />
 	</div>
 
 
@@ -166,7 +166,7 @@ TYPO3\CMS\Extbase\Mvc\Controller\ActionController
 
 		<td class="name"><div>
 		<a class="anchor" href="#_newAction">#</a>
-		<code><a href="source-class-ReRe.Rere.Controller.ImportController.html#17-36" title="Go to source code">newAction</a>( )</code>
+		<code><a href="source-class-ReRe.Rere.Controller.ImportController.html#49-68" title="Go to source code">newAction</a>( )</code>
 
 		<div class="description short">
 			
@@ -199,7 +199,7 @@ TYPO3\CMS\Extbase\Mvc\Controller\ActionController
 
 		<td class="name"><div>
 		<a class="anchor" href="#_importPrueflingeAction">#</a>
-		<code><a href="source-class-ReRe.Rere.Controller.ImportController.html#38-43" title="Go to source code">importPrueflingeAction</a>( )</code>
+		<code><a href="source-class-ReRe.Rere.Controller.ImportController.html#70-75" title="Go to source code">importPrueflingeAction</a>( )</code>
 
 		<div class="description short">
 			
@@ -228,7 +228,7 @@ TYPO3\CMS\Extbase\Mvc\Controller\ActionController
 
 		<td class="name"><div>
 		<a class="anchor" href="#_importBackupAction">#</a>
-		<code><a href="source-class-ReRe.Rere.Controller.ImportController.html#45-50" title="Go to source code">importBackupAction</a>( )</code>
+		<code><a href="source-class-ReRe.Rere.Controller.ImportController.html#77-82" title="Go to source code">importBackupAction</a>( )</code>
 
 		<div class="description short">
 			
@@ -322,6 +322,129 @@ TYPO3\CMS\Extbase\Mvc\Controller\ActionController
 
 
 
+	<table class="summary" id="properties">
+	<caption>Properties summary</caption>
+	<tr data-order="noteRepository" id="$noteRepository">
+		<td class="attributes"><code>
+			protected  
+			<code><a href="class-ReRe.Rere.Domain.Repository.NoteRepository.html">ReRe\Rere\Domain\Repository\NoteRepository</a></code>
+		</code></td>
+
+		<td class="name">
+				<a href="source-class-ReRe.Rere.Controller.ImportController.html#17-23" title="Go to source code"><var>$noteRepository</var></a>
+		</td>
+		<td class="value"><code><span class="php-keyword1">NULL</span></code></td>
+		<td class="description"><div>
+			<a href="#$noteRepository" class="anchor">#</a>
+
+			<div class="description short">
+				
+<p>Protected Variable helper wird mit NULL initialisiert.</p>
+
+			</div>
+
+			<div class="description detailed hidden">
+				
+<p>Protected Variable helper wird mit NULL initialisiert.</p>
+
+
+					<h4>Inject</h4>
+					<div class="list">
+					</div>
+			</div>
+		</div></td>
+	</tr>
+	<tr data-order="prueflingRepository" id="$prueflingRepository">
+		<td class="attributes"><code>
+			protected  
+			<code><a href="class-ReRe.Rere.Domain.Repository.PrueflingRepository.html">ReRe\Rere\Domain\Repository\PrueflingRepository</a></code>
+		</code></td>
+
+		<td class="name">
+				<a href="source-class-ReRe.Rere.Controller.ImportController.html#25-31" title="Go to source code"><var>$prueflingRepository</var></a>
+		</td>
+		<td class="value"><code><span class="php-keyword1">NULL</span></code></td>
+		<td class="description"><div>
+			<a href="#$prueflingRepository" class="anchor">#</a>
+
+			<div class="description short">
+				
+<p>Protected Variable prueflingRepository wird mit NULL initialisiert.</p>
+
+			</div>
+
+			<div class="description detailed hidden">
+				
+<p>Protected Variable prueflingRepository wird mit NULL initialisiert.</p>
+
+
+					<h4>Inject</h4>
+					<div class="list">
+					</div>
+			</div>
+		</div></td>
+	</tr>
+	<tr data-order="modulRepository" id="$modulRepository">
+		<td class="attributes"><code>
+			protected  
+			<code><a href="class-ReRe.Rere.Domain.Repository.ModulRepository.html">ReRe\Rere\Domain\Repository\ModulRepository</a></code>
+		</code></td>
+
+		<td class="name">
+				<a href="source-class-ReRe.Rere.Controller.ImportController.html#33-39" title="Go to source code"><var>$modulRepository</var></a>
+		</td>
+		<td class="value"><code><span class="php-keyword1">NULL</span></code></td>
+		<td class="description"><div>
+			<a href="#$modulRepository" class="anchor">#</a>
+
+			<div class="description short">
+				
+<p>Protected Variable modulRepository wird mit NULL initialisiert.</p>
+
+			</div>
+
+			<div class="description detailed hidden">
+				
+<p>Protected Variable modulRepository wird mit NULL initialisiert.</p>
+
+
+					<h4>Inject</h4>
+					<div class="list">
+					</div>
+			</div>
+		</div></td>
+	</tr>
+	<tr data-order="fachRepository" id="$fachRepository">
+		<td class="attributes"><code>
+			protected  
+			<code><a href="class-ReRe.Rere.Domain.Repository.FachRepository.html">ReRe\Rere\Domain\Repository\FachRepository</a></code>
+		</code></td>
+
+		<td class="name">
+				<a href="source-class-ReRe.Rere.Controller.ImportController.html#41-47" title="Go to source code"><var>$fachRepository</var></a>
+		</td>
+		<td class="value"><code><span class="php-keyword1">NULL</span></code></td>
+		<td class="description"><div>
+			<a href="#$fachRepository" class="anchor">#</a>
+
+			<div class="description short">
+				
+<p>Protected Variable fachRepository wird mit NULL initialisiert.</p>
+
+			</div>
+
+			<div class="description detailed hidden">
+				
+<p>Protected Variable fachRepository wird mit NULL initialisiert.</p>
+
+
+					<h4>Inject</h4>
+					<div class="list">
+					</div>
+			</div>
+		</div></td>
+	</tr>
+	</table>
 
 
 

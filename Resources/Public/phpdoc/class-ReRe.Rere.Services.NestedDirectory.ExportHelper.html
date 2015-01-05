@@ -4,10 +4,10 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<meta name="generator" content="ApiGen 2.8.0" />
 
-	<title>Class ReRe\Rere\Services\NestedDirectory\PasswordFunctions | rere</title>
+	<title>Class ReRe\Rere\Services\NestedDirectory\ExportHelper | rere</title>
 
 	<script type="text/javascript" src="resources/combined.js?2780970235"></script>
-	<script type="text/javascript" src="elementlist.js?3518151049"></script>
+	<script type="text/javascript" src="elementlist.js?1049207493"></script>
 	<link rel="stylesheet" type="text/css" media="all" href="resources/style.css?3505392360" />
 
 </head>
@@ -61,10 +61,11 @@
 		<div id="elements">
 			<h3>Classes</h3>
 			<ul>
+				<li class="active"><a href="class-ReRe.Rere.Services.NestedDirectory.ExportHelper.html">ExportHelper</a></li>
 				<li><a href="class-ReRe.Rere.Services.NestedDirectory.IntervallLogic.html">IntervallLogic</a></li>
 				<li><a href="class-ReRe.Rere.Services.NestedDirectory.NotenVerwaltungHelper.html">NotenVerwaltungHelper</a></li>
 				<li><a href="class-ReRe.Rere.Services.NestedDirectory.NoteSchemaArrays.html">NoteSchemaArrays</a></li>
-				<li class="active"><a href="class-ReRe.Rere.Services.NestedDirectory.PasswordFunctions.html">PasswordFunctions</a></li>
+				<li><a href="class-ReRe.Rere.Services.NestedDirectory.PasswordFunctions.html">PasswordFunctions</a></li>
 				<li><a href="class-ReRe.Rere.Services.NestedDirectory.ReReMailer.html">ReReMailer</a></li>
 				<li><a href="class-ReRe.Rere.Services.NestedDirectory.UserFunctions.html">UserFunctions</a></li>
 			</ul>
@@ -109,12 +110,13 @@
 	</div>
 
 <div id="content" class="class">
-	<h1>Class PasswordFunctions</h1>
+	<h1>Class ExportHelper</h1>
 
 
 	<div class="description">
 	
-<p>In dieser Klasse wird das Passwort für den User generiert.</p>
+<p>Beinhaltet alle funktionen die für den Download der Exporte benötigt
+werden.</p>
 
 	</div>
 
@@ -132,85 +134,48 @@
 		<b>Namespace:</b> <a href="namespace-ReRe.html">ReRe</a>\<a href="namespace-ReRe.Rere.html">Rere</a>\<a href="namespace-ReRe.Rere.Services.html">Services</a>\<a href="namespace-ReRe.Rere.Services.NestedDirectory.html">NestedDirectory</a><br />
 		
 
-		<b>Located at</b> <a href="source-class-ReRe.Rere.Services.NestedDirectory.PasswordFunctions.html#5-40" title="Go to source code">Classes/Services/NestedDirectory/PasswordFunctions.php</a><br />
+				<b>Author:</b>
+				Felix<br />
+		<b>Located at</b> <a href="source-class-ReRe.Rere.Services.NestedDirectory.ExportHelper.html#5-32" title="Go to source code">Classes/Services/NestedDirectory/ExportHelper.php</a><br />
 	</div>
 
 
 
 	<table class="summary" id="methods">
 	<caption>Methods summary</caption>
-	<tr data-order="genpassword" id="_genpassword">
+	<tr data-order="genCSV" id="_genCSV">
 
 		<td class="attributes"><code>
 			 public 
-			type
+			
 			
 			</code>
 		</td>
 
 		<td class="name"><div>
-		<a class="anchor" href="#_genpassword">#</a>
-		<code><a href="source-class-ReRe.Rere.Services.NestedDirectory.PasswordFunctions.html#10-20" title="Go to source code">genpassword</a>( )</code>
+		<a class="anchor" href="#_genCSV">#</a>
+		<code><a href="source-class-ReRe.Rere.Services.NestedDirectory.ExportHelper.html#12-30" title="Go to source code">genCSV</a>( <span>type <var>$array</var></span>, <span>type <var>$filename</var></span> )</code>
 
 		<div class="description short">
 			
-<p>Erzeugt ein Zufallspasswort.</p>
+<p>Erzeugt ein CSV File und lädtz dieses herunter.</p>
 
 		</div>
 
 		<div class="description detailed hidden">
 			
-<p>Erzeugt ein Zufallspasswort.</p>
-
-
-
-
-				<h4>Returns</h4>
-				<div class="list">
-					<code>type</code><br>String<br />
-				</div>
-
-
-
-
-		</div>
-		</div></td>
-	</tr>
-	<tr data-order="hashPassword" id="_hashPassword">
-
-		<td class="attributes"><code>
-			 public 
-			type
-			
-			</code>
-		</td>
-
-		<td class="name"><div>
-		<a class="anchor" href="#_hashPassword">#</a>
-		<code><a href="source-class-ReRe.Rere.Services.NestedDirectory.PasswordFunctions.html#22-38" title="Go to source code">hashPassword</a>( <span>type <var>$password</var></span> )</code>
-
-		<div class="description short">
-			
-<p>Salt-Funktion nach TYPO3-Standard</p>
-
-		</div>
-
-		<div class="description detailed hidden">
-			
-<p>Salt-Funktion nach TYPO3-Standard</p>
+<p>Erzeugt ein CSV File und lädtz dieses herunter.</p>
 
 
 
 				<h4>Parameters</h4>
 				<div class="list"><dl>
-					<dt><var>$password</var></dt>
-					<dd><code>type</code><br>$password String</dd>
+					<dt><var>$array</var></dt>
+					<dd><code>type</code><br>$array</dd>
+					<dt><var>$filename</var></dt>
+					<dd><code>type</code><br>$filename</dd>
 				</dl></div>
 
-				<h4>Returns</h4>
-				<div class="list">
-					<code>type</code><br>String<br />
-				</div>
 
 
 
