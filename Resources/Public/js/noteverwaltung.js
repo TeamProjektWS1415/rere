@@ -21,30 +21,31 @@ $(document).ready(function () {
     // colors the searched MatrikelNR
     $("#suche").on("keyup", function () {
         var value = $(this).val();
-        $("table tr").each(function (index) {
+        $("#grades tr").each(function (index) {
             if (index !== 0) {
                 $row = $(this);
-                var id = $row.find("td:first").text();
-                if (id.indexOf(value) !== 0 || value === "") {
-// Remove color
+                var matrikel = $row.find("td:first").text();
+                var nachname = $row.find("td:nth-child(3)").text();
+                var vorname = $row.find("td:nth-child(4)").text();
+                if ((matrikel.indexOf(value) !== 0 && nachname.indexOf(value) !== 0 && vorname.indexOf(value) !== 0) || value === "") {
                     $row.removeClass("highlight");
-                }
-                else {
-// Set the color
+                } else {
                     $row.addClass("highlight");
                 }
             }
         });
     });
-    // Text wird durch Textfeld ersetzt
-    $("td").click(function () {
-        $(this).find("input").removeClass("hidden");
-        $(this).find(".value").addClass("hidden");
-    });
+    /* Text wird durch Textfeld ersetzt
+     $("td").click(function () {
+     $(this).find("input").removeClass("hidden");
+     $(this).find(".value").addClass("hidden");
+     });*/
+
+
     // Blendet alle wieder ein
     $("#alle").click(function () {
         showAll();
-        removeAcive();
+        removeActive();
         $("#alle").addClass("active");
     });
     // Blendet nur die bereits eingetragenen ein
@@ -55,7 +56,7 @@ $(document).ready(function () {
                 $(this).parent("td").parent("tr").fadeOut();
             }
         });
-        removeAcive();
+        removeActive();
         $("#eingetragene").addClass("active");
     });
     // Zeigt nur die die noch einzutragen sind
@@ -66,7 +67,7 @@ $(document).ready(function () {
                 $(this).parent("td").parent("tr").fadeOut();
             }
         });
-        removeAcive();
+        removeActive();
         $("#nichteingetragene").addClass("active");
     });
 });
@@ -113,7 +114,7 @@ function genchart(array) {
  * Entfernt bei allen Menüelementen die active class
  * @returns {undefined}
  */
-function removeAcive() {
+function removeActive() {
     $("#alle").removeClass("active");
     $("#nichteingetragene").removeClass("active");
     $("#eingetragene").removeClass("active");

@@ -33,7 +33,7 @@
                                     <form class="navbar-form navbar-left" role="search">
                                         <div class="form-group input-group">
                                             <div class="input-group-addon"><span class="glyphicon glyphicon-search" aria-hidden="true" ></span></div>
-                                            <input type="text" id="suche" class="form-control" rel="tooltip" data-toggle="tooltip" data-placement="bottom" title="Nach MatrikelNr suchen" placeholder="Matrikel Nummer">
+                                            <input type="text" id="suche" class="form-control" rel="tooltip" data-toggle="tooltip" data-placement="bottom" title="Nach MatrikelNr / Nachname / Vorname suchen" placeholder="MatrikelNr / Vor-Nach-Name">
                                         </div>
                                     </form>
                                 <li>
@@ -65,9 +65,9 @@
                         <f:for each="{notes}" as="note">
                             <tr>
                             <f:form action="update" id="editnote{note.uid}" id="editnote{note.uid}" >
-                                <td><f:form.hidden name="noteuid" class="noteuid" value="{note.uid}" /><span class="value">{note.matrikelnr}</span><input type="text" class="form-control hidden" value="{pruefling.matrikelnr}"/></td>
-                                <td><span class="value">{note.prueflingnachname}</span><input type="text" class="form-control hidden" /></td>
-                                <td><span class="value">{note.prueflingvorname}</span><input type="text" class="form-control hidden" /></td>
+                                <td><f:form.hidden name="noteuid" class="noteuid" value="{note.uid}" /><span class="value">{note.matrikelnr}</span></td>
+                                <td><span class="value">{note.prueflingnachname}</span></td>
+                                <td><span class="value">{note.prueflingvorname}</span></td>
                                 <td><f:form.select name="wert" options="{options}" value="{note.wert}" class="form-control gettooltip sendNote notenwert" title="Bitte eine Note auswählen"/></td>
                                 <td>
                                 <f:form.textfield type="hidden" name="fach" id="fach" value="{fach.uid}" />

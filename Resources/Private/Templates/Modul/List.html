@@ -51,22 +51,21 @@
             </div>
         </div>
 
-
+        <!-- Prüft welcher IntervallTyp aktuell ist und setzt abhängig davon den grünen Haken -->
         <f:if condition="{intervallType}=='studienhalbjahr'" >
             <f:then>
-                <script>
+                <script type="text/javascript">
                     $("#studienhalbjahr span").addClass("aciveinterval");
                     $("#schuljahr span").addClass("inactiveinterval");
                 </script>
             </f:then>
-            <f:else >
-                <script>
+            <f:else>
+                <script type="text/javascript">
                     $("#schuljahr span").addClass("aciveinterval");
                     $("#studienhalbjahr span").addClass("inactiveinterval");
                 </script>
             </f:else>
         </f:if>
-
 
         <div class="row">
             <div class="col-md-3">
@@ -96,7 +95,7 @@
                                         <a data-toggle="collapse" data-parent="#accordion" href="#{modul.modulnr}" aria-expanded="false" aria-controls="collapse{modul.name}">{modul.modulname} ({modul.modulnr})</a>
                                     </span>
                                     <span class="col-md-4">
-                                        <f:link.action class="delete btn btn-default modulloeschenbutton" action="delete" onclick="delentry('Wollen Sie das Modul mit allen zugehoerenden Faechern und Noten wirklich löschen?', $(this).attr('href'));
+                                        <f:link.action class="delete btn btn-default modulloeschenbutton gettooltip" action="delete" onclick="delentry('Wollen Sie das Modul mit allen zugehoerenden Faechern und Noten wirklich löschen?', $(this).attr('href'));
                                                 return false;" arguments="{modul : modul}" title="Dieses Modul und die zugeordneten Fächer löschen">Löschen</f:link.action>
                                     </span>
                                 </div>
@@ -108,7 +107,7 @@
                                             <li><span class="col-md-4">{fach.fachname} ({fach.fachnr}) - {fach.pruefer}</span> <span class="col-md-7">
                                                     <f:link.action controller="Note" class="gettooltip" action="list" arguments="{fach : fach, modul: modul.uid}" title="Noten eintragen oder anzeigen">Noten eintragen/anzeigen</f:link.action> |
                                                     <f:link.action controller="Pruefling" arguments="{fach : fach, modul: modul.uid}" class="gettooltip" action="list" title="Prüflinge zu diesem Fach zuweisen">Prüflinge zuweisen</f:link.action> |
-                                                    <f:link.action class="delete" controller="Fach" action="delete" onclick="delentry('Wollen Sie das Fach mit allen zugehörenden Noten wirklich löschen?',
+                                                    <f:link.action class="delete gettooltip" controller="Fach" action="delete" onclick="delentry('Wollen Sie das Fach mit allen zugehörenden Noten wirklich löschen?',
                                                                     $(this).attr('href'));
                                                             return false;" arguments="{fach : fach}" title="Fach und die eingetragenen Noten löschen">
                                                         <span class="gettooltip glyphicon glyphicon-remove" aria-hidden="true">
