@@ -46,6 +46,20 @@ class ExportController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControlle
     protected $fachRepository = NULL;
 
     /**
+     * Private Klassenvariable für die Hilfsklassen wird mit NULL initialisiert.
+     *
+     * @var type
+     */
+    private $exportHelper = NULL;
+
+    /**
+     * Im Konstruktor des ExportControllers wird eine Instanz der ExportHelperKlasse erzeugt.
+     */
+    public function __construct() {
+        $this->exportHelper = new \ReRe\Rere\Services\NestedDirectory\ExportHelper();
+    }
+
+    /**
      * @return void
      */
     public function exportPrueflingeAction() {
@@ -70,7 +84,7 @@ class ExportController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControlle
             $modul = $this->modulRepository->findByUid($this->request->getArgument('modul'));
         }
 
-        // Ausgabe aller eingetragener Noten
+        // Holen aller eingetragener Noten
         $notes = $this->noteRepository->findAll();
         $publisharray = array();
         foreach ($notes as $note) {
@@ -82,18 +96,8 @@ class ExportController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControlle
             }
         }
 
-
-        $fp = fopen('php://memory', 'w');
-
-        foreach ($publisharray as $fields) {
-            fputcsv($fp, $fields, ",");
-        }
-        fseek($fp, 0);
-        header('Content-Type: application/csv');
-        header('Content-Disposition: attachement; filename="Fach.csv";');
-
-        fpassthru($fp);
-
+        // Export wird gestartet
+        $this->exportHelper->genCSV($publisharray, "FachExport.csv");
 
         //$this->redirect('list', 'Note', Null, array(self::FACH => $fach, self::MODUL => $modul));
     }
