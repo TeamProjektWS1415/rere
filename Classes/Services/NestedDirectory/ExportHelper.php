@@ -22,11 +22,13 @@ class ExportHelper {
         foreach ($array as $fields) {
             fputcsv($fp, $fields, ";");
         }
-        fseek($fp, 0);
+        rewind ($fp);
+        header('Cache-Control: no-cache, must-revalidate');
+           header('Pragma: no-cache');
         header('Content-Type: application/csv');
         header('Content-Disposition: attachement; filename="' . $filename . '";');
         // Download starten
-        fpassthru($fp);
+        return(fpassthru($fp));
     }
 
 }

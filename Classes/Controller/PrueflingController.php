@@ -82,10 +82,18 @@ class PrueflingController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionContro
     /**
      * Protected Variable FrontendUserGroupRepository wird mit NULL initialisiert.
      *
+     * @var \Typo3\CMS\Extbase\Domain\Repository\FEUserGroupsRepositry
+     * @inject
+     */
+    protected $frontendUserGroupRepository = NULL;
+    
+    /**
+     * Protected Variable FrontendUserGroupRepository wird mit NULL initialisiert.
+     *
      * @var \Typo3\CMS\Extbase\Domain\Repository\FrontendUserGroupRepository
      * @inject
      */
-    protected $FrontendUserGroupRepository = NULL;
+    protected $FEUserGroupsRepositry = NULL;
 
     /**
      * Protected Variable noteRepository wird mit NULL initialisiert.
@@ -154,6 +162,14 @@ class PrueflingController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionContro
      * @return void
      */
     public function newAction(\ReRe\Rere\Domain\Model\Pruefling $newPruefling = NULL) {
+        
+        $feUserGroups = $this->FEUserGroupsRepositry->findAll();
+
+        $array = array();
+        foreach ($feUserGroups as $f){
+            array_push($array, $f->getUid());
+        }
+        
         // Bei Fehleingaben werden die Felder wieder mit den vorherigen Werten vorbelegt.
         $name = '';
         $vorname = '';
@@ -172,7 +188,7 @@ class PrueflingController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionContro
             $matrikelnr = $this->request->getArgument('matrikelnr');
         }
         $this->view->assignMultiple(array(
-            'newPruefling' => $newPruefling, 'name' => $name, 'vorname' => $vorname, 'email' => $email, 'usergroup' => $usergroup, 'matrikelnr' => $matrikelnr
+            'newPruefling' => $newPruefling, 'name' => $name, 'vorname' => $vorname, 'email' => $email, 'usergroup' => $usergroup, 'matrikelnr' => $matrikelnr, 'usergroups' => $feUserGroups
         ));
     }
 

@@ -53,6 +53,14 @@ class ExportController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControlle
     private $exportHelper = NULL;
 
     /**
+     * Protected Variable FrontendUserRepository wird mit NULL initialisiert.
+     *
+     * @var \Typo3\CMS\Extbase\Domain\Repository\FrontendUserRepository
+     * @inject
+     */
+    protected $FrontendUserRepository = NULL;
+
+    /**
      * Im Konstruktor des ExportControllers wird eine Instanz der ExportHelperKlasse erzeugt.
      */
     public function __construct() {
@@ -63,18 +71,34 @@ class ExportController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControlle
      * @return void
      */
     public function exportPrueflingeAction() {
-        $this->redirect('list', 'Modul');
+        $preuflinge = $this->prueflingRepository->findAll();
+        $out = array();
+        foreach ($preuflinge as $pruefling) {
+            // Generiert Ausgabe-Array mit Prüfling- und Noten-Daten
+            $feUser = $pruefling->getTypo3FEUser();
+            array_push($out, array('matrikelnr' => $pruefling->getMatrikelnr(), 'prueflingvorname' => $pruefling->getVorname(), 'prueflingnachname' => $pruefling->getNachname(), 'mail' => $feUser->getEmail(), 'username' => $feUser->getUsername(), 'pass' => $feUser->getPassword()));
+        }
+
+        // Export wird gestartet
+        $this->exportHelper->genCSV($out, "Prueflinge.csv");
     }
 
     /**
      * @return void
      */
     public function exportModuleUndFaecherAction() {
+
+
+        if ($this->request->hasArgument('modul')) {
+            $modul = $this->modulRepository->findByUid($this->request->getArgument('modul'));
+        }
+
         $this->redirect('list', 'Modul');
     }
 
     /**
      * Exportiert alle Noten eines Faches.
+     * @return void Description
      */
     public function exportFachAction() {
         if ($this->request->hasArgument('fachuid')) {
@@ -84,6 +108,7 @@ class ExportController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControlle
             $modul = $this->modulRepository->findByUid($this->request->getArgument('modul'));
         }
 
+
         // Holen aller eingetragener Noten
         $notes = $this->noteRepository->findAll();
         $publisharray = array();
@@ -92,13 +117,12 @@ class ExportController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControlle
                 // Holt den Prüfling, dem die Note zugewiesen wurde
                 $pruefling = $this->prueflingRepository->findByUid($note->getPruefling());
                 // Generiert Ausgabe-Array mit Prüfling- und Noten-Daten
-                array_push($publisharray, array('prueflingvorname' => $pruefling->getVorname(), 'matrikelnr' => $pruefling->getMatrikelnr(), 'prueflingnachname' => $pruefling->getNachname(), 'uid' => $note->getUid(), 'wert' => $note->getWert(), 'kommentar' => $note->getKommentar()));
+                array_push($publisharray, array('matrikelnr' => $pruefling->getMatrikelnr(), 'prueflingvorname' => $pruefling->getVorname(), 'prueflingnachname' => $pruefling->getNachname(), 'wert' => $note->getWert(), 'kommentar' => $note->getKommentar()));
             }
         }
 
         // Export wird gestartet
         $this->exportHelper->genCSV($publisharray, "FachExport.csv");
-
         //$this->redirect('list', 'Note', Null, array(self::FACH => $fach, self::MODUL => $modul));
     }
 
