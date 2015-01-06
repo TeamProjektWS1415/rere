@@ -48,8 +48,5 @@ function diffInput() {
             return false;
         }
     }
-    $("#infopopupTitle").text("Info");
-    $(".popuptext").text("Prüfling wurde zugewiesen");
-    $('#infopopup').modal();
     return true;
 }

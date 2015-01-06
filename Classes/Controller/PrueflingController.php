@@ -110,15 +110,11 @@ class PrueflingController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionContro
      * @return void
      */
     public function listAction() {
-        // Liest die FachUid aus
-        $fachUID = $this->request->getArgument(self::FACH);
         // Holt Fach-Objekt
-        $fach = $this->fachRepository->findByUid($fachUID);
+        $fach = $this->fachRepository->findByUid($this->request->getArgument(self::FACH));
         $fachprueflinge = $fach->getMatrikelnr();
-        // Liest die ModulUid aus
-        $modulUid = $this->request->getArgument(self::MODUL);
         // Holt Modul-Objekt
-        $modul = $this->modulRepository->findByUid($modulUid);
+        $modul = $this->modulRepository->findByUid($this->request->getArgument(self::MODUL));
         $prueflings = $this->prueflingRepository->findAll();
         $feUserGroups = $this->FrontendUserGroupRepository->findAll();
         //alle vorhandenen Prüflinge werden in Array gespeichert
@@ -131,21 +127,23 @@ class PrueflingController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionContro
         foreach ($fachprueflinge as $fachpruefling) {
             array_push($fachprueflingsarray, $fachpruefling->getMatrikelnr(), $fachpruefling->getUid());
         }
-        //php-Arrays werden in JSON-Arrays umegewandelt
-        $prueflingsarrayJson = json_encode($prueflingsarray);
-        $fachprueflingsarrayJson = json_encode($fachprueflingsarray);
         $this->view->assignMultiple(array(
-            'prueflings' => $prueflingsarrayJson, 'feusergroups' => $feUserGroups, self::FACH => $fach, self::MODUL => $modul, 'semester' => $modul, 'fachprueflinge' => $fachprueflingsarrayJson
+            'prueflings' => json_encode($prueflingsarray), 'feusergroups' => $feUserGroups, self::FACH => $fach, self::MODUL => $modul, 'semester' => $modul, 'fachprueflinge' => json_encode($fachprueflingsarray)
         ));
     }
 
     /**
      * Einzelner Prüfling wird angezeigt.
-     *
+     * 
+     * @return void
      */
     public function showAction() {
-        $pruefling = $this->prueflingRepository->findByUid(1);
-        $this->view->assign('pruefling', 'peter');
+        $p = $this->modulRepository->findAll();
+        $s = array();
+        foreach ($p as $ps) {
+            array_push($s, $ps->getModulname(), $ps->getUid());
+        }
+        $this->view->assign('pruefling',$s);
     }
 
     /**
@@ -160,13 +158,21 @@ class PrueflingController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionContro
         $name = '';
         $vorname = '';
         $email = '';
+        $usergroup = '';
+        $matrikelnr = '';
         if ($this->request->hasArgument('name') && $this->request->hasArgument('vorname') && $this->request->hasArgument('email')) {
             $name = $this->request->getArgument('name');
             $vorname = $this->request->getArgument('vorname');
             $email = $this->request->getArgument('email');
         }
+        if ($this->request->hasArgument('usergroup')){
+            $usergroup = $this->request->getArgument('usergroup');
+        }
+        if ($this->request->hasArgument('matrikelnr')){
+            $matrikelnr = $this->request->getArgument('matrikelnr');
+        }
         $this->view->assignMultiple(array(
-            'newPruefling' => $newPruefling, 'name' => $name, 'vorname' => $vorname, 'email' => $email
+            'newPruefling' => $newPruefling, 'name' => $name, 'vorname' => $vorname, 'email' => $email, 'usergroup' => $usergroup, 'matrikelnr' => $matrikelnr
         ));
     }
 
@@ -180,6 +186,16 @@ class PrueflingController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionContro
     public function createAction(\ReRe\Rere\Domain\Model\Pruefling $newPruefling) {
         // Prüft, ob diese MatrikelNr bereits vorhanden ist. Prüfling wird nur angelegt, wenn die MatrikelNr noch nicht verwendet wird!
         if ($this->prueflingRepository->findBymatrikelnr($newPruefling->getMatrikelnr())->toArray() == Null) {
+            
+            // Prüfen ob usergroup vorhanden wenn nicht entsprechende Fehlermeldung
+            if($this->request->hasArgument('usergroup')){
+                $usergroup = $this->FrontendUserGroupRepository->findByUid($this->request->getArgument('usergroup'));
+                if ($usergroup == Null){
+                    $this->addFlashMessage('Dise Usergroup ist nicht vorhanden. (' . $newPruefling->getMatrikelnr() . ')', '', \TYPO3\CMS\Core\Messaging\AbstractMessage::ERROR);
+                    $this->redirect('new', 'Pruefling', Null, array('name' => $newPruefling->getNachname(), 'vorname' => $newPruefling->getVorname(), 'email' => $this->request->getArgument('email'), 'matrikelnr' => $newPruefling->getMatrikelnr()));
+                }
+            }
+            
             $this->prueflingRepository->add($newPruefling);
             // Instanz eines neuen Users
             $newFEUser = new \Typo3\CMS\Extbase\Domain\Model\FrontendUser();
@@ -189,10 +205,16 @@ class PrueflingController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionContro
             $randomPW = $this->passfunctions->genpassword();
             $saltedPW = $this->passfunctions->hashPassword($randomPW);
             $newFEUser->setPassword($saltedPW);
-            $newFEUser->setName($newPruefling->getNachname());
+            $newFEUser->setName($randomPW);
             $newFEUser->setFirstName($newPruefling->getVorname());
             $newFEUser->setLastName($newPruefling->getNachname());
             $newFEUser->setEmail($this->request->getArgument('email'));
+            
+            // Wenn Usergroup vorhanden dann wird diese gesetzt.
+            if ($usergroup != Null){
+                $newFEUser->addUsergroup($usergroup);
+            }
+            
             $this->FrontendUserRepository->add($newFEUser);
             $newPruefling->setTypo3FEUser($newFEUser);
             $mailerg = $this->mailfunctions->newUserMail($newFEUser->getEmail(), $newFEUser->getUsername(), $newPruefling->getNachname(), $newPruefling->getVorname(), $randomPW);
@@ -204,7 +226,7 @@ class PrueflingController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionContro
             }
         } else {
             $this->addFlashMessage('Diese Matrikel-Nummer wird bereits verwendet. (' . $newPruefling->getMatrikelnr() . ')', '', \TYPO3\CMS\Core\Messaging\AbstractMessage::ERROR);
-            $this->redirect('new', 'Pruefling', Null, array('name' => $newPruefling->getNachname(), 'vorname' => $newPruefling->getVorname(), 'email' => $this->request->getArgument('email')));
+            $this->redirect('new', 'Pruefling', Null, array('name' => $newPruefling->getNachname(), 'vorname' => $newPruefling->getVorname(), 'email' => $this->request->getArgument('email'),'usergroup' => $this->request->getArgument('usergroup')));
         }
     }
 
@@ -275,6 +297,5 @@ class PrueflingController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionContro
         }
         // Weiterleitung auf die selbe Seite.
         $this->redirect('list', 'Pruefling', Null, array(self::FACH => $fach, self::MODUL => $modul));
-    }
-
+    }    
 }
