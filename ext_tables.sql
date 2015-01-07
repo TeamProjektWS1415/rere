@@ -254,3 +254,12 @@ CREATE TABLE tx_rere_domain_model_note (
 	pruefling  int(11) unsigned DEFAULT '0' NOT NULL,
 
 );
+
+#
+# Table structure for table 'fe_groups'
+#
+CREATE TABLE fe_groups (
+
+	tx_extbase_type varchar(255) DEFAULT '' NOT NULL,
+
+);

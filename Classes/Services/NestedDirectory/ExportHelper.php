@@ -16,19 +16,20 @@ class ExportHelper {
      */
     public function genCSV($array, $filename) {
         // Anlegen eine termporären datei mit Schreibrechten
+        $fp = null;
         $fp = fopen('php://memory', 'w');
 
         // Array in CSV übertragen
         foreach ($array as $fields) {
             fputcsv($fp, $fields, ";");
         }
-        rewind ($fp);
+        rewind($fp);
         header('Cache-Control: no-cache, must-revalidate');
-           header('Pragma: no-cache');
+        header('Pragma: no-cache');
         header('Content-Type: application/csv');
         header('Content-Disposition: attachement; filename="' . $filename . '";');
         // Download starten
-        return(fpassthru($fp));
+        fpassthru($fp);
     }
 
 }

@@ -53,6 +53,7 @@ plugin.tx_rere._CSS_DEFAULT_STYLE (
 module.tx_rere {
 	persistence {
 		storagePid = {$module.tx_rere.persistence.storagePid}
+
 	}
 	view {
 		templateRootPath = {$module.tx_rere.view.templateRootPath}
@@ -60,4 +61,5 @@ module.tx_rere {
 		layoutRootPath = {$module.tx_rere.view.layoutRootPath}
 	}
 }
+
 

@@ -1,0 +1,21 @@
+
+config.tx_extbase{
+    persistence{
+        classes{
+
+            TYPO3\CMS\Extbase\Domain\Model\FrontendUserGroup {
+                subclasses {
+                    Tx_Rere_FrontendUserGroup = ReRe\Rere\Domain\Model\FrontendUserGroup
+
+          		}
+            }
+            ReRe\Rere\Domain\Model\FrontendUserGroup {
+                mapping {
+                    tableName = fe_groups
+                    recordType = Tx_Rere_FrontendUserGroup
+                }
+            }
+
+    	}
+    }
+}

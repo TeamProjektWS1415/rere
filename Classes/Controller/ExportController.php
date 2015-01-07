@@ -84,16 +84,22 @@ class ExportController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControlle
     }
 
     /**
+     * Exportiert alle Modulle und alle Fächer
      * @return void
      */
     public function exportModuleUndFaecherAction() {
-
-
-        if ($this->request->hasArgument('modul')) {
-            $modul = $this->modulRepository->findByUid($this->request->getArgument('modul'));
+        $fachs = $this->fachRepository->findAll();
+        $out = array();
+        foreach ($fachs as $fach) {
+            array_push($out, array('FachNr' => $fach->getFachnr(), 'Fachname' => $fach->getFachname(),
+                'pruefer' => $fach->getPruefer(), 'Notenschema' => $fach->getNotenschema(), 'ModulUid' => $fach->getModulnr(),
+                'ModulNr' => $this->modulRepository->findByUid($fach->getModulnr())->getModulnr(),
+                'ModulName' => $this->modulRepository->findByUid($fach->getModulnr())->getModulname(),
+                'Gueltigkeitszeitraum' => $this->modulRepository->findByUid($fach->getModulnr())->getGueltigkeitszeitraum()));
         }
 
-        $this->redirect('list', 'Modul');
+        // Export wird gestartet
+        $this->exportHelper->genCSV($out, "ModuleUndFaecher.csv");
     }
 
     /**
@@ -104,10 +110,6 @@ class ExportController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControlle
         if ($this->request->hasArgument('fachuid')) {
             $fach = $this->fachRepository->findByUid($this->request->getArgument('fachuid'));
         }
-        if ($this->request->hasArgument('modul')) {
-            $modul = $this->modulRepository->findByUid($this->request->getArgument('modul'));
-        }
-
 
         // Holen aller eingetragener Noten
         $notes = $this->noteRepository->findAll();

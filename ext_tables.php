@@ -163,3 +163,31 @@ $GLOBALS['TCA']['tx_rere_domain_model_intervall'] = array(
         'iconfile' => \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extRelPath($_EXTKEY) . 'Resources/Public/Icons/tx_rere_domain_model_intervall.gif'
     ),
 );
+
+if (!isset($GLOBALS['TCA']['fe_groups']['ctrl']['type'])) {
+    if (file_exists($GLOBALS['TCA']['fe_groups']['ctrl']['dynamicConfigFile'])) {
+        require_once($GLOBALS['TCA']['fe_groups']['ctrl']['dynamicConfigFile']);
+    }
+    // no type field defined, so we define it here. This will only happen the first time the extension is installed!!
+    $GLOBALS['TCA']['fe_groups']['ctrl']['type'] = 'tx_extbase_type';
+    $tempColumns = array();
+    $tempColumns[$GLOBALS['TCA']['fe_groups']['ctrl']['type']] = array(
+        'exclude' => 1,
+        'label' => 'LLL:EXT:rere/Resources/Private/Language/locallang_db.xlf:tx_rere.tx_extbase_type',
+        'config' => array(
+            'type' => 'select',
+            'items' => array(),
+            'size' => 1,
+            'maxitems' => 1,
+        )
+    );
+    \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addTCAcolumns('fe_groups', $tempColumns, 1);
+}
+
+$GLOBALS['TCA']['fe_groups']['types']['Tx_Rere_FrontendUserGroup']['showitem'] = $TCA['fe_groups']['types']['0']['showitem'];
+$GLOBALS['TCA']['fe_groups']['types']['Tx_Rere_FrontendUserGroup']['showitem'] .= ',--div--;LLL:EXT:rere/Resources/Private/Language/locallang_db.xlf:tx_rere_domain_model_frontendusergroup,';
+$GLOBALS['TCA']['fe_groups']['types']['Tx_Rere_FrontendUserGroup']['showitem'] .= '';
+
+$GLOBALS['TCA']['fe_groups']['columns'][$TCA['fe_groups']['ctrl']['type']]['config']['items'][] = array('LLL:EXT:rere/Resources/Private/Language/locallang_db.xlf:fe_groups.tx_extbase_type.Tx_Rere_FrontendUserGroup', 'Tx_Rere_FrontendUserGroup');
+
+\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addToAllTCAtypes('fe_groups', $GLOBALS['TCA']['fe_groups']['ctrl']['type'], '', 'after:' . $TCA['fe_groups']['ctrl']['label']);
