@@ -82,18 +82,10 @@ class PrueflingController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionContro
     /**
      * Protected Variable FrontendUserGroupRepository wird mit NULL initialisiert.
      *
-     * @var \Typo3\CMS\Extbase\Domain\Repository\FEUserGroupsRepositry
+     * @var \ReRe\Rere\Domain\Repository\FrontendUserGroupRepository
      * @inject
      */
-    protected $frontendUserGroupRepository = NULL;
-    
-    /**
-     * Protected Variable FrontendUserGroupRepository wird mit NULL initialisiert.
-     *
-     * @var \Typo3\CMS\Extbase\Domain\Repository\FrontendUserGroupRepository
-     * @inject
-     */
-    protected $FEUserGroupsRepositry = NULL;
+    protected $FrontendUserGroupRepository = NULL;
 
     /**
      * Protected Variable noteRepository wird mit NULL initialisiert.
@@ -142,7 +134,7 @@ class PrueflingController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionContro
 
     /**
      * Einzelner Prüfling wird angezeigt.
-     * 
+     *
      * @return void
      */
     public function showAction() {
@@ -151,7 +143,7 @@ class PrueflingController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionContro
         foreach ($p as $ps) {
             array_push($s, $ps->getModulname(), $ps->getUid());
         }
-        $this->view->assign('pruefling',$s);
+        $this->view->assign('pruefling', $s);
     }
 
     /**
@@ -162,14 +154,14 @@ class PrueflingController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionContro
      * @return void
      */
     public function newAction(\ReRe\Rere\Domain\Model\Pruefling $newPruefling = NULL) {
-        
-        $feUserGroups = $this->FEUserGroupsRepositry->findAll();
+
+        $feUserGroups = $this->FrontendUserGroupRepository->findAll();
 
         $array = array();
-        foreach ($feUserGroups as $f){
+        foreach ($feUserGroups as $f) {
             array_push($array, $f->getUid());
         }
-        
+
         // Bei Fehleingaben werden die Felder wieder mit den vorherigen Werten vorbelegt.
         $name = '';
         $vorname = '';
@@ -181,10 +173,10 @@ class PrueflingController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionContro
             $vorname = $this->request->getArgument('vorname');
             $email = $this->request->getArgument('email');
         }
-        if ($this->request->hasArgument('usergroup')){
+        if ($this->request->hasArgument('usergroup')) {
             $usergroup = $this->request->getArgument('usergroup');
         }
-        if ($this->request->hasArgument('matrikelnr')){
+        if ($this->request->hasArgument('matrikelnr')) {
             $matrikelnr = $this->request->getArgument('matrikelnr');
         }
         $this->view->assignMultiple(array(
@@ -202,16 +194,16 @@ class PrueflingController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionContro
     public function createAction(\ReRe\Rere\Domain\Model\Pruefling $newPruefling) {
         // Prüft, ob diese MatrikelNr bereits vorhanden ist. Prüfling wird nur angelegt, wenn die MatrikelNr noch nicht verwendet wird!
         if ($this->prueflingRepository->findBymatrikelnr($newPruefling->getMatrikelnr())->toArray() == Null) {
-            
+
             // Prüfen ob usergroup vorhanden wenn nicht entsprechende Fehlermeldung
-            if($this->request->hasArgument('usergroup')){
+            if ($this->request->hasArgument('usergroup')) {
                 $usergroup = $this->FrontendUserGroupRepository->findByUid($this->request->getArgument('usergroup'));
-                if ($usergroup == Null){
+                if ($usergroup == Null) {
                     $this->addFlashMessage('Dise Usergroup ist nicht vorhanden. (' . $newPruefling->getMatrikelnr() . ')', '', \TYPO3\CMS\Core\Messaging\AbstractMessage::ERROR);
                     $this->redirect('new', 'Pruefling', Null, array('name' => $newPruefling->getNachname(), 'vorname' => $newPruefling->getVorname(), 'email' => $this->request->getArgument('email'), 'matrikelnr' => $newPruefling->getMatrikelnr()));
                 }
             }
-            
+
             $this->prueflingRepository->add($newPruefling);
             // Instanz eines neuen Users
             $newFEUser = new \Typo3\CMS\Extbase\Domain\Model\FrontendUser();
@@ -225,12 +217,12 @@ class PrueflingController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionContro
             $newFEUser->setFirstName($newPruefling->getVorname());
             $newFEUser->setLastName($newPruefling->getNachname());
             $newFEUser->setEmail($this->request->getArgument('email'));
-            
+
             // Wenn Usergroup vorhanden dann wird diese gesetzt.
-            if ($usergroup != Null){
+            if ($usergroup != Null) {
                 $newFEUser->addUsergroup($usergroup);
             }
-            
+
             $this->FrontendUserRepository->add($newFEUser);
             $newPruefling->setTypo3FEUser($newFEUser);
             $mailerg = $this->mailfunctions->newUserMail($newFEUser->getEmail(), $newFEUser->getUsername(), $newPruefling->getNachname(), $newPruefling->getVorname(), $randomPW);
@@ -242,7 +234,7 @@ class PrueflingController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionContro
             }
         } else {
             $this->addFlashMessage('Diese Matrikel-Nummer wird bereits verwendet. (' . $newPruefling->getMatrikelnr() . ')', '', \TYPO3\CMS\Core\Messaging\AbstractMessage::ERROR);
-            $this->redirect('new', 'Pruefling', Null, array('name' => $newPruefling->getNachname(), 'vorname' => $newPruefling->getVorname(), 'email' => $this->request->getArgument('email'),'usergroup' => $this->request->getArgument('usergroup')));
+            $this->redirect('new', 'Pruefling', Null, array('name' => $newPruefling->getNachname(), 'vorname' => $newPruefling->getVorname(), 'email' => $this->request->getArgument('email'), 'usergroup' => $this->request->getArgument('usergroup')));
         }
     }
 
@@ -313,5 +305,6 @@ class PrueflingController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionContro
         }
         // Weiterleitung auf die selbe Seite.
         $this->redirect('list', 'Pruefling', Null, array(self::FACH => $fach, self::MODUL => $modul));
-    }    
+    }
+
 }
