@@ -124,17 +124,17 @@ class PrueflingController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionContro
         $prueflings = $this->prueflingRepository->findAll();
         $feUserGroups = $this->FrontendUserGroupRepository->findAll();
         //alle vorhandenen Prüflinge werden in Array gespeichert
-        $prueflingsarray = array();
+        $prueflingsArray = array();
         foreach ($prueflings as $pruefling) {
-            array_push($prueflingsarray, $pruefling->getMatrikelnr(), $pruefling->getUid());
+            array_push($prueflingsArray, $pruefling->getMatrikelnr(), $pruefling->getUid());
         }
         //alle bereits zu diesem Fach zugeordneten Prüflinge werden in Array gespeichert
-        $fachprueflingsarray = array();
+        $fachprueflingsArray = array();
         foreach ($fachprueflinge as $fachpruefling) {
-            array_push($fachprueflingsarray, $fachpruefling->getMatrikelnr(), $fachpruefling->getUid());
+            array_push($fachprueflingsArray, $fachpruefling->getMatrikelnr(), $fachpruefling->getUid());
         }
         $this->view->assignMultiple(array(
-            'prueflings' => json_encode($prueflingsarray), 'feusergroups' => $feUserGroups, self::FACH => $fach, self::MODUL => $modul, 'semester' => $modul, 'fachprueflinge' => json_encode($fachprueflingsarray)
+            'prueflings' => json_encode($prueflingsArray), 'feusergroups' => $feUserGroups, self::FACH => $fach, self::MODUL => $modul, 'semester' => $modul, 'fachprueflinge' => json_encode($fachprueflingsArray)
         ));
     }
 
@@ -144,12 +144,20 @@ class PrueflingController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionContro
      * @return void
      */
     public function showAction() {
-        $p = $this->modulRepository->findAll();
-        $s = array();
-        foreach ($p as $ps) {
-            array_push($s, $ps->getModulname(), $ps->getUid());
+    	$momentanerPruefling = $this->prueflingRepository->findByUid(1);
+    	$fachprueflingsArray = array();
+        $fachlisteArray = $this->fachRepository->findAll();
+        foreach ($fachlisteArray as $fach){
+        	$matrikelnummerArray= $fach->getMatrikelnr();
+        	foreach ($matrikelnummerArray as $matrikel){
+        		if($matrikel->getUid() == $momentanerPruefling->getUid()){
+        			array_push($fachprueflingsArray,$fach);
+        		} 			
+        	}
         }
-        $this->view->assign('pruefling', $p);
+ 
+        $this->view->assignMultiple(array('fachliste' =>$fachprueflingsArray, 'test' => $test));
+        
     }
 
     /**
