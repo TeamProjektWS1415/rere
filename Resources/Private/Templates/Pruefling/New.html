@@ -70,13 +70,12 @@
                     </div>
                     <!--Eingabefeld für UserGroup-->
                     <div class="form-group">
-                        <label for="usergroup" class="col-sm-3 control-label">Usergroup (uid)</label>
+                        <label for="usergroup" class="col-sm-3 control-label">Usergroup</label>
                         <div class="col-sm-9">
-                            <f:form.textfield name="usergroup" class="form-control gettooltip" id="usergroup" placeholder="Nutzergruppe" title="FE-Usergroup (optional)" value="{usergroup}"/>
+                            <f:form.select name="usergroup" options="{usergroups}" value="{usergroups.uid}" optionLabelField="{usergroups.title}" class="form-control gettooltip" title="FE-Usergroup"/>
                             <br>
                         </div>
                     </div>
-                    <f:debug>{usergroups}</f:debug>
                     <div class="form-group">
                         <div class="col-sm-offset-3">
                             <div class="col-sm-12">

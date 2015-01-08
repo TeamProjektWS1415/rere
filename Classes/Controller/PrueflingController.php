@@ -160,13 +160,7 @@ class PrueflingController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionContro
      * @return void
      */
     public function newAction(\ReRe\Rere\Domain\Model\Pruefling $newPruefling = NULL) {
-
         $feUserGroups = $this->FrontendUserGroupRepository->findAll();
-
-        $array = array();
-        foreach ($feUserGroups as $f) {
-            array_push($array, $f->getUid());
-        }
 
         // Bei Fehleingaben werden die Felder wieder mit den vorherigen Werten vorbelegt.
         $name = '';
@@ -201,13 +195,9 @@ class PrueflingController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionContro
         // Prüft, ob diese MatrikelNr bereits vorhanden ist. Prüfling wird nur angelegt, wenn die MatrikelNr noch nicht verwendet wird!
         if ($this->prueflingRepository->findBymatrikelnr($newPruefling->getMatrikelnr())->toArray() == Null) {
 
-            // Prüfen ob usergroup vorhanden wenn nicht entsprechende Fehlermeldung
+            // Prüfen ob usergroup vorhanden
             if ($this->request->hasArgument(self::USRGROUP)) {
                 $usergroup = $this->FrontendUserGroupRepository->findByUid($this->request->getArgument(self::USRGROUP));
-                if ($usergroup == Null) {
-                    $this->addFlashMessage('Dise Usergroup ist nicht vorhanden. (' . $newPruefling->getMatrikelnr() . ')', '', \TYPO3\CMS\Core\Messaging\AbstractMessage::ERROR);
-                    $this->redirect('new', self::PRUEFLING, Null, array(self::NAME => $newPruefling->getNachname(), self::VORNAME => $newPruefling->getVorname(), self::EMAIL => $this->request->getArgument(self::EMAIL), self::MATRIKELNR => $newPruefling->getMatrikelnr()));
-                }
             }
 
             $this->prueflingRepository->add($newPruefling);
@@ -225,9 +215,7 @@ class PrueflingController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionContro
             $newFEUser->setEmail($this->request->getArgument(self::EMAIL));
 
             // Wenn Usergroup vorhanden dann wird diese gesetzt.
-            if ($usergroup != Null) {
-                $newFEUser->addUsergroup($usergroup);
-            }
+            $newFEUser->addUsergroup($usergroup);
 
             $this->FrontendUserRepository->add($newFEUser);
             $newPruefling->setTypo3FEUser($newFEUser);
