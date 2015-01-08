@@ -307,6 +307,28 @@ class PrueflingController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionContro
             $modul = $this->modulRepository->findByUid($this->request->getArgument(self::MODUL));
             $usergroup = $this->FrontendUserGroupRepository->findByUid($this->request->getArgument(self::usergroup));
         }
+
+        $feusers = $this->FrontendUserRepository->findAll();
+        $prueflinge = $this->prueflingRepository->findAll();
+        foreach ($feusers as $feuser) {
+            if ($feuser->getUsergroup() == $usergroup) {
+                foreach ($prueflinge as $pruefling) {
+                    if ($pruefling->getTypo3FEUser() == $feuser->getUid()) {
+                        $note = $this->objectManager->create('\\ReRe\\Rere\\Domain\\Model\\Note');
+                        $note->setWert(0);
+                        $this->noteRepository->add($note);
+                        // Beziehung setzen
+                        $fach->addMatrikelnr($pruefling);
+                        $fach->addNote($note);
+                        $pruefling->addNote($note);
+                        $this->fachRepository->add($fach);
+                    }
+                }
+            }
+        }
+
+        // Weiterleitung auf die selbe Seite.
+        $this->redirect('list', self::PRUEFLING, Null, array(self::FACH => $fach, self::MODUL => $modul));
     }
 
 }
