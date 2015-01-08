@@ -7,3 +7,16 @@ run.bat
 /.sonar
 sonar-project.properties
 .sonar-project.properties
+.buildpath
+
+.project
+
+.settings/.jsdtscope
+
+*.prefs
+
+.settings/org.eclipse.wst.common.project.facet.core.xml
+
+.settings/org.eclipse.wst.jsdt.ui.superType.container
+
+.settings/org.eclipse.wst.jsdt.ui.superType.name
