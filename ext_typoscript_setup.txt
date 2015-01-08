@@ -12,7 +12,6 @@ config.tx_extbase{
             ReRe\Rere\Domain\Model\FrontendUserGroup {
                 mapping {
                     tableName = fe_groups
-                    recordType = Tx_Rere_FrontendUserGroup
                 }
             }
 
