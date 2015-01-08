@@ -5,22 +5,22 @@ This template displays a EDIT form for the current domain object.
 
 If you modify this template, do not forget to change the overwrite settings
 in /Configuration/ExtensionBuilder/settings.yaml:
-  Resources:
-    Private:
-      Templates:
-        Edit.html: keep
+Resources:
+Private:
+Templates:
+Edit.html: keep
 
 Otherwise your changes will be overwritten the next time you save the extension in the extension builder
 
 <f:section name="main">
-<h1>Edit Intervall</h1>
+    <h1>Edit  Intervall</h1>
 
-<f:flashMessages renderMode="div" />
+    <f:flashMessages renderMode="div" />
 
-<f:render partial="FormErrors" arguments="{object:Intervall}" />
+    <f:render partial="FormErrors" arguments="{object:Intervall}" />
 
-<f:form action="update" name="intervall" object="{intervall}" >
-<f:render partial="Intervall/FormFields" arguments="{intervall:intervall}" />
-	<f:form.submit value="Save" />
-</f:form>
+    <f:form action="update" name="intervall" object="{intervall}" >
+        <f:render partial="Intervall/FormFields" arguments="{intervall:intervall}" />
+        <f:form.submit value="Save" />
+    </f:form>
 </f:section>

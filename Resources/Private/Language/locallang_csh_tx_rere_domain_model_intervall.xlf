@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <xliff version="1.0">
-	<file source-language="en" datatype="plaintext" original="messages" date="2014-12-29T23:30:22Z" product-name="rere">
-		<header/>
-		<body>
-			<trans-unit id="type.description">
-				<source>type</source>
-			</trans-unit>
-			<trans-unit id="aktuell.description">
-				<source>aktuell</source>
-			</trans-unit>
-		</body>
-	</file>
-</xliff>
+    <file source-language="en" datatype="plaintext" original="messages" date="2014-12-29T23:30:22Z" product-name="rere">
+        <header/>
+        <body>
+            <trans-unit id="type.description">
+                <source>type</source>
+            </trans-unit>
+            <trans-unit id="aktuell.description">
+                <source>aktuell</source>
+            </trans-unit>
+        </body>
+    </file>
+</xliff> 

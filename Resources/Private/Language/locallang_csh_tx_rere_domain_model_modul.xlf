@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <xliff version="1.0">
-	<file source-language="en" datatype="plaintext" original="messages" date="2014-12-16T23:29:45Z" product-name="rere">
-		<header/>
-		<body>
-			<trans-unit id="modulnr.description">
-				<source>modulnr</source>
-			</trans-unit>
-			<trans-unit id="modulname.description">
-				<source>modulname</source>
-			</trans-unit>
-			<trans-unit id="gueltigkeitszeitraum.description">
-				<source>gueltigkeitszeitraum</source>
-			</trans-unit>
-		</body>
-	</file>
-</xliff>
+    <file source-language="en" datatype="plaintext" original="messages" date="2014-12-16T23:29:45Z" product-name="rere">
+        <header/>
+        <body>
+            <trans-unit id="modulnr.description">
+                <source>modulnr</source>
+            </trans-unit>
+            <trans-unit id="modulname.description">
+                <source>modulname</source>
+            </trans-unit>
+            <trans-unit id="gueltigkeitszeitraum.description">
+                <source>gueltigkeitszeitraum</source>
+            </trans-unit>
+        </body>
+    </file>
+</xliff> 

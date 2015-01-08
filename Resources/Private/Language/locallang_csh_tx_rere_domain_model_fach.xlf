@@ -1,23 +1,23 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <xliff version="1.0">
-	<file source-language="en" datatype="plaintext" original="messages" date="2014-12-16T23:29:45Z" product-name="rere">
-		<header/>
-		<body>
-			<trans-unit id="fachnr.description">
-				<source>fachnr</source>
-			</trans-unit>
-			<trans-unit id="fachname.description">
-				<source>fachname</source>
-			</trans-unit>
-			<trans-unit id="pruefer.description">
-				<source>pruefer</source>
-			</trans-unit>
-			<trans-unit id="notenschema.description">
-				<source>notenschema</source>
-			</trans-unit>
-			<trans-unit id="modulnr.description">
-				<source>modulnr</source>
-			</trans-unit>
-		</body>
-	</file>
-</xliff>
+    <file source-language="en" datatype="plaintext" original="messages" date="2014-12-16T23:29:45Z" product-name="rere">
+        <header/>
+        <body>
+            <trans-unit id="fachnr.description">
+                <source>fachnr</source>
+            </trans-unit>
+            <trans-unit id="fachname.description">
+                <source>fachname</source>
+            </trans-unit>
+            <trans-unit id="pruefer.description">
+                <source>pruefer</source>
+            </trans-unit>
+            <trans-unit id="notenschema.description">
+                <source>notenschema</source>
+            </trans-unit>
+            <trans-unit id="modulnr.description">
+                <source>modulnr</source>
+            </trans-unit>
+        </body>
+    </file>
+</xliff> 
