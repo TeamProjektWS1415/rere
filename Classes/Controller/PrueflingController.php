@@ -145,6 +145,8 @@ class PrueflingController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionContro
      */
     public function showAction() {
     	$momentanerPruefling = $this->prueflingRepository->findByUid(1);
+    	
+    	//Anzeige der Fächer für die der Student zur Prüfung eingetragen wurde
     	$fachprueflingsArray = array();
         $fachlisteArray = $this->fachRepository->findAll();
         foreach ($fachlisteArray as $fach){
@@ -155,7 +157,9 @@ class PrueflingController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionContro
         		} 			
         	}
         }
- 
+        $fachprueflingsArray = array_reverse($fachprueflingsArray);
+        
+        
         $this->view->assignMultiple(array('fachliste' =>$fachprueflingsArray, 'test' => $test));
         
     }
