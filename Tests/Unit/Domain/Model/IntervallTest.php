@@ -2,7 +2,7 @@
 
 namespace ReRe\Rere\Tests\Unit\Domain\Model;
 
-/***************************************************************
+/* * *************************************************************
  *  Copyright notice
  *
  *  (c) 2015 Felix Hohlwegler <info@felix-hohlwegler.de>, TeamProjektWS14/15
@@ -29,7 +29,7 @@ namespace ReRe\Rere\Tests\Unit\Domain\Model;
  *  GNU General Public License for more details.
  *
  *  This copyright notice MUST APPEAR in all copies of the script!
- ***************************************************************/
+ * ************************************************************* */
 
 /**
  * Test case for class \ReRe\Rere\Domain\Model\Intervall.
@@ -39,68 +39,64 @@ namespace ReRe\Rere\Tests\Unit\Domain\Model;
  *
  * @author Felix Hohlwegler <info@felix-hohlwegler.de>
  * @author Sarah Kieninger <sarah.kieninger@gmail.com>
- * @author Tim Wacker 
- * @author Nejat Balta 
- * @author Tobias Brockner 
- * @author Nicolas Tedjadharma 
+ * @author Tim Wacker
+ * @author Nejat Balta
+ * @author Tobias Brockner
+ * @author Nicolas Tedjadharma
  */
 class IntervallTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
-	/**
-	 * @var \ReRe\Rere\Domain\Model\Intervall
-	 */
-	protected $subject = NULL;
 
-	protected function setUp() {
-		$this->subject = new \ReRe\Rere\Domain\Model\Intervall();
-	}
+    /**
+     * @var \ReRe\Rere\Domain\Model\Intervall
+     */
+    protected $subject = NULL;
 
-	protected function tearDown() {
-		unset($this->subject);
-	}
+    protected function setUp() {
+        $this->subject = new \ReRe\Rere\Domain\Model\Intervall();
+    }
 
-	/**
-	 * @test
-	 */
-	public function getTypeReturnsInitialValueForString() {
-		$this->assertSame(
-			'',
-			$this->subject->getType()
-		);
-	}
+    protected function tearDown() {
+        unset($this->subject);
+    }
 
-	/**
-	 * @test
-	 */
-	public function setTypeForStringSetsType() {
-		$this->subject->setType('Conceived at T3CON10');
+    /**
+     * @test
+     */
+    public function getTypeReturnsInitialValueForString() {
+        $this->assertSame(
+                '', $this->subject->getType()
+        );
+    }
 
-		$this->assertAttributeEquals(
-			'Conceived at T3CON10',
-			'type',
-			$this->subject
-		);
-	}
+    /**
+     * @test
+     */
+    public function setTypeForStringSetsType() {
+        $this->subject->setType('Conceived at T3CON10');
 
-	/**
-	 * @test
-	 */
-	public function getAktuellReturnsInitialValueForString() {
-		$this->assertSame(
-			'',
-			$this->subject->getAktuell()
-		);
-	}
+        $this->assertAttributeEquals(
+                'Conceived at T3CON10', 'type', $this->subject
+        );
+    }
 
-	/**
-	 * @test
-	 */
-	public function setAktuellForStringSetsAktuell() {
-		$this->subject->setAktuell('Conceived at T3CON10');
+    /**
+     * @test
+     */
+    public function getAktuellReturnsInitialValueForString() {
+        $this->assertSame(
+                '', $this->subject->getAktuell()
+        );
+    }
 
-		$this->assertAttributeEquals(
-			'Conceived at T3CON10',
-			'aktuell',
-			$this->subject
-		);
-	}
+    /**
+     * @test
+     */
+    public function setAktuellForStringSetsAktuell() {
+        $this->subject->setAktuell('Conceived at T3CON10');
+
+        $this->assertAttributeEquals(
+                'Conceived at T3CON10', 'aktuell', $this->subject
+        );
+    }
+
 }

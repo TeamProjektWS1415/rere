@@ -2,7 +2,7 @@
 
 namespace ReRe\Rere\Tests\Unit\Domain\Model;
 
-/***************************************************************
+/* * *************************************************************
  *  Copyright notice
  *
  *  (c) 2015 Felix Hohlwegler <info@felix-hohlwegler.de>, TeamProjektWS14/15
@@ -29,7 +29,7 @@ namespace ReRe\Rere\Tests\Unit\Domain\Model;
  *  GNU General Public License for more details.
  *
  *  This copyright notice MUST APPEAR in all copies of the script!
- ***************************************************************/
+ * ************************************************************* */
 
 /**
  * Test case for class \ReRe\Rere\Domain\Model\Pruefling.
@@ -39,153 +39,146 @@ namespace ReRe\Rere\Tests\Unit\Domain\Model;
  *
  * @author Felix Hohlwegler <info@felix-hohlwegler.de>
  * @author Sarah Kieninger <sarah.kieninger@gmail.com>
- * @author Tim Wacker 
- * @author Nejat Balta 
- * @author Tobias Brockner 
- * @author Nicolas Tedjadharma 
+ * @author Tim Wacker
+ * @author Nejat Balta
+ * @author Tobias Brockner
+ * @author Nicolas Tedjadharma
  */
 class PrueflingTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
-	/**
-	 * @var \ReRe\Rere\Domain\Model\Pruefling
-	 */
-	protected $subject = NULL;
 
-	protected function setUp() {
-		$this->subject = new \ReRe\Rere\Domain\Model\Pruefling();
-	}
+    /**
+     * @var \ReRe\Rere\Domain\Model\Pruefling
+     */
+    protected $subject = NULL;
 
-	protected function tearDown() {
-		unset($this->subject);
-	}
+    protected function setUp() {
+        $this->subject = new \ReRe\Rere\Domain\Model\Pruefling();
+    }
 
-	/**
-	 * @test
-	 */
-	public function getMatrikelnrReturnsInitialValueForString() {
-		$this->assertSame(
-			'',
-			$this->subject->getMatrikelnr()
-		);
-	}
+    protected function tearDown() {
+        unset($this->subject);
+    }
 
-	/**
-	 * @test
-	 */
-	public function setMatrikelnrForStringSetsMatrikelnr() {
-		$this->subject->setMatrikelnr('Conceived at T3CON10');
+    /**
+     * @test
+     */
+    public function getMatrikelnrReturnsInitialValueForString() {
+        $this->assertSame(
+                '', $this->subject->getMatrikelnr()
+        );
+    }
 
-		$this->assertAttributeEquals(
-			'Conceived at T3CON10',
-			'matrikelnr',
-			$this->subject
-		);
-	}
+    /**
+     * @test
+     */
+    public function setMatrikelnrForStringSetsMatrikelnr() {
+        $this->subject->setMatrikelnr('Conceived at T3CON10');
 
-	/**
-	 * @test
-	 */
-	public function getVornameReturnsInitialValueForString() {
-		$this->assertSame(
-			'',
-			$this->subject->getVorname()
-		);
-	}
+        $this->assertAttributeEquals(
+                'Conceived at T3CON10', 'matrikelnr', $this->subject
+        );
+    }
 
-	/**
-	 * @test
-	 */
-	public function setVornameForStringSetsVorname() {
-		$this->subject->setVorname('Conceived at T3CON10');
+    /**
+     * @test
+     */
+    public function getVornameReturnsInitialValueForString() {
+        $this->assertSame(
+                '', $this->subject->getVorname()
+        );
+    }
 
-		$this->assertAttributeEquals(
-			'Conceived at T3CON10',
-			'vorname',
-			$this->subject
-		);
-	}
+    /**
+     * @test
+     */
+    public function setVornameForStringSetsVorname() {
+        $this->subject->setVorname('Conceived at T3CON10');
 
-	/**
-	 * @test
-	 */
-	public function getNachnameReturnsInitialValueForString() {
-		$this->assertSame(
-			'',
-			$this->subject->getNachname()
-		);
-	}
+        $this->assertAttributeEquals(
+                'Conceived at T3CON10', 'vorname', $this->subject
+        );
+    }
 
-	/**
-	 * @test
-	 */
-	public function setNachnameForStringSetsNachname() {
-		$this->subject->setNachname('Conceived at T3CON10');
+    /**
+     * @test
+     */
+    public function getNachnameReturnsInitialValueForString() {
+        $this->assertSame(
+                '', $this->subject->getNachname()
+        );
+    }
 
-		$this->assertAttributeEquals(
-			'Conceived at T3CON10',
-			'nachname',
-			$this->subject
-		);
-	}
+    /**
+     * @test
+     */
+    public function setNachnameForStringSetsNachname() {
+        $this->subject->setNachname('Conceived at T3CON10');
 
-	/**
-	 * @test
-	 */
-	public function getTypo3FEUserReturnsInitialValueForFrontendUser() {	}
+        $this->assertAttributeEquals(
+                'Conceived at T3CON10', 'nachname', $this->subject
+        );
+    }
 
-	/**
-	 * @test
-	 */
-	public function setTypo3FEUserForFrontendUserSetsTypo3FEUser() {	}
+    /**
+     * @test
+     */
+    public function getTypo3FEUserReturnsInitialValueForFrontendUser() {
 
-	/**
-	 * @test
-	 */
-	public function getNoteReturnsInitialValueForNote() {
-		$newObjectStorage = new \TYPO3\CMS\Extbase\Persistence\ObjectStorage();
-		$this->assertEquals(
-			$newObjectStorage,
-			$this->subject->getNote()
-		);
-	}
+    }
 
-	/**
-	 * @test
-	 */
-	public function setNoteForObjectStorageContainingNoteSetsNote() {
-		$note = new \ReRe\Rere\Domain\Model\Note();
-		$objectStorageHoldingExactlyOneNote = new \TYPO3\CMS\Extbase\Persistence\ObjectStorage();
-		$objectStorageHoldingExactlyOneNote->attach($note);
-		$this->subject->setNote($objectStorageHoldingExactlyOneNote);
+    /**
+     * @test
+     */
+    public function setTypo3FEUserForFrontendUserSetsTypo3FEUser() {
 
-		$this->assertAttributeEquals(
-			$objectStorageHoldingExactlyOneNote,
-			'note',
-			$this->subject
-		);
-	}
+    }
 
-	/**
-	 * @test
-	 */
-	public function addNoteToObjectStorageHoldingNote() {
-		$note = new \ReRe\Rere\Domain\Model\Note();
-		$noteObjectStorageMock = $this->getMock('TYPO3\\CMS\\Extbase\\Persistence\\ObjectStorage', array('attach'), array(), '', FALSE);
-		$noteObjectStorageMock->expects($this->once())->method('attach')->with($this->equalTo($note));
-		$this->inject($this->subject, 'note', $noteObjectStorageMock);
+    /**
+     * @test
+     */
+    public function getNoteReturnsInitialValueForNote() {
+        $newObjectStorage = new \TYPO3\CMS\Extbase\Persistence\ObjectStorage();
+        $this->assertEquals(
+                $newObjectStorage, $this->subject->getNote()
+        );
+    }
 
-		$this->subject->addNote($note);
-	}
+    /**
+     * @test
+     */
+    public function setNoteForObjectStorageContainingNoteSetsNote() {
+        $note = new \ReRe\Rere\Domain\Model\Note();
+        $objectStorageHoldingExactlyOneNote = new \TYPO3\CMS\Extbase\Persistence\ObjectStorage();
+        $objectStorageHoldingExactlyOneNote->attach($note);
+        $this->subject->setNote($objectStorageHoldingExactlyOneNote);
 
-	/**
-	 * @test
-	 */
-	public function removeNoteFromObjectStorageHoldingNote() {
-		$note = new \ReRe\Rere\Domain\Model\Note();
-		$noteObjectStorageMock = $this->getMock('TYPO3\\CMS\\Extbase\\Persistence\\ObjectStorage', array('detach'), array(), '', FALSE);
-		$noteObjectStorageMock->expects($this->once())->method('detach')->with($this->equalTo($note));
-		$this->inject($this->subject, 'note', $noteObjectStorageMock);
+        $this->assertAttributeEquals(
+                $objectStorageHoldingExactlyOneNote, 'note', $this->subject
+        );
+    }
 
-		$this->subject->removeNote($note);
+    /**
+     * @test
+     */
+    public function addNoteToObjectStorageHoldingNote() {
+        $note = new \ReRe\Rere\Domain\Model\Note();
+        $noteObjectStorageMock = $this->getMock('TYPO3\\CMS\\Extbase\\Persistence\\ObjectStorage', array('attach'), array(), '', FALSE);
+        $noteObjectStorageMock->expects($this->once())->method('attach')->with($this->equalTo($note));
+        $this->inject($this->subject, 'note', $noteObjectStorageMock);
 
-	}
+        $this->subject->addNote($note);
+    }
+
+    /**
+     * @test
+     */
+    public function removeNoteFromObjectStorageHoldingNote() {
+        $note = new \ReRe\Rere\Domain\Model\Note();
+        $noteObjectStorageMock = $this->getMock('TYPO3\\CMS\\Extbase\\Persistence\\ObjectStorage', array('detach'), array(), '', FALSE);
+        $noteObjectStorageMock->expects($this->once())->method('detach')->with($this->equalTo($note));
+        $this->inject($this->subject, 'note', $noteObjectStorageMock);
+
+        $this->subject->removeNote($note);
+    }
+
 }

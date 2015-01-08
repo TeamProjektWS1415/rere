@@ -2,7 +2,7 @@
 
 namespace ReRe\Rere\Tests\Unit\Domain\Model;
 
-/***************************************************************
+/* * *************************************************************
  *  Copyright notice
  *
  *  (c) 2015 Felix Hohlwegler <info@felix-hohlwegler.de>, TeamProjektWS14/15
@@ -29,7 +29,7 @@ namespace ReRe\Rere\Tests\Unit\Domain\Model;
  *  GNU General Public License for more details.
  *
  *  This copyright notice MUST APPEAR in all copies of the script!
- ***************************************************************/
+ * ************************************************************* */
 
 /**
  * Test case for class \ReRe\Rere\Domain\Model\Note.
@@ -39,114 +39,104 @@ namespace ReRe\Rere\Tests\Unit\Domain\Model;
  *
  * @author Felix Hohlwegler <info@felix-hohlwegler.de>
  * @author Sarah Kieninger <sarah.kieninger@gmail.com>
- * @author Tim Wacker 
- * @author Nejat Balta 
- * @author Tobias Brockner 
- * @author Nicolas Tedjadharma 
+ * @author Tim Wacker
+ * @author Nejat Balta
+ * @author Tobias Brockner
+ * @author Nicolas Tedjadharma
  */
 class NoteTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
-	/**
-	 * @var \ReRe\Rere\Domain\Model\Note
-	 */
-	protected $subject = NULL;
 
-	protected function setUp() {
-		$this->subject = new \ReRe\Rere\Domain\Model\Note();
-	}
+    /**
+     * @var \ReRe\Rere\Domain\Model\Note
+     */
+    protected $subject = NULL;
 
-	protected function tearDown() {
-		unset($this->subject);
-	}
+    protected function setUp() {
+        $this->subject = new \ReRe\Rere\Domain\Model\Note();
+    }
 
-	/**
-	 * @test
-	 */
-	public function getWertReturnsInitialValueForString() {
-		$this->assertSame(
-			'',
-			$this->subject->getWert()
-		);
-	}
+    protected function tearDown() {
+        unset($this->subject);
+    }
 
-	/**
-	 * @test
-	 */
-	public function setWertForStringSetsWert() {
-		$this->subject->setWert('Conceived at T3CON10');
+    /**
+     * @test
+     */
+    public function getWertReturnsInitialValueForString() {
+        $this->assertSame(
+                '', $this->subject->getWert()
+        );
+    }
 
-		$this->assertAttributeEquals(
-			'Conceived at T3CON10',
-			'wert',
-			$this->subject
-		);
-	}
+    /**
+     * @test
+     */
+    public function setWertForStringSetsWert() {
+        $this->subject->setWert('Conceived at T3CON10');
 
-	/**
-	 * @test
-	 */
-	public function getKommentarReturnsInitialValueForString() {
-		$this->assertSame(
-			'',
-			$this->subject->getKommentar()
-		);
-	}
+        $this->assertAttributeEquals(
+                'Conceived at T3CON10', 'wert', $this->subject
+        );
+    }
 
-	/**
-	 * @test
-	 */
-	public function setKommentarForStringSetsKommentar() {
-		$this->subject->setKommentar('Conceived at T3CON10');
+    /**
+     * @test
+     */
+    public function getKommentarReturnsInitialValueForString() {
+        $this->assertSame(
+                '', $this->subject->getKommentar()
+        );
+    }
 
-		$this->assertAttributeEquals(
-			'Conceived at T3CON10',
-			'kommentar',
-			$this->subject
-		);
-	}
+    /**
+     * @test
+     */
+    public function setKommentarForStringSetsKommentar() {
+        $this->subject->setKommentar('Conceived at T3CON10');
 
-	/**
-	 * @test
-	 */
-	public function getFachReturnsInitialValueForString() {
-		$this->assertSame(
-			'',
-			$this->subject->getFach()
-		);
-	}
+        $this->assertAttributeEquals(
+                'Conceived at T3CON10', 'kommentar', $this->subject
+        );
+    }
 
-	/**
-	 * @test
-	 */
-	public function setFachForStringSetsFach() {
-		$this->subject->setFach('Conceived at T3CON10');
+    /**
+     * @test
+     */
+    public function getFachReturnsInitialValueForString() {
+        $this->assertSame(
+                '', $this->subject->getFach()
+        );
+    }
 
-		$this->assertAttributeEquals(
-			'Conceived at T3CON10',
-			'fach',
-			$this->subject
-		);
-	}
+    /**
+     * @test
+     */
+    public function setFachForStringSetsFach() {
+        $this->subject->setFach('Conceived at T3CON10');
 
-	/**
-	 * @test
-	 */
-	public function getPrueflingReturnsInitialValueForString() {
-		$this->assertSame(
-			'',
-			$this->subject->getPruefling()
-		);
-	}
+        $this->assertAttributeEquals(
+                'Conceived at T3CON10', 'fach', $this->subject
+        );
+    }
 
-	/**
-	 * @test
-	 */
-	public function setPrueflingForStringSetsPruefling() {
-		$this->subject->setPruefling('Conceived at T3CON10');
+    /**
+     * @test
+     */
+    public function getPrueflingReturnsInitialValueForString() {
+        $this->assertSame(
+                '', $this->subject->getPruefling()
+        );
+    }
 
-		$this->assertAttributeEquals(
-			'Conceived at T3CON10',
-			'pruefling',
-			$this->subject
-		);
-	}
+    /**
+     * @test
+     */
+    public function setPrueflingForStringSetsPruefling() {
+        $this->subject->setPruefling('Conceived at T3CON10');
+
+        $this->assertAttributeEquals(
+                'Conceived at T3CON10', 'pruefling', $this->subject
+        );
+    }
+
 }
