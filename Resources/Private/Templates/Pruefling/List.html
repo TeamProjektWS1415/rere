@@ -33,17 +33,18 @@
                                     </div>
                                 </div>
                             </f:form>
-                            <f:form class="navbar-form navbar-left" >
+                            <f:form id="setUserGroup" action="userGroupZuweisen" controller="Pruefling" class="navbar-form navbar-left" arguments="{fach:fach.uid,modul:modul.uid}" >
                                 <div class="form-group">
                                     <div class="input-group">
                                         <div class="input-group-addon"><span class="glyphicon glyphicon-search" aria-hidden="true" ></span></div>
-                                        <select name="usergroup" class="form-control" data-toggle="tooltip" data-placement="bottom" title="UserGroup auswählen">
+                                        <select name="usergroup" class="form-control" data-toggle="tooltip" data-placement="bottom" title="UserGroup auswählen" required>
                                             <option>Bitte wählen</option>
                                             <f:for each="{feusergroups}" as="group">
                                                 <option value="{group.uid}">{group.title}</option>
                                             </f:for>
                                         </select>
                                     </div>
+                                    <button type="submit" class="btn btn-default">UserGroup hinzufügen</button>
                                 </div>
                             </f:form>
                             <ul class="nav navbar-nav navbar-right">

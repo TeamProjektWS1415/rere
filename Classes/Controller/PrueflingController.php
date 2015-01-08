@@ -301,4 +301,12 @@ class PrueflingController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionContro
         $this->redirect('list', self::PRUEFLING, Null, array(self::FACH => $fach, self::MODUL => $modul));
     }
 
+    public function userGroupZuweisenAction() {
+        if ($this->request->hasArgument(self::FACH) && $this->request->hasArgument(self::MODUL) && $this->request->hasArgument(self::MATRIKELNR)) {
+            $fach = $this->fachRepository->findByUid($this->request->getArgument(self::FACH));
+            $modul = $this->modulRepository->findByUid($this->request->getArgument(self::MODUL));
+            $usergroup = $this->FrontendUserGroupRepository->findByUid($this->request->getArgument(self::usergroup));
+        }
+    }
+
 }
