@@ -149,7 +149,7 @@ class PrueflingController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionContro
         foreach ($p as $ps) {
             array_push($s, $ps->getModulname(), $ps->getUid());
         }
-        $this->view->assign('pruefling', $s);
+        $this->view->assign('pruefling', $p);
     }
 
     /**
