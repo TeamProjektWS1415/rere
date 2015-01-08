@@ -15,6 +15,8 @@ namespace ReRe\Rere\Services\NestedDirectory;
  */
 class IntervallLogic {
 
+    const SCHULJAHR = "Schuljahr";
+
     /**
      * Ein Studien-Intervall nach vorne
      * @param type $aktuellesIntervall
@@ -65,8 +67,7 @@ class IntervallLogic {
         $jahr = intval(substr($aktuellesIntervall, 9, 11));
         $orig = ++$jahr;
         $tempjahr = ++$jahr;
-        $ret = "Schuljahr" . $orig . "/" . $tempjahr;
-        return $ret;
+        return self::SCHULJAHR . $orig . "/" . $tempjahr;
     }
 
     /**
@@ -78,7 +79,7 @@ class IntervallLogic {
         $jahr = intval(substr($aktuellesIntervall, 9, 11));
         $orig = $jahr;
         $tempjahr = --$jahr;
-        return "Schuljahr" . $tempjahr . "/" . $orig;
+        return self::SCHULJAHR . $tempjahr . "/" . $orig;
     }
 
     /**
@@ -91,7 +92,7 @@ class IntervallLogic {
             $aktuell = "SS" . substr(date("Y"), 2, 4);
         } else {
             $date = intval(substr(date("Y"), 2, 4));
-            $aktuell = "Schuljahr" . $date . "/" . ++$date;
+            $aktuell = self::SCHULJAHR . $date . "/" . ++$date;
         }
         return $aktuell;
     }

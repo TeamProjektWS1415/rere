@@ -108,7 +108,7 @@ class FachController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController 
         }
         // Ausgabe in der View
         $this->view->assignMultiple(array(
-            'newFach' => $newFach, selft::MODULUID => $modul->getUid(), 'modulname' => $modul->getModulname(), 'modulnummer' => $modul->getModulnr(), 'gueltigkeitszeitraum' => $modul->getGueltigkeitszeitraum()
+            'newFach' => $newFach, self::MODULUID => $modul->getUid(), 'modulname' => $modul->getModulname(), 'modulnummer' => $modul->getModulnr(), 'gueltigkeitszeitraum' => $modul->getGueltigkeitszeitraum()
         ));
     }
 
@@ -121,8 +121,8 @@ class FachController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController 
     public function createAction() {
         $this->addFlashMessage('The object was created. Please be aware that this action is publicly accessible unless you implement an access check. See <a href="http://wiki.typo3.org/T3Doc/Extension_Builder/Using_the_Extension_Builder#1._Model_the_domain" target="_blank">Wiki</a>', '', \TYPO3\CMS\Core\Messaging\AbstractMessage::ERROR);
         // Holt die Modulnummer vom Request und dann das Modul objekt
-        if ($this->request->hasArgument(selft::MODULUID)) {
-            $modul = $this->modulRepository->findByUid($this->request->getArgument(selft::MODULUID));
+        if ($this->request->hasArgument(self::MODULUID)) {
+            $modul = $this->modulRepository->findByUid($this->request->getArgument(self::MODULUID));
         }
         $fach = $this->objectManager->create('\\ReRe\\Rere\\Domain\\Model\\Fach');
         // Fach Werte setzen
