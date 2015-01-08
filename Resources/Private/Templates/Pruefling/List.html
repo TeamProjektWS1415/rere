@@ -37,10 +37,10 @@
                                 <div class="form-group">
                                     <div class="input-group">
                                         <div class="input-group-addon"><span class="glyphicon glyphicon-search" aria-hidden="true" ></span></div>
-                                        <select class="form-control" data-toggle="tooltip" data-placement="bottom" title="UserGroup auswählen">
+                                        <select name="usergroup" class="form-control" data-toggle="tooltip" data-placement="bottom" title="UserGroup auswählen">
                                             <option>Bitte wählen</option>
                                             <f:for each="{feusergroups}" as="group">
-                                                <option>{group.title}</option>
+                                                <option value="{group.uid}">{group.title}</option>
                                             </f:for>
                                         </select>
                                     </div>
