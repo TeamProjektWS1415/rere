@@ -33,8 +33,7 @@ class IntervallLogic {
             $sem = "SS";
             ++$jahr;
         }
-        $ret = $sem . $jahr;
-        return $ret;
+        return $sem . $jahr;
     }
 
     /**
@@ -54,8 +53,7 @@ class IntervallLogic {
         } else {
             $sem = "SS";
         }
-        $ret = $sem . $jahr;
-        return $ret;
+        return $sem . $jahr;
     }
 
     /**
@@ -80,8 +78,7 @@ class IntervallLogic {
         $jahr = intval(substr($aktuellesIntervall, 9, 11));
         $orig = $jahr;
         $tempjahr = --$jahr;
-        $ret = "Schuljahr" . $tempjahr . "/" . $orig;
-        return $ret;
+        return "Schuljahr" . $tempjahr . "/" . $orig;
     }
 
     /**

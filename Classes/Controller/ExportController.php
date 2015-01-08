@@ -125,7 +125,6 @@ class ExportController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControlle
 
         // Export wird gestartet
         $this->exportHelper->genCSV($publisharray, "FachExport.csv");
-        //$this->redirect('list', 'Note', Null, array(self::FACH => $fach, self::MODUL => $modul));
     }
 
 }

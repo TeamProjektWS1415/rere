@@ -1,4 +1,5 @@
 <?php
+
 namespace ReRe\Rere\Domain\Repository;
 
 /* * *************************************************************
@@ -31,5 +32,4 @@ namespace ReRe\Rere\Domain\Repository;
  */
 class IntervallRepository extends \TYPO3\CMS\Extbase\Persistence\Repository {
 
-	
 }
