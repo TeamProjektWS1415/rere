@@ -144,20 +144,19 @@ class PrueflingController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionContro
      * @return void
      */
     public function showAction() {
-    	$momentanerPruefling = $this->prueflingRepository->findByUid(1);
-    	$fachprueflingsArray = array();
+        $momentanerPruefling = $this->prueflingRepository->findByUid(1);
+        $fachprueflingsArray = array();
         $fachlisteArray = $this->fachRepository->findAll();
-        foreach ($fachlisteArray as $fach){
-        	$matrikelnummerArray= $fach->getMatrikelnr();
-        	foreach ($matrikelnummerArray as $matrikel){
-        		if($matrikel->getUid() == $momentanerPruefling->getUid()){
-        			array_push($fachprueflingsArray,$fach);
-        		} 			
-        	}
+        foreach ($fachlisteArray as $fach) {
+            $matrikelnummerArray = $fach->getMatrikelnr();
+            foreach ($matrikelnummerArray as $matrikel) {
+                if ($matrikel->getUid() == $momentanerPruefling->getUid()) {
+                    array_push($fachprueflingsArray, $fach);
+                }
+            }
         }
- 
-        $this->view->assignMultiple(array('fachliste' =>$fachprueflingsArray, 'test' => $test));
-        
+
+        $this->view->assignMultiple(array('fachliste' => $fachprueflingsArray, 'test' => $test));
     }
 
     /**
