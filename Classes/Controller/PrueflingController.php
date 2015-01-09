@@ -146,21 +146,34 @@ class PrueflingController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionContro
     public function showAction() {
     	$momentanerPruefling = $this->prueflingRepository->findByUid(1);
     	
-    	//Anzeige der Fächer für die der Student zur Prüfung eingetragen wurde
-    	$fachprueflingsArray = array();
+    	
+    	//Suchen der Fächer für die der Student zur Prüfung eingetragen wurde
+    	$fachPrueflingsArray = array();
         $fachlisteArray = $this->fachRepository->findAll();
         foreach ($fachlisteArray as $fach){
         	$matrikelnummerArray= $fach->getMatrikelnr();
         	foreach ($matrikelnummerArray as $matrikel){
         		if($matrikel->getUid() == $momentanerPruefling->getUid()){
-        			array_push($fachprueflingsArray,$fach);
+        			array_push($fachPrueflingsArray,$fach);
         		} 			
         	}
         }
-        $fachprueflingsArray = array_reverse($fachprueflingsArray);
+        $fachPrueflingsArray = array_reverse($fachPrueflingsArray);
+
         
-        
-        $this->view->assignMultiple(array('fachliste' =>$fachprueflingsArray, 'test' => $test));
+        //Suchen der zum Fach gehörenden Noten
+        $aktuelleNote = null;
+        $notenArray = $this->noteRepository->findAll();
+        foreach ($notenArray as $note){
+        	//liefert Prüfling Uid
+        	$pruefling = $note->getPruefling();
+        	if($pruefling == $momentanerPruefling->getUid()){
+	        	if($note->getFach() == $fachPrueflingsArray[0]->getUid()){
+	        		$aktuelleNote = $note;
+	        	}
+        	}
+        }
+        $this->view->assignMultiple(array('fachliste' =>$fachPrueflingsArray, 'test' => $test, 'note' => $aktuelleNote));
         
     }
 
