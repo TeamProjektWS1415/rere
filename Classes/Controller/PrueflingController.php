@@ -190,7 +190,7 @@ class PrueflingController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionContro
         $name = '';
         $vorname = '';
         $email = '';
-        $usergroup = '';
+        $userGroup = '';
         $matrikelnr = '';
         if ($this->request->hasArgument(self::NAME) && $this->request->hasArgument(self::VORNAME) && $this->request->hasArgument(self::EMAIL)) {
             $name = $this->request->getArgument(self::NAME);
@@ -198,7 +198,10 @@ class PrueflingController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionContro
             $email = $this->request->getArgument(self::EMAIL);
         }
         if ($this->request->hasArgument(self::USRGROUP)) {
-            $usergroup = $this->request->getArgument(self::USRGROUP);
+            $userGroup = $this->request->getArgument(self::USRGROUP);
+            if ($userGroup == NULL || $userGroup = "") {
+                $userGroup = "UserGroup anlegen!";
+            }
         }
         if ($this->request->hasArgument(self::MATRIKELNR)) {
             $matrikelnr = $this->request->getArgument(self::MATRIKELNR);
@@ -326,16 +329,20 @@ class PrueflingController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionContro
     }
 
     public function userGroupZuweisenAction() {
-        if ($this->request->hasArgument(self::FACH) && $this->request->hasArgument(self::MODUL) && $this->request->hasArgument(self::MATRIKELNR)) {
+        if ($this->request->hasArgument(self::FACH) && $this->request->hasArgument(self::MODUL) && $this->request->hasArgument(self::USRGROUP)) {
             $fach = $this->fachRepository->findByUid($this->request->getArgument(self::FACH));
             $modul = $this->modulRepository->findByUid($this->request->getArgument(self::MODUL));
-            $usergroup = $this->FrontendUserGroupRepository->findByUid($this->request->getArgument(self::usergroup));
+            $userGroup = $this->FrontendUserGroupRepository->findByUid($this->request->getArgument(self::USRGROUP));
+        } else {
+            $this->addFlashMessage('UserGroup auswählen', '', \TYPO3\CMS\Core\Messaging\AbstractMessage::ERROR);
+            // Weiterleitung auf die selbe Seite.
+            $this->redirect('list', self::PRUEFLING, Null, array(self::FACH => $fach, self::MODUL => $modul));
         }
 
         $feusers = $this->FrontendUserRepository->findAll();
         $prueflinge = $this->prueflingRepository->findAll();
         foreach ($feusers as $feuser) {
-            if ($feuser->getUsergroup() == $usergroup) {
+            if ($feuser->getUsergroup() == $userGroup) {
                 foreach ($prueflinge as $pruefling) {
                     if ($pruefling->getTypo3FEUser() == $feuser->getUid()) {
                         $note = $this->objectManager->create('\\ReRe\\Rere\\Domain\\Model\\Note');

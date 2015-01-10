@@ -29,7 +29,7 @@
                                 <div class="form-group">
                                     <div class="input-group">
                                         <div class="input-group-addon"><span class="glyphicon glyphicon-search" id="searchicon"  aria-hidden="true" ></span></div>
-                                        <f:form.textfield  type="text" name="matrikelnr" id="suchematrikel" class="form-control gettooltip" title="Nach MatrikelNr suchen" placeholder="Matrikel Nummer"/>
+                                        <f:form.textfield type="text" name="matrikelnr" id="suchematrikel" class="form-control gettooltip" title="Nach MatrikelNr suchen" placeholder="Matrikel Nummer"/>
                                     </div>
                                 </div>
                             </f:form>
@@ -37,12 +37,7 @@
                                 <div class="form-group">
                                     <div class="input-group">
                                         <div class="input-group-addon"><span class="glyphicon glyphicon-search" aria-hidden="true" ></span></div>
-                                        <select name="usergroup" class="form-control" data-toggle="tooltip" data-placement="bottom" title="UserGroup auswählen" required>
-                                            <option>Bitte wählen</option>
-                                            <f:for each="{feusergroups}" as="group">
-                                                <option value="{group.uid}">{group.title}</option>
-                                            </f:for>
-                                        </select>
+                                        <f:form.select name="usergroup" options="{feusergroups}" value="{feusergroups.uid}" optionLabelField="title" class="form-control gettooltip" title="FE-Usergroup"/>
                                     </div>
                                     <button type="submit" class="btn btn-default">UserGroup hinzufügen</button>
                                 </div>
