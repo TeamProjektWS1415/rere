@@ -207,7 +207,7 @@ class PrueflingController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionContro
             $matrikelnr = $this->request->getArgument(self::MATRIKELNR);
         }
         $this->view->assignMultiple(array(
-            'newPruefling' => $newPruefling, self::NAME => $name, self::VORNAME => $vorname, self::EMAIL => $email, self::USRGROUP => $usergroup, self::MATRIKELNR => $matrikelnr, 'usergroups' => $feUserGroups
+            'newPruefling' => $newPruefling, self::NAME => $name, self::VORNAME => $vorname, self::EMAIL => $email, self::USRGROUP => $userGroup, self::MATRIKELNR => $matrikelnr, 'usergroups' => $feUserGroups
         ));
     }
 
