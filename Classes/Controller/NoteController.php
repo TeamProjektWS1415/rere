@@ -216,6 +216,7 @@ class NoteController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController 
         // Persistieren
         $persistenceManager->persistAll();
         $this->fachRepository->update($fach);
+        $this->prueflingRepository->update($pruefling);
         // Note entgültig löschen
         $this->noteRepository->remove($note);
         $this->redirect('list', 'Note', Null, array(self::FACH => $fach, self::MODUL => $modul));

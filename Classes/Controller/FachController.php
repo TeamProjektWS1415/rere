@@ -195,6 +195,8 @@ class FachController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController 
                 $pruefling->removeNote($note);
                 $fach->removeMatrikelnr($pruefling);
                 $persistenceManager->persistAll();
+                $this->prueflingRepository->update($pruefling);
+                $this->fachRepository->update($fach);
                 $this->noteRepository->remove($note);
             }
         }

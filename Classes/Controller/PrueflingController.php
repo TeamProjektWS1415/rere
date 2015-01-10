@@ -319,6 +319,7 @@ class PrueflingController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionContro
                 }
                 $fach->removeNote($requestedNote);
                 $pruefling->removeNote($requestedNote);
+                $this->prueflingRepository->update($pruefling);
                 // Beziehung setzen
                 $fach->removeMatrikelnr($pruefling);
                 $this->fachRepository->update($fach);
