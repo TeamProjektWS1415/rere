@@ -190,24 +190,22 @@ class PrueflingController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionContro
         $name = '';
         $vorname = '';
         $email = '';
-        $userGroup = '';
         $matrikelnr = '';
         if ($this->request->hasArgument(self::NAME) && $this->request->hasArgument(self::VORNAME) && $this->request->hasArgument(self::EMAIL)) {
             $name = $this->request->getArgument(self::NAME);
             $vorname = $this->request->getArgument(self::VORNAME);
             $email = $this->request->getArgument(self::EMAIL);
         }
-        if ($this->request->hasArgument(self::USRGROUP)) {
-            $userGroup = $this->request->getArgument(self::USRGROUP);
-            if ($userGroup == NULL || $userGroup = "") {
-                $userGroup = "UserGroup anlegen!";
-            }
+
+        if ($feUserGroups == Null || $feUserGroups == "") {
+            $this->addFlashMessage('Bitte zuerst eine UserGroup anlegen', '', \TYPO3\CMS\Core\Messaging\AbstractMessage::ERROR);
         }
+
         if ($this->request->hasArgument(self::MATRIKELNR)) {
             $matrikelnr = $this->request->getArgument(self::MATRIKELNR);
         }
         $this->view->assignMultiple(array(
-            'newPruefling' => $newPruefling, self::NAME => $name, self::VORNAME => $vorname, self::EMAIL => $email, self::USRGROUP => $userGroup, self::MATRIKELNR => $matrikelnr, 'usergroups' => $feUserGroups
+            'newPruefling' => $newPruefling, self::NAME => $name, self::VORNAME => $vorname, self::EMAIL => $email, self::MATRIKELNR => $matrikelnr, 'usergroups' => $feUserGroups
         ));
     }
 
@@ -328,23 +326,34 @@ class PrueflingController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionContro
         $this->redirect('list', self::PRUEFLING, Null, array(self::FACH => $fach, self::MODUL => $modul));
     }
 
+    /**
+     * Diese Funktion weißt eine ganze UserGruppe dem Fach zu. Ein Prüfling kann einem Fach nur 1x Zugewiesen werden.
+     */
     public function userGroupZuweisenAction() {
+        // Persistenz Manager
+        $persistenceManager = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('TYPO3\\CMS\\Extbase\\Persistence\\Generic\\PersistenceManager');
+
+        // Prüft ob alle nötigen Argumente vorhanden sind.
         if ($this->request->hasArgument(self::FACH) && $this->request->hasArgument(self::MODUL) && $this->request->hasArgument(self::USRGROUP)) {
             $fach = $this->fachRepository->findByUid($this->request->getArgument(self::FACH));
             $modul = $this->modulRepository->findByUid($this->request->getArgument(self::MODUL));
             $userGroup = $this->FrontendUserGroupRepository->findByUid($this->request->getArgument(self::USRGROUP));
         } else {
             $this->addFlashMessage('UserGroup auswählen', '', \TYPO3\CMS\Core\Messaging\AbstractMessage::ERROR);
-            // Weiterleitung auf die selbe Seite.
             $this->redirect('list', self::PRUEFLING, Null, array(self::FACH => $fach, self::MODUL => $modul));
         }
 
         $feusers = $this->FrontendUserRepository->findAll();
         $prueflinge = $this->prueflingRepository->findAll();
         foreach ($feusers as $feuser) {
-            if ($feuser->getUsergroup() == $userGroup) {
+            // Wenn die UserGroup des FEUsers = der Ausgewählten Usergroup
+            if ((int) $feuser->getUsergroup() == (int) $userGroup) {
                 foreach ($prueflinge as $pruefling) {
-                    if ($pruefling->getTypo3FEUser() == $feuser->getUid()) {
+                    // Prüft ob der Prüfling bereits zugewiesen wurde
+                    $checkList = $this->userfunctions->checkMatrikelNr($fach->getMatrikelnr(), $pruefling->getMatrikelnr());
+                    $checkVar = "TYPO3\CMS\Extbase\Domain\Model\FrontendUser:" . $feuser->getUid();
+                    if ($pruefling->getTypo3FEUser() == $checkVar && $checkList == 1) {
+                        //echo $this->userfunctions->checkMatrikelNr($matrikelNummern, $pruefling->getMatrikelNr());
                         $note = $this->objectManager->create('\\ReRe\\Rere\\Domain\\Model\\Note');
                         $note->setWert(0);
                         $this->noteRepository->add($note);
@@ -353,11 +362,12 @@ class PrueflingController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionContro
                         $fach->addNote($note);
                         $pruefling->addNote($note);
                         $this->fachRepository->add($fach);
+                        // Persistieren aller Losen objekte.
+                        $persistenceManager->persistAll();
                     }
                 }
             }
         }
-
         // Weiterleitung auf die selbe Seite.
         $this->redirect('list', self::PRUEFLING, Null, array(self::FACH => $fach, self::MODUL => $modul));
     }

@@ -21,6 +21,21 @@ class UserFunctions {
         return $sub1 . $sub2;
     }
 
+    /**
+     * Funktion zum vergleichen, ob eine Matrikelnummer in der Liste der Matrikelnummern, die einem Fach zugewiesen wurde bereits hinzugefügt wurde.
+     * @param type $matrikelNummer Array mit Matrikelnummern
+     * @param type $checkvar Matrikelnummer mit der verglichen werden soll
+     * @return int 0 = succes / 1 = fail
+     */
+    public function checkMatrikelNr($matrikelNummer, $checkvar) {
+        foreach ($matrikelNummer as $mat) {
+            if ($mat->getMatrikelnr() == $checkvar) {
+                return 0;
+            }
+        }
+        return 1;
+    }
+
 }
 ?>
 
