@@ -57,6 +57,22 @@ class FachController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController 
     protected $modulRepository = NULL;
 
     /**
+     * Protected Variable noteRepository wird mit NULL initialisiert.
+     *
+     * @var \ReRe\Rere\Domain\Repository\NoteRepository
+     * @inject
+     */
+    protected $noteRepository = NULL;
+
+    /**
+     * Protected Variable prueflingRepository wird mit NULL initialisiert.
+     *
+     * @var \ReRe\Rere\Domain\Repository\PrueflingRepository
+     * @inject
+     */
+    protected $prueflingRepository = NULL;
+
+    /**
      * Protected Variable dataMapper wird mit NULL initialisiert.
      *
      * @var \TYPO3\CMS\Extbase\Persistence\Generic\Mapper\DataMapper
@@ -166,11 +182,25 @@ class FachController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController 
      * Mit dieser Methode wird ein Fach aus dem Repository gelöscht.
      * Danach wird auf die Result Repository-Startseite umgeleitet.
      *
-     * @param \ReRe\Rere\Domain\Model\Fach $fach
      * @return void
      */
-    public function deleteAction(\ReRe\Rere\Domain\Model\Fach $fach) {
-        $this->addFlashMessage('The object was deleted. Please be aware that this action is publicly accessible unless you implement an access check. See <a href="http://wiki.typo3.org/T3Doc/Extension_Builder/Using_the_Extension_Builder#1._Model_the_domain" target="_blank">Wiki</a>', '', \TYPO3\CMS\Core\Messaging\AbstractMessage::ERROR);
+    public function deleteAction() {
+        $persistenceManager = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('TYPO3\\CMS\\Extbase\\Persistence\\Generic\\PersistenceManager');
+        $fach = $this->fachRepository->findByUid($this->request->getArgument("fach"));
+        $noten = $fach->getNote();
+        foreach ($noten as $note) {
+            if ($note->getFach() == $fach->getUid()) {
+                $fach->removeNote($note);
+                $pruefling = $this->prueflingRepository->findByUid($note->getPruefling());
+                $pruefling->removeNote($note);
+                $fach->removeMatrikelnr($pruefling);
+                $persistenceManager->persistAll();
+                $this->noteRepository->remove($note);
+            }
+        }
+        $persistenceManager->persistAll();
+
+        // Fach Löschen
         $this->fachRepository->remove($fach);
         $this->redirect('list', 'Modul');
     }

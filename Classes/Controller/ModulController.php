@@ -55,6 +55,22 @@ class ModulController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
     protected $fachRepository = NULL;
 
     /**
+     * Protected Variable noteRepository wird mit NULL initialisiert.
+     *
+     * @var \ReRe\Rere\Domain\Repository\NoteRepository
+     * @inject
+     */
+    protected $noteRepository = NULL;
+
+    /**
+     * Protected Variable prueflingRepository wird mit NULL initialisiert.
+     *
+     * @var \ReRe\Rere\Domain\Repository\PrueflingRepository
+     * @inject
+     */
+    protected $prueflingRepository = NULL;
+
+    /**
      * Protected Variable intervallRepository wird mit NULL initialisiert.
      *
      * @var \ReRe\Rere\Domain\Repository\IntervallRepository

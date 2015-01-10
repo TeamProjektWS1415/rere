@@ -323,6 +323,7 @@ class PrueflingController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionContro
                 $fach->removeMatrikelnr($pruefling);
                 $this->fachRepository->update($fach);
                 $persistenceManager->persistAll();
+                $this->noteRepository->remove($requestedNote);
             } else {
                 $note = $this->objectManager->create('\\ReRe\\Rere\\Domain\\Model\\Note');
                 $note->setWert(0);

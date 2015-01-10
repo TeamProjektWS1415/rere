@@ -72,7 +72,7 @@
                                 <td><span class="value">{pruefling.vorname}</span></td>
                                 <td><span class="value">{pruefling.nachname}</span></td>
                                 <td>
-                            <f:link.action class="delete" action="setPruefling" onclick="delentry('Möchten Sie den Pruefling mit der Matrikelnr: {pruefling.matrikelnr} wirklich löschen?', $(this).attr('href'));
+                            <f:link.action class="delete" action="setPruefling" onclick="delentry('Möchten Sie den Pruefling mit der Matrikelnr: {pruefling.matrikelnr} wirklich löschen? Er wird vom Fach abgemeldet und die note wird gelöscht.', $(this).attr('href'));
                                     return false;" arguments="{fach:fach.uid,modul:modul.uid,matrikelnr : pruefling.matrikelnr,remove:'remove'}"><span class="glyphicon glyphicon-remove" aria-hidden="true" data-toggle="tooltip" data-placement="bottom" title="Löscht diesen Datensatz"></span></f:link.action>
                             </td>
                             </tr>
