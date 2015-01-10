@@ -298,6 +298,7 @@ class PrueflingController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionContro
      * Weist einen Prüfling einem Fach zu oder löst die Zuweisung wieder auf.
      */
     public function setPrueflingAction() {
+        $persistenceManager = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('TYPO3\\CMS\\Extbase\\Persistence\\Generic\\PersistenceManager');
         // Holt Fach-Objekt, Modul-Objekt und den Prüfling
         if ($this->request->hasArgument(self::FACH) && $this->request->hasArgument(self::MODUL) && $this->request->hasArgument(self::MATRIKELNR)) {
             $fach = $this->fachRepository->findByUid($this->request->getArgument(self::FACH));
@@ -309,8 +310,19 @@ class PrueflingController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionContro
         } else {
             // Prüfling einem Fach zuweisen oder entfernen
             if ($this->request->hasArgument('remove')) {
+
+                $noten = $fach->getNote();
+                foreach ($noten as $note) {
+                    if ($note->getPruefling() == $pruefling->getUid()) {
+                        $requestedNote = $note;
+                    }
+                }
+                $fach->removeNote($requestedNote);
+                $pruefling->removeNote($requestedNote);
                 // Beziehung setzen
                 $fach->removeMatrikelnr($pruefling);
+                $this->fachRepository->update($fach);
+                $persistenceManager->persistAll();
             } else {
                 $note = $this->objectManager->create('\\ReRe\\Rere\\Domain\\Model\\Note');
                 $note->setWert(0);

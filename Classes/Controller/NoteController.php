@@ -40,6 +40,7 @@ class NoteController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController 
 
     const MODUL = 'modul';
     const FACH = 'fach';
+    const NOTE = 'note';
 
     /**
      * Private Klassenvariable für die Notenlisten wird mit NULL initialisiert.
@@ -201,7 +202,7 @@ class NoteController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController 
         $persistenceManager = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('TYPO3\\CMS\\Extbase\\Persistence\\Generic\\PersistenceManager');
         if ($this->request->hasArgument(self::MODUL) && $this->request->hasArgument("note") && $this->request->getArgument(self::FACH)) {
             $modul = $this->modulRepository->findByUid($this->request->getArgument(self::MODUL));
-            $note = $this->noteRepository->findByUid($this->request->getArgument("note"));
+            $note = $this->noteRepository->findByUid($this->request->getArgument(self::NOTE));
             $fach = $this->fachRepository->findByUid($this->request->getArgument(self::FACH));
         } else {
             $this->redirect('list', 'Modul');

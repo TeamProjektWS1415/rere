@@ -62,18 +62,6 @@
                         </tr>
                         </thead>
                         <tbody>
-                        <f:if condition="{notes}== null'" >
-                            <f:then>
-                                <tr>
-                                    <td>Es sind noch keine Prüflinge angemeldet.</td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                </tr>
-                            </f:then>
-                        </f:if>
                         <f:for each="{notes}" as="note">
                             <tr>
                             <f:form action="update" id="editnote{note.uid}" id="editnote{note.uid}" >
