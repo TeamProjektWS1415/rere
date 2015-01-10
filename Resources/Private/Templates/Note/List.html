@@ -62,6 +62,18 @@
                         </tr>
                         </thead>
                         <tbody>
+                        <f:if condition="{notes}== null'" >
+                            <f:then>
+                                <tr>
+                                    <td>Es sind noch keine Prüflinge angemeldet.</td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+                            </f:then>
+                        </f:if>
                         <f:for each="{notes}" as="note">
                             <tr>
                             <f:form action="update" id="editnote{note.uid}" id="editnote{note.uid}" >
@@ -73,8 +85,8 @@
                                 <f:form.textfield type="hidden" name="fach" id="fach" value="{fach.uid}" />
                                 <f:form.textfield  type="hidden" name="modul" id="modul" value="{modul.uid}" />
                                 <f:form.textarea name="kommentar" class="form-control gettooltip sendNote" rows="1" placeholder="Kommentar" title="Kommentar zur Note" value="{note.kommentar}"/></td>
-                                <td><f:link.action class="delete" action="delete" onclick="delentry('Wollen Sie den Pruefling mit Matrikelnummer 12345 wirklich aus diesem Fach loeschen?', $(this).attr('href'));
-                                        return false;" arguments="{note : note,fach:fach.uid,modul:modul.uid}"><span class="glyphicon glyphicon-remove" aria-hidden="true" data-toggle="tooltip" data-placement="bottom" title="Löscht diesen Datensatz"></span></f:link.action></td>
+                                <td><f:link.action class="delete" action="delete" onclick="delentry('Wollen Sie den Pruefling mit Matrikelnummer {note.matrikelnr} wirklich aus diesem Fach loeschen? Er wird von der Prüfung abgemeldet.', $(this).attr('href'));
+                                        return false;" arguments="{note : note.uid,fach:fach.uid,modul:modul.uid}"><span class="glyphicon glyphicon-remove" aria-hidden="true" data-toggle="tooltip" data-placement="bottom" title="Löscht diesen Datensatz"></span></f:link.action></td>
                             </f:form>
                             </tr>
                         </f:for>
@@ -83,7 +95,6 @@
 
                             // Holt die Werte für das Chart
                             var array = {f:format.htmlentitiesDecode(value:chartarray)};
-
                             // Generiert das Chart
                             $(document).ready(function () {
                                 genchart(array);

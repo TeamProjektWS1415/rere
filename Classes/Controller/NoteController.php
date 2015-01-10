@@ -193,16 +193,30 @@ class NoteController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController 
     }
 
     /**
-     * Diese Methode dient dem Löschen einer Note
+     * Diese Methode dient dem Löschen einer Note, gleichzeitig wird der Prüfling vom Fach abgemeldet.
      *
-     * @param \ReRe\Rere\Domain\Model\Note $note
      * @return void
      */
-    public function deleteAction(\ReRe\Rere\Domain\Model\Note $note) {
-        $this->addFlashMessage('The object was deleted. Please be aware that this action is publicly accessible unless you implement an access check. See <a href="http://wiki.typo3.org/T3Doc/Extension_Builder/Using_the_Extension_Builder#1._Model_the_domain" target="_blank">Wiki</a>', '', \TYPO3\CMS\Core\Messaging\AbstractMessage::ERROR);
+    public function deleteAction() {
+        $persistenceManager = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('TYPO3\\CMS\\Extbase\\Persistence\\Generic\\PersistenceManager');
+        if ($this->request->hasArgument(self::MODUL) && $this->request->hasArgument("note") && $this->request->getArgument(self::FACH)) {
+            $modul = $this->modulRepository->findByUid($this->request->getArgument(self::MODUL));
+            $note = $this->noteRepository->findByUid($this->request->getArgument("note"));
+            $fach = $this->fachRepository->findByUid($this->request->getArgument(self::FACH));
+        } else {
+            $this->redirect('list', 'Modul');
+        }
+        // Prüfling holen
+        $pruefling = $this->prueflingRepository->findByUid($note->getPruefling());
+        // Note vom Fach und vom Prüfling löschen, Prüfling vom Fach abmelden.
+        $fach->removeNote($note);
+        $pruefling->removeNote($note);
+        $fach->removeMatrikelnr($pruefling);
+        // Persistieren
+        $persistenceManager->persistAll();
+        $this->fachRepository->update($fach);
+        // Note entgültig löschen
         $this->noteRepository->remove($note);
-        $fach = $this->fachRepository->findByUid($this->request->getArgument(self::FACH));
-        $modul = $this->modulRepository->findByUid($this->request->getArgument(self::MODUL));
         $this->redirect('list', 'Note', Null, array(self::FACH => $fach, self::MODUL => $modul));
     }
 
