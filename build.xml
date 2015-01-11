@@ -1,23 +1,40 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!--
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
--->
 
-
-<project name="phpdoc" default="build" basedir=".."> 
-    <target name="phpdoc"> 
-        <echo message="Creating PHPDoc" /> 
-        <mkdir dir="phpdoc" /> 
-        <exec dir="${basedir}" executable="/app1/cmcwork/bin/phpdoc"> 
-            <arg line="--directory ${basedir}/path/to/sources} 
-                        --quiet on 
-                        --undocumentedelements on 
-                        --title 'phm-Dokumentation' 
-                        --sourcecode on 
-                        --output HTML:Smarty:PHP 
-                        --target phpdoc" /> 
-        </exec> 
+<project name="phpdoc" default="build" basedir=".">
+    <target name="phpdoc">
+        <echo message="Creating PHPDoc" />
+        <mkdir dir="phpdoc" />
+        <exec dir="${basedir}" executable="/app1/cmcwork/bin/phpdoc">
+            <arg line="--directory ${basedir}/path/to/sources}
+                        --quiet on
+                        --undocumentedelements on
+                        --title 'phm-Dokumentation'
+                        --sourcecode on
+                        --output HTML:Smarty:PHP
+                        --target phpdoc" />
+        </exec>
     </target>
-<target name="build" depends="phpdoc" /> </project>
+
+    <target name="phpdocWindows">
+        <echo message="Creating PHPDoc" />
+        <mkdir dir="phpdoc" />
+        <exec dir="${basedir}" executable="C:/xampp/php/apigen/apigen.bat">
+            <arg line="--directory ${basedir}/Classes}
+                        --quiet on
+                        --undocumentedelements on
+                        --title 'phm-Dokumentation'
+                        --sourcecode on
+                        --output HTML:Smarty:PHP
+                        --target phpdoc" />
+        </exec>
+    </target>
+
+    #Sonar Qube Test ausführung
+    <target name="sonar">
+        <exec executable="cmd" dir="." spawn="false">
+            <arg line="/C start C:/sonar-runner-2.4/bin/sonar-runner.bat" />
+        </exec>
+    </target>
+
+    <target name="build" depends="sonar,phpdoc" />
+</project>
