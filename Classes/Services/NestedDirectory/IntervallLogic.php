@@ -29,8 +29,8 @@ class IntervallLogic {
         if ($sem == "SS") {
             $sem = "WS";
             $orig = $jahr;
-            $tempjahr = ++$jahr;
-            $jahr = $orig . "/" . $tempjahr;
+            ++$jahr;
+            $jahr = $orig . "/" . $jahr;
         } else {
             $sem = "SS";
             ++$jahr;
@@ -50,8 +50,8 @@ class IntervallLogic {
         if ($sem == "SS") {
             $sem = "WS";
             $orig = $jahr;
-            $tempjahr = --$jahr;
-            $jahr = $tempjahr . "/" . $orig;
+            --$jahr;
+            $jahr = $jahr . "/" . $orig;
         } else {
             $sem = "SS";
         }
@@ -65,9 +65,10 @@ class IntervallLogic {
      */
     public function nextSchulIntervall($aktuellesIntervall) {
         $jahr = intval(substr($aktuellesIntervall, 9, 11));
-        $orig = ++$jahr;
-        $tempjahr = ++$jahr;
-        return self::SCHULJAHR . $orig . "/" . $tempjahr;
+        ++$jahr;
+        $orig = $jahr;
+        ++$jahr;
+        return self::SCHULJAHR . $orig . "/" . $jahr;
     }
 
     /**
@@ -78,8 +79,8 @@ class IntervallLogic {
     public function prevSchulIntervall($aktuellesIntervall) {
         $jahr = intval(substr($aktuellesIntervall, 9, 11));
         $orig = $jahr;
-        $tempjahr = --$jahr;
-        return self::SCHULJAHR . $tempjahr . "/" . $orig;
+        --$jahr;
+        return self::SCHULJAHR . $jahr . "/" . $orig;
     }
 
     /**

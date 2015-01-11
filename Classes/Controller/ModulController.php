@@ -230,6 +230,7 @@ class ModulController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
                 }
             }
         }
+
         $persistenceManager->persistAll();
         $this->modulRepository->remove($modul);
         $this->redirect('list');

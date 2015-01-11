@@ -29,7 +29,6 @@
         </exec>
     </target>
 
-    #Sonar Qube Test ausführung
     <target name="sonar">
         <exec executable="cmd" dir="." spawn="false">
             <arg line="/C start C:/sonar-runner-2.4/bin/sonar-runner.bat" />

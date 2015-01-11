@@ -96,7 +96,7 @@
                                         <a data-toggle="collapse" data-parent="#accordion" href="#{modul.modulnr}" aria-expanded="false" aria-controls="collapse{modul.name}">{modul.modulname} ({modul.modulnr})</a>
                                     </span>
                                     <span class="col-md-4">
-                                        <f:link.action class="delete btn btn-default modulloeschenbutton gettooltip" action="delete" onclick="delentry('Wollen Sie das Modul mit allen zugehoerenden Faechern und Noten wirklich löschen? Prüflinge werden nicht gelöscht.', $(this).attr('href'));
+                                        <f:link.action class="delete btn btn-default modulloeschenbutton gettooltip" action="delete" controller="Modul" onclick="delentry('Wollen Sie das Modul mit allen zugehoerenden Faechern und Noten wirklich löschen? Prüflinge werden nicht gelöscht.', $(this).attr('href'));
                                                 return false;" arguments="{modul : modul}" title="Dieses Modul und die zugeordneten Fächer löschen">Löschen</f:link.action>
                                     </span>
                                 </div>

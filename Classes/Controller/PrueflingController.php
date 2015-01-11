@@ -160,17 +160,13 @@ class PrueflingController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionContro
         }
         $fachPrueflingsArray = array_reverse($fachPrueflingsArray);
 
-
         //Suchen der zum Fach gehörenden Noten
         $aktuelleNote = null;
         $notenArray = $this->noteRepository->findAll();
         foreach ($notenArray as $note) {
             //liefert Prüfling Uid
-            $pruefling = $note->getPruefling();
-            if ($pruefling == $momentanerPruefling->getUid()) {
-                if ($note->getFach() == $fachPrueflingsArray[0]->getUid()) {
-                    $aktuelleNote = $note;
-                }
+            if ($note->getPruefling() == $momentanerPruefling->getUid() && $note->getFach() == $fachPrueflingsArray[0]->getUid()) {
+                $aktuelleNote = $note;
             }
         }
         $this->view->assignMultiple(array('fachliste' => $fachPrueflingsArray, 'test' => $test, 'note' => $aktuelleNote));
@@ -307,35 +303,33 @@ class PrueflingController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionContro
         }
         if ($pruefling == NULL) {
             $this->addFlashMessage('Wählen Sie einen existierenden Prüfling (Grüne Lupe)', '', \TYPO3\CMS\Core\Messaging\AbstractMessage::ERROR);
-        } else {
-            // Prüfling einem Fach zuweisen oder entfernen
-            if ($this->request->hasArgument('remove')) {
-
-                $noten = $fach->getNote();
-                foreach ($noten as $note) {
-                    if ($note->getPruefling() == $pruefling->getUid()) {
-                        $requestedNote = $note;
-                    }
-                }
-                $fach->removeNote($requestedNote);
-                $pruefling->removeNote($requestedNote);
-                $this->prueflingRepository->update($pruefling);
-                // Beziehung setzen
-                $fach->removeMatrikelnr($pruefling);
-                $this->fachRepository->update($fach);
-                $persistenceManager->persistAll();
-                $this->noteRepository->remove($requestedNote);
-            } else {
-                $note = $this->objectManager->create('\\ReRe\\Rere\\Domain\\Model\\Note');
-                $note->setWert(0);
-                $this->noteRepository->add($note);
-                // Beziehung setzen
-                $fach->addMatrikelnr($pruefling);
-                $fach->addNote($note);
-                $pruefling->addNote($note);
-            }
-            $this->fachRepository->add($fach);
+            $this->redirect('list', self::PRUEFLING, Null, array(self::FACH => $fach, self::MODUL => $modul));
         }
+        // Prüfling einem Fach zuweisen oder entfernen
+        if ($this->request->hasArgument('remove')) {
+            $noten = $fach->getNote();
+            foreach ($noten as $note) {
+                if ($note->getPruefling() == $pruefling->getUid()) {
+                    $requestedNote = $note;
+                }
+            }
+            $fach->removeNote($requestedNote);
+            $pruefling->removeNote($requestedNote);
+            $this->prueflingRepository->update($pruefling);
+            // Beziehung setzen
+            $fach->removeMatrikelnr($pruefling);
+            $this->fachRepository->update($fach);
+            $persistenceManager->persistAll();
+            $this->noteRepository->remove($requestedNote);
+        } else {
+            $note = $this->genNote();
+            // Beziehung setzen
+            $fach->addMatrikelnr($pruefling);
+            $fach->addNote($note);
+            $pruefling->addNote($note);
+        }
+        $this->fachRepository->add($fach);
+
         // Weiterleitung auf die selbe Seite.
         $this->redirect('list', self::PRUEFLING, Null, array(self::FACH => $fach, self::MODUL => $modul));
     }
@@ -367,10 +361,7 @@ class PrueflingController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionContro
                     $checkList = $this->userfunctions->checkMatrikelNr($fach->getMatrikelnr(), $pruefling->getMatrikelnr());
                     $checkVar = "TYPO3\CMS\Extbase\Domain\Model\FrontendUser:" . $feuser->getUid();
                     if ($pruefling->getTypo3FEUser() == $checkVar && $checkList == 1) {
-                        //echo $this->userfunctions->checkMatrikelNr($matrikelNummern, $pruefling->getMatrikelNr());
-                        $note = $this->objectManager->create('\\ReRe\\Rere\\Domain\\Model\\Note');
-                        $note->setWert(0);
-                        $this->noteRepository->add($note);
+                        $note = $this->genNote();
                         // Beziehung setzen
                         $fach->addMatrikelnr($pruefling);
                         $fach->addNote($note);
@@ -384,6 +375,17 @@ class PrueflingController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionContro
         }
         // Weiterleitung auf die selbe Seite.
         $this->redirect('list', self::PRUEFLING, Null, array(self::FACH => $fach, self::MODUL => $modul));
+    }
+
+    /**
+     * Diese Methode Legt eine neue Note an und speichert diese im Repository.
+     * @return type
+     */
+    protected function genNote() {
+        $note = $this->objectManager->create('\\ReRe\\Rere\\Domain\\Model\\Note');
+        $note->setWert(0);
+        $this->noteRepository->add($note);
+        return $note;
     }
 
 }
