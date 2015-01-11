@@ -104,7 +104,7 @@ class ModulTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
      */
     public function getGueltigkeitszeitraumReturnsInitialValueForString() {
         $this->assertSame(
-                '', $this->subject->getGueltigkeitszeitraum()
+                NULL, $this->subject->getGueltigkeitszeitraum()
         );
     }
 
