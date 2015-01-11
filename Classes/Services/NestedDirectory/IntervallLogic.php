@@ -93,7 +93,9 @@ class IntervallLogic {
             $aktuell = "SS" . substr(date("Y"), 2, 4);
         } else {
             $date = intval(substr(date("Y"), 2, 4));
-            $aktuell = self::SCHULJAHR . $date . "/" . ++$date;
+            $orig = $date;
+            ++$date;
+            $aktuell = self::SCHULJAHR . $orig . "/" . $date;
         }
         return $aktuell;
     }

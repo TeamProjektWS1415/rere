@@ -112,12 +112,34 @@ class NotenVerwaltungHelper {
     ];
 
     /**
-     * Iteriert über alle Ergebnisse der Abfrage und zählt die Anzahl der Vorkommnisse hoch.
+     * Gibt das entsprechende Array zurück.
      * @param type $notenliste
      * @param type $typ Benotungstyp
      * @return type JsonArray
      */
     public function genArray($notenliste, $typ) {
+        $this->iterateArray($notenliste, $typ);
+
+        // Wandelt das Array in ein Json Array und gibt dieses zurück.
+        if ($typ == "hochschulsystem") {
+            $returnArray = json_encode($this->resultArray);
+        } elseif ($typ == "15pktsystem") {
+            $returnArray = json_encode($this->fifteenMarks);
+        } elseif ($typ == "schulsystem") {
+            $returnArray = json_encode($this->schoolMarks);
+        } else {
+            $returnArray = json_encode($this->unbenotetMarks);
+        }
+
+        return $returnArray;
+    }
+
+    /**
+     * Iteriert über alle Ergebnisse der Abfrage und zählt die Anzahl der Vorkommnisse hoch.
+     * @param type $notenliste
+     * @param type $typ
+     */
+    protected function iterateArray($notenliste, $typ) {
         foreach ($notenliste as $object) {
             $wert = $object->getWert();
 
@@ -137,19 +159,6 @@ class NotenVerwaltungHelper {
                 $this->unbenotetMarks[$wert] = $this->unbenotetMarks[$wert] + 1;
             }
         }
-
-        // Wandelt das Array in ein Json Array und gibt dieses zurück.
-        if ($typ == "hochschulsystem") {
-            $returnArray = json_encode($this->resultArray);
-        } elseif ($typ == "15pktsystem") {
-            $returnArray = json_encode($this->fifteenMarks);
-        } elseif ($typ == "schulsystem") {
-            $returnArray = json_encode($this->schoolMarks);
-        } else {
-            $returnArray = json_encode($this->unbenotetMarks);
-        }
-
-        return $returnArray;
     }
 
     /**
