@@ -1,6 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+
+
 <project name="phpdoc" default="build" basedir=".">
+
+    <property name="gitpath" value="C:\Program Files (x86)\Git\bin\git.exe" />
+
     <target name="phpdocWindows">
         <echo message="Creating PHPDoc" />
         <delete dir="${basedir}\Resources\Public\phpdoc"/>
@@ -15,34 +20,31 @@
             <arg line="/C start C:/sonar-runner-2.4/bin/sonar-runner.bat" />
         </exec>
     </target>
-    <macrodef name="git">
-		<attribute name="command" />
-		<attribute name="dir" default="" />
-		<element name="args" optional="true" />
-		<sequential>
-			<echo message="git @{command}" />
-			<exec executable="git" dir="@{dir}">
-				<arg value="@{command}" />
-				<args/>
-			</exec>
-		</sequential>
-	</macrodef>
- 
-	<target name="version" description="Commits all changes to version git">
-		<input message="Commit message" addproperty="commit-message" />
-		
-		<echo message="Commiting all changes with message ${commit-message}" />
-		<git command="add">
-			<args>
-				<arg value="." />
-			</args>
-		</git>
-		<git command="commit">
-			<args>
-				<arg value="-am ${commit-message}" />
-			</args>
-		</git>
-		<git command="push" />
-	</target>
+
+    <target name="gitadd">
+        <exec executable="${gitpath}" dir=".">
+            <arg value="add" />
+            <arg value="." />
+        </exec>
+    </target>
+
+    <target name="gitcommit">
+        <input message="Commit message" addproperty="commit-message" />
+        <exec executable="${gitpath}" dir=".">
+            <arg value="commit" />
+            <arg value="-m" />
+            <arg value="${commit-message}" />
+        </exec>
+    </target>
+
+    <target name="gitpushoriginmaster">
+        <exec executable="${gitpath}" dir=".">
+            <arg value="push" />
+            <arg value="origin" />
+            <arg value="master" />
+        </exec>
+    </target>
+
+
     <target name="build" depends="sonar,phpdocWindows,version" />
 </project>
