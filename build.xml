@@ -28,6 +28,12 @@
         </exec>
     </target>
 
+    <target name="gitstatus">
+        <exec executable="${gitpath}" dir=".">
+            <arg value="status" />
+        </exec>
+    </target>
+
     <target name="gitcommit">
         <input message="Commit message" addproperty="commit-message" />
         <exec executable="${gitpath}" dir=".">
@@ -44,6 +50,8 @@
             <arg value="master" />
         </exec>
     </target>
+
+    <target name="git" depends="gitadd,gitcommit" />
 
     <target name="build" depends="sonar,phpdocWindows" />
 </project>
