@@ -1,31 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <project name="phpdoc" default="build" basedir=".">
-    <target name="phpdoc">
-        <echo message="Creating PHPDoc" />
-        <mkdir dir="phpdoc" />
-        <exec dir="${basedir}" executable="/app1/cmcwork/bin/phpdoc">
-            <arg line="--directory ${basedir}/path/to/sources}
-                        --quiet on
-                        --undocumentedelements on
-                        --title 'phm-Dokumentation'
-                        --sourcecode on
-                        --output HTML:Smarty:PHP
-                        --target phpdoc" />
-        </exec>
-    </target>
-
     <target name="phpdocWindows">
         <echo message="Creating PHPDoc" />
-        <mkdir dir="phpdoc" />
-        <exec dir="${basedir}" executable="C:/xampp/php/apigen/apigen.bat">
-            <arg line="--directory ${basedir}/Classes}
-                        --quiet on
-                        --undocumentedelements on
-                        --title 'phm-Dokumentation'
-                        --sourcecode on
-                        --output HTML:Smarty:PHP
-                        --target phpdoc" />
+        <delete dir="${basedir}\Resources\Public\phpdoc"/>
+        <mkdir dir="${basedir}\Resources\Public\phpdoc" />
+        <exec executable="cmd" dir="." spawn="false">
+            <arg line="/C C:/xampp/php/php.exe C:/xampp/php/apigen/apigen.php  --source ${basedir}\Classes --destination ${basedir}\Resources\Public\phpdoc"/>
         </exec>
     </target>
 
@@ -35,5 +16,5 @@
         </exec>
     </target>
 
-    <target name="build" depends="sonar,phpdoc" />
+    <target name="build" depends="sonar,phpdocWindows" />
 </project>

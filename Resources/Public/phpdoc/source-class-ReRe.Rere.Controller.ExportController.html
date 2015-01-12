@@ -5,10 +5,10 @@
 	<meta name="generator" content="ApiGen 2.8.0" />
 	<meta name="robots" content="noindex" />
 
-	<title>File Classes/Controller/ExportController.php | rere</title>
+	<title>File Controller/ExportController.php</title>
 
 	<script type="text/javascript" src="resources/combined.js?2780970235"></script>
-	<script type="text/javascript" src="elementlist.js?1049207493"></script>
+	<script type="text/javascript" src="elementlist.js?3243688334"></script>
 	<link rel="stylesheet" type="text/css" media="all" href="resources/style.css?3505392360" />
 
 </head>
@@ -41,18 +41,7 @@
 						<ul>
 				<li><a href="namespace-ReRe.Rere.Services.NestedDirectory.html">NestedDirectory</a>
 						</li>
-							</ul></li>
-				<li><a href="namespace-ReRe.Rere.Tests.html">Tests<span></span></a>
-						<ul>
-				<li><a href="namespace-ReRe.Rere.Tests.Unit.html">Unit<span></span></a>
-						<ul>
-				<li><a href="namespace-ReRe.Rere.Tests.Unit.Controller.html">Controller</a>
-						</li>
-				<li><a href="namespace-ReRe.Rere.Tests.Unit.Domain.html">Domain<span></span></a>
-						<ul>
-				<li><a href="namespace-ReRe.Rere.Tests.Unit.Domain.Model.html">Model</a>
-						</li>
-							</ul></li></ul></li></ul></li></ul></li></ul></li>
+							</ul></li></ul></li></ul></li>
 			</ul>
 		</div>
 
@@ -166,60 +155,85 @@
 </span><span id="53" class="l"><a class="l" href="#53"> 53: </a>    <span class="php-keyword1">private</span> <span class="php-var"><a id="$exportHelper" href="#$exportHelper">$exportHelper</a></span> = <span class="php-keyword1">NULL</span>;
 </span><span id="54" class="l"><a class="l" href="#54"> 54: </a>
 </span><span id="55" class="l"><a class="l" href="#55"> 55: </a>    <span class="php-comment">/**
-</span></span><span id="56" class="l"><a class="l" href="#56"> 56: </a><span class="php-comment">     * Im Konstruktor des ExportControllers wird eine Instanz der ExportHelperKlasse erzeugt.
-</span></span><span id="57" class="l"><a class="l" href="#57"> 57: </a><span class="php-comment">     */</span>
-</span><span id="58" class="l"><a class="l" href="#58"> 58: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> <a id="___construct" href="#___construct">__construct</a>() {
-</span><span id="59" class="l"><a class="l" href="#59"> 59: </a>        <span class="php-var">$this</span>-&gt;exportHelper = <span class="php-keyword1">new</span> \ReRe\Rere\Services\NestedDirectory\ExportHelper();
-</span><span id="60" class="l"><a class="l" href="#60"> 60: </a>    }
-</span><span id="61" class="l"><a class="l" href="#61"> 61: </a>
-</span><span id="62" class="l"><a class="l" href="#62"> 62: </a>    <span class="php-comment">/**
-</span></span><span id="63" class="l"><a class="l" href="#63"> 63: </a><span class="php-comment">     * @return void
-</span></span><span id="64" class="l"><a class="l" href="#64"> 64: </a><span class="php-comment">     */</span>
-</span><span id="65" class="l"><a class="l" href="#65"> 65: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> <a id="_exportPrueflingeAction" href="#_exportPrueflingeAction">exportPrueflingeAction</a>() {
-</span><span id="66" class="l"><a class="l" href="#66"> 66: </a>        <span class="php-var">$this</span>-&gt;redirect(<span class="php-quote">'list'</span>, <span class="php-quote">'Modul'</span>);
-</span><span id="67" class="l"><a class="l" href="#67"> 67: </a>    }
-</span><span id="68" class="l"><a class="l" href="#68"> 68: </a>
-</span><span id="69" class="l"><a class="l" href="#69"> 69: </a>    <span class="php-comment">/**
-</span></span><span id="70" class="l"><a class="l" href="#70"> 70: </a><span class="php-comment">     * @return void
-</span></span><span id="71" class="l"><a class="l" href="#71"> 71: </a><span class="php-comment">     */</span>
-</span><span id="72" class="l"><a class="l" href="#72"> 72: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> <a id="_exportModuleUndFaecherAction" href="#_exportModuleUndFaecherAction">exportModuleUndFaecherAction</a>() {
-</span><span id="73" class="l"><a class="l" href="#73"> 73: </a>        <span class="php-var">$this</span>-&gt;redirect(<span class="php-quote">'list'</span>, <span class="php-quote">'Modul'</span>);
-</span><span id="74" class="l"><a class="l" href="#74"> 74: </a>    }
-</span><span id="75" class="l"><a class="l" href="#75"> 75: </a>
-</span><span id="76" class="l"><a class="l" href="#76"> 76: </a>    <span class="php-comment">/**
-</span></span><span id="77" class="l"><a class="l" href="#77"> 77: </a><span class="php-comment">     * Exportiert alle Noten eines Faches.
-</span></span><span id="78" class="l"><a class="l" href="#78"> 78: </a><span class="php-comment">     */</span>
-</span><span id="79" class="l"><a class="l" href="#79"> 79: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> <a id="_exportFachAction" href="#_exportFachAction">exportFachAction</a>() {
-</span><span id="80" class="l"><a class="l" href="#80"> 80: </a>        <span class="php-keyword1">if</span> (<span class="php-var">$this</span>-&gt;request-&gt;hasArgument(<span class="php-quote">'fachuid'</span>)) {
-</span><span id="81" class="l"><a class="l" href="#81"> 81: </a>            <span class="php-var">$fach</span> = <span class="php-var">$this</span>-&gt;fachRepository-&gt;findByUid(<span class="php-var">$this</span>-&gt;request-&gt;getArgument(<span class="php-quote">'fachuid'</span>));
-</span><span id="82" class="l"><a class="l" href="#82"> 82: </a>        }
-</span><span id="83" class="l"><a class="l" href="#83"> 83: </a>        <span class="php-keyword1">if</span> (<span class="php-var">$this</span>-&gt;request-&gt;hasArgument(<span class="php-quote">'modul'</span>)) {
-</span><span id="84" class="l"><a class="l" href="#84"> 84: </a>            <span class="php-var">$modul</span> = <span class="php-var">$this</span>-&gt;modulRepository-&gt;findByUid(<span class="php-var">$this</span>-&gt;request-&gt;getArgument(<span class="php-quote">'modul'</span>));
-</span><span id="85" class="l"><a class="l" href="#85"> 85: </a>        }
-</span><span id="86" class="l"><a class="l" href="#86"> 86: </a>
-</span><span id="87" class="l"><a class="l" href="#87"> 87: </a>        <span class="php-comment">// Holen aller eingetragener Noten</span>
-</span><span id="88" class="l"><a class="l" href="#88"> 88: </a>        <span class="php-var">$notes</span> = <span class="php-var">$this</span>-&gt;noteRepository-&gt;findAll();
-</span><span id="89" class="l"><a class="l" href="#89"> 89: </a>        <span class="php-var">$publisharray</span> = <span class="php-keyword1">array</span>();
-</span><span id="90" class="l"><a class="l" href="#90"> 90: </a>        <span class="php-keyword1">foreach</span> (<span class="php-var">$notes</span> <span class="php-keyword1">as</span> <span class="php-var">$note</span>) {
-</span><span id="91" class="l"><a class="l" href="#91"> 91: </a>            <span class="php-keyword1">if</span> (<span class="php-var">$note</span>-&gt;getFach() == <span class="php-var">$fach</span>-&gt;getUid()) {
-</span><span id="92" class="l"><a class="l" href="#92"> 92: </a>                <span class="php-comment">// Holt den Prüfling, dem die Note zugewiesen wurde</span>
-</span><span id="93" class="l"><a class="l" href="#93"> 93: </a>                <span class="php-var">$pruefling</span> = <span class="php-var">$this</span>-&gt;prueflingRepository-&gt;findByUid(<span class="php-var">$note</span>-&gt;getPruefling());
-</span><span id="94" class="l"><a class="l" href="#94"> 94: </a>                <span class="php-comment">// Generiert Ausgabe-Array mit Prüfling- und Noten-Daten</span>
-</span><span id="95" class="l"><a class="l" href="#95"> 95: </a>                <span class="php-keyword2">array_push</span>(<span class="php-var">$publisharray</span>, <span class="php-keyword1">array</span>(<span class="php-quote">'prueflingvorname'</span> =&gt; <span class="php-var">$pruefling</span>-&gt;getVorname(), <span class="php-quote">'matrikelnr'</span> =&gt; <span class="php-var">$pruefling</span>-&gt;getMatrikelnr(), <span class="php-quote">'prueflingnachname'</span> =&gt; <span class="php-var">$pruefling</span>-&gt;getNachname(), <span class="php-quote">'uid'</span> =&gt; <span class="php-var">$note</span>-&gt;getUid(), <span class="php-quote">'wert'</span> =&gt; <span class="php-var">$note</span>-&gt;getWert(), <span class="php-quote">'kommentar'</span> =&gt; <span class="php-var">$note</span>-&gt;getKommentar()));
-</span><span id="96" class="l"><a class="l" href="#96"> 96: </a>            }
-</span><span id="97" class="l"><a class="l" href="#97"> 97: </a>        }
-</span><span id="98" class="l"><a class="l" href="#98"> 98: </a>
-</span><span id="99" class="l"><a class="l" href="#99"> 99: </a>        <span class="php-comment">// Export wird gestartet</span>
-</span><span id="100" class="l"><a class="l" href="#100">100: </a>        <span class="php-var">$this</span>-&gt;exportHelper-&gt;genCSV(<span class="php-var">$publisharray</span>, <span class="php-quote">&quot;FachExport.csv&quot;</span>);
-</span><span id="101" class="l"><a class="l" href="#101">101: </a>
-</span><span id="102" class="l"><a class="l" href="#102">102: </a>        <span class="php-comment">//$this-&gt;redirect('list', 'Note', Null, array(self::FACH =&gt; $fach, self::MODUL =&gt; $modul));</span>
+</span></span><span id="56" class="l"><a class="l" href="#56"> 56: </a><span class="php-comment">     * Protected Variable FrontendUserRepository wird mit NULL initialisiert.
+</span></span><span id="57" class="l"><a class="l" href="#57"> 57: </a><span class="php-comment">     *
+</span></span><span id="58" class="l"><a class="l" href="#58"> 58: </a><span class="php-comment">     * @var \Typo3\CMS\Extbase\Domain\Repository\FrontendUserRepository
+</span></span><span id="59" class="l"><a class="l" href="#59"> 59: </a><span class="php-comment">     * @inject
+</span></span><span id="60" class="l"><a class="l" href="#60"> 60: </a><span class="php-comment">     */</span>
+</span><span id="61" class="l"><a class="l" href="#61"> 61: </a>    <span class="php-keyword1">protected</span> <span class="php-var"><a id="$FrontendUserRepository" href="#$FrontendUserRepository">$FrontendUserRepository</a></span> = <span class="php-keyword1">NULL</span>;
+</span><span id="62" class="l"><a class="l" href="#62"> 62: </a>
+</span><span id="63" class="l"><a class="l" href="#63"> 63: </a>    <span class="php-comment">/**
+</span></span><span id="64" class="l"><a class="l" href="#64"> 64: </a><span class="php-comment">     * Im Konstruktor des ExportControllers wird eine Instanz der ExportHelperKlasse erzeugt.
+</span></span><span id="65" class="l"><a class="l" href="#65"> 65: </a><span class="php-comment">     */</span>
+</span><span id="66" class="l"><a class="l" href="#66"> 66: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> <a id="___construct" href="#___construct">__construct</a>() {
+</span><span id="67" class="l"><a class="l" href="#67"> 67: </a>        <span class="php-var">$this</span>-&gt;exportHelper = <span class="php-keyword1">new</span> \ReRe\Rere\Services\NestedDirectory\ExportHelper();
+</span><span id="68" class="l"><a class="l" href="#68"> 68: </a>    }
+</span><span id="69" class="l"><a class="l" href="#69"> 69: </a>
+</span><span id="70" class="l"><a class="l" href="#70"> 70: </a>    <span class="php-comment">/**
+</span></span><span id="71" class="l"><a class="l" href="#71"> 71: </a><span class="php-comment">     * @return void
+</span></span><span id="72" class="l"><a class="l" href="#72"> 72: </a><span class="php-comment">     */</span>
+</span><span id="73" class="l"><a class="l" href="#73"> 73: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> <a id="_exportPrueflingeAction" href="#_exportPrueflingeAction">exportPrueflingeAction</a>() {
+</span><span id="74" class="l"><a class="l" href="#74"> 74: </a>        <span class="php-var">$preuflinge</span> = <span class="php-var">$this</span>-&gt;prueflingRepository-&gt;findAll();
+</span><span id="75" class="l"><a class="l" href="#75"> 75: </a>        <span class="php-var">$out</span> = <span class="php-keyword1">array</span>();
+</span><span id="76" class="l"><a class="l" href="#76"> 76: </a>        <span class="php-keyword1">foreach</span> (<span class="php-var">$preuflinge</span> <span class="php-keyword1">as</span> <span class="php-var">$pruefling</span>) {
+</span><span id="77" class="l"><a class="l" href="#77"> 77: </a>            <span class="php-comment">// Generiert Ausgabe-Array mit Prüfling- und Noten-Daten</span>
+</span><span id="78" class="l"><a class="l" href="#78"> 78: </a>            <span class="php-var">$feUser</span> = <span class="php-var">$pruefling</span>-&gt;getTypo3FEUser();
+</span><span id="79" class="l"><a class="l" href="#79"> 79: </a>            <span class="php-keyword2">array_push</span>(<span class="php-var">$out</span>, <span class="php-keyword1">array</span>(<span class="php-quote">'matrikelnr'</span> =&gt; <span class="php-var">$pruefling</span>-&gt;getMatrikelnr(), <span class="php-quote">'prueflingvorname'</span> =&gt; <span class="php-var">$pruefling</span>-&gt;getVorname(), <span class="php-quote">'prueflingnachname'</span> =&gt; <span class="php-var">$pruefling</span>-&gt;getNachname(), <span class="php-quote">'mail'</span> =&gt; <span class="php-var">$feUser</span>-&gt;getEmail(), <span class="php-quote">'username'</span> =&gt; <span class="php-var">$feUser</span>-&gt;getUsername(), <span class="php-quote">'pass'</span> =&gt; <span class="php-var">$feUser</span>-&gt;getPassword()));
+</span><span id="80" class="l"><a class="l" href="#80"> 80: </a>        }
+</span><span id="81" class="l"><a class="l" href="#81"> 81: </a>
+</span><span id="82" class="l"><a class="l" href="#82"> 82: </a>        <span class="php-comment">// Export wird gestartet</span>
+</span><span id="83" class="l"><a class="l" href="#83"> 83: </a>        <span class="php-var">$this</span>-&gt;exportHelper-&gt;genCSV(<span class="php-var">$out</span>, <span class="php-quote">&quot;Prueflinge.csv&quot;</span>);
+</span><span id="84" class="l"><a class="l" href="#84"> 84: </a>    }
+</span><span id="85" class="l"><a class="l" href="#85"> 85: </a>
+</span><span id="86" class="l"><a class="l" href="#86"> 86: </a>    <span class="php-comment">/**
+</span></span><span id="87" class="l"><a class="l" href="#87"> 87: </a><span class="php-comment">     * Exportiert alle Modulle und alle Fächer
+</span></span><span id="88" class="l"><a class="l" href="#88"> 88: </a><span class="php-comment">     * @return void
+</span></span><span id="89" class="l"><a class="l" href="#89"> 89: </a><span class="php-comment">     */</span>
+</span><span id="90" class="l"><a class="l" href="#90"> 90: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> <a id="_exportModuleUndFaecherAction" href="#_exportModuleUndFaecherAction">exportModuleUndFaecherAction</a>() {
+</span><span id="91" class="l"><a class="l" href="#91"> 91: </a>        <span class="php-var">$fachs</span> = <span class="php-var">$this</span>-&gt;fachRepository-&gt;findAll();
+</span><span id="92" class="l"><a class="l" href="#92"> 92: </a>        <span class="php-var">$out</span> = <span class="php-keyword1">array</span>();
+</span><span id="93" class="l"><a class="l" href="#93"> 93: </a>        <span class="php-keyword1">foreach</span> (<span class="php-var">$fachs</span> <span class="php-keyword1">as</span> <span class="php-var">$fach</span>) {
+</span><span id="94" class="l"><a class="l" href="#94"> 94: </a>            <span class="php-keyword2">array_push</span>(<span class="php-var">$out</span>, <span class="php-keyword1">array</span>(<span class="php-quote">'FachNr'</span> =&gt; <span class="php-var">$fach</span>-&gt;getFachnr(), <span class="php-quote">'Fachname'</span> =&gt; <span class="php-var">$fach</span>-&gt;getFachname(),
+</span><span id="95" class="l"><a class="l" href="#95"> 95: </a>                <span class="php-quote">'pruefer'</span> =&gt; <span class="php-var">$fach</span>-&gt;getPruefer(), <span class="php-quote">'Notenschema'</span> =&gt; <span class="php-var">$fach</span>-&gt;getNotenschema(), <span class="php-quote">'ModulUid'</span> =&gt; <span class="php-var">$fach</span>-&gt;getModulnr(),
+</span><span id="96" class="l"><a class="l" href="#96"> 96: </a>                <span class="php-quote">'ModulNr'</span> =&gt; <span class="php-var">$this</span>-&gt;modulRepository-&gt;findByUid(<span class="php-var">$fach</span>-&gt;getModulnr())-&gt;getModulnr(),
+</span><span id="97" class="l"><a class="l" href="#97"> 97: </a>                <span class="php-quote">'ModulName'</span> =&gt; <span class="php-var">$this</span>-&gt;modulRepository-&gt;findByUid(<span class="php-var">$fach</span>-&gt;getModulnr())-&gt;getModulname(),
+</span><span id="98" class="l"><a class="l" href="#98"> 98: </a>                <span class="php-quote">'Gueltigkeitszeitraum'</span> =&gt; <span class="php-var">$this</span>-&gt;modulRepository-&gt;findByUid(<span class="php-var">$fach</span>-&gt;getModulnr())-&gt;getGueltigkeitszeitraum()));
+</span><span id="99" class="l"><a class="l" href="#99"> 99: </a>        }
+</span><span id="100" class="l"><a class="l" href="#100">100: </a>
+</span><span id="101" class="l"><a class="l" href="#101">101: </a>        <span class="php-comment">// Export wird gestartet</span>
+</span><span id="102" class="l"><a class="l" href="#102">102: </a>        <span class="php-var">$this</span>-&gt;exportHelper-&gt;genCSV(<span class="php-var">$out</span>, <span class="php-quote">&quot;ModuleUndFaecher.csv&quot;</span>);
 </span><span id="103" class="l"><a class="l" href="#103">103: </a>    }
 </span><span id="104" class="l"><a class="l" href="#104">104: </a>
-</span><span id="105" class="l"><a class="l" href="#105">105: </a>}
-</span><span id="106" class="l"><a class="l" href="#106">106: </a></span></code></pre>
+</span><span id="105" class="l"><a class="l" href="#105">105: </a>    <span class="php-comment">/**
+</span></span><span id="106" class="l"><a class="l" href="#106">106: </a><span class="php-comment">     * Exportiert alle Noten eines Faches.
+</span></span><span id="107" class="l"><a class="l" href="#107">107: </a><span class="php-comment">     * @return void Description
+</span></span><span id="108" class="l"><a class="l" href="#108">108: </a><span class="php-comment">     */</span>
+</span><span id="109" class="l"><a class="l" href="#109">109: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> <a id="_exportFachAction" href="#_exportFachAction">exportFachAction</a>() {
+</span><span id="110" class="l"><a class="l" href="#110">110: </a>        <span class="php-keyword1">if</span> (<span class="php-var">$this</span>-&gt;request-&gt;hasArgument(<span class="php-quote">'fachuid'</span>)) {
+</span><span id="111" class="l"><a class="l" href="#111">111: </a>            <span class="php-var">$fach</span> = <span class="php-var">$this</span>-&gt;fachRepository-&gt;findByUid(<span class="php-var">$this</span>-&gt;request-&gt;getArgument(<span class="php-quote">'fachuid'</span>));
+</span><span id="112" class="l"><a class="l" href="#112">112: </a>        }
+</span><span id="113" class="l"><a class="l" href="#113">113: </a>
+</span><span id="114" class="l"><a class="l" href="#114">114: </a>        <span class="php-comment">// Holen aller eingetragener Noten</span>
+</span><span id="115" class="l"><a class="l" href="#115">115: </a>        <span class="php-var">$notes</span> = <span class="php-var">$this</span>-&gt;noteRepository-&gt;findAll();
+</span><span id="116" class="l"><a class="l" href="#116">116: </a>        <span class="php-var">$publisharray</span> = <span class="php-keyword1">array</span>();
+</span><span id="117" class="l"><a class="l" href="#117">117: </a>        <span class="php-keyword1">foreach</span> (<span class="php-var">$notes</span> <span class="php-keyword1">as</span> <span class="php-var">$note</span>) {
+</span><span id="118" class="l"><a class="l" href="#118">118: </a>            <span class="php-keyword1">if</span> (<span class="php-var">$note</span>-&gt;getFach() == <span class="php-var">$fach</span>-&gt;getUid()) {
+</span><span id="119" class="l"><a class="l" href="#119">119: </a>                <span class="php-comment">// Holt den Prüfling, dem die Note zugewiesen wurde</span>
+</span><span id="120" class="l"><a class="l" href="#120">120: </a>                <span class="php-var">$pruefling</span> = <span class="php-var">$this</span>-&gt;prueflingRepository-&gt;findByUid(<span class="php-var">$note</span>-&gt;getPruefling());
+</span><span id="121" class="l"><a class="l" href="#121">121: </a>                <span class="php-comment">// Generiert Ausgabe-Array mit Prüfling- und Noten-Daten</span>
+</span><span id="122" class="l"><a class="l" href="#122">122: </a>                <span class="php-keyword2">array_push</span>(<span class="php-var">$publisharray</span>, <span class="php-keyword1">array</span>(<span class="php-quote">'matrikelnr'</span> =&gt; <span class="php-var">$pruefling</span>-&gt;getMatrikelnr(), <span class="php-quote">'prueflingvorname'</span> =&gt; <span class="php-var">$pruefling</span>-&gt;getVorname(), <span class="php-quote">'prueflingnachname'</span> =&gt; <span class="php-var">$pruefling</span>-&gt;getNachname(), <span class="php-quote">'wert'</span> =&gt; <span class="php-var">$note</span>-&gt;getWert(), <span class="php-quote">'kommentar'</span> =&gt; <span class="php-var">$note</span>-&gt;getKommentar()));
+</span><span id="123" class="l"><a class="l" href="#123">123: </a>            }
+</span><span id="124" class="l"><a class="l" href="#124">124: </a>        }
+</span><span id="125" class="l"><a class="l" href="#125">125: </a>
+</span><span id="126" class="l"><a class="l" href="#126">126: </a>        <span class="php-comment">// Export wird gestartet</span>
+</span><span id="127" class="l"><a class="l" href="#127">127: </a>        <span class="php-var">$this</span>-&gt;exportHelper-&gt;genCSV(<span class="php-var">$publisharray</span>, <span class="php-quote">&quot;FachExport.csv&quot;</span>);
+</span><span id="128" class="l"><a class="l" href="#128">128: </a>    }
+</span><span id="129" class="l"><a class="l" href="#129">129: </a>
+</span><span id="130" class="l"><a class="l" href="#130">130: </a>}
+</span><span id="131" class="l"><a class="l" href="#131">131: </a></span></code></pre>
 
 	<div id="footer">
-		rere API documentation generated by <a href="http://apigen.org">ApiGen 2.8.0</a>
+		 API documentation generated by <a href="http://apigen.org">ApiGen 2.8.0</a>
 	</div>
 </div>
 </div>
