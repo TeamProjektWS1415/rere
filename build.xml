@@ -45,6 +45,5 @@
         </exec>
     </target>
 
-
-    <target name="build" depends="sonar,phpdocWindows,version" />
+    <target name="build" depends="sonar,phpdocWindows" />
 </project>
