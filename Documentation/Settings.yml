@@ -7,7 +7,7 @@ conf.py:
   copyright: 2015
   project: Result Repositry
   version: .
-  release: 
+  release:
   latex_documents:
   - - Index
     - rere.tex

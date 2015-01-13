@@ -14,14 +14,14 @@ Anmeldung
 
 Wenn ein neuer Prüfling angelegt wird, erhält er eine E-Mail mit seinen Zugangsdaten.
 
-.. figure:: ../Images/UserManual/Typo3anmeldung.PNG
+.. figure:: ../../Images/UserManual/Typo3anmeldung.PNG
 
 Nach Eingabe des Benutzernamens und Passworts (Abb. 9)  gelangt der Prüfling auf die folgende Ansicht (Abb. 10).
 
 Prüfungsleistungen anzeigen
 ---------------------------
 
-.. figure:: ../Images/UserManual/Pruefungsleistunganzeigen.PNG
+.. figure:: ../../Images/UserManual/Pruefungsleistunganzeigen.PNG
 
 **Zu 1.**
 
