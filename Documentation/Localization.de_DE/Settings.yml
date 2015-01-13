@@ -5,9 +5,9 @@
 ---
 conf.py:
   copyright: 2015
-  project: Result Repositry (Deutsch)
+  project: Result Repositry (Français)
   version: .
-  release: 
+  release:
   latex_documents:
   - - Index
     - rere.tex

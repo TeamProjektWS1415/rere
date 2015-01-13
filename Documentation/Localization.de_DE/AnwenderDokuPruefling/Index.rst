@@ -1,4 +1,4 @@
-.. ==================================================
+﻿.. ==================================================
 .. FOR YOUR INFORMATION
 .. --------------------------------------------------
 .. -*- coding: utf-8 -*- with BOM.
@@ -6,11 +6,11 @@
 .. include:: ../Includes.txt
 
 
-User-Manual examinee
-====================
+Anwender-Dokumentation Prüfling
+===============================
 
-Registration
-------------
+Anmeldung
+---------
 
 Wenn ein neuer Prüfling angelegt wird, erhält er eine E-Mail mit seinen Zugangsdaten.
 

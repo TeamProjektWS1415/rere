@@ -8,8 +8,8 @@
 
 .. _admin-manual:
 
-Administator-Manual
-===================
+Entwickler-Dokumentation
+========================
 
 Programmiersprache
 ------------------

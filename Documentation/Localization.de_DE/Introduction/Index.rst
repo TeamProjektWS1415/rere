@@ -6,7 +6,7 @@
 .. include:: ../Includes.txt
 
 
-Extension Introduction
+Extension Beschreibung
 ======================
 
 Bei dem Projekt „Grading System“ soll eine Noten-Veröffentlichungsmethode auf Typo3 Basis entwickelt werden. Mit dieser Extension soll der Nutzer in der Lage sein, die Prüfungsnoten zu verwalten und eine Übersicht über Prüfungsleistungen zu bekommen. Ebenso sollen individuelle Prüfungsergebnisse einzelnen Personen zugänglich gemacht werden.
