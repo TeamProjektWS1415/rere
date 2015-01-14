@@ -1,8 +1,8 @@
 
 
 
-User-Manual examiner
-====================
+Anwender-Dokumentation Prüfer
+=============================
 
 Einführung
 ----------
@@ -14,7 +14,7 @@ Sartseite/Result Repository
 
 Die folgende Abbildung zeigt die Startseite des Backends.
 
-.. figure:: ../Images/UserManual/Index.PNG
+.. figure:: ../../Images/UserManual/Index.PNG
 
 **Zu 1.**
 
@@ -37,7 +37,7 @@ Modul/Fach hinufügen
 
 Auf dieser Seite (Abb. 5) können Sie die Einstellungen für ein neues Modul und Fach festlegen.
 
-.. figure:: ../Images/UserManual/ModulFachhinzufuegen.PNG
+.. figure:: ../../Images/UserManual/ModulFachhinzufuegen.PNG
 
 **Zu 1.**
 
@@ -53,7 +53,7 @@ Dieses Formular dient dazu, ein neues Modul und ein neues Fach anlegen zu könne
 
 In der nachfolgenden Tabelle (Abb. 5) wurden die Benotungs-Systeme gegenübergestellt.
 
-.. figure:: ../Images/UserManual/Benotungssysteme.PNG
+.. figure:: ../../Images/UserManual/Benotungssysteme.PNG
 
 **Zu 4.**
 
@@ -68,7 +68,7 @@ Prüfling anlegen
 Sofern Sie keine Prüflingsdaten importiert haben (Startseite) müssen Sie die Prüflinge zunächst anlegen bevor Sie mit der Anmeldung bzw. Zuordnung der Prüflinge zu einem Fach beginnen können.
 Das nachfolgende Formular (Abb. 6) muss manuell gefüllt werden.
 
-.. figure:: ../Images/UserManual/Prueflinganlegen.PNG
+.. figure:: ../../Images/UserManual/Prueflinganlegen.PNG
 
 **Zu 1.**
 
@@ -85,14 +85,14 @@ Nachdem Sie die Prüflinge angelegt haben, müssen Sie diese Ihrem Fach noch zuw
 Prüfling zuweisen
 -----------------
 
-.. figure:: ../Images/UserManual/Prueflingzuweisen.PNG
+.. figure:: ../../Images/UserManual/Prueflingzuweisen.PNG
 
 **Zu 1.**
 
 In der Suchleiste können Sie anhand der Matrikelnummer Prüflinge suchen und durch Bestätigung der Enter-Taste Ihrem Fach zuweisen. Es wird automatisch überprüft, ob die Matrikelnummer vorhanden ist.
 
-.. figure:: ../Images/UserManual/Suchenichtgefunden.PNG
-.. figure:: ../Images/UserManual/Suchegefunden.PNG
+.. figure:: ../../Images/UserManual/Suchenichtgefunden.PNG
+.. figure:: ../../Images/UserManual/Suchegefunden.PNG
 
 Des Weiteren besteht außerdem die Möglichkeit durch eine Benutzergruppe gleich mehrere Prüflinge auf einmal zuzuweisen, allerdings muss diese Benutzergruppe erst manuell angelegt werden.
 
@@ -106,7 +106,7 @@ Notenverwaltung
 
 Auf dieser Seite (Abb. 7) können Sie die Noten Ihrer Studenten bzw. Schüler verwalten.
 
-.. figure:: ../Images/UserManual/Notenverwaltung.PNG
+.. figure:: ../../Images/UserManual/Notenverwaltung.PNG
 
 **Zu 1.**
 

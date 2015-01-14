@@ -21,7 +21,7 @@ Result Repositry
 		1.0.0
 
 	:Language:
-		en
+		de
 
 	:Description:
 		Die Extension dient in erster Linie dazu Noten zu verwalten. Es können dabei 		 Module und die zugehörigen Fächer angelegt und mit den entsprechenden 				Prüflingen belegt werden.
@@ -61,5 +61,3 @@ Result Repositry
 	AnwenderDokuPruefer/Index
 	AnwenderDokuPruefling/Index
 	AdministratorManual/Index
-
-

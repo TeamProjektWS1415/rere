@@ -8,8 +8,8 @@
 
 .. _admin-manual:
 
-Administator-Manual
-===================
+Entwickler-Dokumentation
+========================
 
 Programmiersprache
 ------------------
@@ -34,5 +34,5 @@ Datenbank
 
 Die Persistierung der erhobenen Daten erfolgt über das Typo3-Framework in das folgende Datenbankschema.
 
-.. figure:: ../Images/AdministratorManual/Datenbankschema.png
+.. figure:: ../../Images/AdministratorManual/Datenbankschema.png
 
