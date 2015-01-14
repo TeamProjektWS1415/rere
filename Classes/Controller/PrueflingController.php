@@ -108,6 +108,7 @@ class PrueflingController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionContro
         $this->passfunctions = new \ReRe\Rere\Services\NestedDirectory\PasswordFunctions();
         $this->userfunctions = new \ReRe\Rere\Services\NestedDirectory\UserFunctions();
         $this->mailfunctions = new \ReRe\Rere\Services\NestedDirectory\ReReMailer();
+        $this->noteList = new \ReRe\Rere\Services\NestedDirectory\NoteSchemaArrays();
     }
 
     /**
@@ -144,6 +145,7 @@ class PrueflingController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionContro
      * @return void
      */
     public function showAction() {
+
         $momentanerPruefling = $this->prueflingRepository->findByUid(1);
 
         //Wenn true dann aufruf des Controllers über Fachwechsel
@@ -172,8 +174,9 @@ class PrueflingController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionContro
         }
         
         //Suchen der zum Fach gehörenden Noten
+       
         $aktuelleNote = null;
-        $notenZuFachArray = null;
+        $notenZuFachArray = array();
         $notenArray = $this->noteRepository->findAll();
         foreach ($notenArray as $note) {
             //liefert Prüfling Uid
@@ -182,13 +185,37 @@ class PrueflingController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionContro
             }
             //sammelt sämtliche Noten des gesuchten Faches
             if ($note->getFach() == $fachid){
-            	$notenZuFachArray += $note;
+            	array_push($notenZuFachArray, $note);      	
             }
-            	
         }
-        
-  
-        $this->view->assignMultiple(array('fachliste' => $fachPrueflingsArray, 'test' => $test, 'note' => $aktuelleNote, 'notenZuFachArray' => $notenZuFachArray));
+        //Notenschema
+     	$fach = $this->fachRepository->findByUid($fachid);
+        $notenListeArray = $this->noteList->getMarkArray($fach->getNotenschema());
+  		unset($notenListeArray[0]);
+  		
+  		//Notenverteilung: für den View abwechselnd im Array  Notenwert => Vorkommen 
+  		$notenVerteilungArray = null;
+  		$counter = -1;
+  		foreach ($notenListeArray as $notenTyp){	
+  			$counter ++;
+  			$notenVerteilungArray[$counter] = $notenTyp;
+  			$counter ++;
+  			$notenVerteilungArray[$counter] = 0;
+  			foreach ($notenZuFachArray as $note){
+  				if($note ->getWert() == $notenTyp){
+  					$notenVerteilungArray[$counter] ++;
+  				}
+  			}
+  		}
+  		$anzahlPrueflinge = count($notenZuFachArray);
+  		$summeNotenWert = 0.0;
+  		foreach ($notenZuFachArray as $note){
+  			$summeNotenWert += $note -> getWert();
+  		}
+  		$durchschnitt = $summeNotenWert/$anzahlPrueflinge;
+  		$durchschnitt = round($durchschnitt, 2);
+  		
+        $this->view->assignMultiple(array('fachliste' => $fachPrueflingsArray, 'test' => $test, 'note' => $aktuelleNote, 'notenVerteilungArray' => $notenVerteilungArray, 'durchschnitt' => $durchschnitt,'anzahlPrueflinge'=>$anzahlPrueflinge ));
        
         
     }

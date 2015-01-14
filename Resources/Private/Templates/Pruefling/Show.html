@@ -30,7 +30,7 @@
                 </div>
                 <textarea rows="4" cols="100" class="form-control" id="comment">{note.kommentar}</textarea>
             </div>
-            <f:debug>{notenZuFachArray}</f:debug>
+            <f:debug>{test}</f:debug>
             <div class="col-md-3">
                 <div class="table-responsive table-hover">
                     <table id="grades" class="table">
@@ -41,50 +41,12 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td><span class="value">1,0</span></td>
-                                <td><span class="value">2</span></td>
-                            </tr>
-                            <tr>
-                                <td><span class="value">1,3</span></td>
-                                <td><span class="value">3</span></td>
-                            </tr>
-                            <tr>
-                                <td><span class="value">1,7</span></td>
-                                <td><span class="value">1</span></td>
-                            </tr>
-                            <tr>
-                                <td><span class="value">2,0</span></td>
-                                <td><span class="value">4</span></td>
-                            </tr>
-                            <tr>
-                                <td><span class="value">2,3</span></td>
-                                <td><span class="value">3</span></td>
-                            </tr>
-                            <tr>
-                                <td><span class="value">2,7</span></td>
-                                <td><span class="value">5</span></td>
-                            </tr>
-                            <tr>
-                                <td><span class="value">3,0</span></td>
-                                <td><span class="value">2</span></td>
-                            </tr>
-                            <tr>
-                                <td><span class="value">3,3</span></td>
-                                <td><span class="value">2</span></td>
-                            </tr>
-                            <tr>
-                                <td><span class="value">3,7</span></td>
-                                <td><span class="value">3</span></td>
-                            </tr>
-                            <tr>
-                                <td><span class="value">4,0</span></td>
-                                <td><span class="value">0</span></td>
-                            </tr>
-                            <tr>
-                                <td><span class="value">5,0</span></td>
-                                <td><span class="value">2</span></td>
-                            </tr>
+                        <tr>
+                        	<f:for each="{notenVerteilungArray}" as="wert" iteration="iterator">
+                                <td><span class="value">{wert}</span></td>
+                               {f:if(condition:iterator.isEven, then: '</tr><tr>')}
+        					</f:for>
+        				</tr>
                         </tbody>
                     </table>
                 </div>
@@ -93,10 +55,10 @@
                     <table class="table">
                         <tbody>
                             <tr>
-                                <td>Anzahl der Prüflinge: {pruefling.vorname}</td><td id="AnzahlDerPrueflinge">27</td>
+                                <td>Anzahl der Prüflinge:</td><td id="AnzahlDerPrueflinge">{anzahlPrueflinge}</td>
                             </tr>
                             <tr>
-                                <td>Durchschnitt</td><td>2,6</td>
+                                <td>Durchschnitt</td><td>{durchschnitt}</td>
                             </tr>
                         </tbody>
                     </table>
