@@ -123,7 +123,7 @@ class NoteController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController 
         }
         // holt das passende Notenschema.
         $options = $this->noteList->getMarkArray($fach->getNotenschema());
-        $this->view->assignMultiple(array(self::FACH => $fach, self::MODUL => $modul, 'options' => $options, 'notes' => $publisharray, 'eingetragen' => $this->helper->checkIfWertisSet($correctnotes), 'chartarray' => $this->helper->genArray($correctnotes, $fach->getNotenschema()), 'avg' => $this->helper->calculateAverage($correctnotes), 'angemeldete' => $angemeldete));
+        $this->view->assignMultiple(array(self::FACH => $fach, self::MODUL => $modul, 'options' => $options, 'notes' => $publisharray, 'eingetragen' => $this->helper->checkIfWertisSet($correctnotes), 'chartarray' => json_encode($this->helper->genArray($correctnotes, $fach->getNotenschema())), 'avg' => $this->helper->calculateAverage($correctnotes), 'angemeldete' => $angemeldete));
     }
 
     /**
