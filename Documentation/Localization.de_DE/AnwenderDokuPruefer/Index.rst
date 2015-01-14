@@ -1,6 +1,4 @@
 
-
-
 Anwender-Dokumentation Prüfer
 =============================
 
@@ -78,7 +76,7 @@ In dieses Formular geben Sie die Daten des Prüflings ein.
 
 Hierüber wird Ihre Eingabe gespeichert und der neue Prüfling angelegt. Parallel wird ein Typo3 Frontend User angelegt und der Prüfling erhält automatisch eine E-Mail mit seinen Zugangsdaten an die eigetragene E-Mail-Adresse.
 
-**Zu 3.**
+
 
 Nachdem Sie die Prüflinge angelegt haben, müssen Sie diese Ihrem Fach noch zuwiesen. Dies können Sie über „Prüflinge zuweisen“ (Abbildung 1 -> Punkt 3 -> Prüflinge zuweisen) erledigen.
 
