@@ -122,13 +122,13 @@ class NotenVerwaltungHelper {
 
         // Wandelt das Array in ein Json Array und gibt dieses zurück.
         if ($typ == "hochschulsystem") {
-            $returnArray = json_encode($this->resultArray);
+            $returnArray = $this->resultArray;
         } elseif ($typ == "15pktsystem") {
-            $returnArray = json_encode($this->fifteenMarks);
+            $returnArray = $this->fifteenMarks;
         } elseif ($typ == "schulsystem") {
-            $returnArray = json_encode($this->schoolMarks);
+            $returnArray = $this->schoolMarks;
         } else {
-            $returnArray = json_encode($this->unbenotetMarks);
+            $returnArray = $this->unbenotetMarks;
         }
 
         return $returnArray;
@@ -179,7 +179,7 @@ class NotenVerwaltungHelper {
         } else {
             $erg = 0;
         }
-
+        $erg = round($erg, 2);
         return $erg;
     }
 

@@ -52,7 +52,13 @@ class PrueflingController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionContro
     private $passfunctions = NULL;
     private $userfunctions = NULL;
     private $mailfunctions = NULL;
-
+    
+    /**
+     * Private Klassenvariable für die Notenlisten wird mit NULL initialisiert.
+     *
+     * @var type
+     */
+    private $noteList = NULL;
     /**
      * Protected Variable prueflingRepository wird mit NULL initialisiert.
      *
@@ -100,15 +106,24 @@ class PrueflingController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionContro
      * @inject
      */
     protected $noteRepository = NULL;
+    
+    /**
+     * Private Klassenvariable für die Hilfsklassen wird mit NULL initialisiert.
+     *
+     * @var type
+     */
+    private $helper = NULL;
 
     /**
      * Im Konstruktor des PrueflingControllers werden Instanzen der Helper-Functions erzeugt.
      */
+    
     public function __construct() {
         $this->passfunctions = new \ReRe\Rere\Services\NestedDirectory\PasswordFunctions();
         $this->userfunctions = new \ReRe\Rere\Services\NestedDirectory\UserFunctions();
         $this->mailfunctions = new \ReRe\Rere\Services\NestedDirectory\ReReMailer();
         $this->noteList = new \ReRe\Rere\Services\NestedDirectory\NoteSchemaArrays();
+        $this->helper = new \ReRe\Rere\Services\NestedDirectory\NotenVerwaltungHelper();
     }
 
     /**
@@ -192,9 +207,20 @@ class PrueflingController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionContro
      	$fach = $this->fachRepository->findByUid($fachid);
         $notenListeArray = $this->noteList->getMarkArray($fach->getNotenschema());
   		unset($notenListeArray[0]);
-  		
+  		$notenVorkommnisseArray = $this->helper->genArray( $notenZuFachArray,$fach->getNotenschema());
+  		$test = $notenVorkommnisseArray ;
+  	
+  		$notenVerteilungArray = array();
+  		$counter = -1;
+  		foreach ($notenVorkommnisseArray as $note){
+  			$counter++;
+  			$noteVerteilungArray[$counter] = $notenListeArray;
+  			$counter++;
+  			$noteVerteilungArray[$counter] = $note;
+  		}
+  		$test = $notenVerteilungArray;
   		//Notenverteilung: für den View abwechselnd im Array  Notenwert => Vorkommen 
-  		$notenVerteilungArray = null;
+  		/*$notenVerteilungArray = null;
   		$counter = -1;
   		foreach ($notenListeArray as $notenTyp){	
   			$counter ++;
@@ -206,14 +232,10 @@ class PrueflingController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionContro
   					$notenVerteilungArray[$counter] ++;
   				}
   			}
-  		}
+  		}*/
   		$anzahlPrueflinge = count($notenZuFachArray);
-  		$summeNotenWert = 0.0;
-  		foreach ($notenZuFachArray as $note){
-  			$summeNotenWert += $note -> getWert();
-  		}
-  		$durchschnitt = $summeNotenWert/$anzahlPrueflinge;
-  		$durchschnitt = round($durchschnitt, 2);
+  		$durchschnitt =$this->helper->calculateAverage($notenZuFachArray);
+  	
   		
         $this->view->assignMultiple(array('fachliste' => $fachPrueflingsArray, 'test' => $test, 'note' => $aktuelleNote, 'notenVerteilungArray' => $notenVerteilungArray, 'durchschnitt' => $durchschnitt,'anzahlPrueflinge'=>$anzahlPrueflinge ));
        
