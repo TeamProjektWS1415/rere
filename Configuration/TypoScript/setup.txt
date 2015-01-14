@@ -6,7 +6,7 @@ plugin.tx_rere {
 		layoutRootPath = {$plugin.tx_rere.view.layoutRootPath}
 	}
 	persistence {
-		storagePid = 11
+		storagePid = 1
 	}
 	features {
 		# uncomment the following line to enable the new Property Mapper.

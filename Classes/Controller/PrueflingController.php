@@ -212,11 +212,14 @@ class PrueflingController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionContro
   	
   		$notenVerteilungArray = array();
   		$counter = -1;
-  		foreach ($notenVorkommnisseArray as $note){
+  		$temp = array();
+  		foreach ($notenVorkommnisseArray as $wert){
+  			array_push($temp, $wert);
+  		}
+  		
+  		foreach ($notenListeArray as $notenWert){
   			$counter++;
-  			$noteVerteilungArray[$counter] = $notenListeArray;
-  			$counter++;
-  			$noteVerteilungArray[$counter] = $note;
+  			array_push($notenVerteilungArray,array(notenname =>$notenWert,wert=> $temp[$counter]));
   		}
   		$test = $notenVerteilungArray;
   		//Notenverteilung: für den View abwechselnd im Array  Notenwert => Vorkommen 

@@ -41,12 +41,15 @@
                             </tr>
                         </thead>
                         <tbody>
-                        <tr>
-                        	<f:for each="{notenVerteilungArray}" as="wert" iteration="iterator">
-                                <td><span class="value">{wert}</span></td>
-                               {f:if(condition:iterator.isEven, then: '</tr><tr>')}
+                        
+                        	<f:for each="{test}" as="wert" iteration="iterator">
+                                <tr>
+                                	<td><span class="value">{wert.notenname}</span></td>
+                                	<td>{wert.wert}</td>
+                                </tr>
+                               <!--  f:if(condition:iterator.isEven, then: '</tr><tr>')}-->
         					</f:for>
-        				</tr>
+        				
                         </tbody>
                     </table>
                 </div>
