@@ -14,11 +14,7 @@
         </div>
         <div class="row">
             <div class="col-md-3">
-                <select class="form-control" data-toggle="tooltip" data-placement="bottom" title="Auswahl ihrer Prüfung">
-                     <f:for each="{fachliste}" as="fach">
-                     	<option value="{fach.fachname}">{fach.fachname}</option>
-                     </f:for>
-                </select>
+                <f:form.select name="fachname" options="{fachliste}" optionValueField="uid" optionLabelField="fachname"  id="auswahlisteFaecher"/>
                 <br>
             </div>
             <div class="col-md-9"></div>
@@ -34,7 +30,7 @@
                 </div>
                 <textarea rows="4" cols="100" class="form-control" id="comment">{note.kommentar}</textarea>
             </div>
-            <f:debug>{test}</f:debug>
+            <f:debug>{notenZuFachArray}</f:debug>
             <div class="col-md-3">
                 <div class="table-responsive table-hover">
                     <table id="grades" class="table">
@@ -110,4 +106,14 @@
             </div>
         </div>
     </div>
+    <script>
+
+    window.onload = function () {
+    	if (window.jQuery) {$('#auswahlisteFaecher').change( function() {
+    		fachid = $("#auswahlisteFaecher" ).val();
+    		var URL = "<f:uri.action action='show' arguments='{fachid: "1"}' />";
+    		window.location.href=  URL;
+    		
+    		}); }}
+    </script>
 </f:section>

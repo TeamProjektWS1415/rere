@@ -146,7 +146,11 @@ class PrueflingController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionContro
     public function showAction() {
         $momentanerPruefling = $this->prueflingRepository->findByUid(1);
 
-
+        //Wenn true dann aufruf des Controllers über Fachwechsel
+        if( $this -> request -> hasArgument('fachid')){
+        	$fachid = $this -> request -> getArgument('fachid'); 	 
+        }
+       
         //Suchen der Fächer für die der Student zur Prüfung eingetragen wurde
         $fachPrueflingsArray = array();
         $fachlisteArray = $this->fachRepository->findAll();
@@ -159,18 +163,36 @@ class PrueflingController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionContro
             }
         }
         $fachPrueflingsArray = array_reverse($fachPrueflingsArray);
-
+		    
+        //Gewähltes Fach in Select Anzeigen lassen, wenn keins gewählt: neustes Fach nach Erstellungsdatum anzeigen lassen
+        if( $this -> request -> hasArgument('fachid')){
+        	array_unshift($fachPrueflingsArray, $this->fachRepository->findByUid($fachid));
+        }else{
+        	$fachid = $fachPrueflingsArray[0] -> getUid();
+        }
+        
         //Suchen der zum Fach gehörenden Noten
         $aktuelleNote = null;
+        $notenZuFachArray = null;
         $notenArray = $this->noteRepository->findAll();
         foreach ($notenArray as $note) {
             //liefert Prüfling Uid
-            if ($note->getPruefling() == $momentanerPruefling->getUid() && $note->getFach() == $fachPrueflingsArray[0]->getUid()) {
+            if ($note->getPruefling() == $momentanerPruefling->getUid() && $note->getFach() == $fachid) {
                 $aktuelleNote = $note;
             }
+            //sammelt sämtliche Noten des gesuchten Faches
+            if ($note->getFach() == $fachid){
+            	$notenZuFachArray += $note;
+            }
+            	
         }
-        $this->view->assignMultiple(array('fachliste' => $fachPrueflingsArray, 'test' => $test, 'note' => $aktuelleNote));
+        
+  
+        $this->view->assignMultiple(array('fachliste' => $fachPrueflingsArray, 'test' => $test, 'note' => $aktuelleNote, 'notenZuFachArray' => $notenZuFachArray));
+       
+        
     }
+
 
     /**
      * In dieser Methode wird ein neuer Prüfling erzeugt und sofern vorhanden werden die Attribute aus dem Eingabeformular übernommen.
