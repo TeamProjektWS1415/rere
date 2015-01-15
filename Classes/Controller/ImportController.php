@@ -99,6 +99,8 @@ class ImportController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControlle
                 $this->addFlashMessage('Falsche Dateiendung, es sind nur CSV-Dateien gültig.', '', \TYPO3\CMS\Core\Messaging\AbstractMessage::ERROR);
             }
             $this->parseCSV($file["tmp_name"]);
+        } else {
+            $this->addFlashMessage('Keine Datei gewählt', '', \TYPO3\CMS\Core\Messaging\AbstractMessage::ERROR);
         }
 
         //$this->view->assignMultiple(array(self::TITLE => 'Import Prüflinge', self::LABLE => 'CSV-Datei mit Prüflingen', type => $this->request->getArgument('type'), usergroups => $usergroups));
@@ -117,12 +119,12 @@ class ImportController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControlle
      */
     protected function parseCSV($file) {
         // Parsen der Datei
-        $userdatei = fopen($file, "r");
-        while (!feof($userdatei)) {
-            $zeile = fgets($userdatei, 1024);
+        $csvFile = fopen($file, "r");
+        while (!feof($csvFile)) {
+            $zeile = fgets($csvFile, 2048);
             echo $zeile;
         }
-        fclose($userdatei);
+        fclose($csvFile);
     }
 
 }
