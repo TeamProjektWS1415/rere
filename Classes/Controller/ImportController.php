@@ -12,7 +12,7 @@ class ImportController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControlle
 
     const TITLE = 'title';
     const LABLE = 'lable';
-    const IMPORT = "import";
+    const IMPORT = "Import";
 
     /**
      * Protected Variable helper wird mit NULL initialisiert.
@@ -72,7 +72,7 @@ class ImportController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControlle
             // Prüfung, um welchen Import-Typ es sich handelt.
             if ($type == "prueflinge") {
                 $usergroups = $this->FrontendUserGroupRepository->findAll();
-                $this->view->assignMultiple(array(self::TITLE => 'Import Prüflinge', self::LABLE => 'XML-Datei mit Prüflingen', type => $type, usergroups => $usergroups));
+                $this->view->assignMultiple(array(self::TITLE => 'Import Prüflinge', self::LABLE => 'CSV-Datei mit Prüflingen', type => $type, usergroups => $usergroups));
             } elseif ($type == "backup") {
                 $this->view->assignMultiple(array(self::TITLE => 'Import Backup', self::LABLE => 'SQL-Backup', type => $type));
             } else {
@@ -85,7 +85,23 @@ class ImportController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControlle
      * @return void
      */
     public function importPrueflingeAction() {
-        $this->redirect(self::IMPORT);
+        $usergroupss = $this->FrontendUserGroupRepository->findAll();
+        if ($this->request->hasArgument('import') && $_FILES['import']['error'] == 0) {
+            $name = $_FILES['import']['name'];
+            $fileData = array();
+            var_dump($this->request->getArgument('import'));
+            $file = $this->request->getArgument('import');
+
+            $ext = pathinfo($file['name'], PATHINFO_EXTENSION);
+            echo "<br><br>Name " . $file['name'];
+            echo "<br><br>Extension " . $ext;
+            if ($ext != "csv") {
+                $this->addFlashMessage('Falsche Dateiendung, es sind nur CSV-Dateien gültig.', '', \TYPO3\CMS\Core\Messaging\AbstractMessage::ERROR);
+            }
+            $this->parseCSV($file["tmp_name"]);
+        }
+
+        //$this->view->assignMultiple(array(self::TITLE => 'Import Prüflinge', self::LABLE => 'CSV-Datei mit Prüflingen', type => $this->request->getArgument('type'), usergroups => $usergroups));
     }
 
     /**
@@ -93,6 +109,20 @@ class ImportController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControlle
      */
     public function importBackupAction() {
         $this->redirect(self::IMPORT);
+    }
+
+    /**
+     * Parst eine CSV Datei.
+     * @param type $file
+     */
+    protected function parseCSV($file) {
+        // Parsen der Datei
+        $userdatei = fopen($file, "r");
+        while (!feof($userdatei)) {
+            $zeile = fgets($userdatei, 1024);
+            echo $zeile;
+        }
+        fclose($userdatei);
     }
 
 }
