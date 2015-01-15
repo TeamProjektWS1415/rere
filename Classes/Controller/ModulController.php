@@ -157,6 +157,21 @@ class ModulController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
      */
     public function createAction(\ReRe\Rere\Domain\Model\Modul $newModul) {
         $this->addFlashMessage('The object was created. Please be aware that this action is publicly accessible unless you implement an access check. See <a href="http://wiki.typo3.org/T3Doc/Extension_Builder/Using_the_Extension_Builder#1._Model_the_domain" target="_blank">Wiki</a>', '', \TYPO3\CMS\Core\Messaging\AbstractMessage::ERROR);
+        $intervall = $this->intervallRepository->findByUid(1);
+
+        // Prüfen ob der Gültigkeitszeitraum korrekt ist.
+
+        $pregResult;
+
+        if ($intervall->getType() == "studienhalbjahr") {
+            $pregResult = preg_match('/([S][S]|[W][S])[1-9]{2}/', $newModul->getGueltigkeitszeitraum());
+        } else {
+            $pregResult = preg_match('/([S][S]|[W][S])[1-9]{2}/', $newModul->getGueltigkeitszeitraum());
+        }
+
+        //echo $pregResult;
+        //exit();
+
         $this->modulRepository->add($newModul);
         // Erzeugt ein leeres Fach
         $fach = $this->objectManager->create('\\ReRe\\Rere\\Domain\\Model\\Fach');
@@ -207,31 +222,6 @@ class ModulController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
      * @return void
      */
     public function deleteAction(\ReRe\Rere\Domain\Model\Modul $modul) {
-        $persistenceManager = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('TYPO3\\CMS\\Extbase\\Persistence\\Generic\\PersistenceManager');
-        $faecher = $modul->getFach();
-
-        // Über alle Fächer Iterieren
-        foreach ($faecher as $fach) {
-            $noten = $fach->getNote();
-            // Wenn Zuordnung von Fach und Modul korrekt ist dann
-            if ($fach->getModulnr() == $modul->getUid()) {
-                // Über alle Noten Iterieren
-                foreach ($noten as $note) {
-                    if ($note->getFach() == $fach->getUid()) {
-                        $fach->removeNote($note);
-                        $pruefling = $this->prueflingRepository->findByUid($note->getPruefling());
-                        $pruefling->removeNote($note);
-                        $fach->removeMatrikelnr($pruefling);
-                        $persistenceManager->persistAll();
-                        $this->prueflingRepository->update($pruefling);
-                        $this->fachRepository->update($fach);
-                        $this->noteRepository->remove($note);
-                    }
-                }
-            }
-        }
-
-        $persistenceManager->persistAll();
         $this->modulRepository->remove($modul);
         $this->redirect('list');
     }

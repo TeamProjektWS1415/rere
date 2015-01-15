@@ -126,3 +126,11 @@ body {
 .notfound{
     color: red;
 }
+
+.delhinweis{
+    color: #abaaaa;
+    font-size: 11px;
+    text-align: right;
+    float: right;
+    padding-top: 11px;
+}
