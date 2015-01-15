@@ -47,6 +47,22 @@ class ImportController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControlle
     protected $fachRepository = NULL;
 
     /**
+     * Protected Variable FrontendUserRepository wird mit NULL initialisiert.
+     *
+     * @var \Typo3\CMS\Extbase\Domain\Repository\FrontendUserRepository
+     * @inject
+     */
+    protected $FrontendUserRepository = NULL;
+
+    /**
+     * Protected Variable FrontendUserGroupRepository wird mit NULL initialisiert.
+     *
+     * @var \ReRe\Rere\Domain\Repository\FrontendUserGroupRepository
+     * @inject
+     */
+    protected $FrontendUserGroupRepository = NULL;
+
+    /**
      * View-Rendering für Import
      */
     public function newAction() {
@@ -55,14 +71,12 @@ class ImportController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControlle
 
             // Prüfung, um welchen Import-Typ es sich handelt.
             if ($type == "prueflinge") {
-                $this->view->assign(self::TITLE, 'Import Prüflinge');
-                $this->view->assign(self::LABLE, 'XML-Datei mit Prüflingen');
+                $usergroups = $this->FrontendUserGroupRepository->findAll();
+                $this->view->assignMultiple(array(self::TITLE => 'Import Prüflinge', self::LABLE => 'XML-Datei mit Prüflingen', type => $type, usergroups => $usergroups));
             } elseif ($type == "backup") {
-                $this->view->assign(self::TITLE, 'Import Backup');
-                $this->view->assign(self::LABLE, 'SQL-Backup');
+                $this->view->assignMultiple(array(self::TITLE => 'Import Backup', self::LABLE => 'SQL-Backup', type => $type));
             } else {
-                $this->view->assign(self::TITLE, 'Import Fach');
-                $this->view->assign(self::LABLE, 'Fach Import');
+                $this->view->assignMultiple(array(self::TITLE => 'Import Fach', self::LABLE => 'Fach Import', type => $type));
             }
         }
     }

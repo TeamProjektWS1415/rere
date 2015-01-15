@@ -17,11 +17,11 @@
             </div>
         </div>
 
-        <f:form action="importPrueflinge" class="form-horizontal" >
+        <f:form action="importPrueflinge" class="form-horizontal" enctype="multipart/form-data" >
 
             <div class="row">
                 <div class="col-md-7">
-
+                    <f:form.hidden name="type" value="{type}" />
                     <div class="form-group">
                         <label for="import" class="col-sm-3 control-label">{lable}</label>
                         <div class="col-sm-9">
@@ -29,7 +29,15 @@
                             <br>
                         </div>
                     </div>
-
+                    <f:if condition="{type}== 'prueflinge'">
+                        <div class="form-group">
+                            <label for="usergroup" class="col-sm-3 control-label">Usergroup *</label>
+                            <div class="col-sm-9">
+                                <f:form.select name="usergroup" options="{usergroups}" value="{usergroups.uid}" optionLabelField="title" class="form-control gettooltip" title="FE-Usergroup"/>
+                                <br>
+                            </div>
+                        </div>
+                    </f:if>
                     <div class="form-group">
                         <div class="col-sm-8">
                         </div>
