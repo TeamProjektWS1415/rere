@@ -80,19 +80,11 @@ class ModulControllerTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
     public function showActionAssignsTheGivenModulToView() {
         $modul = new \ReRe\Rere\Domain\Model\Modul();
 
-        $mockRequest = $this->getMock('TYPO3\\CMS\\Extbase\\Mvc\\Request');
-        $mockRequest->expects($this->once())->method('hasArgument')->with('modul');
-
-        $this->inject($this->subject, 'request', $mockRequest);
-
-        $mockRequest->expects($this->once())->method('findByUid')->with(1);
-        $this->inject($this->subject, 'request', $mockRequest);
-
         $view = $this->getMock('TYPO3\\CMS\\Extbase\\Mvc\\View\\ViewInterface');
         $this->inject($this->subject, 'view', $view);
-        //$view->expects($this->once())->method('assign')->with('modul', $modul);
+        $view->expects($this->once())->method('assign')->with('modul', $modul);
 
-        $this->subject->showAction();
+        $this->subject->showAction($modul);
     }
 
     /**

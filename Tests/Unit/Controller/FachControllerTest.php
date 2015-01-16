@@ -93,8 +93,12 @@ class FachControllerTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
     public function newActionAssignsTheGivenFachToView() {
         $fach = new \ReRe\Rere\Domain\Model\Fach();
 
+        $mockRequest = $this->getMock('TYPO3\\CMS\\Extbase\\Mvc\\Request');
+        $mockRequest->expects($this->once())->method('hasArgument')->with('modul');
+        $this->inject($this->subject, 'request', $mockRequest);
+
         $view = $this->getMock('TYPO3\\CMS\\Extbase\\Mvc\\View\\ViewInterface');
-        $view->expects($this->once())->method('assign')->with(array('newFach' => $fach, 'modul' => 1));
+        $view->expects($this->once())->method('assign')->with('newFach', $fach);
         $this->inject($this->subject, 'view', $view);
 
         $this->subject->newAction($fach);
