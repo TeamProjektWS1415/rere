@@ -38,6 +38,15 @@ namespace ReRe\Rere\Controller;
  */
 class ModulController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController {
 
+    const RETURNMODUL = "returnModul";
+    const MODULNAME = "modulname";
+    const MODULNUMMER = "modulnummer";
+    const GUELTIGKEITSZEITRAUM = "gueltigkeitszeitraum";
+    const FACHNAME = "fachname";
+    const FACHNUMMER = "fachnummer";
+    const PRUEFER = "pruefer";
+    const NEWSTRING = "new";
+
     /**
      * Protected Variable modulRepository wird mit NULL initialisiert.
      *
@@ -142,8 +151,16 @@ class ModulController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
      * @return void
      */
     public function newAction(\ReRe\Rere\Domain\Model\Modul $newModul = NULL) {
-        $this->view->assign('newModul', $newModul);
-        $this->view->assign('gueltigkeitszeitraum', $this->request->getArgument('gueltigkeitszeitraum'));
+        if ($this->request->hasArgument(self::RETURNMODUL)) {
+            $this->view->assignMultiple(array(self::MODULNAME => $this->request->getArgument(self::RETURNMODUL),
+                self::MODULNUMMER => $this->request->getArgument(self::MODULNUMMER),
+                self::GUELTIGKEITSZEITRAUM => $this->request->getArgument(self::GUELTIGKEITSZEITRAUM),
+                self::FACHNAME => $this->request->getArgument(self::FACHNAME),
+                self::FACHNUMMER => $this->request->getArgument(self::FACHNUMMER),
+                self::PRUEFER => $this->request->getArgument(self::PRUEFER)));
+        } else {
+            $this->view->assignMultiple(array('newModul' => $newModul, 'gueltigkeitszeitraum' => $this->request->getArgument('gueltigkeitszeitraum')));
+        }
     }
 
     /**
@@ -156,21 +173,24 @@ class ModulController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
      * @return void
      */
     public function createAction(\ReRe\Rere\Domain\Model\Modul $newModul) {
-        $this->addFlashMessage('The object was created. Please be aware that this action is publicly accessible unless you implement an access check. See <a href="http://wiki.typo3.org/T3Doc/Extension_Builder/Using_the_Extension_Builder#1._Model_the_domain" target="_blank">Wiki</a>', '', \TYPO3\CMS\Core\Messaging\AbstractMessage::ERROR);
         $intervall = $this->intervallRepository->findByUid(1);
 
         // Prüfen ob der Gültigkeitszeitraum korrekt ist.
-
-        $pregResult;
-
         if ($intervall->getType() == "studienhalbjahr") {
-            $pregResult = preg_match('/([S][S]|[W][S])[1-9]{2}/', $newModul->getGueltigkeitszeitraum());
+            $pregResult = preg_match('/^([S][S][0-9]{2})$|^([W][S][0-9]{2}\/[0-9]{2})$/', $newModul->getGueltigkeitszeitraum());
         } else {
-            $pregResult = preg_match('/([S][S]|[W][S])[1-9]{2}/', $newModul->getGueltigkeitszeitraum());
+            $pregResult = preg_match('/^(Schuljahr)$^(\d{2}\/\d{2})$/', $newModul->getGueltigkeitszeitraum());
         }
 
-        //echo $pregResult;
-        //exit();
+        if ($pregResult != 1) {
+            $this->addFlashMessage('Guelitigkeitszeitrum falsch gewählt es ist nur SS00-SS99 zuässlig sowie WS00/01-WS99/00 oder Sschuljahr00/01 - Schuljahr 99/00', '', \TYPO3\CMS\Core\Messaging\AbstractMessage::ERROR);
+            $this->redirect(self::NEWSTRING, "Modul", Null, array(self::RETURNMODUL => $newModul->getModulname(),
+                self::MODULNUMMER => $newModul->getModulnr(),
+                self::GUELTIGKEITSZEITRAUM => $newModul->getGueltigkeitszeitraum(),
+                self::FACHNAME => $this->request->getArgument(self::FACHNAME),
+                self::FACHNUMMER => $this->request->getArgument(self::FACHNUMMER),
+                self::PRUEFER => $this->request->getArgument(self::PRUEFER)));
+        }
 
         $this->modulRepository->add($newModul);
         // Erzeugt ein leeres Fach
@@ -187,6 +207,9 @@ class ModulController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
         // Fach speichern
         $this->fachRepository->add($fach);
         $newModul->addFach($fach);
+
+        $this->addFlashMessage('The object was created. Please be aware that this action is publicly accessible unless you implement an access check. See <a href="http://wiki.typo3.org/T3Doc/Extension_Builder/Using_the_Extension_Builder#1._Model_the_domain" target="_blank">Wiki</a>', '', \TYPO3\CMS\Core\Messaging\AbstractMessage::ERROR);
+
         $this->redirect('list');
     }
 
