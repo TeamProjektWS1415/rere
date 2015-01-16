@@ -14,10 +14,12 @@ if (TYPO3_MODE === 'BE') {
      * Registers a Backend Module
      */
     \TYPO3\CMS\Extbase\Utility\ExtensionUtility::registerModule(
-            'ReRe.' . $_EXTKEY, 'user', // Make module a submodule of 'user'
-            'rerebackend', // Submodule key
-            '', // Position
-            array(
+            // Make module a submodule of 'user'
+            'ReRe.' . $_EXTKEY, 'user',
+            // Submodule key
+            'rerebackend',
+            // Position
+            '', array(
         'Modul' => 'list, show, new, newFach, create, edit, update, delete', 'Fach' => 'list, show, new, create, edit, update, delete', 'Note' => 'list, show, new, create, edit, update, delete', 'Pruefling' => 'setPruefling, userGroupZuweisen, list, show, new, create, edit, update, delete', 'Intervall' => 'new, create, edit, update', 'Export' => 'exportPrueflinge, exportModuleUndFaecher, exportFach', 'Import' => 'new, importPrueflinge, importBackUp', 'Ajax' => 'searchPruefling', 'Intervall' => 'new, create, edit, update'
             ), array(
         'access' => 'user,group',

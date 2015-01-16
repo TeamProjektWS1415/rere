@@ -179,8 +179,7 @@ class NotenVerwaltungHelper {
         } else {
             $erg = 0;
         }
-        $erg = round($erg, 2);
-        return $erg;
+        return round($erg, 2);
     }
 
     /**

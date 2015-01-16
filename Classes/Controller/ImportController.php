@@ -13,6 +13,7 @@ class ImportController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControlle
     const TITLE = 'title';
     const LABLE = 'lable';
     const IMPORT = "Import";
+    const IMPORTKLEIN = "import";
 
     /**
      * Protected Variable helper wird mit NULL initialisiert.
@@ -85,13 +86,11 @@ class ImportController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControlle
      * @return void
      */
     public function importPrueflingeAction() {
+        // Holt alle Usergroups
         $usergroupss = $this->FrontendUserGroupRepository->findAll();
-        if ($this->request->hasArgument('import') && $_FILES['import']['error'] == 0) {
-            $name = $_FILES['import']['name'];
-            $fileData = array();
-            var_dump($this->request->getArgument('import'));
-            $file = $this->request->getArgument('import');
-
+        if ($this->request->hasArgument(self::IMPORTKLEIN) && $_FILES[self::IMPORTKLEIN]['error'] == 0) {
+            // Holt die Datei
+            $file = $this->request->getArgument(self::IMPORTKLEIN);
             $ext = pathinfo($file['name'], PATHINFO_EXTENSION);
             echo "<br><br>Name " . $file['name'];
             echo "<br><br>Extension " . $ext;

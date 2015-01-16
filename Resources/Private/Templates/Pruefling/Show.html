@@ -41,15 +41,14 @@
                             </tr>
                         </thead>
                         <tbody>
-                        
-                        	<f:for each="{test}" as="wert" iteration="iterator">
-                                <tr>
-                                	<td><span class="value">{wert.notenname}</span></td>
-                                	<td>{wert.wert}</td>
-                                </tr>
-                               <!--  f:if(condition:iterator.isEven, then: '</tr><tr>')}-->
-        					</f:for>
-        				
+
+                        <f:for each="{test}" as="wert" iteration="iterator">
+                            <tr>
+                                <td><span class="value">{wert.notenname}</span></td>
+                                <td>{wert.wert}</td>
+                            </tr>
+                        </f:for>
+
                         </tbody>
                     </table>
                 </div>
@@ -73,12 +72,15 @@
     </div>
     <script>
 
-    window.onload = function () {
-    	if (window.jQuery) {$('#auswahlisteFaecher').change( function() {
-    		fachid = $("#auswahlisteFaecher" ).val();
-    		var URL = "<f:uri.action action='show' arguments='{fachid: "1"}' />";
-    		window.location.href=  URL;
-    		
-    		}); }}
+        window.onload = function () {
+            if (window.jQuery) {
+                $('#auswahlisteFaecher').change(function () {
+                    fachid = $("#auswahlisteFaecher").val();
+                    var URL = "<f:uri.action action='show' arguments='{fachid: "1"}' />";
+                    window.location.href = URL;
+
+                });
+            }
+        }
     </script>
 </f:section>

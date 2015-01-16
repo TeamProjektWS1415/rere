@@ -46,6 +46,13 @@ namespace ReRe\Rere\Tests\Unit\Domain\Model;
  */
 class FachTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
 
+    const TEXT = 'Conceived at T3CON10';
+    const MATRIKELNR = 'matrikelnr';
+    const NOTE = 'note';
+    const OBJECTSTORAGE = 'TYPO3\\CMS\\Extbase\\Persistence\\ObjectStorage';
+    const DETACH = 'detach';
+    const ATTACH = 'attach';
+
     /**
      * @var \ReRe\Rere\Domain\Model\Fach
      */
@@ -72,10 +79,10 @@ class FachTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
      * @test
      */
     public function setFachnrForStringSetsFachnr() {
-        $this->subject->setFachnr('Conceived at T3CON10');
+        $this->subject->setFachnr(self::TEXT);
 
         $this->assertAttributeEquals(
-                'Conceived at T3CON10', 'fachnr', $this->subject
+                self::TEXT, 'fachnr', $this->subject
         );
     }
 
@@ -92,10 +99,10 @@ class FachTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
      * @test
      */
     public function setFachnameForStringSetsFachname() {
-        $this->subject->setFachname('Conceived at T3CON10');
+        $this->subject->setFachname(self::TEXT);
 
         $this->assertAttributeEquals(
-                'Conceived at T3CON10', 'fachname', $this->subject
+                self::TEXT, 'fachname', $this->subject
         );
     }
 
@@ -112,10 +119,10 @@ class FachTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
      * @test
      */
     public function setPrueferForStringSetsPruefer() {
-        $this->subject->setPruefer('Conceived at T3CON10');
+        $this->subject->setPruefer(self::TEXT);
 
         $this->assertAttributeEquals(
-                'Conceived at T3CON10', 'pruefer', $this->subject
+                self::TEXT, 'pruefer', $this->subject
         );
     }
 
@@ -132,10 +139,10 @@ class FachTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
      * @test
      */
     public function setNotenschemaForStringSetsNotenschema() {
-        $this->subject->setNotenschema('Conceived at T3CON10');
+        $this->subject->setNotenschema(self::TEXT);
 
         $this->assertAttributeEquals(
-                'Conceived at T3CON10', 'notenschema', $this->subject
+                self::TEXT, 'notenschema', $this->subject
         );
     }
 
@@ -152,10 +159,10 @@ class FachTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
      * @test
      */
     public function setModulnrForStringSetsModulnr() {
-        $this->subject->setModulnr('Conceived at T3CON10');
+        $this->subject->setModulnr(self::TEXT);
 
         $this->assertAttributeEquals(
-                'Conceived at T3CON10', 'modulnr', $this->subject
+                self::TEXT, 'modulnr', $this->subject
         );
     }
 
@@ -179,7 +186,7 @@ class FachTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
         $this->subject->setMatrikelnr($objectStorageHoldingExactlyOneMatrikelnr);
 
         $this->assertAttributeEquals(
-                $objectStorageHoldingExactlyOneMatrikelnr, 'matrikelnr', $this->subject
+                $objectStorageHoldingExactlyOneMatrikelnr, self::MATRIKELNR, $this->subject
         );
     }
 
@@ -188,9 +195,9 @@ class FachTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
      */
     public function addMatrikelnrToObjectStorageHoldingMatrikelnr() {
         $matrikelnr = new \ReRe\Rere\Domain\Model\Pruefling();
-        $matrikelnrObjectStorageMock = $this->getMock('TYPO3\\CMS\\Extbase\\Persistence\\ObjectStorage', array('attach'), array(), '', FALSE);
-        $matrikelnrObjectStorageMock->expects($this->once())->method('attach')->with($this->equalTo($matrikelnr));
-        $this->inject($this->subject, 'matrikelnr', $matrikelnrObjectStorageMock);
+        $matrikelnrObjectStorageMock = $this->getMock(self::OBJECTSTORAGE, array(self::ATTACH), array(), '', FALSE);
+        $matrikelnrObjectStorageMock->expects($this->once())->method(self::ATTACH)->with($this->equalTo($matrikelnr));
+        $this->inject($this->subject, self::MATRIKELNR, $matrikelnrObjectStorageMock);
 
         $this->subject->addMatrikelnr($matrikelnr);
     }
@@ -200,9 +207,9 @@ class FachTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
      */
     public function removeMatrikelnrFromObjectStorageHoldingMatrikelnr() {
         $matrikelnr = new \ReRe\Rere\Domain\Model\Pruefling();
-        $matrikelnrObjectStorageMock = $this->getMock('TYPO3\\CMS\\Extbase\\Persistence\\ObjectStorage', array('detach'), array(), '', FALSE);
-        $matrikelnrObjectStorageMock->expects($this->once())->method('detach')->with($this->equalTo($matrikelnr));
-        $this->inject($this->subject, 'matrikelnr', $matrikelnrObjectStorageMock);
+        $matrikelnrObjectStorageMock = $this->getMock(self::OBJECTSTORAGE, array(self::DETACH), array(), '', FALSE);
+        $matrikelnrObjectStorageMock->expects($this->once())->method(self::DETACH)->with($this->equalTo($matrikelnr));
+        $this->inject($this->subject, self::MATRIKELNR, $matrikelnrObjectStorageMock);
 
         $this->subject->removeMatrikelnr($matrikelnr);
     }
@@ -227,7 +234,7 @@ class FachTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
         $this->subject->setNote($objectStorageHoldingExactlyOneNote);
 
         $this->assertAttributeEquals(
-                $objectStorageHoldingExactlyOneNote, 'note', $this->subject
+                $objectStorageHoldingExactlyOneNote, self::NOTE, $this->subject
         );
     }
 
@@ -236,9 +243,9 @@ class FachTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
      */
     public function addNoteToObjectStorageHoldingNote() {
         $note = new \ReRe\Rere\Domain\Model\Note();
-        $noteObjectStorageMock = $this->getMock('TYPO3\\CMS\\Extbase\\Persistence\\ObjectStorage', array('attach'), array(), '', FALSE);
-        $noteObjectStorageMock->expects($this->once())->method('attach')->with($this->equalTo($note));
-        $this->inject($this->subject, 'note', $noteObjectStorageMock);
+        $noteObjectStorageMock = $this->getMock(self::OBJECTSTORAGE, array(self::ATTACH), array(), '', FALSE);
+        $noteObjectStorageMock->expects($this->once())->method(self::ATTACH)->with($this->equalTo($note));
+        $this->inject($this->subject, self::NOTE, $noteObjectStorageMock);
 
         $this->subject->addNote($note);
     }
@@ -248,9 +255,9 @@ class FachTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
      */
     public function removeNoteFromObjectStorageHoldingNote() {
         $note = new \ReRe\Rere\Domain\Model\Note();
-        $noteObjectStorageMock = $this->getMock('TYPO3\\CMS\\Extbase\\Persistence\\ObjectStorage', array('detach'), array(), '', FALSE);
-        $noteObjectStorageMock->expects($this->once())->method('detach')->with($this->equalTo($note));
-        $this->inject($this->subject, 'note', $noteObjectStorageMock);
+        $noteObjectStorageMock = $this->getMock(self::OBJECTSTORAGE, array(self::DETACH), array(), '', FALSE);
+        $noteObjectStorageMock->expects($this->once())->method(self::DETACH)->with($this->equalTo($note));
+        $this->inject($this->subject, self::NOTE, $noteObjectStorageMock);
 
         $this->subject->removeNote($note);
     }

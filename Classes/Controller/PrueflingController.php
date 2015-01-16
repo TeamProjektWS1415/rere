@@ -48,6 +48,7 @@ class PrueflingController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionContro
     const USRGROUP = 'usergroup';
     const MATRIKELNR = 'matrikelnr';
     const PRUEFLING = 'Pruefling';
+    const FACHID = "fachid";
 
     private $passfunctions = NULL;
     private $userfunctions = NULL;
@@ -164,8 +165,8 @@ class PrueflingController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionContro
         $momentanerPruefling = $this->prueflingRepository->findByUid(1);
 
         //Wenn true dann aufruf des Controllers über Fachwechsel
-        if ($this->request->hasArgument('fachid')) {
-            $fachid = $this->request->getArgument('fachid');
+        if ($this->request->hasArgument(self::FACHID)) {
+            $fachid = $this->request->getArgument(self::FACHID);
         }
 
         //Suchen der Fächer für die der Student zur Prüfung eingetragen wurde
@@ -182,7 +183,7 @@ class PrueflingController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionContro
         $fachPrueflingsArray = array_reverse($fachPrueflingsArray);
 
         //Gewähltes Fach in Select Anzeigen lassen, wenn keins gewählt: neustes Fach nach Erstellungsdatum anzeigen lassen
-        if ($this->request->hasArgument('fachid')) {
+        if ($this->request->hasArgument(self::FACHID)) {
             array_unshift($fachPrueflingsArray, $this->fachRepository->findByUid($fachid));
         } else {
             $fachid = $fachPrueflingsArray[0]->getUid();
