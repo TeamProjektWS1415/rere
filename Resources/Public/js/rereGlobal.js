@@ -7,6 +7,14 @@ var arrayPrueflinge;
 var arrayFachPrueflinge;
 
 $(document).ready(function () {
+    // Make table sortable
+    $("#prueflinge").tablesorter({
+        headers: {
+            3: {
+                sorter: false
+            }
+        }
+    });
 
     // Legt die Tooltips an.
     $(".gettooltip").attr("data-toggle", "tooltip");

@@ -1,5 +1,5 @@
 $(document).ready(function () {
-// Make table sortable
+    // Make table sortable
     $("#grades").tablesorter({
         headers: {
             4: {
