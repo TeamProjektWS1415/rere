@@ -115,7 +115,7 @@ class PrueflingController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionContro
      * @var type
      */
     private $helper = NULL;
-    
+
     /**
      * @var Tx_Extbase_Service_CacheService
      */
@@ -132,15 +132,13 @@ class PrueflingController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionContro
         $this->helper = new \ReRe\Rere\Services\NestedDirectory\NotenVerwaltungHelper();
     }
 
-    
     /**
      * @param Tx_Extbase_Service_CacheService $cacheService
      * @return void
      */
     public function injectCacheService(Tx_Extbase_Service_CacheService $cacheService) {
-    	$this->cacheService = $cacheService;
+        $this->cacheService = $cacheService;
     }
-    
 
     /**
      * Die List-Methode stellt die Informationen zum Rendern der Seite PrueflingZuweisen bereit.
@@ -177,14 +175,14 @@ class PrueflingController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionContro
      */
     public function showAction() {
 
-    	//Platzhalter für UserAuswahl
+        //Platzhalter für UserAuswahl
         $momentanerPruefling = $this->prueflingRepository->findByUid(1);
-        
+
         //Wenn true dann aufruf des Controllers über Fachwechsel Select
-        if ($this->request->hasArgument("fachid")) {
-            $fachid = $this->request->getArgument("fachid");
+        if ($this->request->hasArgument(self::FACHID)) {
+            $fachid = $this->request->getArgument(self::FACHID);
         }
-	
+
         //Suchen der Fächer für die der gewählte Student zur Prüfung eingetragen wurde
         $fachPrueflingsArray = array();
         $fachlisteArray = $this->fachRepository->findAll();
@@ -199,8 +197,8 @@ class PrueflingController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionContro
         //Neuere Prüfunge zuerst anzeigen
         $fachPrueflingsArray = array_reverse($fachPrueflingsArray);
 
-        //Gewähltes Fach in Select Anzeigen lassen, wenn keins gewählt: neustes Fach nach Erstellungsdatum 
-        if ($this->request->hasArgument("fachid")) {
+        //Gewähltes Fach in Select Anzeigen lassen, wenn keins gewählt: neustes Fach nach Erstellungsdatum
+        if ($this->request->hasArgument(self::FACHID)) {
             array_unshift($fachPrueflingsArray, $this->fachRepository->findByUid($fachid));
         } else {
             $fachid = $fachPrueflingsArray[0]->getUid();
@@ -224,10 +222,10 @@ class PrueflingController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionContro
         $fach = $this->fachRepository->findByUid($fachid);
         $notenListeArray = $this->noteList->getMarkArray($fach->getNotenschema());
         unset($notenListeArray[0]);
-        
+
         //Verteilung der verschiedenen Noten zählen
         $notenVorkommnisseArray = $this->helper->genArray($notenZuFachArray, $fach->getNotenschema());
-        
+
         //Zusammenführen von Bezeichnung und Anzahl der Notenvorkommen
         $notenVerteilungArray = array();
         $counter = -1;
@@ -240,21 +238,20 @@ class PrueflingController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionContro
             $counter++;
             array_push($notenVerteilungArray, array(notenname => $notenWert, wert => $temp[$counter]));
         }
-        
-      	//Statistische Auswertung des Fachs  
+
+        //Statistische Auswertung des Fachs
         $anzahlPrueflinge = count($notenZuFachArray);
         $durchschnitt = $this->helper->calculateAverage($notenZuFachArray);
-        
+
         //Cache leeren damit View richtig angezeigt wird
         $pageUid = $GLOBALS['TSFE']->id;
         $this->cacheService->clearPageCache($pageUid);
-        
+
         //Notevorkommnisse fürs Javascript lesbar machen
         $notenVorkommnisseCharArrayJson = json_encode($notenVorkommnisseArray);
 
         $this->view->assignMultiple(array('fachliste' => $fachPrueflingsArray, 'test' => $test, 'note' => $aktuelleNote, 'notenVerteilungArray' => $notenVerteilungArray, 'durchschnitt' => $durchschnitt, 'anzahlPrueflinge' => $anzahlPrueflinge, 'chartArray' => $notenVorkommnisseCharArrayJson));
     }
-    
 
     /**
      * In dieser Methode wird ein neuer Prüfling erzeugt und sofern vorhanden werden die Attribute aus dem Eingabeformular übernommen.

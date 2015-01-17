@@ -46,6 +46,7 @@ class ModulController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
     const FACHNUMMER = "fachnummer";
     const PRUEFER = "pruefer";
     const NEWSTRING = "new";
+    const NOTENSCHEMA = "notenschema";
 
     /**
      * Protected Variable modulRepository wird mit NULL initialisiert.
@@ -196,11 +197,11 @@ class ModulController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
         // Erzeugt ein leeres Fach
         $fach = $this->objectManager->create('\\ReRe\\Rere\\Domain\\Model\\Fach');
         // Fach-Werte setzen
-        if ($this->request->hasArgument('fachname') && $this->request->hasArgument('fachnummer') && $this->request->hasArgument('pruefer') && $this->request->hasArgument('notenschema')) {
-            $fach->setFachname($this->request->getArgument('fachname'));
-            $fach->setFachnr($this->request->getArgument('fachnummer'));
-            $fach->setPruefer($this->request->getArgument('pruefer'));
-            $fach->setNotenschema($this->request->getArgument('notenschema'));
+        if ($this->request->hasArgument(self::FACHNAME) && $this->request->hasArgument(self::FACHNUMMER) && $this->request->hasArgument(self::PRUEFER) && $this->request->hasArgument(self::NOTENSCHEMA)) {
+            $fach->setFachname($this->request->getArgument(self::FACHNAME));
+            $fach->setFachnr($this->request->getArgument(self::FACHNUMMER));
+            $fach->setPruefer($this->request->getArgument(self::PRUEFER));
+            $fach->setNotenschema($this->request->getArgument(self::NOTENSCHEMA));
         }
         // Fach einem Modul zuordnen
         $fach->setModulnr($newModul->getUid());

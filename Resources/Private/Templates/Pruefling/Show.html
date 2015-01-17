@@ -14,10 +14,10 @@
         </div>
         <div class="row">
             <div class="col-md-3">
-            	<f:form id="auswahlisteFaecherForm">
-               		 <f:form.select name="fachid" options="{fachliste}" optionValueField="uid" optionLabelField="fachname" id="auswahlisteFaecherSelect" />
-             	</f:form>   
-            <br>
+                <f:form id="auswahlisteFaecherForm">
+                    <f:form.select name="fachid" options="{fachliste}" optionValueField="uid" optionLabelField="fachname" id="auswahlisteFaecherSelect" />
+                </f:form>
+                <br>
             </div>
             <div class="col-md-9"></div>
         </div>
@@ -73,30 +73,30 @@
     </div>
 
     <script>
-    	// Holt die Werte für das Chart
-    	var array = {f:format.htmlentitiesDecode(value:chartArray)};
-    	//Holt die Note für die Makierung
-    	var value = {f:format.htmlentitiesDecode(value:note.wert)};
+        // Holt die Werte für das Chart
+        var array = {f:format.htmlentitiesDecode(value:chartArray)};
+        //Holt die Note für die Makierung
+        var value = {f:format.htmlentitiesDecode(value:note.wert)};
         window.onload = function () {
-            if (window.jQuery) { 
-                // Generiert das Chart                
-               genchart(array);
+            if (window.jQuery) {
+                // Generiert das Chart
+                genchart(array);
                 //Sucht die Notenzeile in der Tabelle und macht sie Grün
-               $("table tr").each(function (index) {
-                   if (index !== 0) {                	   
-                       $row = $(this);
-                       var id = $row.find("td:first").text();
-                       if (id.indexOf(value) === 0) {
-                           // Setzt die Farbe
-                           $row.addClass("highlightGreen");
-                           return false;
-                       }
-                   }
-               });      
+                $("table tr").each(function (index) {
+                    if (index !== 0) {
+                        $row = $(this);
+                        var id = $row.find("td:first").text();
+                        if (id.indexOf(value) === 0) {
+                            // Setzt die Farbe
+                            $row.addClass("highlightGreen");
+                            return false;
+                        }
+                    }
+                });
                 //Fachwechsel
-            	$('#auswahlisteFaecherSelect').change(function () {
-               	 $('#auswahlisteFaecherForm').submit();
-            	});
+                $('#auswahlisteFaecherSelect').change(function () {
+                    $('#auswahlisteFaecherForm').submit();
+                });
             }
         }
     </script>
