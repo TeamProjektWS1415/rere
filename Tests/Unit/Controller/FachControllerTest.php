@@ -85,16 +85,10 @@ class FachControllerTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
      */
     public function showActionAssignsTheGivenFachToView() {
         $fach = new \ReRe\Rere\Domain\Model\Fach();
-        $moduluid;
 
         $view = $this->getMock(self::VIEWINTERFACE);
         $this->inject($this->subject, 'view', $view);
         $view->expects($this->once())->method(self::ASSIGN)->with('fach', $fach);
-
-        $modul = $this->getMock('ReRe\\Rere\\Domain\\Model\\Modul', array('getUid'), array(), '', FALSE);
-        $modul->expects($this->once())->method('getUid')->will($this->returnValue($moduluid));
-        $this->inject($this->subject, 'modul', $modul);
-
 
         $this->subject->showAction($fach);
     }
@@ -106,11 +100,18 @@ class FachControllerTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
         $fach = new \ReRe\Rere\Domain\Model\Fach();
 
         $mockRequest = $this->getMock('TYPO3\\CMS\\Extbase\\Mvc\\Request');
-        $mockRequest->expects($this->once())->method('hasArgument')->with('modul');
+        $mockRequest->expects($this->any())->method('hasArgument')->with('modul');
         $this->inject($this->subject, 'request', $mockRequest);
 
+        $objectmanager = $this->getMock('TYPO3\\CMS\\Extbase\\Persistence\\ObjectManager', array(), array(), '', FALSE);
+        $this->inject($this->subject, 'objectManager', $objectmanager);
+
+        $modulRepository = $this->getMock('ReRe\\Rere\\Domain\\Repository\\ModulRepository');
+        $modulRepository->expects($this->any())->method('findByUid')->with(1);
+        $this->inject($this->subject, 'modulRepository', $modulRepository);
+
         $view = $this->getMock(self::VIEWINTERFACE);
-        $view->expects($this->once())->method(self::ASSIGN)->with('newFach', $fach);
+        $view->expects($this->any())->method(self::ASSIGN)->with('newFach', $fach);
         $this->inject($this->subject, 'view', $view);
 
         $this->subject->newAction($fach);
