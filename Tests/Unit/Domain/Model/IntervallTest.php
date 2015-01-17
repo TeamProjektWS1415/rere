@@ -46,6 +46,8 @@ namespace ReRe\Rere\Tests\Unit\Domain\Model;
  */
 class IntervallTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
 
+    const TEXT = 'Conceived at T3CON10';
+
     /**
      * @var \ReRe\Rere\Domain\Model\Intervall
      */
@@ -72,10 +74,10 @@ class IntervallTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
      * @test
      */
     public function setTypeForStringSetsType() {
-        $this->subject->setType('Conceived at T3CON10');
+        $this->subject->setType(self::TEXT);
 
         $this->assertAttributeEquals(
-                'Conceived at T3CON10', 'type', $this->subject
+                self::TEXT, 'type', $this->subject
         );
     }
 
@@ -92,10 +94,10 @@ class IntervallTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
      * @test
      */
     public function setAktuellForStringSetsAktuell() {
-        $this->subject->setAktuell('Conceived at T3CON10');
+        $this->subject->setAktuell(self::TEXT);
 
         $this->assertAttributeEquals(
-                'Conceived at T3CON10', 'aktuell', $this->subject
+                self::TEXT, 'aktuell', $this->subject
         );
     }
 

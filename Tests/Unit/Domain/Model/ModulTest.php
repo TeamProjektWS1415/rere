@@ -46,6 +46,11 @@ namespace ReRe\Rere\Tests\Unit\Domain\Model;
  */
 class ModulTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
 
+    const TEXT = 'Conceived at T3CON10';
+    const OBJECTSTORAGE = 'TYPO3\\CMS\\Extbase\\Persistence\\ObjectStorage';
+    const DETACH = 'detach';
+    const ATTACH = 'attach';
+
     /**
      * @var \ReRe\Rere\Domain\Model\Modul
      */
@@ -72,10 +77,10 @@ class ModulTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
      * @test
      */
     public function setModulnrForStringSetsModulnr() {
-        $this->subject->setModulnr('Conceived at T3CON10');
+        $this->subject->setModulnr(self::TEXT);
 
         $this->assertAttributeEquals(
-                'Conceived at T3CON10', 'modulnr', $this->subject
+                self::TEXT, 'modulnr', $this->subject
         );
     }
 
@@ -92,10 +97,10 @@ class ModulTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
      * @test
      */
     public function setModulnameForStringSetsModulname() {
-        $this->subject->setModulname('Conceived at T3CON10');
+        $this->subject->setModulname(self::TEXT);
 
         $this->assertAttributeEquals(
-                'Conceived at T3CON10', 'modulname', $this->subject
+                self::TEXT, 'modulname', $this->subject
         );
     }
 
@@ -112,10 +117,10 @@ class ModulTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
      * @test
      */
     public function setGueltigkeitszeitraumForStringSetsGueltigkeitszeitraum() {
-        $this->subject->setGueltigkeitszeitraum('Conceived at T3CON10');
+        $this->subject->setGueltigkeitszeitraum(self::TEXT);
 
         $this->assertAttributeEquals(
-                'Conceived at T3CON10', 'gueltigkeitszeitraum', $this->subject
+                self::TEXT, 'gueltigkeitszeitraum', $this->subject
         );
     }
 
@@ -148,8 +153,8 @@ class ModulTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
      */
     public function addFachToObjectStorageHoldingFach() {
         $fach = new \ReRe\Rere\Domain\Model\Fach();
-        $fachObjectStorageMock = $this->getMock('TYPO3\\CMS\\Extbase\\Persistence\\ObjectStorage', array('attach'), array(), '', FALSE);
-        $fachObjectStorageMock->expects($this->once())->method('attach')->with($this->equalTo($fach));
+        $fachObjectStorageMock = $this->getMock(self::OBJECTSTORAGE, array(self::ATTACH), array(), '', FALSE);
+        $fachObjectStorageMock->expects($this->once())->method(self::ATTACH)->with($this->equalTo($fach));
         $this->inject($this->subject, 'fach', $fachObjectStorageMock);
 
         $this->subject->addFach($fach);
@@ -160,8 +165,8 @@ class ModulTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
      */
     public function removeFachFromObjectStorageHoldingFach() {
         $fach = new \ReRe\Rere\Domain\Model\Fach();
-        $fachObjectStorageMock = $this->getMock('TYPO3\\CMS\\Extbase\\Persistence\\ObjectStorage', array('detach'), array(), '', FALSE);
-        $fachObjectStorageMock->expects($this->once())->method('detach')->with($this->equalTo($fach));
+        $fachObjectStorageMock = $this->getMock(self::OBJECTSTORAGE, array(self::DETACH), array(), '', FALSE);
+        $fachObjectStorageMock->expects($this->once())->method(self::DETACH)->with($this->equalTo($fach));
         $this->inject($this->subject, 'fach', $fachObjectStorageMock);
 
         $this->subject->removeFach($fach);
