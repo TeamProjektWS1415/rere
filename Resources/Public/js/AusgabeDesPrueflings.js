@@ -39,12 +39,3 @@ $(document).ready(function () {
     });
 });
 
-function init(){
-	$('#auswahlisteFaecher').change( function() {
-		fachid = $("#auswahlisteFaecher" ).val();
-		jQuery.ajax({
-			type: 'POST',
-			url: '/?fachID='+fachid
-			});
-		});
-}

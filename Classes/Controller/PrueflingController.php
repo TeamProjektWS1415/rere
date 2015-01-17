@@ -181,8 +181,8 @@ class PrueflingController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionContro
         $momentanerPruefling = $this->prueflingRepository->findByUid(1);
         
         //Wenn true dann aufruf des Controllers über Fachwechsel Select
-        if ($this->request->hasArgument("fachname")) {
-            $fachid = $this->request->getArgument("fachname");
+        if ($this->request->hasArgument("fachid")) {
+            $fachid = $this->request->getArgument("fachid");
         }
 	
         //Suchen der Fächer für die der gewählte Student zur Prüfung eingetragen wurde
@@ -200,7 +200,7 @@ class PrueflingController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionContro
         $fachPrueflingsArray = array_reverse($fachPrueflingsArray);
 
         //Gewähltes Fach in Select Anzeigen lassen, wenn keins gewählt: neustes Fach nach Erstellungsdatum 
-        if ($this->request->hasArgument("fachname")) {
+        if ($this->request->hasArgument("fachid")) {
             array_unshift($fachPrueflingsArray, $this->fachRepository->findByUid($fachid));
         } else {
             $fachid = $fachPrueflingsArray[0]->getUid();
@@ -248,8 +248,11 @@ class PrueflingController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionContro
         //Cache leeren damit View richtig angezeigt wird
         $pageUid = $GLOBALS['TSFE']->id;
         $this->cacheService->clearPageCache($pageUid);
+        
+        //Notevorkommnisse fürs Javascript lesbar machen
+        $notenVorkommnisseCharArrayJson = json_encode($notenVorkommnisseArray);
 
-        $this->view->assignMultiple(array('fachliste' => $fachPrueflingsArray, 'test' => $test, 'note' => $aktuelleNote, 'notenVerteilungArray' => $notenVerteilungArray, 'durchschnitt' => $durchschnitt, 'anzahlPrueflinge' => $anzahlPrueflinge));
+        $this->view->assignMultiple(array('fachliste' => $fachPrueflingsArray, 'test' => $test, 'note' => $aktuelleNote, 'notenVerteilungArray' => $notenVerteilungArray, 'durchschnitt' => $durchschnitt, 'anzahlPrueflinge' => $anzahlPrueflinge, 'chartArray' => $notenVorkommnisseCharArrayJson));
     }
     
 

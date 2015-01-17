@@ -15,7 +15,7 @@
         <div class="row">
             <div class="col-md-3">
             	<f:form id="auswahlisteFaecherForm">
-               		 <f:form.select name="fachname" options="{fachliste}" optionValueField="uid" optionLabelField="fachname" id="auswahlisteFaecherSelect" />
+               		 <f:form.select name="fachid" options="{fachliste}" optionValueField="uid" optionLabelField="fachname" id="auswahlisteFaecherSelect" />
              	</f:form>   
             <br>
             </div>
@@ -25,7 +25,6 @@
             <div class="col-md-8">
                 <div class="col-md-12">
                     <canvas id="gradeChart" width="400" height="150"></canvas>
-
                 </div>
                 <div class="col-md-12">
                     <h1><span class="greenfont">Ihre Note: {note.wert}</span></h1>
@@ -72,10 +71,28 @@
             </div>
         </div>
     </div>
-    <script>
 
+    <script>
+    	// Holt die Werte für das Chart
+    	var array = {f:format.htmlentitiesDecode(value:chartArray)};
+    	//Holt die Note für die Makierung
+    	var value = {f:format.htmlentitiesDecode(value:note.wert)};
         window.onload = function () {
-            if (window.jQuery) {
+            if (window.jQuery) { 
+                // Generiert das Chart                
+               genchart(array);
+                //Sucht die Notenzeile in der Tabelle und macht sie Grün
+               $("table tr").each(function (index) {
+                   if (index !== 0) {                	   
+                       $row = $(this);
+                       var id = $row.find("td:first").text();
+                       if (id.indexOf(value) === 0) {
+                           // Setzt die Farbe
+                           $row.addClass("highlightGreen");
+                       }
+                   }
+               });      
+                //Fachwechsel
             	$('#auswahlisteFaecherSelect').change(function () {
                	 $('#auswahlisteFaecherForm').submit();
             	});
