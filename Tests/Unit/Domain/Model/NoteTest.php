@@ -46,6 +46,8 @@ namespace ReRe\Rere\Tests\Unit\Domain\Model;
  */
 class NoteTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
 
+    const TEXT = 'Conceived at T3CON10';
+
     /**
      * @var \ReRe\Rere\Domain\Model\Note
      */
@@ -72,10 +74,10 @@ class NoteTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
      * @test
      */
     public function setWertForStringSetsWert() {
-        $this->subject->setWert('Conceived at T3CON10');
+        $this->subject->setWert(self::TEXT);
 
         $this->assertAttributeEquals(
-                'Conceived at T3CON10', 'wert', $this->subject
+                self::TEXT, 'wert', $this->subject
         );
     }
 
@@ -92,10 +94,10 @@ class NoteTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
      * @test
      */
     public function setKommentarForStringSetsKommentar() {
-        $this->subject->setKommentar('Conceived at T3CON10');
+        $this->subject->setKommentar(self::TEXT);
 
         $this->assertAttributeEquals(
-                'Conceived at T3CON10', 'kommentar', $this->subject
+                self::TEXT, 'kommentar', $this->subject
         );
     }
 
@@ -112,10 +114,10 @@ class NoteTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
      * @test
      */
     public function setFachForStringSetsFach() {
-        $this->subject->setFach('Conceived at T3CON10');
+        $this->subject->setFach(self::TEXT);
 
         $this->assertAttributeEquals(
-                'Conceived at T3CON10', 'fach', $this->subject
+                self::TEXT, 'fach', $this->subject
         );
     }
 
@@ -132,10 +134,10 @@ class NoteTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
      * @test
      */
     public function setPrueflingForStringSetsPruefling() {
-        $this->subject->setPruefling('Conceived at T3CON10');
+        $this->subject->setPruefling(self::TEXT);
 
         $this->assertAttributeEquals(
-                'Conceived at T3CON10', 'pruefling', $this->subject
+                self::TEXT, 'pruefling', $this->subject
         );
     }
 

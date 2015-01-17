@@ -159,7 +159,7 @@ class ModulController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
                 self::FACHNUMMER => $this->request->getArgument(self::FACHNUMMER),
                 self::PRUEFER => $this->request->getArgument(self::PRUEFER)));
         } else {
-            $this->view->assignMultiple(array('newModul' => $newModul, 'gueltigkeitszeitraum' => $this->request->getArgument('gueltigkeitszeitraum')));
+            $this->view->assignMultiple(array('newModul' => $newModul, self::GUELTIGKEITSZEITRAUM => $this->request->getArgument(self::GUELTIGKEITSZEITRAUM)));
         }
     }
 

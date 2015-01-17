@@ -46,6 +46,9 @@ namespace ReRe\Rere\Tests\Unit\Domain\Model;
  */
 class PrueflingTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
 
+    const TEXT = 'Conceived at T3CON10';
+    const OBJECTSTORAGE = 'TYPO3\\CMS\\Extbase\\Persistence\\ObjectStorage';
+
     /**
      * @var \ReRe\Rere\Domain\Model\Pruefling
      */
@@ -72,10 +75,10 @@ class PrueflingTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
      * @test
      */
     public function setMatrikelnrForStringSetsMatrikelnr() {
-        $this->subject->setMatrikelnr('Conceived at T3CON10');
+        $this->subject->setMatrikelnr(self::TEXT);
 
         $this->assertAttributeEquals(
-                'Conceived at T3CON10', 'matrikelnr', $this->subject
+                self::TEXT, 'matrikelnr', $this->subject
         );
     }
 
@@ -92,10 +95,10 @@ class PrueflingTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
      * @test
      */
     public function setVornameForStringSetsVorname() {
-        $this->subject->setVorname('Conceived at T3CON10');
+        $this->subject->setVorname(self::TEXT);
 
         $this->assertAttributeEquals(
-                'Conceived at T3CON10', 'vorname', $this->subject
+                self::TEXT, 'vorname', $this->subject
         );
     }
 
@@ -112,10 +115,10 @@ class PrueflingTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
      * @test
      */
     public function setNachnameForStringSetsNachname() {
-        $this->subject->setNachname('Conceived at T3CON10');
+        $this->subject->setNachname(self::TEXT);
 
         $this->assertAttributeEquals(
-                'Conceived at T3CON10', 'nachname', $this->subject
+                self::TEXT, 'nachname', $this->subject
         );
     }
 
@@ -162,7 +165,7 @@ class PrueflingTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
      */
     public function addNoteToObjectStorageHoldingNote() {
         $note = new \ReRe\Rere\Domain\Model\Note();
-        $noteObjectStorageMock = $this->getMock('TYPO3\\CMS\\Extbase\\Persistence\\ObjectStorage', array('attach'), array(), '', FALSE);
+        $noteObjectStorageMock = $this->getMock(self::OBJECTSTORAGE, array('attach'), array(), '', FALSE);
         $noteObjectStorageMock->expects($this->once())->method('attach')->with($this->equalTo($note));
         $this->inject($this->subject, 'note', $noteObjectStorageMock);
 
@@ -174,7 +177,7 @@ class PrueflingTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
      */
     public function removeNoteFromObjectStorageHoldingNote() {
         $note = new \ReRe\Rere\Domain\Model\Note();
-        $noteObjectStorageMock = $this->getMock('TYPO3\\CMS\\Extbase\\Persistence\\ObjectStorage', array('detach'), array(), '', FALSE);
+        $noteObjectStorageMock = $this->getMock(self::OBJECTSTORAGE, array('detach'), array(), '', FALSE);
         $noteObjectStorageMock->expects($this->once())->method('detach')->with($this->equalTo($note));
         $this->inject($this->subject, 'note', $noteObjectStorageMock);
 
