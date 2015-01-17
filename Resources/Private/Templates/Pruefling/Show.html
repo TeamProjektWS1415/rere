@@ -14,8 +14,10 @@
         </div>
         <div class="row">
             <div class="col-md-3">
-                <f:form.select name="fachname" options="{fachliste}" optionValueField="uid" optionLabelField="fachname"  id="auswahlisteFaecher"/>
-                <br>
+            	<f:form id="auswahlisteFaecherForm">
+               		 <f:form.select name="fachname" options="{fachliste}" optionValueField="uid" optionLabelField="fachname" id="auswahlisteFaecherSelect" />
+             	</f:form>   
+            <br>
             </div>
             <div class="col-md-9"></div>
         </div>
@@ -42,7 +44,7 @@
                         </thead>
                         <tbody>
 
-                        <f:for each="{test}" as="wert" iteration="iterator">
+                        <f:for each="{notenVerteilungArray}" as="wert" iteration="iterator">
                             <tr>
                                 <td><span class="value">{wert.notenname}</span></td>
                                 <td>{wert.wert}</td>
@@ -74,12 +76,9 @@
 
         window.onload = function () {
             if (window.jQuery) {
-                $('#auswahlisteFaecher').change(function () {
-                    fachid = $("#auswahlisteFaecher").val();
-                    var URL = "<f:uri.action action='show' arguments='{fachid: "1"}' />";
-                    window.location.href = URL;
-
-                });
+            	$('#auswahlisteFaecherSelect').change(function () {
+               	 $('#auswahlisteFaecherForm').submit();
+            	});
             }
         }
     </script>

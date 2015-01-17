@@ -115,6 +115,11 @@ class PrueflingController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionContro
      * @var type
      */
     private $helper = NULL;
+    
+    /**
+     * @var Tx_Extbase_Service_CacheService
+     */
+    protected $cacheService;
 
     /**
      * Im Konstruktor des PrueflingControllers werden Instanzen der Helper-Functions erzeugt.
@@ -126,6 +131,16 @@ class PrueflingController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionContro
         $this->noteList = new \ReRe\Rere\Services\NestedDirectory\NoteSchemaArrays();
         $this->helper = new \ReRe\Rere\Services\NestedDirectory\NotenVerwaltungHelper();
     }
+
+    
+    /**
+     * @param Tx_Extbase_Service_CacheService $cacheService
+     * @return void
+     */
+    public function injectCacheService(Tx_Extbase_Service_CacheService $cacheService) {
+    	$this->cacheService = $cacheService;
+    }
+    
 
     /**
      * Die List-Methode stellt die Informationen zum Rendern der Seite PrueflingZuweisen bereit.
@@ -162,14 +177,15 @@ class PrueflingController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionContro
      */
     public function showAction() {
 
+    	//Platzhalter für UserAuswahl
         $momentanerPruefling = $this->prueflingRepository->findByUid(1);
-
-        //Wenn true dann aufruf des Controllers über Fachwechsel
-        if ($this->request->hasArgument(self::FACHID)) {
-            $fachid = $this->request->getArgument(self::FACHID);
+        
+        //Wenn true dann aufruf des Controllers über Fachwechsel Select
+        if ($this->request->hasArgument("fachname")) {
+            $fachid = $this->request->getArgument("fachname");
         }
-
-        //Suchen der Fächer für die der Student zur Prüfung eingetragen wurde
+	
+        //Suchen der Fächer für die der gewählte Student zur Prüfung eingetragen wurde
         $fachPrueflingsArray = array();
         $fachlisteArray = $this->fachRepository->findAll();
         foreach ($fachlisteArray as $fach) {
@@ -180,17 +196,17 @@ class PrueflingController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionContro
                 }
             }
         }
+        //Neuere Prüfunge zuerst anzeigen
         $fachPrueflingsArray = array_reverse($fachPrueflingsArray);
 
-        //Gewähltes Fach in Select Anzeigen lassen, wenn keins gewählt: neustes Fach nach Erstellungsdatum anzeigen lassen
-        if ($this->request->hasArgument(self::FACHID)) {
+        //Gewähltes Fach in Select Anzeigen lassen, wenn keins gewählt: neustes Fach nach Erstellungsdatum 
+        if ($this->request->hasArgument("fachname")) {
             array_unshift($fachPrueflingsArray, $this->fachRepository->findByUid($fachid));
         } else {
             $fachid = $fachPrueflingsArray[0]->getUid();
         }
 
         //Suchen der zum Fach gehörenden Noten
-
         $aktuelleNote = null;
         $notenZuFachArray = array();
         $notenArray = $this->noteRepository->findAll();
@@ -204,13 +220,15 @@ class PrueflingController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionContro
                 array_push($notenZuFachArray, $note);
             }
         }
-        //Notenschema
+        //Notenschema des gewählten fachs
         $fach = $this->fachRepository->findByUid($fachid);
         $notenListeArray = $this->noteList->getMarkArray($fach->getNotenschema());
         unset($notenListeArray[0]);
+        
+        //Verteilung der verschiedenen Noten zählen
         $notenVorkommnisseArray = $this->helper->genArray($notenZuFachArray, $fach->getNotenschema());
-        $test = $notenVorkommnisseArray;
-
+        
+        //Zusammenführen von Bezeichnung und Anzahl der Notenvorkommen
         $notenVerteilungArray = array();
         $counter = -1;
         $temp = array();
@@ -222,27 +240,18 @@ class PrueflingController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionContro
             $counter++;
             array_push($notenVerteilungArray, array(notenname => $notenWert, wert => $temp[$counter]));
         }
-        $test = $notenVerteilungArray;
-        //Notenverteilung: für den View abwechselnd im Array  Notenwert => Vorkommen
-        /* $notenVerteilungArray = null;
-          $counter = -1;
-          foreach ($notenListeArray as $notenTyp){
-          $counter ++;
-          $notenVerteilungArray[$counter] = $notenTyp;
-          $counter ++;
-          $notenVerteilungArray[$counter] = 0;
-          foreach ($notenZuFachArray as $note){
-          if($note ->getWert() == $notenTyp){
-          $notenVerteilungArray[$counter] ++;
-          }
-          }
-          } */
+        
+      	//Statistische Auswertung des Fachs  
         $anzahlPrueflinge = count($notenZuFachArray);
         $durchschnitt = $this->helper->calculateAverage($notenZuFachArray);
-
+        
+        //Cache leeren damit View richtig angezeigt wird
+        $pageUid = $GLOBALS['TSFE']->id;
+        $this->cacheService->clearPageCache($pageUid);
 
         $this->view->assignMultiple(array('fachliste' => $fachPrueflingsArray, 'test' => $test, 'note' => $aktuelleNote, 'notenVerteilungArray' => $notenVerteilungArray, 'durchschnitt' => $durchschnitt, 'anzahlPrueflinge' => $anzahlPrueflinge));
     }
+    
 
     /**
      * In dieser Methode wird ein neuer Prüfling erzeugt und sofern vorhanden werden die Attribute aus dem Eingabeformular übernommen.
