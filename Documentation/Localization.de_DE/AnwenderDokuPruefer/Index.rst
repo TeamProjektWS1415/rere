@@ -1,4 +1,3 @@
-
 Anwender-Dokumentation Prüfer
 =============================
 
@@ -24,11 +23,13 @@ Hier kann je nach eingestelltem Intervall zwischen den einzelnen Semestern oder 
 
 **Zu 3.**
 
-In diesem Abschnitt werden alle bisher angelegten Module aufgelistet. Mit einem Klick auf ein Modul werden die Fächer, die diesem Modul zugewiesen wurden, angezeigt. Der Button „Fach hinzufügen“ fügt dem Modul ein neues Fach hinzu. Über „Noten eintragen/anzeigen“ können direkt zu dem entsprechenden Fach Noten eingetragen oder angezeigt werden. „Prüflinge zuweisen“ ermöglicht es, dass Sie dem davor stehenden Fach Prüflinge zuweisen können. Mit dem Symbol x (b) kann das entsprechende Fach gelöscht werden. Falls Sie gleich das ganze Modul mit den zugehörigen Fächern löschen möchten, können Sie dies über den Lösch-Button (a).
+In diesem Abschnitt werden alle bisher angelegten Module aufgelistet. Mit einem Klick auf ein Modul werden die Fächer, die diesem Modul zugewiesen wurden, angezeigt. Der Button „Fach hinzufügen“ fügt dem Modul ein neues Fach hinzu. Über „Noten eintragen/anzeigen“ können direkt zu dem entsprechenden Fach Noten eingetragen oder angezeigt werden. „Prüflinge zuweisen“ ermöglicht es, dass Sie dem davor stehenden Fach Prüflinge zuweisen können. Mit dem Symbol x (b) kann das entsprechende Fach gelöscht werden. Falls Sie gleich das ganze Modul löschen möchten, können Sie dies über den Lösch-Button (a) erledigen. Dies ist erst möglich, wenn alle in dem Modul befindlichen Fächer bereits gelöscht sind.
+
+.. figure:: ../../Images/UserManual/Modulloeschen.PNG
 
 **Zu 4.**
 
-Wenn Sie ein neues Modul (inklusive ein Fach) hinzufügen möchten, können Sie dies über den Button „Modul hinzufügen“ (4) durchführen.
+Wenn Sie ein neues Modul (inklusive ein Fach) hinzufügen möchten, können Sie dies über den Button „Modul hinzufügen"
 
 Modul/Fach hinufügen
 --------------------
