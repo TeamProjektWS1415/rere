@@ -4,15 +4,16 @@ plugin.tx_rere {
 		partialRootPath = {$plugin.tx_rere.view.partialRootPath}
 		layoutRootPath = {$plugin.tx_rere.view.layoutRootPath}
 	}
+	
 	persistence {
 		storagePid = {$plugin.tx_rere.persistence.storagePid}
 	}
+	
 	features {
 		# uncomment the following line to enable the new Property Mapper.
 		# rewrittenPropertyMapper = 11
 	}
 }
-
 
 plugin.tx_rere._CSS_DEFAULT_STYLE (
 	textarea.f3-form-error {
@@ -47,6 +48,7 @@ plugin.tx_rere._CSS_DEFAULT_STYLE (
 	}
 
 )
+
 
 # Module configuration
 module.tx_rere {
