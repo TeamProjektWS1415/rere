@@ -118,6 +118,7 @@ class PrueflingController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionContro
 
     /**
      * @var Tx_Extbase_Service_CacheService
+     * @inject
      */
     protected $cacheService;
 
@@ -130,14 +131,6 @@ class PrueflingController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionContro
         $this->mailfunctions = new \ReRe\Rere\Services\NestedDirectory\ReReMailer();
         $this->noteList = new \ReRe\Rere\Services\NestedDirectory\NoteSchemaArrays();
         $this->helper = new \ReRe\Rere\Services\NestedDirectory\NotenVerwaltungHelper();
-    }
-
-    /**
-     * @param Tx_Extbase_Service_CacheService $cacheService
-     * @return void
-     */
-    public function injectCacheService(Tx_Extbase_Service_CacheService $cacheService) {
-        $this->cacheService = $cacheService;
     }
 
     /**

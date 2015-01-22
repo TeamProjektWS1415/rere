@@ -1,4 +1,3 @@
-
 plugin.tx_rere {
 	view {
 		templateRootPath = {$plugin.tx_rere.view.templateRootPath}
@@ -6,7 +5,7 @@ plugin.tx_rere {
 		layoutRootPath = {$plugin.tx_rere.view.layoutRootPath}
 	}
 	persistence {
-		storagePid = 1
+		storagePid = {$plugin.tx_rere.persistence.storagePid}
 	}
 	features {
 		# uncomment the following line to enable the new Property Mapper.
@@ -60,4 +59,3 @@ module.tx_rere {
 		layoutRootPath = {$module.tx_rere.view.layoutRootPath}
 	}
 }
-

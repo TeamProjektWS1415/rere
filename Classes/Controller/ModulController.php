@@ -177,11 +177,7 @@ class ModulController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
         $intervall = $this->intervallRepository->findByUid(1);
 
         // Prüfen ob der Gültigkeitszeitraum korrekt ist.
-        if ($intervall->getType() == "studienhalbjahr") {
-            $pregResult = preg_match('/^([S][S][0-9]{2})$|^([W][S][0-9]{2}\/[0-9]{2})$/', $newModul->getGueltigkeitszeitraum());
-        } else {
-            $pregResult = preg_match('/^(Schuljahr)$^(\d{2}\/\d{2})$/', $newModul->getGueltigkeitszeitraum());
-        }
+        $pregResult = $pregResult = preg_match('/^([S][S][0-9]{2}|[W][S][0-9]{2}\/[0-9]{2}|Schuljahr[0-9]{2}\/[0-9]{2})$/', $newModul->getGueltigkeitszeitraum());
 
         if ($pregResult != 1) {
             $this->addFlashMessage('Guelitigkeitszeitrum falsch gewählt es ist nur SS00-SS99 zuässlig sowie WS00/01-WS99/00 oder Sschuljahr00/01 - Schuljahr 99/00', '', \TYPO3\CMS\Core\Messaging\AbstractMessage::ERROR);
