@@ -312,6 +312,7 @@ class PrueflingController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionContro
             // Wenn Usergroup vorhanden dann wird diese gesetzt.
             $newFEUser->addUsergroup($usergroup);
 
+
             $this->FrontendUserRepository->add($newFEUser);
             $newPruefling->setTypo3FEUser($newFEUser);
             $mailerg = $this->mailfunctions->newUserMail($newFEUser->getEmail(), $newFEUser->getUsername(), $newPruefling->getNachname(), $newPruefling->getVorname(), $randomPW);

@@ -10,18 +10,18 @@ plugin.tx_rere {
 	}
 	persistence {
 		# cat=plugin.tx_rere//a; type=string; label=Default storage PID
-		storagePid =
+		storagePid = 
 	}
 }
 
 module.tx_rere {
 	view {
 		# cat=module.tx_rere/file; type=string; label=Path to template root (BE)
-		templateRootPath = EXT:rere/Resources/Private/Backend/Templates/
+		templateRootPath = EXT:rere/Resources/Private/Templates/
 		# cat=module.tx_rere/file; type=string; label=Path to template partials (BE)
-		partialRootPath = EXT:rere/Resources/Private/Backend/Partials/
+		partialRootPath = EXT:rere/Resources/Private/Partials/
 		# cat=module.tx_rere/file; type=string; label=Path to template layouts (BE)
-		layoutRootPath = EXT:rere/Resources/Private/Backend/Layouts/
+		layoutRootPath = EXT:rere/Resources/Private/Layouts/
 	}
 	persistence {
 		# cat=module.tx_rere//a; type=string; label=Default storage PID
