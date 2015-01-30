@@ -298,6 +298,7 @@ class PrueflingController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionContro
             $this->prueflingRepository->add($newPruefling);
             // Instanz eines neuen Users
             $newFEUser = new \Typo3\CMS\Extbase\Domain\Model\FrontendUser();
+
             // Neuen TYPO3 FE_User anlegen
             $newFEUser->setUsername($this->userfunctions->genuserNAME($newPruefling->getVorname(), $newPruefling->getNachname()));
             // Passwort-Generierung -> Random und dann -> Salt
@@ -308,6 +309,7 @@ class PrueflingController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionContro
             $newFEUser->setFirstNAME($newPruefling->getVorname());
             $newFEUser->setLastNAME($newPruefling->getNachname());
             $newFEUser->setEmail($this->request->getArgument(self::EMAIL));
+            $newFEUser->setPID($usergroup->getPid());
 
             // Wenn Usergroup vorhanden dann wird diese gesetzt.
             $newFEUser->addUsergroup($usergroup);
