@@ -20,14 +20,12 @@ class ReReMailer {
      */
     public function newUserMail($empfaenger, $username, $name, $vorname, $passwort) {
 
-        // Zusammensetzen der Nachricht
-        $body = "Hallo " . $name . " " . $vorname . ", für Sie wurde ein Nutzer für das Result Repository angelegt. Ihr Benutzername lautet: " . $username . " und dein Passwort lautet: " . $passwort;
-
         // Verschicken der Nachricht
         $message = (new \TYPO3\CMS\Core\Mail\MailMessage())
-                ->setFrom(array('ab@send.er' => 'Result Repository'))
+                ->setFrom(array('noReply@resultrepositry.de' => 'Result Repository'))
                 ->setTo(array($empfaenger => $name))
-                ->setBody($body);
+                ->setSubject("Ihr Result Repository Nutzer.")
+                ->setBody('<html><head></head><body><p>Hallo ' . $name . ' ' . $vorname . ', für Sie wurde ein Nutzer für das Result Repository angelegt.</p><br><br> <b>Username:</b> ' . $username . '<br> <b>Passwort:</b> ' . $passwort . '</body></html>', 'text/html');
         $message->send();
         // Rückmeldung im Backend, ob eine E-Mail verschickt wurde oder nicht.
         if ($message->isSent()) {
