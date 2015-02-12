@@ -12,27 +12,27 @@ User-Manual examinee
 Registration
 ------------
 
-Wenn ein neuer Prüfling angelegt wird, erhält er eine E-Mail mit seinen Zugangsdaten.
+When a new examinee creates an account, his login data are send via email.
 
 .. figure:: ../Images/UserManual/Typo3anmeldung.PNG
 
-Nach Eingabe des Benutzernamens und Passworts (Abb. 9)  gelangt der Prüfling auf die folgende Ansicht (Abb. 10).
+Having entered username and password (ill. 9), the examinee can access the following section (ill. 10).
 
-Prüfungsleistungen anzeigen
----------------------------
+Display Test Achievements
+-------------------------
 
 .. figure:: ../Images/UserManual/Pruefungsleistunganzeigen.PNG
 
-**Zu 1.**
+**1.**
 
-Hier kann der Prüfling zwischen den Fächern/Semestern wechseln.
+The examinee can toggle between different courses and semesters.
 
-**Zu 2.**
+**2.**
 
-Seine Note sowie gegebenenfalls der Kommentar  des Prüfers werden unterhalb der Grafik angezeigt
+Grades and a possible comment of the examiner are displayed beneath the illustration
 
-**Zu 3.**
+**3.**
 
-Auf der rechten Seite werden die Häufigkeit der einzelnen Noten und die Durchschnitts-Note für dieses Fach angezeigt.
+The frequency of the acieved result as well as the average grade of a course are displayed on the right-hand side.
 
 

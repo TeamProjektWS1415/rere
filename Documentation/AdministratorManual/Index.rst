@@ -11,28 +11,30 @@
 Administator-Manual
 ===================
 
-Programmiersprache
-------------------
+Program Language
+----------------
 
-Die Backend-Erweiterung wird mit PHP programmiert und in das Typo3-Framework
-integriert. Das Frontend wird durch HTML5 und CSS unter Einbindung des Bootstrap Frameworks dargestellt und mit JavaScript zur Laufzeit dynamisiert. Dies geschieht unter Zuhilfenahme der Bibliotheken JQuery und Chartjs.
+The beckend extension is programmed with PHP and integrated into the Typo3-Framework.
+The frontend is displayed by HTML5 and CSS, involving the bootstrap framework.
+JavaScript enabables dynamizing the frontend during runtime.
+This process is supported by the libraries JQuery and Chartjs.
 
-Benutzerverwaltung
-------------------
+User Administration
+-------------------
 
-Benutzerrechte können über die Typo3-Nutzenverwaltung geregelt werden.
-Dabei besteht die Möglichkeit Benutzer hinzuzufügen,zu löschen und einzelnen Benutzern
-verschiedene Rechte zu erteilen.
+User permissions can be administrated with the aid of the Typo3 user administration.
+This tool allows adding and deleting users as well as granting different users specific rights
 
-Klassen Definition
-------------------
+Definition of Classes
+---------------------
 
-Das PHP doc ist erst nach der Installation aufrufbar. Sie findes es unter dem Menüpunkt **Hilfe**.
+After installation, the PHP doc is available under the menue point **Help**.
 
-Datenbank
----------
+Database
+--------
 
-Die Persistierung der erhobenen Daten erfolgt über das Typo3-Framework in das folgende Datenbankschema.
+The Typo3-Framework allow the persistence of the collect data.
+The result is the following database sheme.
 
 .. figure:: ../Images/AdministratorManual/Datenbankschema.png
 

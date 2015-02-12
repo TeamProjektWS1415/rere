@@ -24,10 +24,10 @@ Result Repositry
 		en
 
 	:Description:
-		Die Extension dient in erster Linie dazu Noten zu verwalten. Es können dabei 		 Module und die zugehörigen Fächer angelegt und mit den entsprechenden 				Prüflingen belegt werden.
+		With this extension, users are enabled to administrate their grades. 		 Modules and their corresponding courses can be created and examinees can be registered.
 
 	:Keywords:
-		Notenverwaltung,Result Repository
+		Grade Administration,Result Repository
 
 	:Copyright:
 		2015

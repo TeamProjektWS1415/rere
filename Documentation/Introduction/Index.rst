@@ -9,5 +9,8 @@
 Extension Introduction
 ======================
 
-Bei dem Projekt „Grading System“ soll eine Noten-Veröffentlichungsmethode auf Typo3 Basis entwickelt werden. Mit dieser Extension soll der Nutzer in der Lage sein, die Prüfungsnoten zu verwalten und eine Übersicht über Prüfungsleistungen zu bekommen. Ebenso sollen individuelle Prüfungsergebnisse einzelnen Personen zugänglich gemacht werden.
-Die Typo3 Extension wird unter der GPL v2 veröffentlicht. Das „Grading System“ wird sowohl auf GitHub als auch im Typo3-Repository zur Verfügung gestellt.
+The aim of the projekt "Grading System" is to develop a new method of publishing grades based on Typo3.
+With this extension, users are enabled to administrate their grades and are provided with an overview of their test achievements.
+Another aim is to make individual test achievements accessible to specific persons.
+The Typo3 extension will be published under GPL v2.
+"Grading System" will be placed at disposal via GitHub as well as via the Typo3-Repository.

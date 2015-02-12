@@ -1,129 +1,127 @@
 
 
-
 User-Manual examiner
 ====================
 
-Einführung
-----------
+Introduction
+------------
 
-In dieser Anwenderdokumentation werden die Funktionen zu der Typo3 Extension „Result Repository“ beschrieben und im Einzelnen erklärt. Die Extension dient in erster Linie dazu Noten zu verwalten. Es können dabei Module und die zugehörigen Fächer angelegt und mit den entsprechenden Prüflingen belegt werden.
+In this user documentations, the cunctions of the Typo3 extensions "Result Repository" are described and explained in detail. This extension mainly conduces to administrating grades. In order to do so, modules and associated courses can be created and the appropriate examinees can be entered.
 
-Sartseite/Result Repository
+Result Repository
 ---------------------------
 
-Die folgende Abbildung zeigt die Startseite des Backends.
+The following illustration displays the backend's home page.
 
 .. figure:: ../Images/UserManual/Index.PNG
 
-**Zu 1.**
+**1.**
 
-In der rechtsoben angeordneten Menüleiste, befinden sich die einzelnen Funktionen zum Anlegen neuer Prüflinge, zum Import und Export, sowie zur Einstellung der Intervalllänge. Unter „Prüflinge anlegen“ können neue Prüflinge in der Extension angelegt werden. Wenn eine Liste von mehreren Prüflingen vorhanden ist, kann diese mit Hilfe der Import-Funktion importiert werden. Es können außerdem Prüflinge, Module und Fächer exportiert werde. Unter dem Menüpunkt „Intervall einstellen“ kann zwischen Studienhalbjahr und Schuljahr gewechselt werden. Somit können Sie diese Extension sowohl im Studium als auch in der Schule verwenden.
+The menu bar is situated in the upper-right corner and contains the following different functions: adding new examinees, import and export as well as adjusting the interval lenghts. Existing lists of examinees can be importet with the aid of the import function. Moreover, it is possible to export examinees, courses and modules. The menu option "Adjust Interval" allows adjusting the lenght of an interval. It is possible to measure the interval in semesters or in years.
 
-**Zu 2.**
+**2.**
 
-Hier kann je nach eingestelltem Intervall zwischen den einzelnen Semestern oder Schuljahren gewechselt werden.
+Depending on the adjusted interval, users can toggle between different semesters or academic years.
 
-**Zu 3.**
+**3.**
 
-In diesem Abschnitt werden alle bisher angelegten Module aufgelistet. Mit einem Klick auf ein Modul werden die Fächer, die diesem Modul zugewiesen wurden, angezeigt. Der Button „Fach hinzufügen“ fügt dem Modul ein neues Fach hinzu. Über „Noten eintragen/anzeigen“ können direkt zu dem entsprechenden Fach Noten eingetragen oder angezeigt werden. „Prüflinge zuweisen“ ermöglicht es, dass Sie dem davor stehenden Fach Prüflinge zuweisen können. Mit dem Symbol x (b) kann das entsprechende Fach gelöscht werden. Falls Sie gleich das ganze Modul löschen möchten, können Sie dies über den Lösch-Button (a) erledigen.Dies ist erst möglich, wenn alle in dem Modul befindlichen Fächer bereits gelöscht sind.
+All modules, which have been created so far, are listed in this section When clicking on a module, all corresponding courses are displayed. With the button "Add Course", new courses can be added to a module. With the button "Register/ Display Grades", grades can be added to a course or can be displayed. When clicking on "Assign Examinees", new examinees can be assigned to a course. The symbol x (b) allows deleting courses. In order to delete the whole module, all corresponding courses have to be deleted. Then, the module can be deleted by clicking on the erasing button.
 
 .. figure:: ../Images/UserManual/Modulloeschen.PNG
 
 
-**Zu 4.**
+**4.**
 
-Wenn Sie ein neues Modul (inklusive ein Fach) hinzufügen möchten, können Sie dies über den Button „Modul hinzufügen“ (4) durchführen.
+A new module (including a course) can be added by clicking on the button "Add module" (4).
 
-Modul/Fach hinufügen
+Add a Module/ Course
 --------------------
 
-Auf dieser Seite (Abb. 5) können Sie die Einstellungen für ein neues Modul und Fach festlegen.
+On this page (ill. 5), settings of new modules and courses can be determined.
 
 .. figure:: ../Images/UserManual/ModulFachhinzufuegen.PNG
 
-**Zu 1.**
+**1.**
 
-Hier wird der Pfad zur aktuellen Seite angezeigt. Durch Klick auf die in blau angezeigten Seiten-Namen gelangt man zu der jeweiligen Seite.
+The path leading to the current page is displayed. The particular pages can be reached by clicking on their names, which are blue highlighted.
 
-**Zu 2.**
+**2.**
 
-Dieses Formular dient dazu, ein neues Modul und ein neues Fach anlegen zu können.
+This blank is used to create a new module and course.
 
-**Zu 3.**
+**3.**
 
-Über diese Auswahl-Buttons kann die Art der Bewertung ausgewählt werden. Es kann zwischen der Eintragung von Schulnoten (Schul-System bzw. 15-Punkte-System) und Prüfungs- bzw. Schein-Leistungen für Hochschulen (Hochschul-System bzw. Schein) unterschieden werden.
+These selection buttons enable determining the system of notation. School grades (school system or 15 points system) or test achievments (higher education system) are available for selection.
 
-In der nachfolgenden Tabelle (Abb. 5) wurden die Benotungs-Systeme gegenübergestellt.
+The systems of notation are contrasted in the following table (ill. 5).
 
 .. figure:: ../Images/UserManual/Benotungssysteme.PNG
 
-**Zu 4.**
+**4.**
 
-Durch Klick auf den Button (4) werden die Eingaben gespeichert.
+The entries can be saved by clicking on the button (4).
 
-Nach dem Speichervorgang gelangen Sie wieder auf dem Startbildschirm. Jetzt können Sie, durch den Button „Prüfling anlegen“ in der Menüleiste oben rechts Prüflinge anlegen und diese anschließend  dem Fach zuordnen. Es erscheint die folgende Ansicht (Abb. 6).
+After the save procedure, the user returns to the start image. Now, users can add examinees by clicking on the button "Assign Examinee" and then assign them to courses. The following site is displayed (ill. 6).
 
 
-Prüfling anlegen
-----------------
+Assignment of Examinees
+-----------------------
 
-Sofern Sie keine Prüflingsdaten importiert haben (Startseite) müssen Sie die Prüflinge zunächst anlegen bevor Sie mit der Anmeldung bzw. Zuordnung der Prüflinge zu einem Fach beginnen können.
-Das nachfolgende Formular (Abb. 6) muss manuell gefüllt werden.
+If no lists of examinees were imported, they have to be created before the examiner can assign them to different courses. The following form (ill. 6) has to be filled in manually.
 
 .. figure:: ../Images/UserManual/Prueflinganlegen.PNG
 
-**Zu 1.**
+**1.**
 
-In dieses Formular geben Sie die Daten des Prüflings ein.
+The form has to be filled in with the examinee's data.
 
-**Zu 2.**
+**2.**
 
-Hierüber wird Ihre Eingabe gespeichert und der neue Prüfling angelegt. Parallel wird ein Typo3 Frontend User angelegt und der Prüfling erhält automatisch eine E-Mail mit seinen Zugangsdaten an die eigetragene E-Mail-Adresse.
+When saving the entry, a new examinee is created. At the same time, a Typo3 Frontend User is created. An email containig the examinee's access data is sent to the email adress the examinator has entered.
 
 
 
-Nachdem Sie die Prüflinge angelegt haben, müssen Sie diese Ihrem Fach noch zuwiesen. Dies können Sie über „Prüflinge zuweisen“ (Abbildung 1 -> Punkt 3 -> Prüflinge zuweisen) erledigen.
+Having created the examinees, the examinator has to assign them to courses. In order to do so, click on the button "Assign Examinees" (ill. 1 -> Point 3 -> Assign examinees).
 
-Prüfling zuweisen
------------------
+Assign Examinees
+----------------
 
 .. figure:: ../Images/UserManual/Prueflingzuweisen.PNG
 
-**Zu 1.**
+**1.**
 
-In der Suchleiste können Sie anhand der Matrikelnummer Prüflinge suchen und durch Bestätigung der Enter-Taste Ihrem Fach zuweisen. Es wird automatisch überprüft, ob die Matrikelnummer vorhanden ist.
+The search bar allows searching for examinees by using their matriculation number. By pressing the enter key, the examinee is assigned to the course. The extension automatically verifies, if the matricualtion number exists.
 
 .. figure:: ../Images/UserManual/Suchenichtgefunden.PNG
 .. figure:: ../Images/UserManual/Suchegefunden.PNG
 
-Des Weiteren besteht außerdem die Möglichkeit durch eine Benutzergruppe gleich mehrere Prüflinge auf einmal zuzuweisen, allerdings muss diese Benutzergruppe erst manuell angelegt werden.
+Moreover it is possible to create user groups, which allows assigning several examinees at the same time. However, these user groups have to be created manually before the assignment.
 
-**Zu 2.**
+**2.**
 
-Hier werden alle bereits zugewiesenen Prüflinge angezeigt.
-Nachdem Sie Prüflinge einem Fach zugewiesen haben, können die Noten eingetragen werden.
+The examinees, which have already been assigned are displayed.
+After the assignment, the grades can be entered.
 
-Notenverwaltung
----------------
+Grade Administration
+--------------------
 
-Auf dieser Seite (Abb. 7) können Sie die Noten Ihrer Studenten bzw. Schüler verwalten.
+This site (ill. 7) allows administrating the students' grades.
 
 .. figure:: ../Images/UserManual/Notenverwaltung.PNG
 
-**Zu 1.**
+**1.**
 
-Hier können Sie genau erkennen bei welcher Prüfungsleistung (Fach, Modul und Semester) Sie sich gerade befinden.
+With this display, the examinator always knows which test achievement (course, module and semester) he is editing.
 
-**Zu 2.**
+**2.**
 
-Hier können Sie die Prüflinge nach verschiedenen Kriterien filtern. Außerdem besteht die Möglichkeit Prüflinge anhand der Matrikelnummer oder des Nachnamens zu suchen und dann zu bearbeiten. Außerdem haben Sie hier die Möglichkeit ein Fach zu importieren oder zu exportieren.
+Examinees can be sorted by various criteria. Moreover, users can search for examinees by using their matriculation number or their surname. Then, the examinees can be edited. Additionally, it is possible to import or export a course.
 
-**Zu 3.**
+**3.**
 
-Hier werden alle Prüflinge angezeigt, welche zu Ihrer Auswahl (2) passen. Die Note kann durch ein Drop-Down-Menü ausgewählt werden. Optional können Sie der Note einen Kommentar hinzufügen.
-In der letzten Zeile kann ein zusätzlicher Prüfling dem Fach hinzugefügt und eine Note zugewiesen werden.
+All examinees corresponding to the user's selection (2) are displayed. A drop down menu allows selecting the grade. It is optional to add a comment.
+The last line allows assigning an additional examinee and adding his grade.
 
-**Zu 4.**
+**4.**
 
-Hier sehen Sie die statistische Auswertung des Fachs.
+The statistic analysis of the course is displayed.
