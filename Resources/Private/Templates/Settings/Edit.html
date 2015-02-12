@@ -1,0 +1,43 @@
+
+<f:layout name="rere" />
+
+<f:section name="content">
+
+
+    <f:flashMessages />
+
+    <div class="container-fluid wrapper">
+
+        <div class="row">
+            <div name="breadcrumb" class="col-md-12">
+                <ol class="breadcrumb">
+                    <li><f:link.action controller="Modul" action="list">Result Repository</f:link.action></li>
+                    <li class="active">Settings</li>
+                </ol>
+            </div>
+            <div class="col-md-12">
+                <h1>Settings</h1>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-12">
+                <f:form action="update" name="settings" object="{settings}" >
+
+                    <div class="form-group">
+                        <label for="absendermail" class="col-sm-3 control-label">Absender Email *</label>
+                        <div class="col-sm-9">
+                            <f:form.textfield property="mailAbsender" value="{settings.mailAbsender}" id="absendermail" class="form-control" />
+                            <br>
+                        </div>
+                    </div>
+
+                    <div class="col-md-3">
+                        <button type="submit" class="btn btn-primary btn-lg btn-block">Daten speichern</button>
+                    </div>
+                    <div class="col-md-9"></div>
+                </f:form>
+            </div>
+        </div>
+    </div>
+</f:section>

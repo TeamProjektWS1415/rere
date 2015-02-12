@@ -89,6 +89,14 @@ class ModulController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
     protected $intervallRepository = NULL;
 
     /**
+     * Protected Variable settingsRepository wird mit NULL initialisiert.
+     *
+     * @var \ReRe\Rere\Domain\Repository\SettingsRepository
+     * @inject
+     */
+    protected $settingsRepository = NULL;
+
+    /**
      * Protected Variable objectManager wird mit NULL initialisiert.
      *
      * @var \TYPO3\CMS\Extbase\Object\ObjectManagerInterface
@@ -104,7 +112,16 @@ class ModulController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
     public function listAction() {
         $moduls = $this->modulRepository->findAll();
         $intervall = $this->intervallRepository->findByUid(1);
+        $settings = $this->settingsRepository->findByUid(1);
         $filteredmoduls = array();
+
+        // Prüfen ob Settings leer sind
+        if ($settings == Null) {
+            $mail = $this->objectManager->create('\\ReRe\\Rere\\Domain\\Model\\Settings');
+            $mail->setMailAbsender("DEFAULT");
+            $this->settingsRepository->add($mail);
+        }
+
         // Prüfen, ob die Tabelle wirklich einen Wert hat (also ob ein Intervall gesetzt wurde).
         if ($intervall == Null) {
             // wenn Intervall noch nicht gesetzt ist, wird ein Intervall-Objekt erzeugt
