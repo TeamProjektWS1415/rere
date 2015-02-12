@@ -168,8 +168,8 @@ class PrueflingController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionContro
      */
     public function showAction() {
 
-		//Aktuellen FE-User und zugehöriges Prueflingobjekt holen
-        momentanerUserUID = $GLOBALS['TSFE']->fe_user->user['uid'];	
+        //Aktuellen FE-User und zugehöriges Prueflingobjekt holen
+        $momentanerUserUID = $GLOBALS['TSFE']->fe_user->user['uid'];
         $momentanerPruefling = $this->prueflingRepository->findByUid($momentanerUserUID);
 
         //Wenn true dann aufruf des Controllers über Fachwechsel Select
