@@ -446,16 +446,22 @@ class PrueflingController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionContro
             $this->redirect('list', self::PRUEFLING, Null, array(self::FACH => $fach, self::MODUL => $modul));
         }
 
+        $querySettings = $this->FrontendUserRepository->createQuery()->getQuerySettings();
+        // don't add the pid constraint
+        $querySettings->setRespectStoragePage(FALSE);
+        $this->FrontendUserRepository->setDefaultQuerySettings($querySettings);
+
         $feusers = $this->FrontendUserRepository->findAll();
         $prueflinge = $this->prueflingRepository->findAll();
         foreach ($feusers as $feuser) {
-            // Wenn die UserGroup des FEUsers = der AusgewÃ¤hlten Usergroup
+            // Wenn die UserGroup des FEUsers = der Ausgewählten Usergroup
             if ((int) $feuser->getUsergroup() == (int) $userGroup) {
                 foreach ($prueflinge as $pruefling) {
                     // PrÃ¼ft ob der PrÃ¼fling bereits zugewiesen wurde
                     $checkList = $this->userfunctions->checkMatrikelNr($fach->getMatrikelnr(), $pruefling->getMatrikelnr());
                     $checkVar = "TYPO3\CMS\Extbase\Domain\Model\FrontendUser:" . $feuser->getUid();
                     if ($pruefling->getTypo3FEUser() == $checkVar && $checkList == 1) {
+                        echo "true";
                         $note = $this->genNote();
                         // Beziehung setzen
                         $fach->addMatrikelnr($pruefling);
