@@ -33,9 +33,9 @@ namespace ReRe\Rere\Controller;
  * ************************************************************* */
 
 /**
- * Die Klasse PrueflingController verwaltet die Prüflinge.
- * Sie stellt Methoden zum Anlegen, Ändern und Löschen von Prüflingen, der Zuweisung eines Prfülings zu einem FE-User,
- * sowie zum Zuweisen eines Prüflings zu einem Fach bereit.
+ * Die Klasse PrueflingController verwaltet die PrÃ¼flinge.
+ * Sie stellt Methoden zum Anlegen, Ã„ndern und LÃ¶schen von PrÃ¼flingen, der Zuweisung eines PrfÃ¼lings zu einem FE-User,
+ * sowie zum Zuweisen eines PrÃ¼flings zu einem Fach bereit.
  *
  */
 class PrueflingController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController {
@@ -55,7 +55,7 @@ class PrueflingController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionContro
     private $mailfunctions = NULL;
 
     /**
-     * Private Klassenvariable für die Notenlisten wird mit NULL initialisiert.
+     * Private Klassenvariable fÃ¼r die Notenlisten wird mit NULL initialisiert.
      *
      * @var type
      */
@@ -118,7 +118,7 @@ class PrueflingController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionContro
     protected $settingsRepository = NULL;
 
     /**
-     * Private Klassenvariable für die Hilfsklassen wird mit NULL initialisiert.
+     * Private Klassenvariable fÃ¼r die Hilfsklassen wird mit NULL initialisiert.
      *
      * @var type
      */
@@ -154,12 +154,12 @@ class PrueflingController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionContro
         $modul = $this->modulRepository->findByUid($this->request->getArgument(self::MODUL));
         $prueflings = $this->prueflingRepository->findAll();
         $feUserGroups = $this->FrontendUserGroupRepository->findAll();
-        //alle vorhandenen Prüflinge werden in Array gespeichert
+        //alle vorhandenen PrÃ¼flinge werden in Array gespeichert
         $prueflingsArray = array();
         foreach ($prueflings as $pruefling) {
             array_push($prueflingsArray, $pruefling->getMatrikelnr(), $pruefling->getUid());
         }
-        //alle bereits zu diesem Fach zugeordneten Prüflinge werden in Array gespeichert
+        //alle bereits zu diesem Fach zugeordneten PrÃ¼flinge werden in Array gespeichert
         $fachprueflingsArray = array();
         foreach ($fachprueflinge as $fachpruefling) {
             array_push($fachprueflingsArray, $fachpruefling->getMatrikelnr(), $fachpruefling->getUid());
@@ -170,22 +170,29 @@ class PrueflingController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionContro
     }
 
     /**
-     * Einzelner Prüfling wird angezeigt.
+     * Einzelner PrÃ¼fling wird angezeigt.
      *
      * @return void
      */
     public function showAction() {
 
-        //Aktuellen FE-User und zugehöriges Prueflingobjekt holen
+        //Aktuellen FE-User und zugehÃ¶riges Prueflingobjekt holen
         $momentanerUserUID = $GLOBALS['TSFE']->fe_user->user['uid'];
-        $momentanerPruefling = $this->prueflingRepository->findByUid($momentanerUserUID);
+        $alleprueflinge = $this->prueflingRepository->findAll();
+
+        // Holt den Prüfling der mit dem FEUser verknüpft ist
+        foreach ($alleprueflinge as $pruefling) {
+            if ($pruefling->getTypo3FEUser()->getUid() == $momentanerUserUID) {
+                $momentanerPruefling = $pruefling;
+            }
+        }
 
         //Wenn true dann aufruf des Controllers über Fachwechsel Select
         if ($this->request->hasArgument(self::FACHID)) {
             $fachid = $this->request->getArgument(self::FACHID);
         }
 
-        //Suchen der Fächer für die der gewählte Student zur Prüfung eingetragen wurde
+        //Suchen der FÃ¤cher für die der gewählte Student zur Pruefung eingetragen wurde
         $fachPrueflingsArray = array();
         $fachlisteArray = $this->fachRepository->findAll();
         foreach ($fachlisteArray as $fach) {
@@ -196,39 +203,40 @@ class PrueflingController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionContro
                 }
             }
         }
-        //Neuere Prüfunge zuerst anzeigen
+
+        //Neuere PrÃ¼funge zuerst anzeigen
         $fachPrueflingsArray = array_reverse($fachPrueflingsArray);
 
-        //Gewähltes Fach in Select Anzeigen lassen, wenn keins gewählt: neustes Fach nach Erstellungsdatum
+        //GewÃ¤hltes Fach in Select Anzeigen lassen, wenn keins gewÃ¤hlt: neustes Fach nach Erstellungsdatum
         if ($this->request->hasArgument(self::FACHID)) {
             array_unshift($fachPrueflingsArray, $this->fachRepository->findByUid($fachid));
         } else {
             $fachid = $fachPrueflingsArray[0]->getUid();
         }
 
-        //Suchen der zum Fach gehörenden Noten
+        //Suchen der zum Fach gehÃ¶renden Noten
         $aktuelleNote = null;
         $notenZuFachArray = array();
         $notenArray = $this->noteRepository->findAll();
         foreach ($notenArray as $note) {
-            //liefert Prüfling Uid
+            //liefert PrÃ¼fling Uid
             if ($note->getPruefling() == $momentanerPruefling->getUid() && $note->getFach() == $fachid) {
                 $aktuelleNote = $note;
             }
-            //sammelt sämtliche Noten des gesuchten Faches
+            //sammelt sÃ¤mtliche Noten des gesuchten Faches
             if ($note->getFach() == $fachid) {
                 array_push($notenZuFachArray, $note);
             }
         }
-        //Notenschema des gewählten fachs
+        //Notenschema des gewÃ¤hlten fachs
         $fach = $this->fachRepository->findByUid($fachid);
         $notenListeArray = $this->noteList->getMarkArray($fach->getNotenschema());
         unset($notenListeArray[0]);
 
-        //Verteilung der verschiedenen Noten zählen
+        //Verteilung der verschiedenen Noten zÃ¤hlen
         $notenVorkommnisseArray = $this->helper->genArray($notenZuFachArray, $fach->getNotenschema());
 
-        //Zusammenführen von Bezeichnung und Anzahl der Notenvorkommen
+        //ZusammenfÃ¼hren von Bezeichnung und Anzahl der Notenvorkommen
         $notenVerteilungArray = array();
         $counter = -1;
         $temp = array();
@@ -249,14 +257,14 @@ class PrueflingController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionContro
         $pageUid = $GLOBALS['TSFE']->id;
         $this->cacheService->clearPageCache($pageUid);
 
-        //Notevorkommnisse fürs Javascript lesbar machen
+        //Notevorkommnisse fÃ¼rs Javascript lesbar machen
         $notenVorkommnisseCharArrayJson = json_encode($notenVorkommnisseArray);
 
         $this->view->assignMultiple(array('fachliste' => $fachPrueflingsArray, 'test' => $test, 'note' => $aktuelleNote, 'notenVerteilungArray' => $notenVerteilungArray, 'durchschnitt' => $durchschnitt, 'anzahlPrueflinge' => $anzahlPrueflinge, 'chartArray' => $notenVorkommnisseCharArrayJson));
     }
 
     /**
-     * In dieser Methode wird ein neuer Prüfling erzeugt und sofern vorhanden werden die Attribute aus dem Eingabeformular übernommen.
+     * In dieser Methode wird ein neuer PrÃ¼fling erzeugt und sofern vorhanden werden die Attribute aus dem Eingabeformular Ã¼bernommen.
      *
      * @param \ReRe\Rere\Domain\Model\Pruefling $newPruefling
      * @ignorevalidation $newPruefling
@@ -289,17 +297,17 @@ class PrueflingController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionContro
     }
 
     /**
-     * In dieser Methode wird der Prüfling als tatsächlicher Frontend-User angelegt, sofern die Matrikelnummer noch nicht vergeben ist.
-     * Außerdem wird der Versand einer Bestätigungs-E-Mail an den Prüfling angestoßen.
+     * In dieser Methode wird der PrÃ¼fling als tatsÃ¤chlicher Frontend-User angelegt, sofern die Matrikelnummer noch nicht vergeben ist.
+     * AuÃŸerdem wird der Versand einer BestÃ¤tigungs-E-Mail an den PrÃ¼fling angestoÃŸen.
      *
      * @param \ReRe\Rere\Domain\Model\Pruefling $newPruefling
      * @return void
      */
     public function createAction(\ReRe\Rere\Domain\Model\Pruefling $newPruefling) {
-        // Prüft, ob diese MatrikelNr bereits vorhanden ist. Prüfling wird nur angelegt, wenn die MatrikelNr noch nicht verwendet wird!
+        // PrÃ¼ft, ob diese MatrikelNr bereits vorhanden ist. PrÃ¼fling wird nur angelegt, wenn die MatrikelNr noch nicht verwendet wird!
         if ($this->prueflingRepository->findBymatrikelnr($newPruefling->getMatrikelnr())->toArray() == Null) {
 
-            // Prüfen ob usergroup vorhanden
+            // PrÃ¼fen ob usergroup vorhanden
             if ($this->request->hasArgument(self::USRGROUP)) {
                 $usergroup = $this->FrontendUserGroupRepository->findByUid($this->request->getArgument(self::USRGROUP));
             }
@@ -341,7 +349,7 @@ class PrueflingController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionContro
     }
 
     /**
-     * Diese Methode dient dem Editieren eines Prüflings.
+     * Diese Methode dient dem Editieren eines PrÃ¼flings.
      * Sie wird in der aktuellen Version jedoch so nicht verwendet.
      *
      * @param \ReRe\Rere\Domain\Model\Pruefling $pruefling
@@ -353,7 +361,7 @@ class PrueflingController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionContro
     }
 
     /**
-     * Diese Methode dient dem Aktualisieren eines Prüflings.
+     * Diese Methode dient dem Aktualisieren eines PrÃ¼flings.
      * Sie wird in der aktuellen Version jedoch so nicht verwendet.
      *
      * @param \ReRe\Rere\Domain\Model\Pruefling $pruefling
@@ -366,7 +374,7 @@ class PrueflingController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionContro
     }
 
     /**
-     * Diese Methode dient dem Löschen eines Prüflings.
+     * Diese Methode dient dem LÃ¶schen eines PrÃ¼flings.
      *
      * @param \ReRe\Rere\Domain\Model\Pruefling $pruefling
      * @return void
@@ -378,21 +386,21 @@ class PrueflingController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionContro
     }
 
     /**
-     * Weist einen Prüfling einem Fach zu oder löst die Zuweisung wieder auf.
+     * Weist einen PrÃ¼fling einem Fach zu oder lÃ¶st die Zuweisung wieder auf.
      */
     public function setPrueflingAction() {
         $persistenceManager = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('TYPO3\\CMS\\Extbase\\Persistence\\Generic\\PersistenceManager');
-        // Holt Fach-Objekt, Modul-Objekt und den Prüfling
+        // Holt Fach-Objekt, Modul-Objekt und den PrÃ¼fling
         if ($this->request->hasArgument(self::FACH) && $this->request->hasArgument(self::MODUL) && $this->request->hasArgument(self::MATRIKELNR)) {
             $fach = $this->fachRepository->findByUid($this->request->getArgument(self::FACH));
             $modul = $this->modulRepository->findByUid($this->request->getArgument(self::MODUL));
             $pruefling = $this->prueflingRepository->findOneByMatrikelnr($this->request->getArgument(self::MATRIKELNR));
         }
         if ($pruefling == NULL) {
-            $this->addFlashMessage('Wählen Sie einen existierenden Prüfling (Grüne Lupe)', '', \TYPO3\CMS\Core\Messaging\AbstractMessage::ERROR);
+            $this->addFlashMessage('WÃ¤hlen Sie einen existierenden PrÃ¼fling (GrÃ¼ne Lupe)', '', \TYPO3\CMS\Core\Messaging\AbstractMessage::ERROR);
             $this->redirect('list', self::PRUEFLING, Null, array(self::FACH => $fach, self::MODUL => $modul));
         }
-        // Prüfling einem Fach zuweisen oder entfernen
+        // PrÃ¼fling einem Fach zuweisen oder entfernen
         if ($this->request->hasArgument('remove')) {
             $noten = $fach->getNote();
             foreach ($noten as $note) {
@@ -422,29 +430,29 @@ class PrueflingController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionContro
     }
 
     /**
-     * Diese Funktion weißt eine ganze UserGruppe dem Fach zu. Ein Prüfling kann einem Fach nur 1x Zugewiesen werden.
+     * Diese Funktion weiÃŸt eine ganze UserGruppe dem Fach zu. Ein PrÃ¼fling kann einem Fach nur 1x Zugewiesen werden.
      */
     public function userGroupZuweisenAction() {
         // Persistenz Manager
         $persistenceManager = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('TYPO3\\CMS\\Extbase\\Persistence\\Generic\\PersistenceManager');
 
-        // Prüft ob alle nötigen Argumente vorhanden sind.
+        // PrÃ¼ft ob alle nÃ¶tigen Argumente vorhanden sind.
         if ($this->request->hasArgument(self::FACH) && $this->request->hasArgument(self::MODUL) && $this->request->hasArgument(self::USRGROUP)) {
             $fach = $this->fachRepository->findByUid($this->request->getArgument(self::FACH));
             $modul = $this->modulRepository->findByUid($this->request->getArgument(self::MODUL));
             $userGroup = $this->FrontendUserGroupRepository->findByUid($this->request->getArgument(self::USRGROUP));
         } else {
-            $this->addFlashMessage('UserGroup auswählen', '', \TYPO3\CMS\Core\Messaging\AbstractMessage::ERROR);
+            $this->addFlashMessage('UserGroup auswÃ¤hlen', '', \TYPO3\CMS\Core\Messaging\AbstractMessage::ERROR);
             $this->redirect('list', self::PRUEFLING, Null, array(self::FACH => $fach, self::MODUL => $modul));
         }
 
         $feusers = $this->FrontendUserRepository->findAll();
         $prueflinge = $this->prueflingRepository->findAll();
         foreach ($feusers as $feuser) {
-            // Wenn die UserGroup des FEUsers = der Ausgewählten Usergroup
+            // Wenn die UserGroup des FEUsers = der AusgewÃ¤hlten Usergroup
             if ((int) $feuser->getUsergroup() == (int) $userGroup) {
                 foreach ($prueflinge as $pruefling) {
-                    // Prüft ob der Prüfling bereits zugewiesen wurde
+                    // PrÃ¼ft ob der PrÃ¼fling bereits zugewiesen wurde
                     $checkList = $this->userfunctions->checkMatrikelNr($fach->getMatrikelnr(), $pruefling->getMatrikelnr());
                     $checkVar = "TYPO3\CMS\Extbase\Domain\Model\FrontendUser:" . $feuser->getUid();
                     if ($pruefling->getTypo3FEUser() == $checkVar && $checkList == 1) {
