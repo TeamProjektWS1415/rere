@@ -27,7 +27,7 @@
                     <div class="form-group">
                         <label for="eingabefeldModul" class="col-sm-3 control-label"><f:translate key="tx_rere_domain_model_modul.modulname" /> <span class="required">*</span></label>
                         <div class="col-sm-9">
-                            <f:form.textfield property="modulname" class="form-control gettooltip" id="eingabefeldModul" placeholder="Modulname" value='{modulname}' title="Modulname hier eingeben" />
+                            <f:form.textfield property="modulname" required="1" class="form-control gettooltip" id="eingabefeldModul" placeholder="Modulname" value='{modulname}' title="Modulname hier eingeben" />
                             <br>
                         </div>
                     </div>
@@ -36,7 +36,7 @@
                     <div class="form-group">
                         <label for="eingabefeldModulnummer" class="col-sm-3 control-label"><f:translate key="tx_rere_domain_model_modul.modulnr" /> <span class="required">*</span></label>
                         <div class="col-sm-9">
-                            <f:form.textfield property="modulnr" class="form-control gettooltip" id="eingabefeldModulnummer" placeholder="Modulnummer" value='{modulnummer}' title="Modulnummer hier eingeben" />
+                            <f:form.textfield property="modulnr" required="1" class="form-control gettooltip" id="eingabefeldModulnummer" placeholder="Modulnummer" value='{modulnummer}' title="Modulnummer hier eingeben" />
                             <br>
                         </div>
                     </div>
@@ -44,7 +44,7 @@
                     <div class="form-group">
                         <label for="gueltigkeitszeitraum" class="col-sm-3 control-label"><f:translate key="tx_rere_domain_model_modul.gueltigkeitszeitraum" /> <span class="required">*</span></label>
                         <div class="col-sm-9">
-                            <f:form.textfield property="gueltigkeitszeitraum" value="{gueltigkeitszeitraum}" class="form-control gettooltip" id="gueltigkeitszeitraum" placeholder="Gültigkeitszeitraum" title="Gültigkeitszeitraum eingeben" />
+                            <f:form.textfield property="gueltigkeitszeitraum" required="1" value="{gueltigkeitszeitraum}" class="form-control gettooltip" id="gueltigkeitszeitraum" placeholder="Gültigkeitszeitraum" title="Gültigkeitszeitraum eingeben" />
                             <br>
                         </div>
                     </div>
@@ -53,7 +53,7 @@
                     <div class="form-group">
                         <label for="eingabefeldFach" class="col-sm-3 control-label">Fach *</label>
                         <div class="col-sm-9">
-                            <f:form.textfield name="fachname" class="form-control gettooltip" placeholder="Fach" value="{fachname}" title="Fachname hier eingeben" />
+                            <f:form.textfield name="fachname" required="1" class="form-control gettooltip" placeholder="Fach" value="{fachname}" title="Fachname hier eingeben" />
                             <br>
                         </div>
                     </div>
@@ -62,7 +62,7 @@
                     <div class="form-group">
                         <label for="eingabefeldFachnummer" class="col-sm-3 control-label">Fachnummer *</label>
                         <div class="col-sm-9">
-                            <f:form.textfield name="fachnummer" class="form-control gettooltip" placeholder="Fachnummer" value="{fachnummer}" title="Fachnummer hier eingeben" />
+                            <f:form.textfield name="fachnummer" required="1" class="form-control gettooltip" placeholder="Fachnummer" value="{fachnummer}" title="Fachnummer hier eingeben" />
                             <br>
                         </div>
                     </div>
@@ -71,7 +71,7 @@
                     <div class="form-group">
                         <label for="eingabefeldProfessor" class="col-sm-3 control-label">Professor *</label>
                         <div class="col-sm-9">
-                            <f:form.textfield name="pruefer" class="form-control gettooltip" placeholder="Professor" value="{pruefer}" title="Für das Fach verantwortlicher Professor"/>
+                            <f:form.textfield name="pruefer" required="1" class="form-control gettooltip" placeholder="Professor" value="{pruefer}" title="Für das Fach verantwortlicher Professor"/>
                             <br>
                         </div>
                     </div>
