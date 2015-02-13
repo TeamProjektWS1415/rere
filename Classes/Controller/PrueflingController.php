@@ -110,6 +110,14 @@ class PrueflingController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionContro
     protected $noteRepository = NULL;
 
     /**
+     * Protected Variable settingsRepository wird mit NULL initialisiert.
+     *
+     * @var \ReRe\Rere\Domain\Repository\SettingsRepository
+     * @inject
+     */
+    protected $settingsRepository = NULL;
+
+    /**
      * Private Klassenvariable für die Hilfsklassen wird mit NULL initialisiert.
      *
      * @var type
@@ -315,10 +323,11 @@ class PrueflingController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionContro
             // Wenn Usergroup vorhanden dann wird diese gesetzt.
             $newFEUser->addUsergroup($usergroup);
 
+            $absender = $this->settingsRepository->findByUid(1)->getMailAbsender();
 
             $this->FrontendUserRepository->add($newFEUser);
             $newPruefling->setTypo3FEUser($newFEUser);
-            $mailerg = $this->mailfunctions->newUserMail($newFEUser->getEmail(), $newFEUser->getUsername(), $newPruefling->getNachname(), $newPruefling->getVorname(), $randomPW);
+            $mailerg = $this->mailfunctions->newUserMail($newFEUser->getEmail(), $newFEUser->getUsername(), $newPruefling->getNachname(), $newPruefling->getVorname(), $randomPW, $absender);
             $this->addFlashMessage($mailerg);
             if ($this->request->getArgument('speichern') == 'speichernundzurueck') {
                 $this->redirect('list', 'Modul');

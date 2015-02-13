@@ -18,11 +18,11 @@ class ReReMailer {
      * @param type $passwort String
      * @return string String
      */
-    public function newUserMail($empfaenger, $username, $name, $vorname, $passwort) {
+    public function newUserMail($empfaenger, $username, $name, $vorname, $passwort, $absender) {
 
         // Verschicken der Nachricht
         $message = (new \TYPO3\CMS\Core\Mail\MailMessage())
-                ->setFrom(array('noReply@resultrepositry.de' => 'Result Repository'))
+                ->setFrom(array($absender => 'Result Repository'))
                 ->setTo(array($empfaenger => $name))
                 ->setSubject("Ihr Result Repository Nutzer.")
                 ->setBody('<html><head></head><body><p>Hallo ' . $name . ' ' . $vorname . ', für Sie wurde ein Nutzer für das Result Repository angelegt.</p><br><br> <b>Username:</b> ' . $username . '<br> <b>Passwort:</b> ' . $passwort . '</body></html>', 'text/html');
