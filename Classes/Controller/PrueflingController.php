@@ -297,17 +297,17 @@ class PrueflingController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionContro
     }
 
     /**
-     * In dieser Methode wird der PrÃ¼fling als tatsÃ¤chlicher Frontend-User angelegt, sofern die Matrikelnummer noch nicht vergeben ist.
-     * AuÃŸerdem wird der Versand einer BestÃ¤tigungs-E-Mail an den PrÃ¼fling angestoÃŸen.
+     * In dieser Methode wird der Prüfling als tatsächlicher Frontend-User angelegt, sofern die Matrikelnummer noch nicht vergeben ist.
+     * Außerdem wird der Versand einer Bestätigungs-E-Mail an den Pruefling angestossen.
      *
      * @param \ReRe\Rere\Domain\Model\Pruefling $newPruefling
      * @return void
      */
     public function createAction(\ReRe\Rere\Domain\Model\Pruefling $newPruefling) {
-        // PrÃ¼ft, ob diese MatrikelNr bereits vorhanden ist. PrÃ¼fling wird nur angelegt, wenn die MatrikelNr noch nicht verwendet wird!
+        // Prueft, ob diese MatrikelNr bereits vorhanden ist. Pruefling wird nur angelegt, wenn die MatrikelNr noch nicht verwendet wird!
         if ($this->prueflingRepository->findBymatrikelnr($newPruefling->getMatrikelnr())->toArray() == Null) {
 
-            // PrÃ¼fen ob usergroup vorhanden
+            // Pruefen ob usergroup vorhanden
             if ($this->request->hasArgument(self::USRGROUP)) {
                 $usergroup = $this->FrontendUserGroupRepository->findByUid($this->request->getArgument(self::USRGROUP));
             }

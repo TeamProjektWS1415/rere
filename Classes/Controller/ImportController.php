@@ -83,6 +83,7 @@ class ImportController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControlle
     }
 
     /**
+     * This method imports Students oder Schoolmates from an CSV file.
      * @return void
      */
     public function importPrueflingeAction() {
@@ -121,16 +122,23 @@ class ImportController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControlle
      * @param type $file
      */
     protected function parseCSV($file) {
+        // Zählen der Zeilen - Wird benötit um die letzte zeile zu ignorieren.
+        $csvFileForLines = fopen($file, "r");
+        $numberOfLines = 0;
+        while (($data = fgetcsv($csvFileForLines, 1000, ";")) !== FALSE) {
+            $numberOfLines = count($data);
+        }
+        fclose($csvFileForLines);
+
         // Parsen der Datei
         $csvFile = fopen($file, "r");
-
         $row = 1;
         while (($data = fgetcsv($csvFile, 1000, ";")) !== FALSE) {
             $num = count($data);
             $row++;
 
             // Überspringen der ersten 4 Zeilen
-            if ($row > 5) {
+            if ($row > 5 && $numberOfLines >= $row) {
                 for ($c = 0; $c < $num; $c++) {
                     echo $data[$c] . "<br />\n";
                 }
