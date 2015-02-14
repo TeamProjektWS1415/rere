@@ -123,10 +123,20 @@ class ImportController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControlle
     protected function parseCSV($file) {
         // Parsen der Datei
         $csvFile = fopen($file, "r");
-        while (!feof($csvFile)) {
-            $zeile = fgets($csvFile, 2048);
-            echo $zeile;
+
+        $row = 1;
+        while (($data = fgetcsv($csvFile, 1000, ";")) !== FALSE) {
+            $num = count($data);
+            $row++;
+
+            // Überspringen der ersten 4 Zeilen
+            if ($row > 5) {
+                for ($c = 0; $c < $num; $c++) {
+                    echo $data[$c] . "<br />\n";
+                }
+            }
         }
+
         fclose($csvFile);
     }
 
