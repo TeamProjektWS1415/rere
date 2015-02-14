@@ -95,7 +95,11 @@ class ImportController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControlle
             echo "<br><br>Name " . $file['name'];
             echo "<br><br>Extension " . $ext;
             if ($ext != "csv") {
+
+                echo "Falsche Dateiendung";
                 $this->addFlashMessage('Falsche Dateiendung, es sind nur CSV-Dateien gültig.', '', \TYPO3\CMS\Core\Messaging\AbstractMessage::ERROR);
+
+                $this->view->assignMultiple(array(self::TITLE => 'Import Prüflinge', self::LABLE => 'CSV-Datei mit Prüflingen', type => $this->request->getArgument('type'), usergroups => $usergroupss));
             }
             $this->parseCSV($file["tmp_name"]);
         } else {
