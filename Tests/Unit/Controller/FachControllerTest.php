@@ -103,8 +103,11 @@ class FachControllerTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
         $mockRequest->expects($this->any())->method('hasArgument')->with('modul');
         $this->inject($this->subject, 'request', $mockRequest);
 
-        $objectmanager = $this->getMock('TYPO3\\CMS\\Extbase\\Persistence\\ObjectManager', array(), array(), '', FALSE);
+        $objectmanager = $this->getMock('TYPO3\\CMS\\Extbase\\Object\\ObjectManager', array(), array(), '', FALSE);
         $this->inject($this->subject, 'objectManager', $objectmanager);
+        
+        $objectmanagerinterface = $this->getMock('TYPO3\\CMS\\Extbase\\Object\\ObjectManagerInterface', array(), array(), '', FALSE);
+        $this->inject($this->subject, 'objectManagerInterface', $objectmanagerinterface);
 
         $modulRepository = $this->getMock('ReRe\\Rere\\Domain\\Repository\\ModulRepository');
         $modulRepository->expects($this->any())->method('findByUid')->with(1);
