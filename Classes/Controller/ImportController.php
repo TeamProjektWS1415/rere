@@ -133,16 +133,22 @@ class ImportController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControlle
         // Parsen der Datei
         $csvFile = fopen($file, "r");
         $row = 1;
+
         while (($data = fgetcsv($csvFile, 1000, ";")) !== FALSE) {
             $num = count($data);
             $row++;
 
+            $pruefling = array();
+
             // Überspringen der ersten 4 Zeilen
             if ($row > 5 && $numberOfLines >= $row) {
                 for ($c = 0; $c < $num; $c++) {
+                    array_push($pruefling, $data[$c]);
                     echo $data[$c] . "<br />\n";
                 }
             }
+
+            var_dump($pruefling);
         }
 
         fclose($csvFile);
