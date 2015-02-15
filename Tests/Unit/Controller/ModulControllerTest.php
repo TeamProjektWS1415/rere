@@ -45,6 +45,8 @@ class ModulControllerTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
 
     const MODULCONTROLLER = 'ReRe\\Rere\\Controller\\ModulController';
     const MODULREPOSITORY = 'ReRe\\Rere\\Domain\\Repository\\ModulRepository';
+    const INTERVALLREPOSITORY = 'ReRe\\Rere\\Domain\\Repository\\IntervallRepository';
+    const SETTINGSREPOSITORY = 'ReRe\\Rere\\Domain\\Repository\\SettingsRepository';
     const MODULREPO = 'modulRepository';
     const VIEWINTERFACE = 'TYPO3\\CMS\\Extbase\\Mvc\\View\\ViewInterface';
     const ASSIGN = "assign";
@@ -67,7 +69,7 @@ class ModulControllerTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
      */
     public function listActionFetchesAllModulsFromRepositoryAndAssignsThemToView() {
 
-        $allModuls = $this->getMock('TYPO3\\CMS\\Extbase\\Persistence\\ObjectStorage', array(), array(), '', FALSE);
+        $mockModul = new \ReRe\Rere\Domain\Model\Modul();
 
         $modulRepository = $this->getMock(self::MODULREPOSITORY, array('findAll'), array(), '', FALSE);
         $modulRepository->expects($this->once())->method('findAll')->will($this->returnValue($allModuls));
