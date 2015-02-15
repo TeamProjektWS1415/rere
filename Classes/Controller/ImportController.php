@@ -181,11 +181,7 @@ class ImportController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControlle
     }
 
     protected function createPruefling($prueflingInfos, $usergroupIN) {
-
-        echo "WAS AN KAM " . $prueflingInfos[0] . "<br><br>";
-
-        echo "Mailadresse: " . $prueflingInfos[7];
-
+        echo "<br>Mailadresse: " . $prueflingInfos[7];
         $pruefling = $this->objectManager->create('\\ReRe\\Rere\\Domain\\Model\\Pruefling');
 
         $pruefling->setVorname($prueflingInfos[2]);
@@ -231,6 +227,12 @@ class ImportController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControlle
 
             $this->FrontendUserRepository->add($newFEUser);
             $pruefling->setTypo3FEUser($newFEUser);
+
+            $this->persistenceManager->persistAll();
+
+            $this->prueflingRepository->update($pruefling);
+
+
             $this->mailfunctions->newUserMail($newFEUser->getEmail(), $newFEUser->getUsername(), $pruefling->getNachname(), $pruefling->getVorname(), $randomPW, $absender);
         } else {
             echo 'ERROR';
