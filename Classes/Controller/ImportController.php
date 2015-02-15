@@ -14,12 +14,13 @@ class ImportController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControlle
     const LABLE = 'lable';
     const IMPORT = "Import";
     const IMPORTKLEIN = "import";
+    const ERRORLIST = "errorlist";
 
     private $passfunctions = NULL;
     private $userfunctions = NULL;
     private $mailfunctions = NULL;
     private $persistenceManager = NULL;
-    protected $notImported = array();
+    protected $notImported = NULL;
 
     /**
      * Protected Variable helper wird mit NULL initialisiert.
@@ -104,8 +105,15 @@ class ImportController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControlle
 
             // Prüfung, um welchen Import-Typ es sich handelt.
             if ($type == "prueflinge") {
+
+                if ($this->request->hasArgument(self::ERRORLIST)) {
+                    $errorlist = $this->request->getArgument(self::ERRORLIST);
+                } else {
+                    $errorlist = "";
+                }
+
                 $usergroups = $this->FrontendUserGroupRepository->findAll();
-                $this->view->assignMultiple(array(self::TITLE => 'Import Prüflinge', self::LABLE => 'CSV-Datei mit Prüflingen', type => $type, usergroups => $usergroups));
+                $this->view->assignMultiple(array(self::TITLE => 'Import Prüflinge', self::LABLE => 'CSV-Datei mit Prüflingen', type => $type, usergroups => $usergroups, errorlist => $errorlist));
             } elseif ($type == "backup") {
                 $this->view->assignMultiple(array(self::TITLE => 'Import Backup', self::LABLE => 'SQL-Backup', type => $type));
             } else {
@@ -129,7 +137,6 @@ class ImportController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControlle
             $ext = pathinfo($file['name'], PATHINFO_EXTENSION);
             // Prüfung ob die Dateiendung korrekt ist.
             if ($ext != "csv") {
-                echo "Falsche Dateiendung";
                 $this->addFlashMessage('Falsche Dateiendung, es sind nur CSV-Dateien gültig.', '', \TYPO3\CMS\Core\Messaging\AbstractMessage::ERROR);
                 $this->view->assignMultiple(array(self::TITLE => 'Import Prüflinge', self::LABLE => 'CSV-Datei mit Prüflingen', type => $this->request->getArgument('type'), usergroups => $usergroups));
             }
@@ -137,11 +144,7 @@ class ImportController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControlle
         } else {
             $this->addFlashMessage('Keine Datei gewählt', '', \TYPO3\CMS\Core\Messaging\AbstractMessage::ERROR);
         }
-
-        var_dump($this->notImported);
-        exit();
-
-        $this->redirect('new', 'Import', Null, array(self::TITLE => 'Import Prüflinge', self::LABLE => 'CSV-Datei mit Prüflingen', type => $this->request->getArgument('type'), usergroups => $usergroups, errorlist => $this->notImported));
+        $this->redirect('new', 'Import', Null, array(self::TITLE => 'Import Prüflinge', self::LABLE => 'CSV-Datei mit Prüflingen', type => $this->request->getArgument('type'), usergroups => $usergroups, errorlist => "$this->notImported"));
     }
 
     /**
@@ -159,16 +162,17 @@ class ImportController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControlle
         // Zählen der Zeilen - Wird benötit um die letzte zeile zu ignorieren.
         $csvFileForLines = fopen($file, "r");
         $numberOfLines = 0;
-        while (($data = fgetcsv($csvFileForLines, 1000, ";")) !== FALSE) {
-            $numberOfLines = count($data);
+        while (($data = fgetcsv($csvFileForLines, 2000, ";")) !== FALSE) {
+            $numberOfLines ++;
         }
         fclose($csvFileForLines);
 
+        echo $numberOfLines;
         // Parsen der Datei
         $csvFile = fopen($file, "r");
         $row = 1;
 
-        while (($data = fgetcsv($csvFile, 1000, ";")) !== FALSE) {
+        while (($data = fgetcsv($csvFile, 2000, ";")) !== FALSE) {
             $num = count($data);
             $row++;
 
@@ -177,9 +181,12 @@ class ImportController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControlle
             // Überspringen der ersten 4 Zeilen
             if ($row > 5 && $numberOfLines >= $row) {
                 for ($c = 0; $c < $num; $c++) {
+                    $temp = $data[$c];
                     array_push($pruefling, $data[$c]);
+                    echo $temp . "<br>";
                 }
             }
+
             $this->createPruefling($pruefling, $usergroup);
         }
         fclose($csvFile);
@@ -241,8 +248,11 @@ class ImportController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControlle
             // Mail an den Prüfling versenden
             $this->mailfunctions->newUserMail($newFEUser->getEmail(), $newFEUser->getUsername(), $pruefling->getNachname(), $pruefling->getVorname(), $randomPW, $absender);
         } else {
-            // Wenn Ein Matrikel-Nummer bereits vorhanden war wird diese in die Rückgabeliste gespeichert
-            array_push($this->notImported, $prueflingInfos);
+
+            if ($prueflingInfos[0] != Null || $prueflingInfos[0] != "") {
+                // Wenn Ein Matrikel-Nummer bereits vorhanden war wird diese in die Rückgabeliste gespeichert
+                $this->notImported = $this->notImported . " " . $prueflingInfos[0] . ": " . $prueflingInfos[2] . ", " . $prueflingInfos[1] . " | ";
+            }
         }
     }
 

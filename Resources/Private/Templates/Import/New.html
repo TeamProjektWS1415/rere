@@ -17,9 +17,14 @@
             </div>
         </div>
 
-        <f:debug>{errorlist}</f:debug>
-
         <f:form action="importPrueflinge" class="form-horizontal" method="post" enctype="multipart/form-data" >
+
+            <!-- Ausgabe welche Prüflinge nicht importiert wurden -->
+            <f:if condition="{errorlist} != ''">
+                <b>Nicht importiert, da bereits in der Datenbank vorhanden: </b><br><br>
+                {errorlist}
+                <br><br>
+            </f:if>
 
             <div class="row">
                 <div class="col-md-7">
