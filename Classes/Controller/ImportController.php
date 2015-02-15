@@ -167,7 +167,6 @@ class ImportController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControlle
         }
         fclose($csvFileForLines);
 
-        echo $numberOfLines;
         // Parsen der Datei
         $csvFile = fopen($file, "r");
         $row = 1;
@@ -175,18 +174,13 @@ class ImportController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControlle
         while (($data = fgetcsv($csvFile, 2000, ";")) !== FALSE) {
             $num = count($data);
             $row++;
-
             $pruefling = array();
-
             // Überspringen der ersten 4 Zeilen
             if ($row > 5 && $numberOfLines >= $row) {
                 for ($c = 0; $c < $num; $c++) {
-                    $temp = $data[$c];
                     array_push($pruefling, $data[$c]);
-                    echo $temp . "<br>";
                 }
             }
-
             $this->createPruefling($pruefling, $usergroup);
         }
         fclose($csvFile);
@@ -248,7 +242,6 @@ class ImportController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControlle
             // Mail an den Prüfling versenden
             $this->mailfunctions->newUserMail($newFEUser->getEmail(), $newFEUser->getUsername(), $pruefling->getNachname(), $pruefling->getVorname(), $randomPW, $absender);
         } else {
-
             if ($prueflingInfos[0] != Null || $prueflingInfos[0] != "") {
                 // Wenn Ein Matrikel-Nummer bereits vorhanden war wird diese in die Rückgabeliste gespeichert
                 $this->notImported = $this->notImported . " " . $prueflingInfos[0] . ": " . $prueflingInfos[2] . ", " . $prueflingInfos[1] . " | ";
