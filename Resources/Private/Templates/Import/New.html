@@ -52,26 +52,28 @@
                 </div>
             </div>
 
-            <div class="row">
-                <div class="col-md-12">
-                    <h1>CSV-Beispiel</h1>
-                    <p>
-                        Das hochzuladende CSV-File sollte die folgende Struktur aufweisen um einen
-                        reibungslosen Import zu gewährleisten.
-                    </p>
-                    <p>
-                        Die Spalte Mail-Adresse ist optional, sofern keine Mail-Adresse hinterlegt
-                        wird wird diese automatisch mit @htwg-konstanz.de gefüllt.
-                    </p>
-                    <p>
-                        Beim Import werden nur die Zeile zwischen 5 und N-1 berücksichtigt, alle anderen davor und danach
-                        werden ignoriert.
-                    </p>
-                    <f:if condition="{type}== 'prueflinge'">
+            <f:if condition="{type}== 'prueflinge'">
+                <div class="row">
+                    <div class="col-md-12">
+                        <h1>CSV-Beispiel</h1>
+                        <p>
+                            Das hochzuladende CSV-File sollte die folgende Struktur aufweisen um einen
+                            reibungslosen Import zu gewährleisten.
+                        </p>
+                        <p>
+                            Die Spalte Mail-Adresse ist optional, sofern keine Mail-Adresse hinterlegt
+                            wird wird diese automatisch mit @htwg-konstanz.de gefüllt.
+                        </p>
+                        <p>
+                            Beim Import werden nur die Zeile zwischen 5 und N-1 berücksichtigt, alle anderen davor und danach
+                            werden ignoriert.
+                        </p>
+
                         <img src="{f:uri.resource(path:'images/csv_example.png')}" style="width: 100%" alt="CSV-Beispiel" />
-                    </f:if>
+
+                    </div>
                 </div>
-            </div>
+            </f:if>
         </f:form>
     </div>
 </f:section>

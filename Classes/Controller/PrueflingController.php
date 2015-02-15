@@ -176,6 +176,10 @@ class PrueflingController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionContro
      */
     public function showAction() {
 
+        //Cache leeren damit View richtig angezeigt wird
+        $pageUid = $GLOBALS['TSFE']->id;
+        $this->cacheService->clearPageCache($pageUid);
+
         //Aktuellen FE-User und zugehÃ¶riges Prueflingobjekt holen
         $momentanerUserUID = $GLOBALS['TSFE']->fe_user->user['uid'];
         $alleprueflinge = $this->prueflingRepository->findAll();
@@ -203,6 +207,12 @@ class PrueflingController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionContro
                 }
             }
         }
+
+        if (count($fachPrueflingsArray) == 0) {
+            echo 'Dieser Prüfling wurde noch keinem Fach zugeordnet.';
+            exit();
+        }
+
 
         //Neuere PrÃ¼funge zuerst anzeigen
         $fachPrueflingsArray = array_reverse($fachPrueflingsArray);
@@ -260,7 +270,7 @@ class PrueflingController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionContro
         //Notevorkommnisse fÃ¼rs Javascript lesbar machen
         $notenVorkommnisseCharArrayJson = json_encode($notenVorkommnisseArray);
 
-        $this->view->assignMultiple(array('fachliste' => $fachPrueflingsArray, 'test' => $test, 'note' => $aktuelleNote, 'notenVerteilungArray' => $notenVerteilungArray, 'durchschnitt' => $durchschnitt, 'anzahlPrueflinge' => $anzahlPrueflinge, 'chartArray' => $notenVorkommnisseCharArrayJson));
+        $this->view->assignMultiple(array('fachliste' => $fachPrueflingsArray, 'note' => $aktuelleNote, 'notenVerteilungArray' => $notenVerteilungArray, 'durchschnitt' => $durchschnitt, 'anzahlPrueflinge' => $anzahlPrueflinge, 'chartArray' => $notenVorkommnisseCharArrayJson));
     }
 
     /**
