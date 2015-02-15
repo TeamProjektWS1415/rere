@@ -19,6 +19,7 @@ class ImportController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControlle
     private $userfunctions = NULL;
     private $mailfunctions = NULL;
     private $persistenceManager = NULL;
+    protected $notImported = array();
 
     /**
      * Protected Variable helper wird mit NULL initialisiert.
@@ -120,6 +121,7 @@ class ImportController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControlle
     public function importPrueflingeAction() {
         // Holt alle Usergroups
         $usergroup = $this->request->getArgument("usergroup");
+        $usergroups = $this->FrontendUserGroupRepository->findAll();
         if ($this->request->hasArgument(self::IMPORTKLEIN) && $_FILES[self::IMPORTKLEIN]['error'] == 0) {
 
             // Holt die Datei
@@ -129,14 +131,14 @@ class ImportController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControlle
             if ($ext != "csv") {
                 echo "Falsche Dateiendung";
                 $this->addFlashMessage('Falsche Dateiendung, es sind nur CSV-Dateien gültig.', '', \TYPO3\CMS\Core\Messaging\AbstractMessage::ERROR);
-                $this->view->assignMultiple(array(self::TITLE => 'Import Prüflinge', self::LABLE => 'CSV-Datei mit Prüflingen', type => $this->request->getArgument('type'), usergroups => $usergroupss));
+                $this->view->assignMultiple(array(self::TITLE => 'Import Prüflinge', self::LABLE => 'CSV-Datei mit Prüflingen', type => $this->request->getArgument('type'), usergroups => $usergroups));
             }
             $this->parseCSV($file["tmp_name"], $usergroup);
         } else {
             $this->addFlashMessage('Keine Datei gewählt', '', \TYPO3\CMS\Core\Messaging\AbstractMessage::ERROR);
         }
 
-        //$this->view->assignMultiple(array(self::TITLE => 'Import Prüflinge', self::LABLE => 'CSV-Datei mit Prüflingen', type => $this->request->getArgument('type'), usergroups => $usergroups));
+        $this->view->assignMultiple(array(self::TITLE => 'Import Prüflinge', self::LABLE => 'CSV-Datei mit Prüflingen', type => $this->request->getArgument('type'), usergroups => $usergroups, errorlist => $this->notImported));
     }
 
     /**
@@ -180,34 +182,37 @@ class ImportController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControlle
         fclose($csvFile);
     }
 
+    /**
+     * Pruefling und FEUser werden angelegt.
+     * @param type $prueflingInfos Beinhaltet den ausgelesenen Prüfling
+     * @param type $usergroupIN Usergruppe der der User zugewiesen werden soll
+     */
     protected function createPruefling($prueflingInfos, $usergroupIN) {
-        echo "<br>Mailadresse: " . $prueflingInfos[7];
+        // Erzeugen des Prüflings
         $pruefling = $this->objectManager->create('\\ReRe\\Rere\\Domain\\Model\\Pruefling');
-
         $pruefling->setVorname($prueflingInfos[2]);
         $pruefling->setNachname($prueflingInfos[1]);
         $pruefling->setMatrikelnr($prueflingInfos[0]);
 
+        // Alle Prüflinge holen
         $allPrueflinge = $this->prueflingRepository->findAll();
         $status = true;
 
+        // Prüfen die Matrikel Nummer bereits vergeben ist.
         foreach ($allPrueflinge as $p) {
             if ($p->getMatrikelnr() == $pruefling->getMatrikelnr()) {
-                echo "gibts scho";
                 $status = false;
                 break;
             }
         }
 
         // Prueft, ob diese MatrikelNr bereits vorhanden ist. Pruefling wird nur angelegt, wenn die MatrikelNr noch nicht verwendet wird!
-        if ($status && $pruefling->getMatrikelnr() != NULL) {
-
+        if ($status && $pruefling->getMatrikelnr() != NULL && $pruefling->getMatrikelnr() != "") {
+            // Prüfling persistieren
             $this->prueflingRepository->add($pruefling);
-
             $usergroup = $this->FrontendUserGroupRepository->findByUid($usergroupIN);
             // Instanz eines neuen Users
             $newFEUser = new \Typo3\CMS\Extbase\Domain\Model\FrontendUser();
-
             // Neuen TYPO3 FE_User anlegen
             $newFEUser->setUsername($this->userfunctions->genuserNAME($pruefling->getVorname(), $pruefling->getNachname()));
             // Passwort-Generierung -> Random und dann -> Salt
@@ -222,20 +227,19 @@ class ImportController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControlle
 
             // Wenn Usergroup vorhanden dann wird diese gesetzt.
             $newFEUser->addUsergroup($usergroup);
-
             $absender = $this->settingsRepository->findByUid(1)->getMailAbsender();
 
+            // FE User Persistieren und Zuwesen des FEUseres zum Pruefling
             $this->FrontendUserRepository->add($newFEUser);
             $pruefling->setTypo3FEUser($newFEUser);
-
             $this->persistenceManager->persistAll();
-
             $this->prueflingRepository->update($pruefling);
 
-
+            // Mail an den Prüfling versenden
             $this->mailfunctions->newUserMail($newFEUser->getEmail(), $newFEUser->getUsername(), $pruefling->getNachname(), $pruefling->getVorname(), $randomPW, $absender);
         } else {
-            echo 'ERROR';
+            // Wenn Ein Matrikel-Nummer bereits vorhanden war wird diese in die Rückgabeliste gespeichert
+            array_push($this->notImported, $prueflingInfos);
         }
     }
 
