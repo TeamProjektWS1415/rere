@@ -97,40 +97,59 @@ class FachControllerTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
      * @test
      */
     public function newActionAssignsTheGivenFachToView() {
-        $fach = new \ReRe\Rere\Domain\Model\Fach();
+        $newFach = new \ReRe\Rere\Domain\Model\Fach();
+        $mockModul = new \ReRe\Rere\Domain\Model\Modul();
 
         $mockRequest = $this->getMock('TYPO3\\CMS\\Extbase\\Mvc\\Request');
-        $mockRequest->expects($this->any())->method('hasArgument')->with('modul');
+        $mockRequest->expects($this->at(0))->method('hasArgument')->with('modul');
+        $mockRequest->expects($this->at(1))->method('getArgument')->with('modul');
         $this->inject($this->subject, 'request', $mockRequest);
 
-        $objectmanager = $this->getMock('TYPO3\\CMS\\Extbase\\Object\\ObjectManager', array(), array(), '', FALSE);
-        $this->inject($this->subject, 'objectManager', $objectmanager);
-        
-        $objectmanagerinterface = $this->getMock('TYPO3\\CMS\\Extbase\\Object\\ObjectManagerInterface', array(), array(), '', FALSE);
-        $this->inject($this->subject, 'objectManagerInterface', $objectmanagerinterface);
-
         $modulRepository = $this->getMock('ReRe\\Rere\\Domain\\Repository\\ModulRepository');
-        $modulRepository->expects($this->any())->method('findByUid')->with(1);
+        $modulRepository->expects($this->any())->method('findByUid')->will($this->returnValue('modul'));
         $this->inject($this->subject, 'modulRepository', $modulRepository);
 
         $view = $this->getMock(self::VIEWINTERFACE);
-        $view->expects($this->any())->method(self::ASSIGN)->with('newFach', $fach);
+        $view->expects($this->once())->method('assignMultiple')->with($this->equalTo(
+                        array('newFach' => $newFach, self::MODULUID => $mockModul->getUid(), 'modulname' => $mockModul->getModulname(), 'modulnummer' => $mockModul->getModulnr(), 'gueltigkeitszeitraum' => $mockModul->getGueltigkeitszeitraum())));
         $this->inject($this->subject, 'view', $view);
 
-        $this->subject->newAction($fach);
+        $this->subject->newAction($newFach);
     }
 
     /**
      * @test
      */
     public function createActionAddsTheGivenFachToFachRepository() {
-        $fach = new \ReRe\Rere\Domain\Model\Fach();
+        $faecher = array(
+            'fachname' => 'SOTE1',
+            'fachnummer' => '123',
+            'pruefer' => 'Johner',
+            'notenschema' => 'Schulnoten',
+            self::MODULUID => '0',
+        );
 
+        $mockRequest = $this->getMock('TYPO3\\CMS\\Extbase\\Mvc\\Request');
+        $mockRequest->expects($this->at(0))->method('hasArgument')->with(self::MODULUID);
+        $mockRequest->expects($this->at(1))->method('getArgument')->with(self::MODULUID);
+        $this->inject($this->subject, 'request', $mockRequest);
+
+        $mockFach = $this->getMock('\\ReRe\\Rere\\Domain\\Model\\Fach', array(), array(), '', FALSE);
+        $mockFach->expects($this->at(0))->method('setFachname')->with('SOTE1');
+        $mockFach->expects($this->at(1))->method('setFachnr')->with('123');
+        $mockFach->expects($this->at(2))->method('setPruefer')->with('Johner');
+        $mockFach->expects($this->at(3))->method('setNotenschema')->with('Schulnoten');
+        $mockFach->expects($this->at(4))->method('setModulnr')->with('0');
+        
+        $objectManager = $this->getMock('TYPO3\\CMS\\Extbase\\Object\\ObjectManager', array(), array(), '', FALSE);
+	$objectManager->expects($this->any())->method('get')->will($this->returnValue($mockFach));
+	$this->inject($this->subject, 'objectManager', $objectManager);
+                
         $fachRepository = $this->getMock(self::FACHREPOSITORY, array('add'), array(), '', FALSE);
-        $fachRepository->expects($this->once())->method('add')->with($fach);
+        $fachRepository->expects($this->once())->method('add')->with($faecher);
         $this->inject($this->subject, self::FACHREPO, $fachRepository);
 
-        $this->subject->createAction($fach);
+        $this->subject->createAction($faecher);
     }
 
     /**

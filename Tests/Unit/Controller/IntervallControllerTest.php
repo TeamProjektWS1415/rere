@@ -47,9 +47,9 @@ class IntervallControllerTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
      * @var \ReRe\Rere\Controller\IntervallController
      */
     protected $subject = NULL;
-
+    
     protected function setUp() {
-        $this->subject = $this->getMock('ReRe\\Rere\\Controller\\IntervallController', array('redirect', 'forward', 'addFlashMessage'), array(), '', FALSE);
+        $this->subject = $this->getMock('ReRe\\Rere\\Controller\\IntervallController', array('redirect', 'forward', 'addFlashMessage', 'redirectToUri'), array(), '', FALSE);
     }
 
     protected function tearDown() {
@@ -99,13 +99,26 @@ class IntervallControllerTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
      * @test
      */
     public function updateActionUpdatesTheGivenIntervallInIntervallRepository() {
-        $intervall = new \ReRe\Rere\Domain\Model\Intervall();
+        $mockType = $this->getMock('TYPO3\\CMS\\Extbase\\Persistence\\ObjectStorage', array(), array(), '', FALSE);
 
-        $intervallRepository = $this->getMock('ReRe\\Rere\\Domain\\Repository\\IntervallRepository', array('update'), array(), '', FALSE);
-        $intervallRepository->expects($this->once())->method('update')->with($intervall);
+        $mockIntervall = $this->getMock('TYPO3\\CMS\\Extbase\\Persistence\\ObjectStorage', array(), array(), '', FALSE);
+        $mockIntervall->expects($this->once())->method('getType')->will($this->returnValue('studienhalbjahr'));
+        $mockIntervall->expects($this->once())->method('setType')->with($mockType);
+        
+        $intervallRepository = $this->getMock('ReRe\\Rere\\Domain\\Repository\\IntervallRepository');
+        $intervallRepository->expects($this->once())->method('findByUid')->will($this->returnValue(1));
+        $intervallRepository->expects($this->once())->method('update')->with($mockIntervall);
         $this->inject($this->subject, 'intervallRepository', $intervallRepository);
+        
+        $mockRequest = $this->getMock('TYPO3\\CMS\\Extbase\\Mvc\\Request');
+        $mockRequest->expects($this->once())->method('hasArgument')->will($this->returnValue('nextIntervall'));
+        $mockRequest->expects($this->once())->method('hasArgument')->will($this->returnValue('prevIntervall'));
+        $mockRequest->expects($this->once())->method('hasArgument')->will($this->returnValue('type'));
+        $mockRequest->expects($this->once())->method('getArgument')->will($this->returnValue('type'));
+        $this->inject($this->subject, 'request', $mockRequest);
 
-        $this->subject->updateAction($intervall);
+        $this->subject->updateAction($mockIntervall);
+        $this->subject->expects($this->once())->method('redirect')->with('list', 'Modul');
     }
 
 }
