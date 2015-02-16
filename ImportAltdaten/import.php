@@ -20,6 +20,11 @@ $PID = 1; //PID of rere Extension
 $MODULNUMMER = 0; //Modulnummer for every imported Modul
 $FACH = 1; //Value for Fach
 $GUELTIGKEITSZEITRAUM = "WS14/15";
+
+//Subject Configuration
+$NOTENSYSTEM_BEI_KLAUSUR = "hochschulsystem"; //Alternatives: "15pktsystem" or "schulsystem"
+$PRÜFER = "Johner";
+$FACHNUMMER = 0;//Fachnummer for every imported Fach
 // ** </CONFIGURATION> **
 
 
@@ -77,7 +82,7 @@ for ($i = 0; $i < count($modules_Array); $i=$i+8){
 // ** Import Subjects **
 for ($i = 0; $i < count($subjects_Array); $i=$i+9){
 	$subjectUID = $subjects_Array[$i];
-	
+		
 	//search for related entry in addministration table 	
 	$subjectUID_FK = -1;
 	$linePointer = 0;
@@ -103,8 +108,7 @@ for ($i = 0; $i < count($subjects_Array); $i=$i+9){
 	if($modulNameforSubject == -1){
 		echo "Error: no modul with UID: " . $modulUIDforSubject_old . "in CSV";
 	}
-	$modulNameforSubject = "sote";
-	$sqlQuery = "SELECT uid FROM tx_rere_domain_model_modul where modulname='".$modulNameforSubject."'";
+	$sqlQuery = "SELECT uid FROM tx_rere_domain_model_modul where modulname=".$modulNameforSubject."";
 	$result  = mysqli_query($db, $sqlQuery);
 	if($result->num_rows > 1){
 		echo "Error: Same modul UID twice ";
@@ -112,7 +116,23 @@ for ($i = 0; $i < count($subjects_Array); $i=$i+9){
 	}
 	$row = $result->fetch_assoc();
 	$modulUIDforSubject_new=$row["uid"];
-	//var_dump($modulUIDforSubject_new);
+	
+	//search Notenschema for Subject
+	$gradeType_old = $administrations_Array[$linePointer+13];
+	if($gradeType_old == "'K'"){
+		$gradeType_new = $NOTENSYSTEM_BEI_KLAUSUR;
+	}
+	elseif($gradeType_old == "'S'"){
+		$gradeType_new = "unbenotet";
+	}
+	else{
+		echo"invalid Subject Grade Type " . $gradeType_old; 
+		exit();
+	}
+	
+	//Count number of grades for subject
+	
+	
 	//$sql = "INSERT INTO tx_rere_domain_model_fach (pid, fachnr, fachname, pruefer, notenschema, modulnr, note, tstamp, crdate, cruser_id, deleted, hidden) VALUES
 
 }
