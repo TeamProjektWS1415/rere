@@ -171,7 +171,9 @@ class NotenVerwaltungHelper {
         $count = 0;
         foreach ($notenliste as $result) {
             $sum += $result->getWert();
-            $count++;
+            if ($result->getWert() != 0) {
+                $count++;
+            }
         }
 
         if ($sum != 0) {
