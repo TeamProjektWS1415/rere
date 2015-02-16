@@ -104,7 +104,7 @@ function genchart(array) {
     };
     // Chart
     var ctx = document.getElementById("gradeChart").getContext("2d");
-    window.myLine = new Chart(ctx).Line(data, {
+    window.myLine = new Chart(ctx).Bar(data, {
         responsive: true,
         scaleBeginAtZero: true
     });
