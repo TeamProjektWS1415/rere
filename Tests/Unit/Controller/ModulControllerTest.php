@@ -43,13 +43,17 @@ namespace ReRe\Rere\Tests\Unit\Controller;
  */
 class ModulControllerTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
 
+    const OBJECTMANAGER = 'TYPO3\\CMS\\Extbase\\Object\\ObjectManager';
     const MODULCONTROLLER = 'ReRe\\Rere\\Controller\\ModulController';
     const MODULREPOSITORY = 'ReRe\\Rere\\Domain\\Repository\\ModulRepository';
     const INTERVALLREPOSITORY = 'ReRe\\Rere\\Domain\\Repository\\IntervallRepository';
     const SETTINGSREPOSITORY = 'ReRe\\Rere\\Domain\\Repository\\SettingsRepository';
     const MODULREPO = 'modulRepository';
+    const INTERVALLREPO = 'intervallRepository';
+    const SETTINGSREPO = 'settingsRepository';
     const VIEWINTERFACE = 'TYPO3\\CMS\\Extbase\\Mvc\\View\\ViewInterface';
     const ASSIGN = "assign";
+    const ASSIGNMULTIPLE = "assignmultiple";
 
     /**
      * @var \ReRe\Rere\Controller\ModulController
@@ -69,14 +73,43 @@ class ModulControllerTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
      */
     public function listActionFetchesAllModulsFromRepositoryAndAssignsThemToView() {
 
-        $mockModul = new \ReRe\Rere\Domain\Model\Modul();
-
+        $allModuls = $this->getMock('TYPO3\\CMS\\Extbase\\Persistence\\ObjectStorage', array(), array(), '', FALSE);
         $modulRepository = $this->getMock(self::MODULREPOSITORY, array('findAll'), array(), '', FALSE);
         $modulRepository->expects($this->once())->method('findAll')->will($this->returnValue($allModuls));
         $this->inject($this->subject, self::MODULREPO, $modulRepository);
+        
+        $mail = $this->getMock('\\ReRe\\Rere\\Domain\\Model\\Settings', array(), array(), '', FALSE);
+        $mail->expects($this->once())->method('setMailAbsender')->with("DEFAULT");
+        
+        $settingsRepository = $this->getMock(self::SETTINGSREPOSITORY, array('add'), array(), '', FALSE);
+        $settingsRepository->expects($this->once())->method('add')->will($this->returnValue($mail));
+        $this->inject($this->subject, self::SETTINGSREPO, $settingsRepository);
+
+        $createdIntervall = $this->getMock('\\ReRe\\Rere\\Domain\\Model\\Intervall', array(), array(), '', FALSE);
+        $createdIntervall->expects($this->at(0))->method('setAktuell')->with('WS14/15');
+        $createdIntervall->expects($this->at(1))->method('setType')->with('studienhalbjahr');
+        
+        $intervallRepository = $this->getMock(self::INTERVALLREPOSITORY, array('add'), array(), '', FALSE);
+        $intervallRepository->expects($this->once())->method('add')->will($this->returnValue($createdIntervall));
+        $this->inject($this->subject, self::INTERVALLREPO, $intervallRepository);
+        $this->subject->expects($this->once())->method('redirect')->with('list');
+        
+        $aktuellesIntervall= $this->getMock('\\ReRe\\Rere\\Domain\\Model\\Intervall', array(), array(), '', FALSE);
+        $aktuellesIntervall->expects($this->once())->method('getAktuell');
+        $intervallType= $this->getMock('\\ReRe\\Rere\\Domain\\Model\\Intervall', array(), array(), '', FALSE);
+        $intervallType->expects($this->once())->method('getType');
+        
+        $objectManager = $this->getMock(SELF::OBJECTMANAGER, array(), array(), '', FALSE);
+        $objectManager->expects($this->once())->method('create')->will($this->returnValue($mail));
+        $objectManager->expects($this->once())->method('create')->will($this->returnValue($createdIntervall));
+        $this->inject($this->subject, 'objectManager', $objectManager);
 
         $view = $this->getMock(self::VIEWINTERFACE);
-        $view->expects($this->once())->method(self::ASSIGN)->with('moduls', $allModuls);
+        $view->expects($this->once())->method(self::ASSIGNMULTIPLE)->with(array(
+            'intervallType' => $intervallType,
+            'aktuellintervall' => $aktuellesIntervall,
+            'moduls' => $allModuls
+        ));
         $this->inject($this->subject, 'view', $view);
 
         $this->subject->listAction();

@@ -170,7 +170,8 @@ class ModulController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
      */
     public function newAction(\ReRe\Rere\Domain\Model\Modul $newModul = NULL) {
         if ($this->request->hasArgument(self::RETURNMODUL)) {
-            $this->view->assignMultiple(array(self::MODULNAME => $this->request->getArgument(self::RETURNMODUL),
+            $this->view->assignMultiple(array(
+                self::MODULNAME => $this->request->getArgument(self::RETURNMODUL),
                 self::MODULNUMMER => $this->request->getArgument(self::MODULNUMMER),
                 self::GUELTIGKEITSZEITRAUM => $this->request->getArgument(self::GUELTIGKEITSZEITRAUM),
                 self::FACHNAME => $this->request->getArgument(self::FACHNAME),
