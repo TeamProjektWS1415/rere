@@ -78,9 +78,6 @@ class ModulControllerTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
         $modulRepository->expects($this->once())->method('findAll')->will($this->returnValue($allModuls));
         $this->inject($this->subject, self::MODULREPO, $modulRepository);
         
-        $allSettings = $this->getMock('TYPO3\\CMS\\Extbase\\Persistence\\ObjectStorage', array(), array(), '', FALSE);
-        $intervall = new \ReRe\Rere\Domain\Model\Intervall();
-        
         $mail = $this->getMock('\\ReRe\\Rere\\Domain\\Model\\Settings', array(), array(), '', FALSE);
         $mail->expects($this->once())->method('setMailAbsender')->with("DEFAULT");
         
@@ -103,8 +100,8 @@ class ModulControllerTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
         $intervallType->expects($this->once())->method('getType');
         
         $objectManager = $this->getMock(SELF::OBJECTMANAGER, array(), array(), '', FALSE);
-        $objectManager->expects($this->once())->method('create')->will($this->returnValue($intervall));
-        $objectManager->expects($this->once())->method('create')->will($this->returnValue($allSettings));
+        $objectManager->expects($this->once())->method('create')->will($this->returnValue($mail));
+        $objectManager->expects($this->once())->method('create')->will($this->returnValue($createdIntervall));
         $this->inject($this->subject, 'objectManager', $objectManager);
 
         $view = $this->getMock(self::VIEWINTERFACE);
