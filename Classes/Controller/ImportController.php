@@ -218,15 +218,23 @@ class ImportController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControlle
             // Instanz eines neuen Users
             $newFEUser = new \Typo3\CMS\Extbase\Domain\Model\FrontendUser();
             // Neuen TYPO3 FE_User anlegen
-            $newFEUser->setUsername($this->userfunctions->genuserNAME($pruefling->getVorname(), $pruefling->getNachname()));
+            $username = $this->userfunctions->genuserNAME($pruefling->getVorname(), $pruefling->getNachname());
+            $newFEUser->setUsername($username);
             // Passwort-Generierung -> Random und dann -> Salt
             $randomPW = $this->passfunctions->genpassword();
             $saltedPW = $this->passfunctions->hashPassword($randomPW);
             $newFEUser->setPassword($saltedPW);
-            $newFEUser->setNAME($randomPW);
+            $newFEUser->setNAME($pruefling->getNachname());
             $newFEUser->setFirstNAME($pruefling->getVorname());
             $newFEUser->setLastNAME($pruefling->getNachname());
-            $newFEUser->setEmail($prueflingInfos[7]);
+
+            if ($prueflingInfos[7] == "" | $prueflingInfos[7] == Null) {
+                $empfaengerMail = $$username . $this->settingsRepository->findByUid(1)->getEmpfaengerEmail();
+            } else {
+                $empfaengerMail = $prueflingInfos[7];
+            }
+
+            $newFEUser->setEmail($empfaengerMail);
             $newFEUser->setPID($usergroup->getPid());
 
             // Wenn Usergroup vorhanden dann wird diese gesetzt.

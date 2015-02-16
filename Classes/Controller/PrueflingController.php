@@ -332,7 +332,7 @@ class PrueflingController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionContro
             $randomPW = $this->passfunctions->genpassword();
             $saltedPW = $this->passfunctions->hashPassword($randomPW);
             $newFEUser->setPassword($saltedPW);
-            $newFEUser->setNAME($randomPW);
+            $newFEUser->setNAME($newPruefling->getNachname());
             $newFEUser->setFirstNAME($newPruefling->getVorname());
             $newFEUser->setLastNAME($newPruefling->getNachname());
             $newFEUser->setEmail($this->request->getArgument(self::EMAIL));
