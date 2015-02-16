@@ -102,17 +102,18 @@ class FachControllerTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
         $newFach = new \ReRe\Rere\Domain\Model\Fach();
         $mockModul = new \ReRe\Rere\Domain\Model\Modul();
 
-        $mockRequest = $this->getMock(self::REQUEST);
-        $mockRequest->expects($this->once())->method('getArgument')->with('modul');
-        $this->inject($this->subject, 'request', $mockRequest);
-
         $modulRepository = $this->getMock(self::MODULREPOSITORY, array('findByUid'), array(), '', FALSE);
-        $modulRepository->expects($this->once())->method('findByUid')->willReturn(0);
+        $modulRepository->expects($this->once())->method('findByUid')->will($this->returnValue($mockModul));
         $this->inject($this->subject, 'modulRepository', $modulRepository);
 
         $view = $this->getMock(self::VIEWINTERFACE);
-        $view->expects($this->once())->method('assignMultiple')->with(
-                array('newFach' => $newFach, self::MODULUID => $mockModul->getUid(), 'modulname' => $mockModul->getModulname(), 'modulnummer' => $mockModul->getModulnr(), 'gueltigkeitszeitraum' => $mockModul->getGueltigkeitszeitraum()));
+        $view->expects($this->once())->method('assignMultiple')->with(array(
+            'newFach' => $newFach,
+            self::MODULUID => $mockModul->getUid(),
+            'modulname' => $mockModul->getModulname(),
+            'modulnummer' => $mockModul->getModulnr(),
+            'gueltigkeitszeitraum' => $mockModul->getGueltigkeitszeitraum()
+        ));
         $this->inject($this->subject, 'view', $view);
 
         $this->subject->newAction($newFach);
