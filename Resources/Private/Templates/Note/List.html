@@ -72,7 +72,7 @@
                                 <td>
                                 <f:form.textfield type="hidden" name="fach" id="fach" value="{fach.uid}" />
                                 <f:form.textfield  type="hidden" name="modul" id="modul" value="{modul.uid}" />
-                                <f:form.textarea name="kommentar" class="form-control gettooltip sendNote" rows="1" placeholder="Kommentar" title="Kommentar zur Note" value="{note.kommentar}"/></td>
+                                <f:form.textarea name="kommentar" class="form-control gettooltip sendNote kommentar" rows="1" placeholder="Kommentar" title="Kommentar zur Note" value="{note.kommentar}"/></td>
                                 <td><f:link.action class="delete" action="delete" onclick="delentry('Wollen Sie den Pruefling mit Matrikelnummer {note.matrikelnr} wirklich aus diesem Fach loeschen? Er wird von der Prüfung abgemeldet.', $(this).attr('href'));
                                         return false;" arguments="{note : note.uid,fach:fach.uid,modul:modul.uid}"><span class="glyphicon glyphicon-remove" aria-hidden="true" data-toggle="tooltip" data-placement="bottom" title="Löscht diesen Datensatz"></span></f:link.action></td>
                             </f:form>

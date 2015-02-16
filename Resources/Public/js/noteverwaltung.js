@@ -41,6 +41,11 @@ $(document).ready(function () {
      $(this).find(".value").addClass("hidden");
      });*/
 
+    // Expand textarea -> Zum Tippen vergrößern beim Focus
+    $(".kommentar").focus(function () {
+        $(this).animate({'height': '185px'}, 'slow');//Expand the textarea on clicking on it
+        return false;
+    });
 
     // Blendet alle wieder ein
     $("#alle").click(function () {
