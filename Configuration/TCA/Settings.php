@@ -103,5 +103,14 @@ $GLOBALS['TCA']['tx_rere_domain_model_settings'] = array(
                 'eval' => 'trim'
             ),
         ),
+        'mail_empfaenger' => array(
+            'exclude' => 1,
+            'label' => 'LLL:EXT:blubb/Resources/Private/Language/locallang_db.xlf:tx_rere_domain_model_settings.mail_empfaenger',
+            'config' => array(
+                'type' => 'input',
+                'size' => 30,
+                'eval' => 'trim'
+            ),
+        ),
     ),
 );

@@ -274,6 +274,7 @@ CREATE TABLE tx_rere_domain_model_settings (
 	pid int(11) DEFAULT '0' NOT NULL,
 
 	mail_absender varchar(255) DEFAULT '' NOT NULL,
+        mail_empfaenger varchar(255) DEFAULT '' NOT NULL,
 
 	tstamp int(11) unsigned DEFAULT '0' NOT NULL,
 	crdate int(11) unsigned DEFAULT '0' NOT NULL,

@@ -40,6 +40,13 @@ class Settings extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
     protected $mailAbsender = '';
 
     /**
+     * mailEmpfaenger
+     *
+     * @var string
+     */
+    protected $mailEmpfaenger = '';
+
+    /**
      * Returns the mailAbsender
      *
      * @return string $mailAbsender
@@ -56,6 +63,25 @@ class Settings extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
      */
     public function setMailAbsender($mailAbsender) {
         $this->mailAbsender = $mailAbsender;
+    }
+
+    /**
+     * Returns the mailAbsender
+     *
+     * @return string $mailAbsender
+     */
+    public function getMailEmpfaenger() {
+        return $this->mailEmpfaenger;
+    }
+
+    /**
+     * Sets the mailAbsender
+     *
+     * @param string $mailAbsender
+     * @return void
+     */
+    public function setMailEmpfaenger($mailEmpfaenger) {
+        $this->mailEmpfaenger = $mailEmpfaenger;
     }
 
 }

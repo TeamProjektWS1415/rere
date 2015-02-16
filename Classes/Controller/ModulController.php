@@ -119,6 +119,7 @@ class ModulController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
         if ($settings == Null) {
             $mail = $this->objectManager->create('\\ReRe\\Rere\\Domain\\Model\\Settings');
             $mail->setMailAbsender("DEFAULT");
+            $mail->setMailEmpfaenger("@htwg-konstanz.de");
             $this->settingsRepository->add($mail);
         }
 

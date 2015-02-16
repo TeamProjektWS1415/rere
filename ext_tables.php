@@ -134,7 +134,7 @@ $GLOBALS['TCA']['tx_rere_domain_model_settings'] = array(
             'starttime' => 'starttime',
             'endtime' => 'endtime',
         ),
-        'searchFields' => 'mail_absender,',
+        'searchFields' => 'mail_absender,mail_empfaenger,',
         'dynamicConfigFile' => \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extPath($_EXTKEY) . 'Configuration/TCA/Settings.php',
         'iconfile' => \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extRelPath($_EXTKEY) . 'Resources/Public/Icons/tx_rere_domain_model_settings.gif'
     ),
