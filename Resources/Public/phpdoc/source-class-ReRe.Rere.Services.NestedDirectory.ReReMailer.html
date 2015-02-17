@@ -8,7 +8,7 @@
 	<title>File Services/NestedDirectory/ReReMailer.php</title>
 
 	<script type="text/javascript" src="resources/combined.js?2780970235"></script>
-	<script type="text/javascript" src="elementlist.js?3243688334"></script>
+	<script type="text/javascript" src="elementlist.js?3654880812"></script>
 	<link rel="stylesheet" type="text/css" media="all" href="resources/style.css?3505392360" />
 
 </head>
@@ -120,27 +120,25 @@
 </span></span><span id="18" class="l"><a class="l" href="#18">18: </a><span class="php-comment">     * @param type $passwort String
 </span></span><span id="19" class="l"><a class="l" href="#19">19: </a><span class="php-comment">     * @return string String
 </span></span><span id="20" class="l"><a class="l" href="#20">20: </a><span class="php-comment">     */</span>
-</span><span id="21" class="l"><a class="l" href="#21">21: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> <a id="_newUserMail" href="#_newUserMail">newUserMail</a>(<span class="php-var">$empfaenger</span>, <span class="php-var">$username</span>, <span class="php-var">$name</span>, <span class="php-var">$vorname</span>, <span class="php-var">$passwort</span>) {
+</span><span id="21" class="l"><a class="l" href="#21">21: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> <a id="_newUserMail" href="#_newUserMail">newUserMail</a>(<span class="php-var">$empfaenger</span>, <span class="php-var">$username</span>, <span class="php-var">$name</span>, <span class="php-var">$vorname</span>, <span class="php-var">$passwort</span>, <span class="php-var">$absender</span>) {
 </span><span id="22" class="l"><a class="l" href="#22">22: </a>
-</span><span id="23" class="l"><a class="l" href="#23">23: </a>        <span class="php-comment">// Zusammensetzen der Nachricht</span>
-</span><span id="24" class="l"><a class="l" href="#24">24: </a>        <span class="php-var">$body</span> = <span class="php-quote">&quot;Hallo &quot;</span> . <span class="php-var">$name</span> . <span class="php-quote">&quot; &quot;</span> . <span class="php-var">$vorname</span> . <span class="php-quote">&quot;, für Sie wurde ein Nutzer für das Result Repository angelegt. Ihr Benutzername lautet: &quot;</span> . <span class="php-var">$username</span> . <span class="php-quote">&quot; und dein Passwort lautet: &quot;</span> . <span class="php-var">$passwort</span>;
-</span><span id="25" class="l"><a class="l" href="#25">25: </a>
-</span><span id="26" class="l"><a class="l" href="#26">26: </a>        <span class="php-comment">// Verschicken der Nachricht</span>
-</span><span id="27" class="l"><a class="l" href="#27">27: </a>        <span class="php-var">$message</span> = (<span class="php-keyword1">new</span> \TYPO3\CMS\Core\<span class="php-keyword2">Mail</span>\MailMessage())
-</span><span id="28" class="l"><a class="l" href="#28">28: </a>                -&gt;setFrom(<span class="php-keyword1">array</span>(<span class="php-quote">'ab@send.er'</span> =&gt; <span class="php-quote">'Result Repository'</span>))
-</span><span id="29" class="l"><a class="l" href="#29">29: </a>                -&gt;setTo(<span class="php-keyword1">array</span>(<span class="php-var">$empfaenger</span> =&gt; <span class="php-var">$name</span>))
-</span><span id="30" class="l"><a class="l" href="#30">30: </a>                -&gt;setBody(<span class="php-var">$body</span>);
-</span><span id="31" class="l"><a class="l" href="#31">31: </a>        <span class="php-var">$message</span>-&gt;send();
-</span><span id="32" class="l"><a class="l" href="#32">32: </a>        <span class="php-comment">// Rückmeldung im Backend, ob eine E-Mail verschickt wurde oder nicht.</span>
-</span><span id="33" class="l"><a class="l" href="#33">33: </a>        <span class="php-keyword1">if</span> (<span class="php-var">$message</span>-&gt;isSent()) {
-</span><span id="34" class="l"><a class="l" href="#34">34: </a>            <span class="php-keyword1">return</span> <span class="php-quote">'Mail erfolgreich versandt'</span>;
-</span><span id="35" class="l"><a class="l" href="#35">35: </a>        } <span class="php-keyword1">else</span> {
-</span><span id="36" class="l"><a class="l" href="#36">36: </a>            <span class="php-keyword1">return</span> <span class="php-quote">'Die Mail wurde nicht versandt.'</span>;
-</span><span id="37" class="l"><a class="l" href="#37">37: </a>        }
-</span><span id="38" class="l"><a class="l" href="#38">38: </a>    }
-</span><span id="39" class="l"><a class="l" href="#39">39: </a>
-</span><span id="40" class="l"><a class="l" href="#40">40: </a>}
-</span><span id="41" class="l"><a class="l" href="#41">41: </a></span></code></pre>
+</span><span id="23" class="l"><a class="l" href="#23">23: </a>        <span class="php-comment">// Verschicken der Nachricht</span>
+</span><span id="24" class="l"><a class="l" href="#24">24: </a>        <span class="php-var">$message</span> = (<span class="php-keyword1">new</span> \TYPO3\CMS\Core\<span class="php-keyword2">Mail</span>\MailMessage())
+</span><span id="25" class="l"><a class="l" href="#25">25: </a>                -&gt;setFrom(<span class="php-keyword1">array</span>(<span class="php-var">$absender</span> =&gt; <span class="php-quote">'Result Repository'</span>))
+</span><span id="26" class="l"><a class="l" href="#26">26: </a>                -&gt;setTo(<span class="php-keyword1">array</span>(<span class="php-var">$empfaenger</span> =&gt; <span class="php-var">$name</span>))
+</span><span id="27" class="l"><a class="l" href="#27">27: </a>                -&gt;setSubject(<span class="php-quote">&quot;Ihr Result Repository Nutzer.&quot;</span>)
+</span><span id="28" class="l"><a class="l" href="#28">28: </a>                -&gt;setBody(<span class="php-quote">'&lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body&gt;&lt;p&gt;Hallo '</span> . <span class="php-var">$name</span> . <span class="php-quote">' '</span> . <span class="php-var">$vorname</span> . <span class="php-quote">', für Sie wurde ein Nutzer für das Result Repository angelegt.&lt;/p&gt;&lt;br&gt;&lt;br&gt; &lt;b&gt;Username:&lt;/b&gt; '</span> . <span class="php-var">$username</span> . <span class="php-quote">'&lt;br&gt; &lt;b&gt;Passwort:&lt;/b&gt; '</span> . <span class="php-var">$passwort</span> . <span class="php-quote">'&lt;/body&gt;&lt;/html&gt;'</span>, <span class="php-quote">'text/html'</span>);
+</span><span id="29" class="l"><a class="l" href="#29">29: </a>        <span class="php-var">$message</span>-&gt;send();
+</span><span id="30" class="l"><a class="l" href="#30">30: </a>        <span class="php-comment">// Rückmeldung im Backend, ob eine E-Mail verschickt wurde oder nicht.</span>
+</span><span id="31" class="l"><a class="l" href="#31">31: </a>        <span class="php-keyword1">if</span> (<span class="php-var">$message</span>-&gt;isSent()) {
+</span><span id="32" class="l"><a class="l" href="#32">32: </a>            <span class="php-keyword1">return</span> <span class="php-quote">'Mail erfolgreich versandt'</span>;
+</span><span id="33" class="l"><a class="l" href="#33">33: </a>        } <span class="php-keyword1">else</span> {
+</span><span id="34" class="l"><a class="l" href="#34">34: </a>            <span class="php-keyword1">return</span> <span class="php-quote">'Die Mail wurde nicht versandt.'</span>;
+</span><span id="35" class="l"><a class="l" href="#35">35: </a>        }
+</span><span id="36" class="l"><a class="l" href="#36">36: </a>    }
+</span><span id="37" class="l"><a class="l" href="#37">37: </a>
+</span><span id="38" class="l"><a class="l" href="#38">38: </a>}
+</span><span id="39" class="l"><a class="l" href="#39">39: </a></span></code></pre>
 
 	<div id="footer">
 		 API documentation generated by <a href="http://apigen.org">ApiGen 2.8.0</a>

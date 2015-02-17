@@ -4,7 +4,7 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<meta name="generator" content="ApiGen 2.8.0" />
 
-	<title>Class ReRe\Rere\Controller\IntervallController</title>
+	<title>Class ReRe\Rere\Controller\SettingsController</title>
 
 	<script type="text/javascript" src="resources/combined.js?2780970235"></script>
 	<script type="text/javascript" src="elementlist.js?3654880812"></script>
@@ -53,11 +53,11 @@
 				<li><a href="class-ReRe.Rere.Controller.ExportController.html">ExportController</a></li>
 				<li><a href="class-ReRe.Rere.Controller.FachController.html">FachController</a></li>
 				<li><a href="class-ReRe.Rere.Controller.ImportController.html">ImportController</a></li>
-				<li class="active"><a href="class-ReRe.Rere.Controller.IntervallController.html">IntervallController</a></li>
+				<li><a href="class-ReRe.Rere.Controller.IntervallController.html">IntervallController</a></li>
 				<li><a href="class-ReRe.Rere.Controller.ModulController.html">ModulController</a></li>
 				<li><a href="class-ReRe.Rere.Controller.NoteController.html">NoteController</a></li>
 				<li><a href="class-ReRe.Rere.Controller.PrueflingController.html">PrueflingController</a></li>
-				<li><a href="class-ReRe.Rere.Controller.SettingsController.html">SettingsController</a></li>
+				<li class="active"><a href="class-ReRe.Rere.Controller.SettingsController.html">SettingsController</a></li>
 			</ul>
 
 
@@ -100,13 +100,12 @@
 	</div>
 
 <div id="content" class="class">
-	<h1>Class IntervallController</h1>
+	<h1>Class SettingsController</h1>
 
 
 	<div class="description">
 	
-<p>Die Klasse IntervallCOntroller stellt die Methoden zur Navigation zwischen
-den Intervallen zur Verfügung.</p>
+<p>SettingsController</p>
 
 	</div>
 
@@ -118,7 +117,7 @@ TYPO3\CMS\Extbase\Mvc\Controller\ActionController
 		</dd>
 		<dd style="padding-left:30px">
 			<img src="resources/inherit.png" alt="Extended by" />
-<b><span>ReRe\Rere\Controller\IntervallController</span></b>			
+<b><span>ReRe\Rere\Controller\SettingsController</span></b>			
 			
 			
 		</dd>
@@ -137,7 +136,7 @@ TYPO3\CMS\Extbase\Mvc\Controller\ActionController
 		<b>Namespace:</b> <a href="namespace-ReRe.html">ReRe</a>\<a href="namespace-ReRe.Rere.html">Rere</a>\<a href="namespace-ReRe.Rere.Controller.html">Controller</a><br />
 		
 
-		<b>Located at</b> <a href="source-class-ReRe.Rere.Controller.IntervallController.html#30-113" title="Go to source code">Controller/IntervallController.php</a><br />
+		<b>Located at</b> <a href="source-class-ReRe.Rere.Controller.SettingsController.html#30-65" title="Go to source code">Controller/SettingsController.php</a><br />
 	</div>
 
 
@@ -155,33 +154,26 @@ TYPO3\CMS\Extbase\Mvc\Controller\ActionController
 
 		<td class="name"><div>
 		<a class="anchor" href="#_editAction">#</a>
-		<code><a href="source-class-ReRe.Rere.Controller.IntervallController.html#43-53" title="Go to source code">editAction</a>( <span><code><a href="class-ReRe.Rere.Domain.Model.Intervall.html">ReRe\Rere\Domain\Model\Intervall</a></code> <var>$intervall</var></span> )</code>
+		<code><a href="source-class-ReRe.Rere.Controller.SettingsController.html#43-52" title="Go to source code">editAction</a>( )</code>
 
 		<div class="description short">
 			
-<p>Diese Methode dient dem Editieren des Intervalls. Sie wird in der aktuellen
-Version jedoch nicht verwendet.</p>
+<p>action edit</p>
 
 		</div>
 
 		<div class="description detailed hidden">
 			
-<p>Diese Methode dient dem Editieren des Intervalls. Sie wird in der aktuellen
-Version jedoch nicht verwendet.</p>
+<p>action edit</p>
 
 
 
-				<h4>Parameters</h4>
-				<div class="list"><dl>
-					<dt><var>$intervall</var></dt>
-					<dd><code><code><a href="class-ReRe.Rere.Domain.Model.Intervall.html">ReRe\Rere\Domain\Model\Intervall</a></code></code><br>$intervall</dd>
-				</dl></div>
 
 
 
 				<h4>Ignorevalidation</h4>
 				<div class="list">
-						$intervall<br />
+						$settings<br />
 				</div>
 
 
@@ -199,107 +191,24 @@ Version jedoch nicht verwendet.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_updateAction">#</a>
-		<code><a href="source-class-ReRe.Rere.Controller.IntervallController.html#55-89" title="Go to source code">updateAction</a>( )</code>
+		<code><a href="source-class-ReRe.Rere.Controller.SettingsController.html#54-63" title="Go to source code">updateAction</a>( <span><code><a href="class-ReRe.Rere.Domain.Model.Settings.html">ReRe\Rere\Domain\Model\Settings</a></code> <var>$settings</var></span> )</code>
 
 		<div class="description short">
 			
-<p>Diese Methode setzt je nach ausgewählter Richtung das vorherige bzw. das
-nächste Intervall als aktuell angezeigtes Intervall. Dabei wird nach dem Typ
-(Studienhalbjahr oder Schulhabljahr) unterschieden.</p>
+<p>action update</p>
 
 		</div>
 
 		<div class="description detailed hidden">
 			
-<p>Diese Methode setzt je nach ausgewählter Richtung das vorherige bzw. das
-nächste Intervall als aktuell angezeigtes Intervall. Dabei wird nach dem Typ
-(Studienhalbjahr oder Schulhabljahr) unterschieden.</p>
-
-
-
-
-
-
-
-
-		</div>
-		</div></td>
-	</tr>
-	<tr data-order="newAction" id="_newAction">
-
-		<td class="attributes"><code>
-			 public 
-			
-			
-			</code>
-		</td>
-
-		<td class="name"><div>
-		<a class="anchor" href="#_newAction">#</a>
-		<code><a href="source-class-ReRe.Rere.Controller.IntervallController.html#91-100" title="Go to source code">newAction</a>( <span><code><a href="class-ReRe.Rere.Domain.Model.Intervall.html">ReRe\Rere\Domain\Model\Intervall</a></code> <var>$newIntervall</var> = <span class="php-keyword1">NULL</span></span> )</code>
-
-		<div class="description short">
-			
-<p>Diese Methode zum Erzeugen eines neuen Intervalls wird momentan nicht
-verwendet.</p>
-
-		</div>
-
-		<div class="description detailed hidden">
-			
-<p>Diese Methode zum Erzeugen eines neuen Intervalls wird momentan nicht
-verwendet.</p>
+<p>action update</p>
 
 
 
 				<h4>Parameters</h4>
 				<div class="list"><dl>
-					<dt><var>$newIntervall</var></dt>
-					<dd><code><code><a href="class-ReRe.Rere.Domain.Model.Intervall.html">ReRe\Rere\Domain\Model\Intervall</a></code></code><br>$newIntervall</dd>
-				</dl></div>
-
-
-
-				<h4>Ignorevalidation</h4>
-				<div class="list">
-						$newIntervall<br />
-				</div>
-
-
-		</div>
-		</div></td>
-	</tr>
-	<tr data-order="createAction" id="_createAction">
-
-		<td class="attributes"><code>
-			 public 
-			
-			
-			</code>
-		</td>
-
-		<td class="name"><div>
-		<a class="anchor" href="#_createAction">#</a>
-		<code><a href="source-class-ReRe.Rere.Controller.IntervallController.html#102-111" title="Go to source code">createAction</a>( <span><code><a href="class-ReRe.Rere.Domain.Model.Intervall.html">ReRe\Rere\Domain\Model\Intervall</a></code> <var>$newIntervall</var></span> )</code>
-
-		<div class="description short">
-			
-<p>Diese Methode dient dem Hinzufügen eines neuen Intervalls zum
-Reposotory.</p>
-
-		</div>
-
-		<div class="description detailed hidden">
-			
-<p>Diese Methode dient dem Hinzufügen eines neuen Intervalls zum
-Reposotory.</p>
-
-
-
-				<h4>Parameters</h4>
-				<div class="list"><dl>
-					<dt><var>$newIntervall</var></dt>
-					<dd><code><code><a href="class-ReRe.Rere.Domain.Model.Intervall.html">ReRe\Rere\Domain\Model\Intervall</a></code></code><br>$newIntervall</dd>
+					<dt><var>$settings</var></dt>
+					<dd><code><code><a href="class-ReRe.Rere.Domain.Model.Settings.html">ReRe\Rere\Domain\Model\Settings</a></code></code><br>$settings</dd>
 				</dl></div>
 
 
@@ -324,28 +233,28 @@ Reposotory.</p>
 
 	<table class="summary" id="properties">
 	<caption>Properties summary</caption>
-	<tr data-order="intervallRepository" id="$intervallRepository">
+	<tr data-order="settingsRepository" id="$settingsRepository">
 		<td class="attributes"><code>
 			protected  
-			<code><a href="class-ReRe.Rere.Domain.Repository.IntervallRepository.html">ReRe\Rere\Domain\Repository\IntervallRepository</a></code>
+			<code><a href="class-ReRe.Rere.Domain.Repository.SettingsRepository.html">ReRe\Rere\Domain\Repository\SettingsRepository</a></code>
 		</code></td>
 
 		<td class="name">
-				<a href="source-class-ReRe.Rere.Controller.IntervallController.html#35-41" title="Go to source code"><var>$intervallRepository</var></a>
+				<a href="source-class-ReRe.Rere.Controller.SettingsController.html#35-41" title="Go to source code"><var>$settingsRepository</var></a>
 		</td>
 		<td class="value"><code><span class="php-keyword1">NULL</span></code></td>
 		<td class="description"><div>
-			<a href="#$intervallRepository" class="anchor">#</a>
+			<a href="#$settingsRepository" class="anchor">#</a>
 
 			<div class="description short">
 				
-<p>Protected Variable intervallRepository wird mit NULL initialisiert.</p>
+<p>settingsRepository</p>
 
 			</div>
 
 			<div class="description detailed hidden">
 				
-<p>Protected Variable intervallRepository wird mit NULL initialisiert.</p>
+<p>settingsRepository</p>
 
 
 					<h4>Inject</h4>

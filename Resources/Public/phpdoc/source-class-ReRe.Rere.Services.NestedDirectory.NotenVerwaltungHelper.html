@@ -8,7 +8,7 @@
 	<title>File Services/NestedDirectory/NotenVerwaltungHelper.php</title>
 
 	<script type="text/javascript" src="resources/combined.js?2780970235"></script>
-	<script type="text/javascript" src="elementlist.js?3243688334"></script>
+	<script type="text/javascript" src="elementlist.js?3654880812"></script>
 	<link rel="stylesheet" type="text/css" media="all" href="resources/style.css?3505392360" />
 
 </head>
@@ -224,13 +224,13 @@
 </span><span id="122" class="l"><a class="l" href="#122">122: </a>
 </span><span id="123" class="l"><a class="l" href="#123">123: </a>        <span class="php-comment">// Wandelt das Array in ein Json Array und gibt dieses zurück.</span>
 </span><span id="124" class="l"><a class="l" href="#124">124: </a>        <span class="php-keyword1">if</span> (<span class="php-var">$typ</span> == <span class="php-quote">&quot;hochschulsystem&quot;</span>) {
-</span><span id="125" class="l"><a class="l" href="#125">125: </a>            <span class="php-var">$returnArray</span> = <span class="php-keyword2">json_encode</span>(<span class="php-var">$this</span>-&gt;resultArray);
+</span><span id="125" class="l"><a class="l" href="#125">125: </a>            <span class="php-var">$returnArray</span> = <span class="php-var">$this</span>-&gt;resultArray;
 </span><span id="126" class="l"><a class="l" href="#126">126: </a>        } <span class="php-keyword1">elseif</span> (<span class="php-var">$typ</span> == <span class="php-quote">&quot;15pktsystem&quot;</span>) {
-</span><span id="127" class="l"><a class="l" href="#127">127: </a>            <span class="php-var">$returnArray</span> = <span class="php-keyword2">json_encode</span>(<span class="php-var">$this</span>-&gt;fifteenMarks);
+</span><span id="127" class="l"><a class="l" href="#127">127: </a>            <span class="php-var">$returnArray</span> = <span class="php-var">$this</span>-&gt;fifteenMarks;
 </span><span id="128" class="l"><a class="l" href="#128">128: </a>        } <span class="php-keyword1">elseif</span> (<span class="php-var">$typ</span> == <span class="php-quote">&quot;schulsystem&quot;</span>) {
-</span><span id="129" class="l"><a class="l" href="#129">129: </a>            <span class="php-var">$returnArray</span> = <span class="php-keyword2">json_encode</span>(<span class="php-var">$this</span>-&gt;schoolMarks);
+</span><span id="129" class="l"><a class="l" href="#129">129: </a>            <span class="php-var">$returnArray</span> = <span class="php-var">$this</span>-&gt;schoolMarks;
 </span><span id="130" class="l"><a class="l" href="#130">130: </a>        } <span class="php-keyword1">else</span> {
-</span><span id="131" class="l"><a class="l" href="#131">131: </a>            <span class="php-var">$returnArray</span> = <span class="php-keyword2">json_encode</span>(<span class="php-var">$this</span>-&gt;unbenotetMarks);
+</span><span id="131" class="l"><a class="l" href="#131">131: </a>            <span class="php-var">$returnArray</span> = <span class="php-var">$this</span>-&gt;unbenotetMarks;
 </span><span id="132" class="l"><a class="l" href="#132">132: </a>        }
 </span><span id="133" class="l"><a class="l" href="#133">133: </a>
 </span><span id="134" class="l"><a class="l" href="#134">134: </a>        <span class="php-keyword1">return</span> <span class="php-var">$returnArray</span>;
@@ -273,35 +273,36 @@
 </span><span id="171" class="l"><a class="l" href="#171">171: </a>        <span class="php-var">$count</span> = <span class="php-num">0</span>;
 </span><span id="172" class="l"><a class="l" href="#172">172: </a>        <span class="php-keyword1">foreach</span> (<span class="php-var">$notenliste</span> <span class="php-keyword1">as</span> <span class="php-var">$result</span>) {
 </span><span id="173" class="l"><a class="l" href="#173">173: </a>            <span class="php-var">$sum</span> += <span class="php-var">$result</span>-&gt;getWert();
-</span><span id="174" class="l"><a class="l" href="#174">174: </a>            <span class="php-var">$count</span>++;
-</span><span id="175" class="l"><a class="l" href="#175">175: </a>        }
-</span><span id="176" class="l"><a class="l" href="#176">176: </a>
-</span><span id="177" class="l"><a class="l" href="#177">177: </a>        <span class="php-keyword1">if</span> (<span class="php-var">$sum</span> != <span class="php-num">0</span>) {
-</span><span id="178" class="l"><a class="l" href="#178">178: </a>            <span class="php-var">$erg</span> = <span class="php-var">$sum</span> / <span class="php-var">$count</span>;
-</span><span id="179" class="l"><a class="l" href="#179">179: </a>        } <span class="php-keyword1">else</span> {
-</span><span id="180" class="l"><a class="l" href="#180">180: </a>            <span class="php-var">$erg</span> = <span class="php-num">0</span>;
-</span><span id="181" class="l"><a class="l" href="#181">181: </a>        }
-</span><span id="182" class="l"><a class="l" href="#182">182: </a>
-</span><span id="183" class="l"><a class="l" href="#183">183: </a>        <span class="php-keyword1">return</span> <span class="php-var">$erg</span>;
-</span><span id="184" class="l"><a class="l" href="#184">184: </a>    }
-</span><span id="185" class="l"><a class="l" href="#185">185: </a>
-</span><span id="186" class="l"><a class="l" href="#186">186: </a>    <span class="php-comment">/**
-</span></span><span id="187" class="l"><a class="l" href="#187">187: </a><span class="php-comment">     * Funktion zum Prüfen ob für einen Wert bereits eine Note gesetzt wurde.
-</span></span><span id="188" class="l"><a class="l" href="#188">188: </a><span class="php-comment">     * @param type $notenliste
-</span></span><span id="189" class="l"><a class="l" href="#189">189: </a><span class="php-comment">     * @return int Anzahl der gesetzten
-</span></span><span id="190" class="l"><a class="l" href="#190">190: </a><span class="php-comment">     */</span>
-</span><span id="191" class="l"><a class="l" href="#191">191: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> <a id="_checkIfWertisSet" href="#_checkIfWertisSet">checkIfWertisSet</a>(<span class="php-var">$notenliste</span>) {
-</span><span id="192" class="l"><a class="l" href="#192">192: </a>        <span class="php-var">$count</span> = <span class="php-num">0</span>;
-</span><span id="193" class="l"><a class="l" href="#193">193: </a>        <span class="php-keyword1">foreach</span> (<span class="php-var">$notenliste</span> <span class="php-keyword1">as</span> <span class="php-var">$result</span>) {
-</span><span id="194" class="l"><a class="l" href="#194">194: </a>            <span class="php-keyword1">if</span> (<span class="php-var">$result</span>-&gt;getWert() != <span class="php-num">0</span>) {
-</span><span id="195" class="l"><a class="l" href="#195">195: </a>                <span class="php-var">$count</span>++;
-</span><span id="196" class="l"><a class="l" href="#196">196: </a>            }
-</span><span id="197" class="l"><a class="l" href="#197">197: </a>        }
-</span><span id="198" class="l"><a class="l" href="#198">198: </a>        <span class="php-keyword1">return</span> <span class="php-var">$count</span>;
-</span><span id="199" class="l"><a class="l" href="#199">199: </a>    }
-</span><span id="200" class="l"><a class="l" href="#200">200: </a>
-</span><span id="201" class="l"><a class="l" href="#201">201: </a>}
-</span><span id="202" class="l"><a class="l" href="#202">202: </a></span></code></pre>
+</span><span id="174" class="l"><a class="l" href="#174">174: </a>            <span class="php-keyword1">if</span> (<span class="php-var">$result</span>-&gt;getWert() != <span class="php-num">0</span>) {
+</span><span id="175" class="l"><a class="l" href="#175">175: </a>                <span class="php-var">$count</span>++;
+</span><span id="176" class="l"><a class="l" href="#176">176: </a>            }
+</span><span id="177" class="l"><a class="l" href="#177">177: </a>        }
+</span><span id="178" class="l"><a class="l" href="#178">178: </a>
+</span><span id="179" class="l"><a class="l" href="#179">179: </a>        <span class="php-keyword1">if</span> (<span class="php-var">$sum</span> != <span class="php-num">0</span>) {
+</span><span id="180" class="l"><a class="l" href="#180">180: </a>            <span class="php-var">$erg</span> = <span class="php-var">$sum</span> / <span class="php-var">$count</span>;
+</span><span id="181" class="l"><a class="l" href="#181">181: </a>        } <span class="php-keyword1">else</span> {
+</span><span id="182" class="l"><a class="l" href="#182">182: </a>            <span class="php-var">$erg</span> = <span class="php-num">0</span>;
+</span><span id="183" class="l"><a class="l" href="#183">183: </a>        }
+</span><span id="184" class="l"><a class="l" href="#184">184: </a>        <span class="php-keyword1">return</span> <span class="php-keyword2">round</span>(<span class="php-var">$erg</span>, <span class="php-num">2</span>);
+</span><span id="185" class="l"><a class="l" href="#185">185: </a>    }
+</span><span id="186" class="l"><a class="l" href="#186">186: </a>
+</span><span id="187" class="l"><a class="l" href="#187">187: </a>    <span class="php-comment">/**
+</span></span><span id="188" class="l"><a class="l" href="#188">188: </a><span class="php-comment">     * Funktion zum Prüfen ob für einen Wert bereits eine Note gesetzt wurde.
+</span></span><span id="189" class="l"><a class="l" href="#189">189: </a><span class="php-comment">     * @param type $notenliste
+</span></span><span id="190" class="l"><a class="l" href="#190">190: </a><span class="php-comment">     * @return int Anzahl der gesetzten
+</span></span><span id="191" class="l"><a class="l" href="#191">191: </a><span class="php-comment">     */</span>
+</span><span id="192" class="l"><a class="l" href="#192">192: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> <a id="_checkIfWertisSet" href="#_checkIfWertisSet">checkIfWertisSet</a>(<span class="php-var">$notenliste</span>) {
+</span><span id="193" class="l"><a class="l" href="#193">193: </a>        <span class="php-var">$count</span> = <span class="php-num">0</span>;
+</span><span id="194" class="l"><a class="l" href="#194">194: </a>        <span class="php-keyword1">foreach</span> (<span class="php-var">$notenliste</span> <span class="php-keyword1">as</span> <span class="php-var">$result</span>) {
+</span><span id="195" class="l"><a class="l" href="#195">195: </a>            <span class="php-keyword1">if</span> (<span class="php-var">$result</span>-&gt;getWert() != <span class="php-num">0</span>) {
+</span><span id="196" class="l"><a class="l" href="#196">196: </a>                <span class="php-var">$count</span>++;
+</span><span id="197" class="l"><a class="l" href="#197">197: </a>            }
+</span><span id="198" class="l"><a class="l" href="#198">198: </a>        }
+</span><span id="199" class="l"><a class="l" href="#199">199: </a>        <span class="php-keyword1">return</span> <span class="php-var">$count</span>;
+</span><span id="200" class="l"><a class="l" href="#200">200: </a>    }
+</span><span id="201" class="l"><a class="l" href="#201">201: </a>
+</span><span id="202" class="l"><a class="l" href="#202">202: </a>}
+</span><span id="203" class="l"><a class="l" href="#203">203: </a></span></code></pre>
 
 	<div id="footer">
 		 API documentation generated by <a href="http://apigen.org">ApiGen 2.8.0</a>

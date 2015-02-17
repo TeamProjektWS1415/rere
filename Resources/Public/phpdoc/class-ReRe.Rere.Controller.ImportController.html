@@ -7,7 +7,7 @@
 	<title>Class ReRe\Rere\Controller\ImportController</title>
 
 	<script type="text/javascript" src="resources/combined.js?2780970235"></script>
-	<script type="text/javascript" src="elementlist.js?3243688334"></script>
+	<script type="text/javascript" src="elementlist.js?3654880812"></script>
 	<link rel="stylesheet" type="text/css" media="all" href="resources/style.css?3505392360" />
 
 </head>
@@ -57,6 +57,7 @@
 				<li><a href="class-ReRe.Rere.Controller.ModulController.html">ModulController</a></li>
 				<li><a href="class-ReRe.Rere.Controller.NoteController.html">NoteController</a></li>
 				<li><a href="class-ReRe.Rere.Controller.PrueflingController.html">PrueflingController</a></li>
+				<li><a href="class-ReRe.Rere.Controller.SettingsController.html">SettingsController</a></li>
 			</ul>
 
 
@@ -137,13 +138,48 @@ TYPO3\CMS\Extbase\Mvc\Controller\ActionController
 
 				<b>Author:</b>
 				Felix<br />
-		<b>Located at</b> <a href="source-class-ReRe.Rere.Controller.ImportController.html#5-84" title="Go to source code">Controller/ImportController.php</a><br />
+		<b>Located at</b> <a href="source-class-ReRe.Rere.Controller.ImportController.html#5-259" title="Go to source code">Controller/ImportController.php</a><br />
 	</div>
 
 
 
 	<table class="summary" id="methods">
 	<caption>Methods summary</caption>
+	<tr data-order="__construct" id="___construct">
+
+		<td class="attributes"><code>
+			 public 
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#___construct">#</a>
+		<code><a href="source-class-ReRe.Rere.Controller.ImportController.html#89-97" title="Go to source code">__construct</a>( )</code>
+
+		<div class="description short">
+			
+<p>Im Konstruktor des ImportControllers werden Instanzen der Helper-Functions
+erzeugt.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Im Konstruktor des ImportControllers werden Instanzen der Helper-Functions
+erzeugt.</p>
+
+
+
+
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
 	<tr data-order="newAction" id="_newAction">
 
 		<td class="attributes"><code>
@@ -155,7 +191,7 @@ TYPO3\CMS\Extbase\Mvc\Controller\ActionController
 
 		<td class="name"><div>
 		<a class="anchor" href="#_newAction">#</a>
-		<code><a href="source-class-ReRe.Rere.Controller.ImportController.html#49-68" title="Go to source code">newAction</a>( )</code>
+		<code><a href="source-class-ReRe.Rere.Controller.ImportController.html#99-123" title="Go to source code">newAction</a>( )</code>
 
 		<div class="description short">
 			
@@ -188,14 +224,18 @@ TYPO3\CMS\Extbase\Mvc\Controller\ActionController
 
 		<td class="name"><div>
 		<a class="anchor" href="#_importPrueflingeAction">#</a>
-		<code><a href="source-class-ReRe.Rere.Controller.ImportController.html#70-75" title="Go to source code">importPrueflingeAction</a>( )</code>
+		<code><a href="source-class-ReRe.Rere.Controller.ImportController.html#125-147" title="Go to source code">importPrueflingeAction</a>( )</code>
 
 		<div class="description short">
 			
+<p>This method imports Students oder Schoolmates from an CSV file.</p>
+
 		</div>
 
 		<div class="description detailed hidden">
 			
+<p>This method imports Students oder Schoolmates from an CSV file.</p>
+
 
 
 
@@ -217,7 +257,7 @@ TYPO3\CMS\Extbase\Mvc\Controller\ActionController
 
 		<td class="name"><div>
 		<a class="anchor" href="#_importBackupAction">#</a>
-		<code><a href="source-class-ReRe.Rere.Controller.ImportController.html#77-82" title="Go to source code">importBackupAction</a>( )</code>
+		<code><a href="source-class-ReRe.Rere.Controller.ImportController.html#149-154" title="Go to source code">importBackupAction</a>( )</code>
 
 		<div class="description short">
 			
@@ -227,6 +267,86 @@ TYPO3\CMS\Extbase\Mvc\Controller\ActionController
 			
 
 
+
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="parseCSV" id="_parseCSV">
+
+		<td class="attributes"><code>
+			 protected 
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_parseCSV">#</a>
+		<code><a href="source-class-ReRe.Rere.Controller.ImportController.html#156-186" title="Go to source code">parseCSV</a>( <span>type <var>$file</var></span>, <span>mixed <var>$usergroup</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Parst eine CSV Datei.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Parst eine CSV Datei.</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$file</var></dt>
+					<dd><code>type</code><br>$file</dd>
+					<dt><var>$usergroup</var></dt>
+					<dd></dd>
+				</dl></div>
+
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="createPruefling" id="_createPruefling">
+
+		<td class="attributes"><code>
+			 protected 
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_createPruefling">#</a>
+		<code><a href="source-class-ReRe.Rere.Controller.ImportController.html#188-257" title="Go to source code">createPruefling</a>( <span>type <var>$prueflingInfos</var></span>, <span>type <var>$usergroupIN</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Pruefling und FEUser werden angelegt.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Pruefling und FEUser werden angelegt.</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$prueflingInfos</var></dt>
+					<dd><code>type</code><br>$prueflingInfos Beinhaltet den ausgelesenen Prüfling</dd>
+					<dt><var>$usergroupIN</var></dt>
+					<dd><code>type</code><br>$usergroupIN Usergruppe der der User zugewiesen werden soll</dd>
+				</dl></div>
 
 
 
@@ -292,9 +412,49 @@ TYPO3\CMS\Extbase\Mvc\Controller\ActionController
 		<td class="name"><code>
 				<a href="source-class-ReRe.Rere.Controller.ImportController.html#15" title="Go to source code"><b>IMPORT</b></a>
 		</code></td>
-		<td class="value"><code><span class="php-quote">&quot;import&quot;</span></code></td>
+		<td class="value"><code><span class="php-quote">&quot;Import&quot;</span></code></td>
 		<td class="description"><div>
 			<a href="#IMPORT" class="anchor">#</a>
+
+			<div class="description short">
+				
+			</div>
+
+			<div class="description detailed hidden">
+				
+
+			</div>
+		</div></td>
+	</tr>
+	<tr data-order="IMPORTKLEIN" id="IMPORTKLEIN">
+
+		<td class="attributes"><code>string</code></td>
+		<td class="name"><code>
+				<a href="source-class-ReRe.Rere.Controller.ImportController.html#16" title="Go to source code"><b>IMPORTKLEIN</b></a>
+		</code></td>
+		<td class="value"><code><span class="php-quote">&quot;import&quot;</span></code></td>
+		<td class="description"><div>
+			<a href="#IMPORTKLEIN" class="anchor">#</a>
+
+			<div class="description short">
+				
+			</div>
+
+			<div class="description detailed hidden">
+				
+
+			</div>
+		</div></td>
+	</tr>
+	<tr data-order="ERRORLIST" id="ERRORLIST">
+
+		<td class="attributes"><code>string</code></td>
+		<td class="name"><code>
+				<a href="source-class-ReRe.Rere.Controller.ImportController.html#17" title="Go to source code"><b>ERRORLIST</b></a>
+		</code></td>
+		<td class="value"><code><span class="php-quote">&quot;errorlist&quot;</span></code></td>
+		<td class="description"><div>
+			<a href="#ERRORLIST" class="anchor">#</a>
 
 			<div class="description short">
 				
@@ -313,6 +473,29 @@ TYPO3\CMS\Extbase\Mvc\Controller\ActionController
 
 	<table class="summary" id="properties">
 	<caption>Properties summary</caption>
+	<tr data-order="notImported" id="$notImported">
+		<td class="attributes"><code>
+			protected  
+			mixed
+		</code></td>
+
+		<td class="name">
+				<a href="source-class-ReRe.Rere.Controller.ImportController.html#23" title="Go to source code"><var>$notImported</var></a>
+		</td>
+		<td class="value"><code><span class="php-keyword1">NULL</span></code></td>
+		<td class="description"><div>
+			<a href="#$notImported" class="anchor">#</a>
+
+			<div class="description short">
+				
+			</div>
+
+			<div class="description detailed hidden">
+				
+
+			</div>
+		</div></td>
+	</tr>
 	<tr data-order="noteRepository" id="$noteRepository">
 		<td class="attributes"><code>
 			protected  
@@ -320,7 +503,7 @@ TYPO3\CMS\Extbase\Mvc\Controller\ActionController
 		</code></td>
 
 		<td class="name">
-				<a href="source-class-ReRe.Rere.Controller.ImportController.html#17-23" title="Go to source code"><var>$noteRepository</var></a>
+				<a href="source-class-ReRe.Rere.Controller.ImportController.html#25-31" title="Go to source code"><var>$noteRepository</var></a>
 		</td>
 		<td class="value"><code><span class="php-keyword1">NULL</span></code></td>
 		<td class="description"><div>
@@ -350,7 +533,7 @@ TYPO3\CMS\Extbase\Mvc\Controller\ActionController
 		</code></td>
 
 		<td class="name">
-				<a href="source-class-ReRe.Rere.Controller.ImportController.html#25-31" title="Go to source code"><var>$prueflingRepository</var></a>
+				<a href="source-class-ReRe.Rere.Controller.ImportController.html#33-39" title="Go to source code"><var>$prueflingRepository</var></a>
 		</td>
 		<td class="value"><code><span class="php-keyword1">NULL</span></code></td>
 		<td class="description"><div>
@@ -380,7 +563,7 @@ TYPO3\CMS\Extbase\Mvc\Controller\ActionController
 		</code></td>
 
 		<td class="name">
-				<a href="source-class-ReRe.Rere.Controller.ImportController.html#33-39" title="Go to source code"><var>$modulRepository</var></a>
+				<a href="source-class-ReRe.Rere.Controller.ImportController.html#41-47" title="Go to source code"><var>$modulRepository</var></a>
 		</td>
 		<td class="value"><code><span class="php-keyword1">NULL</span></code></td>
 		<td class="description"><div>
@@ -410,7 +593,7 @@ TYPO3\CMS\Extbase\Mvc\Controller\ActionController
 		</code></td>
 
 		<td class="name">
-				<a href="source-class-ReRe.Rere.Controller.ImportController.html#41-47" title="Go to source code"><var>$fachRepository</var></a>
+				<a href="source-class-ReRe.Rere.Controller.ImportController.html#49-55" title="Go to source code"><var>$fachRepository</var></a>
 		</td>
 		<td class="value"><code><span class="php-keyword1">NULL</span></code></td>
 		<td class="description"><div>
@@ -425,6 +608,128 @@ TYPO3\CMS\Extbase\Mvc\Controller\ActionController
 			<div class="description detailed hidden">
 				
 <p>Protected Variable fachRepository wird mit NULL initialisiert.</p>
+
+
+					<h4>Inject</h4>
+					<div class="list">
+					</div>
+			</div>
+		</div></td>
+	</tr>
+	<tr data-order="FrontendUserRepository" id="$FrontendUserRepository">
+		<td class="attributes"><code>
+			protected  
+			Typo3\CMS\Extbase\Domain\Repository\FrontendUserRepository
+		</code></td>
+
+		<td class="name">
+				<a href="source-class-ReRe.Rere.Controller.ImportController.html#57-63" title="Go to source code"><var>$FrontendUserRepository</var></a>
+		</td>
+		<td class="value"><code><span class="php-keyword1">NULL</span></code></td>
+		<td class="description"><div>
+			<a href="#$FrontendUserRepository" class="anchor">#</a>
+
+			<div class="description short">
+				
+<p>Protected Variable FrontendUserRepository wird mit NULL initialisiert.</p>
+
+			</div>
+
+			<div class="description detailed hidden">
+				
+<p>Protected Variable FrontendUserRepository wird mit NULL initialisiert.</p>
+
+
+					<h4>Inject</h4>
+					<div class="list">
+					</div>
+			</div>
+		</div></td>
+	</tr>
+	<tr data-order="FrontendUserGroupRepository" id="$FrontendUserGroupRepository">
+		<td class="attributes"><code>
+			protected  
+			<code><a href="class-ReRe.Rere.Domain.Repository.FrontendUserGroupRepository.html">ReRe\Rere\Domain\Repository\FrontendUserGroupRepository</a></code>
+		</code></td>
+
+		<td class="name">
+				<a href="source-class-ReRe.Rere.Controller.ImportController.html#65-71" title="Go to source code"><var>$FrontendUserGroupRepository</var></a>
+		</td>
+		<td class="value"><code><span class="php-keyword1">NULL</span></code></td>
+		<td class="description"><div>
+			<a href="#$FrontendUserGroupRepository" class="anchor">#</a>
+
+			<div class="description short">
+				
+<p>Protected Variable FrontendUserGroupRepository wird mit NULL
+initialisiert.</p>
+
+			</div>
+
+			<div class="description detailed hidden">
+				
+<p>Protected Variable FrontendUserGroupRepository wird mit NULL
+initialisiert.</p>
+
+
+					<h4>Inject</h4>
+					<div class="list">
+					</div>
+			</div>
+		</div></td>
+	</tr>
+	<tr data-order="settingsRepository" id="$settingsRepository">
+		<td class="attributes"><code>
+			protected  
+			<code><a href="class-ReRe.Rere.Domain.Repository.SettingsRepository.html">ReRe\Rere\Domain\Repository\SettingsRepository</a></code>
+		</code></td>
+
+		<td class="name">
+				<a href="source-class-ReRe.Rere.Controller.ImportController.html#73-79" title="Go to source code"><var>$settingsRepository</var></a>
+		</td>
+		<td class="value"><code><span class="php-keyword1">NULL</span></code></td>
+		<td class="description"><div>
+			<a href="#$settingsRepository" class="anchor">#</a>
+
+			<div class="description short">
+				
+<p>Protected Variable settingsRepository wird mit NULL initialisiert.</p>
+
+			</div>
+
+			<div class="description detailed hidden">
+				
+<p>Protected Variable settingsRepository wird mit NULL initialisiert.</p>
+
+
+					<h4>Inject</h4>
+					<div class="list">
+					</div>
+			</div>
+		</div></td>
+	</tr>
+	<tr data-order="objectManager" id="$objectManager">
+		<td class="attributes"><code>
+			protected  
+			TYPO3\CMS\Extbase\Object\ObjectManagerInterface
+		</code></td>
+
+		<td class="name">
+				<a href="source-class-ReRe.Rere.Controller.ImportController.html#81-87" title="Go to source code"><var>$objectManager</var></a>
+		</td>
+		<td class="value"><code><span class="php-keyword1">NULL</span></code></td>
+		<td class="description"><div>
+			<a href="#$objectManager" class="anchor">#</a>
+
+			<div class="description short">
+				
+<p>Protected Variable objectManager wird mit NULL initialisiert.</p>
+
+			</div>
+
+			<div class="description detailed hidden">
+				
+<p>Protected Variable objectManager wird mit NULL initialisiert.</p>
 
 
 					<h4>Inject</h4>
