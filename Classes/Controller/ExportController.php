@@ -81,6 +81,7 @@ class ExportController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControlle
 
         // Export wird gestartet
         $this->exportHelper->genCSV($out, "Prueflinge.csv");
+        return false;
     }
 
     /**
@@ -100,6 +101,7 @@ class ExportController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControlle
 
         // Export wird gestartet
         $this->exportHelper->genCSV($out, "ModuleUndFaecher.csv");
+        return false;
     }
 
     /**
@@ -125,6 +127,7 @@ class ExportController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControlle
 
         // Export wird gestartet
         $this->exportHelper->genCSV($publisharray, "FachExport.csv");
+        return false;
     }
 
 }

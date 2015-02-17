@@ -30,6 +30,7 @@ class ExportHelper {
         header('Content-Disposition: attachement; filename="' . $filename . '";');
         // Download starten
         fpassthru($fp);
+        return false;
     }
 
 }
