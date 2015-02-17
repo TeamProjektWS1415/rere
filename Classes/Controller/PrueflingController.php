@@ -170,7 +170,7 @@ class PrueflingController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionContro
     }
 
     /**
-     * Einzelner PrÃ¼fling wird angezeigt.
+     * Einzelner Pruefling wird angezeigt.
      *
      * @return void
      */
@@ -196,7 +196,7 @@ class PrueflingController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionContro
             $fachid = $this->request->getArgument(self::FACHID);
         }
 
-        //Suchen der FÃ¤cher für die der gewählte Student zur Pruefung eingetragen wurde
+        //Suchen der Faecher für die der gewählte Student zur Pruefung eingetragen wurde
         $fachPrueflingsArray = array();
         $fachlisteArray = $this->fachRepository->findAll();
         foreach ($fachlisteArray as $fach) {
@@ -208,28 +208,28 @@ class PrueflingController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionContro
             }
         }
 
+        // Meldung falls der Prüfling noch kener Prüfung zugewiesen wurde
         if (count($fachPrueflingsArray) == 0) {
             echo 'Dieser Prüfling wurde noch keinem Fach zugeordnet.';
             exit();
         }
 
+        //Neuere Pruefunge zuerst anzeigen
+        $fachPrueflingsArraySorted = array_reverse($fachPrueflingsArray);
 
-        //Neuere PrÃ¼funge zuerst anzeigen
-        $fachPrueflingsArray = array_reverse($fachPrueflingsArray);
-
-        //GewÃ¤hltes Fach in Select Anzeigen lassen, wenn keins gewÃ¤hlt: neustes Fach nach Erstellungsdatum
+        //Gewaehltes Fach in Select Anzeigen lassen, wenn keins gewaehlt: neustes Fach nach Erstellungsdatum
         if ($this->request->hasArgument(self::FACHID)) {
-            array_unshift($fachPrueflingsArray, $this->fachRepository->findByUid($fachid));
+            array_unshift($fachPrueflingsArraySorted, $this->fachRepository->findByUid($fachid));
         } else {
-            $fachid = $fachPrueflingsArray[0]->getUid();
+            $fachid = $fachPrueflingsArraySorted[0]->getUid();
         }
 
-        //Suchen der zum Fach gehÃ¶renden Noten
+        //Suchen der zum Fach gehoerenden Noten
         $aktuelleNote = null;
         $notenZuFachArray = array();
         $notenArray = $this->noteRepository->findAll();
         foreach ($notenArray as $note) {
-            //liefert PrÃ¼fling Uid
+            //liefert Pruefling Uid
             if ($note->getPruefling() == $momentanerPruefling->getUid() && $note->getFach() == $fachid) {
                 $aktuelleNote = $note;
             }
@@ -238,15 +238,15 @@ class PrueflingController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionContro
                 array_push($notenZuFachArray, $note);
             }
         }
-        //Notenschema des gewÃ¤hlten fachs
+        //Notenschema des gewaehlten fachs
         $fach = $this->fachRepository->findByUid($fachid);
         $notenListeArray = $this->noteList->getMarkArray($fach->getNotenschema());
         unset($notenListeArray[0]);
 
-        //Verteilung der verschiedenen Noten zÃ¤hlen
+        //Verteilung der verschiedenen Noten zaehlen
         $notenVorkommnisseArray = $this->helper->genArray($notenZuFachArray, $fach->getNotenschema());
 
-        //ZusammenfÃ¼hren von Bezeichnung und Anzahl der Notenvorkommen
+        //Zusammenfuehren von Bezeichnung und Anzahl der Notenvorkommen
         $notenVerteilungArray = array();
         $counter = -1;
         $temp = array();
@@ -267,10 +267,10 @@ class PrueflingController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionContro
         $pageUidToClean = $GLOBALS['TSFE']->id;
         $this->cacheService->clearPageCache($pageUidToClean);
 
-        //Notevorkommnisse fÃ¼rs Javascript lesbar machen
+        //Notevorkommnisse fuers Javascript lesbar machen
         $notenVorkommnisseCharArrayJson = json_encode($notenVorkommnisseArray);
 
-        $this->view->assignMultiple(array('fachliste' => $fachPrueflingsArray, 'note' => $aktuelleNote, 'notenVerteilungArray' => $notenVerteilungArray, 'durchschnitt' => $durchschnitt, 'anzahlPrueflinge' => $anzahlPrueflinge, 'chartArray' => $notenVorkommnisseCharArrayJson));
+        $this->view->assignMultiple(array('fachliste' => $fachPrueflingsArraySorted, 'note' => $aktuelleNote, 'notenVerteilungArray' => $notenVerteilungArray, 'durchschnitt' => $durchschnitt, 'anzahlPrueflinge' => $anzahlPrueflinge, 'chartArray' => $notenVorkommnisseCharArrayJson));
     }
 
     /**
@@ -495,6 +495,14 @@ class PrueflingController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionContro
         $note->setWert(0);
         $this->noteRepository->add($note);
         return $note;
+    }
+
+    /**
+     * holt alle fächer eines Prüflings aus der Datenbank
+     * @param type $pruefling Uid des Prüflings für die Suche.
+     */
+    protected function getAlleFaecherEinesPrueflings($pruefling) {
+
     }
 
 }

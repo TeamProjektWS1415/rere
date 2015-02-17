@@ -13,7 +13,8 @@ $(document).ready(function () {
     // tooltips
     $('[data-toggle="tooltip"]').tooltip();
     // Ajax Call für neue Note
-    $(".sendNote").focusout(function () {
+    $(".sendNote").change(function () {
+        $(".waitingpanel").show();
         var uid = $(this).parent('td').parent('tr').find('.noteuid').val();
         $('#editnote' + uid).submit();
     });
