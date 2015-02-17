@@ -193,8 +193,6 @@ class ModulController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
      * @return void
      */
     public function createAction(\ReRe\Rere\Domain\Model\Modul $newModul) {
-        $intervall = $this->intervallRepository->findByUid(1);
-
         // Prüfen ob der Gültigkeitszeitraum korrekt ist.
         $pregResult = $pregResult = preg_match('/^([S][S][0-9]{2}|[W][S][0-9]{2}\/[0-9]{2}|Schuljahr[0-9]{2}\/[0-9]{2})$/', $newModul->getGueltigkeitszeitraum());
 
@@ -207,7 +205,6 @@ class ModulController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
                 self::FACHNUMMER => $this->request->getArgument(self::FACHNUMMER),
                 self::PRUEFER => $this->request->getArgument(self::PRUEFER)));
         }
-
         $this->modulRepository->add($newModul);
         // Erzeugt ein leeres Fach
         $fach = $this->objectManager->create('\\ReRe\\Rere\\Domain\\Model\\Fach');
@@ -223,8 +220,6 @@ class ModulController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
         // Fach speichern
         $this->fachRepository->add($fach);
         $newModul->addFach($fach);
-
-        $this->addFlashMessage('The object was created. Please be aware that this action is publicly accessible unless you implement an access check. See <a href="http://wiki.typo3.org/T3Doc/Extension_Builder/Using_the_Extension_Builder#1._Model_the_domain" target="_blank">Wiki</a>', '', \TYPO3\CMS\Core\Messaging\AbstractMessage::ERROR);
 
         $this->redirect('list');
     }
@@ -249,7 +244,6 @@ class ModulController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
      * @return void
      */
     public function updateAction(\ReRe\Rere\Domain\Model\Modul $modul) {
-        $this->addFlashMessage('The object was updated. Please be aware that this action is publicly accessible unless you implement an access check. See <a href="http://wiki.typo3.org/T3Doc/Extension_Builder/Using_the_Extension_Builder#1._Model_the_domain" target="_blank">Wiki</a>', '', \TYPO3\CMS\Core\Messaging\AbstractMessage::ERROR);
         $this->modulRepository->update($modul);
         $this->redirect('list');
     }

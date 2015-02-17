@@ -264,8 +264,8 @@ class PrueflingController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionContro
         $durchschnitt = $this->helper->calculateAverage($notenZuFachArray);
 
         //Cache leeren damit View richtig angezeigt wird
-        $pageUid = $GLOBALS['TSFE']->id;
-        $this->cacheService->clearPageCache($pageUid);
+        $pageUidToClean = $GLOBALS['TSFE']->id;
+        $this->cacheService->clearPageCache($pageUidToClean);
 
         //Notevorkommnisse fÃ¼rs Javascript lesbar machen
         $notenVorkommnisseCharArrayJson = json_encode($notenVorkommnisseArray);
@@ -378,7 +378,6 @@ class PrueflingController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionContro
      * @return void
      */
     public function updateAction(\ReRe\Rere\Domain\Model\Pruefling $pruefling) {
-        $this->addFlashMessage('The object was updated. Please be aware that this action is publicly accessible unless you implement an access check. See <a href="http://wiki.typo3.org/T3Doc/Extension_Builder/Using_the_Extension_Builder#1._Model_the_domain" target="_blank">Wiki</a>', '', \TYPO3\CMS\Core\Messaging\AbstractMessage::ERROR);
         $this->prueflingRepository->update($pruefling);
         $this->redirect('list');
     }
@@ -390,7 +389,6 @@ class PrueflingController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionContro
      * @return void
      */
     public function deleteAction(\ReRe\Rere\Domain\Model\Pruefling $pruefling) {
-        $this->addFlashMessage('The object was deleted. Please be aware that this action is publicly accessible unless you implement an access check. See <a href="http://wiki.typo3.org/T3Doc/Extension_Builder/Using_the_Extension_Builder#1._Model_the_domain" target="_blank">Wiki</a>', '', \TYPO3\CMS\Core\Messaging\AbstractMessage::ERROR);
         $this->prueflingRepository->remove($pruefling);
         $this->redirect('list');
     }

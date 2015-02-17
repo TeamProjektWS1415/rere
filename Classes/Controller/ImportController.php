@@ -131,7 +131,6 @@ class ImportController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControlle
         $usergroup = $this->request->getArgument("usergroup");
         $usergroups = $this->FrontendUserGroupRepository->findAll();
         if ($this->request->hasArgument(self::IMPORTKLEIN) && $_FILES[self::IMPORTKLEIN]['error'] == 0) {
-
             // Holt die Datei
             $file = $this->request->getArgument(self::IMPORTKLEIN);
             $ext = pathinfo($file['name'], PATHINFO_EXTENSION);
