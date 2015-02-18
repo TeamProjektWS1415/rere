@@ -79,7 +79,7 @@ $GLOBALS['TCA']['tx_rere_domain_model_fach'] = array(
             'starttime' => 'starttime',
             'endtime' => 'endtime',
         ),
-        'searchFields' => 'fachnr,fachname,pruefer,notenschema,modulnr,matrikelnr,note,',
+        'searchFields' => 'fachnr,fachname,pruefer,notenschema,modulnr,matrikelnr,note,datum',
         'dynamicConfigFile' => \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extPath($_EXTKEY) . 'Configuration/TCA/Fach.php',
         'iconfile' => \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extRelPath($_EXTKEY) . 'Resources/Public/Icons/tx_rere_domain_model_fach.gif'
     ),

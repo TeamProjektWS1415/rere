@@ -47,6 +47,7 @@ class ModulController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
     const PRUEFER = "pruefer";
     const NEWSTRING = "new";
     const NOTENSCHEMA = "notenschema";
+    const DATUM = "datum";
 
     /**
      * Protected Variable modulRepository wird mit NULL initialisiert.
@@ -177,7 +178,8 @@ class ModulController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
                 self::GUELTIGKEITSZEITRAUM => $this->request->getArgument(self::GUELTIGKEITSZEITRAUM),
                 self::FACHNAME => $this->request->getArgument(self::FACHNAME),
                 self::FACHNUMMER => $this->request->getArgument(self::FACHNUMMER),
-                self::PRUEFER => $this->request->getArgument(self::PRUEFER)));
+                self::PRUEFER => $this->request->getArgument(self::PRUEFER),
+                self::DATUM => $this->request->getArgument(self::DATUM)));
         } else {
             $this->view->assignMultiple(array('newModul' => $newModul, self::GUELTIGKEITSZEITRAUM => $this->request->getArgument(self::GUELTIGKEITSZEITRAUM)));
         }
@@ -203,7 +205,8 @@ class ModulController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
                 self::GUELTIGKEITSZEITRAUM => $newModul->getGueltigkeitszeitraum(),
                 self::FACHNAME => $this->request->getArgument(self::FACHNAME),
                 self::FACHNUMMER => $this->request->getArgument(self::FACHNUMMER),
-                self::PRUEFER => $this->request->getArgument(self::PRUEFER)));
+                self::PRUEFER => $this->request->getArgument(self::PRUEFER),
+                self::DATUM => $this->request->getArgument(self::DATUM)));
         }
         $this->modulRepository->add($newModul);
         // Erzeugt ein leeres Fach
@@ -214,6 +217,7 @@ class ModulController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
             $fach->setFachnr($this->request->getArgument(self::FACHNUMMER));
             $fach->setPruefer($this->request->getArgument(self::PRUEFER));
             $fach->setNotenschema($this->request->getArgument(self::NOTENSCHEMA));
+            $fach->setDatum($this->request->getArgument(self::DATUM));
         }
         // Fach einem Modul zuordnen
         $fach->setModulnr($newModul->getUid());

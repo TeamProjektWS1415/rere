@@ -192,6 +192,15 @@ $GLOBALS['TCA']['tx_rere_domain_model_fach'] = array(
                 ),
             ),
         ),
+        'datum' => array(
+            'exclude' => 1,
+            'label' => 'LLL:EXT:rere/Resources/Private/Language/locallang_db.xlf:tx_rere_domain_model_fach.datum',
+            'config' => array(
+                'type' => 'input',
+                'size' => 30,
+                'eval' => 'trim,required'
+            ),
+        ),
         'modul' => array(
             'config' => array(
                 'type' => 'passthrough',

@@ -114,7 +114,7 @@
                                 <div class="panel-body">
                                     <ul>
                                         <f:for each="{modul.fach}" as="fach">
-                                            <li><span class="col-md-4">{fach.fachname} ({fach.fachnr}) - {fach.pruefer}</span> <span class="col-md-7">
+                                            <li><span class="col-md-4">{fach.fachname} ({fach.fachnr}) - {fach.pruefer} - {fach.datum}</span> <span class="col-md-7">
                                                     <f:link.action controller="Note" class="gettooltip" action="list" arguments="{fach : fach, modul: modul.uid}" title="Noten eintragen oder anzeigen">Noten eintragen/anzeigen</f:link.action> |
                                                     <f:link.action controller="Pruefling" arguments="{fach : fach, modul: modul.uid}" class="gettooltip" action="list" title="Prüflinge zu diesem Fach zuweisen">Prüflinge zuweisen</f:link.action> |
                                                     <f:link.action class="delete gettooltip" controller="Fach" action="delete" onclick="delentry('Wollen Sie das Fach mit allen zugehörenden Noten wirklich löschen? Prüflinge werden nicht gelöscht.',

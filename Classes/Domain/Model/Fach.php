@@ -93,6 +93,14 @@ class Fach extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
     protected $note = NULL;
 
     /**
+     * datum
+     *
+     * @var string
+     * @validate NotEmpty
+     */
+    protected $datum = '';
+
+    /**
      * Returns the fachnr
      *
      * @return string $fachnr
@@ -284,6 +292,25 @@ class Fach extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
      */
     public function setNote(\TYPO3\CMS\Extbase\Persistence\ObjectStorage $noteSET) {
         $this->note = $noteSET;
+    }
+
+    /**
+     * Returns the datum
+     *
+     * @return string $datum
+     */
+    public function getDatum() {
+        return $this->datum;
+    }
+
+    /**
+     * Sets the datum
+     *
+     * @param string $datum
+     * @return void
+     */
+    public function setDatum($datum) {
+        $this->datum = $datum;
     }
 
 }
