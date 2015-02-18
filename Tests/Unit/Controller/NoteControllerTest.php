@@ -47,6 +47,16 @@ class NoteControllerTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
     const ASSIGN = "assign";
     const NOTENREPOSITORY = 'ReRe\\Rere\\Domain\\Repository\\NoteRepository';
     const NOTENREPO = 'noteRepository';
+    const FACHCONTROLLER = "ReRe\\Rere\\Controller\\FachController";
+    const FACHREPOSITORY = "ReRe\\Rere\\Domain\\Repository\\FachRepository";
+    const MODULREPOSITORY = "ReRe\\Rere\\Domain\\Repository\\ModulRepository";
+    const PRUEFLINGREPOSITORY = "ReRe\\Rere\\Domain\\Repository\\PrueflingRepository";
+    const NOTELIST = "\\ReRe\\Rere\\Services\\NestedDirectory\\NoteSchemaArrays";
+    const FACHREPO = "fachRepository";
+    const PRUEFREPO = "pruefRepository";
+    const VIEWINTERFACE = "TYPO3\\CMS\\Extbase\\Mvc\\View\\ViewInterface";
+    const REQUEST = "TYPO3\\CMS\\Extbase\\Mvc\\Request";
+    const ASSIGN = "assign";
 
     /**
      * @var \ReRe\Rere\Controller\NoteController
@@ -65,15 +75,56 @@ class NoteControllerTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
      * @test
      */
     public function listActionFetchesAllNotesFromRepositoryAndAssignsThemToView() {
-
+        
+        $pruefling = new \ReRe\Rere\Domain\Model\Pruefling();
+        $fach = new \ReRe\Rere\Domain\Model\Fach();
+        $modul = new \ReRe\Rere\Domain\Model\Modul();
+        $note = new \ReRe\Rere\Domain\Model\Note();
         $allNotes = $this->getMock('TYPO3\\CMS\\Extbase\\Persistence\\ObjectStorage', array(), array(), '', FALSE);
+        $allOptions = $this->getMock('TYPO3\\CMS\\Extbase\\Persistence\\ObjectStorage', array(), array(), '', FALSE);
 
+        $fachRepository = $this->getMock(self::FACHREPOSITORY, array('findByUid'), array(), '', FALSE);
+        $fachRepository->expects($this->once())->method('findByUid')->will($this->returnValue($fach));
+        $this->inject($this->subject, self::FACHREPO, $fachRepository);
+
+        $request = $this->getMock(self::REQUEST, array(), array(), '', FALSE);
+        
+        $request->expects($this->once())->method('getArgument')->will($this->returnValue($this->subject));
+        
+        $modulRepository = $this->getMock(self::MODULREPOSITORY, array('findByUid'), array(), '', FALSE);
+        $modulRepository->expects($this->once())->method('findByUid')->will($this->returnValue($modul));
+        $this->inject($this->subject, 'modulRepository', $modulRepository);
+        
+        $request->expects($this->once())->method('getArgument')->will($this->returnValue($this->subject));
+        
+        $this->inject($this->subject, 'request', $request);
+        
         $noteRepository = $this->getMock(self::NOTENREPOSITORY, array('findAll'), array(), '', FALSE);
         $noteRepository->expects($this->once())->method('findAll')->will($this->returnValue($allNotes));
         $this->inject($this->subject, self::NOTENREPO, $noteRepository);
+        
+        $pruflingRepository = $this->getMock(self::PRUEFLINGREPOSITORY, array('findByUid'), array(), '', FALSE);
+        $noteRepository->expects($this->once())->method('findByUid')->will($this->returnValue($pruefling));
+        $this->inject($this->subject, self::PRUEFREPO, $pruflingRepository);
 
+        $note->expects($this->once())->method('getPruefling');
+        
+        $notelist = $this->getMock(self::NOTELIST, array('getMarkArray'), array(), '', FALSE);
+        $notelist->expects($this->once())->method('getMarkArray')->will($this->returnValue($allOptions));
+        $fach->expects($this->once())->method('getNotenschema');
+        
         $view = $this->getMock(self::VIEWINTERFACE);
-        $view->expects($this->once())->method(self::ASSIGN)->with('notes', $allNotes);
+        $view->expects($this->once())->method('assignMultiple')->with(array(
+            'fach' => $fach, 
+            'modul' => $modul, 
+            'options' => $allOptions, 
+            'notes' => $allNotes, 
+            'eingetragen' => $this->helper->checkIfWertisSet($correctnotes), 
+            'chartarray' => json_encode($this->helper->genArray($correctnotes, 
+            $fach->getNotenschema())), 
+            'avg' => $this->helper->calculateAverage($correctnotes), 
+            'angemeldete' => $angemeldete
+        ));
         $this->inject($this->subject, 'view', $view);
 
         $this->subject->listAction();

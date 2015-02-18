@@ -186,7 +186,7 @@ class FachController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController 
      */
     public function deleteAction() {
         $persistenceManager = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('TYPO3\\CMS\\Extbase\\Persistence\\Generic\\PersistenceManager');
-        $fach = $this->fachRepository->findByUid($this->request->getArgument("fach"));
+        $fach = $this->fachRepository->findByUid($this->request->getArgument('fach'));
         $noten = $fach->getNote();
         foreach ($noten as $note) {
             if ($note->getFach() == $fach->getUid()) {
