@@ -21,10 +21,11 @@ $MODULNUMMER = 0; //Modulnummer for every imported Modul
 $FACH = 1; //Value for Fach
 $GUELTIGKEITSZEITRAUM = "WS14/15";
 
-//Subject Configuration
+//SubjectImport Configuration
 $NOTENSYSTEM_BEI_KLAUSUR = "hochschulsystem"; //Alternatives: "15pktsystem" or "schulsystem"
 $PRÜFER = "Johner";
-$FACHNUMMER = 0;//Fachnummer for every imported Fach
+//Prüfling Configuration
+$MATRIKELNUMMER = 101010;//Value for every created Prüfling
 // ** </CONFIGURATION> **
 
 
@@ -76,15 +77,18 @@ $modules_Array=array_map('trim', $modules_Array);
 // ** Import Modules ** /
 for ($i = 0; $i < count($modules_Array); $i=$i+8){
 	$sql = "INSERT INTO tx_rere_domain_model_modul (pid, modulnr, modulname, gueltigkeitszeitraum, fach, tstamp, crdate, cruser_id, deleted, hidden) VALUES (".$PID.",".$MODULNUMMER.",".$modules_Array[$i+7].",'".$GUELTIGKEITSZEITRAUM."',".$FACH.",".$modules_Array[$i+2]. ",".$modules_Array[$i+3].",".$modules_Array[$i+4].",".$modules_Array[$i+5].",".$modules_Array[$i+6]." )";		
-	if (!mysqli_query($db, $sql)) {
+/*	if (!mysqli_query($db, $sql)) {
 		echo "<br>Error: " . $sql . "<br>" . mysqli_error($db);   
-	}
+		exit();
+	}*/
+	
 }
-
+echo "Module completed";
 // ** Import Subjects **
 for ($i = 0; $i < count($subjects_Array); $i=$i+9){
 	$subjectUID = $subjects_Array[$i];
 	$fachname = $subjects_Array[$i+7];
+	$fachcode = $subjects_Array[$i+8];
 	//search for related entry in addministration table 	
 	$subjectUID_FK = -1;
 	$linePointer = 0;
@@ -138,14 +142,21 @@ for ($i = 0; $i < count($subjects_Array); $i=$i+9){
 			$counterNote++;
 		}
 	}
+	$sql = "INSERT INTO tx_rere_domain_model_fach (pid, fachnr, fachname, pruefer, notenschema, modulnr, note, tstamp, crdate, cruser_id, deleted, hidden, matrikelnr) VALUES (".$PID.",".$fachcode.",".$fachname.",'".$PRÜFER."','".$gradeType_new."',".$modulUIDforSubject_new.",".$counterNote.",".$subjects_Array[$i+2].",".$subjects_Array[$i+3].",".$subjects_Array[$i+4].",".$subjects_Array[$i+5].",".$subjects_Array[$i+6].",".$counterNote." )";
+/*	if (!mysqli_query($db, $sql)) {
+			echo "<br>Error: " . $sql . "<br>" . mysqli_error($db); 
+			exit();  
+		}	 */
+}
+echo "Subjects completed";
+//** import/create Prueflinge
+for ($i = 0; $i < count($grades_Array); $i=$i+11){
+	$feUserUID=$grades_Array[$i+7];
 	
 	
-	$sql = "INSERT INTO tx_rere_domain_model_fach (pid, fachnr, fachname, pruefer, notenschema, modulnr, note, tstamp, crdate, cruser_id, deleted, hidden, matrikelnr) VALUES (".$PID.",".$FACHNUMMER.",".$fachname.",'".$PRÜFER."','".$gradeType_new."',".$modulUIDforSubject_new.",".$counterNote.",".$subjects_Array[$i+2].",".$subjects_Array[$i+3].",".$subjects_Array[$i+4].",".$subjects_Array[$i+5].",".$subjects_Array[$i+6].",".$counterNote." )";
-
-	if (!mysqli_query($db, $sql)) {
-			echo "<br>Error: " . $sql . "<br>" . mysqli_error($db);   
-		}	 
-
+	$sql = "INSERT INTO tx_rere_domain_model_pruefling (pid, matrikelnr, vorname, nachname, typo3_f_e_user, note, tstamp, crdate, cruser_id, deleted, hidden) VALUES (".$PID.",".$MATRIKELNUMMER.",";
+		
+	
 }
 
 echo "done";
