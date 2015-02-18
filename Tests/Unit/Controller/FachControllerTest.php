@@ -99,7 +99,7 @@ class FachControllerTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
      * @test
      */
     public function newActionAssignsTheGivenFachToView() {
-        $newFach = new \ReRe\Rere\Domain\Model\Fach();
+        $fach = new \ReRe\Rere\Domain\Model\Fach();
         $modul = new \ReRe\Rere\Domain\Model\Modul();
 
         $request = $this->getMock(self::REQUEST, array(), array(), '', FALSE);
@@ -114,15 +114,15 @@ class FachControllerTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
 
         $view = $this->getMock(self::VIEWINTERFACE);
         $view->expects($this->once())->method('assignMultiple')->with(array(
-            'newFach' => $newFach,
-            self::MODULUID => $modul->getUid(),
+            'newFach' => $fach,
+            'moduluid' => $modul->getUid(),
             'modulname' => $modul->getModulname(),
             'modulnummer' => $modul->getModulnr(),
             'gueltigkeitszeitraum' => $modul->getGueltigkeitszeitraum()
         ));
         $this->inject($this->subject, 'view', $view);
 
-        $this->subject->newAction($newFach);
+        $this->subject->newAction($fach);
     }
 
     /**
@@ -130,28 +130,31 @@ class FachControllerTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
      */
     public function createActionAddsTheGivenFachToFachRepository() {
         $faecher = array(
-            'fachname' => 'SOTE1',
+            'fachname' => "SOTE1",
             'fachnummer' => '123',
             'pruefer' => 'Johner',
             'notenschema' => 'Schulnoten',
-            self::MODULUID => '1',
+            'moduluid' => '1',
         );
 
-        $mockRequest = $this->getMock(self::REQUEST);
-        $mockRequest->expects($this->once())->method('hasArgument')->with(self::MODULUID);
-        $mockRequest->expects($this->once())->method('getArgument')->with(self::MODULUID);
-        $this->inject($this->subject, 'request', $mockRequest);
+        $modul = new \ReRe\Rere\Domain\Model\Modul();
+
+        $request = $this->getMock(self::REQUEST, array(), array(), '', FALSE);
+
+        $mockFach = $this->getMock('\\ReRe\\Rere\\Domain\\Model\\Fach', array(), array(), '', FALSE);
+        $mockFach->expects($this->any())->method('setFachname')->with($this->equalTo("SOTE1"));
+        $mockFach->expects($this->any())->method('setFachnr')->with('123');
+        $mockFach->expects($this->any())->method('setPruefer')->with('Johner');
+        $mockFach->expects($this->any())->method('setNotenschema')->with('Schulnoten');
+        $mockFach->expects($this->any())->method('setDatum')->with('Schulnoten');
+        $mockFach->expects($this->any())->method('setModulnr')->with('1');
+
+        $request->expects($this->once())->method('getArgument')->will($this->returnValue($this->subject));
+        $this->inject($this->subject, 'request', $request);
 
         $objectManager = $this->getMock('TYPO3\\CMS\\Extbase\\Object\\ObjectManager', array(), array(), '', FALSE);
         $objectManager->expects($this->once())->method('create')->will($this->returnValue($mockFach));
         $this->inject($this->subject, 'objectManager', $objectManager);
-
-        $mockFach = $this->getMock('\\ReRe\\Rere\\Domain\\Model\\Fach', array(), array(), '', FALSE);
-        $mockFach->expects($this->at(0))->method('setFachname')->with('SOTE1');
-        $mockFach->expects($this->at(1))->method('setFachnr')->with('123');
-        $mockFach->expects($this->at(2))->method('setPruefer')->with('Johner');
-        $mockFach->expects($this->at(3))->method('setNotenschema')->with('Schulnoten');
-        $mockFach->expects($this->at(4))->method('setModulnr')->with('1');
 
         $fachRepository = $this->getMock(self::FACHREPOSITORY, array('add'), array(), '', FALSE);
         $fachRepository->expects($this->once())->method('add')->with($faecher);
@@ -166,9 +169,9 @@ class FachControllerTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
     public function editActionAssignsTheGivenFachToView() {
         $fach = new \ReRe\Rere\Domain\Model\Fach();
 
-        $view = $this->getMock();
-        $this->inject($this->subject, 'view', $view);
+        $view = $this->getMock(self::VIEWINTERFACE);
         $view->expects($this->once())->method(self::ASSIGN)->with('fach', $fach);
+        $this->inject($this->subject, 'view', $view);
 
         $this->subject->editAction($fach);
     }
@@ -192,9 +195,13 @@ class FachControllerTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
     public function deleteActionRemovesTheGivenFachFromFachRepository() {
         $fach = new \ReRe\Rere\Domain\Model\Fach();
 
-        $fachRepository = $this->getMock(self::FACHREPOSITORY, array('remove'), array(), '', FALSE);
-        $fachRepository->expects($this->once())->method('remove')->with($fach);
+        $fachRepository = $this->getMock(self::FACHREPOSITORY, array('findByUid'), array(), '', FALSE);
+        $fachRepository->expects($this->once())->method('findByUid')->with($this->returnValue($fach));
         $this->inject($this->subject, self::FACHREPO, $fachRepository);
+
+        $request = $this->getMock(self::REQUEST, array(), array(), '', FALSE);
+        $request->expects($this->once())->method('getArgument')->will($this->returnValue($this->subject));
+        $this->inject($this->subject, 'request', $request);
 
         $this->subject->deleteAction($fach);
     }
