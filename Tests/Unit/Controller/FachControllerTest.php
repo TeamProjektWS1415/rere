@@ -115,7 +115,7 @@ class FachControllerTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
         $view = $this->getMock(self::VIEWINTERFACE);
         $view->expects($this->once())->method('assignMultiple')->with(array(
             'newFach' => $newFach,
-            self::MODULUID => $modul->getUid(),
+            'moduluid' => $modul->getUid(),
             'modulname' => $modul->getModulname(),
             'modulnummer' => $modul->getModulnr(),
             'gueltigkeitszeitraum' => $modul->getGueltigkeitszeitraum()
