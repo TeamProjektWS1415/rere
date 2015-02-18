@@ -73,6 +73,7 @@ class ExportController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControlle
     public function exportPrueflingeAction() {
         $preuflinge = $this->prueflingRepository->findAll();
         $out = array();
+        array_push($out, array('matrikelnr' => "Matrikelnummer", 'prueflingvorname' => "Vorname", 'prueflingnachname' => "Nachname", 'mail' => "Email-Adresse", 'username' => "Username", 'pass' => "Passwort"));
         foreach ($preuflinge as $pruefling) {
             // Generiert Ausgabe-Array mit Prüfling- und Noten-Daten
             $feUser = $pruefling->getTypo3FEUser();
@@ -91,6 +92,12 @@ class ExportController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControlle
     public function exportModuleUndFaecherAction() {
         $fachs = $this->fachRepository->findAll();
         $out = array();
+
+        array_push($out, array('FachNr' => "Fachnummer", 'Fachname' => "Fachname",
+            'pruefer' => "Prüfer", 'Notenschema' => "Notenschema", 'ModulUid' => "Modul Uid",
+            'ModulNr' => "Modulnummer", 'ModulName' => "Modulname",
+            'Gueltigkeitszeitraum' => "Gültigkeitszeitraum"));
+
         foreach ($fachs as $fach) {
             array_push($out, array('FachNr' => $fach->getFachnr(), 'Fachname' => $fach->getFachname(),
                 'pruefer' => $fach->getPruefer(), 'Notenschema' => $fach->getNotenschema(), 'ModulUid' => $fach->getModulnr(),
@@ -116,6 +123,9 @@ class ExportController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControlle
         // Holen aller eingetragener Noten
         $notes = $this->noteRepository->findAll();
         $publisharray = array();
+
+        array_push($publisharray, array('matrikelnr' => "Matrikelnummer", 'prueflingvorname' => "Vorname", 'prueflingnachname' => "Nachname", 'wert' => "Wert", 'kommentar' => "Kommentar"));
+
         foreach ($notes as $note) {
             if ($note->getFach() == $fach->getUid()) {
                 // Holt den Prüfling, dem die Note zugewiesen wurde
