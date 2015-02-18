@@ -218,6 +218,6 @@ $GLOBALS['TCA']['fe_groups']['types']['Tx_Rere_FrontendUserGroup']['showitem'] =
 $GLOBALS['TCA']['fe_groups']['types']['Tx_Rere_FrontendUserGroup']['showitem'] .= ',--div--;LLL:EXT:rere/Resources/Private/Language/locallang_db.xlf:tx_rere_domain_model_frontendusergroup,';
 $GLOBALS['TCA']['fe_groups']['types']['Tx_Rere_FrontendUserGroup']['showitem'] .= '';
 
-$GLOBALS['TCA']['fe_groups']['columns'][$TCA['fe_groups']['ctrl']['type']]['config']['items'][] = array('LLL:EXT:rere/Resources/Private/Language/locallang_db.xlf:fe_groups.tx_extbase_type.Tx_Rere_FrontendUserGroup', 'Tx_Rere_FrontendUserGroup');
+$GLOBALS['TCA']['fe_groups']['columns'][$TCA['fe_groups']['ctrl']['type']]['config']['items'] = array('LLL:EXT:rere/Resources/Private/Language/locallang_db.xlf:fe_groups.tx_extbase_type.Tx_Rere_FrontendUserGroup', 'Tx_Rere_FrontendUserGroup');
 
 \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addToAllTCAtypes('fe_groups', $GLOBALS['TCA']['fe_groups']['ctrl']['type'], '', 'after:' . $TCA['fe_groups']['ctrl']['label']);
