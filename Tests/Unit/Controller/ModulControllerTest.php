@@ -54,6 +54,14 @@ class ModulControllerTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
     const VIEWINTERFACE = 'TYPO3\\CMS\\Extbase\\Mvc\\View\\ViewInterface';
     const ASSIGN = "assign";
     const ASSIGNMULTIPLE = "assignmultiple";
+    const MODULNAME = "modulname";
+    const MODULNUMMER = "modulnummer";
+    const GUELTIGKEITSZEITRAUM = "gueltigkeitszeitraum";
+    const FACHNAME = "fachname";
+    const FACHNUMMER = "fachnummer";
+    const PRUEFER = "pruefer";
+    const DATUM = "datum";
+    const REQUEST = "TYPO3\\CMS\\Extbase\\Mvc\\Request";
 
     /**
      * @var \ReRe\Rere\Controller\ModulController
@@ -77,10 +85,10 @@ class ModulControllerTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
         $modulRepository = $this->getMock(self::MODULREPOSITORY, array('findAll'), array(), '', FALSE);
         $modulRepository->expects($this->once())->method('findAll')->will($this->returnValue($allModuls));
         $this->inject($this->subject, self::MODULREPO, $modulRepository);
-        
+
         $mail = $this->getMock('\\ReRe\\Rere\\Domain\\Model\\Settings', array(), array(), '', FALSE);
         $mail->expects($this->once())->method('setMailAbsender')->with("DEFAULT");
-        
+
         $settingsRepository = $this->getMock(self::SETTINGSREPOSITORY, array('add'), array(), '', FALSE);
         $settingsRepository->expects($this->once())->method('add')->will($this->returnValue($mail));
         $this->inject($this->subject, self::SETTINGSREPO, $settingsRepository);
@@ -88,17 +96,17 @@ class ModulControllerTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
         $createdIntervall = $this->getMock('\\ReRe\\Rere\\Domain\\Model\\Intervall', array(), array(), '', FALSE);
         $createdIntervall->expects($this->at(0))->method('setAktuell')->with('WS14/15');
         $createdIntervall->expects($this->at(1))->method('setType')->with('studienhalbjahr');
-        
+
         $intervallRepository = $this->getMock(self::INTERVALLREPOSITORY, array('add'), array(), '', FALSE);
         $intervallRepository->expects($this->once())->method('add')->will($this->returnValue($createdIntervall));
         $this->inject($this->subject, self::INTERVALLREPO, $intervallRepository);
         $this->subject->expects($this->once())->method('redirect')->with('list');
-        
-        $aktuellesIntervall= $this->getMock('\\ReRe\\Rere\\Domain\\Model\\Intervall', array(), array(), '', FALSE);
+
+        $aktuellesIntervall = $this->getMock('\\ReRe\\Rere\\Domain\\Model\\Intervall', array(), array(), '', FALSE);
         $aktuellesIntervall->expects($this->once())->method('getAktuell');
-        $intervallType= $this->getMock('\\ReRe\\Rere\\Domain\\Model\\Intervall', array(), array(), '', FALSE);
+        $intervallType = $this->getMock('\\ReRe\\Rere\\Domain\\Model\\Intervall', array(), array(), '', FALSE);
         $intervallType->expects($this->once())->method('getType');
-        
+
         $objectManager = $this->getMock(SELF::OBJECTMANAGER, array(), array(), '', FALSE);
         $objectManager->expects($this->once())->method('create')->will($this->returnValue($mail));
         $objectManager->expects($this->once())->method('create')->will($this->returnValue($createdIntervall));
@@ -133,9 +141,30 @@ class ModulControllerTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
      */
     public function newActionAssignsTheGivenModulToView() {
         $modul = new \ReRe\Rere\Domain\Model\Modul();
+        $modulname = NULL;
+        $modulnummer = NULL;
+        $gueltigkeitszeitraum = NULL;
+        $fachname = NULL;
+        $fachnummer = NULL;
+        $pruefer = NULL;
+        $datum = NULL;
+        $newModul = NULL;
+
+        $request = $this->getMock(self::REQUEST, array(), array(), '', FALSE);
+        $request->expects($this->once())->method('hasArgument')->will($this->returnValue($this->subject));
 
         $view = $this->getMock(self::VIEWINTERFACE);
-        $view->expects($this->once())->method(self::ASSIGN)->with('newModul', $modul);
+        $view->expects($this->once())->method('assignMultiple')->with(array(
+            self::MODULNAME => $modulname,
+            self::MODULNUMMER => $modulnummer,
+            self::GUELTIGKEITSZEITRAUM => $gueltigkeitszeitraum,
+            self::FACHNAME => $fachname,
+            self::FACHNUMMER => $fachnummer,
+            self::PRUEFER => $pruefer,
+            self::DATUM => $datum
+        ));
+
+        $this->inject($this->subject, 'request', $request);
         $this->inject($this->subject, 'view', $view);
 
         $this->subject->newAction($modul);
