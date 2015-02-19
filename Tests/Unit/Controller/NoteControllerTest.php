@@ -177,13 +177,11 @@ class NoteControllerTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
         $fachRepository->expects($this->once())->method('findByUid')->will($this->returnValue($fach));
         $this->inject($this->subject, self::FACHREPO, $fachRepository);
 
-
         $modulRepository = $this->getMock(self::MODULREPOSITORY, array('findByUid'), array(), '', FALSE);
         $modulRepository->expects($this->once())->method('findByUid')->will($this->returnValue($modul));
         $this->inject($this->subject, 'modulRepository', $modulRepository);
 
         $this->inject($this->subject, 'request', $request);
-
 
         $this->subject->expects($this->once())->method('redirect')->with('list', 'Note', NULL, array('fach' => $fach, 'modul' => $modul));
         $this->subject->createAction($newNote);
@@ -207,11 +205,31 @@ class NoteControllerTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
      */
     public function updateActionUpdatesTheGivenNoteInNoteRepository() {
         $note = new \ReRe\Rere\Domain\Model\Note();
+        $kommentar = 'Blabla';
+        $wert = 'Blabla';
 
-        $noteRepository = $this->getMock(self::NOTENREPOSITORY, array('update'), array(), '', FALSE);
-        $noteRepository->expects($this->once())->method('update')->with($note);
+        $noteRepository = $this->getMock(self::NOTENREPOSITORY, array('findByUid', 'update'), array(), '', FALSE);
+        $noteRepository->expects($this->once())->method('findByUid')->will($this->returnValue($note));
+
+        $request = $this->getMock(self::REQUEST, array(), array(), '', FALSE);
+
+        $note->setKommentar($kommentar);
+        $note->setWert($wert);
+
+        $noteRepository->expects($this->once())->method('update')->will($this->returnValue($note));
+
+        $fachRepository = $this->getMock(self::FACHREPOSITORY, array('findByUid'), array(), '', FALSE);
+        $fachRepository->expects($this->once())->method('findByUid')->will($this->returnValue($fach));
+        $this->inject($this->subject, self::FACHREPO, $fachRepository);
+
+        $modulRepository = $this->getMock(self::MODULREPOSITORY, array('findByUid'), array(), '', FALSE);
+        $modulRepository->expects($this->once())->method('findByUid')->will($this->returnValue($modul));
+        $this->inject($this->subject, 'modulRepository', $modulRepository);
+
         $this->inject($this->subject, self::NOTENREPO, $noteRepository);
+        $this->inject($this->subject, 'request', $request);
 
+        $this->subject->expects($this->once())->method('redirect')->with('list', 'Note', NULL, array('fach' => $fach, 'modul' => $modul));
         $this->subject->updateAction($note);
     }
 
