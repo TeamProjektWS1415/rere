@@ -47,6 +47,19 @@ class PrueflingControllerTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
     const ASSIGN = "assign";
     const PRUEFLINGSREPOSITORY = 'ReRe\\Rere\\Domain\\Repository\\PrueflingRepository';
     const PRUEFLINGSREPO = 'prueflingRepository';
+    const FRONTENDUSERGROUPREPOSITORY = 'ReRe\\Rere\\Domain\\Repository\\FrontendUSerGroupRepository';
+    const FRONTENDREPO = 'FrontendUserGroupRepository';
+    const REQUEST = "TYPO3\\CMS\\Extbase\\Mvc\\Request";
+    
+    const MODUL = 'modul';
+    const FACH = 'fach';
+    const EMAIL = 'email';
+    const VORNAME = 'vorname';
+    const NAME = 'name';
+    const USRGROUP = 'usergroup';
+    const MATRIKELNR = 'matrikelnr';
+    const PRUEFLING = 'Pruefling';
+    const FACHID = "fachid";
 
     /**
      * @var \ReRe\Rere\Controller\PrueflingController
@@ -66,29 +79,43 @@ class PrueflingControllerTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
      */
     public function listActionFetchesAllPrueflingsFromRepositoryAndAssignsThemToView() {
 
+        $prueflingsArray = array();
+        $fachprueflingsArray = array();
+        $fach = new \ReRe\Rere\Domain\Model\Fach();
+        $modul = new \ReRe\Rere\Domain\Model\Modul();
         $allPrueflings = $this->getMock('TYPO3\\CMS\\Extbase\\Persistence\\ObjectStorage', array(), array(), '', FALSE);
         $allFeUserGroups = $this->getMock('TYPO3\\CMS\\Extbase\\Persistence\\ObjectStorage', array(), array(), '', FALSE);
-        $modul = NULL;
-        $fach = NULL;
-        
-        $fachRepository = $this->getMock('ReRe\\Rere\\Domain\\Repository\\FachRepository',array('findByUid'), array(), '', FALSE);
+
+        $fachRepository = $this->getMock('ReRe\\Rere\\Domain\\Repository\\FachRepository', array('findByUid'), array(), '', FALSE);
         $fachRepository->expects($this->once())->method('findByUid')->will($this->returnValue($fach));
         $this->inject($this->subject, 'fachRepository', $fachRepository);
         
-        $modulRepository = $this->getMock('ReRe\\Rere\\Domain\\Repository\\ModulRepository',array('findByUid'), array(), '', FALSE);
+        $request = $this->getMock(self::REQUEST, array(), array(), '', FALSE);
+        $this->inject($this->subject, 'request', $request);
+        
+        $fach->getMatrikelnr();
+
+        $modulRepository = $this->getMock('ReRe\\Rere\\Domain\\Repository\\ModulRepository', array('findByUid'), array(), '', FALSE);
         $modulRepository->expects($this->once())->method('findByUid')->will($this->returnValue($modul));
         $this->inject($this->subject, 'modulRepository', $modulRepository);
-        
+
         $prueflingRepository = $this->getMock(self::PRUEFLINGSREPOSITORY, array('findAll'), array(), '', FALSE);
         $prueflingRepository->expects($this->once())->method('findAll')->will($this->returnValue($allPrueflings));
         $this->inject($this->subject, self::PRUEFLINGSREPO, $prueflingRepository);
-        
-        $FrontendUserGroupRepository = $this->getMock(self::PRUEFLINGSREPOSITORY, array('findAll'), array(), '', FALSE);
+
+        $FrontendUserGroupRepository = $this->getMock(self::FRONTENDUSERGROUPREPOSITORY, array('findAll'), array(), '', FALSE);
         $FrontendUserGroupRepository->expects($this->once())->method('findAll')->will($this->returnValue($allFeUserGroups));
-        $this->inject($this->subject, 'FrontendUserGroupRepository', $FrontendUserGroupRepository);
+        $this->inject($this->subject, self::FRONTENDREPO, $FrontendUserGroupRepository);
 
         $view = $this->getMock(self::VIEWINTERFACE);
-        $view->expects($this->once())->method('assignMultiple')->with('prueflings', $allPrueflings);
+        $view->expects($this->once())->method('assignMultiple')->with(array(
+            'prueflings' => json_encode($prueflingsArray), 
+            'feusergroups' => $allFeUserGroups, 
+            self::FACH => $fach, 
+            self::MODUL => $modul, 
+            'semester' => $modul, 
+            'fachprueflinge' => json_encode($fachprueflingsArray)
+        ));
         $this->inject($this->subject, 'view', $view);
 
         $this->subject->listAction();
@@ -113,11 +140,11 @@ class PrueflingControllerTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
     public function newActionAssignsTheGivenPrueflingToView() {
         $pruefling = new \ReRe\Rere\Domain\Model\Pruefling();
         $allFeUserGroups = $this->getMock('TYPO3\\CMS\\Extbase\\Persistence\\ObjectStorage', array(), array(), '', FALSE);
-        
+
         $FrontendUserGroupRepository = $this->getMock(self::PRUEFLINGSREPOSITORY, array('findAll'), array(), '', FALSE);
         $FrontendUserGroupRepository->expects($this->once())->method('findAll')->will($this->returnValue($allFeUserGroups));
         $this->inject($this->subject, 'FrontendUserGroupRepository', $FrontendUserGroupRepository);
-        
+
         $view = $this->getMock(self::VIEWINTERFACE);
         $view->expects($this->once())->method('assignMultiple')->with('newPruefling', $pruefling);
         $this->inject($this->subject, 'view', $view);
