@@ -270,7 +270,7 @@ class PrueflingController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionContro
         //Notevorkommnisse fuers Javascript lesbar machen
         $notenVorkommnisseCharArrayJson = json_encode($notenVorkommnisseArray);
 
-        $this->view->assignMultiple(array('fachliste' => $fachPrueflingsArraySorted, 'note' => $aktuelleNote, 'notenVerteilungArray' => $notenVerteilungArray, 'durchschnitt' => $durchschnitt, 'anzahlPrueflinge' => $anzahlPrueflinge, 'chartArray' => $notenVorkommnisseCharArrayJson));
+        $this->view->assignMultiple(array('pruefling' => $momentanerPruefling, 'fachliste' => $fachPrueflingsArraySorted, 'note' => $aktuelleNote, 'notenVerteilungArray' => $notenVerteilungArray, 'durchschnitt' => $durchschnitt, 'anzahlPrueflinge' => $anzahlPrueflinge, 'chartArray' => $notenVorkommnisseCharArrayJson));
     }
 
     /**
