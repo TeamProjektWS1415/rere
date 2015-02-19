@@ -214,6 +214,11 @@ class PrueflingController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionContro
             exit();
         }
 
+        // Berechnet den Gesamtdurchschnitt eines Prüflings
+        $gesamtDurchschnitt = $this->genAVG($momentanerPruefling->getUid());
+
+
+
         //Neuere Pruefunge zuerst anzeigen
         $fachPrueflingsArraySorted = array_reverse($fachPrueflingsArray);
 
@@ -270,7 +275,25 @@ class PrueflingController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionContro
         //Notevorkommnisse fuers Javascript lesbar machen
         $notenVorkommnisseCharArrayJson = json_encode($notenVorkommnisseArray);
 
-        $this->view->assignMultiple(array('pruefling' => $momentanerPruefling, 'fachliste' => $fachPrueflingsArraySorted, 'note' => $aktuelleNote, 'notenVerteilungArray' => $notenVerteilungArray, 'durchschnitt' => $durchschnitt, 'anzahlPrueflinge' => $anzahlPrueflinge, 'chartArray' => $notenVorkommnisseCharArrayJson));
+        $this->view->assignMultiple(array('gesamtDurchschnitt' => $gesamtDurchschnitt, 'pruefling' => $momentanerPruefling, 'fachliste' => $fachPrueflingsArraySorted, 'note' => $aktuelleNote, 'notenVerteilungArray' => $notenVerteilungArray, 'durchschnitt' => $durchschnitt, 'anzahlPrueflinge' => $anzahlPrueflinge, 'chartArray' => $notenVorkommnisseCharArrayJson));
+    }
+
+    /**
+     * Methode um den Gesamtdurchschnitt eines Prüflings über alle seine Prüfungen hinweg zu berechnen.
+     * @param type $pruefling Uid
+     * @return type Double
+     */
+    protected function genAVG($pruefling) {
+        $noten = $this->noteRepository->findAll();
+        $counter = 0;
+        $sum = 0;
+        foreach ($noten as $note) {
+            if ($pruefling == $note->getPruefling()) {
+                $sum = $sum + $note->getWert();
+                $counter++;
+            }
+        }
+        return $sum / $counter;
     }
 
     /**
