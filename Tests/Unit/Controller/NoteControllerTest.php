@@ -103,9 +103,9 @@ class NoteControllerTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
         $noteRepository->expects($this->once())->method('findAll')->will($this->returnValue($allNotes));
         $this->inject($this->subject, self::NOTENREPO, $noteRepository);
 
-        $pruflingRepository = $this->getMock(self::PRUEFLINGREPOSITORY, array('findByUid'), array(), '', FALSE);
-        $noteRepository->expects($this->once())->method('findByUid')->will($this->returnValue($pruefling));
-        $this->inject($this->subject, self::PRUEFREPO, $pruflingRepository);
+        $prueflingRepository = $this->getMock(self::PRUEFLINGREPOSITORY, array('findByUid'), array(), '', FALSE);
+        $prueflingRepository->expects($this->once())->method('findByUid')->will($this->returnValue($pruefling));
+        $this->inject($this->subject, self::PRUEFREPO, $prueflingRepository);
 
         $note->getPruefling();
 
