@@ -94,13 +94,14 @@ class ExportController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControlle
         $out = array();
 
         array_push($out, array('FachNr' => "Fachnummer", 'Fachname' => "Fachname",
-            'pruefer' => "Prüfer", 'Notenschema' => "Notenschema", 'ModulUid' => "Modul Uid",
+            'pruefer' => "Prüfer", 'Notenschema' => "Notenschema", "Prüfungsdatum" => "Prüfungsdatum", 'ModulUid' => "Modul Uid",
             'ModulNr' => "Modulnummer", 'ModulName' => "Modulname",
             'Gueltigkeitszeitraum' => "Gültigkeitszeitraum"));
 
         foreach ($fachs as $fach) {
             array_push($out, array('FachNr' => $fach->getFachnr(), 'Fachname' => $fach->getFachname(),
-                'pruefer' => $fach->getPruefer(), 'Notenschema' => $fach->getNotenschema(), 'ModulUid' => $fach->getModulnr(),
+                'pruefer' => $fach->getPruefer(), 'Notenschema' => $fach->getNotenschema(),
+                "Prüfungsdatum" => $fach->getDatum(), 'ModulUid' => $fach->getModulnr(),
                 'ModulNr' => $this->modulRepository->findByUid($fach->getModulnr())->getModulnr(),
                 'ModulName' => $this->modulRepository->findByUid($fach->getModulnr())->getModulname(),
                 'Gueltigkeitszeitraum' => $this->modulRepository->findByUid($fach->getModulnr())->getGueltigkeitszeitraum()));
@@ -124,14 +125,14 @@ class ExportController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControlle
         $notes = $this->noteRepository->findAll();
         $publisharray = array();
 
-        array_push($publisharray, array('matrikelnr' => "Matrikelnummer", 'prueflingvorname' => "Vorname", 'prueflingnachname' => "Nachname", 'wert' => "Wert", 'kommentar' => "Kommentar"));
+        array_push($publisharray, array('matrikelnr' => "Matrikelnummer", 'prueflingvorname' => "Vorname", 'prueflingnachname' => "Nachname", 'wert' => "Wert", 'kommentar' => "Kommentar", "Prüfungsdatum" => "Prüfungsdatum",));
 
         foreach ($notes as $note) {
             if ($note->getFach() == $fach->getUid()) {
                 // Holt den Prüfling, dem die Note zugewiesen wurde
                 $pruefling = $this->prueflingRepository->findByUid($note->getPruefling());
                 // Generiert Ausgabe-Array mit Prüfling- und Noten-Daten
-                array_push($publisharray, array('matrikelnr' => $pruefling->getMatrikelnr(), 'prueflingvorname' => $pruefling->getVorname(), 'prueflingnachname' => $pruefling->getNachname(), 'wert' => $note->getWert(), 'kommentar' => $note->getKommentar()));
+                array_push($publisharray, array('matrikelnr' => $pruefling->getMatrikelnr(), 'prueflingvorname' => $pruefling->getVorname(), 'prueflingnachname' => $pruefling->getNachname(), 'wert' => $note->getWert(), 'kommentar' => $note->getKommentar(), 'Prüfungsdatum' => $fach->getDatum()));
             }
         }
 
