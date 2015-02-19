@@ -129,37 +129,42 @@ class FachControllerTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
      * @test
      */
     public function createActionAddsTheGivenFachToFachRepository() {
-        $faecher = array(
-            'fachname' => "SOTE1",
-            'fachnummer' => '123',
-            'pruefer' => 'Johner',
-            'notenschema' => 'Schulnoten',
-            'moduluid' => '1',
-        );
+
+        $fachname = 'SOTE1';
+        $fachnummer = '123';
+        $pruefer = 'Johner';
+        $notenschema = 'Schulnoten';
+        $datum = '19.02.2015';
+        $modulnr = '1';
 
         $modul = new \ReRe\Rere\Domain\Model\Modul();
 
         $request = $this->getMock(self::REQUEST, array(), array(), '', FALSE);
-
-        $mockFach = $this->getMock('\\ReRe\\Rere\\Domain\\Model\\Fach', array(), array(), '', FALSE);
-        $mockFach->expects($this->any())->method('setFachname')->with($this->equalTo("SOTE1"));
-        $mockFach->expects($this->any())->method('setFachnr')->with('123');
-        $mockFach->expects($this->any())->method('setPruefer')->with('Johner');
-        $mockFach->expects($this->any())->method('setNotenschema')->with('Schulnoten');
-        $mockFach->expects($this->any())->method('setDatum')->with('Schulnoten');
-        $mockFach->expects($this->any())->method('setModulnr')->with('1');
-
-        $request->expects($this->once())->method('getArgument')->will($this->returnValue($this->subject));
+        $request->expects($this->once())->method('hasArgument')->will($this->returnValue($this->subject));
         $this->inject($this->subject, 'request', $request);
+        
+        $modulRepository = $this->getMock(self::MODULREPOSITORY, array('findByUid'), array(), '', FALSE);
+        $modulRepository->expects($this->once())->method('findByUid')->will($this->returnValue($modul));
+        $this->inject($this->subject, 'modulRepository', $modulRepository);
+        
+        $mockFach = $this->getMock('\\ReRe\\Rere\\Domain\\Model\\Fach', array(), array(), '', FALSE);
 
         $objectManager = $this->getMock('TYPO3\\CMS\\Extbase\\Object\\ObjectManager', array(), array(), '', FALSE);
         $objectManager->expects($this->once())->method('create')->will($this->returnValue($mockFach));
         $this->inject($this->subject, 'objectManager', $objectManager);
 
+        $mockFach->setFachname($fachname);
+        $mockFach->setFachnr($fachnummer);
+        $mockFach->setPruefer($pruefer);
+        $mockFach->setNotenschema($notenschema);
+        $mockFach->setDatum($datum);
+        $mockFach->setModulnr($modulnr);
+
         $fachRepository = $this->getMock(self::FACHREPOSITORY, array('add'), array(), '', FALSE);
-        $fachRepository->expects($this->once())->method('add')->with($faecher);
+        $fachRepository->expects($this->once())->method('add')->with($mockFach);
         $this->inject($this->subject, self::FACHREPO, $fachRepository);
 
+        $this->subject->expects($this->once())->method('redirect')->with('list', 'Modul');
         $this->subject->createAction($faecher);
     }
 
