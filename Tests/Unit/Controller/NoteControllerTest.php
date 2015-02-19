@@ -171,21 +171,21 @@ class NoteControllerTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
         $noteRepository->expects($this->once())->method('add')->with($newNote);
         $this->inject($this->subject, self::NOTENREPO, $noteRepository);
 
+        $request = $this->getMock(self::REQUEST, array(), array(), '', FALSE);
+
         $fachRepository = $this->getMock(self::FACHREPOSITORY, array('findByUid'), array(), '', FALSE);
         $fachRepository->expects($this->once())->method('findByUid')->will($this->returnValue($fach));
         $this->inject($this->subject, self::FACHREPO, $fachRepository);
 
-        $request = $this->getMock(self::REQUEST, array(), array(), '', FALSE);
-        
-        $request->expects($this->once())->method('getArgument')->will($this->returnValue($this->subject));
 
         $modulRepository = $this->getMock(self::MODULREPOSITORY, array('findByUid'), array(), '', FALSE);
         $modulRepository->expects($this->once())->method('findByUid')->will($this->returnValue($modul));
         $this->inject($this->subject, 'modulRepository', $modulRepository);
 
-        $request->expects($this->once())->method('getArgument')->will($this->returnValue($this->subject));
-        
-        $this->subject->expects($this->once())->method('redirect')->with('list', 'note', NULL, array('fach' => $fach, 'modul' => $modul));
+        $this->inject($this->subject, 'request', $request);
+
+
+        $this->subject->expects($this->once())->method('redirect')->with('list', 'Note', NULL, array('fach' => $fach, 'modul' => $modul));
         $this->subject->createAction($newNote);
     }
 
