@@ -99,8 +99,9 @@ class IntervallControllerTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
      * @test
      */
     public function updateActionUpdatesTheGivenIntervallInIntervallRepository() {
-        $type = '';
-        $aktuell = '';
+        $type = $this->getMock('TYPO3\\CMS\\Extbase\\Persistence\\ObjectStorage', array(), array(), '', FALSE);
+        $aktuell = $this->getMock('TYPO3\\CMS\\Extbase\\Persistence\\ObjectStorage', array(), array(), '', FALSE);
+        
         $intervallLogic = new \ReRe\Rere\Services\NestedDirectory\IntervallLogic();
         $intervall = new \ReRe\Rere\Domain\Model\Intervall();
 
@@ -111,30 +112,23 @@ class IntervallControllerTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
         $request->expects($this->once())->method('hasArgument')->will($this->returnValue($this->subject));
 
         $intervall->getType();
-        $intervallLogic->expects($this->any())->method('nextStudiIntervall')->will($this->returnValue($aktuell));
+        $intervallLogic->nextStudiIntervall();
         $intervall->getAktuell();
 
-        $request->expects($this->once())->method('hasArgument')->will($this->returnValue($this->subject));
-
-        $intervall->getType();
-        $intervallLogic->expects($this->any())->method('prevStudiIntervall')->will($this->returnValue($aktuell));
-        $intervall->getAktuell();
-
-        $request->expects($this->once())->method('hasArgument')->will($this->returnValue($this->subject));
         $request->expects($this->once())->method('getArgument')->will($this->returnValue($type));
-        $intervallLogic->expects($this->any())->method('genAktuellesIntervall')->will($this->returnValue($aktuell));
+        $intervallLogic->genAktuellesIntervall($type);
         
         $intervall->setType($type);
         $this->inject($this->subject, 'request', $request);
 
-        $intervall->expects($this->any())->method('setAktuell')->with($this->equalTo('aktuell'));
+        $intervall->setAktuell($aktuell);
 
         $intervallRepository->expects($this->once())->method('update')->with($intervall);
         
         $this->inject($this->subject, 'intervallRepository', $intervallRepository);
 
         $this->subject->expects($this->once())->method('redirect')->with('list', 'Modul');
-        $this->subject->updateAction($mockIntervall);
+        $this->subject->updateAction($intervall);
     }
 
 }

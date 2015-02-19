@@ -207,6 +207,8 @@ class NoteControllerTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
         $note = new \ReRe\Rere\Domain\Model\Note();
         $kommentar = 'Blabla';
         $wert = 'Blabla';
+        $fach = new \ReRe\Rere\Domain\Model\Fach();
+        $modul = new \ReRe\Rere\Domain\Model\Modul();
 
         $noteRepository = $this->getMock(self::NOTENREPOSITORY, array('findByUid', 'update'), array(), '', FALSE);
         $noteRepository->expects($this->once())->method('findByUid')->will($this->returnValue($note));
@@ -238,11 +240,42 @@ class NoteControllerTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
      */
     public function deleteActionRemovesTheGivenNoteFromNoteRepository() {
         $note = new \ReRe\Rere\Domain\Model\Note();
+        $fach = new \ReRe\Rere\Domain\Model\Fach();
+        $modul = new \ReRe\Rere\Domain\Model\Modul();
+        $pruefling = new \ReRe\Rere\Domain\Model\Pruefling();
 
-        $noteRepository = $this->getMock(self::NOTENREPOSITORY, array('remove'), array(), '', FALSE);
+        $request = $this->getMock(self::REQUEST, array(), array(), '', FALSE);
+        $request->expects($this->once())->method('getArgument')->will($this->returnValue($this->subject));
+        $this->inject($this->subject, 'request', $request);
+
+        $modulRepository = $this->getMock(self::MODULREPOSITORY, array('findByUid'), array(), '', FALSE);
+        $modulRepository->expects($this->once())->method('findByUid')->will($this->returnValue($modul));
+        $this->inject($this->subject, 'modulRepository', $modulRepository);
+
+        $noteRepository = $this->getMock(self::NOTENREPOSITORY, array('findByUid', 'remove'), array(), '', FALSE);
+        $noteRepository->expects($this->once())->method('findByUid')->will($this->returnValue($note));
+
+        $fachRepository = $this->getMock(self::FACHREPOSITORY, array('findByUid', 'update'), array(), '', FALSE);
+        $fachRepository->expects($this->once())->method('findByUid')->will($this->returnValue($fach));
+
+        $prueflingRepository = $this->getMock(self::PRUEFLINGREPOSITORY, array('findByUid', 'update'), array(), '', FALSE);
+        $prueflingRepository->expects($this->once())->method('findByUid')->will($this->returnValue($pruefling));
+        
+        $pruefling = $note->getPruefling();
+
+        $fach->removeNote($note);
+        $pruefling->removeNote($note);
+        $fach->removeMatrikelnr($pruefling);
+
+        $fachRepository->expects($this->once())->method('update')->with($fach);
+        $prueflingRepository->expects($this->once())->method('update')->with($pruefling);
         $noteRepository->expects($this->once())->method('remove')->with($note);
+
+        $this->inject($this->subject, self::FACHREPO, $fachRepository);
+        $this->inject($this->subject, self::PRUEFREPO, $prueflingRepository);
         $this->inject($this->subject, self::NOTENREPO, $noteRepository);
 
+        $this->subject->expects($this->once())->method('redirect')->with('list', 'Modul');
         $this->subject->deleteAction($note);
     }
 
