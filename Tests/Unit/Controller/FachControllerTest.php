@@ -140,6 +140,7 @@ class FachControllerTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
         $notenschema = 'Schulnoten';
         $datum = '19.02.2015';
         $modulnr = '1';
+        $creditpoint = '3';
 
         $modul = new \ReRe\Rere\Domain\Model\Modul();
 
@@ -163,13 +164,14 @@ class FachControllerTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
         $mockFach->setNotenschema($notenschema);
         $mockFach->setDatum($datum);
         $mockFach->setModulnr($modulnr);
+        $mockFach->setCreditpoints($creditpoint);
 
         $fachRepository = $this->getMock(self::FACHREPOSITORY, array('add'), array(), '', FALSE);
         $fachRepository->expects($this->once())->method('add')->with($mockFach);
         $this->inject($this->subject, self::FACHREPO, $fachRepository);
 
         $this->subject->expects($this->once())->method('redirect')->with('list', 'Modul');
-        $this->subject->createAction($faecher);
+        $this->subject->createAction($mockFach);
     }
 
     /**
@@ -202,44 +204,47 @@ class FachControllerTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
      * @test
      */
     public function deleteActionRemovesTheGivenFachFromFachRepository() {
-        $fach = new \ReRe\Rere\Domain\Model\Fach();
-        $pruefling = new \ReRe\Rere\Domain\Model\Pruefling();
-        $note = new \ReRe\Rere\Domain\Model\Note();
-        $allNotes = $this->getMock('\ReRe\Rere\Domain\Model\Note', array(), array(), '', FALSE);
+        $mockFach = $this->getMock('\\ReRe\\Rere\\Domain\\Model\\Fach', array(), array(), '', FALSE);
+        $mockpruefling = $this->getMock('\\ReRe\\Rere\\Domain\\Model\\Pruefling', array(), array(), '', FALSE);
+        $mocknote = $this->getMock('\\ReRe\\Rere\\Domain\\Model\\Note', array(), array(), '', FALSE);
 
         $fachRepository = $this->getMock(self::FACHREPOSITORY, array('findByUid', 'update', 'remove'), array(), '', FALSE);
-        $fachRepository->expects($this->once())->method('findByUid')->with($this->returnValue($fach));
+        $fachRepository->expects($this->once())->method('findByUid')->will($this->returnValue($mockFach));
 
         $request = $this->getMock(self::REQUEST, array(), array(), '', FALSE);
         $request->expects($this->once())->method('getArgument')->will($this->returnValue($this->subject));
         $this->inject($this->subject, 'request', $request);
 
-        $fach->getNote();
+        $mockFach->getNote();
 
-        $fach->removeNote($allNotes);
+        foreach ($noten as $note) {
+            
+        
+        $mockFach->removeNote($mocknote);
 
         $prueflingRepository = $this->getMock(self::PRUEFLINGREPOSITORY, array('findByUid', 'update'), array(), '', FALSE);
-        $prueflingRepository->expects($this->once())->method('findByUid')->will($this->returnValue($pruefling));
+        $prueflingRepository->expects($this->once())->method('findByUid')->will($this->returnValue($mockpruefling));
 
-        $note->getPruefling();
-        $pruefling->removeNote($allNotes);
-        $fach->removeMatrikelnr($pruefling);
+        $mocknote->getPruefling();
+        $mockpruefling->removeNote($mocknote);
+        $mockFach->removeMatrikelnr($mockpruefling);
 
-        $prueflingRepository->expects($this->once())->method('update')->with($pruefling);
+        $prueflingRepository->expects($this->once())->method('update')->will($this->returnValue($mockpruefling));
         $this->inject($this->subject, self::PRUEFREPO, $prueflingRepository);
-        
-        $fachRepository->expects($this->once())->method('update')->with($fach);
-        
+
+        $fachRepository->expects($this->once())->method('update')->will($this->returnValue($mockFach));
+
         $noteRepository = $this->getMock(self::NOTENREPOSITORY, array('remove'), array(), '', FALSE);
-        $noteRepository->expects($this->once())->method('remove')->with($note);
+        $noteRepository->expects($this->once())->method('remove')->with($mocknote);
 
         $this->inject($this->subject, self::NOTENREPO, $noteRepository);
+        }
 
-        $fachRepository->expects($this->once())->method('remove')->with($this->returnValue($fach));
+        $fachRepository->expects($this->once())->method('remove')->with($mockFach);
         $this->inject($this->subject, self::FACHREPO, $fachRepository);
 
         $this->subject->expects($this->once())->method('redirect')->with('list', 'Modul');
-        $this->subject->deleteAction($fach);
+        $this->subject->deleteAction($mockFach);
     }
 
 }

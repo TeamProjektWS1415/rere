@@ -31,7 +31,6 @@ $MATRIKELNUMMER = 101010;//Value for every created Prüfling
 
 // ** Init Database and CSV-Files **
 $configOkay = true;
-
 $db = mysqli_connect($DB_URL, $DB_USERNAME, $DB_PASSWORD,$DB_NAME);
 if(!$db){
   echo("<br>Connection Error: ".mysqli_connect_error());
@@ -83,13 +82,13 @@ for ($i = 0; $i < count($modules_Array); $i=$i+8){
 	}*/
 	
 }
-echo "Module completed";
+echo "Module completed</br>";
 // ** Import Subjects **
 for ($i = 0; $i < count($subjects_Array); $i=$i+9){
 	$subjectUID = $subjects_Array[$i];
 	$fachname = $subjects_Array[$i+7];
 	$fachcode = $subjects_Array[$i+8];
-	//search for related entry in addministration table 	
+	//search related entry in addministration table 	
 	$subjectUID_FK = -1;
 	$linePointer = 0;
 	for ( ;$linePointer < count($administrations_Array); $linePointer=$linePointer+15){
@@ -102,7 +101,7 @@ for ($i = 0; $i < count($subjects_Array); $i=$i+9){
 		echo "Error: Subject without ForeignKey in administration table";
 		exit();	
 	}
-	//search for ModulUID in new db for reference 
+	//search ModulUID in new db for reference 
 	$modulUIDforSubject_old = $administrations_Array[$linePointer+7];
 	$modulNameforSubject = -1;
 	for($k = 0; $k < count($modules_Array); $k=$k+8){
@@ -122,7 +121,7 @@ for ($i = 0; $i < count($subjects_Array); $i=$i+9){
 	$row = $result->fetch_assoc();
 	$modulUIDforSubject_new=$row["uid"];
 	
-	//search Notenschema for Subject
+	//Look for Notenschema for Subject
 	$gradeType_old = $administrations_Array[$linePointer+13];
 	if($gradeType_old == "'K'"){
 		$gradeType_new = $NOTENSYSTEM_BEI_KLAUSUR;
@@ -141,23 +140,52 @@ for ($i = 0; $i < count($subjects_Array); $i=$i+9){
 		if("'".$subjectUID."'" == $grades_Array[$j+10]){
 			$counterNote++;
 		}
-	}
-	$sql = "INSERT INTO tx_rere_domain_model_fach (pid, fachnr, fachname, pruefer, notenschema, modulnr, note, tstamp, crdate, cruser_id, deleted, hidden, matrikelnr) VALUES (".$PID.",".$fachcode.",".$fachname.",'".$PRÜFER."','".$gradeType_new."',".$modulUIDforSubject_new.",".$counterNote.",".$subjects_Array[$i+2].",".$subjects_Array[$i+3].",".$subjects_Array[$i+4].",".$subjects_Array[$i+5].",".$subjects_Array[$i+6].",".$counterNote." )";
+	}	
+	$klausurZeitpunkt="";	
+	$klausurZeitpunktUnixTime = $administrations_Array[$linePointer+14];
+		if($klausurZeitpunktUnixTime != 0 ){
+			$klausurZeitpunkt = date("d.M.Y",$klausurZeitpunktUnixTime);		
+		}
+	$sql = "INSERT INTO tx_rere_domain_model_fach (pid, fachnr, fachname, pruefer, notenschema, modulnr, note, tstamp, crdate, cruser_id, deleted, hidden, matrikelnr, datum) VALUES (".$PID.",".$fachcode.",".$fachname.",'".$PRÜFER."','".$gradeType_new."',".$modulUIDforSubject_new.",".$counterNote.",".$subjects_Array[$i+2].",".$subjects_Array[$i+3].",".$subjects_Array[$i+4].",".$subjects_Array[$i+5].",".$subjects_Array[$i+6].",".$counterNote.",".$klausurZeitpunkt." )";
 /*	if (!mysqli_query($db, $sql)) {
 			echo "<br>Error: " . $sql . "<br>" . mysqli_error($db); 
 			exit();  
 		}	 */
 }
-echo "Subjects completed";
+echo "Subjects completed</br>";
+
 //** import/create Prueflinge
 for ($i = 0; $i < count($grades_Array); $i=$i+11){
 	$feUserUID=$grades_Array[$i+7];
-	
-	
-	$sql = "INSERT INTO tx_rere_domain_model_pruefling (pid, matrikelnr, vorname, nachname, typo3_f_e_user, note, tstamp, crdate, cruser_id, deleted, hidden) VALUES (".$PID.",".$MATRIKELNUMMER.",";
+	$sqlQuery = "SELECT typo3_f_e_user FROM tx_rere_domain_model_pruefling where typo3_f_e_user=".$feUserUID;
+	$result  = mysqli_query($db, $sqlQuery);
+	if($result->num_rows > 0){
+		continue;
+	}
+	$sqlQuery = "SELECT first_name, last_name FROM fe_users where uid=".$feUserUID."";
+	$result  = mysqli_query($db, $sqlQuery);
+	if($result->num_rows > 1){
+		echo "Error: Same modul UID twice ";
+		exit();	
+	}
+	if($result->num_rows < 1){
+		echo "Error: FE User with UID ".$feUserUID ." is missing.";
+		exit();	
+	}
+	$row = $result->fetch_assoc();
+	$firstName = $row['first_name'];
+	$lastName = $row['last_name'];
+	//Count number of grades for Pruefling for column 'note'
+	$counterNote = 0;
+	for ($j = 0; $j < count($grades_Array); $j=$j+11){
+		if("'".$feUserUID."'" == $grades_Array[$j+7]){
+			$counterNote++;
+		}
+	}	
+	$sql = "INSERT INTO tx_rere_domain_model_pruefling (pid, matrikelnr, vorname, nachname, typo3_f_e_user, note, tstamp, crdate, cruser_id, deleted, hidden) VALUES (".$PID.",".$MATRIKELNUMMER.",'".$firstName."','".$lastName."',".$feUserUID.",".$counterNote.")";
 		
 	
 }
 
-echo "done";
+echo "Create Prüflinge completed </br>";
 ?>
