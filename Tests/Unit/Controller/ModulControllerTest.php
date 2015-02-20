@@ -46,9 +46,11 @@ class ModulControllerTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
     const OBJECTMANAGER = 'TYPO3\\CMS\\Extbase\\Object\\ObjectManager';
     const MODULCONTROLLER = 'ReRe\\Rere\\Controller\\ModulController';
     const MODULREPOSITORY = 'ReRe\\Rere\\Domain\\Repository\\ModulRepository';
+    const FACHREPOSITORY = 'ReRe\\Rere\\Domain\\Repository\\FachRepository';
     const INTERVALLREPOSITORY = 'ReRe\\Rere\\Domain\\Repository\\IntervallRepository';
     const SETTINGSREPOSITORY = 'ReRe\\Rere\\Domain\\Repository\\SettingsRepository';
     const MODULREPO = 'modulRepository';
+    const FACHREPO = 'fachRepository';
     const INTERVALLREPO = 'intervallRepository';
     const SETTINGSREPO = 'settingsRepository';
     const VIEWINTERFACE = 'TYPO3\\CMS\\Extbase\\Mvc\\View\\ViewInterface';
@@ -63,6 +65,8 @@ class ModulControllerTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
     const DATUM = "datum";
     const CP = "creditpoints";
     const REQUEST = "TYPO3\\CMS\\Extbase\\Mvc\\Request";
+    const NEWSTRING = "new";
+    const RETURNMODUL = "returnModul";
 
     /**
      * @var \ReRe\Rere\Controller\ModulController
@@ -123,7 +127,7 @@ class ModulControllerTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
 
         $mockIntervall->getAktuell();
         $mockIntervall->getType();
-        
+
         $objectManager->expects($this->any())->method('create')->will($this->returnValue($mockIntervall));
         $this->inject($this->subject, 'objectManager', $objectManager);
 
@@ -163,7 +167,6 @@ class ModulControllerTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
         $fachnummer = NULL;
         $pruefer = NULL;
         $datum = NULL;
-        $newModul = NULL;
         $creditpoints = NULL;
 
         $request = $this->getMock(self::REQUEST, array(), array(), '', FALSE);
@@ -191,13 +194,54 @@ class ModulControllerTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
      * @test
      */
     public function createActionAddsTheGivenModulToModulRepository() {
-        $modul = new \ReRe\Rere\Domain\Model\Modul();
+        $newModul = new \ReRe\Rere\Domain\Model\Modul();
+        $fachname = NULL;
+        $fachnummer = NULL;
+        $pruefer = NULL;
+        $datum = NULL;
+        $creditpoints = NULL;
+        $notenschema = NULL;
+        $modulnummer = NULL;
+
+        $this->subject->expects($this->any())->method('redirect')->with(
+                self::NEWSTRING, "Modul", Null, array(self::RETURNMODUL => $newModul->getModulname(),
+            self::MODULNUMMER => $newModul->getModulnr(),
+            self::GUELTIGKEITSZEITRAUM => $newModul->getGueltigkeitszeitraum(),
+            self::FACHNAME => $fachname,
+            self::FACHNUMMER => $fachnummer,
+            self::PRUEFER => $pruefer,
+            self::DATUM => $datum,
+            self::CP => $creditpoints));
+
+        $request = $this->getMock(self::REQUEST, array(), array(), '', FALSE);
 
         $modulRepository = $this->getMock(self::MODULREPOSITORY, array('add'), array(), '', FALSE);
-        $modulRepository->expects($this->once())->method('add')->with($modul);
+        $modulRepository->expects($this->once())->method('add')->with($newModul);
         $this->inject($this->subject, self::MODULREPO, $modulRepository);
 
-        $this->subject->createAction($modul);
+        $mockFach = $this->getMock('\\ReRe\\Rere\\Domain\\Model\\Fach', array(), array(), '', FALSE);
+        $objectManager = $this->getMock(SELF::OBJECTMANAGER, array(), array(), '', FALSE);
+        $objectManager->expects($this->any())->method('create')->will($this->returnValue($mockFach));
+        $this->inject($this->subject, 'objectManager', $objectManager);
+
+        $this->inject($this->subject, 'request', $request);
+
+        $mockFach->setFachname($fachname);
+        $mockFach->setFachnr($fachnummer);
+        $mockFach->setPruefer($pruefer);
+        $mockFach->setNotenschema($notenschema);
+        $mockFach->setDatum($datum);
+        $mockFach->setCreditpoints($creditpoints);
+        $mockFach->setModulnr($modulnummer);
+
+        $fachRepository = $this->getMock(self::FACHREPOSITORY, array('add'), array(), '', FALSE);
+        $fachRepository->expects($this->once())->method('add')->with($mockFach);
+        $this->inject($this->subject, self::FACHREPO, $fachRepository);
+
+        $this->subject->expects($this->any())->method('redirect')->with('list');
+
+        $newModul->addFach($mockFach);
+        $this->subject->createAction($newModul);
     }
 
     /**
