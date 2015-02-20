@@ -43,6 +43,8 @@ namespace ReRe\Rere\Tests\Unit\Controller;
  */
 class IntervallControllerTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
 
+    const REQUEST = "TYPO3\\CMS\\Extbase\\Mvc\\Request";
+
     /**
      * @var \ReRe\Rere\Controller\IntervallController
      */
@@ -99,32 +101,37 @@ class IntervallControllerTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
      * @test
      */
     public function updateActionUpdatesTheGivenIntervallInIntervallRepository() {
-        $type = $this->getMock('TYPO3\\CMS\\Extbase\\Persistence\\ObjectStorage', array(), array(), '', FALSE);
-        $aktuell = $this->getMock('TYPO3\\CMS\\Extbase\\Persistence\\ObjectStorage', array(), array(), '', FALSE);
-        
-        $intervallLogic = new \ReRe\Rere\Services\NestedDirectory\IntervallLogic();
-        $intervall = new \ReRe\Rere\Domain\Model\Intervall();
+        $type = 'studienhalbjahr';
+        $aktuell = 'studienhalbjahr';
 
-        $intervallRepository = $this->getMock('ReRe\\Rere\\Domain\\Repository\\IntervallRepository');
+        $intervallLogic = new \ReRe\Rere\Services\NestedDirectory\IntervallLogic();
+        $intervall = $this->getMock('\\ReRe\\Rere\\Domain\\Model\\Intervall', array(), array(), '', FALSE);
+        $Intervall = 'studienhalbjahr';
+
+        $intervallRepository = $this->getMock('ReRe\\Rere\\Domain\\Repository\\IntervallRepository', array('findByUid', 'update'), array(), '', FALSE);
         $intervallRepository->expects($this->once())->method('findByUid')->will($this->returnValue($intervall));
 
         $request = $this->getMock(self::REQUEST, array(), array(), '', FALSE);
-        $request->expects($this->once())->method('hasArgument')->will($this->returnValue($this->subject));
 
         $intervall->getType();
-        $intervallLogic->nextStudiIntervall();
-        $intervall->getAktuell();
+        $intervallLogic->nextStudiIntervall($Intervall);
+        $intervallLogic->nextSchulIntervall($Intervall);
 
-        $request->expects($this->once())->method('getArgument')->will($this->returnValue($type));
+        $request->expects($this->any())->method('getArgument')->will($this->returnValue($type));
+
         $intervallLogic->genAktuellesIntervall($type);
-        
+
         $intervall->setType($type);
         $this->inject($this->subject, 'request', $request);
 
         $intervall->setAktuell($aktuell);
 
+        $objectManager = $this->getMock('TYPO3\\CMS\\Extbase\\Object\\ObjectManager', array(), array(), '', FALSE);
+        $objectManager->expects($this->any())->method('create')->will($this->returnValue($intervall));
+        $this->inject($this->subject, 'objectManager', $objectManager);
+
         $intervallRepository->expects($this->once())->method('update')->with($intervall);
-        
+
         $this->inject($this->subject, 'intervallRepository', $intervallRepository);
 
         $this->subject->expects($this->once())->method('redirect')->with('list', 'Modul');
