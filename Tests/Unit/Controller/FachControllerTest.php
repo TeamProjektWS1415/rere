@@ -217,6 +217,9 @@ class FachControllerTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
 
         $mockFach->getNote();
 
+        foreach ($noten as $note) {
+            
+        
         $mockFach->removeNote($mocknote);
 
         $prueflingRepository = $this->getMock(self::PRUEFLINGREPOSITORY, array('findByUid', 'update'), array(), '', FALSE);
@@ -235,6 +238,7 @@ class FachControllerTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
         $noteRepository->expects($this->once())->method('remove')->with($mocknote);
 
         $this->inject($this->subject, self::NOTENREPO, $noteRepository);
+        }
 
         $fachRepository->expects($this->once())->method('remove')->with($mockFach);
         $this->inject($this->subject, self::FACHREPO, $fachRepository);
