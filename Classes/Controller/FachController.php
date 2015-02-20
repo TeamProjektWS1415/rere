@@ -40,6 +40,7 @@ class FachController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController 
 
     const MODULUID = 'moduluid';
     const DATUM = "datum";
+    const CREDITPOINTS = "creditpoints";
 
     /**
      * Protected Variable fachRepository wird mit NULL initialisiert.
@@ -147,6 +148,7 @@ class FachController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController 
         $fach->setPruefer($this->request->getArgument('pruefer'));
         $fach->setNotenschema($this->request->getArgument('notenschema'));
         $fach->setDatum($this->request->getArgument(self::DATUM));
+        $fach->setCreditpoints($this->request->getArgument(self::CREDITPOINTS));
         // Fach einem Modul zuordnen
         $fach->setModulnr($modul->getUid());
         $this->fachRepository->add($fach);

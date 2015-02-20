@@ -101,6 +101,13 @@ class Fach extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
     protected $datum = '';
 
     /**
+     * creditpoints
+     *
+     * @var integer
+     */
+    protected $creditpoints = 0;
+
+    /**
      * Returns the fachnr
      *
      * @return string $fachnr
@@ -311,6 +318,25 @@ class Fach extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
      */
     public function setDatum($datum) {
         $this->datum = $datum;
+    }
+
+    /**
+     * Returns the creditpoints
+     *
+     * @return integer $creditpoints
+     */
+    public function getCreditpoints() {
+        return $this->creditpoints;
+    }
+
+    /**
+     * Sets the creditpoints
+     *
+     * @param integer $creditpoints
+     * @return void
+     */
+    public function setCreditpoints($creditpoints) {
+        $this->creditpoints = $creditpoints;
     }
 
 }

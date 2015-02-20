@@ -7,10 +7,10 @@ if (!defined('TYPO3_MODE')) {
 $GLOBALS['TCA']['tx_rere_domain_model_fach'] = array(
     'ctrl' => $GLOBALS['TCA']['tx_rere_domain_model_fach']['ctrl'],
     'interface' => array(
-        'showRecordFieldList' => 'sys_language_uid, l10n_parent, l10n_diffsource, hidden, fachnr, fachname, pruefer, notenschema, modulnr, matrikelnr, note',
+        'showRecordFieldList' => 'sys_language_uid, l10n_parent, l10n_diffsource, hidden, fachnr, fachname, pruefer, notenschema, modulnr, matrikelnr, note, datum, creditpoints',
     ),
     'types' => array(
-        '1' => array('showitem' => 'sys_language_uid;;;;1-1-1, l10n_parent, l10n_diffsource, hidden;;1, fachnr, fachname, pruefer, notenschema, modulnr, matrikelnr, note, --div--;LLL:EXT:cms/locallang_ttc.xlf:tabs.access, starttime, endtime'),
+        '1' => array('showitem' => 'sys_language_uid;;;;1-1-1, l10n_parent, l10n_diffsource, hidden;;1, fachnr, fachname, pruefer, notenschema, modulnr, matrikelnr, note, datum, creditpoints, --div--;LLL:EXT:cms/locallang_ttc.xlf:tabs.access, starttime, endtime'),
     ),
     'palettes' => array(
         '1' => array('showitem' => ''),
@@ -200,6 +200,15 @@ $GLOBALS['TCA']['tx_rere_domain_model_fach'] = array(
                 'size' => 30,
                 'eval' => 'trim,required'
             ),
+        ),
+        'creditpoints' => array(
+            'exclude' => 1,
+            'label' => 'LLL:EXT:rere/Resources/Private/Language/locallang_db.xlf:tx_rere_domain_model_fach.creditpoints',
+            'config' => array(
+                'type' => 'input',
+                'size' => 4,
+                'eval' => 'int'
+            )
         ),
         'modul' => array(
             'config' => array(
