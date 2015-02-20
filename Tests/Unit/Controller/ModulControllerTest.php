@@ -61,6 +61,7 @@ class ModulControllerTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
     const FACHNUMMER = "fachnummer";
     const PRUEFER = "pruefer";
     const DATUM = "datum";
+    const CP = "creditpoints";
     const REQUEST = "TYPO3\\CMS\\Extbase\\Mvc\\Request";
 
     /**
@@ -163,6 +164,7 @@ class ModulControllerTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
         $pruefer = NULL;
         $datum = NULL;
         $newModul = NULL;
+        $creditpoints = NULL;
 
         $request = $this->getMock(self::REQUEST, array(), array(), '', FALSE);
         $request->expects($this->once())->method('hasArgument')->will($this->returnValue($this->subject));
@@ -175,7 +177,8 @@ class ModulControllerTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
             self::FACHNAME => $fachname,
             self::FACHNUMMER => $fachnummer,
             self::PRUEFER => $pruefer,
-            self::DATUM => $datum
+            self::DATUM => $datum,
+            self::CP => $creditpoints
         ));
 
         $this->inject($this->subject, 'request', $request);
