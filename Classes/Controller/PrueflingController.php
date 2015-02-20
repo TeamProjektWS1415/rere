@@ -210,7 +210,7 @@ class PrueflingController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionContro
 
         // Meldung falls der Prüfling noch kener Prüfung zugewiesen wurde
         if (count($fachPrueflingsArray) == 0) {
-            echo 'Dieser Prüfling wurde noch keinem Fach zugeordnet.';
+            echo 'Dieser Pr&uuml;fling wurde noch keinem Fach zugeordnet.';
             exit();
         }
 
