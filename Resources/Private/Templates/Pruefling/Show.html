@@ -20,91 +20,89 @@
             </div>
         </div>
 
-        <div class="row">
-            <div class="col-md-3">
-                <f:form id="auswahlisteFaecherForm">
-                    <f:form.select name="fachid" options="{fachliste}" optionValueField="uid" optionLabelField="fachname" id="auswahlisteFaecherSelect" />
-                </f:form>
-                <br>
-            </div>
-            <div class="col-md-9"></div>
-        </div>
-        <div class="row">
-            <div class="col-md-8">
+        <f:for each="{module}" as="modul">
+            <div class="row">
                 <div class="col-md-12">
-                    <canvas id="gradeChart" width="400" height="150"></canvas>
-                </div>
-                <div class="col-md-12">
-                    <h1><span class="greenfont">Ihre Note: {note.wert}</span></h1>
-                </div>
-                <textarea rows="4" cols="100" class="form-control" id="comment" readonly="true">{note.kommentar}</textarea>
-            </div>
-            <div class="col-md-3">
-                <div class="table-responsive table-hover">
-                    <table id="grades" class="table">
-                        <thead>
-                            <tr>
-                                <th>Note</th>
-                                <th>Vorkommen</th>
-                            </tr>
-                        </thead>
-                        <tbody>
+                    <h4>{modul.modulname} - {modul.modulnr} - {modul.gueltigkeitszeitraum}<br></h4>
+                    <f:for each="{modul.faecher}" as="fach">
 
-                        <f:for each="{notenVerteilungArray}" as="wert" iteration="iterator">
-                            <tr>
-                                <td><span class="value">{wert.notenname}</span></td>
-                                <td>{wert.wert}</td>
-                            </tr>
-                        </f:for>
+                        <!-- Fach Ausgabe -->
 
-                        </tbody>
-                    </table>
-                </div>
-                <br>
-                <div class="table-responsive table-hover">
-                    <table class="table">
-                        <tbody>
-                            <tr>
-                                <td>Anzahl der Prüflinge:</td><td id="AnzahlDerPrueflinge">{anzahlPrueflinge}</td>
-                            </tr>
-                            <tr>
-                                <td>&empty; Durchschnitt</td><td>{durchschnitt}</td>
-                            </tr>
-                        </tbody>
-                    </table>
+                        <div class="panel-group tx_rere" id="accordion" role="tablist">
+
+                            <div class="panel panel-default" role="tablist">
+                                <div class="panel-heading" role="tab" id="{fach.fachname}">
+                                    <div class="panel-title">
+                                        <span class="col-md-8 modultitle">
+                                            <a data-toggle="collapse" data-parent="#accordion" href="#{fach.fachuid}" aria-expanded="false" aria-controls="collapse{fach.fachnme}">
+                                                <f:if condition="{fach.datum}">{fach.datum}</f:if>
+                                                <f:if condition="{fach.fachnr}">{fach.fachnr}</f:if>
+                                                {fach.fachname} {fach.pruefer} - Note: {fach.note}</a>
+                                        </span>
+                                        <span class="col-md-4"></span>
+                                    </div>
+                                </div>
+                                <div id="{fach.fachuid}" class="panel-collapse collapse" role="tabpanel">
+                                    <div class="panel-body">
+
+                                        <div class="row">
+                                            <div class="col-md-8">
+                                                <div class="col-md-12">
+                                                    <canvas id="gradeChart" width="400" height="150"></canvas>
+                                                </div>
+                                                <div class="col-md-12">
+                                                    <h1><span class="greenfont">Ihre Note: {fach.note}</span></h1>
+                                                </div>
+                                                <textarea rows="4" cols="100" class="form-control" id="comment" readonly="true">{fach.kommentar}</textarea>
+                                            </div>
+                                            <div class="col-md-3">
+                                                <div class="table-responsive table-hover">
+                                                    <table id="grades" class="table">
+                                                        <thead>
+                                                            <tr>
+                                                                <th>Note</th>
+                                                                <th>Vorkommen</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+
+                                                        <f:for each="{fach.details.notenVerteilungArray}" as="wert" iteration="iterator">
+                                                            <tr>
+                                                                <td><span class="value">{wert.notenname}</span></td>
+                                                                <td>{wert.wert}</td>
+                                                            </tr>
+                                                        </f:for>
+
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                                <br>
+                                                <div class="table-responsive table-hover">
+                                                    <table class="table">
+                                                        <tbody>
+                                                            <tr>
+                                                                <td>Anzahl der Prüflinge:</td><td id="AnzahlDerPrueflinge">{fach.details.anzahlPrueflinge}</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>&empty; Durchschnitt</td><td>{fach.details.durchschnitt}</td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-1">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </f:for>
                 </div>
             </div>
-            <div class="col-md-1">
-            </div>
-        </div>
+        </f:for>
+
     </div>
 
-    <script>
-        // Holt die Werte für das Chart
-        var array = {f:format.htmlentitiesDecode(value:chartArray)};
-        //Holt die Note für die Makierung
-        var value = {f:format.htmlentitiesDecode(value:note.wert)};
-        window.onload = function () {
-            if (window.jQuery) {
-                // Generiert das Chart
-                genchart(array);
-                //Sucht die Notenzeile in der Tabelle und macht sie Grün
-                $("table tr").each(function (index) {
-                    if (index !== 0) {
-                        $row = $(this);
-                        var id = $row.find("td:first").text();
-                        if (id.indexOf(value) === 0) {
-                            // Setzt die Farbe
-                            $row.addClass("highlightGreen");
-                            return false;
-                        }
-                    }
-                });
-                //Fachwechsel
-                $('#auswahlisteFaecherSelect').change(function () {
-                    $('#auswahlisteFaecherForm').submit();
-                });
-            }
-        }
-    </script>
+
 </f:section>

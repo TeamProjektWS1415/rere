@@ -217,34 +217,85 @@ class PrueflingController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionContro
         // Berechnet den Gesamtdurchschnitt eines Prüflings
         $gesamtDurchschnitt = $this->genAVG($momentanerPruefling->getUid());
 
+        // Array mit Modulen + fächern
+        $liste = array();
+        $module = $this->modulRepository->findAll();
+        $faecher = $this->fachRepository->findAll();
+
+        $checkvar = false;
+
+        // fächer durchlafen
+        foreach ($module as $modul) {
+            $fachtemp = array();
+            // Module durchlaufen
+            foreach ($faecher as $fach) {
+                // Fach in Modul prüfen
+                if ($fach->getModulnr() == $modul->getUid()) {
+
+                    // Prüfen ob Student dafür angemeldte ist
+                    $matrikelnummerArray = $fach->getMatrikelnr();
+                    foreach ($matrikelnummerArray as $matrikel) {
+                        if ($matrikel->getUid() == $momentanerPruefling->getUid()) {
+                            if (!$checkvar) {
+                                $checkvar = true;
+                            }
+
+                            // Holt die Note des Prüflings
+                            $notenArray = $this->noteRepository->findAll();
+                            foreach ($notenArray as $note) {
+                                //liefert Pruefling Uid
+                                if ($note->getPruefling() == $momentanerPruefling->getUid() && $note->getFach() == $fach->getUid()) {
+                                    $aktuelleNote = $note;
+                                }
+                            }
+
+                            // Array mit den Fach Details
+                            $fachDetails = $this->getDetailsInfos($fach);
+
+                            $fachtotransmit = array(
+                                "fachuid" => $fach->getUid(),
+                                "fachname" => $fach->getFachname(),
+                                "note" => $aktuelleNote->getWert(),
+                                "kommentar" => $aktuelleNote->getKommentar(),
+                                "details" => $fachDetails);
+
+                            array_push($fachtemp, $fachtotransmit);
+                        }
+                    }
+                }
+            }
 
 
-        //Neuere Pruefunge zuerst anzeigen
-        $fachPrueflingsArraySorted = array_reverse($fachPrueflingsArray);
+            // Wenn er Prüfungen in diesem Modul hat werden diese hinzugefügt.
+            if ($checkvar) {
+                $modul = array("modulname" => $modul->getModulname(), "modulnr" => $modul->getModulnr(), "gueltigkeitszeitraum" => $modul->getGueltigkeitszeitraum(), "faecher" => $fachtemp);
+                array_push($liste, $modul);
+            }
 
-        //Gewaehltes Fach in Select Anzeigen lassen, wenn keins gewaehlt: neustes Fach nach Erstellungsdatum
-        if ($this->request->hasArgument(self::FACHID)) {
-            array_unshift($fachPrueflingsArraySorted, $this->fachRepository->findByUid($fachid));
-        } else {
-            $fachid = $fachPrueflingsArraySorted[0]->getUid();
+            $checkvar = false;
         }
 
+        $this->view->assignMultiple(array('gesamtDurchschnitt' => $gesamtDurchschnitt, "module" => $liste, 'pruefling' => $momentanerPruefling, 'note' => $aktuelleNote));
+    }
+
+    /**
+     * Generiert die Infos zum Jeweiligen Fach
+     * @param type $fach Fach Objekt
+     * @return type array
+     */
+    protected function getDetailsInfos($fach) {
+
         //Suchen der zum Fach gehoerenden Noten
-        $aktuelleNote = null;
         $notenZuFachArray = array();
         $notenArray = $this->noteRepository->findAll();
         foreach ($notenArray as $note) {
-            //liefert Pruefling Uid
-            if ($note->getPruefling() == $momentanerPruefling->getUid() && $note->getFach() == $fachid) {
-                $aktuelleNote = $note;
-            }
-            //sammelt sÃ¤mtliche Noten des gesuchten Faches
-            if ($note->getFach() == $fachid) {
+            //sammelt sämtliche Noten des gesuchten Faches
+            if ($note->getFach() == $fach->getUid()) {
                 array_push($notenZuFachArray, $note);
             }
         }
+
         //Notenschema des gewaehlten fachs
-        $fach = $this->fachRepository->findByUid($fachid);
         $notenListeArray = $this->noteList->getMarkArray($fach->getNotenschema());
         unset($notenListeArray[0]);
 
@@ -268,14 +319,10 @@ class PrueflingController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionContro
         $anzahlPrueflinge = count($notenZuFachArray);
         $durchschnitt = $this->helper->calculateAverage($notenZuFachArray);
 
-        //Cache leeren damit View richtig angezeigt wird
-        $pageUidToClean = $GLOBALS['TSFE']->id;
-        $this->cacheService->clearPageCache($pageUidToClean);
-
         //Notevorkommnisse fuers Javascript lesbar machen
         $notenVorkommnisseCharArrayJson = json_encode($notenVorkommnisseArray);
 
-        $this->view->assignMultiple(array('gesamtDurchschnitt' => $gesamtDurchschnitt, 'pruefling' => $momentanerPruefling, 'fachliste' => $fachPrueflingsArraySorted, 'note' => $aktuelleNote, 'notenVerteilungArray' => $notenVerteilungArray, 'durchschnitt' => $durchschnitt, 'anzahlPrueflinge' => $anzahlPrueflinge, 'chartArray' => $notenVorkommnisseCharArrayJson));
+        return array('notenVerteilungArray' => $notenVerteilungArray, 'durchschnitt' => $durchschnitt, 'anzahlPrueflinge' => $anzahlPrueflinge, 'chartArray' => $notenVorkommnisseCharArrayJson);
     }
 
     /**
