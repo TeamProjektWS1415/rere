@@ -80,9 +80,14 @@ $(document).ready(function () {
 /**
  * Generiert das chart.
  * @param {type} array
+ * @param {type} div
  * @returns {undefined}
  */
-function genchart(array) {
+function genchart(array, div) {
+
+//    if (div === Null) {
+//        div = "gradeChart";
+//    }
 
     var labels = [];
     var results = [];
@@ -109,7 +114,7 @@ function genchart(array) {
         ]
     };
     // Chart
-    var ctx = document.getElementById("gradeChart").getContext("2d");
+    var ctx = document.getElementById(div).getContext("2d");
     window.myLine = new Chart(ctx).Bar(data, {
         responsive: true,
         scaleBeginAtZero: true

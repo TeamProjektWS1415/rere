@@ -48,7 +48,7 @@
                                         <div class="row">
                                             <div class="col-md-8">
                                                 <div class="col-md-12">
-                                                    <canvas id="gradeChart" width="400" height="150"></canvas>
+                                                    <canvas id="{fach.fachuid}chart" width="400" height="150"></canvas>
                                                 </div>
                                                 <div class="col-md-12">
                                                     <h1><span class="greenfont">Ihre Note: {fach.note}</span></h1>
@@ -92,6 +92,22 @@
                                             </div>
                                             <div class="col-md-1">
                                             </div>
+
+
+                                            <script>
+
+                                                // Holt die Werte für das Chart
+                                                var array = {f:format.htmlentitiesDecode(value:fach.details.chartArray)};
+                                                //Holt die Note für die Makierung
+                                                var value = {f:format.htmlentitiesDecode(value:fach.note)};
+                                                        var fachuid = {f:format.htmlentitiesDecode(value:fach.fachuid)};
+                                                window.onload = function () {
+                                                    if (window.jQuery) {
+                                                        genchart(array, fachuid + "chart");
+                                                    }
+                                                }</script>
+
+
                                         </div>
                                     </div>
                                 </div>
@@ -103,6 +119,23 @@
         </f:for>
 
     </div>
+
+
+    <script>
+        function highlighttable(value) {
+            $("table tr").each(function (index) {
+                if (index !== 0) {
+                    $row = $(this);
+                    var id = $row.find("td:first").text();
+                    if (id.indexOf(value) === 0) {
+                        // Setzt die Farbe
+                        $row.addClass("highlightGreen");
+                        return false;
+                    }
+                }
+            });
+        }
+    </script>
 
 
 </f:section>
