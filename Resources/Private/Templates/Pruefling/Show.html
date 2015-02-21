@@ -1,5 +1,8 @@
 <f:layout name='RereFrontend'/>
 <f:section name='test'>
+
+    <script> var temp = new Array();</script>
+
     <f:flashMessages />
     <div class="container-fluid wrapper">
         <div class="row">
@@ -57,7 +60,7 @@
                                             </div>
                                             <div class="col-md-3">
                                                 <div class="table-responsive table-hover">
-                                                    <table id="grades" class="table">
+                                                    <table id="grades" class="table {fach.fachuid}table">
                                                         <thead>
                                                             <tr>
                                                                 <th>Note</th>
@@ -100,14 +103,18 @@
                                                 var array = {f:format.htmlentitiesDecode(value:fach.details.chartArray)};
                                                 //Holt die Note für die Makierung
                                                 var value = {f:format.htmlentitiesDecode(value:fach.note)};
-                                                        var fachuid = {f:format.htmlentitiesDecode(value:fach.fachuid)};
-                                                window.onload = function () {
-                                                    if (window.jQuery) {
-                                                        genchart(array, fachuid + "chart");
-                                                    }
-                                                }</script>
+                                                // Holt die Fach Uid
+                                                var fachuid = {f:format.htmlentitiesDecode(value:fach.fachuid)};
 
+                                                // Speicherung in einem Array um das Chart nach Laden der Seite zu generieren.
+                                                var fachtemp = new Array(3);
+                                                fachtemp[0] = array;
+                                                fachtemp[1] = value;
+                                                fachtemp[2] = fachuid;
 
+                                                temp.push(fachtemp);
+
+                                            </script>
                                         </div>
                                     </div>
                                 </div>
@@ -122,8 +129,22 @@
 
 
     <script>
-        function highlighttable(value) {
-            $("table tr").each(function (index) {
+
+        // Chart generiern und tabelle highlighten wenn seite geladen ist.
+        window.onload = function () {
+            if (window.jQuery) {
+                $(".collapse").on('shown.bs.collapse', function () {
+
+                    temp.forEach(function (entry) {
+                        genchart(entry[0], entry[2] + "chart");
+                        highlighttable(entry[1], entry[2] + "table");
+                    });
+                });
+            }
+        };
+
+        function highlighttable(value, colortable) {
+            $("." + colortable + " tr").each(function (index) {
                 if (index !== 0) {
                     $row = $(this);
                     var id = $row.find("td:first").text();
