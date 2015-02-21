@@ -335,7 +335,7 @@ class PrueflingController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionContro
         $counter = 0;
         $sum = 0;
         foreach ($noten as $note) {
-            if ($pruefling == $note->getPruefling()) {
+            if ($pruefling == $note->getPruefling() && $note->getWert() != NULL && $note->getWert() != " " && $note->getWert() != 0) {
                 $sum = $sum + $note->getWert();
                 $counter++;
             }

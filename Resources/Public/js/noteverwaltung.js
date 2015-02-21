@@ -85,10 +85,6 @@ $(document).ready(function () {
  */
 function genchart(array, div) {
 
-//    if (div === Null) {
-//        div = "gradeChart";
-//    }
-
     var labels = [];
     var results = [];
     // Itteriert durch das vom controller gesendete Array und erzeugt dynamisch werte für das Label des Chars und der Werte
@@ -113,12 +109,14 @@ function genchart(array, div) {
             }
         ]
     };
+
     // Chart
     var ctx = document.getElementById(div).getContext("2d");
     window.myLine = new Chart(ctx).Bar(data, {
         responsive: true,
         scaleBeginAtZero: true
     });
+
 }
 
 /**
