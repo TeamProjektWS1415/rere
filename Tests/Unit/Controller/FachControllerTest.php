@@ -204,6 +204,7 @@ class FachControllerTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
      * @test
      */
     public function deleteActionRemovesTheGivenFachFromFachRepository() {
+        $noten = '';
         $mockFach = $this->getMock('\\ReRe\\Rere\\Domain\\Model\\Fach', array(), array(), '', FALSE);
         $mockpruefling = $this->getMock('\\ReRe\\Rere\\Domain\\Model\\Pruefling', array(), array(), '', FALSE);
         $mocknote = $this->getMock('\\ReRe\\Rere\\Domain\\Model\\Note', array(), array(), '', FALSE);
@@ -217,9 +218,8 @@ class FachControllerTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
 
         $mockFach->getNote();
 
-        foreach ($noten as $note) {
+        foreach ($noten as $mocknote) {
             
-        
         $mockFach->removeNote($mocknote);
 
         $prueflingRepository = $this->getMock(self::PRUEFLINGREPOSITORY, array('findByUid', 'update'), array(), '', FALSE);
