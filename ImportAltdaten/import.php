@@ -25,7 +25,8 @@ $GUELTIGKEITSZEITRAUM = "WS14/15";
 $NOTENSYSTEM_BEI_KLAUSUR = "hochschulsystem"; //Alternatives: "15pktsystem" or "schulsystem"
 $PRÜFER = "Johner";
 //Prüfling Configuration
-$MATRIKELNUMMER = 101010;//Value for every created Prüfling
+$FEUserIDforMatrikelnummer = "true";
+$MATRIKELNUMMER = 101010;//Value for every created Prüfling, only if $FEUserIDforMatrikelnummer != "true"
 // ** </CONFIGURATION> **
 
 
@@ -146,7 +147,7 @@ for ($i = 0; $i < count($subjects_Array); $i=$i+9){
 		if($klausurZeitpunktUnixTime != 0 ){
 			$klausurZeitpunkt = date("d.M.Y",$klausurZeitpunktUnixTime);		
 		}
-	$sql = "INSERT INTO tx_rere_domain_model_fach (pid, fachnr, fachname, pruefer, notenschema, modulnr, note, tstamp, crdate, cruser_id, deleted, hidden, matrikelnr, datum) VALUES (".$PID.",".$fachcode.",".$fachname.",'".$PRÜFER."','".$gradeType_new."',".$modulUIDforSubject_new.",".$counterNote.",".$subjects_Array[$i+2].",".$subjects_Array[$i+3].",".$subjects_Array[$i+4].",".$subjects_Array[$i+5].",".$subjects_Array[$i+6].",".$counterNote.",".$klausurZeitpunkt." )";
+	$sql = "INSERT INTO tx_rere_domain_model_fach (pid, fachnr, fachname, pruefer, notenschema, modulnr, note, tstamp, crdate, cruser_id, deleted, hidden, matrikelnr, datum, creditpoints) VALUES (".$PID.",".$fachcode.",".$fachname.",'".$PRÜFER."','".$gradeType_new."',".$modulUIDforSubject_new.",".$counterNote.",".$subjects_Array[$i+2].",".$subjects_Array[$i+3].",".$subjects_Array[$i+4].",".$subjects_Array[$i+5].",".$subjects_Array[$i+6].",".$counterNote.",".$klausurZeitpunkt.",".$administrations_Array[$linePointer+9].")";
 /*	if (!mysqli_query($db, $sql)) {
 			echo "<br>Error: " . $sql . "<br>" . mysqli_error($db); 
 			exit();  
@@ -160,7 +161,7 @@ for ($i = 0; $i < count($grades_Array); $i=$i+11){
 	$sqlQuery = "SELECT typo3_f_e_user FROM tx_rere_domain_model_pruefling where typo3_f_e_user=".$feUserUID;
 	$result  = mysqli_query($db, $sqlQuery);
 	if($result->num_rows > 0){
-		continue;
+	//	continue;
 	}
 	$sqlQuery = "SELECT first_name, last_name FROM fe_users where uid=".$feUserUID."";
 	$result  = mysqli_query($db, $sqlQuery);
@@ -178,13 +179,18 @@ for ($i = 0; $i < count($grades_Array); $i=$i+11){
 	//Count number of grades for Pruefling for column 'note'
 	$counterNote = 0;
 	for ($j = 0; $j < count($grades_Array); $j=$j+11){
-		if("'".$feUserUID."'" == $grades_Array[$j+7]){
+		if($feUserUID == $grades_Array[$j+7]){
 			$counterNote++;
 		}
 	}	
-	$sql = "INSERT INTO tx_rere_domain_model_pruefling (pid, matrikelnr, vorname, nachname, typo3_f_e_user, note, tstamp, crdate, cruser_id, deleted, hidden) VALUES (".$PID.",".$MATRIKELNUMMER.",'".$firstName."','".$lastName."',".$feUserUID.",".$counterNote.")";
-		
-	
+	if($FEUserIDforMatrikelnummer == "true"){
+		$MATRIKELNUMMER = $feUserUID;
+	}
+	$sql = "INSERT INTO tx_rere_domain_model_pruefling (pid, matrikelnr, vorname, nachname, typo3_f_e_user, note) VALUES (".$PID.",".$MATRIKELNUMMER.",'".$firstName."','".$lastName."',".$feUserUID.",".$counterNote.")";
+	/*if (!mysqli_query($db, $sql)) {
+				echo "<br>Error: " . $sql . "<br>" . mysqli_error($db); 
+				exit();  
+	}	*/
 }
 
 echo "Create Prüflinge completed </br>";
