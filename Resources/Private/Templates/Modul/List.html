@@ -47,7 +47,7 @@
                             </li>
                             </ul>
                             <ul class="nav navbar-nav">
-                                <li><f:link.action controller="Settings" class="gettooltip" action="edit" title="Zum Einstelungsmenü"><span class="glyphicon glyphicon-cog" aria-hidden="true"></span></f:link.action></li>
+                                <li><f:link.action controller="Settings" class="gettooltip" action="edit" title="Zum Einstellungsmenü"><span class="glyphicon glyphicon-cog" aria-hidden="true"></span></f:link.action></li>
                             </ul>
                         </div>
                     </div>
@@ -101,9 +101,9 @@
                                     <span class="col-md-4">
 
                                         <f:if condition='{modul.fach}'>
-                                            <f:then><span class='delhinweis'>Löschen erst möglich wenn keine Fächer mehr vorhanden</span></f:then>
+                                            <f:then><span class='delhinweis'>Löschen erst möglich, wenn keine Fächer mehr vorhanden</span></f:then>
                                             <f:else>
-                                                <f:link.action class="delete btn btn-default modulloeschenbutton" action="delete" onclick="delentry('Wollen Sie das Modul mit allen zugehoerenden Faechern und Noten wirklich löschen? Prüflinge werden nicht gelöscht.', $(this).attr('href'));
+                                                <f:link.action class="delete btn btn-default modulloeschenbutton" action="delete" onclick="delentry('Wollen Sie das Modul mit allen zugehörenden Fähern und Noten wirklich löschen? Prüflinge werden nicht gelöscht.', $(this).attr('href'));
                                                         return false;" arguments="{modul : modul}" >Löschen</f:link.action>
                                             </f:else>
                                         </f:if>
