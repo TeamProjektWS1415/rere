@@ -104,16 +104,12 @@
                                                         var value = {f:format.htmlentitiesDecode(value:fach.note)};
                                                         // Holt die Fach Uid
                                                         var fachuid = {f:format.htmlentitiesDecode(value:fach.fachuid)};
-
                                                         // Speicherung in einem Array um das Chart nach Laden der Seite zu generieren.
                                                         var fachtemp = new Array(3);
                                                         fachtemp[0] = array;
                                                         fachtemp[1] = value;
                                                         fachtemp[2] = fachuid;
-
-                                                        temp.push(fachtemp);
-
-                                                    </script>
+                                                        temp.push(fachtemp);</script>
                                                 </div>
                                             </div>
                                         </div>
@@ -143,7 +139,6 @@
                 });
             }
         };
-
         function highlighttable(value, colortable) {
             $("." + colortable + " tr").each(function (index) {
                 if (index !== 0) {
