@@ -142,7 +142,7 @@ public function importPrueflingeAction() {
         // Prüfung ob die Dateiendung korrekt ist.
         if ($ext != "csv") {
             $this->addFlashMessage('Falsche Dateiendung, es sind nur CSV-Dateien gültig.', '', \TYPO3\CMS\Core\Messaging\AbstractMessage::ERROR);
-            $this->redirect("new", "Import", Null, array(self::TITLE => self::IMPORTPRUEFLINGE,
+            $this->redirect("new", self::IMPORT, Null, array(self::TITLE => self::IMPORTPRUEFLINGE,
                 self::LABLE => self::CSVDATEI,
                 type => "prueflinge"));
         }
@@ -150,7 +150,7 @@ public function importPrueflingeAction() {
     } else {
         $this->addFlashMessage('Keine Datei gewählt', '', \TYPO3\CMS\Core\Messaging\AbstractMessage::ERROR);
     }
-    $this->redirect("new", "Import", Null, array(
+    $this->redirect("new", self::IMPORT, Null, array(
         self::TITLE => self::IMPORTPRUEFLINGE,
         self::LABLE => self::CSVDATEI,
         type => $this->request->getArgument('type'),

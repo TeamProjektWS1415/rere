@@ -12,6 +12,12 @@ class ExportController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControlle
 
     const MODUL = 'modul';
     const FACH = 'fach';
+    const MATRIKELNR = 'matrikelnr';
+    const VORNAME = 'prueflingvorname';
+    const NACHNAME = 'prueflingnachname';
+    const FACHNAME = 'Fachname';
+    const DATUM = 'Prüfungsdatum';
+    const NOTENSCHEMA = 'Notenschema';
 
     /**
      * Protected Variable helper wird mit NULL initialisiert.
@@ -73,11 +79,11 @@ class ExportController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControlle
     public function exportPrueflingeAction() {
         $preuflinge = $this->prueflingRepository->findAll();
         $out = array();
-        array_push($out, array('matrikelnr' => "Matrikelnummer", 'prueflingvorname' => "Vorname", 'prueflingnachname' => "Nachname", 'mail' => "Email-Adresse", 'username' => "Username", 'pass' => "Passwort"));
+        array_push($out, array(self::MATRIKELNR => "Matrikelnummer", self::VORNAME => "Vorname", self::NACHNAME => "Nachname", 'mail' => "Email-Adresse", 'username' => "Username", 'pass' => "Passwort"));
         foreach ($preuflinge as $pruefling) {
             // Generiert Ausgabe-Array mit Prüfling- und Noten-Daten
             $feUser = $pruefling->getTypo3FEUser();
-            array_push($out, array('matrikelnr' => $pruefling->getMatrikelnr(), 'prueflingvorname' => $pruefling->getVorname(), 'prueflingnachname' => $pruefling->getNachname(), 'mail' => $feUser->getEmail(), 'username' => $feUser->getUsername(), 'pass' => $feUser->getPassword()));
+            array_push($out, array(self::MATRIKELNR => $pruefling->getMatrikelnr(), self::VORNAME => $pruefling->getVorname(), self::NACHNAME => $pruefling->getNachname(), 'mail' => $feUser->getEmail(), 'username' => $feUser->getUsername(), 'pass' => $feUser->getPassword()));
         }
 
         // Export wird gestartet
@@ -93,15 +99,15 @@ class ExportController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControlle
         $fachs = $this->fachRepository->findAll();
         $out = array();
 
-        array_push($out, array('FachNr' => "Fachnummer", 'Fachname' => "Fachname",
-            'pruefer' => "Prüfer", 'Notenschema' => "Notenschema", "Prüfungsdatum" => "Prüfungsdatum", 'ModulUid' => "Modul Uid",
+        array_push($out, array('FachNr' => "Fachnummer", self::FACHNAME => self::FACHNAME,
+            'pruefer' => "Prüfer", self::NOTENSCHEMA => self::NOTENSCHEMA, self::DATUM => self::DATUM, 'ModulUid' => "Modul Uid",
             'ModulNr' => "Modulnummer", 'ModulName' => "Modulname",
             'Gueltigkeitszeitraum' => "Gültigkeitszeitraum"));
 
         foreach ($fachs as $fach) {
-            array_push($out, array('FachNr' => $fach->getFachnr(), 'Fachname' => $fach->getFachname(),
-                'pruefer' => $fach->getPruefer(), 'Notenschema' => $fach->getNotenschema(),
-                "Prüfungsdatum" => $fach->getDatum(), 'ModulUid' => $fach->getModulnr(),
+            array_push($out, array('FachNr' => $fach->getFachnr(), self::FACHNAME => $fach->getFachname(),
+                'pruefer' => $fach->getPruefer(), self::NOTENSCHEMA => $fach->getNotenschema(),
+                self::DATUM => $fach->getDatum(), 'ModulUid' => $fach->getModulnr(),
                 'ModulNr' => $this->modulRepository->findByUid($fach->getModulnr())->getModulnr(),
                 'ModulName' => $this->modulRepository->findByUid($fach->getModulnr())->getModulname(),
                 'Gueltigkeitszeitraum' => $this->modulRepository->findByUid($fach->getModulnr())->getGueltigkeitszeitraum()));
@@ -125,14 +131,14 @@ class ExportController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControlle
         $notes = $this->noteRepository->findAll();
         $publisharray = array();
 
-        array_push($publisharray, array('matrikelnr' => "Matrikelnummer", 'prueflingvorname' => "Vorname", 'prueflingnachname' => "Nachname", 'wert' => "Wert", 'kommentar' => "Kommentar", "Prüfungsdatum" => "Prüfungsdatum",));
+        array_push($publisharray, array(self::MATRIKELNR => "Matrikelnummer", self::VORNAME => "Vorname", self::NACHNAME => "Nachname", 'wert' => "Wert", 'kommentar' => "Kommentar", self::DATUM => self::DATUM,));
 
         foreach ($notes as $note) {
             if ($note->getFach() == $fach->getUid()) {
                 // Holt den Prüfling, dem die Note zugewiesen wurde
                 $pruefling = $this->prueflingRepository->findByUid($note->getPruefling());
                 // Generiert Ausgabe-Array mit Prüfling- und Noten-Daten
-                array_push($publisharray, array('matrikelnr' => $pruefling->getMatrikelnr(), 'prueflingvorname' => $pruefling->getVorname(), 'prueflingnachname' => $pruefling->getNachname(), 'wert' => $note->getWert(), 'kommentar' => $note->getKommentar(), 'Prüfungsdatum' => $fach->getDatum()));
+                array_push($publisharray, array(self::MATRIKELNR => $pruefling->getMatrikelnr(), self::VORNAME => $pruefling->getVorname(), self::NACHNAME => $pruefling->getNachname(), 'wert' => $note->getWert(), 'kommentar' => $note->getKommentar(), self::DATUM => $fach->getDatum()));
             }
         }
 
