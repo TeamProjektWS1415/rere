@@ -203,15 +203,7 @@ class ModulControllerTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
         $notenschema = NULL;
         $modulnummer = NULL;
 
-        $this->subject->expects($this->any())->method('redirect')->with(
-                self::NEWSTRING, "Modul", Null, array(self::RETURNMODUL => $newModul->getModulname(),
-            self::MODULNUMMER => $newModul->getModulnr(),
-            self::GUELTIGKEITSZEITRAUM => $newModul->getGueltigkeitszeitraum(),
-            self::FACHNAME => $fachname,
-            self::FACHNUMMER => $fachnummer,
-            self::PRUEFER => $pruefer,
-            self::DATUM => $datum,
-            self::CP => $creditpoints));
+        
 
         $request = $this->getMock(self::REQUEST, array(), array(), '', FALSE);
 
@@ -238,9 +230,9 @@ class ModulControllerTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
         $fachRepository->expects($this->once())->method('add')->with($mockFach);
         $this->inject($this->subject, self::FACHREPO, $fachRepository);
 
-        $this->subject->expects($this->any())->method('redirect')->with('list');
-
         $newModul->addFach($mockFach);
+
+
         $this->subject->createAction($newModul);
     }
 
