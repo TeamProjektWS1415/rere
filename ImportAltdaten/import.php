@@ -13,7 +13,7 @@ $PATH_CSV_GRADES="./Grades.csv";
 $PATH_CSV_MODULES="./Modules.csv";
 
 //General Configuration
-$CSV_DELIMITER = ",";
+$CSV_DELIMITER = "^";
 $PID = 1; //PID of rere Extension
 
 //ModulImport Configuration
@@ -32,12 +32,12 @@ $MATRIKELNUMMER = 101010;//Value for every created Prüfling, only if $FEUserIDf
 
 // ** Init Database and CSV-Files **
 $configOkay = true;
-$db = mysqli_connect($DB_URL, $DB_USERNAME, $DB_PASSWORD,$DB_NAME);
+$db = new mysqli($DB_URL, $DB_USERNAME, $DB_PASSWORD,$DB_NAME);
 if(!$db){
   echo("<br>Connection Error: ".mysqli_connect_error());
   $configOkay = false;
 }
-mysql_set_charset('utf8', $db);
+$db->set_charset("utf8");
 if(!file_exists($PATH_CSV_ADMINISTRATIONS)){
 	echo("<br>Administrations.csv not found");
 	$configOkay = false;
@@ -77,13 +77,13 @@ $modules_Array=array_map('trim', $modules_Array);
 // ** Import Modules ** /
 for ($i = 0; $i < count($modules_Array); $i=$i+8){
 	$sql = "INSERT INTO tx_rere_domain_model_modul (pid, modulnr, modulname, gueltigkeitszeitraum, fach, tstamp, crdate, cruser_id, deleted, hidden) VALUES (".$PID.",".$MODULNUMMER.",".$modules_Array[$i+7].",'".$GUELTIGKEITSZEITRAUM."',".$FACH.",".$modules_Array[$i+2]. ",".$modules_Array[$i+3].",".$modules_Array[$i+4].",".$modules_Array[$i+5].",".$modules_Array[$i+6]." )";		
-/*	if (!mysqli_query($db, $sql)) {
+	if (!mysqli_query($db, $sql)) {
 		echo "<br>Error: " . $sql . "<br>" . mysqli_error($db);   
 		exit();
-	}*/
-	
+		}	
 }
 echo "Module completed</br>";
+
 // ** Import Subjects **
 for ($i = 0; $i < count($subjects_Array); $i=$i+9){
 	$subjectUID = $subjects_Array[$i];
@@ -116,12 +116,11 @@ for ($i = 0; $i < count($subjects_Array); $i=$i+9){
 	$sqlQuery = "SELECT uid FROM tx_rere_domain_model_modul where modulname=".$modulNameforSubject."";
 	$result  = mysqli_query($db, $sqlQuery);
 	if($result->num_rows > 1){
-		echo "Error: Same modul UID twice ";
+		echo "Error: Same modul UID twice for subject: ". $modulNameforSubject;
 		exit();	
 	}
 	$row = $result->fetch_assoc();
 	$modulUIDforSubject_new=$row["uid"];
-	
 	//Look for Notenschema for Subject
 	$gradeType_old = $administrations_Array[$linePointer+13];
 	if($gradeType_old == "'K'"){
@@ -138,20 +137,23 @@ for ($i = 0; $i < count($subjects_Array); $i=$i+9){
 	//Count number of grades for subject for column 'note'
 	$counterNote = 0;
 	for ($j = 0; $j < count($grades_Array); $j=$j+11){
-		if("'".$subjectUID."'" == $grades_Array[$j+10]){
-			$counterNote++;
+		$configID = $grades_Array[$j+10];
+		for($l = 0; $l < count($administrations_Array); $l=$l+15){
+			if($subjectUID == $administrations_Array[$l+8]){
+						$counterNote++;
+			}
 		}
-	}	
-	$klausurZeitpunkt="";	
-	$klausurZeitpunktUnixTime = $administrations_Array[$linePointer+14];
-		if($klausurZeitpunktUnixTime != 0 ){
+	}
+	$klausurZeitpunkt=0;	
+	/*$klausurZeitpunktUnixTime = $administrations_Array[$linePointer+14];
+		if($klausurZeitpunktUnixTime > 0 ){
 			$klausurZeitpunkt = date("d.M.Y",$klausurZeitpunktUnixTime);		
-		}
-	$sql = "INSERT INTO tx_rere_domain_model_fach (pid, fachnr, fachname, pruefer, notenschema, modulnr, note, tstamp, crdate, cruser_id, deleted, hidden, matrikelnr, datum, creditpoints) VALUES (".$PID.",".$fachcode.",".$fachname.",'".$PRÜFER."','".$gradeType_new."',".$modulUIDforSubject_new.",".$counterNote.",".$subjects_Array[$i+2].",".$subjects_Array[$i+3].",".$subjects_Array[$i+4].",".$subjects_Array[$i+5].",".$subjects_Array[$i+6].",".$counterNote.",".$klausurZeitpunkt.",".$administrations_Array[$linePointer+9].")";
-/*	if (!mysqli_query($db, $sql)) {
+		}*/
+	$sql = "INSERT INTO tx_rere_domain_model_fach (pid, fachnr, fachname, pruefer, notenschema, modulnr, note, tstamp, crdate, cruser_id, deleted, hidden, matrikelnr, datum, creditpoints) VALUES (".$PID.",".$fachcode.",".$fachname.",'".$PRÜFER."','".$gradeType_new."',".$modulUIDforSubject_new.",".$counterNote.",".$subjects_Array[$i+2].",".$subjects_Array[$i+3].",".$subjects_Array[$i+4].",".$subjects_Array[$i+5].",".$subjects_Array[$i+6].",".$counterNote.",'".$klausurZeitpunkt."',".$administrations_Array[$linePointer+9].")";
+	if (!mysqli_query($db, $sql)) {
 			echo "<br>Error: " . $sql . "<br>" . mysqli_error($db); 
 			exit();  
-		}	 */
+		} 
 }
 echo "Subjects completed</br>";
 
@@ -161,7 +163,7 @@ for ($i = 0; $i < count($grades_Array); $i=$i+11){
 	$sqlQuery = "SELECT typo3_f_e_user FROM tx_rere_domain_model_pruefling where typo3_f_e_user=".$feUserUID;
 	$result  = mysqli_query($db, $sqlQuery);
 	if($result->num_rows > 0){
-	//	continue;
+		continue;
 	}
 	$sqlQuery = "SELECT first_name, last_name FROM fe_users where uid=".$feUserUID."";
 	$result  = mysqli_query($db, $sqlQuery);
@@ -187,11 +189,88 @@ for ($i = 0; $i < count($grades_Array); $i=$i+11){
 		$MATRIKELNUMMER = $feUserUID;
 	}
 	$sql = "INSERT INTO tx_rere_domain_model_pruefling (pid, matrikelnr, vorname, nachname, typo3_f_e_user, note) VALUES (".$PID.",".$MATRIKELNUMMER.",'".$firstName."','".$lastName."',".$feUserUID.",".$counterNote.")";
-	/*if (!mysqli_query($db, $sql)) {
+	
+	if (!mysqli_query($db, $sql)) {
 				echo "<br>Error: " . $sql . "<br>" . mysqli_error($db); 
 				exit();  
-	}	*/
+	}	
 }
-
 echo "Create Prüflinge completed </br>";
+
+//** import Grades
+for ($i = 0; $i < count($grades_Array); $i=$i+11){
+	//look for Pruefling
+	$feUserUID = $grades_Array[$i+7];
+	$sqlQuery = "SELECT uid FROM tx_rere_domain_model_pruefling where typo3_f_e_user=".$feUserUID;
+	$result  = mysqli_query($db, $sqlQuery);
+	if($result->num_rows == 0){
+		echo "Error: no FE-User for grade with UID: ".$grades_Array[$i];
+		exit();	
+	}
+	if($result->num_rows > 1){
+			echo "More than one pruefling entry for FE-User ".$feUserUID;
+			exit();	
+	}
+	$row = $result->fetch_assoc();
+	$prueflingUID = $row['uid'];
+	//*look for fach
+	//	look for old UID of Subject
+	$subject_configUid = $grades_Array[$i+10];
+	for($l = 0; $l < count($administrations_Array); $l=$l+15){
+		if($subject_configUid == "'".$administrations_Array[$l]."'"){
+			$subjectUID = $administrations_Array[$l+8];	
+			break;			
+		}
+	}
+	//	look for new UID
+	for ($k = 0; $k < count($subjects_Array); $k=$k+9){
+		if($subjectUID == $subjects_Array[$k]){
+			$fachname= $subjects_Array[$k+7];
+		}
+	}
+	$sqlQuery = "SELECT uid FROM tx_rere_domain_model_fach where fachname=".$fachname."";
+	$result  = mysqli_query($db, $sqlQuery);
+	if($result->num_rows > 1){
+		echo "Error: double entry with fachname: " .$fachname;
+		exit();	
+	}
+	if($result->num_rows == 0){
+			echo "No fach with ".$fachname;
+			exit();	
+	}
+	$row = $result->fetch_assoc();
+	$fachUID = $row['uid'];
+	$KOMMENTAR = $grades_Array[$i+9];
+	//adjustment note/grade
+	$NOTE = $grades_Array[$i+8];
+	if($NOTE == "'bestanden'"){
+		$NOTE = "'be'";
+	}
+	if($NOTE == "'nicht bestanden'"){
+		$NOTE = "'N'";
+	}
+	if($NOTE == "'1'"){
+		$NOTE = "1.0";
+	}
+	if($NOTE == "'2'"){
+		$NOTE = "2.0";
+	}
+	if($NOTE == "'3'"){
+		$NOTE = "3.0";
+	}
+	if($NOTE == "'4'"){
+		$NOTE = "4.0";
+	}
+	if($NOTE == "'5'"){
+		$NOTE = "5.0";
+	}
+	
+	$sql = "INSERT INTO tx_rere_domain_model_note (pid, fach, pruefling, wert, kommentar, tstamp, crdate, cruser_id, deleted, hidden ) VALUES(".$PID.",".$fachUID.",".$prueflingUID."," .$NOTE.",".$KOMMENTAR.",".$grades_Array[$i+2].",".$grades_Array[$i+3].",".$grades_Array[$i+4].",".$grades_Array[$i+5].",".$grades_Array[$i+6].")";
+	if (!mysqli_query($db, $sql)) {
+			echo "<br>Error: " . $sql . "<br>" . mysqli_error($db); 
+			exit();  
+		} 
+} 
+echo "Grades completed </br>";
+
 ?>
