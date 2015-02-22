@@ -32,12 +32,12 @@ $MATRIKELNUMMER = 101010;//Value for every created Prüfling, only if $FEUserIDf
 
 // ** Init Database and CSV-Files **
 $configOkay = true;
-$db = mysqli_connect($DB_URL, $DB_USERNAME, $DB_PASSWORD,$DB_NAME);
+$db = new mysqli($DB_URL, $DB_USERNAME, $DB_PASSWORD,$DB_NAME);
 if(!$db){
   echo("<br>Connection Error: ".mysqli_connect_error());
   $configOkay = false;
 }
-mysql_set_charset('utf8', $db);
+$db->set_charset("utf8");
 if(!file_exists($PATH_CSV_ADMINISTRATIONS)){
 	echo("<br>Administrations.csv not found");
 	$configOkay = false;
@@ -199,9 +199,8 @@ echo "Create Prüflinge completed </br>";
 
 //** import Grades
 for ($i = 0; $i < count($grades_Array); $i=$i+11){
-	$KOMMENTAR = $grades_Array[$i+9];
-	$feUserUID = $grades_Array[$i+7];
 	//look for Pruefling
+	$feUserUID = $grades_Array[$i+7];
 	$sqlQuery = "SELECT uid FROM tx_rere_domain_model_pruefling where typo3_f_e_user=".$feUserUID;
 	$result  = mysqli_query($db, $sqlQuery);
 	if($result->num_rows == 0){
@@ -241,7 +240,7 @@ for ($i = 0; $i < count($grades_Array); $i=$i+11){
 	}
 	$row = $result->fetch_assoc();
 	$fachUID = $row['uid'];
-	
+	$KOMMENTAR = $grades_Array[$i+9];
 	//adjustment note/grade
 	$NOTE = $grades_Array[$i+8];
 	if($NOTE == "'bestanden'"){
