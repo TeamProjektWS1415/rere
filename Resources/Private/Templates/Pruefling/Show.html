@@ -36,7 +36,7 @@
                                         <div class="panel-heading" role="tab" id="{fach.fachname}">
                                             <div class="panel-title">
                                                 <span class="col-md-8 modultitle">
-                                                    <a data-toggle="collapse" data-parent="#accordion" href="#{fach.fachuid}" aria-expanded="false" aria-controls="collapse{fach.fachnme}">
+                                                    <a data-toggle="collapse" class="collapsebutton" data-parent="#accordion" href="#{fach.fachuid}" aria-expanded="false" aria-controls="collapse{fach.fachnme}">
                                                         <f:if condition="{fach.datum}">{fach.datum}</f:if>
                                                         <f:if condition="{fach.fachnr}">{fach.fachnr}</f:if>
                                                         {fach.fachname} {fach.pruefer} - Note: {fach.note}</a>
@@ -46,7 +46,6 @@
                                         </div>
                                         <div id="{fach.fachuid}" class="panel-collapse collapse" role="tabpanel">
                                             <div class="panel-body">
-
                                                 <div class="row">
                                                     <div class="col-md-8">
                                                         <div class="col-md-12">
@@ -121,7 +120,6 @@
                 </div>
             </div>
         </f:for>
-
     </div>
 
 
@@ -130,13 +128,24 @@
         // Chart generiern und tabelle highlighten wenn seite geladen ist.
         window.onload = function () {
             if (window.jQuery) {
-                $(".collapse").on('shown.bs.collapse', function () {
+                //$(".collapse").on('shown.bs.collapse', function () {
 
-                    temp.forEach(function (entry) {
-                        genchart(entry[0], entry[2] + "chart");
-                        highlighttable(entry[1], entry[2] + "table");
-                    });
+                $(".collapsebutton").click(function () {
+                    alert($(this).attr('id'));
+
+
+                    for (i = 0; i < temp.length; i++) {
+                        alert(temp[i][2]);
+                    }
+
+                    //temp.forEach(function (entry) {
+                    //    genchart(entry[0], entry[2] + "chart");
+                    //    highlighttable(entry[1], entry[2] + "table");
+                    //});
                 });
+
+
+                //});
             }
         };
         function highlighttable(value, colortable) {

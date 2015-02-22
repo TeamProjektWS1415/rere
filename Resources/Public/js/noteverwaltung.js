@@ -110,12 +110,12 @@ function genchart(array, div) {
         ]
     };
 
-    // Chart
-    var ctx = document.getElementById(div).getContext("2d");
-    window.myLine = new Chart(ctx).Bar(data, {
+    div = new Chart(document.getElementById(div).getContext("2d")).Bar(data, {
         responsive: true,
         scaleBeginAtZero: true
     });
+
+    div.update();
 
 }
 
