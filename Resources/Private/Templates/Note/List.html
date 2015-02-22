@@ -33,13 +33,13 @@
                                     <form class="navbar-form navbar-left" role="search">
                                         <div class="form-group input-group">
                                             <div class="input-group-addon"><span class="glyphicon glyphicon-search" aria-hidden="true" ></span></div>
-                                            <input type="text" id="suche" class="form-control" rel="tooltip" data-toggle="tooltip" data-placement="bottom" title="Nach MatrikelNr / Nachname / Vorname suchen" placeholder="MatrikelNr / Vor-Nach-Name">
+                                            <input type="text" id="suche" class="form-control" rel="tooltip" data-toggle="tooltip" data-placement="bottom" title="Nach MatrikelNr / Nachname / Vorname suchen" placeholder="MatrNr / Vor-Nach-Name">
                                         </div>
                                     </form>
                                 <li>
                             </ul>
                             <ul class="nav navbar-nav navbar-right">
-                                <li><f:link.action controller="Import" action="new" arguments="{type:'fach'}" class="gettooltip" title="Importiert Prüflinge in dies Fach" >Fach importeren</f:link.action></li>
+                                <li><f:link.action controller="Import" action="new" arguments="{type:'fach'}" class="gettooltip" title="Importiert Prüflinge in dieses Fach" >Fach importeren</f:link.action></li>
                                 <li><f:link.action controller="Export" class="gettooltip" action="exportFach" arguments="{modul:modul.uid,fachuid:fach.uid}" title="Exportiert das Fach mit allen Noten" >Fach exportieren</f:link.action></li>
                             </ul>
                         </div>
@@ -122,10 +122,12 @@
                                 <td>Eingetragene Noten</td>
                                 <td>{eingetragen}</td>
                             </tr>
+                        <f:if condition="{avg} != 'unbenotet'">
                             <tr>
                                 <td>Notendurchschnitt</td>
                                 <td>{avg}</td>
                             </tr>
+                        </f:if>
                         </tbody>
                     </table>
                 </div>

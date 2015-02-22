@@ -155,7 +155,7 @@ class NotenVerwaltungHelper {
                 $this->schoolMarks[$wert] = $this->schoolMarks[$wert] + 1;
             }
 
-            if ($typ == "unbenotet" && $wert != NULL) {
+            if ($typ == "unbenotet" && ($wert == "be" || $wert == "N")) {
                 $this->unbenotetMarks[$wert] = $this->unbenotetMarks[$wert] + 1;
             }
         }
@@ -192,7 +192,7 @@ class NotenVerwaltungHelper {
     public function checkIfWertisSet($notenliste) {
         $count = 0;
         foreach ($notenliste as $result) {
-            if ($result->getWert() != 0) {
+            if ($result->getWert() != 0 || $result->getWert() == "be" || $result->getWert() == "N") {
                 $count++;
             }
         }
