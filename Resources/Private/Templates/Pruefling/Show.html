@@ -128,26 +128,24 @@
         // Chart generiern und tabelle highlighten wenn seite geladen ist.
         window.onload = function () {
             if (window.jQuery) {
-                //$(".collapse").on('shown.bs.collapse', function () {
-
-                $(".collapsebutton").click(function () {
-                    alert($(this).attr('id'));
-
-
+                // Wenn Colaplse open
+                $(".collapse").on('shown.bs.collapse', function () {
                     for (i = 0; i < temp.length; i++) {
-                        alert(temp[i][2]);
+                        if (parseInt($(this).attr('id')) === parseInt(temp[i][2])) {
+                            genchart(temp[i][0], temp[i][2] + "chart");
+                            highlighttable(temp[i][1], temp[i][2] + "table");
+                        }
                     }
-
-                    //temp.forEach(function (entry) {
-                    //    genchart(entry[0], entry[2] + "chart");
-                    //    highlighttable(entry[1], entry[2] + "table");
-                    //});
                 });
-
-
-                //});
             }
         };
+
+        /**
+         * Funktion markiert die Tabelle.
+         * @param {type} value 
+         * @param {type} colortable
+         * @returns {undefined}
+         */
         function highlighttable(value, colortable) {
             $("." + colortable + " tr").each(function (index) {
                 if (index !== 0) {
