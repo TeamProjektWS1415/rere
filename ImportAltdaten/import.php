@@ -199,13 +199,6 @@ echo "Create Prüflinge completed </br>";
 
 //** import Grades
 for ($i = 0; $i < count($grades_Array); $i=$i+11){
-	$NOTE = $grades_Array[$i+8];
-	if($NOTE == "'bestanden'"){
-		$NOTE = "'be'";
-	}
-	if($NOTE == "'nicht bestanden'"){
-		$NOTE = "'N'";
-	}
 	$KOMMENTAR = $grades_Array[$i+9];
 	$feUserUID = $grades_Array[$i+7];
 	//look for Pruefling
@@ -230,7 +223,7 @@ for ($i = 0; $i < count($grades_Array); $i=$i+11){
 			break;			
 		}
 	}
-	//	look for new UD
+	//	look for new UID
 	for ($k = 0; $k < count($subjects_Array); $k=$k+9){
 		if($subjectUID == $subjects_Array[$k]){
 			$fachname= $subjects_Array[$k+7];
@@ -248,6 +241,31 @@ for ($i = 0; $i < count($grades_Array); $i=$i+11){
 	}
 	$row = $result->fetch_assoc();
 	$fachUID = $row['uid'];
+	
+	//adjustment note/grade
+	$NOTE = $grades_Array[$i+8];
+	if($NOTE == "'bestanden'"){
+		$NOTE = "'be'";
+	}
+	if($NOTE == "'nicht bestanden'"){
+		$NOTE = "'N'";
+	}
+	if($NOTE == "'1'"){
+		$NOTE = "1.0";
+	}
+	if($NOTE == "'2'"){
+		$NOTE = "2.0";
+	}
+	if($NOTE == "'3'"){
+		$NOTE = "3.0";
+	}
+	if($NOTE == "'4'"){
+		$NOTE = "4.0";
+	}
+	if($NOTE == "'5'"){
+		$NOTE = "5.0";
+	}
+	
 	$sql = "INSERT INTO tx_rere_domain_model_note (pid, fach, pruefling, wert, kommentar, tstamp, crdate, cruser_id, deleted, hidden ) VALUES(".$PID.",".$fachUID.",".$prueflingUID."," .$NOTE.",".$KOMMENTAR.",".$grades_Array[$i+2].",".$grades_Array[$i+3].",".$grades_Array[$i+4].",".$grades_Array[$i+5].",".$grades_Array[$i+6].")";
 	if (!mysqli_query($db, $sql)) {
 			echo "<br>Error: " . $sql . "<br>" . mysqli_error($db); 
