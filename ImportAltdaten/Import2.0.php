@@ -19,7 +19,6 @@ $PID = 1; //PID of rere Extension
 //ModulImport Configuration
 $MODULNUMMER = 0; //Modulnummer for every imported Modul
 $FACH = 1; //Value for Fach
-$GUELTIGKEITSZEITRAUM = "WS14/15";
 
 //SubjectImport Configuration
 $NOTENSYSTEM_BEI_KLAUSUR = "hochschulsystem"; //Alternatives: "15pktsystem" or "schulsystem"
@@ -73,16 +72,71 @@ $subjects_Array=array_map('trim', $subjects_Array);
 $grades_Array=array_map('trim', $grades_Array);
 $modules_Array=array_map('trim', $modules_Array);
 
-
-// ** Import Modules ** /
-for ($i = 0; $i < count($modules_Array); $i=$i+8){
-	$sql = "INSERT INTO tx_rere_domain_model_modul (pid, modulnr, modulname, gueltigkeitszeitraum, fach, tstamp, crdate, cruser_id, deleted, hidden) VALUES (".$PID.",".$MODULNUMMER.",".$modules_Array[$i+7].",'".$GUELTIGKEITSZEITRAUM."',".$FACH.",".$modules_Array[$i+2]. ",".$modules_Array[$i+3].",".$modules_Array[$i+4].",".$modules_Array[$i+5].",".$modules_Array[$i+6]." )";		
-	if (!mysqli_query($db, $sql)) {
-		echo "<br>Error: " . $sql . "<br>" . mysqli_error($db);   
-		exit();
-		}	
+//compute Semester
+function timestampToSemester ($unixTimestamp){
+	$SS08 = 1204326000; 
+	$SS09 = 1235862000;
+	$SS10 = 1267398000;
+	$SS11 = 1298934000;
+	$SS12 = 1330556400;
+	$SS13 = 1362092400;
+	$SS14 = 1393628400;
+	$SS15 = 1425164400;
+	$WS0809 = 1220223600;
+	$WS0910 = 1251759600;
+	$WS1011 = 1283295600;
+	$WS1112 = 1314831600;
+	$WS1213 = 1346454000;
+	$WS1314 = 1377990000;			
+	$WS1415 = 1409526000;
+	$GUELTIGKEITSZEITRAUM="WS07/08";
+	if($unixTimestamp > $SS08){
+		$GUELTIGKEITSZEITRAUM = "SS8";
+	}
+	if($unixTimestamp >$WS0809){
+		$GUELTIGKEITSZEITRAUM="WS08/09";
+	}
+	if($unixTimestamp >$SS09){
+		$GUELTIGKEITSZEITRAUM="SS9";
+	}
+	if($unixTimestamp >$WS0910){
+		$GUELTIGKEITSZEITRAUM="WS09/10";
+	}
+	if($unixTimestamp >$SS10){
+		$GUELTIGKEITSZEITRAUM="SS10";
+	}
+	if($unixTimestamp >$WS1011){
+		$GUELTIGKEITSZEITRAUM="WS10/11";
+	}
+	if($unixTimestamp >$SS11){
+		$GUELTIGKEITSZEITRAUM="SS11";
+	}
+	if($unixTimestamp >$WS1112){
+		$GUELTIGKEITSZEITRAUM="WS11/12";
+	}
+	if($unixTimestamp >$SS12){
+		$GUELTIGKEITSZEITRAUM="SS12";
+	}
+	if($unixTimestamp >$WS1213){
+		$GUELTIGKEITSZEITRAUM="WS12/13";
+	}
+	if($unixTimestamp >$SS13){
+		$GUELTIGKEITSZEITRAUM="SS13";
+	}
+	if($unixTimestamp >$WS1314){
+		$GUELTIGKEITSZEITRAUM="WS13/14";
+	}
+	if($unixTimestamp >$SS14){
+		$GUELTIGKEITSZEITRAUM="SS14";
+	}
+	if($unixTimestamp >$WS1415){
+		$GUELTIGKEITSZEITRAUM="WS14/15";
+	}
+	if($unixTimestamp >$SS15){
+		$GUELTIGKEITSZEITRAUM="SS15";
+	}
+	return $GUELTIGKEITSZEITRAUM;
 }
-echo "Module completed</br>";
 
 // ** Import Subjects **
 for ($i = 0; $i < count($subjects_Array); $i=$i+9){
@@ -90,68 +144,83 @@ for ($i = 0; $i < count($subjects_Array); $i=$i+9){
 	$fachname = $subjects_Array[$i+7];
 	$fachcode = $subjects_Array[$i+8];
 	//search related entry in addministration table 	
-	$subjectUID_FK = -1;
+	$subjectUID_FK = 0;
 	$linePointer = 0;
+	$examsForSubjectRowLine_array = array();
 	for ( ;$linePointer < count($administrations_Array); $linePointer=$linePointer+15){
 		$subjectUID_FK = $administrations_Array[$linePointer+8];
 		if($subjectUID_FK == $subjectUID){
-			break;
+			$examsForSubjectRowLine_array[] =  $linePointer;
 		}
 	}
-	if($subjectUID_FK == -1){
-		echo "Error: Subject without ForeignKey in administration table";
-		exit();	
-	}
-	//search ModulUID in new db for reference 
-	$modulUIDforSubject_old = $administrations_Array[$linePointer+7];
-	$modulNameforSubject = -1;
-	for($k = 0; $k < count($modules_Array); $k=$k+8){
-		if($modules_Array[$k]== $modulUIDforSubject_old){
-			$modulNameforSubject = $modules_Array[$k+7];
+	foreach($examsForSubjectRowLine_array as $examLinePointer){
+		$gueltigeitszeitraumUnixTime = 	$administrations_Array[$examLinePointer +14];
+		if($gueltigeitszeitraumUnixTime == 0){
+			$gueltigeitszeitraumUnixTime = $administrations_Array[$examLinePointer +3];
+		}	
+		$GUELTIGKEITSZEITRAUM = timestampToSemester($gueltigeitszeitraumUnixTime); 
+	 	//search ModulUID in new db for reference 
+	 	$modulUIDforSubject_old = $administrations_Array[$examLinePointer+7];
+		$modulNameforSubject = -1;
+		for($k = 0; $k < count($modules_Array); $k=$k+8){
+			if($modules_Array[$k]== $modulUIDforSubject_old){
+				$modulNameforSubject = $modules_Array[$k+7];
+			}
+		}	
+		if($modulNameforSubject == -1){
+			echo "Error: no modul with UID: " . $modulUIDforSubject_old . "in CSV";
 		}
-	}	
-	if($modulNameforSubject == -1){
-		echo "Error: no modul with UID: " . $modulUIDforSubject_old . "in CSV";
-	}
-	$sqlQuery = "SELECT uid FROM tx_rere_domain_model_modul where modulname=".$modulNameforSubject."";
-	$result  = mysqli_query($db, $sqlQuery);
-	if($result->num_rows > 1){
-		echo "Error: Same modul UID twice for subject: ". $modulNameforSubject;
-		exit();	
-	}
-	$row = $result->fetch_assoc();
-	$modulUIDforSubject_new=$row["uid"];
-	//Look for Notenschema for Subject
-	$gradeType_old = $administrations_Array[$linePointer+13];
-	if($gradeType_old == "'K'"){
-		$gradeType_new = $NOTENSYSTEM_BEI_KLAUSUR;
-	}
-	elseif($gradeType_old == "'S'"){
-		$gradeType_new = "unbenotet";
-	}
-	else{
-		echo"invalid Subject Grade Type " . $gradeType_old; 
-		exit();
-	}
-	
-	//Count number of grades for subject for column 'note'
-	$counterNote = 0;
-	for ($j = 0; $j < count($grades_Array); $j=$j+11){
-		$configID = $grades_Array[$j+10];
-		for($l = 0; $l < count($administrations_Array); $l=$l+15){
-			if($subjectUID == $administrations_Array[$l+8]){
-						$counterNote++;
+		$sqlQuery = "SELECT uid FROM tx_rere_domain_model_modul where modulname=".$modulNameforSubject." AND gueltigkeitszeitraum='".$GUELTIGKEITSZEITRAUM."'";
+		$result  = mysqli_query($db, $sqlQuery);
+		if($result->num_rows > 1){
+			echo "Error: Same modul UID twice for subject: ". $modulNameforSubject;
+			exit();	
+		}
+		if($result->num_rows == 0){
+			for ($j = 0; $j < count($modules_Array); $j=$j+8){
+				if($modulUIDforSubject_old == $modules_Array[$j]){
+					$sql = "INSERT INTO tx_rere_domain_model_modul (pid, modulnr, modulname, gueltigkeitszeitraum, fach, tstamp, crdate, cruser_id, deleted, hidden) VALUES (".$PID.",".$MODULNUMMER.",".$modules_Array[$j+7].",'".$GUELTIGKEITSZEITRAUM."',".$FACH.",".$modules_Array[$j+2]. ",".$modules_Array[$j+3].",".$modules_Array[$j+4].",".$modules_Array[$j+5].",".$modules_Array[$j+6]." )";	
+					if(!mysqli_query($db, $sql)) {
+						echo "<br>Error: " . $sql . "<br>" . mysqli_error($db);   
+						exit();
+					}
+					$sqlQuery = "SELECT uid FROM tx_rere_domain_model_modul where modulname=".$modulNameforSubject." AND gueltigkeitszeitraum='".$GUELTIGKEITSZEITRAUM."'";
+					$result  = mysqli_query($db, $sqlQuery);
+					break;				
+				}
+			}
+		}	
+		$row = $result->fetch_assoc();
+		$modulUIDforSubject_new=$row["uid"];
+		//Look for Notenschema for Subject
+		$gradeType_old = $administrations_Array[$examLinePointer+13];
+		if($gradeType_old == "'K'"){
+			$gradeType_new = $NOTENSYSTEM_BEI_KLAUSUR;
+		}
+		elseif($gradeType_old == "'S'"){
+			$gradeType_new = "unbenotet";
+		}
+		else{
+			echo"invalid Subject Grade Type " . $gradeType_old; 
+			exit();
+		}
+		//Count number of grades for subject for column 'note'
+		$counterNote = 0;
+		for ($j = 0; $j < count($grades_Array); $j=$j+11){
+			$configID = $grades_Array[$j+10];
+			if($configID == "'".$administrations_Array[$examLinePointer]."'"){
+				$counterNote++;
 			}
 		}
-	}
-	$klausurZeitpunkt=0;	
-	$sql = "INSERT INTO tx_rere_domain_model_fach (pid, fachnr, fachname, pruefer, notenschema, modulnr, note, tstamp, crdate, cruser_id, deleted, hidden, matrikelnr, datum, creditpoints) VALUES (".$PID.",".$fachcode.",".$fachname.",'".$PRÜFER."','".$gradeType_new."',".$modulUIDforSubject_new.",".$counterNote.",".$subjects_Array[$i+2].",".$subjects_Array[$i+3].",".$subjects_Array[$i+4].",".$subjects_Array[$i+5].",".$subjects_Array[$i+6].",".$counterNote.",'".$klausurZeitpunkt."',".$administrations_Array[$linePointer+9].")";
-	if (!mysqli_query($db, $sql)) {
-			echo "<br>Error: " . $sql . "<br>" . mysqli_error($db); 
-			exit();  
-		} 
+		$sql = "INSERT INTO tx_rere_domain_model_fach (pid, fachnr, fachname, pruefer, notenschema, modulnr, note, tstamp, crdate, cruser_id, deleted, hidden, matrikelnr, datum, creditpoints, modul) VALUES (".$PID.",".$fachcode.",".$fachname.",'".$PRÜFER."','".$gradeType_new."',".$modulUIDforSubject_new.",".$counterNote.",".$subjects_Array[$i+2].",".$subjects_Array[$i+3].",".$subjects_Array[$i+4].",".$subjects_Array[$i+5].",".$subjects_Array[$i+6].",".$counterNote.",'".	$administrations_Array[$examLinePointer +14]."',".$administrations_Array[$examLinePointer+9].",".$administrations_Array[$examLinePointer].")";
+		if (!mysqli_query($db, $sql)) {
+				echo "<br>Error: " . $sql . "<br>" . mysqli_error($db); 
+				exit();  
+			} 
+	
+	}	
 }
-echo "Subjects completed</br>";
+echo "Modules and Subjects completed<br>";
 
 //** import/create Prueflinge
 for ($i = 0; $i < count($grades_Array); $i=$i+11){
@@ -209,30 +278,18 @@ for ($i = 0; $i < count($grades_Array); $i=$i+11){
 	}
 	$row = $result->fetch_assoc();
 	$prueflingUID = $row['uid'];
-	//*look for fach
-	//	look for old UID of Subject
+	//look for fach
 	$subject_configUid = $grades_Array[$i+10];
-	for($l = 0; $l < count($administrations_Array); $l=$l+15){
-		if($subject_configUid == "'".$administrations_Array[$l]."'"){
-			$subjectUID = $administrations_Array[$l+8];	
-			break;			
-		}
-	}
-	//	look for new UID
-	for ($k = 0; $k < count($subjects_Array); $k=$k+9){
-		if($subjectUID == $subjects_Array[$k]){
-			$fachname= $subjects_Array[$k+7];
-		}
-	}
-	$sqlQuery = "SELECT uid FROM tx_rere_domain_model_fach where fachname=".$fachname."";
+	$sqlQuery = "SELECT uid FROM tx_rere_domain_model_fach where modul=".$subject_configUid."";
 	$result  = mysqli_query($db, $sqlQuery);
 	if($result->num_rows > 1){
-		echo "Error: double entry with fachname: " .$fachname;
+		echo "Error: double entry with subjectConfigUID: " .$subject_configUid;
 		exit();	
 	}
 	if($result->num_rows == 0){
-			echo "No fach with ".$fachname;
-			exit();	
+			echo "No Entry with SubjectConfigUID: ".$subjectUID."</br>";
+			echo "Grade with UID ". $grades_Array[$i]." by FE-USER ".$feUserUID." cannot be assigned </br>";
+			continue;
 	}
 	$row = $result->fetch_assoc();
 	$fachUID = $row['uid'];
@@ -268,5 +325,4 @@ for ($i = 0; $i < count($grades_Array); $i=$i+11){
 		} 
 } 
 echo "Grades completed </br>";
-
 ?>
