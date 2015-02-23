@@ -58,7 +58,7 @@
             </trans-unit>
 
 
-            <!-- Fach hinzufügen und Modul Fach hinzufügen-->
+<!-- Fach hinzufügen und Modul Fach hinzufügen-->
 
             <trans-unit id="tx_rere_fach_new.Ueberschrift">
                 <source>Fach hinzufügen</source>
@@ -93,7 +93,10 @@
                 <source>Professor</source>
                 <target>Professor</target>
             </trans-unit>
-
+            <trans-unit id="tx_rere_domain_model_fach.PruefungsDatum">
+                <source>Prüfungsdatum</source>
+                <target>Prüfungsdatum</target>
+            </trans-unit>
             <trans-unit id="tx_rere_Placeholder.Modulname">
                 <source>Modulname</source>
                 <target>Modulname</target>
@@ -117,6 +120,10 @@
             <trans-unit id="tx_rere_Placeholder.Professor">
                 <source>Professor</source>
                 <target>Professor</target>
+            </trans-unit>
+            <trans-unit id="tx_rere_Placeholder.Datum">
+                <source>Datum</source>
+                <target>Datum</target>
             </trans-unit>
 
             <trans-unit id="tx_rere_title.Modul">
@@ -143,22 +150,50 @@
                 <source>Für das Fach verantwortlicher Professor</source>
                 <target>Für das Fach verantwortlicher Professor</target>
             </trans-unit>
+            <trans-unit id="tx_rere_title.Datum">
+                <source>Datum der Pruefung</source>
+                <target>Datum der Pruefung</target>
+            </trans-unit>
+            <trans-unit id="tx_rere_title.Creditpoints">
+                <source>Creditpoints der Veranstaltung</source>
+                <target>Creditpoints der Veranstaltung</target>
+            </trans-unit>
+        
             <trans-unit id="tx_rere_title.BenotetHochschulSystem">
                 <source>Fach nach Hochschulnoten benotet</source>
                 <target>Fach nach Hochschulnoten benotet</target>
             </trans-unit>
+            <trans-unit id="tx_rere_text.BenotetHochschulSystem">
+                <source>Benotet (Hochschul-System)</source>
+                <target>Benotet (Hochschul-System)</target>
+            </trans-unit>
+        
+        
             <trans-unit id="tx_rere_title.BenotetPunkteSystem">
                 <source>Fach nach 15-Punkte-System benotet</source>
                 <target>Fach nach 15-Punkte-System benotet</target>
             </trans-unit>
+            <trans-unit id="tx_rere_text.BenotetPunkteSystem">
+                <source>Benotet (15-Punkte-System)</source>
+                <target>Benotet (15-Punkte-System)</target>
+            </trans-unit>
+        
             <trans-unit id="tx_rere_title.UnbenotetSchein">
                 <source>Fach unbenotet</source>
                 <target>Fach unbenotet</target>
+            </trans-unit>
+            <trans-unit id="tx_rere_text.UnbenotetSchein">
+                <source>Unbenotet (Scheine)</source>
+                <target>Unbenotet (Scheine)</target>
             </trans-unit>
 
             <trans-unit id="tx_rere_title.BenotetSchulSystem">
                 <source>Fach nach Schul-System benotet</source>
                 <target>Fach nach Schul-System benotet</target>
+            </trans-unit>
+            <trans-unit id="tx_rere_text.BenotetSchulSystem">
+                <source>Benotet (Schul-System)</source>
+                <target>Benotet (Schul-System)</target>
             </trans-unit>
 
             <trans-unit id="tx_rere_Text.Pflichtfelder">
@@ -171,7 +206,7 @@
                 <target>Daten speichern</target>
             </trans-unit>
 
-            <!-- Import-->
+<!-- Import-->
 
             <trans-unit id="tx_rere_Import.Ueberschrift">
                 <source>CSV-Beispiel</source>
@@ -200,7 +235,8 @@
                 <target>Beim Import werden nur die Zeile zwischen 5 und N-1 berücksichtigt, alle anderen davor und danach werden ignoriert.</target>
             </trans-unit>
 
-            <!-- Startseite-->
+<!-- Startseite-->
+
             <trans-unit id="tx_rere_Startseite.PrueflingAnlegen">
                 <source>Prüfling anlegen</source>
                 <target>Prüfling setup</target>
@@ -322,7 +358,7 @@
                 <target>Modul anlegen</target>
             </trans-unit>
 
-            <!-- Auswahl Notenverwaltung-->
+<!-- Auswahl Notenverwaltung-->
 
             <trans-unit id="tx_rere_Ueberschrift_Notenverwaltung">
                 <source>Notenverwaltung</source>
@@ -447,8 +483,219 @@
                 <source> Notendurchschnitt </source>
                 <target> Notendurchschnitt </target>
             </trans-unit>
+        
+<!-- Pruefling zuweisen-->
+        
+            <trans-unit id="tx_rere_Ueberschrift_Zuweisen">
+                <source>Prüfling zuweisen</source>
+                <target>Prüfling zuweisen</target>
+            </trans-unit>
+            <trans-unit id="tx_rere_Ueberschrift_Zuweisen_aus">
+                <source>aus</source>
+                <target>aus</target>
+            </trans-unit>
+            <trans-unit id="tx_rere_Ueberschrift_Zuweisen_in">
+                <source>in</source>
+                <target>in</target>
+            </trans-unit>
+        
+            <trans-unit id="tx_rere_Text_Zuweisen.Text1">
+                <source> Geben Sie eine MatrikelNr oder einen Namen ein um nach einem Prüfling zu suchen. </source>
+                <target> wGeben Sie eine MatrikelNr oder einen Namen ein um nach einem Prüfling zu suchen. </target>
+            </trans-unit>
+            <trans-unit id="tx_rere_Text_Zuweisen.Text2">
+                <source> Weisen Sie den Prüfling dann mit Enter dem Fach zu. Alternativ können Sie eine UserGroup hinzufügen. </source>
+                <target> Weisen Sie den Prüfling dann mit Enter dem Fach zu. Alternativ können Sie eine UserGroup hinzufügen. </target>
+            </trans-unit>
+        
+            <trans-unit id="tx_rere_title_zuweisen.NachMatrNrSuchen">
+                <source>Nach MatrikelNr suchen</source>
+                <target>Nach MatrikelNr suchen</target>
+            </trans-unit>
+            <trans-unit id="tx_rere_Placeholder_zuweisen.MatrNrSuchen">
+                <source>Matrikel Nummer</source>
+                <target>Matrikel Nummer</target>
+            </trans-unit>
+            <trans-unit id="tx_rere_button_Zuweisen.UsergroupHinzufuegen">
+                <source> UserGroup hinzufügen </source>
+                <target> UserGroup hinzufügen </target>
+            </trans-unit>
+        
+            <trans-unit id="tx_rere_title_zuweisen.PrueflingAnlegen">
+                <source>Neuen Prüfling anlegen</source>
+                <target>Neuen Prüfling anlegen</target>
+            </trans-unit>
+            <trans-unit id="tx_rere_Placeholder_zuweisen.PrueflingAnlegen">
+                <source>Neuen Prüfling anlegen</source>
+                <target>Neuen Prüfling anlegen</target>
+            </trans-unit>
+            <trans-unit id="tx_rere_Ueberschrift_Zuweisen.Zugewiesen">
+                <source>Bereits zugewiesen</source>
+                <target>Bereits zugewiesen</target>
+            </trans-unit>
+            <trans-unit id="tx_rere_Text_Zuweisen.matrikelnr">
+                <source>Matrikelnr</source>
+                <target>Matrikelnr</target>
+            </trans-unit>
+            <trans-unit id="tx_rere_Text_Zuweisen.vorname">
+                <source>Vorname</source>
+                <target>Vorname</target>
+            </trans-unit>
+            <trans-unit id="tx_rere_Text_Zuweisen.nachname">
+                <source>Nachname</source>
+                <target>Nachname</target>
+            </trans-unit>
+            <trans-unit id="tx_rere_Text_Zuweisen.EintragLoeschen">
+                <source>Eintrag loeschen</source>
+                <target>Eintrag loeschen</target>
+            </trans-unit>
+            
+            <trans-unit id="tx_rere_error_Zuweisen.text1">
+                <source>Möchten Sie den Pruefling mit der Matrikelnr: </source>
+                <target>Möchten Sie den Pruefling mit der Matrikelnr: </target>
+            </trans-unit>
+            <trans-unit id="tx_rere_error_Zuweisen.text2">
+                <source>wirklich löschen? Er wird vom Fach abgemeldet und die Note wird gelöscht. </source>
+                <target>wirklich löschen? Er wird vom Fach abgemeldet und die note wird gelöscht. </target>
+            </trans-unit>
+            
+            <trans-unit id="tx_rere_Button_Zuweisen.DatensatzLoeschen">
+                <source>Löscht diesen Datensatz </source>
+                <target>Löscht diesen Datensatz </target>
+            </trans-unit>
+        
+<!-- Pruefling anlegen-->
+        
+            <trans-unit id="tx_rere_Ueberschrift_PrueflingAnlegen">
+                <source>Pruefling anlegen</source>
+                <target>Pruefling anlegen</target>
+            </trans-unit>
+        
+            <trans-unit id="tx_rere_domain_model_pruefling.nachname">
+                <source>Nachname</source>
+                <target>Nachname</target>
+            </trans-unit>
+            
+            
+            <trans-unit id="tx_rere_Placeholder_PrueflingAnlegen.Name">
+                <source>Name</source>
+                <target>Name</target>
+            </trans-unit>
+            <trans-unit id="tx_rere_title_PrueflingAnlegen.Name">
+                <source>Name hier eingeben</source>
+                <target>Name hier eingeben</target>
+            </trans-unit>
+            <trans-unit id="tx_rere_domain_model_pruefling.vorname">
+                <source>Vorname</source>
+                <target>Vorname</target>
+            </trans-unit>
+            <trans-unit id="tx_rere_Placeholder_PrueflingAnlegen.Vorame">
+                <source>Vorname</source>
+                <target>Vorname</target>
+            </trans-unit>
+            <trans-unit id="tx_rere_title_PrueflingAnlegen.Vorname">
+                <source>Vorname hier eingeben</source>
+                <target>Vorname hier eingeben</target>
+            </trans-unit>
+        
+            <trans-unit id="tx_rere_domain_model_pruefling.matrikelnr">
+                <source>Matrikelnr</source>
+                <target>Matrikelnr</target>
+            </trans-unit>
+            <trans-unit id="tx_rere_Placeholder_PrueflingAnlegen.matrikelnr">
+                <source>MatrikelNr</source>
+                <target>MatrikelNr</target>
+            </trans-unit>
+            <trans-unit id="tx_rere_title_PrueflingAnlegen.matrikelnr">
+                <source>MatrikelNr hier eingeben</source>
+                <target>MatrikelNr hier eingeben</target>
+            </trans-unit>
+            <trans-unit id="tx_rere_title_PrueflingAnlegen.EMail">
+                <source>E-Mail hier eingeben</source>
+                <target>E-Mail hier eingeben</target>
+            </trans-unit>
+            
+            <trans-unit id="tx_rere_Text_PreuflingAnlegen.Speichern">
+                <source>Speichern</source>
+                <target>Speichern</target>
+            </trans-unit>
+            <trans-unit id="tx_rere_Text_PreuflingAnlegen.SpeichernZurueck">
+                <source>zurueck</source>
+                <target>zurueck</target>
+            </trans-unit>
+            <trans-unit id="tx_rere_Text_PreuflingAnlegen.SpeichernNaechstes">
+                <source>naechstes</source>
+                <target>naechstes</target>
+            </trans-unit>
+            
+            <trans-unit id="tx_rere_Button_PreuflingAnlegen.Anlegen">
+                <source>Anlegen</source>
+                <target>Anlegen</target>
+            </trans-unit>
+        
+        
+<!-- Pruefungsleistung anzeigen-->
+        
+            <trans-unit id="tx_rere_Ueberschrift_PruefungsleistungAnzeigen">
+                <source>Pruefungsleistung anzeigen von </source>
+                <target>Pruefungsleistung anzeigen von </target>
+            </trans-unit>
+            <trans-unit id="tx_rere_Text_PruefungsleistungAnzeigen.Text1">
+                <source>Ihre Matrikelnr: </source>
+                <target>Ihre Matrikelnr: </target>
+            </trans-unit>
+            <trans-unit id="tx_rere_Text_PruefungsleistungAnzeigen.Text2">
+                <source>Ihr Gesamtdurchschnitt: </source>
+                <target>Ihr Gesamtdurchschnitt: </target>
+            </trans-unit>
+            <trans-unit id="tx_rere_Text_PruefungsleistungAnzeigen.Text3">
+                <source>Note: </source>
+                <target>Note: </target>
+            </trans-unit>
+            <trans-unit id="tx_rere_Text_PruefungsleistungAnzeigen.Text4">
+                <source>Ihre Note: </source>
+                <target>Ihre Note: </target>
+            </trans-unit>
+            <trans-unit id="tx_rere_Text_PruefungsleistungAnzeigen.Text5">
+                <source>Note</source>
+                <target>Note</target>
+            </trans-unit>
+            <trans-unit id="tx_rere_Text_PruefungsleistungAnzeigen.Text6">
+                <source>Vorkommen</source>
+                <target>Vorkommen</target>
+            </trans-unit>
+            <trans-unit id="tx_rere_Text_PruefungsleistungAnzeigen.Text7">
+                <source>Anzahl der Prueflinge: </source>
+                <target>Anzahl der Prueflinge: </target>
+            </trans-unit>
+            <trans-unit id="tx_rere_Text_PruefungsleistungAnzeigen.Text8">
+                <source>Durchschnitt</source>
+                <target>Durchschnitt</target>
+            </trans-unit>
+        
+        
+<!-- Seetings-->
+        
+            <trans-unit id="tx_rere_Seetings.Text1">
+                <source>Absender Email *</source>
+                <target>Absender Email *</target>
+            </trans-unit>
+            <trans-unit id="tx_rere_Seetings.Text2">
+                <source>Empfänger Email *</source>
+                <target>Empfänger Email *</target>
+            </trans-unit>
+            <trans-unit id="tx_rere_Button_Seetings.DatenSpeichern">
+                <source>Daten speichern</source>
+                <target>Daten speichern</target>
+            </trans-unit>
+            
 
-            <!-- Sonstige-->
+        
+        
+        
+            
+
+<!-- Sonstige-->
             <trans-unit id="tx_rere_button.FachHinzufuegen">
                 <source>Fach hinzufügen</source>
                 <target>Fach hinzufügen</target>

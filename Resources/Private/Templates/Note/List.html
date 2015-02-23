@@ -10,37 +10,37 @@
             <div name="breadcrumb" class="col-md-12">
                 <ol class="breadcrumb">
                     <li><f:link.action controller="Modul" action="list">Result Repository</f:link.action></li>
-                    <li class="active">Notenverwaltung</li>
+                    <li class="active">Notenverwaltung<f:translate key="tx_rere_Ueberschrift_Notenverwaltung" /></li>
                 </ol>
             </div>
             <div class="col-md-12">
-                <h1>Notenverwaltung</h1>
+                <h1>Notenverwaltung<f:translate key="tx_rere_Ueberschrift_Notenverwaltung" /></h1>
             </div>
             <div class="col-md-12">
-                <h4><strong>{fach.fachname}</strong> aus <strong>{modul.modulname}</strong> in <strong>{modul.gueltigkeitszeitraum}</strong></h4>
+                <h4><strong>{fach.fachname}</strong> <f:translate key="tx_rere_Ueberschrift_Notenverwaltung_aus" /> <strong>{modul.modulname}</strong> <f:translate key="tx_rere_Ueberschrift_Notenverwaltung_in" /> <strong>{modul.gueltigkeitszeitraum}</strong></h4>
             </div>
             <div class="col-md-12">
                 <nav class="navbar navbar-default" role="navigation">
                     <div class="container-fluid">
                         <div class="collapse navbar-collapse" id="navi">
                             <ul class="nav navbar-nav">
-                                <li class="active" id="alle" data-toggle="tooltip" data-placement="bottom" title="Zeigt alle Noten an"><a href="#" >alle anzeigen</a></li>
-                                <li id="eingetragene" data-toggle="tooltip" data-placement="bottom" title="Zeigt nur eingetragene Noten an"><a href="#">eingetragene anzeigen</a></li>
-                                <li id='nichteingetragene' data-toggle="tooltip" data-placement="bottom" title="Zeigt noch zu erledigende an"><a href="#">nicht eigetragene anzeigen</a></li>
+                                <li class="active" id="alle" data-toggle="tooltip" data-placement="bottom" title="<f:translate key="tx_rere_title_Notenverwaltung.AlleAnzeigen"/>"><a href="#" ><f:translate key="tx_rere_Notenverwaltung.AlleAnzeigen"/></a></li>
+                                <li id="eingetragene" data-toggle="tooltip" data-placement="bottom" title="<f:translate key="tx_rere_title_Notenverwaltung.EingetrageneAnzeigen" />"><a href="#"><f:translate key="tx_rere_Notenverwaltung.EingetrageneAnzeigen" /></a></li>
+                                <li id='nichteingetragene' data-toggle="tooltip" data-placement="bottom" title="<f:translate key="tx_rere_title_Notenverwaltung.NichtEingetrageneAnzeigen" />"><a href="#"><f:translate key="tx_rere_Notenverwaltung.NichtEingetrageneAnzeigen" /></a></li>
                             </ul>
                             <ul class="nav navbar-nav">
                                 <li>
                                     <form class="navbar-form navbar-left" role="search">
                                         <div class="form-group input-group">
                                             <div class="input-group-addon"><span class="glyphicon glyphicon-search" aria-hidden="true" ></span></div>
-                                            <input type="text" id="suche" class="form-control" rel="tooltip" data-toggle="tooltip" data-placement="bottom" title="Nach MatrikelNr / Nachname / Vorname suchen" placeholder="MatrNr / Vor-Nach-Name">
+                                            <input type="text" id="suche" class="form-control" rel="tooltip" data-toggle="tooltip" data-placement="bottom" title="<f:translate key="tx_rere_title_Notenverwaltung.NachMatrNrSuchen" />" placeholder="<f:translate key=tx_rere_Placeholder_Notenverwaltung.MatrNrSuchen" />">
                                         </div>
                                     </form>
                                 <li>
                             </ul>
                             <ul class="nav navbar-nav navbar-right">
-                                <li><f:link.action controller="Import" action="new" arguments="{type:'fach'}" class="gettooltip" title="Importiert Prüflinge in dieses Fach" >Fach importeren</f:link.action></li>
-                                <li><f:link.action controller="Export" class="gettooltip" action="exportFach" arguments="{modul:modul.uid,fachuid:fach.uid}" title="Exportiert das Fach mit allen Noten" >Fach exportieren</f:link.action></li>
+                                <li><f:link.action controller="Import" action="new" arguments="{type:'fach'}" class="gettooltip" title="<f:translate key="tx_rere_title_Notenverwaltung.FachImportieren" />" ><f:translate key="tx_rere_Notenverwaltung.FachImportieren" /></f:link.action></li>
+                                <li><f:link.action controller="Export" class="gettooltip" action="exportFach" arguments="{modul:modul.uid,fachuid:fach.uid}" title="<f:translate key="tx_rere_title_Notenverwaltung.FachExportieren" />" ><f:translate key="tx_rere_Notenverwaltung.FachExportieren" /></f:link.action></li>
                             </ul>
                         </div>
                     </div>
@@ -53,9 +53,9 @@
                     <table id="grades" class="table tx_rere">
                         <thead>
                             <tr>
-                                <th>MatrikelNr <span class="glyphicon glyphicon-sort" aria-hidden="true"></span></th>
-                                <th>Name <span class="glyphicon glyphicon-sort" aria-hidden="true"></span></th>
-                                <th>Vorname <span class="glyphicon glyphicon-sort" aria-hidden="true"></span></th>
+                                <th><f:translate key="tx_rere_domain_model_pruefling.matrikelnr" /><span class="glyphicon glyphicon-sort" aria-hidden="true"></span></th>
+                                <th><f:translate key="tx_rere_domain_model_pruefling.nachname" /><span class="glyphicon glyphicon-sort" aria-hidden="true"></span></th>
+                                <th><f:translate key="tx_rere_domain_model_pruefling.vorname" /><span class="glyphicon glyphicon-sort" aria-hidden="true"></span></th>
                                 <th><f:translate key="tx_rere_domain_model_note.wert" /> <span class="glyphicon glyphicon-sort" aria-hidden="true"></span></th>
                         <th><f:translate key="tx_rere_domain_model_note.kommentar" /></th>
                         <th></th>
@@ -68,13 +68,13 @@
                                 <td><f:form.hidden name="noteuid" class="noteuid" value="{note.uid}" /><span class="value">{note.matrikelnr}</span></td>
                                 <td><span class="value">{note.prueflingnachname}</span></td>
                                 <td><span class="value">{note.prueflingvorname}</span></td>
-                                <td><f:form.select name="wert" options="{options}" value="{note.wert}" class="form-control gettooltip sendNote notenwert" title="Bitte eine Note auswählen"/></td>
+                                <td><f:form.select name="wert" options="{options}" value="{note.wert}" class="form-control gettooltip sendNote notenwert" title="<f:translate key="tx_rere_title_Notenverwaltung.BitteNoteAuswaehlen" />"/></td>
                                 <td>
                                 <f:form.textfield type="hidden" name="fach" id="fach" value="{fach.uid}" />
                                 <f:form.textfield  type="hidden" name="modul" id="modul" value="{modul.uid}" />
-                                <f:form.textarea name="kommentar" class="form-control gettooltip sendNote kommentar" rows="1" placeholder="Kommentar" title="Kommentar zur Note" value="{note.kommentar}"/></td>
-                                <td><f:link.action class="delete" action="delete" onclick="delentry('Wollen Sie den Pruefling mit Matrikelnummer {note.matrikelnr} wirklich aus diesem Fach loeschen? Er wird von der Prüfung abgemeldet.', $(this).attr('href'));
-                                        return false;" arguments="{note : note.uid,fach:fach.uid,modul:modul.uid}"><span class="glyphicon glyphicon-remove" aria-hidden="true" data-toggle="tooltip" data-placement="bottom" title="Löscht diesen Datensatz"></span></f:link.action></td>
+                                <f:form.textarea name="kommentar" class="form-control gettooltip sendNote kommentar" rows="1" placeholder="<f:translate key="tx_rere_Placeholder_Notenverwaltung.Kommentar" />" title="<f:translate key="tx_rere_title_Notenverwaltung.Kommentar" />" value="{note.kommentar}"/></td>
+                                <td><f:link.action class="delete" action="delete" onclick="delentry('<f:translate key="tx_rere_Text_Notenverwaltung.Prueflingloeschen1" />{note.matrikelnr} <f:translate key="tx_rere_Text_Notenverwaltung.Prueflingloeschen2" />', $(this).attr('href'));
+                                        return false;" arguments="{note : note.uid,fach:fach.uid,modul:modul.uid}"><span class="glyphicon glyphicon-remove" aria-hidden="true" data-toggle="tooltip" data-placement="bottom" title="<f:translate key="tx_rere_title_Notenverwaltung.Datensatzloeschen" />"></span></f:link.action></td>
                             </f:form>
                             </tr>
                         </f:for>
@@ -115,16 +115,16 @@
                     <table class="table">
                         <tbody>
                             <tr>
-                                <td>Angemeldete Prüflinge</td>
+                                <td><f:translate key="tx_rere_Text_Notenverwaltung.AngemeldetePrueflinge" /></td>
                                 <td>{angemeldete}</td>
                             </tr>
                             <tr>
-                                <td>Eingetragene Noten</td>
+                                <td><f:translate key="tx_rere_Text_Notenverwaltung.EingetrageneNoten" /></td>
                                 <td>{eingetragen}</td>
                             </tr>
                         <f:if condition="{avg} != 'unbenotet'">
                             <tr>
-                                <td>Notendurchschnitt</td>
+                                <td><f:translate key="tx_rere_Text_Notenverwaltung.Notendurchschnitt" /></td>
                                 <td>{avg}</td>
                             </tr>
                         </f:if>

@@ -8,17 +8,17 @@
         <div class="row">
             <div name="breadcrumb" class="col-md-12">
                 <ol class="breadcrumb">
-                    <li class="active">Prüfungsleistung anzeigen</li>
+                    <li class="active"><f:translate key="tx_rere_Ueberschrift_PruefungsleistungAnzeigen"/></li>
                 </ol>
             </div>
             <div class="col-md-12">
-                <h1>Prüfungsleistungen von {pruefling.nachname}, {pruefling.vorname}</h1>
+                <h1><f:translate key="tx_rere_Ueberschrift_PruefungsleistungAnzeigen"/>{pruefling.nachname}, {pruefling.vorname}</h1>
             </div>
         </div>
 
         <div class="row">
             <div class="col-md-12">
-                <b>Ihre Matrikelnr:</b> {pruefling.matrikelnr} | <b>Ihr Gesamtdurchschnitt: </b> {gesamtDurchschnitt}  <br><br>
+                <b><f:translate key="tx_rere_Text_PruefungsleistungAnzeigen.Text1"/></b> {pruefling.matrikelnr} | <b><f:translate key="tx_rere_Text_PruefungsleistungAnzeigen.Text2"/> </b> {gesamtDurchschnitt}  <br><br>
             </div>
         </div>
 
@@ -39,7 +39,7 @@
                                                     <a data-toggle="collapse" class="collapsebutton" data-parent="#accordion" href="#{fach.fachuid}" aria-expanded="false" aria-controls="collapse{fach.fachnme}">
                                                         <f:if condition="{fach.datum}">{fach.datum}</f:if>
                                                         <f:if condition="{fach.fachnr}">{fach.fachnr}</f:if>
-                                                        {fach.fachname} {fach.pruefer} - Note: {fach.note}</a>
+                                                        {fach.fachname} {fach.pruefer} - <f:translate key="x_rere_Text_PruefungsleistungAnzeigen.Text3"/>{fach.note}</a>
                                                 </span>
                                                 <span class="col-md-4"></span>
                                             </div>
@@ -52,7 +52,7 @@
                                                             <canvas id="{fach.fachuid}chart" width="400" height="150"></canvas>
                                                         </div>
                                                         <div class="col-md-12">
-                                                            <h1><span class="greenfont">Ihre Note: {fach.note}</span></h1>
+                                                            <h1><span class="greenfont"><f:translate key="tx_rere_Text_PruefungsleistungAnzeigen.Text4"/>{fach.note}</span></h1>
                                                         </div>
                                                         <textarea rows="4" cols="100" class="form-control" id="comment" readonly="true">{fach.kommentar}</textarea>
                                                     </div>
@@ -61,8 +61,8 @@
                                                             <table id="grades" class="table {fach.fachuid}table">
                                                                 <thead>
                                                                     <tr>
-                                                                        <th>Note</th>
-                                                                        <th>Vorkommen</th>
+                                                                        <th><f:translate key="x_rere_Text_PruefungsleistungAnzeigen.Text5"/></th>
+                                                                        <th><f:translate key="x_rere_Text_PruefungsleistungAnzeigen.Text6"/></th>
                                                                     </tr>
                                                                 </thead>
                                                                 <tbody>
@@ -82,10 +82,10 @@
                                                             <table class="table">
                                                                 <tbody>
                                                                     <tr>
-                                                                        <td>Anzahl der Prüflinge:</td><td id="AnzahlDerPrueflinge">{fach.details.anzahlPrueflinge}</td>
+                                                                        <td><f:translate key="tx_rere_Text_PruefungsleistungAnzeigen.Text7"/></td><td id="AnzahlDerPrueflinge">{fach.details.anzahlPrueflinge}</td>
                                                                     </tr>
                                                                     <tr>
-                                                                        <td>&empty; Durchschnitt</td><td>{fach.details.durchschnitt}</td>
+                                                                        <td>&empty; <f:translate key="tx_rere_Text_PruefungsleistungAnzeigen.Text8"/></td><td>{fach.details.durchschnitt}</td>
                                                                     </tr>
                                                                 </tbody>
                                                             </table>

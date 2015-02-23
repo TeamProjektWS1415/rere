@@ -12,11 +12,11 @@
             <div name="breadcrumb" class="col-md-12">
                 <ol class="breadcrumb">
                     <li><f:link.action controller="Modul" action="list">Result Repository</f:link.action></li>
-                    <li class="active">Prüfling anlegen</li>
+                    <li class="active"><f:translate key="tx_rere_Ueberschrift_PrueflingAnlegen"/></li>
                 </ol>
             </div>
             <div class="col-md-12">
-                <h1>Prüfling anlegen</h1>
+                <h1><f:translate key="tx_rere_Ueberschrift_PrueflingAnlegen"/></h1>
             </div>
         </div>
 
@@ -33,7 +33,7 @@
                             <f:translate key="tx_rere_domain_model_pruefling.nachname" /> <span class="required">*</span>
                         </label>
                         <div class="col-sm-9">
-                            <f:form.textfield property="nachname" required="1" class="form-control gettooltip" id="eingabefeldName" placeholder="Name" title="Name hier eingeben" value="{name}"/>
+                            <f:form.textfield property="nachname" required="1" class="form-control gettooltip" id="eingabefeldName" placeholder="<f:translate key="tx_rere_Placeholder_PrueflingAnlegen.Name"/>" title="<f:translate key="tx_rere_title_PrueflingAnlegen.Name"/>" value="{name}"/>
                             <br>
                         </div>
                     </div>
@@ -44,7 +44,7 @@
                             <f:translate key="tx_rere_domain_model_pruefling.vorname" /> <span class="required">*</span>
                         </label>
                         <div class="col-sm-9">
-                            <f:form.textfield property="vorname" required="1"  class="form-control gettooltip" id="eingabefeldVorname" placeholder="Vorname" title="Vorname hier eingeben" value="{vorname}"/>
+                            <f:form.textfield property="vorname" required="1"  class="form-control gettooltip" id="eingabefeldVorname" placeholder="<f:translate key"'tx_rere_Placeholder_PrueflingAnlegen.Vorame"/>" title="<f:translate key="tx_rere_title_PrueflingAnlegen.Vorname"/>" value="{vorname}"/>
                             <br>
                         </div>
                     </div>
@@ -55,7 +55,7 @@
                             <f:translate key="tx_rere_domain_model_pruefling.matrikelnr" /> <span class="required">*</span>
                         </label>
                         <div class="col-sm-9">
-                            <f:form.textfield property="matrikelnr" required="1"  class="form-control gettooltip" id="eingabefeldMatrikel-Nr" value="{matrikelnr}" placeholder="MatrikelNr" title="MatrikelNr hier eingeben"/>
+                            <f:form.textfield property="matrikelnr" required="1"  class="form-control gettooltip" id="eingabefeldMatrikel-Nr" value="{matrikelnr}" placeholder="<f:translate key="tx_rere_Placeholder_PrueflingAnlegen.matrikelnr"/>" title="<f:translate key="tx_rere_title_PrueflingAnlegen.matrikelnr"/>"/>
                             <br>
                         </div>
                     </div>
@@ -64,7 +64,7 @@
                     <div class="form-group">
                         <label for="eingabefeldE-Mail" class="col-sm-3 control-label">E-Mail *</label>
                         <div class="col-sm-9">
-                            <f:form.textfield name="email" required="1" type="email" class="form-control gettooltip" id="eingabefeldE-Mail" placeholder="E-Mail" title="E-Mail hier eingeben" value="{email}"/>
+                            <f:form.textfield name="email" required="1" type="email" class="form-control gettooltip" id="eingabefeldE-Mail" placeholder="E-Mail" title="<f:translate key="tx_rere_title_PrueflingAnlegen.EMail"/>" value="{email}"/>
                             <br>
                         </div>
                     </div>
@@ -81,13 +81,13 @@
                             <div class="col-sm-12">
                                 <label>
                                     <f:form.radio name="speichern" value="speichernundzurueck" />
-                                    Speichern & zurück
+                                    <f:translate key="tx_rere_Text_PreuflingAnlegen.Speichern"/> & <f:translate key="tx_rere_Text_PreuflingAnlegen.SpeichernZurueck"/>
                                 </label>
                             </div>
                             <div class="col-sm-12">
                                 <label>
                                     <f:form.radio name="speichern" value="speichernundnaechster" checked="1"/>
-                                    Speichern & nächster
+                                    <f:translate key="tx_rere_Text_PreuflingAnlegen.Speichern"/> & nächster <f:translate key="tx_rere_Text_PreuflingAnlegen.SpeichernNaechstes"/>
                                 </label>
                             </div>
                         </div>
@@ -96,7 +96,7 @@
                     <div class="form-group">
                         <div class="col-sm-offset-3">
                             <div class="col-sm-6">
-                                <button type="submit" class="btn btn-primary btn-lg btn-block">Anlegen</button>
+                                <button type="submit" class="btn btn-primary btn-lg btn-block">Anlegen<f:translate key="tx_rere_Button_PreuflingAnlegen.Anlegen"/></button>
                             </div>
                         </div>
                     </div>

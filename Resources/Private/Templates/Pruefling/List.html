@@ -10,16 +10,16 @@
             <div name="breadcrumb" class="col-md-12">
                 <ol class="breadcrumb">
                     <li><f:link.action controller="Modul" action="list">Result Repository</f:link.action></li>
-                    <li class="active">Prüfling zuweisen</li>
+                    <li class="active"><f:translate key="tx_rere_Ueberschrift_Zuweisen"/></li>
                 </ol>
             </div>
             <div class="col-md-12">
-                <h1>Prüfling zuweisen</h1>
+                <h1><f:translate key="tx_rere_Ueberschrift_Zuweisen"/></h1>
             </div>
             <div class="col-md-12">
-                <h4><strong>{fach.fachname}</strong> aus <strong>{modul.modulname}</strong> in <strong>{modul.gueltigkeitszeitraum}</strong></h4>
-                <p> Geben Sie eine MatrikelNr oder einen Namen ein um nach einem Prüfling zu suchen.</p>
-                <p> Weisen Sie den Prüfling dann mit Enter dem Fach zu. Alternativ können Sie eine UserGroup hinzufügen. </p>
+                <h4><strong>{fach.fachname}</strong> <f:translate key="tx_rere_Ueberschrift_Zuweisen_aus"/> <strong>{modul.modulname}</strong> <f:translate key="tx_rere_Ueberschrift_Zuweisen_in"/> <strong>{modul.gueltigkeitszeitraum}</strong></h4>
+                <p> <f:translate key="tx_rere_Text_Zuweisen.Text1"/></p>
+                <p> <f:translate key="tx_rere_Text_Zuweisen.Text2"/></p>
             </div>
             <div class="col-md-12">
                 <nav class="navbar navbar-default" role="navigation">
@@ -29,7 +29,7 @@
                                 <div class="form-group">
                                     <div class="input-group">
                                         <div class="input-group-addon"><span class="glyphicon glyphicon-search" id="searchicon"  aria-hidden="true" ></span></div>
-                                        <f:form.textfield type="text" name="matrikelnr" id="suchematrikel" class="form-control gettooltip" title="Nach MatrikelNr suchen" placeholder="Matrikel Nummer"/>
+                                        <f:form.textfield type="text" name="matrikelnr" id="suchematrikel" class="form-control gettooltip" title="<f:translate key="tx_rere_title_zuweisen.NachMatrNrSuchen"/>" placeholder="<f:translate key="tx_rere_Placeholder_zuweisen.MatrNrSuchen"/>"/>
                                     </div>
                                 </div>
                             </f:form>
@@ -39,17 +39,17 @@
                                         <div class="input-group-addon"><span class="glyphicon glyphicon-search" aria-hidden="true" ></span></div>
                                         <f:form.select name="usergroup" options="{feusergroups}" value="{feusergroups.uid}" optionLabelField="title" class="form-control gettooltip" title="FE-Usergroup"/>
                                     </div>
-                                    <button type="submit" class="btn btn-default">UserGroup hinzufügen</button>
+                                    <button type="submit" class="btn btn-default"><f:translate key="tx_rere_button_Zuweisen.UsergroupHinzufuegen"/></button>
                                 </div>
                             </f:form>
                             <ul class="nav navbar-nav navbar-right">
-                                <li><f:link.action controller="Pruefling" action="new" class="gettooltip" title="Neuen Prüfling anlegen" >Neuen Prüfling anlegen</f:link.action></li>                                </ul>
+                                <li><f:link.action controller="Pruefling" action="new" class="gettooltip" title="<f:translate key="tx_rere_title_zuweisen.PrueflingAnlegen"/>" ><f:translate key="tx_rere_Placeholder_zuweisen.PrueflingAnlegen"/></f:link.action></li>                                </ul>
                         </div>
                     </div>
                 </nav>
             </div>
             <div class="col-md-12">
-                <h4>Bereits zugewiesen:</h4>
+                <h4><f:translate key="tx_rere_Ueberschrift_Zuweisen.Zugewiesen"/>:</h4>
             </div>
         </div>
         <div class="row">
@@ -58,10 +58,10 @@
                     <table id="prueflinge" class="table tx_rere">
                         <thead>
                             <tr>
-                                <th>MatrikelNr <span class="glyphicon glyphicon-sort" aria-hidden="true"></span></th>
-                                <th>Vorname <span class="glyphicon glyphicon-sort" aria-hidden="true"></span></th>
-                                <th>Nachname <span class="glyphicon glyphicon-sort" aria-hidden="true"></span></th>
-                                <th>Eintrag löschen</th>
+                                <th><f:translate key="tx_rere_Text_Zuweisen.matrikelnr"/><span class="glyphicon glyphicon-sort" aria-hidden="true"></span></th>
+                                <th><f:translate key="tx_rere_Text_Zuweisen.vorname"/><span class="glyphicon glyphicon-sort" aria-hidden="true"></span></th>
+                                <th><f:translate key="tx_rere_Text_Zuweisen.nachname"/><span class="glyphicon glyphicon-sort" aria-hidden="true"></span></th>
+                                <th><f:translate key="tx_rere_Text_Zuweisen.EintragLoeschen"/></th>
                                 <th></th>
                             </tr>
                         </thead>
@@ -72,8 +72,8 @@
                                 <td><span class="value">{pruefling.vorname}</span></td>
                                 <td><span class="value">{pruefling.nachname}</span></td>
                                 <td>
-                            <f:link.action class="delete" action="setPruefling" onclick="delentry('Möchten Sie den Pruefling mit der Matrikelnr: {pruefling.matrikelnr} wirklich löschen? Er wird vom Fach abgemeldet und die note wird gelöscht.', $(this).attr('href'));
-                                    return false;" arguments="{fach:fach.uid,modul:modul.uid,matrikelnr : pruefling.matrikelnr,remove:'remove'}"><span class="glyphicon glyphicon-remove" aria-hidden="true" data-toggle="tooltip" data-placement="bottom" title="Löscht diesen Datensatz"></span></f:link.action>
+                            <f:link.action class="delete" action="setPruefling" onclick="delentry('<f:translate key="tx_rere_error_Zuweisen.text1"/>{pruefling.matrikelnr} <f:translate key="tx_rere_error_Zuweisen.text2"/>', $(this).attr('href'));
+                                    return false;" arguments="{fach:fach.uid,modul:modul.uid,matrikelnr : pruefling.matrikelnr,remove:'remove'}"><span class="glyphicon glyphicon-remove" aria-hidden="true" data-toggle="tooltip" data-placement="bottom" title="<f:translate key="tx_rere_Button_Zuweisen.DatensatzLoeschen"/>"></span></f:link.action>
                             </td>
                             </tr>
                         </f:for>

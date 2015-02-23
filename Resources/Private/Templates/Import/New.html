@@ -21,7 +21,7 @@
 
             <!-- Ausgabe welche Prüflinge nicht importiert wurden -->
             <f:if condition="{errorlist} != ''">
-                <b>Nicht importiert, da bereits in der Datenbank vorhanden: </b><br><br>
+                <b><f:translate key="tx_rere_import.error"/> </b><br><br>
                 {errorlist}
                 <br><br>
             </f:if>
@@ -50,7 +50,7 @@
                         </div>
                         <div class="col-sm-4">
                             <br>
-                            <button type="submit" class="btn btn-primary btn-lg btn-block">Daten speichern</button>
+                            <button type="submit" class="btn btn-primary btn-lg btn-block"><f:translate key="tx_rere_button.sichern"/></button>
                         </div>
                     </div>
                 </div>
@@ -62,15 +62,15 @@
             <f:if condition="{type}== 'prueflinge'">
                 <div class="row">
                     <div class="col-md-12">
-                        <h1>CSV-Beispiel</h1>
+                        <h1><f:translate key="tx_rere_Import.Ueberschrift"/></h1>
                         <p>
-                            Das hochzuladende CSV-File sollte die folgende Struktur aufweisen, um einen reibungslosen Import zu gewährleisten.
+                            <f:translate key="tx_rere_Text.Import1"/>
                         </p>
                         <p>
-                            Die Spalte Mail-Adresse ist optional. Sofern keine Mail-Adresse hinterlegt wird, wird diese automatisch mit „@htwg-konstanz.de“ gefüllt.
+                            <f:translate key="tx_rere_Text.Import2"/>
                         </p>
                         <p>
-                            Beim Import werden nur die Zeile zwischen 5 und N-1 berücksichtigt, alle anderen davor und danach werden ignoriert.
+                            <f:translate key="tx_rere_Text.Import3"/>
                         </p>
                         <p>
                             <a href="{f:uri.resource(path:'csv_example.csv')}" target="_blank">Download Example CSV</a>

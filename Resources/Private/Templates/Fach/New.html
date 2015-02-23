@@ -8,11 +8,11 @@
             <div name="breadcrumb" class="col-md-12">
                 <ol class="breadcrumb">
                     <li><f:link.action controller="Modul" action="list">Result Repository</f:link.action></li>
-                    <li class="active">Fach hinzufügen</li>
+                    <li class="active"><f:translate key="tx_rere_fach_new.Ueberschrift"/></li>
                 </ol>
             </div>
             <div class="col-md-12">
-                <h1>Fach hinzufügen</h1>
+                <h1><f:translate key="tx_rere_fach_new.Ueberschrift"/></h1>
                 <br>
             </div>
         </div>
@@ -27,7 +27,7 @@
                     <div class="form-group">
                         <label for="eingabefeldModul" class="col-sm-3 control-label"><f:translate key="tx_rere_domain_model_modul.modulname" /> <span class="required">*</span></label>
                         <div class="col-sm-9">
-                            <f:form.textfield value="{modulname}" required="1" class="form-control" disabled="disabled" placeholder="Modulname"/>
+                            <f:form.textfield value="{modulname}" required="1" class="form-control" disabled="disabled" placeholder="<f:translate key="tx_rere_Placeholder.Modulname" />"/>
                             <f:form.hidden  value="{moduluid}" name="moduluid" class="form-control" />
                             <br>
                         </div>
@@ -37,7 +37,7 @@
                     <div class="form-group">
                         <label for="eingabefeldModulnummer" class="col-sm-3 control-label"><f:translate key="tx_rere_domain_model_modul.modulnr" /> <span class="required">*</span></label>
                         <div class="col-sm-9">
-                            <f:form.textfield value="{modulnummer}" required="1" name="modulnummer" class="form-control" disabled="disabled" placeholder="Modulnummer"/>
+                            <f:form.textfield value="{modulnummer}" required="1" name="modulnummer" class="form-control" disabled="disabled" placeholder="<f:translate key="tx_rere_domain_model_modul.modulnummer" />"/>
                             <br>
                         </div>
                     </div>
@@ -45,43 +45,43 @@
                     <div class="form-group">
                         <label for="gueltigkeitszeitraum" class="col-sm-3 control-label"><f:translate key="tx_rere_domain_model_modul.gueltigkeitszeitraum" /> <span class="required">*</span></label>
                         <div class="col-sm-9">
-                            <f:form.textfield value="{gueltigkeitszeitraum}" required="1" disabled="disabled" class="form-control" placeholder="Gültigkeitszeitraum"/>
+                            <f:form.textfield value="{gueltigkeitszeitraum}" required="1" disabled="disabled" class="form-control" placeholder="<f:translate key="tx_rere_domain_model_modul.Gueltigkeitszeitraum" />"/>
                             <br>
                         </div>
                     </div>
 
                     <!--Eingabefeld für Fach-->
                     <div class="form-group">
-                        <label for="eingabefeldFach" class="col-sm-3 control-label">Fach *</label>
+                        <label for="eingabefeldFach" class="col-sm-3 control-label"><f:translate key="tx_rere_domain_model_fach" /> *</label>
                         <div class="col-sm-9">
-                            <f:form.textfield name="fachname" required="1" class="form-control gettooltip" placeholder="Fach" title="Fachname hier eingeben"/>
+                            <f:form.textfield name="fachname" required="1" class="form-control gettooltip" placeholder="<f:translate key="tx_rere_Placeholder.Fach" />" title="<f:translate key="tx_rere_title.Fach" />"/>
                             <br>
                         </div>
                     </div>
 
                     <!--Eingabefeld für FachNr-->
                     <div class="form-group">
-                        <label for="eingabefeldFachnummer" class="col-sm-3 control-label">Fachnummer *</label>
+                        <label for="eingabefeldFachnummer" class="col-sm-3 control-label"><f:translate key="tx_rere_domain_model_fach.fachnr" /> *</label>
                         <div class="col-sm-9">
-                            <f:form.textfield name="fachnummer" required="1" class="form-control gettooltip" placeholder="Fachnummer" title="Fachnummer hier eingeben"/>
+                            <f:form.textfield name="fachnummer" required="1" class="form-control gettooltip" placeholder="<f:translate key="tx_rere_Placeholder.Fachnummer" />" title="<f:translate key="tx_rere_title.Fachnummer" />"/>
                             <br>
                         </div>
                     </div>
 
                     <!--Eingabefeld für Professor-->
                     <div class="form-group">
-                        <label for="eingabefeldProfessor" class="col-sm-3 control-label">Professor *</label>
+                        <label for="eingabefeldProfessor" class="col-sm-3 control-label"><f:translate key="tx_rere_domain_model_fach.professor" /> *</label>
                         <div class="col-sm-9">
-                            <f:form.textfield name="pruefer" required="1" class="form-control gettooltip" placeholder="Professor" title="Für das Fach verantwortlicher Professor"/>
+                            <f:form.textfield name="pruefer" required="1" class="form-control gettooltip" placeholder="<f:translate key="tx_rere_Placeholder.Professor" />" title="<f:translate key="tx_rere_title.Professor" />"/>
                             <br>
                         </div>
                     </div>
 
                     <!--Eingabefeld für Datum-->
                     <div class="form-group">
-                        <label for="eingabefeldDatum" class="col-sm-3 control-label">Prüfungsdatum *</label>
+                        <label for="eingabefeldDatum" class="col-sm-3 control-label"><f:translate key="tx_rere_domain_model_fach.PruefungsDatum" /> *</label>
                         <div class="col-sm-9">
-                            <f:form.textfield name="datum" required="1" class="form-control gettooltip" id="eingabefeldDatum" placeholder="Datum" value="{datum}" title="Datum der Prüfung"/>
+                            <f:form.textfield name="datum" required="1" class="form-control gettooltip" id="eingabefeldDatum" placeholder="<f:translate key="tx_rere_Placeholder.Datum" />" value="{datum}" title="<f:translate key="tx_rere_title.Datum" />"/>
                             <br>
                         </div>
                     </div>
@@ -90,7 +90,7 @@
                     <div class="form-group">
                         <label for="eingabefeldCreditpoints" class="col-sm-3 control-label">Creditpoints</label>
                         <div class="col-sm-9">
-                            <f:form.textfield name="creditpoints" required="1" class="form-control gettooltip" id="eingabefeldCreditpoints" placeholder="Creditpoints" value="{creditpoints}" title="Creditpoints der Veranstaltung"/>
+                            <f:form.textfield name="creditpoints" required="1" class="form-control gettooltip" id="eingabefeldCreditpoints" placeholder="Creditpoints" value="{creditpoints}" title="<f:translate key="tx_rere_title.Creditpoints" />"/>
                             <br>
                         </div>
                     </div>
@@ -100,36 +100,36 @@
                             <!--Radiobutton für Benotet Hochschulsystem-->
                             <div class="col-sm-12">
                                 <label>
-                                    <f:form.radio class="gettooltip" name="notenschema" value="hochschulsystem" checked="1"  title="Fach nach Hochschulnoten benotet"/>
-                                    Benotet (Hochschul-System)
+                                    <f:form.radio class="gettooltip" name="notenschema" value="hochschulsystem" checked="1"  title="<f:translate key="tx_rere_title.BenotetHochschulSystem" />"/>
+                                    <f:translate key="tx_rere_text.BenotetHochschulSystem" />
                                 </label>
                             </div>
                             <!--Radiobutton für Benotet 15 Pkt. System-->
                             <div class="col-sm-12">
                                 <label>
-                                    <f:form.radio class="gettooltip" name="notenschema" value="15pktsystem" title="Fach nach 15-Punkte-System benotet"/>
-                                    Benotet (15-Punkte-System)
+                                    <f:form.radio class="gettooltip" name="notenschema" value="15pktsystem" title="<f:translate key="tx_rere_title.BenotetPunkteSystem" />"/>
+                                    <f:translate key="tx_rere_text.BenotetPunkteSystem" />
                                 </label>
                             </div>
                             <!--Radiobutton für unbenotet-->
                             <div class="col-sm-12">
                                 <label>
-                                    <f:form.radio class="gettooltip" name="notenschema" value="unbenotet" title="Fach unbenotet"/>
-                                    Unbenotet (Scheine)
+                                    <f:form.radio class="gettooltip" name="notenschema" value="unbenotet" title="<f:translate key="tx_rere_title.UnbenotetSchein" />"/>
+                                    <f:translate key="tx_rere_text.UnbenotetSchein" />
                                 </label>
                             </div>
                             <!--Radiobutton für Benotet Schulnoten-->
                             <div class="col-sm-12">
                                 <label>
-                                    <f:form.radio class="gettooltip" name="notenschema" value="schulsystem" title="Fach nach Schul-System benotet"/>
-                                    Benotet (Schul-System)
+                                    <f:form.radio class="gettooltip" name="notenschema" value="schulsystem" title="tx_rere_title.BenotetSchulSystem"/>
+                                    <f:translate key="tx_rere_text.BenotetSchulSystem" />
                                 </label>
                             </div>
                         </div>
 
                         <div class="col-sm-offset-3 col-sm-12">
                             <br>
-                            <strong>Die mit * gekennzeichnete Felder sind Pflichtfelder</strong>
+                            <strong><f:translate key="tx_rere_Text.Pflichtfelder" /></strong>
                         </div>
 
                         <div class="form-group">
@@ -137,7 +137,7 @@
                             </div>
                             <div class="col-sm-4">
                                 <br>
-                                <button type="submit" class="btn btn-primary btn-lg btn-block">Daten speichern</button>
+                                <button type="submit" class="btn btn-primary btn-lg btn-block"><f:translate key="tx_rere_button.sichern" /></button>
                             </div>
                         </div>
                     </div>

@@ -25,7 +25,7 @@
                 <f:form action="update" name="settings" object="{settings}" >
 
                     <div class="form-group">
-                        <label for="absendermail" class="col-sm-3 control-label">Absender Email *</label>
+                        <label for="absendermail" class="col-sm-3 control-label"><f:translate key="tx_rere_Seetings.Text1"/></label>
                         <div class="col-sm-9">
                             <f:form.textfield property="mailAbsender" value="{settings.mailAbsender}" id="absendermail" class="form-control" />
                             <br>
@@ -33,7 +33,7 @@
                     </div>
 
                     <div class="form-group">
-                        <label for="mailEmpfaenger" class="col-sm-3 control-label">Empfänger Email *</label>
+                        <label for="mailEmpfaenger" class="col-sm-3 control-label"><f:translate key="tx_rere_Seetings.Text2"/></label>
                         <div class="col-sm-9">
                             <f:form.textfield property="mailEmpfaenger" value="{settings.mailEmpfaenger}" id="mailEmpfaenger" class="form-control" />
                             <br>
@@ -41,7 +41,7 @@
                     </div>
 
                     <div class="col-md-3">
-                        <button type="submit" class="btn btn-primary btn-lg btn-block">Daten speichern</button>
+                        <button type="submit" class="btn btn-primary btn-lg btn-block"><f:translate key="tx_rere_Button_Seetings.DatenSpeichern"/></button>
                     </div>
                     <div class="col-md-9"></div>
                 </f:form>
