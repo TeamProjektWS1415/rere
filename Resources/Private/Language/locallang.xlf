@@ -461,6 +461,10 @@
                 <source>Legt ein neues Modul an</source>
                 <target>Legt ein neues Modul an</target>
             </trans-unit>
+            <trans-unit id="tx_rere_Text.testtest">
+                <source>Legt ein neues Modul an</source>
+                <target>Legt ein neues Modul an</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>
