@@ -15,6 +15,7 @@ $(document).ready(function () {
     // Ajax Call für neue Note
     $(".sendNote").change(function () {
         $(".waitingpanel").fadeIn("slow");
+        $(".spinningicon").fadeIn("slow");
         var uid = $(this).parent('td').parent('tr').find('.noteuid').val();
         $('#editnote' + uid).submit();
     });
