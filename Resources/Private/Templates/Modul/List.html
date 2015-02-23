@@ -92,7 +92,7 @@
                             <div class="panel-heading" role="tab" id="{modul.name}">
                                 <div class="panel-title">
                                     <span class="col-md-8 modultitle">
-                                        <a data-toggle="collapse" data-parent="#accordion" href="#{modul.uid}" aria-expanded="false" aria-controls="collapse{modul.name}">{modul.modulname} ({modul.modulnr})</a>
+                                        <a data-toggle="collapse" data-parent="#accordion" href="#{modul.uid}" aria-expanded="false" aria-controls="collapse{modul.name}">{modul.modulname} <f:if condition="{modul.modulnr}">({modul.modulnr})</f:if></a>
                                     </span>
                                     <span class="col-md-4">
 
@@ -110,7 +110,8 @@
                                 <div class="panel-body">
                                     <ul>
                                         <f:for each="{modul.fach}" as="fach">
-                                            <li><span class="col-md-4">{fach.fachname} ({fach.fachnr}) - {fach.pruefer}</span> <span class="col-md-7">
+                                            <li><span class="col-md-6">{fach.fachname} <f:if condition="{fach.fachnr}">({fach.fachnr})</f:if> - {fach.pruefer} <f:if condition="{fach.datum}">{fach.pruefer}</f:if></span>
+                                                <span class="col-md-6">
                                                     <f:link.action controller="Note" class="gettooltip" action="list" arguments="{fach : fach, modul: modul.uid}" title="<f:translate key='tx_rere_Text_Fach.NoteEintragen'/>"><f:translate key="tx_rere_Text_Fach_Text.NoteEintragen"/></f:link.action> |
                                                     <f:link.action controller="Pruefling" arguments="{fach : fach, modul: modul.uid}" class="gettooltip" action="list" title="<f:translate key='tx_rere_Text_Fach.PrueflingZuweisen'/>"><f:translate key="tx_rere_Text_Fach_Text.PrüflingZuweisen"/></f:link.action> |
                                                     <f:link.action class="delete gettooltip" controller="Fach" action="delete"
