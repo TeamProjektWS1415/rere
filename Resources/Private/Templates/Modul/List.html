@@ -92,7 +92,7 @@
                             <div class="panel-heading" role="tab" id="{modul.name}">
                                 <div class="panel-title">
                                     <span class="col-md-8 modultitle">
-                                        <a data-toggle="collapse" data-parent="#accordion" href="#{modul.modulnr}" aria-expanded="false" aria-controls="collapse{modul.name}">{modul.modulname} ({modul.modulnr})</a>
+                                        <a data-toggle="collapse" data-parent="#accordion" href="#{modul.uid}" aria-expanded="false" aria-controls="collapse{modul.name}">{modul.modulname} ({modul.modulnr})</a>
                                     </span>
                                     <span class="col-md-4">
 
@@ -106,7 +106,7 @@
                                     </span>
                                 </div>
                             </div>
-                            <div id="{modul.modulnr}" class="panel-collapse collapse" role="tabpanel">
+                            <div id="{modul.uid}" class="panel-collapse collapse" role="tabpanel">
                                 <div class="panel-body">
                                     <ul>
                                         <f:for each="{modul.fach}" as="fach">

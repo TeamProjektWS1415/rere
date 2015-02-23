@@ -202,8 +202,8 @@
 
             <!-- Startseite-->
             <trans-unit id="tx_rere_Startseite.PrueflingAnlegen">
-                <source>Prüfling anlegen</source>
-                <target>Prüfling anlegen</target>
+                <source>Prüfling anlegennn</source>
+                <target>Prüfling setup</target>
             </trans-unit>
             <trans-unit id="tx_rere_title.PrueflingAnlegen">
                 <source>Legt einen neuen Prüfling an</source>
