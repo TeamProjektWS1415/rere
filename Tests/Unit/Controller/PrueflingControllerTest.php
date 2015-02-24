@@ -174,7 +174,8 @@ class PrueflingControllerTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
      * @test
      */
     public function createActionAddsTheGivenPrueflingToPrueflingRepository() {
-        $pruefling = new \ReRe\Rere\Domain\Model\Pruefling();
+    $pruefling = new \ReRe\Rere\Domain\Model\Pruefling();
+ 
 
         $prueflingRepository = $this->getMock(self::PRUEFLINGSREPOSITORY, array('add'), array(), '', FALSE);
         $prueflingRepository->expects($this->once())->method('add')->with($pruefling);
