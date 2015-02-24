@@ -67,6 +67,8 @@ class ModulControllerTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
     const REQUEST = "TYPO3\\CMS\\Extbase\\Mvc\\Request";
     const NEWSTRING = "new";
     const RETURNMODUL = "returnModul";
+    const FINDBYUID = "findByUid";
+    const CREATE = "create";
 
     /**
      * @var \ReRe\Rere\Controller\ModulController
@@ -94,13 +96,13 @@ class ModulControllerTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
         $this->inject($this->subject, self::MODULREPO, $modulRepository);
 
         $mockIntervall = $this->getMock('\\ReRe\\Rere\\Domain\\Model\\Intervall', array(), array(), '', FALSE);
-        $intervallRepository = $this->getMock(self::INTERVALLREPOSITORY, array('findByUid', 'add'), array(), '', FALSE);
-        $intervallRepository->expects($this->once())->method('findByUid')->will($this->returnValue($mockIntervall));
+        $intervallRepository = $this->getMock(self::INTERVALLREPOSITORY, array(self::FINDBYUID, 'add'), array(), '', FALSE);
+        $intervallRepository->expects($this->once())->method(self::FINDBYUID)->will($this->returnValue($mockIntervall));
 
         $objectManager = $this->getMock(SELF::OBJECTMANAGER, array(), array(), '', FALSE);
 
         $allSettings = $this->getMock('TYPO3\\CMS\\Extbase\\Persistence\\ObjectStorage', array(), array(), '', FALSE);
-        $settingsRepository = $this->getMock(self::SETTINGSREPOSITORY, array('findByUid', 'add'), array(), '', FALSE);
+        $settingsRepository = $this->getMock(self::SETTINGSREPOSITORY, array(self::FINDBYUID, 'add'), array(), '', FALSE);
         $settingsRepository->expects($this->once())->method('findByUid')->will($this->returnValue($allSettings));
 
         $mockMail = $this->getMock('\\ReRe\\Rere\\Domain\\Model\\Settings', array(), array(), '', FALSE);
@@ -203,7 +205,7 @@ class ModulControllerTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
         $notenschema = NULL;
         $modulnummer = NULL;
 
-        
+
 
         $request = $this->getMock(self::REQUEST, array(), array(), '', FALSE);
 

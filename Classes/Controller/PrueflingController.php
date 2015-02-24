@@ -191,11 +191,6 @@ class PrueflingController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionContro
             }
         }
 
-        //Wenn true dann aufruf des Controllers über Fachwechsel Select
-        if ($this->request->hasArgument(self::FACHID)) {
-            $fachid = $this->request->getArgument(self::FACHID);
-        }
-
         //Suchen der Faecher für die der gewählte Student zur Pruefung eingetragen wurde
         $fachPrueflingsArray = array();
         $fachlisteArray = $this->fachRepository->findAll();
@@ -565,14 +560,6 @@ class PrueflingController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionContro
         $note->setWert(0);
         $this->noteRepository->add($note);
         return $note;
-    }
-
-    /**
-     * holt alle fächer eines Prüflings aus der Datenbank
-     * @param type $pruefling Uid des Prüflings für die Suche.
-     */
-    protected function getAlleFaecherEinesPrueflings($pruefling) {
-
     }
 
 }

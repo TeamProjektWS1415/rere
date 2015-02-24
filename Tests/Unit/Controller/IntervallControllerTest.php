@@ -44,6 +44,7 @@ namespace ReRe\Rere\Tests\Unit\Controller;
 class IntervallControllerTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
 
     const REQUEST = "TYPO3\\CMS\\Extbase\\Mvc\\Request";
+    const HALBJAHR = "studienhalbjahr";
 
     /**
      * @var \ReRe\Rere\Controller\IntervallController
@@ -101,12 +102,12 @@ class IntervallControllerTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
      * @test
      */
     public function updateActionUpdatesTheGivenIntervallInIntervallRepository() {
-        $type = 'studienhalbjahr';
-        $aktuell = 'studienhalbjahr';
+        $type = self::HALBJAHR;
+        $aktuell = self::HALBJAHR;
 
         $intervallLogic = new \ReRe\Rere\Services\NestedDirectory\IntervallLogic();
         $intervall = $this->getMock('\\ReRe\\Rere\\Domain\\Model\\Intervall', array(), array(), '', FALSE);
-        $Intervall = 'studienhalbjahr';
+        $newIntervall = self::HALBJAHR;
 
         $intervallRepository = $this->getMock('ReRe\\Rere\\Domain\\Repository\\IntervallRepository', array('findByUid', 'update'), array(), '', FALSE);
         $intervallRepository->expects($this->once())->method('findByUid')->will($this->returnValue($intervall));
@@ -114,8 +115,8 @@ class IntervallControllerTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
         $request = $this->getMock(self::REQUEST, array(), array(), '', FALSE);
 
         $intervall->getType();
-        $intervallLogic->nextStudiIntervall($Intervall);
-        $intervallLogic->nextSchulIntervall($Intervall);
+        $intervallLogic->nextStudiIntervall($newIntervall);
+        $intervallLogic->nextSchulIntervall($newIntervall);
 
         $request->expects($this->any())->method('getArgument')->will($this->returnValue($type));
 
