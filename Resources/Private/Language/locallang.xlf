@@ -234,6 +234,10 @@
                 <source>Beim Import werden nur die Zeile zwischen 5 und N-1 berücksichtigt, alle anderen davor und danach werden ignoriert.</source>
                 <target>Beim Import werden nur die Zeile zwischen 5 und N-1 berücksichtigt, alle anderen davor und danach werden ignoriert.</target>
             </trans-unit>
+            <trans-unit id="tx_rere_Text.Import4">
+                <source> CSV-Beispiel</source>
+                <target> CSV-Example </target>
+            </trans-unit>
 
 <!-- Startseite-->
 
@@ -245,6 +249,10 @@
                 <source>Legt einen neuen Prüfling an</source>
                 <target>Legt einen neuen Prüfling an</target>
             </trans-unit>
+            <trans-unit id="tx_rere_Startseite.Import">
+                <source>Import</source>
+                <target>Import</target>
+            </trans-unit>
             <trans-unit id="tx_rere_Startseite_Import.Prueflinge">
                 <source>Import Prüflinge</source>
                 <target>Import Prüflinge</target>
@@ -252,6 +260,10 @@
             <trans-unit id="tx_rere_Startseite_Import.BackUp">
                 <source>Import Back-Up</source>
                 <target>Import Back-Up</target>
+            </trans-unit>
+            <trans-unit id="tx_rere_Startseite.Export">
+                <source>Export</source>
+                <target>Export Prüflinge</target>
             </trans-unit>
             <trans-unit id="tx_rere_Startseite_Export.Prueflinge">
                 <source>Prüflinge</source>
@@ -276,6 +288,10 @@
             <trans-unit id="tx_rere_Startseite.Hilfe">
                 <source>Hilfe</source>
                 <target>Help</target>
+            </trans-unit>
+            <trans-unit id="tx_rere_Startseite_Hilfe.doku">
+                <source>doku</source>
+                <target>doku</target>
             </trans-unit>
             <trans-unit id="tx_rere_Startseite_Hilfe.Anwenderdoku">
                 <source>Anwenderdoku</source>

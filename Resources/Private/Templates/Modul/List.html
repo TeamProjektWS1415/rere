@@ -18,14 +18,14 @@
                     <div class="container-fluid">
                         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                             <ul class="nav navbar-nav">
-                                <li><f:link.action controller="Pruefling" class="gettooltip" action="new" title="<f:translate key="tx_rere_title.PrueflingAnlegen"/>"><f:translate key="tx_rere_Startseite.PrueflingAnlegen"/></f:link.action></li>
-                                <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" >Import <span class="caret"></span></a>
+                                <li><f:link.action controller="Pruefling" class="gettooltip" action="new" title="<f:translate key='tx_rere_title.PrueflingAnlegen'/>"><f:translate key="tx_rere_Startseite.PrueflingAnlegen"/></f:link.action></li>
+                                <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" ><f:translate key="tx_rere_Startseite.Import"/><span class="caret"></span></a>
                                     <ul class="dropdown-menu" role="menu">
                                         <li><f:link.action controller="Import" action="new" arguments="{type:'prueflinge'}" ><f:translate key="tx_rere_Startseite_Import.Prueflinge"/></f:link.action></li>
                                 <!--<li><f:link.action controller="Import" action="new" arguments="{type:'backup'}" ><f:translate key="tx_rere_Startseite_Import.BackUp"/></f:link.action></li>-->
                             </ul>
                             </li>
-                            <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button">Export <span class="caret"></span></a>
+                            <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"><f:translate key="tx_rere_Startseite.Export"/> <span class="caret"></span></a>
                                 <ul class="dropdown-menu" role="menu">
                                     <li><f:link.action controller="Export" action="exportPrueflinge" ><f:translate key="tx_rere_Startseite_Export.Prueflinge"/></f:link.action></li>
                             <li><f:link.action controller="Export" action="exportModuleUndFaecher" ><f:translate key="tx_rere_Startseite_Export.ModuleUndFaecher"/></f:link.action></li>
@@ -39,7 +39,7 @@
                             </li>
                             <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"><f:translate key="tx_rere_Startseite.Hilfe"/><span class="caret"></span></a>
                                 <ul class="dropdown-menu" role="menu">
-                                    <li><a href="http://docs.typo3.org/typo3cms/extensions/rere/Index.html" target="_blank">Doku</a></li>
+                                    <li><a href="http://docs.typo3.org/typo3cms/extensions/rere/Index.html" target="_blank"><f:translate key="tx_rere_Startseite_Hilfe.doku"/></a></li>
                                     <li><a href="http://docs.typo3.org/typo3cms/extensions/rere/AnwenderDokuPruefer/Index.html" target="_blank"><f:translate key="tx_rere_Startseite_Hilfe.Anwenderdoku"/></a></li>
                                     <li><a href="http://docs.typo3.org/typo3cms/extensions/rere/AdministratorManual/Index.html" target="_blank"><f:translate key="tx_rere_Startseite_Hilfe.Entwicklerdoku"/></a></li>
                                     <li><a href="{f:uri.resource(path:'phpdoc/index.html')}" target="_blank"><f:translate key="tx_rere_Startseite_Hilfe.PHPdoc"/></a></li>
@@ -75,9 +75,9 @@
                     <div class="container-fluid">
                         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-2">
                             <ul class="nav navbar-nav">
-                                <li><f:link.action action="update" controller="Intervall" class="gettooltip" arguments="{prevIntervall:'prevIntervall'}"  title="<f:translate key="tx_rere_title_Intervall.vorherig"/>"><span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span></f:link.action></li>
+                                <li><f:link.action action="update" controller="Intervall" class="gettooltip" arguments="{prevIntervall:'prevIntervall'}"  title="<f:translate key='tx_rere_title_Intervall.vorherig'/>"><span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span></f:link.action></li>
                                 <li><h4 class="navbarposition">{aktuellintervall}</h4></li>
-                                <li><f:link.action action="update" controller="Intervall" class="gettooltip" arguments="{nextIntervall:'nextIntervall'}"  title="<f:translate key="tx_rere_title_Intervall.naechste"'/>"><span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span></f:link.action></li>
+                                <li><f:link.action action="update" controller="Intervall" class="gettooltip" arguments="{nextIntervall:'nextIntervall'}"  title="<f:translate key='tx_rere_title_Intervall.naechste'/>"><span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span></f:link.action></li>
                             </ul>
                         </div>
                     </div>
@@ -112,12 +112,12 @@
                                         <f:for each="{modul.fach}" as="fach">
                                             <li><span class="col-md-6">{fach.fachname} <f:if condition="{fach.fachnr}">({fach.fachnr})</f:if> - {fach.fachnr} <f:if condition="{fach.datum}">{fach.pruefer}</f:if></span>
                                                 <span class="col-md-6">
-                                                    <f:link.action controller="Note" class="gettooltip" action="list" arguments="{fach : fach, modul: modul.uid}" title="<f:translate key="tx_rere_Text_Fach.NoteEintragen"/>"><f:translate key="tx_rere_Text_Fach_Text.NoteEintragen"/></f:link.action> |
-                                                    <f:link.action controller="Pruefling" arguments="{fach : fach, modul: modul.uid}" class="gettooltip" action="list" title="<f:translate key="tx_rere_Text_Fach.PrueflingZuweisen"/>"><f:translate key="tx_rere_Text_Fach_Text.PrüflingZuweisen"/></f:link.action> |
+                                                    <f:link.action controller="Note" class="gettooltip" action="list" arguments="{fach : fach, modul: modul.uid}" title="<f:translate key='tx_rere_Text_Fach.NoteEintragen'/>"><f:translate key="tx_rere_Text_Fach_Text.NoteEintragen"/></f:link.action> |
+                                                    <f:link.action controller="Pruefling" arguments="{fach : fach, modul: modul.uid}" class="gettooltip" action="list" title="<f:translate key='tx_rere_Text_Fach.PrueflingZuweisen'/>"><f:translate key="tx_rere_Text_Fach_Text.PrüflingZuweisen"/></f:link.action> |
                                                     <f:link.action class="delete gettooltip" controller="Fach" action="delete"
                                                                    onclick="delentry('{f:translate(key: 'tx_rere_Text_Fach.FachLoeschen')}',
                                                                                        $(this).attr('href'));
-                                                                                       return false;" arguments="{fach : fach.uid}" title="<f:translate key="tx_rere_Text_Fach.FachUndNoteLoeschen"/>">
+                                                                                       return false;" arguments="{fach : fach.uid}" title="<f:translate key='tx_rere_Text_Fach.FachUndNoteLoeschen'/>">
                                                         <span class="gettooltip glyphicon glyphicon-remove" aria-hidden="true">
                                                         </span>
                                                     </f:link.action>
@@ -125,7 +125,7 @@
                                             </li>
                                         </f:for>
                                     </ul>
-                                    <f:link.action controller="Fach" class="gettooltip btn btn-default addfachbtn" arguments="{modul:modul,gueltigkeitszeitraum:aktuellintervall}" action="new" title="<f:translate key="tx_rere_Text.FachZuModulHinzufuegen"/>"><f:translate key="tx_rere_button.FachHinzufuegen"/></f:link.action>
+                                    <f:link.action controller="Fach" class="gettooltip btn btn-default addfachbtn" arguments="{modul:modul,gueltigkeitszeitraum:aktuellintervall}" action="new" title="<f:translate key='tx_rere_Text.FachZuModulHinzufuegen'/>"><f:translate key="tx_rere_button.FachHinzufuegen"/></f:link.action>
                                 </div>
                             </div>
                         </div>
@@ -135,7 +135,7 @@
         </div>
         <div class="row">
             <div class="col-md-12">
-                <f:link.action controller="Modul" class="gettooltip btn btn-default" action="new" arguments='{gueltigkeitszeitraum:aktuellintervall}' title="<f:translate key="tx_rere_Text.ModulAnlegen"/>"><f:translate key="tx_rere_button.ModulAnlegen"/></f:link.action>
+                <f:link.action controller="Modul" class="gettooltip btn btn-default" action="new" arguments='{gueltigkeitszeitraum:aktuellintervall}' title="<f:translate key='tx_rere_Text.ModulAnlegen'/>"><f:translate key="tx_rere_button.ModulAnlegen"/></f:link.action>
             </div>
         </div>
     </div>

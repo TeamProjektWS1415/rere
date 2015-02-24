@@ -24,23 +24,23 @@
                     <div class="container-fluid">
                         <div class="collapse navbar-collapse" id="navi">
                             <ul class="nav navbar-nav">
-                                <li class="active" id="alle" data-toggle="tooltip" data-placement="bottom" title="<f:translate key="tx_rere_title_Notenverwaltung.AlleAnzeigen"/>"><a href="#" ><f:translate key="tx_rere_Notenverwaltung.AlleAnzeigen"/></a></li>
-                                <li id="eingetragene" data-toggle="tooltip" data-placement="bottom" title="<f:translate key="tx_rere_title_Notenverwaltung.EingetrageneAnzeigen" />"><a href="#"><f:translate key="tx_rere_Notenverwaltung.EingetrageneAnzeigen" /></a></li>
-                                <li id='nichteingetragene' data-toggle="tooltip" data-placement="bottom" title="<f:translate key="tx_rere_title_Notenverwaltung.NichtEingetrageneAnzeigen" />"><a href="#"><f:translate key="tx_rere_Notenverwaltung.NichtEingetrageneAnzeigen" /></a></li>
+                                <li class="active" id="alle" data-toggle="tooltip" data-placement="bottom" title="<f:translate key='tx_rere_title_Notenverwaltung.AlleAnzeigen'/>"><a href="#" ><f:translate key="tx_rere_Notenverwaltung.AlleAnzeigen"/></a></li>
+                                <li id="eingetragene" data-toggle="tooltip" data-placement="bottom" title="<f:translate key='tx_rere_title_Notenverwaltung.EingetrageneAnzeigen' />"><a href="#"><f:translate key="tx_rere_Notenverwaltung.EingetrageneAnzeigen" /></a></li>
+                                <li id='nichteingetragene' data-toggle="tooltip" data-placement="bottom" title="<f:translate key='tx_rere_title_Notenverwaltung.NichtEingetrageneAnzeigen' />"><a href="#"><f:translate key="tx_rere_Notenverwaltung.NichtEingetrageneAnzeigen" /></a></li>
                             </ul>
                             <ul class="nav navbar-nav">
                                 <li>
                                     <form class="navbar-form navbar-left" role="search">
                                         <div class="form-group input-group">
                                             <div class="input-group-addon"><span class="glyphicon glyphicon-search" aria-hidden="true" ></span></div>
-                                            <input type="text" id="suche" class="form-control" rel="tooltip" data-toggle="tooltip" data-placement="bottom" title="<f:translate key="tx_rere_title_Notenverwaltung.NachMatrNrSuchen" />" placeholder="<f:translate key=tx_rere_Placeholder_Notenverwaltung.MatrNrSuchen" />">
+                                            <input type="text" id="suche" class="form-control" rel="tooltip" data-toggle="tooltip" data-placement="bottom" title="<f:translate key='tx_rere_title_Notenverwaltung.NachMatrNrSuchen'/>" placeholder="<f:translate key='tx_rere_Placeholder_Notenverwaltung.MatrNrSuchen'/>">
                                         </div>
                                     </form>
                                 <li>
                             </ul>
                             <ul class="nav navbar-nav navbar-right">
-                                <li><f:link.action controller="Import" action="new" arguments="{type:'fach'}" class="gettooltip" title="<f:translate key="tx_rere_title_Notenverwaltung.FachImportieren" />" ><f:translate key="tx_rere_Notenverwaltung.FachImportieren" /></f:link.action></li>
-                                <li><f:link.action controller="Export" class="gettooltip" action="exportFach" arguments="{modul:modul.uid,fachuid:fach.uid}" title="<f:translate key="tx_rere_title_Notenverwaltung.FachExportieren" />" ><f:translate key="tx_rere_Notenverwaltung.FachExportieren" /></f:link.action></li>
+                                <li><f:link.action controller="Import" action="new" arguments="{type:'fach'}" class="gettooltip" title="<f:translate key='tx_rere_title_Notenverwaltung.FachImportieren' />" ><f:translate key="tx_rere_Notenverwaltung.FachImportieren" /></f:link.action></li>
+                                <li><f:link.action controller="Export" class="gettooltip" action="exportFach" arguments="{modul:modul.uid,fachuid:fach.uid}" title="<f:translate key='tx_rere_title_Notenverwaltung.FachExportieren' />" ><f:translate key="tx_rere_Notenverwaltung.FachExportieren" /></f:link.action></li>
                             </ul>
                         </div>
                     </div>
@@ -68,13 +68,13 @@
                                 <td><f:form.hidden name="noteuid" class="noteuid" value="{note.uid}" /><span class="value">{note.matrikelnr}</span></td>
                                 <td><span class="value">{note.prueflingnachname}</span></td>
                                 <td><span class="value">{note.prueflingvorname}</span></td>
-                                <td><f:form.select name="wert" options="{options}" value="{note.wert}" class="form-control gettooltip sendNote notenwert" title="<f:translate key="tx_rere_title_Notenverwaltung.BitteNoteAuswaehlen" />"/></td>
+                                <td><f:form.select name="wert" options="{options}" value="{note.wert}" class="form-control gettooltip sendNote notenwert" title="<f:translate key='tx_rere_title_Notenverwaltung.BitteNoteAuswaehlen' />"/></td>
                                 <td>
                                 <f:form.textfield type="hidden" name="fach" id="fach" value="{fach.uid}" />
                                 <f:form.textfield  type="hidden" name="modul" id="modul" value="{modul.uid}" />
-                                <f:form.textarea name="kommentar" class="form-control gettooltip sendNote kommentar" rows="1" placeholder="<f:translate key="tx_rere_Placeholder_Notenverwaltung.Kommentar" />" title="<f:translate key="tx_rere_title_Notenverwaltung.Kommentar" />" value="{note.kommentar}"/></td>
+                                <f:form.textarea name="kommentar" class="form-control gettooltip sendNote kommentar" rows="1" placeholder="<f:translate key='tx_rere_Placeholder_Notenverwaltung.Kommentar' />" title="<f:translate key='tx_rere_title_Notenverwaltung.Kommentar' />" value="{note.kommentar}"/></td>
                                 <td><f:link.action class="delete" action="delete" onclick="delentry('<f:translate key="tx_rere_Text_Notenverwaltung.Prueflingloeschen1" />{note.matrikelnr} <f:translate key="tx_rere_Text_Notenverwaltung.Prueflingloeschen2" />', $(this).attr('href'));
-                                        return false;" arguments="{note : note.uid,fach:fach.uid,modul:modul.uid}"><span class="glyphicon glyphicon-remove" aria-hidden="true" data-toggle="tooltip" data-placement="bottom" title="<f:translate key="tx_rere_title_Notenverwaltung.Datensatzloeschen" />"></span></f:link.action></td>
+                                        return false;" arguments="{note : note.uid,fach:fach.uid,modul:modul.uid}"><span class="glyphicon glyphicon-remove" aria-hidden="true" data-toggle="tooltip" data-placement="bottom" title="<f:translate key='tx_rere_title_Notenverwaltung.Datensatzloeschen' />"></span></f:link.action></td>
                             </f:form>
                             </tr>
                         </f:for>

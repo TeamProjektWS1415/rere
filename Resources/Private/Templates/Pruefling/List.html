@@ -29,7 +29,7 @@
                                 <div class="form-group">
                                     <div class="input-group">
                                         <div class="input-group-addon"><span class="glyphicon glyphicon-search" id="searchicon"  aria-hidden="true" ></span></div>
-                                        <f:form.textfield type="text" name="matrikelnr" id="suchematrikel" class="form-control gettooltip" title="<f:translate key="tx_rere_title_zuweisen.NachMatrNrSuchen"/>" placeholder="<f:translate key="tx_rere_Placeholder_zuweisen.MatrNrSuchen"/>"/>
+                                        <f:form.textfield type="text" name="matrikelnr" id="suchematrikel" class="form-control gettooltip" title="<f:translate key='tx_rere_title_zuweisen.NachMatrNrSuchen'/>" placeholder="<f:translate key='tx_rere_Placeholder_zuweisen.MatrNrSuchen'/>"/>
                                     </div>
                                 </div>
                             </f:form>
@@ -43,7 +43,7 @@
                                 </div>
                             </f:form>
                             <ul class="nav navbar-nav navbar-right">
-                                <li><f:link.action controller="Pruefling" action="new" class="gettooltip" title="<f:translate key="tx_rere_title_zuweisen.PrueflingAnlegen"/>" ><f:translate key="tx_rere_Placeholder_zuweisen.PrueflingAnlegen"/></f:link.action></li>                                </ul>
+                                <li><f:link.action controller="Pruefling" action="new" class="gettooltip" title="<f:translate key='tx_rere_title_zuweisen.PrueflingAnlegen'/>" ><f:translate key="tx_rere_Placeholder_zuweisen.PrueflingAnlegen"/></f:link.action></li>                                </ul>
                         </div>
                     </div>
                 </nav>
@@ -73,7 +73,7 @@
                                 <td><span class="value">{pruefling.nachname}</span></td>
                                 <td>
                             <f:link.action class="delete" action="setPruefling" onclick="delentry('<f:translate key="tx_rere_error_Zuweisen.text1"/>{pruefling.matrikelnr} <f:translate key="tx_rere_error_Zuweisen.text2"/>', $(this).attr('href'));
-                                    return false;" arguments="{fach:fach.uid,modul:modul.uid,matrikelnr : pruefling.matrikelnr,remove:'remove'}"><span class="glyphicon glyphicon-remove" aria-hidden="true" data-toggle="tooltip" data-placement="bottom" title="<f:translate key="tx_rere_Button_Zuweisen.DatensatzLoeschen"/>"></span></f:link.action>
+                                    return false;" arguments="{fach:fach.uid,modul:modul.uid,matrikelnr : pruefling.matrikelnr,remove:'remove'}"><span class="glyphicon glyphicon-remove" aria-hidden="true" data-toggle="tooltip" data-placement="bottom" title="<f:translate key='tx_rere_Button_Zuweisen.DatensatzLoeschen'/>"></span></f:link.action>
                             </td>
                             </tr>
                         </f:for>
