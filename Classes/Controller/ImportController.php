@@ -18,6 +18,8 @@ class ImportController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControlle
     const CSVDATEI = "CSV-Datei mit Prüflingen";
     const IMPORTPRUEFLINGE = "Import Prüflinge";
     const FALSE = "FALSE";
+    const FACH =
+    "fach";
 
     private $passfunctions = NULL;
     private $userfunctions = NULL;
@@ -108,6 +110,7 @@ class ImportController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControlle
 public function newAction() {
     if ($this->request->hasArgument('type')) {
         $type = $this->request->getArgument('type');
+        $usergroups = $this->FrontendUserGroupRepository->findAll();
 
         // Prüfung, um welchen Import-Typ es sich handelt.
         if ($type == "prueflinge") {
@@ -117,13 +120,12 @@ public function newAction() {
             } else {
                 $errorlist = "";
             }
-
-            $usergroups = $this->FrontendUserGroupRepository->findAll();
             $this->view->assignMultiple(array(self::TITLE => self::IMPORTPRUEFLINGE, self::LABLE => self::CSVDATEI, type => $type, usergroups => $usergroups, errorlist => $errorlist));
         } elseif ($type == "backup") {
             $this->view->assignMultiple(array(self::TITLE => 'Import Backup', self::LABLE => 'SQL-Backup', type => $type));
         } else {
-            $this->view->assignMultiple(array(self::TITLE => 'Import Fach', self::LABLE => 'Fach Import', type => $type));
+            $fach = $this->fachRepository->findByUid($this->request->getArgument("fach"));
+            $this->view->assignMultiple(array(self::TITLE => 'Import Fach', self::LABLE => 'Fach Import', type => $type, usergroups => $usergroups, fach => $fach));
         }
     }
 }
@@ -133,6 +135,13 @@ public function newAction() {
  * @return void
  */
 public function importPrueflingeAction() {
+    $fach = null;
+    // Fals import direkt in fach, dann Fach UID holen
+    if ($this->request->hasArgument(self::FACH)) {
+        $fachA = $this->request->getArgument(self::FACH);
+        $fach = $fachA["__identity"];
+    }
+
     // Holt alle Usergroups
     $usergroup = $this->request->getArgument("usergroup");
     if ($this->request->hasArgument(self::IMPORTKLEIN) && $_FILES[self::IMPORTKLEIN]['error'] == 0) {
@@ -146,7 +155,7 @@ public function importPrueflingeAction() {
                 self::LABLE => self::CSVDATEI,
                 type => "prueflinge"));
         }
-        $this->parseCSV($file["tmp_name"], $usergroup);
+        $this->parseCSV($file["tmp_name"], $usergroup, $fach);
     } else {
         $this->addFlashMessage('Keine Datei gewählt', '', \TYPO3\CMS\Core\Messaging\AbstractMessage::ERROR);
     }
@@ -168,7 +177,7 @@ public function importBackupAction() {
  * Parst eine CSV Datei.
  * @param type $file
  */
-protected function parseCSV($file, $usergroup) {
+protected function parseCSV($file, $usergroup, $fach) {
     // Zählen der Zeilen - Wird benötit um die letzte zeile zu ignorieren.
     $csvFileForLines = fopen($file, "r");
     $numberOfLines = 0;
@@ -191,7 +200,7 @@ protected function parseCSV($file, $usergroup) {
                 array_push($pruefling, $data[$c]);
             }
         }
-        $this->createPruefling($pruefling, $usergroup);
+        $this->createPruefling($pruefling, $usergroup, $fach);
     }
     fclose($csvFile);
 }
@@ -201,7 +210,7 @@ protected function parseCSV($file, $usergroup) {
  * @param type $prueflingInfos Beinhaltet den ausgelesenen Prüfling
  * @param type $usergroupIN Usergruppe der der User zugewiesen werden soll
  */
-protected function createPruefling($prueflingInfos, $usergroupIN) {
+protected function createPruefling($prueflingInfos, $usergroupIN, $fachUid) {
     // Erzeugen des Prüflings
     $pruefling = $this->objectManager->create('\\ReRe\\Rere\\Domain\\Model\\Pruefling');
     $pruefling->setVorname($prueflingInfos[2]);
@@ -265,6 +274,20 @@ protected function createPruefling($prueflingInfos, $usergroupIN) {
             // Wenn Ein Matrikel-Nummer bereits vorhanden war wird diese in die Rückgabeliste gespeichert
             $this->notImported = $this->notImported . " " . $prueflingInfos[0] . ": " . $prueflingInfos[2] . ", " . $prueflingInfos[1] . " | ";
         }
+    }
+
+    // Zuweisung zum fach
+    if ($fachUid != null) {
+        $fach = $this->fachRepository->findByUid($fachUid);
+
+        $note = $this->objectManager->create('\\ReRe\\Rere\\Domain\\Model\\Note');
+        $note->setWert(0);
+        $this->noteRepository->add($note);
+
+        $fach->addMatrikelnr($pruefling);
+        $fach->addNote($note);
+        $pruefling->addNote($note);
+        $this->fachRepository->add($fach);
     }
 }
 

@@ -39,7 +39,7 @@
                                 <li>
                             </ul>
                             <ul class="nav navbar-nav navbar-right">
-                                <li><f:link.action controller="Import" action="new" arguments="{type:'fach'}" class="gettooltip" title="<f:translate key='tx_rere_title_Notenverwaltung.FachImportieren' />" ><f:translate key="tx_rere_Notenverwaltung.FachImportieren" /></f:link.action></li>
+                                <li><f:link.action controller="Import" action="new" arguments="{type:'fach',fach:fach.uid}" class="gettooltip" title="<f:translate key='tx_rere_title_Notenverwaltung.FachImportieren' />" ><f:translate key="tx_rere_Notenverwaltung.FachImportieren" /></f:link.action></li>
                                 <li><f:link.action controller="Export" class="gettooltip" action="exportFach" arguments="{modul:modul.uid,fachuid:fach.uid}" title="<f:translate key='tx_rere_title_Notenverwaltung.FachExportieren' />" ><f:translate key="tx_rere_Notenverwaltung.FachExportieren" /></f:link.action></li>
                             </ul>
                         </div>

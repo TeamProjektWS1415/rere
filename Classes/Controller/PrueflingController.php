@@ -470,10 +470,10 @@ class PrueflingController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionContro
             $pruefling = $this->prueflingRepository->findOneByMatrikelnr($this->request->getArgument(self::MATRIKELNR));
         }
         if ($pruefling == NULL) {
-            $this->addFlashMessage('WÃ¤hlen Sie einen existierenden PrÃ¼fling (GrÃ¼ne Lupe)', '', \TYPO3\CMS\Core\Messaging\AbstractMessage::ERROR);
+            $this->addFlashMessage('Wählen Sie einen existierenden Prüfling (Grüne Lupe)', '', \TYPO3\CMS\Core\Messaging\AbstractMessage::ERROR);
             $this->redirect('list', self::PRUEFLING, Null, array(self::FACH => $fach, self::MODUL => $modul));
         }
-        // PrÃ¼fling einem Fach zuweisen oder entfernen
+        // Pruefling einem Fach zuweisen oder entfernen
         if ($this->request->hasArgument('remove')) {
             $noten = $fach->getNote();
             foreach ($noten as $note) {
@@ -503,7 +503,7 @@ class PrueflingController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionContro
     }
 
     /**
-     * Diese Funktion weiÃŸt eine ganze UserGruppe dem Fach zu. Ein PrÃ¼fling kann einem Fach nur 1x Zugewiesen werden.
+     * Diese Funktion weisst eine ganze UserGruppe dem Fach zu. Ein Pruefling kann einem Fach nur 1x Zugewiesen werden.
      */
     public function userGroupZuweisenAction() {
         // Persistenz Manager
@@ -530,7 +530,7 @@ class PrueflingController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionContro
             // Wenn die UserGroup des FEUsers = der Ausgewählten Usergroup
             if ((int) $feuser->getUsergroup() == (int) $userGroup) {
                 foreach ($prueflinge as $pruefling) {
-                    // PrÃ¼ft ob der PrÃ¼fling bereits zugewiesen wurde
+                    // Prueft ob der Pruefling bereits zugewiesen wurde
                     $checkList = $this->userfunctions->checkMatrikelNr($fach->getMatrikelnr(), $pruefling->getMatrikelnr());
                     $checkVar = "TYPO3\CMS\Extbase\Domain\Model\FrontendUser:" . $feuser->getUid();
                     if ($pruefling->getTypo3FEUser() == $checkVar && $checkList == 1) {
