@@ -138,7 +138,7 @@ TYPO3\CMS\Extbase\Mvc\Controller\ActionController
 
 				<b>Author:</b>
 				Felix<br />
-		<b>Located at</b> <a href="source-class-ReRe.Rere.Controller.ImportController.html#5-259" title="Go to source code">Controller/ImportController.php</a><br />
+		<b>Located at</b> <a href="source-class-ReRe.Rere.Controller.ImportController.html#5-316" title="Go to source code">Controller/ImportController.php</a><br />
 	</div>
 
 
@@ -156,7 +156,7 @@ TYPO3\CMS\Extbase\Mvc\Controller\ActionController
 
 		<td class="name"><div>
 		<a class="anchor" href="#___construct">#</a>
-		<code><a href="source-class-ReRe.Rere.Controller.ImportController.html#89-97" title="Go to source code">__construct</a>( )</code>
+		<code><a href="source-class-ReRe.Rere.Controller.ImportController.html#95-106" title="Go to source code">__construct</a>( )</code>
 
 		<div class="description short">
 			
@@ -191,7 +191,7 @@ erzeugt.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_newAction">#</a>
-		<code><a href="source-class-ReRe.Rere.Controller.ImportController.html#99-123" title="Go to source code">newAction</a>( )</code>
+		<code><a href="source-class-ReRe.Rere.Controller.ImportController.html#108-131" title="Go to source code">newAction</a>( )</code>
 
 		<div class="description short">
 			
@@ -224,7 +224,7 @@ erzeugt.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_importPrueflingeAction">#</a>
-		<code><a href="source-class-ReRe.Rere.Controller.ImportController.html#125-147" title="Go to source code">importPrueflingeAction</a>( )</code>
+		<code><a href="source-class-ReRe.Rere.Controller.ImportController.html#133-189" title="Go to source code">importPrueflingeAction</a>( )</code>
 
 		<div class="description short">
 			
@@ -257,7 +257,7 @@ erzeugt.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_importBackupAction">#</a>
-		<code><a href="source-class-ReRe.Rere.Controller.ImportController.html#149-154" title="Go to source code">importBackupAction</a>( )</code>
+		<code><a href="source-class-ReRe.Rere.Controller.ImportController.html#191-196" title="Go to source code">importBackupAction</a>( )</code>
 
 		<div class="description short">
 			
@@ -286,7 +286,7 @@ erzeugt.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_parseCSV">#</a>
-		<code><a href="source-class-ReRe.Rere.Controller.ImportController.html#156-186" title="Go to source code">parseCSV</a>( <span>type <var>$file</var></span>, <span>mixed <var>$usergroup</var></span> )</code>
+		<code><a href="source-class-ReRe.Rere.Controller.ImportController.html#198-228" title="Go to source code">parseCSV</a>( <span>type <var>$file</var></span>, <span>mixed <var>$usergroup</var></span>, <span>mixed <var>$fach</var></span> )</code>
 
 		<div class="description short">
 			
@@ -305,6 +305,8 @@ erzeugt.</p>
 					<dt><var>$file</var></dt>
 					<dd><code>type</code><br>$file</dd>
 					<dt><var>$usergroup</var></dt>
+					<dd></dd>
+					<dt><var>$fach</var></dt>
 					<dd></dd>
 				</dl></div>
 
@@ -326,7 +328,7 @@ erzeugt.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_createPruefling">#</a>
-		<code><a href="source-class-ReRe.Rere.Controller.ImportController.html#188-257" title="Go to source code">createPruefling</a>( <span>type <var>$prueflingInfos</var></span>, <span>type <var>$usergroupIN</var></span> )</code>
+		<code><a href="source-class-ReRe.Rere.Controller.ImportController.html#230-314" title="Go to source code">createPruefling</a>( <span>type <var>$prueflingInfos</var></span>, <span>type <var>$usergroupIN</var></span>, <span>mixed <var>$fachUid</var></span> )</code>
 
 		<div class="description short">
 			
@@ -346,6 +348,8 @@ erzeugt.</p>
 					<dd><code>type</code><br>$prueflingInfos Beinhaltet den ausgelesenen Prüfling</dd>
 					<dt><var>$usergroupIN</var></dt>
 					<dd><code>type</code><br>$usergroupIN Usergruppe der der User zugewiesen werden soll</dd>
+					<dt><var>$fachUid</var></dt>
+					<dd></dd>
 				</dl></div>
 
 
@@ -466,6 +470,106 @@ erzeugt.</p>
 			</div>
 		</div></td>
 	</tr>
+	<tr data-order="CSVDATEI" id="CSVDATEI">
+
+		<td class="attributes"><code>string</code></td>
+		<td class="name"><code>
+				<a href="source-class-ReRe.Rere.Controller.ImportController.html#18" title="Go to source code"><b>CSVDATEI</b></a>
+		</code></td>
+		<td class="value"><code><span class="php-quote">&quot;CSV-Datei mit Prüflingen&quot;</span></code></td>
+		<td class="description"><div>
+			<a href="#CSVDATEI" class="anchor">#</a>
+
+			<div class="description short">
+				
+			</div>
+
+			<div class="description detailed hidden">
+				
+
+			</div>
+		</div></td>
+	</tr>
+	<tr data-order="IMPORTPRUEFLINGE" id="IMPORTPRUEFLINGE">
+
+		<td class="attributes"><code>string</code></td>
+		<td class="name"><code>
+				<a href="source-class-ReRe.Rere.Controller.ImportController.html#19" title="Go to source code"><b>IMPORTPRUEFLINGE</b></a>
+		</code></td>
+		<td class="value"><code><span class="php-quote">&quot;Import Prüflinge&quot;</span></code></td>
+		<td class="description"><div>
+			<a href="#IMPORTPRUEFLINGE" class="anchor">#</a>
+
+			<div class="description short">
+				
+			</div>
+
+			<div class="description detailed hidden">
+				
+
+			</div>
+		</div></td>
+	</tr>
+	<tr data-order="IMPORTINFACH" id="IMPORTINFACH">
+
+		<td class="attributes"><code>string</code></td>
+		<td class="name"><code>
+				<a href="source-class-ReRe.Rere.Controller.ImportController.html#20" title="Go to source code"><b>IMPORTINFACH</b></a>
+		</code></td>
+		<td class="value"><code><span class="php-quote">'Import in Fach'</span></code></td>
+		<td class="description"><div>
+			<a href="#IMPORTINFACH" class="anchor">#</a>
+
+			<div class="description short">
+				
+			</div>
+
+			<div class="description detailed hidden">
+				
+
+			</div>
+		</div></td>
+	</tr>
+	<tr data-order="FALSE" id="FALSE">
+
+		<td class="attributes"><code>string</code></td>
+		<td class="name"><code>
+				<a href="source-class-ReRe.Rere.Controller.ImportController.html#21" title="Go to source code"><b>FALSE</b></a>
+		</code></td>
+		<td class="value"><code><span class="php-quote">&quot;FALSE&quot;</span></code></td>
+		<td class="description"><div>
+			<a href="#FALSE" class="anchor">#</a>
+
+			<div class="description short">
+				
+			</div>
+
+			<div class="description detailed hidden">
+				
+
+			</div>
+		</div></td>
+	</tr>
+	<tr data-order="FACH" id="FACH">
+
+		<td class="attributes"><code>string</code></td>
+		<td class="name"><code>
+				<a href="source-class-ReRe.Rere.Controller.ImportController.html#22-23" title="Go to source code"><b>FACH</b></a>
+		</code></td>
+		<td class="value"><code><span class="php-quote">&quot;fach&quot;</span></code></td>
+		<td class="description"><div>
+			<a href="#FACH" class="anchor">#</a>
+
+			<div class="description short">
+				
+			</div>
+
+			<div class="description detailed hidden">
+				
+
+			</div>
+		</div></td>
+	</tr>
 	</table>
 
 
@@ -480,7 +584,7 @@ erzeugt.</p>
 		</code></td>
 
 		<td class="name">
-				<a href="source-class-ReRe.Rere.Controller.ImportController.html#23" title="Go to source code"><var>$notImported</var></a>
+				<a href="source-class-ReRe.Rere.Controller.ImportController.html#29" title="Go to source code"><var>$notImported</var></a>
 		</td>
 		<td class="value"><code><span class="php-keyword1">NULL</span></code></td>
 		<td class="description"><div>
@@ -503,7 +607,7 @@ erzeugt.</p>
 		</code></td>
 
 		<td class="name">
-				<a href="source-class-ReRe.Rere.Controller.ImportController.html#25-31" title="Go to source code"><var>$noteRepository</var></a>
+				<a href="source-class-ReRe.Rere.Controller.ImportController.html#31-37" title="Go to source code"><var>$noteRepository</var></a>
 		</td>
 		<td class="value"><code><span class="php-keyword1">NULL</span></code></td>
 		<td class="description"><div>
@@ -533,7 +637,7 @@ erzeugt.</p>
 		</code></td>
 
 		<td class="name">
-				<a href="source-class-ReRe.Rere.Controller.ImportController.html#33-39" title="Go to source code"><var>$prueflingRepository</var></a>
+				<a href="source-class-ReRe.Rere.Controller.ImportController.html#39-45" title="Go to source code"><var>$prueflingRepository</var></a>
 		</td>
 		<td class="value"><code><span class="php-keyword1">NULL</span></code></td>
 		<td class="description"><div>
@@ -563,7 +667,7 @@ erzeugt.</p>
 		</code></td>
 
 		<td class="name">
-				<a href="source-class-ReRe.Rere.Controller.ImportController.html#41-47" title="Go to source code"><var>$modulRepository</var></a>
+				<a href="source-class-ReRe.Rere.Controller.ImportController.html#47-53" title="Go to source code"><var>$modulRepository</var></a>
 		</td>
 		<td class="value"><code><span class="php-keyword1">NULL</span></code></td>
 		<td class="description"><div>
@@ -593,7 +697,7 @@ erzeugt.</p>
 		</code></td>
 
 		<td class="name">
-				<a href="source-class-ReRe.Rere.Controller.ImportController.html#49-55" title="Go to source code"><var>$fachRepository</var></a>
+				<a href="source-class-ReRe.Rere.Controller.ImportController.html#55-61" title="Go to source code"><var>$fachRepository</var></a>
 		</td>
 		<td class="value"><code><span class="php-keyword1">NULL</span></code></td>
 		<td class="description"><div>
@@ -623,7 +727,7 @@ erzeugt.</p>
 		</code></td>
 
 		<td class="name">
-				<a href="source-class-ReRe.Rere.Controller.ImportController.html#57-63" title="Go to source code"><var>$FrontendUserRepository</var></a>
+				<a href="source-class-ReRe.Rere.Controller.ImportController.html#63-69" title="Go to source code"><var>$FrontendUserRepository</var></a>
 		</td>
 		<td class="value"><code><span class="php-keyword1">NULL</span></code></td>
 		<td class="description"><div>
@@ -653,7 +757,7 @@ erzeugt.</p>
 		</code></td>
 
 		<td class="name">
-				<a href="source-class-ReRe.Rere.Controller.ImportController.html#65-71" title="Go to source code"><var>$FrontendUserGroupRepository</var></a>
+				<a href="source-class-ReRe.Rere.Controller.ImportController.html#71-77" title="Go to source code"><var>$FrontendUserGroupRepository</var></a>
 		</td>
 		<td class="value"><code><span class="php-keyword1">NULL</span></code></td>
 		<td class="description"><div>
@@ -685,7 +789,7 @@ initialisiert.</p>
 		</code></td>
 
 		<td class="name">
-				<a href="source-class-ReRe.Rere.Controller.ImportController.html#73-79" title="Go to source code"><var>$settingsRepository</var></a>
+				<a href="source-class-ReRe.Rere.Controller.ImportController.html#79-85" title="Go to source code"><var>$settingsRepository</var></a>
 		</td>
 		<td class="value"><code><span class="php-keyword1">NULL</span></code></td>
 		<td class="description"><div>
@@ -715,7 +819,7 @@ initialisiert.</p>
 		</code></td>
 
 		<td class="name">
-				<a href="source-class-ReRe.Rere.Controller.ImportController.html#81-87" title="Go to source code"><var>$objectManager</var></a>
+				<a href="source-class-ReRe.Rere.Controller.ImportController.html#87-93" title="Go to source code"><var>$objectManager</var></a>
 		</td>
 		<td class="value"><code><span class="php-keyword1">NULL</span></code></td>
 		<td class="description"><div>

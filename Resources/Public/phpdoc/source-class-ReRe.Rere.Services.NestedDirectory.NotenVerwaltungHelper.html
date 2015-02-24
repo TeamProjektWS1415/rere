@@ -257,7 +257,7 @@
 </span><span id="155" class="l"><a class="l" href="#155">155: </a>                <span class="php-var">$this</span>-&gt;schoolMarks[<span class="php-var">$wert</span>] = <span class="php-var">$this</span>-&gt;schoolMarks[<span class="php-var">$wert</span>] + <span class="php-num">1</span>;
 </span><span id="156" class="l"><a class="l" href="#156">156: </a>            }
 </span><span id="157" class="l"><a class="l" href="#157">157: </a>
-</span><span id="158" class="l"><a class="l" href="#158">158: </a>            <span class="php-keyword1">if</span> (<span class="php-var">$typ</span> == <span class="php-quote">&quot;unbenotet&quot;</span> &amp;&amp; <span class="php-var">$wert</span> != <span class="php-keyword1">NULL</span>) {
+</span><span id="158" class="l"><a class="l" href="#158">158: </a>            <span class="php-keyword1">if</span> (<span class="php-var">$typ</span> == <span class="php-quote">&quot;unbenotet&quot;</span> &amp;&amp; (<span class="php-var">$wert</span> == <span class="php-quote">&quot;be&quot;</span> || <span class="php-var">$wert</span> == <span class="php-quote">&quot;N&quot;</span>)) {
 </span><span id="159" class="l"><a class="l" href="#159">159: </a>                <span class="php-var">$this</span>-&gt;unbenotetMarks[<span class="php-var">$wert</span>] = <span class="php-var">$this</span>-&gt;unbenotetMarks[<span class="php-var">$wert</span>] + <span class="php-num">1</span>;
 </span><span id="160" class="l"><a class="l" href="#160">160: </a>            }
 </span><span id="161" class="l"><a class="l" href="#161">161: </a>        }
@@ -294,7 +294,7 @@
 </span><span id="192" class="l"><a class="l" href="#192">192: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> <a id="_checkIfWertisSet" href="#_checkIfWertisSet">checkIfWertisSet</a>(<span class="php-var">$notenliste</span>) {
 </span><span id="193" class="l"><a class="l" href="#193">193: </a>        <span class="php-var">$count</span> = <span class="php-num">0</span>;
 </span><span id="194" class="l"><a class="l" href="#194">194: </a>        <span class="php-keyword1">foreach</span> (<span class="php-var">$notenliste</span> <span class="php-keyword1">as</span> <span class="php-var">$result</span>) {
-</span><span id="195" class="l"><a class="l" href="#195">195: </a>            <span class="php-keyword1">if</span> (<span class="php-var">$result</span>-&gt;getWert() != <span class="php-num">0</span>) {
+</span><span id="195" class="l"><a class="l" href="#195">195: </a>            <span class="php-keyword1">if</span> (<span class="php-var">$result</span>-&gt;getWert() != <span class="php-num">0</span> || <span class="php-var">$result</span>-&gt;getWert() == <span class="php-quote">&quot;be&quot;</span> || <span class="php-var">$result</span>-&gt;getWert() == <span class="php-quote">&quot;N&quot;</span>) {
 </span><span id="196" class="l"><a class="l" href="#196">196: </a>                <span class="php-var">$count</span>++;
 </span><span id="197" class="l"><a class="l" href="#197">197: </a>            }
 </span><span id="198" class="l"><a class="l" href="#198">198: </a>        }
