@@ -59,6 +59,7 @@ class FachControllerTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
     const REQUEST = "request";
     const UPDATE = "update";
     const REMOVE = "remove";
+    const REDIRECT = "redirect";
 
     /**
      * @var \ReRe\Rere\Controller\FachController
@@ -66,7 +67,7 @@ class FachControllerTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
     protected $subject = NULL;
 
     protected function setUp() {
-        $this->subject = $this->getMock(self::FACHCONTROLLER, array('redirect', 'forward', 'addFlashMessage'), array(), '', FALSE);
+        $this->subject = $this->getMock(self::FACHCONTROLLER, array(self::REDIRECT, 'forward', 'addFlashMessage'), array(), '', FALSE);
     }
 
     protected function tearDown() {
@@ -175,7 +176,7 @@ class FachControllerTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
         $fachRepository->expects($this->once())->method('add')->with($mockFach);
         $this->inject($this->subject, self::FACHREPO, $fachRepository);
 
-        $this->subject->expects($this->once())->method('redirect')->with('list', 'Modul');
+        $this->subject->expects($this->once())->method(self::REDIRECT)->with('list', 'Modul');
         $this->subject->createAction($mockFach);
     }
 
@@ -248,7 +249,7 @@ class FachControllerTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
             $fachRepository->expects($this->once())->method(self::REMOVE)->with($mockFach);
             $this->inject($this->subject, self::FACHREPO, $fachRepository);
 
-            $this->subject->expects($this->once())->method('redirect')->with('list', 'Modul');
+            $this->subject->expects($this->once())->method(self::REDIRECT)->with('list', 'Modul');
             $this->subject->deleteAction($mockFach);
         }
     }
