@@ -17,6 +17,7 @@ class ImportController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControlle
     const ERRORLIST = "errorlist";
     const CSVDATEI = "CSV-Datei mit Prüflingen";
     const IMPORTPRUEFLINGE = "Import Prüflinge";
+    const IMPORTINFACH = 'Import in Fach';
     const FALSE = "FALSE";
     const FACH =
     "fach";
@@ -109,24 +110,23 @@ class ImportController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControlle
  */
 public function newAction() {
     if ($this->request->hasArgument('type')) {
-        $type = $this->request->getArgument('type');
-        $usergroups = $this->FrontendUserGroupRepository->findAll();
+	$type = $this->request->getArgument('type');
+	$usergroups = $this->FrontendUserGroupRepository->findAll();
 
-        // Prüfung, um welchen Import-Typ es sich handelt.
-        if ($type == "prueflinge") {
-
-            if ($this->request->hasArgument(self::ERRORLIST)) {
-                $errorlist = $this->request->getArgument(self::ERRORLIST);
-            } else {
-                $errorlist = "";
-            }
-            $this->view->assignMultiple(array(self::TITLE => self::IMPORTPRUEFLINGE, self::LABLE => self::CSVDATEI, type => $type, usergroups => $usergroups, errorlist => $errorlist));
-        } elseif ($type == "backup") {
-            $this->view->assignMultiple(array(self::TITLE => 'Import Backup', self::LABLE => 'SQL-Backup', type => $type));
-        } else {
-            $fach = $this->fachRepository->findByUid($this->request->getArgument("fach"));
-            $this->view->assignMultiple(array(self::TITLE => 'Import Fach', self::LABLE => 'Fach Import', type => $type, usergroups => $usergroups, fach => $fach));
-        }
+	// Prüfung, um welchen Import-Typ es sich handelt.
+	if ($type == "prueflinge") {
+	    if ($this->request->hasArgument(self::ERRORLIST)) {
+		$errorlist = $this->request->getArgument(self::ERRORLIST);
+	    } else {
+		$errorlist = "";
+	    }
+	    $this->view->assignMultiple(array(self::TITLE => self::IMPORTPRUEFLINGE, self::LABLE => self::CSVDATEI, type => $type, usergroups => $usergroups, errorlist => $errorlist));
+	} elseif ($type == "backup") {
+	    $this->view->assignMultiple(array(self::TITLE => 'Import Backup', self::LABLE => 'SQL-Backup', type => $type));
+	} else {
+	    $fach = $this->fachRepository->findByUid($this->request->getArgument("fach"));
+	    $this->view->assignMultiple(array(self::TITLE => self::IMPORTINFACH, self::LABLE => 'Fach Import', type => $type, usergroups => $usergroups, fach => $fach));
+	}
     }
 }
 
@@ -138,32 +138,54 @@ public function importPrueflingeAction() {
     $fach = null;
     // Fals import direkt in fach, dann Fach UID holen
     if ($this->request->hasArgument(self::FACH)) {
-        $fachA = $this->request->getArgument(self::FACH);
-        $fach = $fachA["__identity"];
+	$fachA = $this->request->getArgument(self::FACH);
+	$fach = $fachA["__identity"];
     }
 
     // Holt alle Usergroups
     $usergroup = $this->request->getArgument("usergroup");
     if ($this->request->hasArgument(self::IMPORTKLEIN) && $_FILES[self::IMPORTKLEIN]['error'] == 0) {
-        // Holt die Datei
-        $file = $this->request->getArgument(self::IMPORTKLEIN);
-        $ext = pathinfo($file['name'], PATHINFO_EXTENSION);
-        // Prüfung ob die Dateiendung korrekt ist.
-        if ($ext != "csv") {
-            $this->addFlashMessage('Falsche Dateiendung, es sind nur CSV-Dateien gültig.', '', \TYPO3\CMS\Core\Messaging\AbstractMessage::ERROR);
-            $this->redirect("new", self::IMPORT, Null, array(self::TITLE => self::IMPORTPRUEFLINGE,
-                self::LABLE => self::CSVDATEI,
-                type => "prueflinge"));
-        }
-        $this->parseCSV($file["tmp_name"], $usergroup, $fach);
+	// Holt die Datei
+	$file = $this->request->getArgument(self::IMPORTKLEIN);
+	$ext = pathinfo($file['name'], PATHINFO_EXTENSION);
+	// Prüfung ob die Dateiendung korrekt ist.
+	if ($ext != "csv") {
+	    $this->addFlashMessage('Falsche Dateiendung, es sind nur CSV-Dateien gültig.', '', \TYPO3\CMS\Core\Messaging\AbstractMessage::ERROR);
+
+
+	    // Redirect abhaengig vom typ
+	    if ($this->request->getArgument("type") == fach) {
+		$this->redirect("new", self::IMPORT, Null, array(self::TITLE => self::IMPORTINFACH,
+		    self::LABLE => self::CSVDATEI,
+		    type => "fach",
+		    fach => $fach));
+	    } else {
+		$this->redirect("new", self::IMPORT, Null, array(self::TITLE => self::IMPORTPRUEFLINGE,
+		    self::LABLE => self::CSVDATEI,
+		    type => "prueflinge"));
+	    }
+	}
+	$this->parseCSV($file["tmp_name"], $usergroup, $fach);
     } else {
-        $this->addFlashMessage('Keine Datei gewählt', '', \TYPO3\CMS\Core\Messaging\AbstractMessage::ERROR);
+	$this->addFlashMessage('Keine Datei gewählt', '', \TYPO3\CMS\Core\Messaging\AbstractMessage::ERROR);
     }
-    $this->redirect("new", self::IMPORT, Null, array(
-        self::TITLE => self::IMPORTPRUEFLINGE,
-        self::LABLE => self::CSVDATEI,
-        type => $this->request->getArgument('type'),
-        errorlist => "$this->notImported"));
+
+
+    // Redirect abhangig vom typ
+    if ($this->request->getArgument("type") == fach) {
+	$this->redirect("new", self::IMPORT, Null, array(
+	    self::TITLE => self::IMPORTINFACH,
+	    self::LABLE => self::CSVDATEI,
+	    type => $this->request->getArgument('type'),
+	    errorlist => "$this->notImported",
+	    fach => $fach));
+    } else {
+	$this->redirect("new", self::IMPORT, Null, array(
+	    self::TITLE => self::IMPORTPRUEFLINGE,
+	    self::LABLE => self::CSVDATEI,
+	    type => $this->request->getArgument('type'),
+	    errorlist => "$this->notImported"));
+    }
 }
 
 /**
@@ -182,7 +204,7 @@ protected function parseCSV($file, $usergroup, $fach) {
     $csvFileForLines = fopen($file, "r");
     $numberOfLines = 0;
     while (($data = fgetcsv($csvFileForLines, 2000, ";"))) {
-        $numberOfLines ++;
+	$numberOfLines ++;
     }
     fclose($csvFileForLines);
 
@@ -191,16 +213,16 @@ protected function parseCSV($file, $usergroup, $fach) {
     $row = 1;
 
     while (($data = fgetcsv($csvFile, 2000, ";"))) {
-        $num = count($data);
-        $row++;
-        $pruefling = array();
-        // Überspringen der ersten 4 Zeilen
-        if ($row > 5 && $numberOfLines >= $row) {
-            for ($c = 0; $c < $num; $c++) {
-                array_push($pruefling, $data[$c]);
-            }
-        }
-        $this->createPruefling($pruefling, $usergroup, $fach);
+	$num = count($data);
+	$row++;
+	$pruefling = array();
+	// Überspringen der ersten 4 Zeilen
+	if ($row > 5 && $numberOfLines >= $row) {
+	    for ($c = 0; $c < $num; $c++) {
+		array_push($pruefling, $data[$c]);
+	    }
+	}
+	$this->createPruefling($pruefling, $usergroup, $fach);
     }
     fclose($csvFile);
 }
@@ -223,71 +245,71 @@ protected function createPruefling($prueflingInfos, $usergroupIN, $fachUid) {
 
     // Prüfen die Matrikel Nummer bereits vergeben ist.
     foreach ($allPrueflinge as $p) {
-        if ($p->getMatrikelnr() == $pruefling->getMatrikelnr()) {
-            $status = false;
-            break;
-        }
+	if ($p->getMatrikelnr() == $pruefling->getMatrikelnr()) {
+	    $status = false;
+	    break;
+	}
     }
 
     // Prueft, ob diese MatrikelNr bereits vorhanden ist. Pruefling wird nur angelegt, wenn die MatrikelNr noch nicht verwendet wird!
     if ($status && $pruefling->getMatrikelnr() != NULL && $pruefling->getMatrikelnr() != "") {
-        // Prüfling persistieren
-        $this->prueflingRepository->add($pruefling);
-        $usergroup = $this->FrontendUserGroupRepository->findByUid($usergroupIN);
-        // Instanz eines neuen Users
-        $newFEUser = new \Typo3\CMS\Extbase\Domain\Model\FrontendUser();
-        // Neuen TYPO3 FE_User anlegen
-        $username = $this->userfunctions->genuserNAME($pruefling->getVorname(), $pruefling->getNachname());
-        $newFEUser->setUsername($username);
-        // Passwort-Generierung -> Random und dann -> Salt
-        $randomPW = $this->passfunctions->genpassword();
-        $saltedPW = $this->passfunctions->hashPassword($randomPW);
-        $newFEUser->setPassword($saltedPW);
-        $newFEUser->setNAME($pruefling->getNachname());
-        $newFEUser->setFirstNAME($pruefling->getVorname());
-        $newFEUser->setLastNAME($pruefling->getNachname());
+	// Prüfling persistieren
+	$this->prueflingRepository->add($pruefling);
+	$usergroup = $this->FrontendUserGroupRepository->findByUid($usergroupIN);
+	// Instanz eines neuen Users
+	$newFEUser = new \Typo3\CMS\Extbase\Domain\Model\FrontendUser();
+	// Neuen TYPO3 FE_User anlegen
+	$username = $this->userfunctions->genuserNAME($pruefling->getVorname(), $pruefling->getNachname());
+	$newFEUser->setUsername($username);
+	// Passwort-Generierung -> Random und dann -> Salt
+	$randomPW = $this->passfunctions->genpassword();
+	$saltedPW = $this->passfunctions->hashPassword($randomPW);
+	$newFEUser->setPassword($saltedPW);
+	$newFEUser->setNAME($pruefling->getNachname());
+	$newFEUser->setFirstNAME($pruefling->getVorname());
+	$newFEUser->setLastNAME($pruefling->getNachname());
 
-        if ($prueflingInfos[7] == "" | $prueflingInfos[7] == Null) {
-            $empfaengerMail = $username . $this->settingsRepository->findByUid(1)->getMailEmpfaenger();
-            echo $empfaengerMail;
-        } else {
-            $empfaengerMail = $prueflingInfos[7];
-        }
+	if ($prueflingInfos[7] == "" | $prueflingInfos[7] == Null) {
+	    $empfaengerMail = $username . $this->settingsRepository->findByUid(1)->getMailEmpfaenger();
+	    echo $empfaengerMail;
+	} else {
+	    $empfaengerMail = $prueflingInfos[7];
+	}
 
-        $newFEUser->setEmail($empfaengerMail);
-        $newFEUser->setPID($usergroup->getPid());
+	$newFEUser->setEmail($empfaengerMail);
+	$newFEUser->setPID($usergroup->getPid());
 
-        // Wenn Usergroup vorhanden dann wird diese gesetzt.
-        $newFEUser->addUsergroup($usergroup);
-        $absender = $this->settingsRepository->findByUid(1)->getMailAbsender();
+	// Wenn Usergroup vorhanden dann wird diese gesetzt.
+	$newFEUser->addUsergroup($usergroup);
+	$absender = $this->settingsRepository->findByUid(1)->getMailAbsender();
 
-        // FE User Persistieren und Zuwesen des FEUseres zum Pruefling
-        $this->FrontendUserRepository->add($newFEUser);
-        $pruefling->setTypo3FEUser($newFEUser);
-        $this->persistenceManager->persistAll();
-        $this->prueflingRepository->update($pruefling);
+	// FE User Persistieren und Zuwesen des FEUseres zum Pruefling
+	$this->FrontendUserRepository->add($newFEUser);
+	$pruefling->setTypo3FEUser($newFEUser);
+	$this->persistenceManager->persistAll();
+	$this->prueflingRepository->update($pruefling);
 
-        // Mail an den Prüfling versenden
-        $this->mailfunctions->newUserMail($newFEUser->getEmail(), $newFEUser->getUsername(), $pruefling->getNachname(), $pruefling->getVorname(), $randomPW, $absender);
+	// Mail an den Prüfling versenden
+	$this->mailfunctions->newUserMail($newFEUser->getEmail(), $newFEUser->getUsername(), $pruefling->getNachname(), $pruefling->getVorname(), $randomPW, $absender);
     } else {
-        if ($prueflingInfos[0] != Null || $prueflingInfos[0] != "") {
-            // Wenn Ein Matrikel-Nummer bereits vorhanden war wird diese in die Rückgabeliste gespeichert
-            $this->notImported = $this->notImported . " " . $prueflingInfos[0] . ": " . $prueflingInfos[2] . ", " . $prueflingInfos[1] . " | ";
-        }
+	if ($prueflingInfos[0] != Null || $prueflingInfos[0] != "") {
+	    // Wenn Ein Matrikel-Nummer bereits vorhanden war wird diese in die Rückgabeliste gespeichert
+	    $this->notImported = $this->notImported . " " . $prueflingInfos[0] . ": " . $prueflingInfos[2] . ", " . $prueflingInfos[1] . " | ";
+	}
     }
 
     // Zuweisung zum fach
     if ($fachUid != null) {
-        $fach = $this->fachRepository->findByUid($fachUid);
+	$fach = $this->fachRepository->findByUid($fachUid);
 
-        $note = $this->objectManager->create('\\ReRe\\Rere\\Domain\\Model\\Note');
-        $note->setWert(0);
-        $this->noteRepository->add($note);
+	$note = $this->objectManager->create('\\ReRe\\Rere\\Domain\\Model\\Note');
+	$note->setWert(0);
+	$this->noteRepository->add($note);
 
-        $fach->addMatrikelnr($pruefling);
-        $fach->addNote($note);
-        $pruefling->addNote($note);
-        $this->fachRepository->add($fach);
+	$fach->addMatrikelnr($pruefling);
+	$fach->addNote($note);
+	$pruefling->addNote($note);
+	$this->fachRepository->add($fach);
     }
 }
 
