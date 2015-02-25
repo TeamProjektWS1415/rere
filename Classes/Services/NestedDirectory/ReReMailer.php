@@ -20,19 +20,19 @@ class ReReMailer {
      */
     public function newUserMail($empfaenger, $username, $name, $vorname, $passwort, $absender) {
 
-        // Verschicken der Nachricht
-        $message = (new \TYPO3\CMS\Core\Mail\MailMessage())
-                ->setFrom(array($absender => 'Result Repository'))
-                ->setTo(array($empfaenger => $name))
-                ->setSubject("Ihr Result Repository Nutzer.")
-                ->setBody('<html><head></head><body><p>Hallo ' . $name . ' ' . $vorname . ', für Sie wurde ein Nutzer für das Result Repository angelegt.</p><br><br> <b>Username:</b> ' . $username . '<br> <b>Passwort:</b> ' . $passwort . '</body></html>', 'text/html');
-        $message->send();
-        // Rückmeldung im Backend, ob eine E-Mail verschickt wurde oder nicht.
-        if ($message->isSent()) {
-            return 'Mail erfolgreich versandt';
-        } else {
-            return 'Die Mail wurde nicht versandt.';
-        }
+	// Verschicken der Nachricht
+	$message = new \TYPO3\CMS\Core\Mail\MailMessage();
+	$message->setFrom(array($absender => 'Result Repository'));
+	$message->setTo(array($empfaenger => $name));
+	$message->setSubject("Ihr Result Repository Nutzer.");
+	$message->setBody('<html><head></head><body><p>Hallo ' . $name . ' ' . $vorname . ', für Sie wurde ein Nutzer für das Result Repository angelegt.</p><br><br> <b>Username:</b> ' . $username . '<br> <b>Passwort:</b> ' . $passwort . '</body></html>', 'text/html');
+	$message->send();
+	// Rückmeldung im Backend, ob eine E-Mail verschickt wurde oder nicht.
+	if ($message->isSent()) {
+	    return 'Mail erfolgreich versandt';
+	} else {
+	    return 'Die Mail wurde nicht versandt.';
+	}
     }
 
 }
