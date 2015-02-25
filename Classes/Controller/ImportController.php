@@ -269,9 +269,10 @@ protected function createPruefling($prueflingInfos, $usergroupIN, $fachUid) {
 	$newFEUser->setFirstNAME($pruefling->getVorname());
 	$newFEUser->setLastNAME($pruefling->getNachname());
 
+	// Mail an Pruefling zusammenbauen
+	// Wenn in der CSV keine Mail angegeben dann Vorname.Nachnahme@hinterlegtemailadresse
 	if ($prueflingInfos[7] == "" | $prueflingInfos[7] == Null) {
-	    $empfaengerMail = $username . $this->settingsRepository->findByUid(1)->getMailEmpfaenger();
-	    echo $empfaengerMail;
+	    $empfaengerMail = $pruefling->getVorname() . "." . $pruefling->getNachname() . $this->settingsRepository->findByUid(1)->getMailEmpfaenger();
 	} else {
 	    $empfaengerMail = $prueflingInfos[7];
 	}

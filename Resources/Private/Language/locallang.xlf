@@ -1,725 +1,725 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <xliff version="1.0">
-	<file source-language="de" datatype="plaintext" original="messages" date="2014-12-16T23:29:45Z" product-name="rere" target-language="en">
-		<header/>
-		<body>
+    <file source-language="de" datatype="plaintext" original="messages" date="2014-12-16T23:29:45Z" product-name="rere" target-language="en">
+	<header/>
+	<body>
 
-			<trans-unit id="mlang_tabs_tab">
-				<source>Result Repositry</source>
-			</trans-unit>
-			<trans-unit id="mlang_labels_tabdescr">
-				<source>Result Repositry</source>
-			</trans-unit>
+	    <trans-unit id="mlang_tabs_tab">
+		<source>Result Repositry</source>
+	    </trans-unit>
+	    <trans-unit id="mlang_labels_tabdescr">
+		<source>Result Repositry</source>
+	    </trans-unit>
 
-			<trans-unit id="tx_rere_domain_model_note">
-				<source>Note</source>
-				<target>Grade</target>
-			</trans-unit>
-			<trans-unit id="tx_rere_domain_model_note.notenr">
-				<source>Notenr</source>
-				<target>Grade No</target>
-			</trans-unit>
+	    <trans-unit id="tx_rere_domain_model_note">
+		<source>Note</source>
+		<target>Grade</target>
+	    </trans-unit>
+	    <trans-unit id="tx_rere_domain_model_note.notenr">
+		<source>Notenr</source>
+		<target>Grade No</target>
+	    </trans-unit>
 
-			<trans-unit id="tx_rere_domain_model_note.fachnr">
-				<source>Fachnr</source>
-				<target>Course No</target>
-			</trans-unit>
-			<trans-unit id="tx_rere_domain_model_note.matrikelnr">
-				<source>Matrikelnr</source>
-				<target>Matriculation No</target>
-			</trans-unit>
+	    <trans-unit id="tx_rere_domain_model_note.fachnr">
+		<source>Fachnr</source>
+		<target>Course No</target>
+	    </trans-unit>
+	    <trans-unit id="tx_rere_domain_model_note.matrikelnr">
+		<source>Matrikelnr</source>
+		<target>Matriculation No</target>
+	    </trans-unit>
 
-			<trans-unit id="tx_rere_domain_model_fach.fachname">
-				<source>Fachname</source>
-				<target>Course Name</target>
-			</trans-unit>
+	    <trans-unit id="tx_rere_domain_model_fach.fachname">
+		<source>Fachname</source>
+		<target>Course Name</target>
+	    </trans-unit>
 
-			<trans-unit id="tx_rere_domain_model_fach.pruefer">
-				<source>Pruefer</source>
-				<target>Examiner</target>
-			</trans-unit>
-			<trans-unit id="tx_rere_domain_model_fach.notenschema">
-				<source>Notenschema</source>
-				<target>Grade Scheme</target>
-			</trans-unit>
-			<trans-unit id="tx_rere_domain_model_fach.modulnr">
-				<source>Modulnr</source>
-				<target>Module No</target>
-			</trans-unit>
-			<trans-unit id="tx_rere_domain_model_modul">
-				<source>Modul</source>
-				<target>Module</target>
-			</trans-unit>
-			<trans-unit id="tx_rere_domain_model_pruefling">
-				<source>Pruefling</source>
-				<target>examine</target>
-			</trans-unit>
-
-
-			<!-- Fach hinzufügen und Modul Fach hinzufügen-->
-
-			<trans-unit id="tx_rere_fach_new.Ueberschrift">
-				<source>Fach hinzufügen</source>
-				<target>Add Course</target>
-			</trans-unit>
-			<trans-unit id="tx_rere_Ueberschrift.FachModul">
-				<source>Modul / Fach hinzufügen</source>
-				<target>Add Module / Course</target>
-			</trans-unit>
-
-			<trans-unit id="tx_rere_domain_model_modul.modulname">
-				<source>Modulname</source>
-				<target>Module Name</target>
-			</trans-unit>
-			<trans-unit id="tx_rere_domain_model_modul.modulnr">
-				<source>Modulnr</source>
-				<target>Module No</target>
-			</trans-unit>
-			<trans-unit id="tx_rere_domain_model_modul.gueltigkeitszeitraum">
-				<source>Gueltigkeitszeitraum</source>
-				<target>Validity Period</target>
-			</trans-unit>
-			<trans-unit id="tx_rere_domain_model_fach">
-				<source>Fach</source>
-				<target>Course</target>
-			</trans-unit>
-			<trans-unit id="tx_rere_domain_model_fach.fachnr">
-				<source>Fachnr</source>
-				<target>Course No</target>
-			</trans-unit>
-			<trans-unit id="tx_rere_domain_model_fach.professor">
-				<source>Professor</source>
-				<target>Professor</target>
-			</trans-unit>
-			<trans-unit id="tx_rere_domain_model_fach.PruefungsDatum">
-				<source>Prüfungsdatum</source>
-				<target>Examination Date</target>
-			</trans-unit>
-			<trans-unit id="tx_rere_Placeholder.Modulname">
-				<source>Modulname</source>
-				<target>Module Name</target>
-			</trans-unit>
-			<trans-unit id="tx_rere_Placeholder.Modulnummer">
-				<source>Modulnummer</source>
-				<target>Module Number</target>
-			</trans-unit>
-			<trans-unit id="tx_rere_Placeholder.Gueltigkeitszeitraum">
-				<source>Gültigkeitszeitraum</source>
-				<target>Validity Period</target>
-			</trans-unit>
-			<trans-unit id="tx_rere_Placeholder.Fach">
-				<source>Fach</source>
-				<target>Course</target>
-			</trans-unit>
-			<trans-unit id="tx_rere_Placeholder.Fachnummer">
-				<source>Fachnummer</source>
-				<target>Course Number</target>
-			</trans-unit>
-			<trans-unit id="tx_rere_Placeholder.Professor">
-				<source>Professor</source>
-				<target>Professor</target>
-			</trans-unit>
-			<trans-unit id="tx_rere_Placeholder.Datum">
-				<source>Datum</source>
-				<target>Date</target>
-			</trans-unit>
-
-			<trans-unit id="tx_rere_title.Modul">
-				<source>Modulname hier eingeben</source>
-				<target>Enter module name here</target>
-			</trans-unit>
-			<trans-unit id="tx_rere_title.Modulnummer">
-				<source>Modulnummer hier eingeben</source>
-				<target>Enter module name here</target>
-			</trans-unit>
-			<trans-unit id="tx_rere_title.Gueltigkeitszeitraum">
-				<source>Gültigkeitszeitraum eingeben</source>
-				<target>Enter validity period</target>
-			</trans-unit>
-			<trans-unit id="tx_rere_title.Fach">
-				<source>Fachname hier eingeben</source>
-				<target>Enter course name here</target>
-			</trans-unit>
-			<trans-unit id="tx_rere_title.Fachnummer">
-				<source>Fachnummer hier eingeben</source>
-				<target>Enter course number here</target>
-			</trans-unit>
-			<trans-unit id="tx_rere_title.Professor">
-				<source>Für das Fach verantwortlicher Professor</source>
-				<target>Professor responsible for the course</target>
-			</trans-unit>
-			<trans-unit id="tx_rere_title.Datum">
-				<source>Datum der Pruefung</source>
-				<target>Examination Date</target>
-			</trans-unit>
-			<trans-unit id="tx_rere_title.Creditpoints">
-				<source>Creditpoints der Veranstaltung</source>
-				<target>Creditpoints of the course</target>
-			</trans-unit>
-
-			<trans-unit id="tx_rere_title.BenotetHochschulSystem">
-				<source>Fach nach Hochschulnoten benotet</source>
-				<target>Course graded with university grades</target>
-			</trans-unit>
-			<trans-unit id="tx_rere_text.BenotetHochschulSystem">
-				<source>Benotet (Hochschul-System)</source>
-				<target>Graded (University Grades)</target>
-			</trans-unit>
+	    <trans-unit id="tx_rere_domain_model_fach.pruefer">
+		<source>Pruefer</source>
+		<target>Examiner</target>
+	    </trans-unit>
+	    <trans-unit id="tx_rere_domain_model_fach.notenschema">
+		<source>Notenschema</source>
+		<target>Grade Scheme</target>
+	    </trans-unit>
+	    <trans-unit id="tx_rere_domain_model_fach.modulnr">
+		<source>Modulnr</source>
+		<target>Module No</target>
+	    </trans-unit>
+	    <trans-unit id="tx_rere_domain_model_modul">
+		<source>Modul</source>
+		<target>Module</target>
+	    </trans-unit>
+	    <trans-unit id="tx_rere_domain_model_pruefling">
+		<source>Pruefling</source>
+		<target>examine</target>
+	    </trans-unit>
 
 
-			<trans-unit id="tx_rere_title.BenotetPunkteSystem">
-				<source>Fach nach 15-Punkte-System benotet</source>
-				<target>Course graded with 15-points-system</target>
-			</trans-unit>
-			<trans-unit id="tx_rere_text.BenotetPunkteSystem">
-				<source>Benotet (15-Punkte-System)</source>
-				<target>Graded (15-Points-System)</target>
-			</trans-unit>
+	    <!-- Fach hinzufügen und Modul Fach hinzufügen-->
 
-			<trans-unit id="tx_rere_title.UnbenotetSchein">
-				<source>Fach unbenotet</source>
-				<target>Course ungraded</target>
-			</trans-unit>
-			<trans-unit id="tx_rere_text.UnbenotetSchein">
-				<source>Unbenotet (Scheine)</source>
-				<target>Ungraded (Certificate)</target>
-			</trans-unit>
+	    <trans-unit id="tx_rere_fach_new.Ueberschrift">
+		<source>Fach hinzufügen</source>
+		<target>Add Course</target>
+	    </trans-unit>
+	    <trans-unit id="tx_rere_Ueberschrift.FachModul">
+		<source>Modul / Fach hinzufügen</source>
+		<target>Add Module / Course</target>
+	    </trans-unit>
 
-			<trans-unit id="tx_rere_title.BenotetSchulSystem">
-				<source>Fach nach Schul-System benotet</source>
-				<target>Course graded with school grades</target>
-			</trans-unit>
-			<trans-unit id="tx_rere_text.BenotetSchulSystem">
-				<source>Benotet (Schul-System)</source>
-				<target>Graded (School Grades)</target>
-			</trans-unit>
+	    <trans-unit id="tx_rere_domain_model_modul.modulname">
+		<source>Modulname</source>
+		<target>Module Name</target>
+	    </trans-unit>
+	    <trans-unit id="tx_rere_domain_model_modul.modulnr">
+		<source>Modulnr</source>
+		<target>Module No</target>
+	    </trans-unit>
+	    <trans-unit id="tx_rere_domain_model_modul.gueltigkeitszeitraum">
+		<source>Gueltigkeitszeitraum</source>
+		<target>Validity Period</target>
+	    </trans-unit>
+	    <trans-unit id="tx_rere_domain_model_fach">
+		<source>Fach</source>
+		<target>Course</target>
+	    </trans-unit>
+	    <trans-unit id="tx_rere_domain_model_fach.fachnr">
+		<source>Fachnr</source>
+		<target>Course No</target>
+	    </trans-unit>
+	    <trans-unit id="tx_rere_domain_model_fach.professor">
+		<source>Professor</source>
+		<target>Professor</target>
+	    </trans-unit>
+	    <trans-unit id="tx_rere_domain_model_fach.PruefungsDatum">
+		<source>Prüfungsdatum</source>
+		<target>Examination Date</target>
+	    </trans-unit>
+	    <trans-unit id="tx_rere_Placeholder.Modulname">
+		<source>Modulname</source>
+		<target>Module Name</target>
+	    </trans-unit>
+	    <trans-unit id="tx_rere_Placeholder.Modulnummer">
+		<source>Modulnummer</source>
+		<target>Module Number</target>
+	    </trans-unit>
+	    <trans-unit id="tx_rere_Placeholder.Gueltigkeitszeitraum">
+		<source>Gültigkeitszeitraum</source>
+		<target>Validity Period</target>
+	    </trans-unit>
+	    <trans-unit id="tx_rere_Placeholder.Fach">
+		<source>Fach</source>
+		<target>Course</target>
+	    </trans-unit>
+	    <trans-unit id="tx_rere_Placeholder.Fachnummer">
+		<source>Fachnummer</source>
+		<target>Course Number</target>
+	    </trans-unit>
+	    <trans-unit id="tx_rere_Placeholder.Professor">
+		<source>Professor</source>
+		<target>Professor</target>
+	    </trans-unit>
+	    <trans-unit id="tx_rere_Placeholder.Datum">
+		<source>Datum</source>
+		<target>Date</target>
+	    </trans-unit>
 
-			<trans-unit id="tx_rere_Text.Pflichtfelder">
-				<source>Die mit * gekennzeichnete Felder sind Pflichtfelder</source>
-				<target>All fields marked with * are mandatory</target>
-			</trans-unit>
+	    <trans-unit id="tx_rere_title.Modul">
+		<source>Modulname hier eingeben</source>
+		<target>Enter module name here</target>
+	    </trans-unit>
+	    <trans-unit id="tx_rere_title.Modulnummer">
+		<source>Modulnummer hier eingeben</source>
+		<target>Enter module name here</target>
+	    </trans-unit>
+	    <trans-unit id="tx_rere_title.Gueltigkeitszeitraum">
+		<source>Gültigkeitszeitraum eingeben</source>
+		<target>Enter validity period</target>
+	    </trans-unit>
+	    <trans-unit id="tx_rere_title.Fach">
+		<source>Fachname hier eingeben</source>
+		<target>Enter course name here</target>
+	    </trans-unit>
+	    <trans-unit id="tx_rere_title.Fachnummer">
+		<source>Fachnummer hier eingeben</source>
+		<target>Enter course number here</target>
+	    </trans-unit>
+	    <trans-unit id="tx_rere_title.Professor">
+		<source>Für das Fach verantwortlicher Professor</source>
+		<target>Professor responsible for the course</target>
+	    </trans-unit>
+	    <trans-unit id="tx_rere_title.Datum">
+		<source>Datum der Pruefung</source>
+		<target>Examination Date</target>
+	    </trans-unit>
+	    <trans-unit id="tx_rere_title.Creditpoints">
+		<source>Creditpoints der Veranstaltung</source>
+		<target>Creditpoints of the course</target>
+	    </trans-unit>
 
-			<trans-unit id="tx_rere_button.sichern">
-				<source>Daten speichern</source>
-				<target>Save Data</target>
-			</trans-unit>
-
-			<!-- Import-->
-
-			<trans-unit id="tx_rere_Import.Ueberschrift">
-				<source>CSV-Beispiel</source>
-				<target>Example for CSV</target>
-			</trans-unit>
-
-			<trans-unit id="tx_rere_Usergroup.Usergroup">
-				<source>Usergroup</source>
-				<target>Usergroup</target>
-			</trans-unit>
-
-			<trans-unit id="tx_rere_import.error">
-				<source>Nicht importiert, da bereits in der Datenbank vorhanden:</source>
-				<target>Don't import since the data is already present in the database</target>
-			</trans-unit>
-			<trans-unit id="tx_rere_Text.Import1">
-				<source>Das hochzuladende CSV-File sollte die folgende Struktur aufweisen um einen reibungslosen Import zu gewährleisten.</source>
-				<target>To ensure a smooth import, the upload file should have the following structure</target>
-			</trans-unit>
-			<trans-unit id="tx_rere_Text.Import2">
-				<source>Die Spalte Mail-Adresse ist optional, sofern keine Mail-Adresse hinterlegt wird wird diese automatisch mit @htwg-konstanz.de gefüllt.</source>
-				<target>The slot Mail Address is optional. If there is no mail address recorded, the HTWG mail address is used automatically.</target>
-			</trans-unit>
-			<trans-unit id="tx_rere_Text.Import3">
-				<source>Beim Import werden nur die Zeile zwischen 5 und N-1 berücksichtigt, alle anderen davor und danach werden ignoriert.</source>
-				<target>Only the rows between 5 and N-1 are regarded when importing. The lines before or after are ignored.</target>
-			</trans-unit>
-			<trans-unit id="tx_rere_Text.Import4">
-				<source> CSV-Beispiel</source>
-				<target> CSV-Example </target>
-			</trans-unit>
-
-			<!-- Startseite-->
-
-			<trans-unit id="tx_rere_Startseite.PrueflingAnlegen">
-				<source>Prüfling anlegen</source>
-				<target>Create examine</target>
-			</trans-unit>
-			<trans-unit id="tx_rere_title.PrueflingAnlegen">
-				<source>Legt einen neuen Prüfling an</source>
-				<target>Creates a new examine</target>
-			</trans-unit>
-			<trans-unit id="tx_rere_Startseite.Import">
-				<source>Import</source>
-				<target>Import</target>
-			</trans-unit>
-			<trans-unit id="tx_rere_Startseite_Import.Prueflinge">
-				<source>Import Prüflinge</source>
-				<target>Import examines</target>
-			</trans-unit>
-			<trans-unit id="tx_rere_Startseite_Import.BackUp">
-				<source>Import Back-Up</source>
-				<target>Import Back-Up</target>
-			</trans-unit>
-			<trans-unit id="tx_rere_Startseite.Export">
-				<source>Export</source>
-				<target>Export</target>
-			</trans-unit>
-			<trans-unit id="tx_rere_Startseite_Export.Prueflinge">
-				<source>Prüflinge</source>
-				<target>examines</target>
-			</trans-unit>
-			<trans-unit id="tx_rere_Startseite_Export.ModuleUndFaecher">
-				<source>Module und Fächer</source>
-				<target>Modules and Courses</target>
-			</trans-unit>
-			<trans-unit id="tx_rere_Startseite.IntervallEinstellen">
-				<source>Intervall einstellen</source>
-				<target>Adjust Interval</target>
-			</trans-unit>
-			<trans-unit id="tx_rere_Startseite_IntervallEinstellen.Studienhalbjahr">
-				<source>Studienhalbjahr</source>
-				<target>Semester</target>
-			</trans-unit>
-			<trans-unit id="tx_rere_Startseite_IntervallEinstellen.Schuljahr">
-				<source>Schulhalbjahr</source>
-				<target>School Semester</target>
-			</trans-unit>
-			<trans-unit id="tx_rere_Startseite.Hilfe">
-				<source>Hilfe</source>
-				<target>Help</target>
-			</trans-unit>
-			<trans-unit id="tx_rere_Startseite_Hilfe.doku">
-				<source>doku</source>
-				<target>doku</target>
-			</trans-unit>
-			<trans-unit id="tx_rere_Startseite_Hilfe.Anwenderdoku">
-				<source>Anwenderdoku</source>
-				<target>User Documentation</target>
-			</trans-unit>
-			<trans-unit id="tx_rere_Startseite_Hilfe.Entwicklerdoku">
-				<source>Entwicklerdoku</source>
-				<target>Developer Documentation</target>
-			</trans-unit>
-			<trans-unit id="tx_rere_Startseite_Hilfe.PHPdoc">
-				<source>PHPdoc</source>
-				<target>PHPdoc</target>
-			</trans-unit>
-
-			<trans-unit id="tx_rere_title.Einstellungsmenue">
-				<source>Zum Einstellungsmenü</source>
-				<target>Go to the setup menu</target>
-			</trans-unit>
-			<trans-unit id="tx_rere_title_Intervall.vorherig">
-				<source>Zum vorherigen Intervall</source>
-				<target>Go to the previous interval</target>
-			</trans-unit>
-			<trans-unit id="tx_rere_title_Intervall.naechstes">
-				<source>Zum nächsten Intervall</source>
-				<target>Go to the next interval</target>
-			</trans-unit>
-
-			<trans-unit id="tx_rere_Text.ModulFachloeschen">
-				<source>Löschen erst möglich wenn keine Fächer mehr vorhanden</source>
-				<target>Deleting only then possible, when no courses available</target>
-			</trans-unit>
-			<trans-unit id="tx_rere_Text_Modul.ModulLoeschen">
-				<source>Wollen Sie das Modul mit allen zugehoerenden Faechern und Noten wirklich löschen? Prüflinge werden nicht gelöscht.</source>
-				<target>Are you sure to delete the module with all corresponding courses and grades? examines won't be deleted.</target>
-			</trans-unit>
-			<trans-unit id="tx_rere_Text.Loeschen">
-				<source>Löschen</source>
-				<target>Delete</target>
-			</trans-unit>
-
-			<trans-unit id="tx_rere_Text_Fach.NoteEintragen">
-				<source>Noten eintragen oder anzeigen</source>
-				<target>Enter or display grades</target>
-			</trans-unit>
-			<trans-unit id="tx_rere_Text_Fach_Text.NoteEintragen">
-				<source>Noten eintragen/anzeigen</source>
-				<target>Enter/ Display Grades</target>
-			</trans-unit>
-			<trans-unit id="tx_rere_Text_Fach.PrueflingZuweisen">
-				<source>Prüflinge zu diesem Fach zuweisen</source>
-				<target>Assign examines to this course</target>
-			</trans-unit>
-			<trans-unit id="tx_rere_Text_Fach_Text.PrüflingZuweisen">
-				<source>Prüfling zuweisen</source>
-				<target>Assign examine</target>
-			</trans-unit>
-			<trans-unit id="tx_rere_Text_Fach.FachLoeschen">
-				<source>Wollen Sie das Fach mit allen zugehörenden Noten wirklich löschen? Prüflinge werden nicht gelöscht.</source>
-				<target>Are you sure to delete the course with all corresponding grades? examines won't be deleted.</target>
-			</trans-unit>
-			<trans-unit id="tx_rere_Text_Fach.FachUndNoteLoeschen">
-				<source>Fach und die eingetragenen Noten löschen</source>
-				<target>Delete course and entered grades</target>
-			</trans-unit>
-
-			<trans-unit id="tx_rere_Text.FachZuModulHinzufuegen">
-				<source>Ein Fach zu diesem Modul hinzufügen</source>
-				<target>Add a course to this module</target>
-			</trans-unit>
-			<trans-unit id="tx_rere_button.FachHinzufuegen">
-				<source>Fach hinzufügen</source>
-				<target>Add course</target>
-			</trans-unit>
-			<trans-unit id="tx_rere_Text.ModulAnlegen">
-				<source>Legt ein neues Modul an</source>
-				<target>Creates a new module</target>
-			</trans-unit>
-			<trans-unit id="tx_rere_button.ModulAnlegen">
-				<source>Modul anlegen</source>
-				<target>Create module</target>
-			</trans-unit>
-
-			<!-- Auswahl Notenverwaltung-->
-
-			<trans-unit id="tx_rere_Ueberschrift_Notenverwaltung">
-				<source>Notenverwaltung</source>
-				<target>Grade Administration</target>
-			</trans-unit>
-			<trans-unit id="tx_rere_Ueberschrift_Notenverwaltung_aus">
-				<source>aus</source>
-				<target>of</target>
-			</trans-unit>
-			<trans-unit id="tx_rere_Ueberschrift_Notenverwaltung_in">
-				<source>in</source>
-				<target>in</target>
-			</trans-unit>
+	    <trans-unit id="tx_rere_title.BenotetHochschulSystem">
+		<source>Fach nach Hochschulnoten benotet</source>
+		<target>Course graded with university grades</target>
+	    </trans-unit>
+	    <trans-unit id="tx_rere_text.BenotetHochschulSystem">
+		<source>Benotet (Hochschul-System)</source>
+		<target>Graded (University Grades)</target>
+	    </trans-unit>
 
 
-			<trans-unit id="tx_rere_title_Notenverwaltung.AlleAnzeigen">
-				<source>Zeigt alle Noten an</source>
-				<target>Displays all grades</target>
-			</trans-unit>
-			<trans-unit id="tx_rere_Notenverwaltung.AlleAnzeigen">
-				<source>alle anzeigen</source>
-				<target>Display all</target>
-			</trans-unit>
-			<trans-unit id="tx_rere_Notenverwaltung.EingetrageneAnzeigen">
-				<source>eingetragene anzeigen</source>
-				<target>Display entered grades</target>
-			</trans-unit>
-			<trans-unit id="tx_rere_title_Notenverwaltung.EingetrageneAnzeigen">
-				<source>Zeigt nur eingetragene Noten an</source>
-				<target>Only displays entered grades</target>
-			</trans-unit>
-			<trans-unit id="tx_rere_title_Notenverwaltung.NichtEingetrageneAnzeigen">
-				<source>Zeigt noch zu erledigen an</source>
-				<target>Still to be realized</target>
-			</trans-unit>
-			<trans-unit id="tx_rere_Notenverwaltung.NichtEingetrageneAnzeigen">
-				<source>nicht eingetragene anzeigen</source>
-				<target>display not entered grades</target>
-			</trans-unit>
-			<trans-unit id="tx_rere_title_Notenverwaltung.NachMatrNrSuchen">
-				<source>Nach MatrikelNr / Nachname / Vorname suchen</source>
-				<target>Search by matriculation no / name / surname</target>
-			</trans-unit>
-			<trans-unit id="tx_rere_Placeholder_Notenverwaltung.MatrNrSuchen">
-				<source>MatrikelNr / Vor-Nach-Name</source>
-				<target>Matriculation No / (Sur-)Name</target>
-			</trans-unit>
+	    <trans-unit id="tx_rere_title.BenotetPunkteSystem">
+		<source>Fach nach 15-Punkte-System benotet</source>
+		<target>Course graded with 15-points-system</target>
+	    </trans-unit>
+	    <trans-unit id="tx_rere_text.BenotetPunkteSystem">
+		<source>Benotet (15-Punkte-System)</source>
+		<target>Graded (15-Points-System)</target>
+	    </trans-unit>
 
-			<trans-unit id="tx_rere_title_Notenverwaltung.FachImportieren">
-				<source>Importiert Prüflinge in dieses Fach</source>
-				<target>Import examines to this course</target>
-			</trans-unit>
-			<trans-unit id="tx_rere_Notenverwaltung.FachImportieren">
-				<source>Fach importieren</source>
-				<target>Impport Course</target>
-			</trans-unit>
-			<trans-unit id="tx_rere_title_Notenverwaltung.FachExportieren">
-				<source>Exportiert das Fach mit allen Noten</source>
-				<target>Exports the course with all grades</target>
-			</trans-unit>
-			<trans-unit id="tx_rere_Notenverwaltung.FachExportieren">
-				<source>Fach exportieren</source>
-				<target>Export course</target>
-			</trans-unit>
+	    <trans-unit id="tx_rere_title.UnbenotetSchein">
+		<source>Fach unbenotet</source>
+		<target>Course ungraded</target>
+	    </trans-unit>
+	    <trans-unit id="tx_rere_text.UnbenotetSchein">
+		<source>Unbenotet (Scheine)</source>
+		<target>Ungraded (Certificate)</target>
+	    </trans-unit>
 
-			<trans-unit id="tx_rere_domain_model_pruefling.matrikelnr">
-				<source>Matrikelnr</source>
-				<target>Matriculation No</target>
-			</trans-unit>
-			<trans-unit id="tx_rere_domain_model_pruefling.nachname">
-				<source>Nachname</source>
-				<target>Name</target>
-			</trans-unit>
-			<trans-unit id="tx_rere_domain_model_pruefling.vorname">
-				<source>Vorname</source>
-				<target>Surname</target>
-			</trans-unit>
-			<trans-unit id="tx_rere_domain_model_note.wert">
-				<source>Wert</source>
-				<target>Value</target>
-			</trans-unit>
-			<trans-unit id="tx_rere_domain_model_note.kommentar">
-				<source>Kommentar</source>
-				<target>Comment</target>
-			</trans-unit>
+	    <trans-unit id="tx_rere_title.BenotetSchulSystem">
+		<source>Fach nach Schul-System benotet</source>
+		<target>Course graded with school grades</target>
+	    </trans-unit>
+	    <trans-unit id="tx_rere_text.BenotetSchulSystem">
+		<source>Benotet (Schul-System)</source>
+		<target>Graded (School Grades)</target>
+	    </trans-unit>
 
+	    <trans-unit id="tx_rere_Text.Pflichtfelder">
+		<source>Die mit * gekennzeichnete Felder sind Pflichtfelder</source>
+		<target>All fields marked with * are mandatory</target>
+	    </trans-unit>
 
-			<trans-unit id="tx_rere_title_Notenverwaltung.BitteNoteAuswaehlen">
-				<source>Bitte eine Note auswählen</source>
-				<target>Please select a grade</target>
-			</trans-unit>
-			<trans-unit id="tx_rere_Placeholder_Notenverwaltung.Kommentar">
-				<source>Kommentar</source>
-				<target>Comment</target>
-			</trans-unit>
-			<trans-unit id="tx_rere_title_Notenverwaltung.Kommentar">
-				<source>Kommentar zur Note</source>
-				<target>Comment on the grade</target>
-			</trans-unit>
-			<trans-unit id="tx_rere_Text_Notenverwaltung.Prueflingloeschen1">
-				<source>Wollen Sie den Pruefling mit Matrikelnummer </source>
-				<target>Are you sure to </target>
-			</trans-unit>
-			<trans-unit id="tx_rere_Text_Notenverwaltung.Prueflingloeschen2">
-				<source> wirklich aus diesem Fach loeschen? Er wird von der Prüfung abgemeldet. </source>
-				<target> delete the examine from the course? He will be unsubscribed from the exam. </target>
-			</trans-unit>
-			<trans-unit id="tx_rere_title_Notenverwaltung.Datensatzloeschen">
-				<source>Löscht diesen Datensatz</source>
-				<target>Deletes this dataset</target>
-			</trans-unit>
+	    <trans-unit id="tx_rere_button.sichern">
+		<source>Daten speichern</source>
+		<target>Save Data</target>
+	    </trans-unit>
 
-			<trans-unit id="tx_rere_Text_Notenverwaltung.AngemeldetePrueflinge">
-				<source> Angemeldete Prüflinge </source>
-				<target> Registered examines </target>
-			</trans-unit>
-			<trans-unit id="tx_rere_Text_Notenverwaltung.EingetrageneNoten">
-				<source> Eingetragene Noten </source>
-				<target> Entered Grades </target>
-			</trans-unit>
-			<trans-unit id="tx_rere_Text_Notenverwaltung.Notendurchschnitt">
-				<source> Notendurchschnitt </source>
-				<target> Average Grades </target>
-			</trans-unit>
+	    <!-- Import-->
 
-			<!-- Pruefling zuweisen-->
+	    <trans-unit id="tx_rere_Import.Ueberschrift">
+		<source>CSV-Beispiel</source>
+		<target>Example for CSV</target>
+	    </trans-unit>
 
-			<trans-unit id="tx_rere_Ueberschrift_Zuweisen">
-				<source>Prüfling zuweisen</source>
-				<target>Assign Examine</target>
-			</trans-unit>
-			<trans-unit id="tx_rere_Ueberschrift_Zuweisen_aus">
-				<source>aus</source>
-				<target>of</target>
-			</trans-unit>
-			<trans-unit id="tx_rere_Ueberschrift_Zuweisen_in">
-				<source>in</source>
-				<target>in</target>
-			</trans-unit>
+	    <trans-unit id="tx_rere_Usergroup.Usergroup">
+		<source>Usergroup</source>
+		<target>Usergroup</target>
+	    </trans-unit>
 
-			<trans-unit id="tx_rere_Text_Zuweisen.Text1">
-				<source> Geben Sie eine MatrikelNr oder einen Namen ein um nach einem Prüfling zu suchen. </source>
-				<target> Enter a matriculation no or a name to search for an examine. </target>
-			</trans-unit>
-			<trans-unit id="tx_rere_Text_Zuweisen.Text2">
-				<source> Weisen Sie den Prüfling dann mit Enter dem Fach zu. Alternativ können Sie eine UserGroup hinzufügen. </source>
-				<target> Then assign the examine to the course by clicking Enter. It is also possible to add a UserGroup.</target>
-			</trans-unit>
+	    <trans-unit id="tx_rere_import.error">
+		<source>Nicht importiert, da bereits in der Datenbank vorhanden:</source>
+		<target>Don't import since the data is already present in the database</target>
+	    </trans-unit>
+	    <trans-unit id="tx_rere_Text.Import1">
+		<source>Das hochzuladende CSV-File sollte die folgende Struktur aufweisen um einen reibungslosen Import zu gewährleisten.</source>
+		<target>To ensure a smooth import, the upload file should have the following structure</target>
+	    </trans-unit>
+	    <trans-unit id="tx_rere_Text.Import2">
+		<source>Die Spalte Mail-Adresse ist optional, sofern keine Mail-Adresse hinterlegt wird wird diese automatisch mit an vorname.nachnahme@hinterlegte Mail-Adresse (Diese kann in den Settings gespeichert werden) gefüllt.</source>
+		<target>The slot Mail Address is optional. If there is no mail address recorded, the HTWG mail address is used automatically.</target>
+	    </trans-unit>
+	    <trans-unit id="tx_rere_Text.Import3">
+		<source>Beim Import werden nur die Zeile zwischen 5 und N-1 berücksichtigt, alle anderen davor und danach werden ignoriert.</source>
+		<target>Only the rows between 5 and N-1 are regarded when importing. The lines before or after are ignored.</target>
+	    </trans-unit>
+	    <trans-unit id="tx_rere_Text.Import4">
+		<source> CSV-Beispiel</source>
+		<target> CSV-Example </target>
+	    </trans-unit>
 
-			<trans-unit id="tx_rere_title_zuweisen.NachMatrNrSuchen">
-				<source>Nach MatrikelNr suchen</source>
-				<target>Search by matriculation no</target>
-			</trans-unit>
-			<trans-unit id="tx_rere_Placeholder_zuweisen.MatrNrSuchen">
-				<source>Matrikel Nummer</source>
-				<target>Matriculation Number</target>
-			</trans-unit>
-			<trans-unit id="tx_rere_button_Zuweisen.UsergroupHinzufuegen">
-				<source> UserGroup hinzufügen </source>
-				<target> Add UserGroup </target>
-			</trans-unit>
+	    <!-- Startseite-->
 
-			<trans-unit id="tx_rere_title_zuweisen.PrueflingAnlegen">
-				<source>Neuen Prüfling anlegen</source>
-				<target>Create new examine</target>
-			</trans-unit>
-			<trans-unit id="tx_rere_Placeholder_zuweisen.PrueflingAnlegen">
-				<source>Neuen Prüfling anlegen</source>
-				<target>Create new examine</target>
-			</trans-unit>
-			<trans-unit id="tx_rere_Ueberschrift_Zuweisen.Zugewiesen">
-				<source>Bereits zugewiesen</source>
-				<target>Already assigned</target>
-			</trans-unit>
-			<trans-unit id="tx_rere_Text_Zuweisen.matrikelnr">
-				<source>Matrikelnr</source>
-				<target>Matriculation No</target>
-			</trans-unit>
-			<trans-unit id="tx_rere_Text_Zuweisen.vorname">
-				<source>Vorname</source>
-				<target>Surname</target>
-			</trans-unit>
-			<trans-unit id="tx_rere_Text_Zuweisen.nachname">
-				<source>Nachname</source>
-				<target>Name</target>
-			</trans-unit>
-			<trans-unit id="tx_rere_Text_Zuweisen.EintragLoeschen">
-				<source>Eintrag loeschen</source>
-				<target>Delete entry</target>
-			</trans-unit>
+	    <trans-unit id="tx_rere_Startseite.PrueflingAnlegen">
+		<source>Prüfling anlegen</source>
+		<target>Create examine</target>
+	    </trans-unit>
+	    <trans-unit id="tx_rere_title.PrueflingAnlegen">
+		<source>Legt einen neuen Prüfling an</source>
+		<target>Creates a new examine</target>
+	    </trans-unit>
+	    <trans-unit id="tx_rere_Startseite.Import">
+		<source>Import</source>
+		<target>Import</target>
+	    </trans-unit>
+	    <trans-unit id="tx_rere_Startseite_Import.Prueflinge">
+		<source>Import Prüflinge</source>
+		<target>Import examines</target>
+	    </trans-unit>
+	    <trans-unit id="tx_rere_Startseite_Import.BackUp">
+		<source>Import Back-Up</source>
+		<target>Import Back-Up</target>
+	    </trans-unit>
+	    <trans-unit id="tx_rere_Startseite.Export">
+		<source>Export</source>
+		<target>Export</target>
+	    </trans-unit>
+	    <trans-unit id="tx_rere_Startseite_Export.Prueflinge">
+		<source>Prüflinge</source>
+		<target>examines</target>
+	    </trans-unit>
+	    <trans-unit id="tx_rere_Startseite_Export.ModuleUndFaecher">
+		<source>Module und Fächer</source>
+		<target>Modules and Courses</target>
+	    </trans-unit>
+	    <trans-unit id="tx_rere_Startseite.IntervallEinstellen">
+		<source>Intervall einstellen</source>
+		<target>Adjust Interval</target>
+	    </trans-unit>
+	    <trans-unit id="tx_rere_Startseite_IntervallEinstellen.Studienhalbjahr">
+		<source>Studienhalbjahr</source>
+		<target>Semester</target>
+	    </trans-unit>
+	    <trans-unit id="tx_rere_Startseite_IntervallEinstellen.Schuljahr">
+		<source>Schulhalbjahr</source>
+		<target>School Semester</target>
+	    </trans-unit>
+	    <trans-unit id="tx_rere_Startseite.Hilfe">
+		<source>Hilfe</source>
+		<target>Help</target>
+	    </trans-unit>
+	    <trans-unit id="tx_rere_Startseite_Hilfe.doku">
+		<source>doku</source>
+		<target>doku</target>
+	    </trans-unit>
+	    <trans-unit id="tx_rere_Startseite_Hilfe.Anwenderdoku">
+		<source>Anwenderdoku</source>
+		<target>User Documentation</target>
+	    </trans-unit>
+	    <trans-unit id="tx_rere_Startseite_Hilfe.Entwicklerdoku">
+		<source>Entwicklerdoku</source>
+		<target>Developer Documentation</target>
+	    </trans-unit>
+	    <trans-unit id="tx_rere_Startseite_Hilfe.PHPdoc">
+		<source>PHPdoc</source>
+		<target>PHPdoc</target>
+	    </trans-unit>
 
-			<trans-unit id="tx_rere_error_Zuweisen.text1">
-				<source>Möchten Sie den Pruefling mit der Matrikelnr: </source>
-				<target>Are you sure to delete the examine with the matriculation number: </target>
-			</trans-unit>
-			<trans-unit id="tx_rere_error_Zuweisen.text2">
-				<source>wirklich löschen? Er wird vom Fach abgemeldet und die Note wird gelöscht. </source>
-				<target>He will be unsigned from the course and the grade will be deleted. </target>
-			</trans-unit>
+	    <trans-unit id="tx_rere_title.Einstellungsmenue">
+		<source>Zum Einstellungsmenü</source>
+		<target>Go to the setup menu</target>
+	    </trans-unit>
+	    <trans-unit id="tx_rere_title_Intervall.vorherig">
+		<source>Zum vorherigen Intervall</source>
+		<target>Go to the previous interval</target>
+	    </trans-unit>
+	    <trans-unit id="tx_rere_title_Intervall.naechstes">
+		<source>Zum nächsten Intervall</source>
+		<target>Go to the next interval</target>
+	    </trans-unit>
 
-			<trans-unit id="tx_rere_Button_Zuweisen.DatensatzLoeschen">
-				<source>Löscht diesen Datensatz </source>
-				<target>Deletes this dataset </target>
-			</trans-unit>
+	    <trans-unit id="tx_rere_Text.ModulFachloeschen">
+		<source>Löschen erst möglich wenn keine Fächer mehr vorhanden</source>
+		<target>Deleting only then possible, when no courses available</target>
+	    </trans-unit>
+	    <trans-unit id="tx_rere_Text_Modul.ModulLoeschen">
+		<source>Wollen Sie das Modul mit allen zugehoerenden Faechern und Noten wirklich löschen? Prüflinge werden nicht gelöscht.</source>
+		<target>Are you sure to delete the module with all corresponding courses and grades? examines won't be deleted.</target>
+	    </trans-unit>
+	    <trans-unit id="tx_rere_Text.Loeschen">
+		<source>Löschen</source>
+		<target>Delete</target>
+	    </trans-unit>
 
-			<!-- Pruefling anlegen-->
+	    <trans-unit id="tx_rere_Text_Fach.NoteEintragen">
+		<source>Noten eintragen oder anzeigen</source>
+		<target>Enter or display grades</target>
+	    </trans-unit>
+	    <trans-unit id="tx_rere_Text_Fach_Text.NoteEintragen">
+		<source>Noten eintragen/anzeigen</source>
+		<target>Enter/ Display Grades</target>
+	    </trans-unit>
+	    <trans-unit id="tx_rere_Text_Fach.PrueflingZuweisen">
+		<source>Prüflinge zu diesem Fach zuweisen</source>
+		<target>Assign examines to this course</target>
+	    </trans-unit>
+	    <trans-unit id="tx_rere_Text_Fach_Text.PrüflingZuweisen">
+		<source>Prüfling zuweisen</source>
+		<target>Assign examine</target>
+	    </trans-unit>
+	    <trans-unit id="tx_rere_Text_Fach.FachLoeschen">
+		<source>Wollen Sie das Fach mit allen zugehörenden Noten wirklich löschen? Prüflinge werden nicht gelöscht.</source>
+		<target>Are you sure to delete the course with all corresponding grades? examines won't be deleted.</target>
+	    </trans-unit>
+	    <trans-unit id="tx_rere_Text_Fach.FachUndNoteLoeschen">
+		<source>Fach und die eingetragenen Noten löschen</source>
+		<target>Delete course and entered grades</target>
+	    </trans-unit>
 
-			<trans-unit id="tx_rere_Ueberschrift_PrueflingAnlegen">
-				<source>Pruefling anlegen</source>
-				<target>Create Examine</target>
-			</trans-unit>
+	    <trans-unit id="tx_rere_Text.FachZuModulHinzufuegen">
+		<source>Ein Fach zu diesem Modul hinzufügen</source>
+		<target>Add a course to this module</target>
+	    </trans-unit>
+	    <trans-unit id="tx_rere_button.FachHinzufuegen">
+		<source>Fach hinzufügen</source>
+		<target>Add course</target>
+	    </trans-unit>
+	    <trans-unit id="tx_rere_Text.ModulAnlegen">
+		<source>Legt ein neues Modul an</source>
+		<target>Creates a new module</target>
+	    </trans-unit>
+	    <trans-unit id="tx_rere_button.ModulAnlegen">
+		<source>Modul anlegen</source>
+		<target>Create module</target>
+	    </trans-unit>
 
-			<trans-unit id="tx_rere_domain_model_pruefling.nachname">
-				<source>Nachname</source>
-				<target>Name</target>
-			</trans-unit>
+	    <!-- Auswahl Notenverwaltung-->
 
-
-			<trans-unit id="tx_rere_Placeholder_PrueflingAnlegen.Name">
-				<source>Name</source>
-				<target>Name</target>
-			</trans-unit>
-			<trans-unit id="tx_rere_title_PrueflingAnlegen.Name">
-				<source>Name hier eingeben</source>
-				<target>Enter name here</target>
-			</trans-unit>
-			<trans-unit id="tx_rere_domain_model_pruefling.vorname">
-				<source>Vorname</source>
-				<target>Surname</target>
-			</trans-unit>
-			<trans-unit id="tx_rere_Placeholder_PrueflingAnlegen.Vorame">
-				<source>Vorname</source>
-				<target>Surname</target>
-			</trans-unit>
-			<trans-unit id="tx_rere_title_PrueflingAnlegen.Vorname">
-				<source>Vorname hier eingeben</source>
-				<target>Enter surname here</target>
-			</trans-unit>
-
-			<trans-unit id="tx_rere_domain_model_pruefling.matrikelnr">
-				<source>Matrikelnr</source>
-				<target>Matriculation No</target>
-			</trans-unit>
-			<trans-unit id="tx_rere_Placeholder_PrueflingAnlegen.matrikelnr">
-				<source>MatrikelNr</source>
-				<target>Matriculation No</target>
-			</trans-unit>
-			<trans-unit id="tx_rere_title_PrueflingAnlegen.matrikelnr">
-				<source>MatrikelNr hier eingeben</source>
-				<target>Enter matriculation no here</target>
-			</trans-unit>
-			<trans-unit id="tx_rere_title_PrueflingAnlegen.EMail">
-				<source>E-Mail hier eingeben</source>
-				<target>Enter E-Mail here</target>
-			</trans-unit>
-
-			<trans-unit id="tx_rere_Text_PreuflingAnlegen.Speichern">
-				<source>Speichern</source>
-				<target>Save</target>
-			</trans-unit>
-			<trans-unit id="tx_rere_Text_PreuflingAnlegen.SpeichernZurueck">
-				<source>zurueck</source>
-				<target>back</target>
-			</trans-unit>
-			<trans-unit id="tx_rere_Text_PreuflingAnlegen.SpeichernNaechstes">
-				<source>naechstes</source>
-				<target>next</target>
-			</trans-unit>
-
-			<trans-unit id="tx_rere_Button_PreuflingAnlegen.Anlegen">
-				<source>Anlegen</source>
-				<target>Create</target>
-			</trans-unit>
+	    <trans-unit id="tx_rere_Ueberschrift_Notenverwaltung">
+		<source>Notenverwaltung</source>
+		<target>Grade Administration</target>
+	    </trans-unit>
+	    <trans-unit id="tx_rere_Ueberschrift_Notenverwaltung_aus">
+		<source>aus</source>
+		<target>of</target>
+	    </trans-unit>
+	    <trans-unit id="tx_rere_Ueberschrift_Notenverwaltung_in">
+		<source>in</source>
+		<target>in</target>
+	    </trans-unit>
 
 
-			<!-- Pruefungsleistung anzeigen-->
+	    <trans-unit id="tx_rere_title_Notenverwaltung.AlleAnzeigen">
+		<source>Zeigt alle Noten an</source>
+		<target>Displays all grades</target>
+	    </trans-unit>
+	    <trans-unit id="tx_rere_Notenverwaltung.AlleAnzeigen">
+		<source>alle anzeigen</source>
+		<target>Display all</target>
+	    </trans-unit>
+	    <trans-unit id="tx_rere_Notenverwaltung.EingetrageneAnzeigen">
+		<source>eingetragene anzeigen</source>
+		<target>Display entered grades</target>
+	    </trans-unit>
+	    <trans-unit id="tx_rere_title_Notenverwaltung.EingetrageneAnzeigen">
+		<source>Zeigt nur eingetragene Noten an</source>
+		<target>Only displays entered grades</target>
+	    </trans-unit>
+	    <trans-unit id="tx_rere_title_Notenverwaltung.NichtEingetrageneAnzeigen">
+		<source>Zeigt noch zu erledigen an</source>
+		<target>Still to be realized</target>
+	    </trans-unit>
+	    <trans-unit id="tx_rere_Notenverwaltung.NichtEingetrageneAnzeigen">
+		<source>nicht eingetragene anzeigen</source>
+		<target>display not entered grades</target>
+	    </trans-unit>
+	    <trans-unit id="tx_rere_title_Notenverwaltung.NachMatrNrSuchen">
+		<source>Nach MatrikelNr / Nachname / Vorname suchen</source>
+		<target>Search by matriculation no / name / surname</target>
+	    </trans-unit>
+	    <trans-unit id="tx_rere_Placeholder_Notenverwaltung.MatrNrSuchen">
+		<source>MatrikelNr / Vor-Nach-Name</source>
+		<target>Matriculation No / (Sur-)Name</target>
+	    </trans-unit>
 
-			<trans-unit id="tx_rere_Ueberschrift_PruefungsleistungAnzeigen">
-				<source>Pruefungsleistung anzeigen von </source>
-				<target>Display test achievement of </target>
-			</trans-unit>
-			<trans-unit id="tx_rere_Text_PruefungsleistungAnzeigen.Text1">
-				<source>Ihre Matrikelnr: </source>
-				<target>Your matriculation no: </target>
-			</trans-unit>
-			<trans-unit id="tx_rere_Text_PruefungsleistungAnzeigen.Text2">
-				<source>Ihr Gesamtdurchschnitt: </source>
-				<target>Your overall average: </target>
-			</trans-unit>
-			<trans-unit id="tx_rere_Text_PruefungsleistungAnzeigen.Text3">
-				<source>Note: </source>
-				<target>Grade: </target>
-			</trans-unit>
-			<trans-unit id="tx_rere_Text_PruefungsleistungAnzeigen.Text4">
-				<source>Ihre Note: </source>
-				<target>Your Grade: </target>
-			</trans-unit>
-			<trans-unit id="tx_rere_Text_PruefungsleistungAnzeigen.Text5">
-				<source>Note</source>
-				<target>Grade</target>
-			</trans-unit>
-			<trans-unit id="tx_rere_Text_PruefungsleistungAnzeigen.Text6">
-				<source>Vorkommen</source>
-				<target>Occurence</target>
-			</trans-unit>
-			<trans-unit id="tx_rere_Text_PruefungsleistungAnzeigen.Text7">
-				<source>Anzahl der Prueflinge: </source>
-				<target>Number of examines: </target>
-			</trans-unit>
-			<trans-unit id="tx_rere_Text_PruefungsleistungAnzeigen.Text8">
-				<source>Durchschnitt</source>
-				<target>Average</target>
-			</trans-unit>
+	    <trans-unit id="tx_rere_title_Notenverwaltung.FachImportieren">
+		<source>Importiert Prüflinge in dieses Fach</source>
+		<target>Import examines to this course</target>
+	    </trans-unit>
+	    <trans-unit id="tx_rere_Notenverwaltung.FachImportieren">
+		<source>Fach importieren</source>
+		<target>Impport Course</target>
+	    </trans-unit>
+	    <trans-unit id="tx_rere_title_Notenverwaltung.FachExportieren">
+		<source>Exportiert das Fach mit allen Noten</source>
+		<target>Exports the course with all grades</target>
+	    </trans-unit>
+	    <trans-unit id="tx_rere_Notenverwaltung.FachExportieren">
+		<source>Fach exportieren</source>
+		<target>Export course</target>
+	    </trans-unit>
+
+	    <trans-unit id="tx_rere_domain_model_pruefling.matrikelnr">
+		<source>Matrikelnr</source>
+		<target>Matriculation No</target>
+	    </trans-unit>
+	    <trans-unit id="tx_rere_domain_model_pruefling.nachname">
+		<source>Nachname</source>
+		<target>Name</target>
+	    </trans-unit>
+	    <trans-unit id="tx_rere_domain_model_pruefling.vorname">
+		<source>Vorname</source>
+		<target>Surname</target>
+	    </trans-unit>
+	    <trans-unit id="tx_rere_domain_model_note.wert">
+		<source>Wert</source>
+		<target>Value</target>
+	    </trans-unit>
+	    <trans-unit id="tx_rere_domain_model_note.kommentar">
+		<source>Kommentar</source>
+		<target>Comment</target>
+	    </trans-unit>
 
 
-			<!-- Seetings-->
+	    <trans-unit id="tx_rere_title_Notenverwaltung.BitteNoteAuswaehlen">
+		<source>Bitte eine Note auswählen</source>
+		<target>Please select a grade</target>
+	    </trans-unit>
+	    <trans-unit id="tx_rere_Placeholder_Notenverwaltung.Kommentar">
+		<source>Kommentar</source>
+		<target>Comment</target>
+	    </trans-unit>
+	    <trans-unit id="tx_rere_title_Notenverwaltung.Kommentar">
+		<source>Kommentar zur Note</source>
+		<target>Comment on the grade</target>
+	    </trans-unit>
+	    <trans-unit id="tx_rere_Text_Notenverwaltung.Prueflingloeschen1">
+		<source>Wollen Sie den Pruefling mit Matrikelnummer </source>
+		<target>Are you sure to </target>
+	    </trans-unit>
+	    <trans-unit id="tx_rere_Text_Notenverwaltung.Prueflingloeschen2">
+		<source> wirklich aus diesem Fach loeschen? Er wird von der Prüfung abgemeldet. </source>
+		<target> delete the examine from the course? He will be unsubscribed from the exam. </target>
+	    </trans-unit>
+	    <trans-unit id="tx_rere_title_Notenverwaltung.Datensatzloeschen">
+		<source>Löscht diesen Datensatz</source>
+		<target>Deletes this dataset</target>
+	    </trans-unit>
 
-			<trans-unit id="tx_rere_Seetings.Text1">
-				<source>Absender Email *</source>
-				<target>Sender Email *</target>
-			</trans-unit>
-			<trans-unit id="tx_rere_Seetings.Text2">
-				<source>Empfänger Email *</source>
-				<target>Receiver Email *</target>
-			</trans-unit>
-			<trans-unit id="tx_rere_Button_Seetings.DatenSpeichern">
-				<source>Daten speichern</source>
-				<target>Save data</target>
-			</trans-unit>
+	    <trans-unit id="tx_rere_Text_Notenverwaltung.AngemeldetePrueflinge">
+		<source> Angemeldete Prüflinge </source>
+		<target> Registered examines </target>
+	    </trans-unit>
+	    <trans-unit id="tx_rere_Text_Notenverwaltung.EingetrageneNoten">
+		<source> Eingetragene Noten </source>
+		<target> Entered Grades </target>
+	    </trans-unit>
+	    <trans-unit id="tx_rere_Text_Notenverwaltung.Notendurchschnitt">
+		<source> Notendurchschnitt </source>
+		<target> Average Grades </target>
+	    </trans-unit>
 
-			<!-- Sonstige-->
-			<trans-unit id="tx_rere_button.FachHinzufuegen">
-				<source>Fach hinzufügen</source>
-				<target>Add Course</target>
-			</trans-unit>
-			<trans-unit id="tx_rere_Text.FachZuModulHinzufuegen">
-				<source>Ein Fach zu diesem Modul hinzufügen</source>
-				<target>Add a course to this module</target>
-			</trans-unit>
-			<trans-unit id="tx_rere_Text.ModulAnlegen">
-				<source>Legt ein neues Modul an</source>
-				<target>Creates a new module</target>
-			</trans-unit>
-			<trans-unit id="tx_rere_Text.testtest">
-				<source>Legt ein neues Modul an</source>
-				<target>Creates a new module</target>
-			</trans-unit>
-		</body>
-	</file>
+	    <!-- Pruefling zuweisen-->
+
+	    <trans-unit id="tx_rere_Ueberschrift_Zuweisen">
+		<source>Prüfling zuweisen</source>
+		<target>Assign Examine</target>
+	    </trans-unit>
+	    <trans-unit id="tx_rere_Ueberschrift_Zuweisen_aus">
+		<source>aus</source>
+		<target>of</target>
+	    </trans-unit>
+	    <trans-unit id="tx_rere_Ueberschrift_Zuweisen_in">
+		<source>in</source>
+		<target>in</target>
+	    </trans-unit>
+
+	    <trans-unit id="tx_rere_Text_Zuweisen.Text1">
+		<source> Geben Sie eine MatrikelNr oder einen Namen ein um nach einem Prüfling zu suchen. </source>
+		<target> Enter a matriculation no or a name to search for an examine. </target>
+	    </trans-unit>
+	    <trans-unit id="tx_rere_Text_Zuweisen.Text2">
+		<source> Weisen Sie den Prüfling dann mit Enter dem Fach zu. Alternativ können Sie eine UserGroup hinzufügen. </source>
+		<target> Then assign the examine to the course by clicking Enter. It is also possible to add a UserGroup.</target>
+	    </trans-unit>
+
+	    <trans-unit id="tx_rere_title_zuweisen.NachMatrNrSuchen">
+		<source>Nach MatrikelNr suchen</source>
+		<target>Search by matriculation no</target>
+	    </trans-unit>
+	    <trans-unit id="tx_rere_Placeholder_zuweisen.MatrNrSuchen">
+		<source>Matrikel Nummer</source>
+		<target>Matriculation Number</target>
+	    </trans-unit>
+	    <trans-unit id="tx_rere_button_Zuweisen.UsergroupHinzufuegen">
+		<source> UserGroup hinzufügen </source>
+		<target> Add UserGroup </target>
+	    </trans-unit>
+
+	    <trans-unit id="tx_rere_title_zuweisen.PrueflingAnlegen">
+		<source>Neuen Prüfling anlegen</source>
+		<target>Create new examine</target>
+	    </trans-unit>
+	    <trans-unit id="tx_rere_Placeholder_zuweisen.PrueflingAnlegen">
+		<source>Neuen Prüfling anlegen</source>
+		<target>Create new examine</target>
+	    </trans-unit>
+	    <trans-unit id="tx_rere_Ueberschrift_Zuweisen.Zugewiesen">
+		<source>Bereits zugewiesen</source>
+		<target>Already assigned</target>
+	    </trans-unit>
+	    <trans-unit id="tx_rere_Text_Zuweisen.matrikelnr">
+		<source>Matrikelnr</source>
+		<target>Matriculation No</target>
+	    </trans-unit>
+	    <trans-unit id="tx_rere_Text_Zuweisen.vorname">
+		<source>Vorname</source>
+		<target>Surname</target>
+	    </trans-unit>
+	    <trans-unit id="tx_rere_Text_Zuweisen.nachname">
+		<source>Nachname</source>
+		<target>Name</target>
+	    </trans-unit>
+	    <trans-unit id="tx_rere_Text_Zuweisen.EintragLoeschen">
+		<source>Eintrag loeschen</source>
+		<target>Delete entry</target>
+	    </trans-unit>
+
+	    <trans-unit id="tx_rere_error_Zuweisen.text1">
+		<source>Möchten Sie den Pruefling mit der Matrikelnr: </source>
+		<target>Are you sure to delete the examine with the matriculation number: </target>
+	    </trans-unit>
+	    <trans-unit id="tx_rere_error_Zuweisen.text2">
+		<source>wirklich löschen? Er wird vom Fach abgemeldet und die Note wird gelöscht. </source>
+		<target>He will be unsigned from the course and the grade will be deleted. </target>
+	    </trans-unit>
+
+	    <trans-unit id="tx_rere_Button_Zuweisen.DatensatzLoeschen">
+		<source>Löscht diesen Datensatz </source>
+		<target>Deletes this dataset </target>
+	    </trans-unit>
+
+	    <!-- Pruefling anlegen-->
+
+	    <trans-unit id="tx_rere_Ueberschrift_PrueflingAnlegen">
+		<source>Pruefling anlegen</source>
+		<target>Create Examine</target>
+	    </trans-unit>
+
+	    <trans-unit id="tx_rere_domain_model_pruefling.nachname">
+		<source>Nachname</source>
+		<target>Name</target>
+	    </trans-unit>
+
+
+	    <trans-unit id="tx_rere_Placeholder_PrueflingAnlegen.Name">
+		<source>Name</source>
+		<target>Name</target>
+	    </trans-unit>
+	    <trans-unit id="tx_rere_title_PrueflingAnlegen.Name">
+		<source>Name hier eingeben</source>
+		<target>Enter name here</target>
+	    </trans-unit>
+	    <trans-unit id="tx_rere_domain_model_pruefling.vorname">
+		<source>Vorname</source>
+		<target>Surname</target>
+	    </trans-unit>
+	    <trans-unit id="tx_rere_Placeholder_PrueflingAnlegen.Vorame">
+		<source>Vorname</source>
+		<target>Surname</target>
+	    </trans-unit>
+	    <trans-unit id="tx_rere_title_PrueflingAnlegen.Vorname">
+		<source>Vorname hier eingeben</source>
+		<target>Enter surname here</target>
+	    </trans-unit>
+
+	    <trans-unit id="tx_rere_domain_model_pruefling.matrikelnr">
+		<source>Matrikelnr</source>
+		<target>Matriculation No</target>
+	    </trans-unit>
+	    <trans-unit id="tx_rere_Placeholder_PrueflingAnlegen.matrikelnr">
+		<source>MatrikelNr</source>
+		<target>Matriculation No</target>
+	    </trans-unit>
+	    <trans-unit id="tx_rere_title_PrueflingAnlegen.matrikelnr">
+		<source>MatrikelNr hier eingeben</source>
+		<target>Enter matriculation no here</target>
+	    </trans-unit>
+	    <trans-unit id="tx_rere_title_PrueflingAnlegen.EMail">
+		<source>E-Mail hier eingeben</source>
+		<target>Enter E-Mail here</target>
+	    </trans-unit>
+
+	    <trans-unit id="tx_rere_Text_PreuflingAnlegen.Speichern">
+		<source>Speichern</source>
+		<target>Save</target>
+	    </trans-unit>
+	    <trans-unit id="tx_rere_Text_PreuflingAnlegen.SpeichernZurueck">
+		<source>zurueck</source>
+		<target>back</target>
+	    </trans-unit>
+	    <trans-unit id="tx_rere_Text_PreuflingAnlegen.SpeichernNaechstes">
+		<source>naechstes</source>
+		<target>next</target>
+	    </trans-unit>
+
+	    <trans-unit id="tx_rere_Button_PreuflingAnlegen.Anlegen">
+		<source>Anlegen</source>
+		<target>Create</target>
+	    </trans-unit>
+
+
+	    <!-- Pruefungsleistung anzeigen-->
+
+	    <trans-unit id="tx_rere_Ueberschrift_PruefungsleistungAnzeigen">
+		<source>Pruefungsleistung anzeigen von </source>
+		<target>Display test achievement of </target>
+	    </trans-unit>
+	    <trans-unit id="tx_rere_Text_PruefungsleistungAnzeigen.Text1">
+		<source>Ihre Matrikelnr: </source>
+		<target>Your matriculation no: </target>
+	    </trans-unit>
+	    <trans-unit id="tx_rere_Text_PruefungsleistungAnzeigen.Text2">
+		<source>Ihr Gesamtdurchschnitt: </source>
+		<target>Your overall average: </target>
+	    </trans-unit>
+	    <trans-unit id="tx_rere_Text_PruefungsleistungAnzeigen.Text3">
+		<source>Note: </source>
+		<target>Grade: </target>
+	    </trans-unit>
+	    <trans-unit id="tx_rere_Text_PruefungsleistungAnzeigen.Text4">
+		<source>Ihre Note: </source>
+		<target>Your Grade: </target>
+	    </trans-unit>
+	    <trans-unit id="tx_rere_Text_PruefungsleistungAnzeigen.Text5">
+		<source>Note</source>
+		<target>Grade</target>
+	    </trans-unit>
+	    <trans-unit id="tx_rere_Text_PruefungsleistungAnzeigen.Text6">
+		<source>Vorkommen</source>
+		<target>Occurence</target>
+	    </trans-unit>
+	    <trans-unit id="tx_rere_Text_PruefungsleistungAnzeigen.Text7">
+		<source>Anzahl der Prueflinge: </source>
+		<target>Number of examines: </target>
+	    </trans-unit>
+	    <trans-unit id="tx_rere_Text_PruefungsleistungAnzeigen.Text8">
+		<source>Durchschnitt</source>
+		<target>Average</target>
+	    </trans-unit>
+
+
+	    <!-- Seetings-->
+
+	    <trans-unit id="tx_rere_Seetings.Text1">
+		<source>Absender Email *</source>
+		<target>Sender Email *</target>
+	    </trans-unit>
+	    <trans-unit id="tx_rere_Seetings.Text2">
+		<source>Empfänger Email *</source>
+		<target>Receiver Email *</target>
+	    </trans-unit>
+	    <trans-unit id="tx_rere_Button_Seetings.DatenSpeichern">
+		<source>Daten speichern</source>
+		<target>Save data</target>
+	    </trans-unit>
+
+	    <!-- Sonstige-->
+	    <trans-unit id="tx_rere_button.FachHinzufuegen">
+		<source>Fach hinzufügen</source>
+		<target>Add Course</target>
+	    </trans-unit>
+	    <trans-unit id="tx_rere_Text.FachZuModulHinzufuegen">
+		<source>Ein Fach zu diesem Modul hinzufügen</source>
+		<target>Add a course to this module</target>
+	    </trans-unit>
+	    <trans-unit id="tx_rere_Text.ModulAnlegen">
+		<source>Legt ein neues Modul an</source>
+		<target>Creates a new module</target>
+	    </trans-unit>
+	    <trans-unit id="tx_rere_Text.testtest">
+		<source>Legt ein neues Modul an</source>
+		<target>Creates a new module</target>
+	    </trans-unit>
+	</body>
+    </file>
 </xliff>
