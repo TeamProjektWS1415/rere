@@ -226,7 +226,7 @@
 	    </trans-unit>
 	    <trans-unit id="tx_rere_Text.Import2">
 		<source>Die Spalte Mail-Adresse ist optional, sofern keine Mail-Adresse hinterlegt wird wird diese automatisch mit an vorname.nachnahme@hinterlegte Mail-Adresse (Diese kann in den Settings gespeichert werden) gefüllt.</source>
-		<target>The slot Mail Address is optional. If there is no mail address recorded, the HTWG mail address is used automatically.</target>
+		<target>The slot Mail Address is optional. If there is no mail address recorded, the following mail address is used automatically: surname.name@deposited mail address (can be deposited via the settings)</target>
 	    </trans-unit>
 	    <trans-unit id="tx_rere_Text.Import3">
 		<source>Beim Import werden nur die Zeile zwischen 5 und N-1 berücksichtigt, alle anderen davor und danach werden ignoriert.</source>
