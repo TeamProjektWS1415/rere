@@ -4,6 +4,7 @@
     <script> var temp = new Array();</script>
 
     <f:flashMessages />
+
     <div class="container-fluid wrapper">
         <div class="row">
             <div name="breadcrumb" class="col-md-12">
@@ -12,153 +13,154 @@
                 </ol>
             </div>
             <div class="col-md-12">
-                <h1><f:translate key="tx_rere_Ueberschrift_PruefungsleistungAnzeigen"/>{pruefling.nachname}, {pruefling.vorname}</h1>
+                <h1><f:translate key="tx_rere_Ueberschrift_PruefungsleistungAnzeigen"/> {pruefling.nachname}, {pruefling.vorname}</h1>
             </div>
         </div>
 
-        <div class="row">
-            <div class="col-md-12">
-                <b><f:translate key="tx_rere_Text_PruefungsleistungAnzeigen.Text1"/></b> {pruefling.matrikelnr} | <b><f:translate key="tx_rere_Text_PruefungsleistungAnzeigen.Text2"/> </b> {gesamtDurchschnitt}  <br><br>
-            </div>
-        </div>
+	<div class="row">
+	    <div class="col-md-12">
+		<b><f:translate key="tx_rere_Text_PruefungsleistungAnzeigen.Text1"/></b> {pruefling.matrikelnr} | <b><f:translate key="tx_rere_Text_PruefungsleistungAnzeigen.Text2"/> </b> {gesamtDurchschnitt}  <br><br>
+	    </div>
+	</div>
 
-        <f:for each="{module}" as="modul">
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="panel panel-default">
-                        <div class="panel-body">
-                            <h4>{modul.modulname} - {modul.modulnr} - {modul.gueltigkeitszeitraum}<br></h4>
-                            <f:for each="{modul.faecher}" as="fach">
+	<f:for each="{module}" as="modul">
+	    <div class="row">
+		<div class="col-md-12">
+		    <div class="panel panel-default">
+			<div class="panel-body">
+			    <h4>{modul.modulname} - {modul.modulnr} - {modul.gueltigkeitszeitraum}<br></h4>
+			    <f:for each="{modul.faecher}" as="fach">
 
-                                <!-- Fach Ausgabe -->
-                                <div class="panel-group tx_rere" id="accordion" role="tablist">
-                                    <div class="panel panel-default" role="tablist">
-                                        <div class="panel-heading" role="tab" id="{fach.fachname}">
-                                            <div class="panel-title">
-                                                <span class="col-md-8 modultitle">
-                                                    <a data-toggle="collapse" class="collapsebutton" data-parent="#accordion" href="#{fach.fachuid}" aria-expanded="false" aria-controls="collapse{fach.fachnme}">
-                                                        <f:if condition="{fach.datum}">{fach.datum}</f:if>
-                                                        <f:if condition="{fach.fachnr}">{fach.fachnr}</f:if>
-                                                        {fach.fachname} {fach.pruefer} - <f:translate key="x_rere_Text_PruefungsleistungAnzeigen.Text3"/>{fach.note}</a>
-                                                </span>
-                                                <span class="col-md-4"></span>
-                                            </div>
-                                        </div>
-                                        <div id="{fach.fachuid}" class="panel-collapse collapse" role="tabpanel">
-                                            <div class="panel-body">
-                                                <div class="row">
-                                                    <div class="col-md-8">
-                                                        <div class="col-md-12">
-                                                            <canvas id="{fach.fachuid}chart" width="400" height="150"></canvas>
-                                                        </div>
-                                                        <div class="col-md-12">
-                                                            <h1><span class="greenfont"><f:translate key="tx_rere_Text_PruefungsleistungAnzeigen.Text4"/>{fach.note}</span></h1>
-                                                        </div>
-                                                        <textarea rows="4" cols="100" class="form-control" id="comment" readonly="true">{fach.kommentar}</textarea>
-                                                    </div>
-                                                    <div class="col-md-3">
-                                                        <div class="table-responsive table-hover">
-                                                            <table id="grades" class="table {fach.fachuid}table">
-                                                                <thead>
-                                                                    <tr>
-                                                                        <th><f:translate key="x_rere_Text_PruefungsleistungAnzeigen.Text5"/></th>
-                                                                        <th><f:translate key="x_rere_Text_PruefungsleistungAnzeigen.Text6"/></th>
-                                                                    </tr>
-                                                                </thead>
-                                                                <tbody>
+				<!-- Fach Ausgabe -->
+				<div class="panel-group tx_rere" id="accordion" role="tablist">
+				    <div class="panel panel-default" role="tablist">
+					<div class="panel-heading" role="tab" id="{fach.fachname}">
+					    <div class="panel-title">
+						<span class="col-md-8 modultitle">
+						    <a data-toggle="collapse" class="collapsebutton" data-parent="#accordion" href="#{fach.fachuid}" aria-expanded="false" aria-controls="collapse{fach.fachnme}">
+							<f:if condition="{fach.datum}">{fach.datum}</f:if>
+							<f:if condition="{fach.fachnr}">{fach.fachnr}</f:if>
+							{fach.fachname} {fach.pruefer} - <f:translate key="x_rere_Text_PruefungsleistungAnzeigen.Text3"/>{fach.note}</a>
+						</span>
+						<span class="col-md-4"></span>
+					    </div>
+					</div>
+					<div id="{fach.fachuid}" class="panel-collapse collapse" role="tabpanel">
+					    <div class="panel-body">
+						<div class="row">
+						    <div class="col-md-8">
+							<div class="col-md-12">
+							    <canvas id="{fach.fachuid}chart" width="400" height="150"></canvas>
+							</div>
+							<div class="col-md-12">
+							    <h1><span class="greenfont"><f:translate key="tx_rere_Text_PruefungsleistungAnzeigen.Text4"/>{fach.note}</span></h1>
+							</div>
+							<textarea rows="4" cols="100" class="form-control" id="comment" readonly="true">{fach.kommentar}</textarea>
+						    </div>
+						    <div class="col-md-3">
+							<div class="table-responsive table-hover">
+							    <table id="grades" class="table {fach.fachuid}table">
+								<thead>
+								    <tr>
+									<th><f:translate key="x_rere_Text_PruefungsleistungAnzeigen.Text5"/></th>
+								<th><f:translate key="x_rere_Text_PruefungsleistungAnzeigen.Text6"/></th>
+								</tr>
+								</thead>
+								<tbody>
 
-                                                                <f:for each="{fach.details.notenVerteilungArray}" as="wert" iteration="iterator">
-                                                                    <tr>
-                                                                        <td><span class="value">{wert.notenname}</span></td>
-                                                                        <td>{wert.wert}</td>
-                                                                    </tr>
-                                                                </f:for>
+								<f:for each="{fach.details.notenVerteilungArray}" as="wert" iteration="iterator">
+								    <tr>
+									<td><span class="value">{wert.notenname}</span></td>
+									<td>{wert.wert}</td>
+								    </tr>
+								</f:for>
 
-                                                                </tbody>
-                                                            </table>
-                                                        </div>
-                                                        <br>
-                                                        <div class="table-responsive table-hover">
-                                                            <table class="table">
-                                                                <tbody>
-                                                                    <tr>
-                                                                        <td><f:translate key="tx_rere_Text_PruefungsleistungAnzeigen.Text7"/></td><td id="AnzahlDerPrueflinge">{fach.details.anzahlPrueflinge}</td>
-                                                                    </tr>
-                                                                    <tr>
-                                                                        <td>&empty; <f:translate key="tx_rere_Text_PruefungsleistungAnzeigen.Text8"/></td><td>{fach.details.durchschnitt}</td>
-                                                                    </tr>
-                                                                </tbody>
-                                                            </table>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-md-1">
-                                                    </div>
+								</tbody>
+							    </table>
+							</div>
+							<br>
+							<div class="table-responsive table-hover">
+							    <table class="table">
+								<tbody>
+								    <tr>
+									<td><f:translate key="tx_rere_Text_PruefungsleistungAnzeigen.Text7"/></td><td id="AnzahlDerPrueflinge">{fach.details.anzahlPrueflinge}</td>
+								</tr>
+								<tr>
+								    <td>&empty; <f:translate key="tx_rere_Text_PruefungsleistungAnzeigen.Text8"/></td><td>{fach.details.durchschnitt}</td>
+								</tr>
+								</tbody>
+							    </table>
+							</div>
+						    </div>
+						    <div class="col-md-1">
+						    </div>
 
 
-                                                    <script>
+						    <script>
 
-                                                        // Holt die Werte für das Chart
-                                                        var array = {f:format.htmlentitiesDecode(value:fach.details.chartArray)};
-                                                        //Holt die Note für die Makierung
-                                                        var value = {f:format.htmlentitiesDecode(value:fach.note)};
-                                                        // Holt die Fach Uid
-                                                        var fachuid = {f:format.htmlentitiesDecode(value:fach.fachuid)};
-                                                        // Speicherung in einem Array um das Chart nach Laden der Seite zu generieren.
-                                                        var fachtemp = new Array(3);
-                                                        fachtemp[0] = array;
-                                                        fachtemp[1] = value;
-                                                        fachtemp[2] = fachuid;
-                                                        temp.push(fachtemp);</script>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </f:for>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </f:for>
+							// Holt die Werte für das Chart
+							var array = {f:format.htmlentitiesDecode(value:fach.details.chartArray)};
+							//Holt die Note für die Makierung
+							var value = {f:format.htmlentitiesDecode(value:fach.note)};
+							// Holt die Fach Uid
+							var fachuid = {f:format.htmlentitiesDecode(value:fach.fachuid)};
+							// Speicherung in einem Array um das Chart nach Laden der Seite zu generieren.
+							var fachtemp = new Array(3);
+							fachtemp[0] = array;
+							fachtemp[1] = value;
+							fachtemp[2] = fachuid;
+							temp.push(fachtemp);</script>
+						</div>
+					    </div>
+					</div>
+				    </div>
+				</div>
+			    </f:for>
+			</div>
+		    </div>
+		</div>
+	    </div>
+	</f:for>
+
     </div>
 
 
     <script>
 
-        // Chart generiern und tabelle highlighten wenn seite geladen ist.
-        window.onload = function () {
-            if (window.jQuery) {
-                // Wenn Colaplse open
-                $(".collapse").on('shown.bs.collapse', function () {
-                    for (i = 0; i < temp.length; i++) {
-                        if (parseInt($(this).attr('id')) === parseInt(temp[i][2])) {
-                            genchart(temp[i][0], temp[i][2] + "chart");
-                            highlighttable(temp[i][1], temp[i][2] + "table");
-                        }
-                    }
-                });
-            }
-        };
+	// Chart generiern und tabelle highlighten wenn seite geladen ist.
+	window.onload = function () {
+	    if (window.jQuery) {
+		// Wenn Colaplse open
+		$(".collapse").on('shown.bs.collapse', function () {
+		    for (i = 0; i < temp.length; i++) {
+			if (parseInt($(this).attr('id')) === parseInt(temp[i][2])) {
+			    genchart(temp[i][0], temp[i][2] + "chart");
+			    highlighttable(temp[i][1], temp[i][2] + "table");
+			}
+		    }
+		});
+	    }
+	};
 
-        /**
-         * Funktion markiert die Tabelle.
-         * @param {type} value 
-         * @param {type} colortable
-         * @returns {undefined}
-         */
-        function highlighttable(value, colortable) {
-            $("." + colortable + " tr").each(function (index) {
-                if (index !== 0) {
-                    $row = $(this);
-                    var id = $row.find("td:first").text();
-                    if (id.indexOf(value) === 0) {
-                        // Setzt die Farbe
-                        $row.addClass("highlightGreen");
-                        return false;
-                    }
-                }
-            });
-        }
+	/**
+	 * Funktion markiert die Tabelle.
+	 * @param {type} value
+	 * @param {type} colortable
+	 * @returns {undefined}
+	 */
+	function highlighttable(value, colortable) {
+	    $("." + colortable + " tr").each(function (index) {
+		if (index !== 0) {
+		    $row = $(this);
+		    var id = $row.find("td:first").text();
+		    if (id.indexOf(value) === 0) {
+			// Setzt die Farbe
+			$row.addClass("highlightGreen");
+			return false;
+		    }
+		}
+	    });
+	}
     </script>
 
 

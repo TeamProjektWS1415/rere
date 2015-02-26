@@ -5,7 +5,7 @@ if (!defined('TYPO3_MODE')) {
 }
 
 \TYPO3\CMS\Extbase\Utility\ExtensionUtility::registerPlugin(
-        $_EXTKEY, 'rerefrontend', 'Notenansicht'
+	$_EXTKEY, 'rerefrontend', 'Notenansicht'
 );
 
 if (TYPO3_MODE === 'BE') {
@@ -14,18 +14,18 @@ if (TYPO3_MODE === 'BE') {
      * Registers a Backend Module
      */
     \TYPO3\CMS\Extbase\Utility\ExtensionUtility::registerModule(
-            // Make module a submodule of 'user'
-            'ReRe.' . $_EXTKEY, 'user',
-            // Submodule key
-            'rerebackend',
-            // Position
-            '', array(
-        'Modul' => 'list, show, new, newFach, create, edit, update, delete', 'Fach' => 'list, show, new, create, edit, update, delete', 'Note' => 'list, show, new, create, edit, update, delete', 'Pruefling' => 'setPruefling, userGroupZuweisen, list, show, new, create, edit, update, delete', 'Intervall' => 'new, create, edit, update', 'Export' => 'exportPrueflinge, exportModuleUndFaecher, exportFach', 'Import' => 'new, importPrueflinge, importBackUp', 'Settings' => 'edit, update', 'Intervall' => 'new, create, edit, update'
-            ), array(
-        'access' => 'user,group',
-        'icon' => 'EXT:' . $_EXTKEY . '/ext_icon.gif',
-        'labels' => 'LLL:EXT:' . $_EXTKEY . '/Resources/Private/Language/locallang.xlf',
-            )
+	    // Make module a submodule of 'user'
+	    'ReRe.' . $_EXTKEY, 'user',
+	    // Submodule key
+	    'rerebackend',
+	    // Position
+	    '', array(
+	'Modul' => 'list, show, new, newFach, create, edit, update, delete', 'Fach' => 'list, show, new, create, edit, update, delete', 'Note' => 'list, show, new, create, edit, update, delete', 'Pruefling' => 'err, setPruefling, userGroupZuweisen, list, show, new, create, edit, update, delete', 'Intervall' => 'new, create, edit, update', 'Export' => 'exportPrueflinge, exportModuleUndFaecher, exportFach', 'Import' => 'new, importPrueflinge, importBackUp', 'Settings' => 'edit, update', 'Intervall' => 'new, create, edit, update'
+	    ), array(
+	'access' => 'user,group',
+	'icon' => 'EXT:' . $_EXTKEY . '/ext_icon.gif',
+	'labels' => 'LLL:EXT:' . $_EXTKEY . '/Resources/Private/Language/locallang.xlf',
+	    )
     );
 }
 
@@ -35,26 +35,26 @@ if (TYPO3_MODE === 'BE') {
 \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::allowTableOnStandardPages('tx_rere_domain_model_modul');
 $GLOBALS['TCA']['tx_rere_domain_model_modul'] = array(
     'ctrl' => array(
-        'title' => 'LLL:EXT:rere/Resources/Private/Language/locallang_db.xlf:tx_rere_domain_model_modul',
-        'label' => 'modulnr',
-        'tstamp' => 'tstamp',
-        'crdate' => 'crdate',
-        'cruser_id' => 'cruser_id',
-        'dividers2tabs' => TRUE,
-        'versioningWS' => 2,
-        'versioning_followPages' => TRUE,
-        'languageField' => 'sys_language_uid',
-        'transOrigPointerField' => 'l10n_parent',
-        'transOrigDiffSourceField' => 'l10n_diffsource',
-        'delete' => 'deleted',
-        'enablecolumns' => array(
-            'disabled' => 'hidden',
-            'starttime' => 'starttime',
-            'endtime' => 'endtime',
-        ),
-        'searchFields' => 'modulnr,modulname,gueltigkeitszeitraum,fach,',
-        'dynamicConfigFile' => \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extPath($_EXTKEY) . 'Configuration/TCA/Modul.php',
-        'iconfile' => \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extRelPath($_EXTKEY) . 'Resources/Public/Icons/tx_rere_domain_model_modul.gif'
+	'title' => 'LLL:EXT:rere/Resources/Private/Language/locallang_db.xlf:tx_rere_domain_model_modul',
+	'label' => 'modulnr',
+	'tstamp' => 'tstamp',
+	'crdate' => 'crdate',
+	'cruser_id' => 'cruser_id',
+	'dividers2tabs' => TRUE,
+	'versioningWS' => 2,
+	'versioning_followPages' => TRUE,
+	'languageField' => 'sys_language_uid',
+	'transOrigPointerField' => 'l10n_parent',
+	'transOrigDiffSourceField' => 'l10n_diffsource',
+	'delete' => 'deleted',
+	'enablecolumns' => array(
+	    'disabled' => 'hidden',
+	    'starttime' => 'starttime',
+	    'endtime' => 'endtime',
+	),
+	'searchFields' => 'modulnr,modulname,gueltigkeitszeitraum,fach,',
+	'dynamicConfigFile' => \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extPath($_EXTKEY) . 'Configuration/TCA/Modul.php',
+	'iconfile' => \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extRelPath($_EXTKEY) . 'Resources/Public/Icons/tx_rere_domain_model_modul.gif'
     ),
 );
 
@@ -62,26 +62,26 @@ $GLOBALS['TCA']['tx_rere_domain_model_modul'] = array(
 \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::allowTableOnStandardPages('tx_rere_domain_model_fach');
 $GLOBALS['TCA']['tx_rere_domain_model_fach'] = array(
     'ctrl' => array(
-        'title' => 'LLL:EXT:rere/Resources/Private/Language/locallang_db.xlf:tx_rere_domain_model_fach',
-        'label' => 'fachnr',
-        'tstamp' => 'tstamp',
-        'crdate' => 'crdate',
-        'cruser_id' => 'cruser_id',
-        'dividers2tabs' => TRUE,
-        'versioningWS' => 2,
-        'versioning_followPages' => TRUE,
-        'languageField' => 'sys_language_uid',
-        'transOrigPointerField' => 'l10n_parent',
-        'transOrigDiffSourceField' => 'l10n_diffsource',
-        'delete' => 'deleted',
-        'enablecolumns' => array(
-            'disabled' => 'hidden',
-            'starttime' => 'starttime',
-            'endtime' => 'endtime',
-        ),
-        'searchFields' => 'fachnr,fachname,pruefer,notenschema,modulnr,matrikelnr,note,datum,creditpoints',
-        'dynamicConfigFile' => \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extPath($_EXTKEY) . 'Configuration/TCA/Fach.php',
-        'iconfile' => \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extRelPath($_EXTKEY) . 'Resources/Public/Icons/tx_rere_domain_model_fach.gif'
+	'title' => 'LLL:EXT:rere/Resources/Private/Language/locallang_db.xlf:tx_rere_domain_model_fach',
+	'label' => 'fachnr',
+	'tstamp' => 'tstamp',
+	'crdate' => 'crdate',
+	'cruser_id' => 'cruser_id',
+	'dividers2tabs' => TRUE,
+	'versioningWS' => 2,
+	'versioning_followPages' => TRUE,
+	'languageField' => 'sys_language_uid',
+	'transOrigPointerField' => 'l10n_parent',
+	'transOrigDiffSourceField' => 'l10n_diffsource',
+	'delete' => 'deleted',
+	'enablecolumns' => array(
+	    'disabled' => 'hidden',
+	    'starttime' => 'starttime',
+	    'endtime' => 'endtime',
+	),
+	'searchFields' => 'fachnr,fachname,pruefer,notenschema,modulnr,matrikelnr,note,datum,creditpoints',
+	'dynamicConfigFile' => \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extPath($_EXTKEY) . 'Configuration/TCA/Fach.php',
+	'iconfile' => \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extRelPath($_EXTKEY) . 'Resources/Public/Icons/tx_rere_domain_model_fach.gif'
     ),
 );
 
@@ -89,26 +89,26 @@ $GLOBALS['TCA']['tx_rere_domain_model_fach'] = array(
 \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::allowTableOnStandardPages('tx_rere_domain_model_note');
 $GLOBALS['TCA']['tx_rere_domain_model_note'] = array(
     'ctrl' => array(
-        'title' => 'LLL:EXT:rere/Resources/Private/Language/locallang_db.xlf:tx_rere_domain_model_note',
-        'label' => 'wert',
-        'tstamp' => 'tstamp',
-        'crdate' => 'crdate',
-        'cruser_id' => 'cruser_id',
-        'dividers2tabs' => TRUE,
-        'versioningWS' => 2,
-        'versioning_followPages' => TRUE,
-        'languageField' => 'sys_language_uid',
-        'transOrigPointerField' => 'l10n_parent',
-        'transOrigDiffSourceField' => 'l10n_diffsource',
-        'delete' => 'deleted',
-        'enablecolumns' => array(
-            'disabled' => 'hidden',
-            'starttime' => 'starttime',
-            'endtime' => 'endtime',
-        ),
-        'searchFields' => 'wert,kommentar,fach,pruefling,',
-        'dynamicConfigFile' => \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extPath($_EXTKEY) . 'Configuration/TCA/Note.php',
-        'iconfile' => \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extRelPath($_EXTKEY) . 'Resources/Public/Icons/tx_rere_domain_model_note.gif'
+	'title' => 'LLL:EXT:rere/Resources/Private/Language/locallang_db.xlf:tx_rere_domain_model_note',
+	'label' => 'wert',
+	'tstamp' => 'tstamp',
+	'crdate' => 'crdate',
+	'cruser_id' => 'cruser_id',
+	'dividers2tabs' => TRUE,
+	'versioningWS' => 2,
+	'versioning_followPages' => TRUE,
+	'languageField' => 'sys_language_uid',
+	'transOrigPointerField' => 'l10n_parent',
+	'transOrigDiffSourceField' => 'l10n_diffsource',
+	'delete' => 'deleted',
+	'enablecolumns' => array(
+	    'disabled' => 'hidden',
+	    'starttime' => 'starttime',
+	    'endtime' => 'endtime',
+	),
+	'searchFields' => 'wert,kommentar,fach,pruefling,',
+	'dynamicConfigFile' => \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extPath($_EXTKEY) . 'Configuration/TCA/Note.php',
+	'iconfile' => \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extRelPath($_EXTKEY) . 'Resources/Public/Icons/tx_rere_domain_model_note.gif'
     ),
 );
 
@@ -117,26 +117,26 @@ $GLOBALS['TCA']['tx_rere_domain_model_note'] = array(
 \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::allowTableOnStandardPages('tx_rere_domain_model_settings');
 $GLOBALS['TCA']['tx_rere_domain_model_settings'] = array(
     'ctrl' => array(
-        'title' => 'LLL:EXT:rere/Resources/Private/Language/locallang_db.xlf:tx_rere_domain_model_settings',
-        'label' => 'mail_absender',
-        'tstamp' => 'tstamp',
-        'crdate' => 'crdate',
-        'cruser_id' => 'cruser_id',
-        'dividers2tabs' => TRUE,
-        'versioningWS' => 2,
-        'versioning_followPages' => TRUE,
-        'languageField' => 'sys_language_uid',
-        'transOrigPointerField' => 'l10n_parent',
-        'transOrigDiffSourceField' => 'l10n_diffsource',
-        'delete' => 'deleted',
-        'enablecolumns' => array(
-            'disabled' => 'hidden',
-            'starttime' => 'starttime',
-            'endtime' => 'endtime',
-        ),
-        'searchFields' => 'mail_absender,mail_empfaenger,',
-        'dynamicConfigFile' => \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extPath($_EXTKEY) . 'Configuration/TCA/Settings.php',
-        'iconfile' => \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extRelPath($_EXTKEY) . 'Resources/Public/Icons/tx_rere_domain_model_settings.gif'
+	'title' => 'LLL:EXT:rere/Resources/Private/Language/locallang_db.xlf:tx_rere_domain_model_settings',
+	'label' => 'mail_absender',
+	'tstamp' => 'tstamp',
+	'crdate' => 'crdate',
+	'cruser_id' => 'cruser_id',
+	'dividers2tabs' => TRUE,
+	'versioningWS' => 2,
+	'versioning_followPages' => TRUE,
+	'languageField' => 'sys_language_uid',
+	'transOrigPointerField' => 'l10n_parent',
+	'transOrigDiffSourceField' => 'l10n_diffsource',
+	'delete' => 'deleted',
+	'enablecolumns' => array(
+	    'disabled' => 'hidden',
+	    'starttime' => 'starttime',
+	    'endtime' => 'endtime',
+	),
+	'searchFields' => 'mail_absender,mail_empfaenger,',
+	'dynamicConfigFile' => \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extPath($_EXTKEY) . 'Configuration/TCA/Settings.php',
+	'iconfile' => \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extRelPath($_EXTKEY) . 'Resources/Public/Icons/tx_rere_domain_model_settings.gif'
     ),
 );
 
@@ -144,26 +144,26 @@ $GLOBALS['TCA']['tx_rere_domain_model_settings'] = array(
 \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::allowTableOnStandardPages('tx_rere_domain_model_pruefling');
 $GLOBALS['TCA']['tx_rere_domain_model_pruefling'] = array(
     'ctrl' => array(
-        'title' => 'LLL:EXT:rere/Resources/Private/Language/locallang_db.xlf:tx_rere_domain_model_pruefling',
-        'label' => 'matrikelnr',
-        'tstamp' => 'tstamp',
-        'crdate' => 'crdate',
-        'cruser_id' => 'cruser_id',
-        'dividers2tabs' => TRUE,
-        'versioningWS' => 2,
-        'versioning_followPages' => TRUE,
-        'languageField' => 'sys_language_uid',
-        'transOrigPointerField' => 'l10n_parent',
-        'transOrigDiffSourceField' => 'l10n_diffsource',
-        'delete' => 'deleted',
-        'enablecolumns' => array(
-            'disabled' => 'hidden',
-            'starttime' => 'starttime',
-            'endtime' => 'endtime',
-        ),
-        'searchFields' => 'matrikelnr,vorname,nachname,typo3_f_e_user,note,',
-        'dynamicConfigFile' => \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extPath($_EXTKEY) . 'Configuration/TCA/Pruefling.php',
-        'iconfile' => \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extRelPath($_EXTKEY) . 'Resources/Public/Icons/tx_rere_domain_model_pruefling.gif'
+	'title' => 'LLL:EXT:rere/Resources/Private/Language/locallang_db.xlf:tx_rere_domain_model_pruefling',
+	'label' => 'matrikelnr',
+	'tstamp' => 'tstamp',
+	'crdate' => 'crdate',
+	'cruser_id' => 'cruser_id',
+	'dividers2tabs' => TRUE,
+	'versioningWS' => 2,
+	'versioning_followPages' => TRUE,
+	'languageField' => 'sys_language_uid',
+	'transOrigPointerField' => 'l10n_parent',
+	'transOrigDiffSourceField' => 'l10n_diffsource',
+	'delete' => 'deleted',
+	'enablecolumns' => array(
+	    'disabled' => 'hidden',
+	    'starttime' => 'starttime',
+	    'endtime' => 'endtime',
+	),
+	'searchFields' => 'matrikelnr,vorname,nachname,typo3_f_e_user,note,',
+	'dynamicConfigFile' => \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extPath($_EXTKEY) . 'Configuration/TCA/Pruefling.php',
+	'iconfile' => \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extRelPath($_EXTKEY) . 'Resources/Public/Icons/tx_rere_domain_model_pruefling.gif'
     ),
 );
 
@@ -171,45 +171,45 @@ $GLOBALS['TCA']['tx_rere_domain_model_pruefling'] = array(
 \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::allowTableOnStandardPages('tx_rere_domain_model_intervall');
 $GLOBALS['TCA']['tx_rere_domain_model_intervall'] = array(
     'ctrl' => array(
-        'title' => 'LLL:EXT:rere/Resources/Private/Language/locallang_db.xlf:tx_rere_domain_model_intervall',
-        'label' => 'type',
-        'tstamp' => 'tstamp',
-        'crdate' => 'crdate',
-        'cruser_id' => 'cruser_id',
-        'dividers2tabs' => TRUE,
-        'versioningWS' => 2,
-        'versioning_followPages' => TRUE,
-        'languageField' => 'sys_language_uid',
-        'transOrigPointerField' => 'l10n_parent',
-        'transOrigDiffSourceField' => 'l10n_diffsource',
-        'delete' => 'deleted',
-        'enablecolumns' => array(
-            'disabled' => 'hidden',
-            'starttime' => 'starttime',
-            'endtime' => 'endtime',
-        ),
-        'searchFields' => 'type,aktuell,',
-        'dynamicConfigFile' => \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extPath($_EXTKEY) . 'Configuration/TCA/Intervall.php',
-        'iconfile' => \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extRelPath($_EXTKEY) . 'Resources/Public/Icons/tx_rere_domain_model_intervall.gif'
+	'title' => 'LLL:EXT:rere/Resources/Private/Language/locallang_db.xlf:tx_rere_domain_model_intervall',
+	'label' => 'type',
+	'tstamp' => 'tstamp',
+	'crdate' => 'crdate',
+	'cruser_id' => 'cruser_id',
+	'dividers2tabs' => TRUE,
+	'versioningWS' => 2,
+	'versioning_followPages' => TRUE,
+	'languageField' => 'sys_language_uid',
+	'transOrigPointerField' => 'l10n_parent',
+	'transOrigDiffSourceField' => 'l10n_diffsource',
+	'delete' => 'deleted',
+	'enablecolumns' => array(
+	    'disabled' => 'hidden',
+	    'starttime' => 'starttime',
+	    'endtime' => 'endtime',
+	),
+	'searchFields' => 'type,aktuell,',
+	'dynamicConfigFile' => \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extPath($_EXTKEY) . 'Configuration/TCA/Intervall.php',
+	'iconfile' => \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extRelPath($_EXTKEY) . 'Resources/Public/Icons/tx_rere_domain_model_intervall.gif'
     ),
 );
 
 if (!isset($GLOBALS['TCA']['fe_groups']['ctrl']['type'])) {
     if (file_exists($GLOBALS['TCA']['fe_groups']['ctrl']['dynamicConfigFile'])) {
-        require_once($GLOBALS['TCA']['fe_groups']['ctrl']['dynamicConfigFile']);
+	require_once($GLOBALS['TCA']['fe_groups']['ctrl']['dynamicConfigFile']);
     }
     // no type field defined, so we define it here. This will only happen the first time the extension is installed!!
     $GLOBALS['TCA']['fe_groups']['ctrl']['type'] = 'tx_extbase_type';
     $tempColumns = array();
     $tempColumns[$GLOBALS['TCA']['fe_groups']['ctrl']['type']] = array(
-        'exclude' => 1,
-        'label' => 'LLL:EXT:rere/Resources/Private/Language/locallang_db.xlf:tx_rere.tx_extbase_type',
-        'config' => array(
-            'type' => 'select',
-            'items' => array(),
-            'size' => 1,
-            'maxitems' => 1,
-        )
+	'exclude' => 1,
+	'label' => 'LLL:EXT:rere/Resources/Private/Language/locallang_db.xlf:tx_rere.tx_extbase_type',
+	'config' => array(
+	    'type' => 'select',
+	    'items' => array(),
+	    'size' => 1,
+	    'maxitems' => 1,
+	)
     );
     \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addTCAcolumns('fe_groups', $tempColumns, 1);
 }

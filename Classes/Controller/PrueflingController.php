@@ -169,6 +169,10 @@ class PrueflingController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionContro
 	));
     }
 
+    public function errAction() {
+	$this->view->assign();
+    }
+
     /**
      * Einzelner Pruefling wird angezeigt.
      *
@@ -205,8 +209,7 @@ class PrueflingController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionContro
 
 	// Meldung falls der Prüfling noch kener Prüfung zugewiesen wurde
 	if (count($fachPrueflingsArray) == 0) {
-	    echo 'Dieser Pr&uuml;fling wurde noch keinem Fach zugeordnet.';
-	    exit();
+	    $this->redirect('err', 'Pruefling');
 	}
 
 	// Berechnet den Gesamtdurchschnitt eines Prüflings
@@ -379,6 +382,7 @@ class PrueflingController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionContro
      * @return void
      */
     public function createAction(\ReRe\Rere\Domain\Model\Pruefling $newPruefling) {
+	$persistenceManager = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('TYPO3\\CMS\\Extbase\\Persistence\\Generic\\PersistenceManager');
 	// Prueft, ob diese MatrikelNr bereits vorhanden ist. Pruefling wird nur angelegt, wenn die MatrikelNr noch nicht verwendet wird!
 	if ($this->prueflingRepository->findBymatrikelnr($newPruefling->getMatrikelnr())->toArray() == Null) {
 
@@ -410,6 +414,9 @@ class PrueflingController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionContro
 
 	    $this->FrontendUserRepository->add($newFEUser);
 	    $newPruefling->setTypo3FEUser($newFEUser);
+
+	    $persistenceManager->persistAll();
+
 	    $mailerg = $this->mailfunctions->newUserMail($newFEUser->getEmail(), $newFEUser->getUsername(), $newPruefling->getNachname(), $newPruefling->getVorname(), $randomPW, $absender);
 	    $this->addFlashMessage($mailerg);
 	    if ($this->request->getArgument('speichern') == 'speichernundzurueck') {

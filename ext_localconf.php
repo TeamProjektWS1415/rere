@@ -6,10 +6,10 @@ if (!defined('TYPO3_MODE')) {
 
 \TYPO3\CMS\Extbase\Utility\ExtensionUtility::configurePlugin(
 	'ReRe.' . $_EXTKEY, 'rerefrontend', array(
-    'Pruefling' => 'show'
+    'Pruefling' => 'show, err'
 	),
 	// non-cacheable actions
 	array(
-    'Pruefling' => 'show'
+    'Pruefling' => 'show, err'
 	)
 );
