@@ -649,9 +649,12 @@
 
 
 	    <!-- Pruefungsleistung anzeigen-->
-
+	    <trans-unit id="tx_rere_Ueberschrift_PruefungsleistungAnzeigenbread">
+		<source>Pruefungsleistungen </source>
+		<target>Display test achievement</target>
+	    </trans-unit>
 	    <trans-unit id="tx_rere_Ueberschrift_PruefungsleistungAnzeigen">
-		<source>Pruefungsleistung anzeigen von </source>
+		<source>Pruefungsleistungen von </source>
 		<target>Display test achievement of </target>
 	    </trans-unit>
 	    <trans-unit id="tx_rere_Text_PruefungsleistungAnzeigen.Text1">
@@ -686,9 +689,17 @@
 		<source>Durchschnitt</source>
 		<target>Average</target>
 	    </trans-unit>
-	    <trans-unit id="tx_rere_Text_PruefungsleistungAnzeigen.err">
-		<source>Sie wurden noch keine Prüfung zugewiesen.</source>
+	    <trans-unit id="tx_rere_Text_PruefungsleistungAnzeigen.login">
+		<source>Sie sind nicht eingeloggt. Bitte loggen Sie sich ein um Ihre Noten einzusehen.</source>
 		<target>You're not assigned to a subject.</target>
+	    </trans-unit>
+	    <trans-unit id="tx_rere_Text_PruefungsleistungAnzeigen.fach">
+		<source>Sie sind noch keine Prüfung zugewiesen.</source>
+		<target>You're not assigned to a subject yet.</target>
+	    </trans-unit>
+	    <trans-unit id="tx_rere_Text_PruefungsleistungAnzeigen">
+		<source>Pruefungsleistung anzeigen</source>
+		<target>Display test achievement</target>
 	    </trans-unit>
 
 

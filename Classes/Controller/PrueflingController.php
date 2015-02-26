@@ -49,6 +49,7 @@ class PrueflingController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionContro
     const MATRIKELNR = 'matrikelnr';
     const PRUEFLING = 'Pruefling';
     const FACHID = "fachid";
+    const ERR = "err";
 
     private $passfunctions = NULL;
     private $userfunctions = NULL;
@@ -175,8 +176,7 @@ class PrueflingController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionContro
      * @return void
      */
     public function errAction() {
-	$error = "Nichts gefunden";
-	$this->view->assign('note', $error);
+	$this->view->assign('error', $this->request->getArgument(self::ERR));
     }
 
     /**
@@ -197,6 +197,13 @@ class PrueflingController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionContro
 
 	//Aktuellen FE-User und zugehoeriges Prueflingobjekt holen
 	$momentanerUserUID = $GLOBALS['TSFE']->fe_user->user['uid'];
+
+	// Prüfen ob eingeloggt
+	if ($momentanerUserUID == null || $momentanerUserUID == "") {
+	    $this->redirect('err', 'Pruefling', null, array(self::ERR => "login"));
+	}
+
+
 	$alleprueflinge = $this->prueflingRepository->findAll();
 
 	// Holt den Prüfling der mit dem FEUser verknüpft ist
@@ -220,7 +227,7 @@ class PrueflingController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionContro
 
 	// Meldung falls der Prüfling noch kener Prüfung zugewiesen wurde
 	if (count($fachPrueflingsArray) == 0) {
-	    $this->redirect('err', 'Pruefling');
+	    $this->redirect('err', 'Pruefling', null, array(self::ERR => "keinepruefung"));
 	}
 
 	// Berechnet den Gesamtdurchschnitt eines Prüflings
