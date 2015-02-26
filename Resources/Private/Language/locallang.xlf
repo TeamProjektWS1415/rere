@@ -686,6 +686,10 @@
 		<source>Durchschnitt</source>
 		<target>Average</target>
 	    </trans-unit>
+	    <trans-unit id="tx_rere_Text_PruefungsleistungAnzeigen.err">
+		<source>Sie wurden noch keine Prüfung zugewiesen.</source>
+		<target>You're not assigned to a subject.</target>
+	    </trans-unit>
 
 
 	    <!-- Seetings-->

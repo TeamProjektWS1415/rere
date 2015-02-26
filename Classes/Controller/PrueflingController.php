@@ -169,8 +169,14 @@ class PrueflingController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionContro
 	));
     }
 
+    /**
+     * Error.
+     *
+     * @return void
+     */
     public function errAction() {
-	$this->view->assign();
+	$error = "Nichts gefunden";
+	$this->view->assign('note', $error);
     }
 
     /**
@@ -184,7 +190,12 @@ class PrueflingController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionContro
 	$pageUid = $GLOBALS['TSFE']->id;
 	$this->cacheService->clearPageCache($pageUid);
 
-	//Aktuellen FE-User und zugehÃ¶riges Prueflingobjekt holen
+	$querySettings = $this->prueflingRepository->createQuery()->getQuerySettings();
+	// don't add the pid constraint
+	$querySettings->setRespectStoragePage(FALSE);
+	$this->prueflingRepository->setDefaultQuerySettings($querySettings);
+
+	//Aktuellen FE-User und zugehoeriges Prueflingobjekt holen
 	$momentanerUserUID = $GLOBALS['TSFE']->fe_user->user['uid'];
 	$alleprueflinge = $this->prueflingRepository->findAll();
 
@@ -272,6 +283,8 @@ class PrueflingController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionContro
 
 	    $checkvar = false;
 	}
+
+	$liste = array_reverse($liste);
 
 	$this->view->assignMultiple(array('gesamtDurchschnitt' => $gesamtDurchschnitt, "module" => $liste, 'pruefling' => $momentanerPruefling, 'note' => $aktuelleNote));
     }
@@ -431,7 +444,7 @@ class PrueflingController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionContro
     }
 
     /**
-     * Diese Methode dient dem Editieren eines PrÃ¼flings.
+     * Diese Methode dient dem Editieren eines Prueflings.
      * Sie wird in der aktuellen Version jedoch so nicht verwendet.
      *
      * @param \ReRe\Rere\Domain\Model\Pruefling $pruefling
@@ -443,7 +456,7 @@ class PrueflingController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionContro
     }
 
     /**
-     * Diese Methode dient dem Aktualisieren eines PrÃ¼flings.
+     * Diese Methode dient dem Aktualisieren eines Prueflings.
      * Sie wird in der aktuellen Version jedoch so nicht verwendet.
      *
      * @param \ReRe\Rere\Domain\Model\Pruefling $pruefling
