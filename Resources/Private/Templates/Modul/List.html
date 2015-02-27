@@ -59,13 +59,13 @@
         <f:if condition="{intervallType}=='studienhalbjahr'" >
             <f:then>
                 <script type="text/javascript">
-                    $("#studienhalbjahr span").addClass("aciveinterval");
-                            $("#schuljahr span").addClass("inactiveinterval");</script>
+		    $("#studienhalbjahr span").addClass("aciveinterval");
+			    $("#schuljahr span").addClass("inactiveinterval");</script>
             </f:then>
             <f:else>
                 <script type="text/javascript">
-                            $("#schuljahr span").addClass("aciveinterval");
-                            $("#studienhalbjahr span").addClass("inactiveinterval");</script>
+			    $("#schuljahr span").addClass("aciveinterval");
+			    $("#studienhalbjahr span").addClass("inactiveinterval");</script>
             </f:else>
         </f:if>
 
@@ -100,7 +100,7 @@
                                             <f:then><span class='delhinweis'><f:translate key="tx_rere_Text.ModulFachloeschen"/></span></f:then>
                                             <f:else>
                                                 <f:link.action class="delete btn btn-default modulloeschenbutton" action="delete" onclick="delentry('{f:translate(key: 'tx_rere_Text_Modul.ModulLoeschen')}', $(this).attr('href'));
-                                                                    return false;" arguments="{modul : modul}" ><f:translate key="tx_rere_Text.Loeschen"/></f:link.action>
+								    return false;" arguments="{modul : modul}" ><f:translate key="tx_rere_Text.Loeschen"/></f:link.action>
                                             </f:else>
                                         </f:if>
                                     </span>
@@ -110,14 +110,14 @@
                                 <div class="panel-body">
                                     <ul>
                                         <f:for each="{modul.fach}" as="fach">
-                                            <li><span class="col-md-6">{fach.fachname} <f:if condition="{fach.fachnr}">({fach.fachnr})</f:if> - {fach.fachnr} <f:if condition="{fach.datum}">{fach.pruefer}</f:if></span>
+                                            <li><span class="col-md-6">{fach.fachname} <f:if condition="{fach.fachnr}">({fach.fachnr})</f:if> - <f:if condition="{fach.datum}">{fach.datum} -</f:if> <f:if condition="{fach.pruefer}">{fach.pruefer}</f:if></span>
                                                 <span class="col-md-6">
                                                     <f:link.action controller="Note" class="gettooltip" action="list" arguments="{fach : fach, modul: modul.uid}" title="<f:translate key='tx_rere_Text_Fach.NoteEintragen'/>"><f:translate key="tx_rere_Text_Fach_Text.NoteEintragen"/></f:link.action> |
                                                     <f:link.action controller="Pruefling" arguments="{fach : fach, modul: modul.uid}" class="gettooltip" action="list" title="<f:translate key='tx_rere_Text_Fach.PrueflingZuweisen'/>"><f:translate key="tx_rere_Text_Fach_Text.PrüflingZuweisen"/></f:link.action> |
                                                     <f:link.action class="delete gettooltip" controller="Fach" action="delete"
                                                                    onclick="delentry('{f:translate(key: 'tx_rere_Text_Fach.FachLoeschen')}',
-                                                                                       $(this).attr('href'));
-                                                                                       return false;" arguments="{fach : fach.uid}" title="<f:translate key='tx_rere_Text_Fach.FachUndNoteLoeschen'/>">
+										       $(this).attr('href'));
+										       return false;" arguments="{fach : fach.uid}" title="<f:translate key='tx_rere_Text_Fach.FachUndNoteLoeschen'/>">
                                                         <span class="gettooltip glyphicon glyphicon-remove" aria-hidden="true">
                                                         </span>
                                                     </f:link.action>
