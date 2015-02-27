@@ -10,11 +10,11 @@
             <div name="breadcrumb" class="col-md-12">
                 <ol class="breadcrumb">
                     <li><f:link.action controller="Modul" action="list">Result Repository</f:link.action></li>
-                    <li class="active">Notenverwaltung<f:translate key="tx_rere_Ueberschrift_Notenverwaltung" /></li>
+                    <li class="active"><f:translate key="tx_rere_Ueberschrift_Notenverwaltung" /></li>
                 </ol>
             </div>
             <div class="col-md-12">
-                <h1>Notenverwaltung<f:translate key="tx_rere_Ueberschrift_Notenverwaltung" /></h1>
+                <h1><f:translate key="tx_rere_Ueberschrift_Notenverwaltung" /></h1>
             </div>
             <div class="col-md-12">
                 <h4><strong>{fach.fachname}</strong> <f:translate key="tx_rere_Ueberschrift_Notenverwaltung_aus" /> <strong>{modul.modulname}</strong> <f:translate key="tx_rere_Ueberschrift_Notenverwaltung_in" /> <strong>{modul.gueltigkeitszeitraum}</strong></h4>
@@ -74,19 +74,19 @@
                                 <f:form.textfield  type="hidden" name="modul" id="modul" value="{modul.uid}" />
                                 <f:form.textarea name="kommentar" class="form-control gettooltip sendNote kommentar" rows="1" placeholder="<f:translate key='tx_rere_Placeholder_Notenverwaltung.Kommentar' />" title="<f:translate key='tx_rere_title_Notenverwaltung.Kommentar' />" value="{note.kommentar}"/></td>
                                 <td><f:link.action class="delete" action="delete" onclick="delentry('{f:translate(key: 'tx_rere_Text_Notenverwaltung.Prueflingloeschen1')}' + {note.matrikelnr} + '{f:translate(key: 'tx_rere_Text_Notenverwaltung.Prueflingloeschen2')}', $(this).attr('href'));
-                                            return false;" arguments="{note : note.uid,fach:fach.uid,modul:modul.uid}"><span class="glyphicon glyphicon-remove" aria-hidden="true" data-toggle="tooltip" data-placement="bottom" title="<f:translate key='tx_rere_title_Notenverwaltung.Datensatzloeschen' />"></span></f:link.action></td>
+					    return false;" arguments="{note : note.uid,fach:fach.uid,modul:modul.uid}"><span class="glyphicon glyphicon-remove" aria-hidden="true" data-toggle="tooltip" data-placement="bottom" title="<f:translate key='tx_rere_title_Notenverwaltung.Datensatzloeschen' />"></span></f:link.action></td>
                             </f:form>
                             </tr>
                         </f:for>
 
                         <script type="text/javascript">
 
-                                    // Holt die Werte für das Chart
-                                    var array = {f:format.htmlentitiesDecode(value:chartarray)};
-                                    // Generiert das Chart
-                                    $(document).ready(function () {
-                            genchart(array, "gradeChart");
-                            });
+				    // Holt die Werte für das Chart
+				    var array = {f:format.htmlentitiesDecode(value:chartarray)};
+				    // Generiert das Chart
+				    $(document).ready(function () {
+			    genchart(array, "gradeChart");
+			    });
                         </script>
 
                         <tr>
