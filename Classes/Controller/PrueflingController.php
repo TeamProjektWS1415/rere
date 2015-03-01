@@ -203,15 +203,8 @@ class PrueflingController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionContro
 	    $this->redirect('err', 'Pruefling', null, array(self::ERR => "login"));
 	}
 
-
-	$alleprueflinge = $this->prueflingRepository->findAll();
-
 	// Holt den Prüfling der mit dem FEUser verknüpft ist
-	foreach ($alleprueflinge as $pruefling) {
-	    if ($pruefling->getTypo3FEUser()->getUid() == $momentanerUserUID) {
-		$momentanerPruefling = $pruefling;
-	    }
-	}
+	$momentanerPruefling = $this->prueflingRepository->findOneBytypo3FEUser($momentanerUserUID);
 
 	//Suchen der Faecher für die der gewählte Student zur Pruefung eingetragen wurde
 	$fachPrueflingsArray = array();
