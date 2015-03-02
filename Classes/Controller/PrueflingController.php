@@ -263,7 +263,9 @@ class PrueflingController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionContro
 
 			    $fachtotransmit = array(
 				"fachuid" => $fach->getUid(),
+				"pruefer" => $fach->getPruefer(),
 				"fachname" => $fach->getFachname(),
+				"creditpoints" => $fach->getCreditpoints(),
 				"note" => $aktuelleNote->getWert(),
 				"kommentar" => $aktuelleNote->getKommentar(),
 				"details" => $fachDetails);
@@ -311,6 +313,7 @@ class PrueflingController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionContro
 	unset($notenListeArray[0]);
 
 	//Verteilung der verschiedenen Noten zaehlen
+	$notenVorkommnisseArray = null;
 	$notenVorkommnisseArray = $this->helper->genArray($notenZuFachArray, $fach->getNotenschema());
 
 	//Zusammenfuehren von Bezeichnung und Anzahl der Notenvorkommen
@@ -351,7 +354,7 @@ class PrueflingController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionContro
 		$counter++;
 	    }
 	}
-	return $sum / $counter;
+	return round($sum / $counter, 2);
     }
 
     /**
