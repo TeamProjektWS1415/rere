@@ -206,6 +206,11 @@ class PrueflingController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionContro
 	// Holt den Prüfling der mit dem FEUser verknüpft ist
 	$momentanerPruefling = $this->prueflingRepository->findOneBytypo3FEUser($momentanerUserUID);
 
+	// Exception handling wenn beim Pruefling name = null
+	if ($momentanerPruefling->getNachname() == null || $momentanerPruefling->getVorname() == null) {
+	    $momentanerPruefling->setNachname($this->prueflingRepository->findOneBytypo3FEUser($momentanerUserUID)->getName());
+	}
+
 	//Suchen der Faecher für die der gewählte Student zur Pruefung eingetragen wurde
 	$fachPrueflingsArray = array();
 	$fachlisteArray = $this->fachRepository->findAll();
