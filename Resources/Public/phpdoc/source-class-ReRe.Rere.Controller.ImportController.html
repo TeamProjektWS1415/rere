@@ -372,52 +372,53 @@
 </span><span id="269" class="l"><a class="l" href="#269">269: </a>    <span class="php-var">$newFEUser</span>-&gt;setFirstNAME(<span class="php-var">$pruefling</span>-&gt;getVorname());
 </span><span id="270" class="l"><a class="l" href="#270">270: </a>    <span class="php-var">$newFEUser</span>-&gt;setLastNAME(<span class="php-var">$pruefling</span>-&gt;getNachname());
 </span><span id="271" class="l"><a class="l" href="#271">271: </a>
-</span><span id="272" class="l"><a class="l" href="#272">272: </a>    <span class="php-keyword1">if</span> (<span class="php-var">$prueflingInfos</span>[<span class="php-num">7</span>] == <span class="php-quote">&quot;&quot;</span> | <span class="php-var">$prueflingInfos</span>[<span class="php-num">7</span>] == <span class="php-keyword1">Null</span>) {
-</span><span id="273" class="l"><a class="l" href="#273">273: </a>        <span class="php-var">$empfaengerMail</span> = <span class="php-var">$username</span> . <span class="php-var">$this</span>-&gt;settingsRepository-&gt;findByUid(<span class="php-num">1</span>)-&gt;getMailEmpfaenger();
-</span><span id="274" class="l"><a class="l" href="#274">274: </a>        <span class="php-keyword1">echo</span> <span class="php-var">$empfaengerMail</span>;
-</span><span id="275" class="l"><a class="l" href="#275">275: </a>    } <span class="php-keyword1">else</span> {
-</span><span id="276" class="l"><a class="l" href="#276">276: </a>        <span class="php-var">$empfaengerMail</span> = <span class="php-var">$prueflingInfos</span>[<span class="php-num">7</span>];
-</span><span id="277" class="l"><a class="l" href="#277">277: </a>    }
-</span><span id="278" class="l"><a class="l" href="#278">278: </a>
-</span><span id="279" class="l"><a class="l" href="#279">279: </a>    <span class="php-var">$newFEUser</span>-&gt;setEmail(<span class="php-var">$empfaengerMail</span>);
-</span><span id="280" class="l"><a class="l" href="#280">280: </a>    <span class="php-var">$newFEUser</span>-&gt;setPID(<span class="php-var">$usergroup</span>-&gt;getPid());
-</span><span id="281" class="l"><a class="l" href="#281">281: </a>
-</span><span id="282" class="l"><a class="l" href="#282">282: </a>    <span class="php-comment">// Wenn Usergroup vorhanden dann wird diese gesetzt.</span>
-</span><span id="283" class="l"><a class="l" href="#283">283: </a>    <span class="php-var">$newFEUser</span>-&gt;addUsergroup(<span class="php-var">$usergroup</span>);
-</span><span id="284" class="l"><a class="l" href="#284">284: </a>    <span class="php-var">$absender</span> = <span class="php-var">$this</span>-&gt;settingsRepository-&gt;findByUid(<span class="php-num">1</span>)-&gt;getMailAbsender();
-</span><span id="285" class="l"><a class="l" href="#285">285: </a>
-</span><span id="286" class="l"><a class="l" href="#286">286: </a>    <span class="php-comment">// FE User Persistieren und Zuwesen des FEUseres zum Pruefling</span>
-</span><span id="287" class="l"><a class="l" href="#287">287: </a>    <span class="php-var">$this</span>-&gt;FrontendUserRepository-&gt;add(<span class="php-var">$newFEUser</span>);
-</span><span id="288" class="l"><a class="l" href="#288">288: </a>    <span class="php-var">$pruefling</span>-&gt;setTypo3FEUser(<span class="php-var">$newFEUser</span>);
-</span><span id="289" class="l"><a class="l" href="#289">289: </a>    <span class="php-var">$this</span>-&gt;persistenceManager-&gt;persistAll();
-</span><span id="290" class="l"><a class="l" href="#290">290: </a>    <span class="php-var">$this</span>-&gt;prueflingRepository-&gt;update(<span class="php-var">$pruefling</span>);
-</span><span id="291" class="l"><a class="l" href="#291">291: </a>
-</span><span id="292" class="l"><a class="l" href="#292">292: </a>    <span class="php-comment">// Mail an den Prüfling versenden</span>
-</span><span id="293" class="l"><a class="l" href="#293">293: </a>    <span class="php-var">$this</span>-&gt;mailfunctions-&gt;newUserMail(<span class="php-var">$newFEUser</span>-&gt;getEmail(), <span class="php-var">$newFEUser</span>-&gt;getUsername(), <span class="php-var">$pruefling</span>-&gt;getNachname(), <span class="php-var">$pruefling</span>-&gt;getVorname(), <span class="php-var">$randomPW</span>, <span class="php-var">$absender</span>);
-</span><span id="294" class="l"><a class="l" href="#294">294: </a>    } <span class="php-keyword1">else</span> {
-</span><span id="295" class="l"><a class="l" href="#295">295: </a>    <span class="php-keyword1">if</span> (<span class="php-var">$prueflingInfos</span>[<span class="php-num">0</span>] != <span class="php-keyword1">Null</span> || <span class="php-var">$prueflingInfos</span>[<span class="php-num">0</span>] != <span class="php-quote">&quot;&quot;</span>) {
-</span><span id="296" class="l"><a class="l" href="#296">296: </a>        <span class="php-comment">// Wenn Ein Matrikel-Nummer bereits vorhanden war wird diese in die Rückgabeliste gespeichert</span>
-</span><span id="297" class="l"><a class="l" href="#297">297: </a>        <span class="php-var">$this</span>-&gt;notImported = <span class="php-var">$this</span>-&gt;notImported . <span class="php-quote">&quot; &quot;</span> . <span class="php-var">$prueflingInfos</span>[<span class="php-num">0</span>] . <span class="php-quote">&quot;: &quot;</span> . <span class="php-var">$prueflingInfos</span>[<span class="php-num">2</span>] . <span class="php-quote">&quot;, &quot;</span> . <span class="php-var">$prueflingInfos</span>[<span class="php-num">1</span>] . <span class="php-quote">&quot; | &quot;</span>;
-</span><span id="298" class="l"><a class="l" href="#298">298: </a>    }
+</span><span id="272" class="l"><a class="l" href="#272">272: </a>    <span class="php-comment">// Mail an Pruefling zusammenbauen</span>
+</span><span id="273" class="l"><a class="l" href="#273">273: </a>    <span class="php-comment">// Wenn in der CSV keine Mail angegeben dann Vorname.Nachnahme@hinterlegtemailadresse</span>
+</span><span id="274" class="l"><a class="l" href="#274">274: </a>    <span class="php-keyword1">if</span> (<span class="php-var">$prueflingInfos</span>[<span class="php-num">7</span>] == <span class="php-quote">&quot;&quot;</span> | <span class="php-var">$prueflingInfos</span>[<span class="php-num">7</span>] == <span class="php-keyword1">Null</span>) {
+</span><span id="275" class="l"><a class="l" href="#275">275: </a>        <span class="php-var">$empfaengerMail</span> = <span class="php-var">$pruefling</span>-&gt;getVorname() . <span class="php-quote">&quot;.&quot;</span> . <span class="php-var">$pruefling</span>-&gt;getNachname() . <span class="php-var">$this</span>-&gt;settingsRepository-&gt;findByUid(<span class="php-num">1</span>)-&gt;getMailEmpfaenger();
+</span><span id="276" class="l"><a class="l" href="#276">276: </a>    } <span class="php-keyword1">else</span> {
+</span><span id="277" class="l"><a class="l" href="#277">277: </a>        <span class="php-var">$empfaengerMail</span> = <span class="php-var">$prueflingInfos</span>[<span class="php-num">7</span>];
+</span><span id="278" class="l"><a class="l" href="#278">278: </a>    }
+</span><span id="279" class="l"><a class="l" href="#279">279: </a>
+</span><span id="280" class="l"><a class="l" href="#280">280: </a>    <span class="php-var">$newFEUser</span>-&gt;setEmail(<span class="php-var">$empfaengerMail</span>);
+</span><span id="281" class="l"><a class="l" href="#281">281: </a>    <span class="php-var">$newFEUser</span>-&gt;setPID(<span class="php-var">$usergroup</span>-&gt;getPid());
+</span><span id="282" class="l"><a class="l" href="#282">282: </a>
+</span><span id="283" class="l"><a class="l" href="#283">283: </a>    <span class="php-comment">// Wenn Usergroup vorhanden dann wird diese gesetzt.</span>
+</span><span id="284" class="l"><a class="l" href="#284">284: </a>    <span class="php-var">$newFEUser</span>-&gt;addUsergroup(<span class="php-var">$usergroup</span>);
+</span><span id="285" class="l"><a class="l" href="#285">285: </a>    <span class="php-var">$absender</span> = <span class="php-var">$this</span>-&gt;settingsRepository-&gt;findByUid(<span class="php-num">1</span>)-&gt;getMailAbsender();
+</span><span id="286" class="l"><a class="l" href="#286">286: </a>
+</span><span id="287" class="l"><a class="l" href="#287">287: </a>    <span class="php-comment">// FE User Persistieren und Zuwesen des FEUseres zum Pruefling</span>
+</span><span id="288" class="l"><a class="l" href="#288">288: </a>    <span class="php-var">$this</span>-&gt;FrontendUserRepository-&gt;add(<span class="php-var">$newFEUser</span>);
+</span><span id="289" class="l"><a class="l" href="#289">289: </a>    <span class="php-var">$pruefling</span>-&gt;setTypo3FEUser(<span class="php-var">$newFEUser</span>);
+</span><span id="290" class="l"><a class="l" href="#290">290: </a>    <span class="php-var">$this</span>-&gt;persistenceManager-&gt;persistAll();
+</span><span id="291" class="l"><a class="l" href="#291">291: </a>    <span class="php-var">$this</span>-&gt;prueflingRepository-&gt;update(<span class="php-var">$pruefling</span>);
+</span><span id="292" class="l"><a class="l" href="#292">292: </a>
+</span><span id="293" class="l"><a class="l" href="#293">293: </a>    <span class="php-comment">// Mail an den Prüfling versenden</span>
+</span><span id="294" class="l"><a class="l" href="#294">294: </a>    <span class="php-var">$this</span>-&gt;mailfunctions-&gt;newUserMail(<span class="php-var">$newFEUser</span>-&gt;getEmail(), <span class="php-var">$newFEUser</span>-&gt;getUsername(), <span class="php-var">$pruefling</span>-&gt;getNachname(), <span class="php-var">$pruefling</span>-&gt;getVorname(), <span class="php-var">$randomPW</span>, <span class="php-var">$absender</span>);
+</span><span id="295" class="l"><a class="l" href="#295">295: </a>    } <span class="php-keyword1">else</span> {
+</span><span id="296" class="l"><a class="l" href="#296">296: </a>    <span class="php-keyword1">if</span> (<span class="php-var">$prueflingInfos</span>[<span class="php-num">0</span>] != <span class="php-keyword1">Null</span> || <span class="php-var">$prueflingInfos</span>[<span class="php-num">0</span>] != <span class="php-quote">&quot;&quot;</span>) {
+</span><span id="297" class="l"><a class="l" href="#297">297: </a>        <span class="php-comment">// Wenn Ein Matrikel-Nummer bereits vorhanden war wird diese in die Rückgabeliste gespeichert</span>
+</span><span id="298" class="l"><a class="l" href="#298">298: </a>        <span class="php-var">$this</span>-&gt;notImported = <span class="php-var">$this</span>-&gt;notImported . <span class="php-quote">&quot; &quot;</span> . <span class="php-var">$prueflingInfos</span>[<span class="php-num">0</span>] . <span class="php-quote">&quot;: &quot;</span> . <span class="php-var">$prueflingInfos</span>[<span class="php-num">2</span>] . <span class="php-quote">&quot;, &quot;</span> . <span class="php-var">$prueflingInfos</span>[<span class="php-num">1</span>] . <span class="php-quote">&quot; | &quot;</span>;
 </span><span id="299" class="l"><a class="l" href="#299">299: </a>    }
-</span><span id="300" class="l"><a class="l" href="#300">300: </a>
-</span><span id="301" class="l"><a class="l" href="#301">301: </a>    <span class="php-comment">// Zuweisung zum fach</span>
-</span><span id="302" class="l"><a class="l" href="#302">302: </a>    <span class="php-keyword1">if</span> (<span class="php-var">$fachUid</span> != <span class="php-keyword1">null</span>) {
-</span><span id="303" class="l"><a class="l" href="#303">303: </a>    <span class="php-var">$fach</span> = <span class="php-var">$this</span>-&gt;fachRepository-&gt;findByUid(<span class="php-var">$fachUid</span>);
-</span><span id="304" class="l"><a class="l" href="#304">304: </a>
-</span><span id="305" class="l"><a class="l" href="#305">305: </a>    <span class="php-var">$note</span> = <span class="php-var">$this</span>-&gt;objectManager-&gt;create(<span class="php-quote">'\\ReRe\\Rere\\Domain\\Model\\Note'</span>);
-</span><span id="306" class="l"><a class="l" href="#306">306: </a>    <span class="php-var">$note</span>-&gt;setWert(<span class="php-num">0</span>);
-</span><span id="307" class="l"><a class="l" href="#307">307: </a>    <span class="php-var">$this</span>-&gt;noteRepository-&gt;add(<span class="php-var">$note</span>);
-</span><span id="308" class="l"><a class="l" href="#308">308: </a>
-</span><span id="309" class="l"><a class="l" href="#309">309: </a>    <span class="php-var">$fach</span>-&gt;addMatrikelnr(<span class="php-var">$pruefling</span>);
-</span><span id="310" class="l"><a class="l" href="#310">310: </a>    <span class="php-var">$fach</span>-&gt;addNote(<span class="php-var">$note</span>);
-</span><span id="311" class="l"><a class="l" href="#311">311: </a>    <span class="php-var">$pruefling</span>-&gt;addNote(<span class="php-var">$note</span>);
-</span><span id="312" class="l"><a class="l" href="#312">312: </a>    <span class="php-var">$this</span>-&gt;fachRepository-&gt;add(<span class="php-var">$fach</span>);
-</span><span id="313" class="l"><a class="l" href="#313">313: </a>    }
-</span><span id="314" class="l"><a class="l" href="#314">314: </a>}
-</span><span id="315" class="l"><a class="l" href="#315">315: </a>
-</span><span id="316" class="l"><a class="l" href="#316">316: </a>}
-</span><span id="317" class="l"><a class="l" href="#317">317: </a></span></code></pre>
+</span><span id="300" class="l"><a class="l" href="#300">300: </a>    }
+</span><span id="301" class="l"><a class="l" href="#301">301: </a>
+</span><span id="302" class="l"><a class="l" href="#302">302: </a>    <span class="php-comment">// Zuweisung zum fach</span>
+</span><span id="303" class="l"><a class="l" href="#303">303: </a>    <span class="php-keyword1">if</span> (<span class="php-var">$fachUid</span> != <span class="php-keyword1">null</span>) {
+</span><span id="304" class="l"><a class="l" href="#304">304: </a>    <span class="php-var">$fach</span> = <span class="php-var">$this</span>-&gt;fachRepository-&gt;findByUid(<span class="php-var">$fachUid</span>);
+</span><span id="305" class="l"><a class="l" href="#305">305: </a>
+</span><span id="306" class="l"><a class="l" href="#306">306: </a>    <span class="php-var">$note</span> = <span class="php-var">$this</span>-&gt;objectManager-&gt;create(<span class="php-quote">'\\ReRe\\Rere\\Domain\\Model\\Note'</span>);
+</span><span id="307" class="l"><a class="l" href="#307">307: </a>    <span class="php-var">$note</span>-&gt;setWert(<span class="php-num">0</span>);
+</span><span id="308" class="l"><a class="l" href="#308">308: </a>    <span class="php-var">$this</span>-&gt;noteRepository-&gt;add(<span class="php-var">$note</span>);
+</span><span id="309" class="l"><a class="l" href="#309">309: </a>
+</span><span id="310" class="l"><a class="l" href="#310">310: </a>    <span class="php-var">$fach</span>-&gt;addMatrikelnr(<span class="php-var">$pruefling</span>);
+</span><span id="311" class="l"><a class="l" href="#311">311: </a>    <span class="php-var">$fach</span>-&gt;addNote(<span class="php-var">$note</span>);
+</span><span id="312" class="l"><a class="l" href="#312">312: </a>    <span class="php-var">$pruefling</span>-&gt;addNote(<span class="php-var">$note</span>);
+</span><span id="313" class="l"><a class="l" href="#313">313: </a>    <span class="php-var">$this</span>-&gt;fachRepository-&gt;add(<span class="php-var">$fach</span>);
+</span><span id="314" class="l"><a class="l" href="#314">314: </a>    }
+</span><span id="315" class="l"><a class="l" href="#315">315: </a>}
+</span><span id="316" class="l"><a class="l" href="#316">316: </a>
+</span><span id="317" class="l"><a class="l" href="#317">317: </a>}
+</span><span id="318" class="l"><a class="l" href="#318">318: </a></span></code></pre>
 
 	<div id="footer">
 		 API documentation generated by <a href="http://apigen.org">ApiGen 2.8.0</a>

@@ -208,7 +208,7 @@ class PrueflingController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionContro
 
 	// Exception handling wenn beim Pruefling name = null
 	if ($momentanerPruefling->getNachname() == null || $momentanerPruefling->getVorname() == null) {
-	    $momentanerPruefling->setNachname($this->prueflingRepository->findOneBytypo3FEUser($momentanerUserUID)->getName());
+	    $momentanerPruefling->setNachname($this->prueflingRepository->findOneBytypo3FEUser($momentanerUserUID)->getTypo3FEUser()->getName());
 	}
 
 	//Suchen der Faecher für die der gewählte Student zur Pruefung eingetragen wurde
@@ -359,7 +359,11 @@ class PrueflingController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionContro
 		$counter++;
 	    }
 	}
-	return round($sum / $counter, 2);
+	if ($sum != 0 && $sum != null) {
+	    return round($sum / $counter, 2);
+	} else {
+	    return 0;
+	}
     }
 
     /**
