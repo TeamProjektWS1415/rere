@@ -750,6 +750,11 @@
 		<target>Master Course name</target>
 	    </trans-unit>
 
+	    <trans-unit id="tx_rere_Text.JohnerInstitut.Masterstudiengang.DelDialog">
+		<source>Möchten Sie den Masterstudiengang wirklich löschen? </source>
+		<target>Are you sure to delete the master course? </target>
+	    </trans-unit>
+
 	</body>
     </file>
 </xliff>

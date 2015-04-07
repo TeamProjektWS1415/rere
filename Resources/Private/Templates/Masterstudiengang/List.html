@@ -33,8 +33,8 @@
 		    <f:for each="{masterstudiengangs}" as="masterstudiengang">
 			<tr>
 			    <td>{masterstudiengang.name}</td>
-			    <td><f:link.action action="edit" arguments="{pruefling : pruefling}">Edit</f:link.action></td>
-			<td><f:link.action action="delete" arguments="{pruefling : pruefling}">Delete</f:link.action></td>
+			    <td><f:link.action class="delete" action="delete" onclick="delentry('{f:translate(key: 'tx_rere_Text.JohnerInstitut.Masterstudiengang.DelDialog')}', $(this).attr('href'));
+				    return false;" arguments="{masterstudiengang : masterstudiengang}"><span class="glyphicon glyphicon-remove" aria-hidden="true" data-toggle="tooltip" data-placement="bottom" title="<f:translate key='tx_rere_Button_Zuweisen.DatensatzLoeschen'/>"></span></f:link.action></td>
 			</tr>
 		    </f:for>
 		</table>
@@ -43,5 +43,6 @@
         </div>
 
     </div>
-
+    <!-- Lädt den Code für den Bestätigungs Dialog-->
+    <f:render partial="LoeschenDialog" />
 </f:section>
