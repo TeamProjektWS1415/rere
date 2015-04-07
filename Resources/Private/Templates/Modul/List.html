@@ -77,7 +77,7 @@
 	</f:if>
 
         <div class="row">
-            <div class="col-md-3">
+            <div class="col-md-5">
                 <nav class="navbar navbar-default" role="navigation">
                     <div class="container-fluid">
                         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-2">
@@ -85,7 +85,7 @@
 
 				<f:if condition="{intervallType}=='johnerinstitut'" >
 				    <f:then>
-					<li><f:link.action controller="Masterstudiengang" action="new" ><f:translate key="tx_rere_Startseite_Export.Prueflinge"/></f:link.action></li>
+					<li><f:link.action controller="Masterstudiengang" action="list" ><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> <f:translate key="tx_rere_Text.JohnerInstitut.neuerMasterstudiengang"/></f:link.action></li>
 				    </f:then>
 				    <f:else>
 					<li><f:link.action action="update" controller="Intervall" class="gettooltip" arguments="{prevIntervall:'prevIntervall'}"  title="<f:translate key='tx_rere_title_Intervall.vorherig'/>"><span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span></f:link.action></li>

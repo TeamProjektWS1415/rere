@@ -41,13 +41,21 @@ class MasterstudiengangController extends \TYPO3\CMS\Extbase\Mvc\Controller\Acti
     protected $masterstudiengangRepository = NULL;
 
     /**
-     * action list
+     * Protected Variable objectManager wird mit NULL initialisiert.
      *
+     * @var \TYPO3\CMS\Extbase\Object\ObjectManagerInterface
+     * @inject
+     */
+    protected $objectManager = NULL;
+
+    /**
+     * Listet alle Masterstudiengänge auf.
+     * @param \Rere\Kaka\Domain\Model\Masterstudiengang $newMasterstudiengang
      * @return void
      */
-    public function listAction() {
+    public function listAction(\ReRe\Rere\Domain\Model\Masterstudiengang $newMasterstudiengang = NULL) {
 	$masterstudiengangs = $this->masterstudiengangRepository->findAll();
-	$this->view->assign('masterstudiengangs', $masterstudiengangs);
+	$this->view->assignMultiple(array('masterstudiengangs' => $masterstudiengangs, 'newMasterstudiengang', $newMasterstudiengang));
     }
 
     /**
@@ -62,13 +70,16 @@ class MasterstudiengangController extends \TYPO3\CMS\Extbase\Mvc\Controller\Acti
     }
 
     /**
-     * action create
+     * Methode um einen neuen Masterstudiengang anzulegen.
      *
-     * @param \ReRe\Rere\Domain\Model\Masterstudiengang $newMasterstudiengang
      * @return void
      */
-    public function createAction(\ReRe\Rere\Domain\Model\Masterstudiengang $newMasterstudiengang) {
-	$this->addFlashMessage('The object was created. Please be aware that this action is publicly accessible unless you implement an access check. See <a href="http://wiki.typo3.org/T3Doc/Extension_Builder/Using_the_Extension_Builder#1._Model_the_domain" target="_blank">Wiki</a>', '', \TYPO3\CMS\Core\Messaging\AbstractMessage::ERROR);
+    public function createAction() {
+	$name = $this->request->getArgument('name');
+
+	$newMasterstudiengang = $this->objectManager->create('\\ReRe\\Rere\\Domain\\Model\\Masterstudiengang');
+	$newMasterstudiengang->setName($name);
+
 	$this->masterstudiengangRepository->add($newMasterstudiengang);
 	$this->redirect('list');
     }

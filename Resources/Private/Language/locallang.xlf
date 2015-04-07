@@ -739,6 +739,17 @@
 		<source>Legt ein neues Modul an</source>
 		<target>Creates a new module</target>
 	    </trans-unit>
+
+	    <trans-unit id="tx_rere_Text.JohnerInstitut.neuerMasterstudiengang">
+		<source>neuer Masterstudiengang</source>
+		<target>new Master Course</target>
+	    </trans-unit>
+
+	    <trans-unit id="tx_rere_Text.JohnerInstitut.Masterstudiengang.Name">
+		<source>Masterstudiengang - Name</source>
+		<target>Master Course name</target>
+	    </trans-unit>
+
 	</body>
     </file>
 </xliff>

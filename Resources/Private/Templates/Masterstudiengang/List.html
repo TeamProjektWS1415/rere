@@ -1,41 +1,47 @@
-
-<f:layout name="Default" />
-
-This Template is responsible for creating a table of domain objects.
-
-If you modify this template, do not forget to change the overwrite settings
-in /Configuration/ExtensionBuilder/settings.yaml:
-  Resources:
-    Private:
-      Templates:
-        List.html: keep
-
-Otherwise your changes will be overwritten the next time you save the extension in the extension builder
+<f:layout name="rere" />
 
 <f:section name="content">
-<h1>Listing for Pruefling</h1>
 
-<f:flashMessages />
+    <f:flashMessages />
+    <div class="container-fluid wrapper">
+        <div class="row">
+            <div name="breadcrumb" class="col-md-12">
+                <ol class="breadcrumb">
+                    <li><f:link.action controller="Modul" action="list">Result Repository</f:link.action></li>
+		    <li><f:translate key="tx_rere_Text.JohnerInstitut.neuerMasterstudiengang"/></li>
+                    <li class="active">{title}</li>
+                </ol>
+            </div>
 
-<table  class="tx_kaka" >
-	<tr>
-		<th><f:translate key="tx_kaka_domain_model_pruefling.matrikelnr" /></th>
-		<th><f:translate key="tx_kaka_domain_model_pruefling.vorname" /></th>
-		<th><f:translate key="tx_kaka_domain_model_pruefling.nachname" /></th>
-		<th> </th>
-		<th> </th>
-	</tr>
+            <div class="col-md-3">
+		<f:form action="create" name="newMasterstudiengang" object="{newMasterstudiengang}">
+		    <f:form.textfield name="name" required="1" class="form-control" placeholder="<f:translate key='tx_rere_Text.JohnerInstitut.Masterstudiengang.Name' />"/>
+		    <br>
+		    <button type="submit" class="btn btn-primary btn-lg btn-block"><f:translate key="tx_rere_button.sichern" /></button>
+		</f:form>
+            </div>
 
-	<f:for each="{prueflings}" as="pruefling">
-		<tr>
-			<td><f:link.action action="show" arguments="{pruefling : pruefling}"> {pruefling.matrikelnr}</f:link.action></td>
-			<td><f:link.action action="show" arguments="{pruefling : pruefling}"> {pruefling.vorname}</f:link.action></td>
-			<td><f:link.action action="show" arguments="{pruefling : pruefling}"> {pruefling.nachname}</f:link.action></td>
-			<td><f:link.action action="edit" arguments="{pruefling : pruefling}">Edit</f:link.action></td>
+
+	    <div class="col-md-9">
+		<table  class="table tx_rere" >
+		    <tr>
+			<th><f:translate key="tx_rere_Text.JohnerInstitut.Masterstudiengang.Name" /></th>
+		    <th> </th>
+		    <th> </th>
+		    </tr>
+
+		    <f:for each="{masterstudiengangs}" as="masterstudiengang">
+			<tr>
+			    <td>{masterstudiengang.name}</td>
+			    <td><f:link.action action="edit" arguments="{pruefling : pruefling}">Edit</f:link.action></td>
 			<td><f:link.action action="delete" arguments="{pruefling : pruefling}">Delete</f:link.action></td>
-		</tr>
-	</f:for>
-</table>
+			</tr>
+		    </f:for>
+		</table>
+	    </div>
 
-<f:link.action action="new">New Pruefling</f:link.action>
+        </div>
+
+    </div>
+
 </f:section>
