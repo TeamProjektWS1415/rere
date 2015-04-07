@@ -85,7 +85,9 @@
 
 				<f:if condition="{intervallType}=='johnerinstitut'" >
 				    <f:then>
-					<li><f:form.select name="masterstudiengang" options="{masterstudiengangs}" value="{masterstudiengang.uid}" optionLabelField="name" class="form-control gettooltip positionpadding" title="Masterstudiengänge"/></li>
+					<li><f:form action="update" controller='Intervall' id="masterstudiengangchange">
+					    <f:form.select name="masterstudiengang" options="{masterstudiengangs}" optionLabelField="name" class="setMasterstudiengang form-control gettooltip positionpadding" title="Masterstudiengänge"/>
+					</f:form></li>
 					<li><f:link.action controller="Masterstudiengang" action="list" ><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> <f:translate key="tx_rere_Text.JohnerInstitut.neuerMasterstudiengang"/></f:link.action></li>
 				    </f:then>
 				    <f:else>

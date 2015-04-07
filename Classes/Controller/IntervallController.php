@@ -49,7 +49,7 @@ class IntervallController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionContro
      * @return void
      */
     public function editAction(\ReRe\Rere\Domain\Model\Intervall $intervall) {
-        $this->view->assign('intervall', $intervall);
+	$this->view->assign('intervall', $intervall);
     }
 
     /**
@@ -59,33 +59,40 @@ class IntervallController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionContro
      * @return void
      */
     public function updateAction() {
-        $intervalLogic = new \ReRe\Rere\Services\NestedDirectory\IntervallLogic();
-        $intervall = $this->intervallRepository->findByUid(1);
-        // nächstes Intervall
-        if ($this->request->hasArgument('nextIntervall')) {
-            if ($intervall->getType() == 'studienhalbjahr') {
-                $aktuell = $intervalLogic->nextStudiIntervall($intervall->getAktuell());
-            } else {
-                $aktuell = $intervalLogic->nextSchulIntervall($intervall->getAktuell());
-            }
-        }
-        // Vorheriges Intervall
-        if ($this->request->hasArgument('prevIntervall')) {
-            if ($intervall->getType() == 'studienhalbjahr') {
-                $aktuell = $intervalLogic->prevStudiIntervall($intervall->getAktuell());
-            } else {
-                $aktuell = $intervalLogic->prevSchulIntervall($intervall->getAktuell());
-            }
-        }
-        // Typ setzen
-        if ($this->request->hasArgument('type')) {
-            $type = $this->request->getArgument('type');
-            $aktuell = $intervalLogic->genAktuellesIntervall($type);
-            $intervall->setType($type);
-        }
-        $intervall->setAktuell($aktuell);
-        $this->intervallRepository->update($intervall);
-        $this->redirect('list', 'Modul');
+	$intervalLogic = new \ReRe\Rere\Services\NestedDirectory\IntervallLogic();
+	$intervall = $this->intervallRepository->findByUid(1);
+	// nächstes Intervall
+	if ($this->request->hasArgument('nextIntervall')) {
+	    if ($intervall->getType() == 'studienhalbjahr') {
+		$aktuell = $intervalLogic->nextStudiIntervall($intervall->getAktuell());
+	    } else {
+		$aktuell = $intervalLogic->nextSchulIntervall($intervall->getAktuell());
+	    }
+	}
+	// Vorheriges Intervall
+	if ($this->request->hasArgument('prevIntervall')) {
+	    if ($intervall->getType() == 'studienhalbjahr') {
+		$aktuell = $intervalLogic->prevStudiIntervall($intervall->getAktuell());
+	    } else {
+		$aktuell = $intervalLogic->prevSchulIntervall($intervall->getAktuell());
+	    }
+	}
+
+	// Typ setzen
+	if ($this->request->hasArgument('type')) {
+	    $type = $this->request->getArgument('type');
+	    $aktuell = $intervalLogic->genAktuellesIntervall($type);
+	    $intervall->setType($type);
+	}
+
+	// Intervall für Johnerinstitut setzen
+	if ($this->request->hasArgument('masterstudiengang')) {
+	    $aktuell = $this->request->getArgument('masterstudiengang');
+	}
+
+	$intervall->setAktuell($aktuell);
+	$this->intervallRepository->update($intervall);
+	$this->redirect('list', 'Modul');
     }
 
     /**
@@ -96,7 +103,7 @@ class IntervallController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionContro
      * @return void
      */
     public function newAction(\ReRe\Rere\Domain\Model\Intervall $newIntervall = NULL) {
-        $this->view->assign('newIntervall', $newIntervall);
+	$this->view->assign('newIntervall', $newIntervall);
     }
 
     /**
@@ -106,8 +113,8 @@ class IntervallController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionContro
      * @return void
      */
     public function createAction(\ReRe\Rere\Domain\Model\Intervall $newIntervall) {
-        $this->intervallRepository->add($newIntervall);
-        $this->redirect('list');
+	$this->intervallRepository->add($newIntervall);
+	$this->redirect('list');
     }
 
 }

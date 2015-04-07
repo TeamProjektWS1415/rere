@@ -209,10 +209,10 @@ class ModulController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
      */
     public function createAction(\ReRe\Rere\Domain\Model\Modul $newModul) {
 	// Prüfen ob der Gültigkeitszeitraum korrekt ist.
-	$pregResult = $pregResult = preg_match('/^([S][S][0-9]{2}|[W][S][0-9]{2}\/[0-9]{2}|Schuljahr[0-9]{2}\/[0-9]{2})$/', $newModul->getGueltigkeitszeitraum());
+	$pregResult = $pregResult = preg_match('/^([S][S][0-9]{2}|[W][S][0-9]{2}\/[0-9]{2}|Schuljahr[0-9]{2}\/[0-9]{2}|[0-9]|[0-9]{2}|[0-9]{3}|[0-9]{4})$/', $newModul->getGueltigkeitszeitraum());
 
 	if ($pregResult != 1) {
-	    $this->addFlashMessage('Gülitigkeitszeitrum falsch gewählt! Zulässig: SS00 bis SS99 oder WS00/01 bis WS99/00 oder Sschuljahr00/01 bis Schuljahr 99/00', '', \TYPO3\CMS\Core\Messaging\AbstractMessage::ERROR);
+	    $this->addFlashMessage('Gülitigkeitszeitrum falsch gewählt! Zulässig: SS00 bis SS99 oder WS00/01 bis WS99/00 oder Schuljahr00/01 bis Schuljahr 99/00 oder 0-9999', '', \TYPO3\CMS\Core\Messaging\AbstractMessage::ERROR);
 	    $this->redirect(self::NEWSTRING, "Modul", Null, array(self::RETURNMODUL => $newModul->getModulname(),
 		self::MODULNUMMER => $newModul->getModulnr(),
 		self::GUELTIGKEITSZEITRAUM => $newModul->getGueltigkeitszeitraum(),
