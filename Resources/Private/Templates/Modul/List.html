@@ -82,10 +82,18 @@
                     <div class="container-fluid">
                         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-2">
                             <ul class="nav navbar-nav">
-                                <li><f:link.action action="update" controller="Intervall" class="gettooltip" arguments="{prevIntervall:'prevIntervall'}"  title="<f:translate key='tx_rere_title_Intervall.vorherig'/>"><span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span></f:link.action></li>
-                                <li><h4 class="navbarposition">{aktuellintervall}</h4></li>
-                                <li><f:link.action action="update" controller="Intervall" class="gettooltip" arguments="{nextIntervall:'nextIntervall'}"  title="<f:translate key='tx_rere_title_Intervall.naechste'/>"><span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span></f:link.action></li>
-                            </ul>
+
+				<f:if condition="{intervallType}=='johnerinstitut'" >
+				    <f:then>
+					<li><f:link.action controller="Masterstudiengang" action="new" ><f:translate key="tx_rere_Startseite_Export.Prueflinge"/></f:link.action></li>
+				    </f:then>
+				    <f:else>
+					<li><f:link.action action="update" controller="Intervall" class="gettooltip" arguments="{prevIntervall:'prevIntervall'}"  title="<f:translate key='tx_rere_title_Intervall.vorherig'/>"><span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span></f:link.action></li>
+					<li><h4 class="navbarposition">{aktuellintervall}</h4></li>
+					<li><f:link.action action="update" controller="Intervall" class="gettooltip" arguments="{nextIntervall:'nextIntervall'}"  title="<f:translate key='tx_rere_title_Intervall.naechste'/>"><span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span></f:link.action></li>
+				    </f:else>
+				</f:if>
+			    </ul>
                         </div>
                     </div>
                 </nav>

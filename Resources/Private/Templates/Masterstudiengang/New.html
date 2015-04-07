@@ -1,0 +1,25 @@
+
+<f:layout name="rere" />
+
+<f:section name="content">
+
+    <f:flashMessages />
+    <div class="container-fluid wrapper">
+        <div class="row">
+            <div name="breadcrumb" class="col-md-12">
+                <ol class="breadcrumb">
+                    <li><f:link.action controller="Modul" action="list">Result Repository</f:link.action></li>
+                    <li class="active">{title}</li>
+                </ol>
+            </div>
+            <div class="col-md-12">
+                <h1>{title}</h1>
+                <br>
+		<f:form action="create"  name="newPruefling" object="{newPruefling}">
+		    <f:render partial="Pruefling/FormFields" />
+		    <f:form.submit value="Create new" />
+		</f:form>
+            </div>
+        </div>
+    </div>
+</f:section>

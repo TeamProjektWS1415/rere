@@ -20,7 +20,7 @@ if (TYPO3_MODE === 'BE') {
 	    'rerebackend',
 	    // Position
 	    '', array(
-	'Modul' => 'list, show, new, newFach, create, edit, update, delete', 'Fach' => 'list, show, new, create, edit, update, delete', 'Note' => 'list, show, new, create, edit, update, delete', 'Pruefling' => 'err, setPruefling, userGroupZuweisen, list, show, new, create, edit, update, delete', 'Intervall' => 'new, create, edit, update', 'Export' => 'exportPrueflinge, exportModuleUndFaecher, exportFach', 'Import' => 'new, importPrueflinge, importBackUp', 'Settings' => 'edit, update', 'Intervall' => 'new, create, edit, update'
+	'Modul' => 'list, show, new, newFach, create, edit, update, delete', 'Fach' => 'list, show, new, create, edit, update, delete', 'Note' => 'list, show, new, create, edit, update, delete', 'Pruefling' => 'err, setPruefling, userGroupZuweisen, list, show, new, create, edit, update, delete', 'Intervall' => 'new, create, edit, update', 'Export' => 'exportPrueflinge, exportModuleUndFaecher, exportFach', 'Import' => 'new, importPrueflinge, importBackUp', 'Settings' => 'edit, update', 'Intervall' => 'new, create, edit, update', 'Masterstudiengang' => 'list, new, create, edit, update, delete'
 	    ), array(
 	'access' => 'user,group',
 	'icon' => 'EXT:' . $_EXTKEY . '/ext_icon.gif',
@@ -191,6 +191,34 @@ $GLOBALS['TCA']['tx_rere_domain_model_intervall'] = array(
 	'searchFields' => 'type,aktuell,',
 	'dynamicConfigFile' => \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extPath($_EXTKEY) . 'Configuration/TCA/Intervall.php',
 	'iconfile' => \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extRelPath($_EXTKEY) . 'Resources/Public/Icons/tx_rere_domain_model_intervall.gif'
+    ),
+);
+
+
+\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addLLrefForTCAdescr('tx_rere_domain_model_masterstudiengang', 'EXT:rere/Resources/Private/Language/locallang_csh_tx_rere_domain_model_masterstudiengang.xlf');
+\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::allowTableOnStandardPages('tx_rere_domain_model_masterstudiengang');
+$GLOBALS['TCA']['tx_rere_domain_model_masterstudiengang'] = array(
+    'ctrl' => array(
+	'title' => 'LLL:EXT:rere/Resources/Private/Language/locallang_db.xlf:tx_rere_domain_model_masterstudiengang',
+	'label' => 'name',
+	'tstamp' => 'tstamp',
+	'crdate' => 'crdate',
+	'cruser_id' => 'cruser_id',
+	'dividers2tabs' => TRUE,
+	'versioningWS' => 2,
+	'versioning_followPages' => TRUE,
+	'languageField' => 'sys_language_uid',
+	'transOrigPointerField' => 'l10n_parent',
+	'transOrigDiffSourceField' => 'l10n_diffsource',
+	'delete' => 'deleted',
+	'enablecolumns' => array(
+	    'disabled' => 'hidden',
+	    'starttime' => 'starttime',
+	    'endtime' => 'endtime',
+	),
+	'searchFields' => 'name,',
+	'dynamicConfigFile' => \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extPath($_EXTKEY) . 'Configuration/TCA/Masterstudiengang.php',
+	'iconfile' => \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extRelPath($_EXTKEY) . 'Resources/Public/Icons/tx_rere_domain_model_masterstudiengang.gif'
     ),
 );
 
