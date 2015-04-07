@@ -208,19 +208,25 @@ class ModulController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
      * @return void
      */
     public function createAction(\ReRe\Rere\Domain\Model\Modul $newModul) {
-	// Prüfen ob der Gültigkeitszeitraum korrekt ist.
-	$pregResult = $pregResult = preg_match('/^([S][S][0-9]{2}|[W][S][0-9]{2}\/[0-9]{2}|Schuljahr[0-9]{2}\/[0-9]{2}|[0-9]|[0-9]{2}|[0-9]{3}|[0-9]{4})$/', $newModul->getGueltigkeitszeitraum());
+	$intervall = $this->intervallRepository->findByUid(1);
 
-	if ($pregResult != 1) {
-	    $this->addFlashMessage('Gülitigkeitszeitrum falsch gewählt! Zulässig: SS00 bis SS99 oder WS00/01 bis WS99/00 oder Schuljahr00/01 bis Schuljahr 99/00 oder 0-9999', '', \TYPO3\CMS\Core\Messaging\AbstractMessage::ERROR);
-	    $this->redirect(self::NEWSTRING, "Modul", Null, array(self::RETURNMODUL => $newModul->getModulname(),
-		self::MODULNUMMER => $newModul->getModulnr(),
-		self::GUELTIGKEITSZEITRAUM => $newModul->getGueltigkeitszeitraum(),
-		self::FACHNAME => $this->request->getArgument(self::FACHNAME),
-		self::FACHNUMMER => $this->request->getArgument(self::FACHNUMMER),
-		self::PRUEFER => $this->request->getArgument(self::PRUEFER),
-		self::DATUM => $this->request->getArgument(self::DATUM),
-		self::CREDITPOINTS => $this->request->getArgument(self::CREDITPOINTS)));
+	//Regex Prüfung nur wenn es ein Schuljahr oder Studienhalbjahr Intervall ist
+	if ($intervall->getType() != 'johnerinstitut') {
+
+	    // Prüfen ob der Gültigkeitszeitraum korrekt ist.
+	    $pregResult = $pregResult = preg_match('/^([S][S][0-9]{2}|[W][S][0-9]{2}\/[0-9]{2}|Schuljahr[0-9]{2}\/[0-9]{2})$/', $newModul->getGueltigkeitszeitraum());
+
+	    if ($pregResult != 1) {
+		$this->addFlashMessage('Gülitigkeitszeitrum falsch gewählt! Zulässig: SS00 bis SS99 oder WS00/01 bis WS99/00 oder Schuljahr00/01 bis Schuljahr 99/00', '', \TYPO3\CMS\Core\Messaging\AbstractMessage::ERROR);
+		$this->redirect(self::NEWSTRING, "Modul", Null, array(self::RETURNMODUL => $newModul->getModulname(),
+		    self::MODULNUMMER => $newModul->getModulnr(),
+		    self::GUELTIGKEITSZEITRAUM => $newModul->getGueltigkeitszeitraum(),
+		    self::FACHNAME => $this->request->getArgument(self::FACHNAME),
+		    self::FACHNUMMER => $this->request->getArgument(self::FACHNUMMER),
+		    self::PRUEFER => $this->request->getArgument(self::PRUEFER),
+		    self::DATUM => $this->request->getArgument(self::DATUM),
+		    self::CREDITPOINTS => $this->request->getArgument(self::CREDITPOINTS)));
+	    }
 	}
 	$this->modulRepository->add($newModul);
 	// Erzeugt ein leeres Fach
