@@ -99,6 +99,14 @@ class ModulController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
     protected $settingsRepository = NULL;
 
     /**
+     * Protected Variable masterstudiengangRepository wird mit NULL initialisiert.
+     *
+     * @var \ReRe\Rere\Domain\Repository\MasterstudiengangRepository
+     * @inject
+     */
+    protected $masterstudiengangRepository = NULL;
+
+    /**
      * Protected Variable objectManager wird mit NULL initialisiert.
      *
      * @var \TYPO3\CMS\Extbase\Object\ObjectManagerInterface
@@ -112,46 +120,49 @@ class ModulController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
      * @return void
      */
     public function listAction() {
-        $moduls = $this->modulRepository->findAll();
-        $intervall = $this->intervallRepository->findByUid(1);
-        $settings = $this->settingsRepository->findByUid(1);
-        $filteredmoduls = array();
+	$moduls = $this->modulRepository->findAll();
+	$intervall = $this->intervallRepository->findByUid(1);
+	$settings = $this->settingsRepository->findByUid(1);
+	$filteredmoduls = array();
 
-        // Prüfen ob Settings leer sind
-        if ($settings == Null) {
-            $mail = $this->objectManager->create('\\ReRe\\Rere\\Domain\\Model\\Settings');
-            $mail->setMailAbsender("DEFAULT");
-            $mail->setMailEmpfaenger("@htwg-konstanz.de");
-            $this->settingsRepository->add($mail);
-        }
+	$masterstudiengangs = $this->masterstudiengangRepository->findAll();
 
-        // Prüfen, ob die Tabelle wirklich einen Wert hat (also ob ein Intervall gesetzt wurde).
-        if ($intervall == Null) {
-            // wenn Intervall noch nicht gesetzt ist, wird ein Intervall-Objekt erzeugt
-            $createdIntervall = $this->objectManager->create('\\ReRe\\Rere\\Domain\\Model\\Intervall');
-            $createdIntervall->setAktuell('WS14/15');
-            $createdIntervall->setType('studienhalbjahr');
-            $this->intervallRepository->add($createdIntervall);
-            $this->redirect('list');
-        }
-        if ($intervall != Null) {
-            // wenn Intervall gesetzt ist, wird es geholt.
-            $akteullesintervall = $intervall->getAktuell();
-            $intervallType = $intervall->getType();
-        }
-        // Alle Module des aktuellen Intervalls holen
-        foreach ($moduls as $modul) {
-            if ($modul->getGueltigkeitszeitraum() == $akteullesintervall) {
-                array_push($filteredmoduls, $modul);
-            }
-        }
-        // Ausgabe an View
-        $this->view->assignMultiple(array(
-            'aktuellintervall' => $akteullesintervall,
-            'intervallType' => $intervallType,
-            'moduls' => $filteredmoduls
-        ));
-        return $this->view->render();
+	// Prüfen ob Settings leer sind
+	if ($settings == Null) {
+	    $mail = $this->objectManager->create('\\ReRe\\Rere\\Domain\\Model\\Settings');
+	    $mail->setMailAbsender("DEFAULT");
+	    $mail->setMailEmpfaenger("@htwg-konstanz.de");
+	    $this->settingsRepository->add($mail);
+	}
+
+	// Prüfen, ob die Tabelle wirklich einen Wert hat (also ob ein Intervall gesetzt wurde).
+	if ($intervall == Null) {
+	    // wenn Intervall noch nicht gesetzt ist, wird ein Intervall-Objekt erzeugt
+	    $createdIntervall = $this->objectManager->create('\\ReRe\\Rere\\Domain\\Model\\Intervall');
+	    $createdIntervall->setAktuell('WS14/15');
+	    $createdIntervall->setType('studienhalbjahr');
+	    $this->intervallRepository->add($createdIntervall);
+	    $this->redirect('list');
+	}
+	if ($intervall != Null) {
+	    // wenn Intervall gesetzt ist, wird es geholt.
+	    $akteullesintervall = $intervall->getAktuell();
+	    $intervallType = $intervall->getType();
+	}
+	// Alle Module des aktuellen Intervalls holen
+	foreach ($moduls as $modul) {
+	    if ($modul->getGueltigkeitszeitraum() == $akteullesintervall) {
+		array_push($filteredmoduls, $modul);
+	    }
+	}
+	// Ausgabe an View
+	$this->view->assignMultiple(array(
+	    'aktuellintervall' => $akteullesintervall,
+	    'intervallType' => $intervallType,
+	    'moduls' => $filteredmoduls,
+	    'masterstudiengangs' => $masterstudiengangs
+	));
+	return $this->view->render();
     }
 
     /**
@@ -161,7 +172,7 @@ class ModulController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
      * @return void
      */
     public function showAction(\ReRe\Rere\Domain\Model\Modul $modul) {
-        $this->view->assign('modul', $modul);
+	$this->view->assign('modul', $modul);
     }
 
     /**
@@ -172,19 +183,19 @@ class ModulController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
      * @return void
      */
     public function newAction(\ReRe\Rere\Domain\Model\Modul $newModul = NULL) {
-        if ($this->request->hasArgument(self::RETURNMODUL)) {
-            $this->view->assignMultiple(array(
-                self::MODULNAME => $this->request->getArgument(self::RETURNMODUL),
-                self::MODULNUMMER => $this->request->getArgument(self::MODULNUMMER),
-                self::GUELTIGKEITSZEITRAUM => $this->request->getArgument(self::GUELTIGKEITSZEITRAUM),
-                self::FACHNAME => $this->request->getArgument(self::FACHNAME),
-                self::FACHNUMMER => $this->request->getArgument(self::FACHNUMMER),
-                self::PRUEFER => $this->request->getArgument(self::PRUEFER),
-                self::DATUM => $this->request->getArgument(self::DATUM),
-                self::CREDITPOINTS => $this->request->getArgument(self::CREDITPOINTS)));
-        } else {
-            $this->view->assignMultiple(array('newModul' => $newModul, self::GUELTIGKEITSZEITRAUM => $this->request->getArgument(self::GUELTIGKEITSZEITRAUM)));
-        }
+	if ($this->request->hasArgument(self::RETURNMODUL)) {
+	    $this->view->assignMultiple(array(
+		self::MODULNAME => $this->request->getArgument(self::RETURNMODUL),
+		self::MODULNUMMER => $this->request->getArgument(self::MODULNUMMER),
+		self::GUELTIGKEITSZEITRAUM => $this->request->getArgument(self::GUELTIGKEITSZEITRAUM),
+		self::FACHNAME => $this->request->getArgument(self::FACHNAME),
+		self::FACHNUMMER => $this->request->getArgument(self::FACHNUMMER),
+		self::PRUEFER => $this->request->getArgument(self::PRUEFER),
+		self::DATUM => $this->request->getArgument(self::DATUM),
+		self::CREDITPOINTS => $this->request->getArgument(self::CREDITPOINTS)));
+	} else {
+	    $this->view->assignMultiple(array('newModul' => $newModul, self::GUELTIGKEITSZEITRAUM => $this->request->getArgument(self::GUELTIGKEITSZEITRAUM)));
+	}
     }
 
     /**
@@ -197,39 +208,39 @@ class ModulController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
      * @return void
      */
     public function createAction(\ReRe\Rere\Domain\Model\Modul $newModul) {
-        // Prüfen ob der Gültigkeitszeitraum korrekt ist.
-        $pregResult = $pregResult = preg_match('/^([S][S][0-9]{2}|[W][S][0-9]{2}\/[0-9]{2}|Schuljahr[0-9]{2}\/[0-9]{2})$/', $newModul->getGueltigkeitszeitraum());
+	// Prüfen ob der Gültigkeitszeitraum korrekt ist.
+	$pregResult = $pregResult = preg_match('/^([S][S][0-9]{2}|[W][S][0-9]{2}\/[0-9]{2}|Schuljahr[0-9]{2}\/[0-9]{2})$/', $newModul->getGueltigkeitszeitraum());
 
-        if ($pregResult != 1) {
-            $this->addFlashMessage('Gülitigkeitszeitrum falsch gewählt! Zulässig: SS00 bis SS99 oder WS00/01 bis WS99/00 oder Sschuljahr00/01 bis Schuljahr 99/00', '', \TYPO3\CMS\Core\Messaging\AbstractMessage::ERROR);
-            $this->redirect(self::NEWSTRING, "Modul", Null, array(self::RETURNMODUL => $newModul->getModulname(),
-                self::MODULNUMMER => $newModul->getModulnr(),
-                self::GUELTIGKEITSZEITRAUM => $newModul->getGueltigkeitszeitraum(),
-                self::FACHNAME => $this->request->getArgument(self::FACHNAME),
-                self::FACHNUMMER => $this->request->getArgument(self::FACHNUMMER),
-                self::PRUEFER => $this->request->getArgument(self::PRUEFER),
-                self::DATUM => $this->request->getArgument(self::DATUM),
-                self::CREDITPOINTS => $this->request->getArgument(self::CREDITPOINTS)));
-        }
-        $this->modulRepository->add($newModul);
-        // Erzeugt ein leeres Fach
-        $fach = $this->objectManager->create('\\ReRe\\Rere\\Domain\\Model\\Fach');
-        // Fach-Werte setzen
-        if ($this->request->hasArgument(self::FACHNAME) && $this->request->hasArgument(self::FACHNUMMER) && $this->request->hasArgument(self::PRUEFER) && $this->request->hasArgument(self::NOTENSCHEMA)) {
-            $fach->setFachname($this->request->getArgument(self::FACHNAME));
-            $fach->setFachnr($this->request->getArgument(self::FACHNUMMER));
-            $fach->setPruefer($this->request->getArgument(self::PRUEFER));
-            $fach->setNotenschema($this->request->getArgument(self::NOTENSCHEMA));
-            $fach->setDatum($this->request->getArgument(self::DATUM));
-            $fach->setCreditpoints($this->request->getArgument(self::CREDITPOINTS));
-        }
-        // Fach einem Modul zuordnen
-        $fach->setModulnr($newModul->getUid());
-        // Fach speichern
-        $this->fachRepository->add($fach);
-        $newModul->addFach($fach);
+	if ($pregResult != 1) {
+	    $this->addFlashMessage('Gülitigkeitszeitrum falsch gewählt! Zulässig: SS00 bis SS99 oder WS00/01 bis WS99/00 oder Sschuljahr00/01 bis Schuljahr 99/00', '', \TYPO3\CMS\Core\Messaging\AbstractMessage::ERROR);
+	    $this->redirect(self::NEWSTRING, "Modul", Null, array(self::RETURNMODUL => $newModul->getModulname(),
+		self::MODULNUMMER => $newModul->getModulnr(),
+		self::GUELTIGKEITSZEITRAUM => $newModul->getGueltigkeitszeitraum(),
+		self::FACHNAME => $this->request->getArgument(self::FACHNAME),
+		self::FACHNUMMER => $this->request->getArgument(self::FACHNUMMER),
+		self::PRUEFER => $this->request->getArgument(self::PRUEFER),
+		self::DATUM => $this->request->getArgument(self::DATUM),
+		self::CREDITPOINTS => $this->request->getArgument(self::CREDITPOINTS)));
+	}
+	$this->modulRepository->add($newModul);
+	// Erzeugt ein leeres Fach
+	$fach = $this->objectManager->create('\\ReRe\\Rere\\Domain\\Model\\Fach');
+	// Fach-Werte setzen
+	if ($this->request->hasArgument(self::FACHNAME) && $this->request->hasArgument(self::FACHNUMMER) && $this->request->hasArgument(self::PRUEFER) && $this->request->hasArgument(self::NOTENSCHEMA)) {
+	    $fach->setFachname($this->request->getArgument(self::FACHNAME));
+	    $fach->setFachnr($this->request->getArgument(self::FACHNUMMER));
+	    $fach->setPruefer($this->request->getArgument(self::PRUEFER));
+	    $fach->setNotenschema($this->request->getArgument(self::NOTENSCHEMA));
+	    $fach->setDatum($this->request->getArgument(self::DATUM));
+	    $fach->setCreditpoints($this->request->getArgument(self::CREDITPOINTS));
+	}
+	// Fach einem Modul zuordnen
+	$fach->setModulnr($newModul->getUid());
+	// Fach speichern
+	$this->fachRepository->add($fach);
+	$newModul->addFach($fach);
 
-        $this->redirect('list');
+	$this->redirect('list');
     }
 
     /**
@@ -241,7 +252,7 @@ class ModulController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
      * @return void
      */
     public function editAction(\ReRe\Rere\Domain\Model\Modul $modul) {
-        $this->view->assign('modul', $modul);
+	$this->view->assign('modul', $modul);
     }
 
     /**
@@ -252,8 +263,8 @@ class ModulController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
      * @return void
      */
     public function updateAction(\ReRe\Rere\Domain\Model\Modul $modul) {
-        $this->modulRepository->update($modul);
-        $this->redirect('list');
+	$this->modulRepository->update($modul);
+	$this->redirect('list');
     }
 
     /**
@@ -263,8 +274,8 @@ class ModulController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
      * @return void
      */
     public function deleteAction(\ReRe\Rere\Domain\Model\Modul $modul) {
-        $this->modulRepository->remove($modul);
-        $this->redirect('list');
+	$this->modulRepository->remove($modul);
+	$this->redirect('list');
     }
 
 }

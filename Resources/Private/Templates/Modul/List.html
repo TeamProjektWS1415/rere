@@ -77,7 +77,7 @@
 	</f:if>
 
         <div class="row">
-            <div class="col-md-5">
+            <div class="col-md-7">
                 <nav class="navbar navbar-default" role="navigation">
                     <div class="container-fluid">
                         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-2">
@@ -85,6 +85,7 @@
 
 				<f:if condition="{intervallType}=='johnerinstitut'" >
 				    <f:then>
+					<li><f:form.select name="masterstudiengang" options="{masterstudiengangs}" value="{masterstudiengang.uid}" optionLabelField="name" class="form-control gettooltip positionpadding" title="Masterstudiengänge"/></li>
 					<li><f:link.action controller="Masterstudiengang" action="list" ><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> <f:translate key="tx_rere_Text.JohnerInstitut.neuerMasterstudiengang"/></f:link.action></li>
 				    </f:then>
 				    <f:else>
