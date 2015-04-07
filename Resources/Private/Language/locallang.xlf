@@ -283,6 +283,10 @@
 		<source>Schulhalbjahr</source>
 		<target>School Semester</target>
 	    </trans-unit>
+	    <trans-unit id="tx_rere_Startseite_IntervallEinstellen.JohnerInstitut">
+		<source>Johner Institut</source>
+		<target>Johner Institut</target>
+	    </trans-unit>
 	    <trans-unit id="tx_rere_Startseite.Hilfe">
 		<source>Hilfe</source>
 		<target>Help</target>
