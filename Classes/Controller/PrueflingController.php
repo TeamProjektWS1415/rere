@@ -560,21 +560,26 @@ class PrueflingController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionContro
 	$prueflinge = $this->prueflingRepository->findAll();
 	foreach ($feusers as $feuser) {
 	    // Wenn die UserGroup des FEUsers = der Ausgewählten Usergroup
-	    if ((int) $feuser->getUsergroup() == (int) $userGroup) {
-		foreach ($prueflinge as $pruefling) {
-		    // Prueft ob der Pruefling bereits zugewiesen wurde
-		    $checkList = $this->userfunctions->checkMatrikelNr($fach->getMatrikelnr(), $pruefling->getMatrikelnr());
-		    $checkVar = "TYPO3\CMS\Extbase\Domain\Model\FrontendUser:" . $feuser->getUid();
-		    if ($pruefling->getTypo3FEUser() == $checkVar && $checkList == 1) {
-			echo "true";
-			$note = $this->genNote();
-			// Beziehung setzen
-			$fach->addMatrikelnr($pruefling);
-			$fach->addNote($note);
-			$pruefling->addNote($note);
-			$this->fachRepository->add($fach);
-			// Persistieren aller Losen objekte.
-			$persistenceManager->persistAll();
+
+	    foreach ($feuser->getUsergroup() as $usergroup) {
+
+		//\TYPO3\CMS\Core\Utility\DebugUtility::debug($usergroup);
+		if ($usergroup->getUid() == $userGroup->getUid()) {
+		    foreach ($prueflinge as $pruefling) {
+			// Prueft ob der Pruefling bereits zugewiesen wurde
+			$checkList = $this->userfunctions->checkMatrikelNr($fach->getMatrikelnr(), $pruefling->getMatrikelnr());
+			$checkVar = "TYPO3\CMS\Extbase\Domain\Model\FrontendUser:" . $feuser->getUid();
+			if ($pruefling->getTypo3FEUser() == $checkVar && $checkList == 1) {
+			    echo "true";
+			    $note = $this->genNote();
+			    // Beziehung setzen
+			    $fach->addMatrikelnr($pruefling);
+			    $fach->addNote($note);
+			    $pruefling->addNote($note);
+			    $this->fachRepository->add($fach);
+			    // Persistieren aller Losen objekte.
+			    $persistenceManager->persistAll();
+			}
 		    }
 		}
 	    }
