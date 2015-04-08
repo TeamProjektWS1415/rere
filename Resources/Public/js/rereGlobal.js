@@ -36,6 +36,8 @@ $(document).ready(function () {
 
     // Ajax Call für neue Note
     $(".setMasterstudiengang").change(function () {
+	$(".waitingpanel").fadeIn("slow");
+	$(".spinningicon").fadeIn("slow");
 	$('#masterstudiengangchange').submit();
     });
 
