@@ -145,6 +145,7 @@ CREATE TABLE tx_rere_domain_model_pruefling (
 	matrikelnr varchar(255) DEFAULT '' NOT NULL,
 	vorname varchar(255) DEFAULT '' NOT NULL,
 	nachname varchar(255) DEFAULT '' NOT NULL,
+	prueflingname varchar(255) DEFAULT '' NOT NULL,
 	typo3_f_e_user int(11) unsigned DEFAULT '0',
 	note int(11) unsigned DEFAULT '0' NOT NULL,
 

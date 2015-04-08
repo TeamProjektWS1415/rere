@@ -215,7 +215,7 @@ for ($i = 0; $i < count($grades_Array); $i = $i + 11) {
     if ($FEUserIDforMatrikelnummer == "true") {
 	$MATRIKELNUMMER = $feUserUID;
     }
-    $sql = "INSERT INTO tx_rere_domain_model_pruefling (pid, matrikelnr, vorname, nachname, typo3_f_e_user, note, prueflingname) VALUES (" . $PID . "," . $MATRIKELNUMMER . ",'" . $firstName . "','" . $lastName . "'," . $feUserUID . "," . $counterNote . ", " . $prueflingname . ")";
+    $sql = "INSERT INTO tx_rere_domain_model_pruefling (pid, matrikelnr, vorname, nachname, typo3_f_e_user, note, prueflingname) VALUES (" . $PID . "," . $MATRIKELNUMMER . ",'" . $firstName . "','" . $lastName . "'," . $feUserUID . "," . $counterNote . ", '" . $prueflingname . "')";
 
     if (!mysqli_query($db, $sql)) {
 	echo "<br>Error: " . $sql . "<br>" . mysqli_error($db);

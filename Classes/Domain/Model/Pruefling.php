@@ -62,6 +62,13 @@ class Pruefling extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
     protected $nachname = '';
 
     /**
+     * prueflingname
+     *
+     * @var string
+     */
+    protected $prueflingname = '';
+
+    /**
      * typo3FEUser
      *
      * @var \TYPO3\CMS\Extbase\Domain\Model\FrontendUser
@@ -82,7 +89,7 @@ class Pruefling extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
      * @return string $matrikelnr
      */
     public function getMatrikelnr() {
-        return $this->matrikelnr;
+	return $this->matrikelnr;
     }
 
     /**
@@ -92,7 +99,7 @@ class Pruefling extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
      * @return void
      */
     public function setMatrikelnr($matrikelnr) {
-        $this->matrikelnr = $matrikelnr;
+	$this->matrikelnr = $matrikelnr;
     }
 
     /**
@@ -101,7 +108,7 @@ class Pruefling extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
      * @return string $vorname
      */
     public function getVorname() {
-        return $this->vorname;
+	return $this->vorname;
     }
 
     /**
@@ -111,7 +118,26 @@ class Pruefling extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
      * @return void
      */
     public function setVorname($vorname) {
-        $this->vorname = $vorname;
+	$this->vorname = $vorname;
+    }
+
+    /**
+     * Returns the prueflingname
+     *
+     * @return string $prueflingname
+     */
+    public function getPrueflingname() {
+	return $this->prueflingname;
+    }
+
+    /**
+     * Sets the prueflingname
+     *
+     * @param string $prueflingname
+     * @return void
+     */
+    public function setPrueflingname($prueflingname) {
+	$this->prueflingname = $prueflingname;
     }
 
     /**
@@ -120,7 +146,7 @@ class Pruefling extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
      * @return string $nachname
      */
     public function getNachname() {
-        return $this->nachname;
+	return $this->nachname;
     }
 
     /**
@@ -130,7 +156,7 @@ class Pruefling extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
      * @return void
      */
     public function setNachname($nachname) {
-        $this->nachname = $nachname;
+	$this->nachname = $nachname;
     }
 
     /**
@@ -139,7 +165,7 @@ class Pruefling extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
      * @return \TYPO3\CMS\Extbase\Domain\Model\FrontendUser typo3FEUser
      */
     public function getTypo3FEUser() {
-        return $this->typo3FEUser;
+	return $this->typo3FEUser;
     }
 
     /**
@@ -149,15 +175,15 @@ class Pruefling extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
      * @return \TYPO3\CMS\Extbase\Domain\Model\FrontendUser typo3FEUser
      */
     public function setTypo3FEUser($typo3FEUser) {
-        $this->typo3FEUser = $typo3FEUser;
+	$this->typo3FEUser = $typo3FEUser;
     }
 
     /**
      * __construct
      */
     public function __construct() {
-        //Do not remove the next line: It would break the functionality
-        $this->initStorageObjects();
+	//Do not remove the next line: It would break the functionality
+	$this->initStorageObjects();
     }
 
     /**
@@ -169,7 +195,7 @@ class Pruefling extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
      * @return void
      */
     protected function initStorageObjects() {
-        $this->note = new \TYPO3\CMS\Extbase\Persistence\ObjectStorage();
+	$this->note = new \TYPO3\CMS\Extbase\Persistence\ObjectStorage();
     }
 
     /**
@@ -179,7 +205,7 @@ class Pruefling extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
      * @return void
      */
     public function addNote(\ReRe\Rere\Domain\Model\Note $noteADD) {
-        $this->note->attach($noteADD);
+	$this->note->attach($noteADD);
     }
 
     /**
@@ -189,7 +215,7 @@ class Pruefling extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
      * @return void
      */
     public function removeNote(\ReRe\Rere\Domain\Model\Note $noteToRemove) {
-        $this->note->detach($noteToRemove);
+	$this->note->detach($noteToRemove);
     }
 
     /**
@@ -198,7 +224,7 @@ class Pruefling extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
      * @return \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\ReRe\Rere\Domain\Model\Note> $note
      */
     public function getNote() {
-        return $this->note;
+	return $this->note;
     }
 
     /**
@@ -208,7 +234,7 @@ class Pruefling extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
      * @return void
      */
     public function setNote(\TYPO3\CMS\Extbase\Persistence\ObjectStorage $note) {
-        $this->note = $note;
+	$this->note = $note;
     }
 
 }

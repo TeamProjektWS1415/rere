@@ -61,6 +61,7 @@
                                 <th><f:translate key="tx_rere_Text_Zuweisen.matrikelnr"/><span class="glyphicon glyphicon-sort" aria-hidden="true"></span></th>
                         <th><f:translate key="tx_rere_Text_Zuweisen.vorname"/><span class="glyphicon glyphicon-sort" aria-hidden="true"></span></th>
                         <th><f:translate key="tx_rere_Text_Zuweisen.nachname"/><span class="glyphicon glyphicon-sort" aria-hidden="true"></span></th>
+			<th><f:translate key="tx_rere_Text_Zuweisen.pruefingname"/><span class="glyphicon glyphicon-sort" aria-hidden="true"></span></th>
                         <th><f:translate key="tx_rere_Text_Zuweisen.EintragLoeschen"/></th>
                         <th></th>
                         </tr>
@@ -71,18 +72,19 @@
                                 <td><span class="value">{pruefling.matrikelnr}</span></td>
                                 <td><span class="value">{pruefling.vorname}</span></td>
                                 <td><span class="value">{pruefling.nachname}</span></td>
+				<td><span class="value">{pruefling.prueflingname}</span></td>
                                 <td>
                             <f:link.action class="delete" action="setPruefling" onclick="delentry('{f:translate(key: 'tx_rere_error_Zuweisen.text1')}' + {pruefling.matrikelnr} + ' {f:translate(key: 'tx_rere_error_Zuweisen.text2')}', $(this).attr('href'));
-                                                return false;" arguments="{fach:fach.uid,modul:modul.uid,matrikelnr : pruefling.matrikelnr,remove:'remove'}"><span class="glyphicon glyphicon-remove" aria-hidden="true" data-toggle="tooltip" data-placement="bottom" title="<f:translate key='tx_rere_Button_Zuweisen.DatensatzLoeschen'/>"></span></f:link.action>
+						return false;" arguments="{fach:fach.uid,modul:modul.uid,matrikelnr : pruefling.matrikelnr,remove:'remove'}"><span class="glyphicon glyphicon-remove" aria-hidden="true" data-toggle="tooltip" data-placement="bottom" title="<f:translate key='tx_rere_Button_Zuweisen.DatensatzLoeschen'/>"></span></f:link.action>
                             </td>
                             </tr>
                         </f:for>
                         </tbody>
                     </table>
                     <script type="text/javascript">
-                                // Holt alle Prüflinge in ein Json array um zu suchen
-                                var arrayPrueflinge = {f:format.htmlentitiesDecode(value:prueflings)};
-                                var arrayFachPrueflinge = {f:format.htmlentitiesDecode(value:fachprueflinge)};
+				// Holt alle Prüflinge in ein Json array um zu suchen
+				var arrayPrueflinge = {f:format.htmlentitiesDecode(value:prueflings)};
+				var arrayFachPrueflinge = {f:format.htmlentitiesDecode(value:fachprueflinge)};
                     </script>
                 </div>
             </div>

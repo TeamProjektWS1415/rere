@@ -563,6 +563,10 @@
 		<source>Nachname</source>
 		<target>Name</target>
 	    </trans-unit>
+	    <trans-unit id="tx_rere_Text_Zuweisen.pruefingname">
+		<source>Name</source>
+		<target>Name</target>
+	    </trans-unit>
 	    <trans-unit id="tx_rere_Text_Zuweisen.EintragLoeschen">
 		<source>Eintrag loeschen</source>
 		<target>Delete entry</target>
@@ -591,6 +595,11 @@
 
 	    <trans-unit id="tx_rere_domain_model_pruefling.nachname">
 		<source>Nachname</source>
+		<target>Name</target>
+	    </trans-unit>
+
+	    <trans-unit id="tx_rere_domain_model_pruefling.pruefingname">
+		<source>Name</source>
 		<target>Name</target>
 	    </trans-unit>
 
